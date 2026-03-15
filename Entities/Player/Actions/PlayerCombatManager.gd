@@ -44,10 +44,6 @@ func _ready() -> void:
 
 #region Public functions
 
-func tick(_delta : float) -> void:
-	pass
-
-
 func unlockCombo(combo : PlayerCombo) -> void:
 	var combos := comboTree
 	for action in combo.ACTIONS:
@@ -61,18 +57,18 @@ func resetActiveCombo() -> void:
 	currentComboAction = comboTree
 
 func hasActiveCombo() -> bool:
-	if currentComboAction.TYPE == Player.ActionType.none:
+	if currentComboAction.TYPE == PlayerAction.Type.none:
 		return false
 	return true
 
-func isNextComboAction(action : Player.ActionType) -> bool:
+func isNextComboAction(action : PlayerAction.Type) -> bool:
 	if currentComboAction.tree.has(action):
 		return true
 	return false
 
 
 # Assumes the action has been checked and is valid
-func registerComboAction(action : Player.ActionType) -> String:
+func registerComboAction(action : PlayerAction.Type) -> String:
 	assert(isNextComboAction(action), "PlayerCombatManager.registerComboAction(): Action is not next in chain, please check before calling the function!")
 	
 	var current = currentComboAction.tree[action] # The type of this variable will be unsure depending on the position in the tree

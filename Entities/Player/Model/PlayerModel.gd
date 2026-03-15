@@ -6,9 +6,9 @@ class_name PlayerModel
 
 @export_group("Scene members")
 @export var player : Player
-@export var cameraManager : PlayerCameraManager
+@export var inputManager : PlayerInputManager
 
-@onready var actionManager := $ActionManager as PlayerActionManager
+@onready var actionContainer := $ActionContainer as PlayerActionContainer
 @onready var combatManager := $CombatManager as PlayerCombatManager
 @onready var resources := $Resources as PlayerResources
 @onready var skeleton := $Skeleton as Skeleton3D
@@ -29,37 +29,37 @@ var currentAction : PlayerAction = null
 func _ready() -> void:
 	assert(player != null, "PlayerModel._ready(): Player player not assigned!")
 
-	currentAction = actionManager.actions[Player.ActionType.idle]
-	switchTo(Player.ActionType.idle)
+	currentAction = actionContainer.actions[PlayerAction.Type.idle]
+	switchTo(PlayerAction.Type.idle)
 
 #endregion
 
 
 #region Public functions
 
-func tick(input : PlayerInputManager.Data, delta: float) -> void:
-	processInput(input)
+func _physics_process(delta: float) -> void:
+	processInput(inputManager.inputs)
 	
-	var nextAction := currentAction.nextAction(input)
-	if nextAction != Player.ActionType.none:
+	var nextAction := currentAction.nextAction(inputManager.inputs)
+	if nextAction != PlayerAction.Type.none:
 		switchTo(nextAction)
 	
-	currentAction.tick(input, delta)
-	combatManager.tick(delta)
-	resources.tick(delta)
+	currentAction.tick(inputManager.inputs, delta)
+	# combatManager.tick(delta)
+	# resources.tick(delta)
 
 
 # Input processing by sorting them by priority
 func processInput(input : PlayerInputManager.Data):
-	input.actions.sort_custom(actionManager.actionPrioritySort)
+	input.actions.sort_custom(actionContainer.hasHigherPriority)
 	
 	# Check sidearm --> What did I mean by this?
 
 
 # Forces a swith to a given action type
-func switchTo(action : Player.ActionType) -> void:
+func switchTo(action : PlayerAction.Type) -> void:
 	currentAction.exit()
-	currentAction = actionManager.actions[action]
+	currentAction = actionContainer.actions[action]
 	currentAction.enter()
 
 #endregion

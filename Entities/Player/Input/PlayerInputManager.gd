@@ -8,7 +8,7 @@ class Data extends RefCounted:
 	var inputDirection : Vector2
 	var direction : Vector2
 
-	var actions : Array[Player.ActionType]
+	var actions : Array[PlayerAction.Type]
 	
 	func reset() -> void:
 		actions.clear() # Both directions don't have to be reset because they will be reassigned every time
@@ -22,6 +22,14 @@ class Data extends RefCounted:
 #endregion
 
 
+#region Scene members
+
+@export_group("Scene members")
+@export var cameraManager : PlayerCameraManager
+
+#endregion
+
+
 #region Member variables
 
 var inputs : Data = Data.new()
@@ -29,13 +37,13 @@ var inputs : Data = Data.new()
 #endregion
 
 
-#region Public functions
+#region Built-in functions
 
-func pollInputs(cameraDirection : Vector2) -> void:
+func _physics_process(_delta : float) -> void:
 	inputs.reset()
-	inputs.actions.append(Player.ActionType.idle)
+	inputs.actions.append(PlayerAction.Type.idle)
 
-	inputs.cameraDirection = cameraDirection
+	inputs.cameraDirection = cameraManager.cameraPlaneDirection()
 	processMovementDirection()
 	
 	processMovementActions()
@@ -52,11 +60,11 @@ func processMovementDirection() -> void:
 		return
 		
 	if Input.is_action_pressed("Sprint"):
-		inputs.actions.append(Player.ActionType.sprint)
+		inputs.actions.append(PlayerAction.Type.sprint)
 	elif inputs.inputDirection.length_squared() > WALK_LIMIT_SQUARED:
-		inputs.actions.append(Player.ActionType.run)
+		inputs.actions.append(PlayerAction.Type.run)
 	else:
-		inputs.actions.append(Player.ActionType.walk)
+		inputs.actions.append(PlayerAction.Type.walk)
 	
 	inputs.inputDirection = inputs.inputDirection.normalized()
 
@@ -76,9 +84,9 @@ func processMovementDirection() -> void:
 
 func processMovementActions():
 	if Input.is_action_pressed("Jump"):
-		inputs.actions.append(Player.ActionType.jumpBasic)
+		inputs.actions.append(PlayerAction.Type.jumpBasic)
 	
 	if Input.is_action_pressed("Dodge"):
-		inputs.actions.append(Player.ActionType.dodgeBasic)
+		inputs.actions.append(PlayerAction.Type.dodgeBasic)
 
 #endregion

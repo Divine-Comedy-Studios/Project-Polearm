@@ -10,8 +10,8 @@ class_name PlayerActionData
 @export var _trackDirection : bool = false # If an action tracks the direction of the input, it also tracks the direction of the camera
 
 @export_group("Movement")
-@export var _mimicRootMotion : bool = false
-@export var _rootMotionVelocityFactor : float = 1
+@export var _rootMotion : bool = false
+@export var _rootMotionPosition : Vector3 = Vector3.ZERO
 
 @export_group("Combat")
 @export var _vulnerable : bool = true
@@ -20,6 +20,7 @@ class_name PlayerActionData
 # Certain combos in the game require the player to wait a small amount of time before before inputting the next move. This variable denotes
 # from when on the combat manager will insert a pause into the combo upon pressing an input instead of just inserting the action normally
 @export var _comboPause : bool = false
+
 
 #endregion
 
@@ -36,11 +37,11 @@ func trackDirection(animationName : String, time : float) -> bool:
 	return _getBooleanValue(animationName, "ActionData:_trackDirection", time)
 
 
-func mimicRootMotion(animationName : String, time : float) -> bool:
-	return _getBooleanValue(animationName, "ActionData:_mimicRootMotion", time)
+func rootMotionEnabled(animationName : String, time : float) -> bool:
+	return _getBooleanValue(animationName, "ActionData:_rootMotionEnabled", time)
 
-func rootMotionVelocityFactor(animationName : String, time : float) -> bool:
-	return _getFloatingValue(animationName, "ActionData:_rootMotionVelocityFactor", time)
+func rootMotionPosition(animationName : String, time : float) -> Vector3:
+	return _getVector3Value(animationName, "ActionData:_rootMotionPosition", time)
 
 
 func vulnerable(animationName : String, time : float) -> bool:
@@ -61,7 +62,7 @@ func _getBooleanValue(animationName : String, propertyName : String, time : floa
 	var anim = get_animation(animationName)
 	return anim.value_track_interpolate(anim.find_track(propertyName, Animation.TrackType.TYPE_VALUE), time)
 
-func _getFloatingValue(animationName : String, propertyName : String, time : float) -> float:
+func _getVector3Value(animationName : String, propertyName : String, time : float) -> Vector3:
 	var anim = get_animation(animationName)
 	return anim.value_track_interpolate(anim.find_track(propertyName, Animation.TrackType.TYPE_VALUE), time)
 

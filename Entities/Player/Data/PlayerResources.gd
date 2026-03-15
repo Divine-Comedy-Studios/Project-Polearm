@@ -13,7 +13,7 @@ class_name PlayerResources
 
 @export var sonOfHeaven : bool = false
 
-@export var unlockedActions : Array[Player.ActionType]
+@export var unlockedActions : Array[PlayerAction.Type]
 
 
 @export_group("Resources")
@@ -58,13 +58,14 @@ class_name PlayerResources
 func _ready() -> void:
 	assert(model != null, "PlayerResources._ready(): Player model not assigned!")
 
+
+func _physics_process(delta: float) -> void:
+	loseFlow(delta * BASE_FLOW_DECREASE_RATE * flowModifier)
+
 #endregion
 
 
 #region Public functions
-
-func tick(delta: float) -> void:
-	loseFlow(delta * BASE_FLOW_DECREASE_RATE * flowModifier)
 
 #endregion
 
@@ -78,7 +79,7 @@ func loseHealth(amount : float) -> void:
 	health = max(health - amount, 0)
 	
 	if health == 0:
-		model.switchTo(Player.ActionType.death)
+		model.switchTo(PlayerAction.Type.death)
 
 #endregion
 

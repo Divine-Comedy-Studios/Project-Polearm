@@ -4,6 +4,61 @@ class_name PlayerAction
 
 #region Enums
 
+enum Type {
+	none,
+	
+
+	# Idle
+	idle,
+	
+
+	# Ground movement actions
+	walk,
+	run,
+	sprint,
+	
+
+	# Jumping
+	jumpBasic,
+	jumpStill, jumpRun, jumpSprint,
+
+	fall,
+
+	# The landing animation can always determined, hence it needs no intermediate action
+	landingStill, landingRun,
+	
+
+	# Dodge states
+	dodgeBasic,
+	dodgeGround, dodgeAir,
+
+
+	# Hit states
+	hitBasic,
+	hitGround, hitAir, downedGround, downedAir, downedLanding,
+
+	# u ded lmao skill issue
+	death,
+
+
+	# Combat can cancel out movement, but not eachother, but may be queried
+	lightAttackBasic,
+	heavyAttackBasic,
+	
+	# The sidearm type cannot be determined during polling time
+	sidearm,
+	ranged,
+	whip,
+	
+	earthQuake,
+	piercingShot,
+	sonOfHeaven,
+
+	# Taunts
+	tauntBasic,
+}
+
+
 enum Priority {
 	idle = 0,
 	groundedMovementTypes = 1,
@@ -22,7 +77,7 @@ enum Priority {
 #region Exported variables
 
 @export_group("General")
-@export var TYPE : Player.ActionType
+@export var TYPE : Type
 @export var PRIORITY : int = 0
 @export var ANIMATION_NAME : String
 @export var ROTATION_TRACKING_SPEED : float = 10
@@ -37,10 +92,8 @@ enum Priority {
 #region Scene members
 
 var player : Player
-# var physics : PlayerPhysics
-var manager : PlayerActionManager
+var container : PlayerActionContainer
 var combatManager : PlayerCombatManager
-var cameraManager : PlayerCameraManager
 var actionData : PlayerActionData
 var resources : PlayerResources
 var animationPlayer : AnimationPlayer
@@ -50,11 +103,11 @@ var animationPlayer : AnimationPlayer
 
 #region Member variables
 
-var progress : float
+var _progress : float
 var DURATION : float
 
-var queue : Player.ActionType = Player.ActionType.none # Queued action, used for combos and buffering, not guaranteed to happen next
-var next : Player.ActionType = Player.ActionType.none # Guaranteed next action after the current one has ended
+var _queue : Type = Type.none # Queued action, used for combos and buffering, not guaranteed to happen next
+var _next : Type = Type.none # Guaranteed next action after the current one has ended
 
 #endregion
 
@@ -62,32 +115,19 @@ var next : Player.ActionType = Player.ActionType.none # Guaranteed next action a
 #region Public funcitons
 
 func init(
-	player_ : Player, \
-	manager_ : PlayerActionManager, \
-	# physics_ : PlayerPhysics, \
-	combatManager_ : PlayerCombatManager, \
-	cameraManager_ : PlayerCameraManager, \
-	actionData_ : PlayerActionData, \
-	resources_ : PlayerResources, \
-	animationPlayer_ : AnimationPlayer, \
+	player_ : Player,
+	container_ : PlayerActionContainer,
+	combatManager_ : PlayerCombatManager,
+	actionData_ : PlayerActionData,
+	resources_ : PlayerResources,
+	animationPlayer_ : AnimationPlayer,
 ) -> void:
 	player = player_
-	manager = manager_
-	# physics = physics_
+	container = container_
 	combatManager = combatManager_
-	cameraManager = cameraManager_
 	actionData = actionData_
 	resources = resources_
 	animationPlayer = animationPlayer_
-
-
-# This is called on every frame when the action is enabled
-func tick(input : PlayerInputManager.Data, delta : float) -> void:
-	progress += delta
-
-	processDirection(input, delta)
-	
-	tickImpl(input, delta)
 
 
 # This is executed on action enter
@@ -105,28 +145,55 @@ func enter() -> void:
 func exit() -> void:
 	exitImpl()
 	
-	progress = 0
+	_progress = 0
 	
-	queue = Player.ActionType.none
-	next = Player.ActionType.none
+	_queue = Type.none
+	_next = Type.none
+
+
+# This is called on every frame when the action is enabled
+func tick(input : PlayerInputManager.Data, delta : float) -> void:
+	_progress += delta
+
+	if actionData.trackDirection(ANIMATION_NAME, _progress):
+		_processDirection(input, delta)
+	
+	tickImpl(input, delta)
+
+	#if actionData.rootMotionEnabled(ANIMATION_NAME, _progress):
+	#	_processRootMotion(delta)
+
 
 # This checks if the current action should continue or if not, the action to transition to based on all inputs
-func nextAction(input : PlayerInputManager.Data) -> Player.ActionType:
-	if actionData.acceptsQueue(ANIMATION_NAME, progress) and input.actions.size() == 0: # Set the queued action
-		checkAndSetQueue(input)
+func nextAction(input : PlayerInputManager.Data) -> Type:
+	if actionData.acceptsQueue(ANIMATION_NAME, _progress) and input.actions.size() == 0: # Set the queued action
+		_checkAndSetQueue(input)
 
-	if not actionData.transitionable(ANIMATION_NAME, progress):
-		return Player.ActionType.none
+	if not actionData.transitionable(ANIMATION_NAME, _progress):
+		return Type.none
 	
-	if queue != Player.ActionType.none: # If a transition can occur and the queue is set, push the queue as the next action
-		checkAndSetNext(queue)
+	# From this point on, we can freely transition to anything we want
 
-	if next == Player.ActionType.none: # If all above cases do not trigger a transition, just check for the input causing the highest priority action
-		next = highestPriorityAction(input)
+	if _queue != Type.none: # If a transition can occur and the queue is set, push the queue as the next action
+		_checkAndSetNext(_queue)
+
+	if _next == Type.none: # If all above cases do not trigger a transition, just check for the input causing the highest priority action
+		_next = _highestPriorityAction(input)
 	
-	nextStateImpl(input)
+	# After the most likely input-based action has been decided, other factors like physics may be taken into account
+	_next = nextStateImpl(_next)
 
-	return next
+	return _next
+
+
+# Explicit definition of higher priority
+
+static func hasHigherPriority(first : PlayerAction, second : PlayerAction) -> bool:
+	return first.PRIORITY > second.PRIORITY
+
+func hasHigherPriorityThan(second : Type) -> bool:
+	return PRIORITY > container.actions[second].PRIORITY
+
 
 #endregion
 
@@ -134,66 +201,73 @@ func nextAction(input : PlayerInputManager.Data) -> Player.ActionType:
 #region Private functions
 
 # Check if a queueable move is present, can be queued with the current action and set it if these are the case
-func checkAndSetQueue(input : PlayerInputManager.Data) -> void:
-	queue = input.actions[0]
+func _checkAndSetQueue(input : PlayerInputManager.Data) -> void:
+	_queue = input.actions[0]
 
 	# Checks if a pause has been detected and a pause is part of the combo
-	if actionData.comboPause(ANIMATION_NAME, progress):
-		if combatManager.isNextComboAction(Player.ActionType.idle):
-			combatManager.registerComboAction(Player.ActionType.idle)
+	if actionData.comboPause(ANIMATION_NAME, _progress):
+		if combatManager.isNextComboAction(Type.idle):
+			combatManager.registerComboAction(Type.idle) # Add the pause to the combo
 		# else: # This can be uncommented and the function below implemented to add punishment for button mashing
 		#	combatManager.breakCombo()
 
+
 # Check if the next action can be set (i.e. has a higher priority than the current next action)
-func checkAndSetNext(actionType : Player.ActionType) -> void:
-	if next != Player.ActionType.none: # If it were none, just set the action type
-		var action := manager.actions[actionType]
-		if !resources.canAffordAction(action) or manager.actions[next].PRIORITY < action.PRIORITY: # Check for the priorities of the potential next actions
-			return
-	
-	next = actionType
+func _checkAndSetNext(actionType : Type) -> void:
+	if _next == Type.none: # If it were none, just set the action type
+		_next = actionType
+
+	var action := container.actions[actionType]
+	if resources.canAffordAction(action) and hasHigherPriority(container.actions[_next], action): # Check for the priorities of the potential next actions
+		_next = actionType
 
 
 # Gets the highest priority action from the current input, given it has a higher pritority than the current one
-func highestPriorityAction(input : PlayerInputManager.Data) -> Player.ActionType:
+func _highestPriorityAction(input : PlayerInputManager.Data) -> Type:
 	# Go through all higher priority actions and immediately return them if possible as they can cancel the current action
 	for actionType in input.actions:
-		var action := manager.actions[actionType]
-		
+		var action := container.actions[actionType]
+
 		# If both animations have the same type, just ignore it and break
-		# If the current action is not yet finished and the other has the same priority, don't play the ANIMATION_NAME
-		if action.TYPE == TYPE or action.PRIORITY <= PRIORITY and progress < DURATION:
-			break # We can directly break instead of continuing, since the actions are sorted
+		if action.TYPE == TYPE:
+			break # We can directly break instead of continuing, since the actions are sorted by priority
 		
 		if resources.canAffordAction(action):
 			return actionType
 	
-	return Player.ActionType.none
+	return Type.none
 
 
 # If enabled, this will influence the direction the player faces using the direction of the input package
-func processDirection(input : PlayerInputManager.Data, delta : float) -> void:
-	if actionData.trackDirection(ANIMATION_NAME, progress):
-		player.rotate_y(clampf( \
-			player.basis.z.signed_angle_to(Vector3(input.direction.x, 0, input.direction.y), Vector3.UP), \
-			-ROTATION_TRACKING_SPEED * delta, ROTATION_TRACKING_SPEED * delta))
+func _processDirection(input : PlayerInputManager.Data, delta : float) -> void:
+	player.rotate_y(clampf( \
+		player.basis.z.signed_angle_to(Vector3(input.direction.x, 0, input.direction.y), Vector3.UP), \
+		-ROTATION_TRACKING_SPEED * delta, ROTATION_TRACKING_SPEED * delta))
+
+
+# If enabled, this will add root motion to the animation
+func _processRootMotion(delta : float) -> void:
+	#var firstVec := actionData.rootMotionPosition(ANIMATION_NAME, maxf(_progress - delta / 2, 0))
+	#var secondVec := actionData.rootMotionPosition(ANIMATION_NAME, minf(_progress + delta / 2, actionData.get_animation(ANIMATION_NAME).length))
+
+	#player.applyMove(secondVec - firstVec)
+	pass
 
 #endregion
 
 
 #region Implementation functions
 
-func tickImpl(_input : PlayerInputManager.Data, _delta : float) -> void:
-	pass
-
 func enterImpl() -> void:
-	pass
-
-# Modify the next variable in this function
-func nextStateImpl(_input : PlayerInputManager.Data):
 	pass
 
 func exitImpl() -> void:
 	pass
+
+func tickImpl(_input : PlayerInputManager.Data, _delta : float) -> void:
+	pass
+
+func nextStateImpl(next : Type):
+	return next
 
 #endregion

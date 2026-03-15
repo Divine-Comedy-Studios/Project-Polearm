@@ -3,7 +3,7 @@ class_name PlayerCombo
 
 
 class ActionData extends Resource:
-	@export var TYPE : Player.ActionType
+	@export var TYPE : PlayerAction.Type
 	@export var ANIMATION : String
 	@export var DAMAGE : int
 	@export var FLOW : int
