@@ -50,6 +50,10 @@ sky = SubResource("Sky_uesqs")
 
 [node name="Gym" type="Node" unique_id=1076830952]
 
+[node name="Player" parent="." unique_id=1997770894 instance=ExtResource("2_d2u3u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 2.1386669)
+STEP_SPEED_FACTOR = 0.3
+
 [node name="Visuals" type="Node" parent="." unique_id=1391791017]
 
 [node name="SceneCamera" parent="Visuals" unique_id=1015597522 instance=ExtResource("1_6ld1k")]
@@ -94,7 +98,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -19.100002)
 
 [node name="Stairs" parent="Geometry" unique_id=1187381614 instance=ExtResource("9_jiqka")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 18.090061, 0, -8.6)
-
-[node name="Player" parent="." unique_id=1997770894 instance=ExtResource("2_d2u3u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 2.1386669)
-STEP_SPEED_FACTOR = 0.3
