@@ -160,8 +160,8 @@ func tick(input : PlayerInputManager.Data, delta : float) -> void:
 	
 	tickImpl(input, delta)
 
-	#if actionData.rootMotionEnabled(ANIMATION_NAME, _progress):
-	#	_processRootMotion(delta)
+	if actionData.rootMotionEnabled(ANIMATION_NAME, _progress):
+		_processRootMotion(delta)
 
 
 # This checks if the current action should continue or if not, the action to transition to based on all inputs
@@ -247,11 +247,11 @@ func _processDirection(input : PlayerInputManager.Data, delta : float) -> void:
 
 # If enabled, this will add root motion to the animation
 func _processRootMotion(delta : float) -> void:
-	#var firstVec := actionData.rootMotionPosition(ANIMATION_NAME, maxf(_progress - delta / 2, 0))
-	#var secondVec := actionData.rootMotionPosition(ANIMATION_NAME, minf(_progress + delta / 2, actionData.get_animation(ANIMATION_NAME).length))
-
-	#player.applyMove(secondVec - firstVec)
-	pass
+	player.set_quaternion(player.get_quaternion() * animationPlayer.get_root_motion_rotation())
+	player.velocity += (
+		animationPlayer.get_root_motion_rotation_accumulator().inverse() * 
+		player.get_quaternion()
+	) * animationPlayer.get_root_motion_position() / delta
 
 #endregion
 

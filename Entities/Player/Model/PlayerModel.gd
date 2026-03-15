@@ -45,8 +45,6 @@ func _physics_process(delta: float) -> void:
 		switchTo(nextAction)
 	
 	currentAction.tick(inputManager.inputs, delta)
-	# combatManager.tick(delta)
-	# resources.tick(delta)
 
 
 # Input processing by sorting them by priority
