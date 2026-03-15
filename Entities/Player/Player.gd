@@ -1,5 +1,9 @@
-# The architectual decisions and structure are heavily guided by https://github.com/Gab-ani/Godot_Universal-Controller-tutorial/tree/episode-5-overview-and-cleanup
-# and it's accompanying YouTube tutorial series. Implementation details are heavily customized
+# The architectual decisions and structure are heavily guided by:
+#
+# https://github.com/Gab-ani/Godot_Universal-Controller-tutorial/
+#
+# and it's accompanying YouTube tutorial series. Implementation details are customized. 
+# Other state machines in the project are also inspired on this specific implementation
 
 
 extends FloatingBody
@@ -7,60 +11,6 @@ class_name Player
 
 
 #region Enums
-
-enum ActionType {
-	none,
-	
-
-	# Idle
-	idle,
-	
-
-	# Ground movement actions
-	walk,
-	run,
-	sprint,
-	
-
-	# Jumping
-	jumpBasic,
-	jumpStill, jumpRun, jumpSprint,
-
-	fall,
-
-	# The landing animation can always determined, hence it needs no intermediate action
-	landingStill, landingRun,
-	
-
-	# Dodge states
-	dodgeBasic,
-	dodgeGround, dodgeAir,
-
-
-	# Hit states
-	hitBasic,
-	hitGround, hitAir, downedGround, downedAir, downedLanding,
-
-	# u ded lmao skill issue
-	death,
-
-
-	# Combat can cancel out movement, but not eachother, but may be queried
-	lightAttackBasic,
-	heavyAttackBasic,
-	
-	# The sidearm type cannot be determined during polling time
-	sidearm,
-	ranged,
-	whip,
-	
-	earthQuake,
-	piercingShot,
-	sonOfHeaven,
-
-	# Taunts
-	tauntBasic,
-}
 
 enum ComboType {
 	none,
@@ -109,9 +59,6 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	inputManager.pollInputs(cameraManager.cameraPlaneDirection())
-	model.tick(inputManager.inputs, delta)
-
 	tick(delta)
 
 #endregion
