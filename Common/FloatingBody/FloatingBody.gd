@@ -99,7 +99,12 @@ const STEP_RAY_VERTICAL_OFFSET : float = 0.03
 # References
 
 @onready var BUFFERED_MAX_GROUND_DISTANCE := (STEP_MAX_HEIGHT) * (1 + GROUND_DISTANCE_BUFFER)
+
+@onready var CHARACTER_HEIGHT_BUFFERED := CHARACTER_HEIGHT - GROUND_DISTANCE_BUFFER
+@onready var CHARACTER_POSITION_BUFFERED := CHARACTER_HEIGHT / 2
+
 @onready var BODY_COLLIDER_HEIGHT := CHARACTER_HEIGHT - BODY_COLLIDER_FLOATING_HEIGHT
+@onready var BODY_COLLIDER_POSITION := BODY_COLLIDER_HEIGHT / 2 + BODY_COLLIDER_FLOATING_HEIGHT
 
 @onready var SLOPE_MAX_ANGLE_COS := cos(SLOPE_MAX_ANGLE)
 @onready var COLLISION_LAYERS := groundCast.collision_mask
@@ -187,6 +192,17 @@ func groundPoint() -> Vector3:
 func groundNormal() -> Vector3:
 	return _groundedData.normal
 
+
+func leaveGround() -> void:
+	_stepState = StepState.none
+	_grounded = false
+	_standingBodyCollider()
+
+func enterGround() -> void:
+	_grounded = true
+	_floatingBodyCollider()
+
+
 func forceGroundDataUpdate() -> void:
 	if _stepState == StepState.down:
 		_processFootCollisionData(_groundData)
@@ -208,9 +224,7 @@ func forceGroundDataUpdate() -> void:
 func _configureHitboxes() -> void:
 	groundCast.max_results = MAX_GROUND_COLLISIONS
 
-	bodyCollider.position.y = BODY_COLLIDER_HEIGHT / 2 + BODY_COLLIDER_FLOATING_HEIGHT
-	_bodyColliderShape.radius = BODY_COLLIDER_RADIUS
-	_bodyColliderShape.height = BODY_COLLIDER_HEIGHT
+	_floatingBodyCollider()
 
 	_groundCastShape.radius = GROUND_CAST_RADIUS
 
@@ -218,6 +232,16 @@ func _configureHitboxes() -> void:
 	PhysicsServer3D.body_set_collision_mask(_collisionProbeBody, COLLISION_LAYERS)
 	PhysicsServer3D.body_set_space(_collisionProbeBody, get_world_3d().space)
 	PhysicsServer3D.body_add_shape(_collisionProbeBody, _collisionProbeShape)
+
+func _floatingBodyCollider() -> void:
+	bodyCollider.position.y = BODY_COLLIDER_POSITION
+	_bodyColliderShape.radius = BODY_COLLIDER_RADIUS
+	_bodyColliderShape.height = BODY_COLLIDER_HEIGHT
+
+func _standingBodyCollider() -> void:
+	bodyCollider.position.y = CHARACTER_POSITION_BUFFERED
+	_bodyColliderShape.height = CHARACTER_HEIGHT_BUFFERED
+
 
 
 # Physics functions
@@ -228,13 +252,11 @@ func _processCollisions() -> void:
 
 	# First order of business, we check for groundedness
 
-	if not _footData.grounded and ((not _grounded) or (_grounded and not _groundData.grounded)):
-		_stepState = StepState.none
-		_grounded = false
-
+	if not _groundData.grounded and not _footData.grounded:
+		leaveGround()
 		return
-
-	_grounded = true
+	else:
+		enterGround()
 
 
 	# Stepping collision checks
@@ -251,12 +273,14 @@ func _processCollisions() -> void:
 		elif checkStepDownResult == 1 and _checkStepUp(direction):
 			return
 
-	# If we are not stepping at all, we calculate a point in the direction the player is moving 
-	# slightly behind the edge of the player hitbox. This allows us to perform a bit of smoothing
 
 	if not _footData.grounded and _groundData.offset > GROUND_DISTANCE_BUFFER:
-		_grounded = false
+		# If it turns out that our foot is not grounded and the ground is still larger than the distance buffer, we fall
+		leaveGround()
 	elif _validStepDepth:
+		# If we are not stepping at all, we calculate a point in the direction the player is moving 
+		# slightly behind the edge of the player hitbox. This allows us to perform a bit of smoothing
+
 		_probePointInDirection(_footData, global_position, velocity.normalized(), min(BODY_COLLIDER_RADIUS, sqrt(_velocityPlaneLength)), 4)
 
 
