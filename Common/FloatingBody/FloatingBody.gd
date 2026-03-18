@@ -72,7 +72,8 @@ const STEP_RAY_VERTICAL_OFFSET : float = 0.03
 @export var CHARACTER_HEIGHT :float = 1.8
 @export var BODY_COLLIDER_RADIUS = 0.5
 @export var BODY_COLLIDER_FLOATING_HEIGHT : float = 0.3
-@export var GROUND_CAST_RADIUS : float = 0.4
+@export var GROUND_CAST_RADIUS : float = 0.2
+@export var FORWARD_DETECTION_DISTANCE : float = 0.4
 
 @export_group("Slope settings")
 @export_range(-360, 360, 0.001, "radians_as_degrees") var SLOPE_MAX_ANGLE : float = 0.786
@@ -117,6 +118,7 @@ const STEP_RAY_VERTICAL_OFFSET : float = 0.03
 
 var _groundData : GroundData = GroundData.new()
 var _footData : GroundData = GroundData.new()
+var _footOffset : float = 0.0
 @onready var _groundedData : GroundData = _groundData # Reference to the current ground data which is grounded
 
 var _stepState : StepState = StepState.none
@@ -196,11 +198,11 @@ func groundNormal() -> Vector3:
 func leaveGround() -> void:
 	_stepState = StepState.none
 	_grounded = false
-	_standingBodyCollider()
+	_standingCollider()
 
 func enterGround() -> void:
 	_grounded = true
-	_floatingBodyCollider()
+	_floatingCollider()
 
 
 func forceGroundDataUpdate() -> void:
@@ -209,7 +211,7 @@ func forceGroundDataUpdate() -> void:
 	else:
 		groundCast.force_shapecast_update()
 		_processGroundCollisionData(_groundData)
-	
+
 	if _stepState != StepState.down:
 		_groundedData = _groundData
 
@@ -224,24 +226,25 @@ func forceGroundDataUpdate() -> void:
 func _configureHitboxes() -> void:
 	groundCast.max_results = MAX_GROUND_COLLISIONS
 
-	_floatingBodyCollider()
-
-	_groundCastShape.radius = GROUND_CAST_RADIUS
+	_floatingCollider()
 
 	PhysicsServer3D.shape_set_data(_collisionProbeShape, _motionBodyData)
 	PhysicsServer3D.body_set_collision_mask(_collisionProbeBody, COLLISION_LAYERS)
 	PhysicsServer3D.body_set_space(_collisionProbeBody, get_world_3d().space)
 	PhysicsServer3D.body_add_shape(_collisionProbeBody, _collisionProbeShape)
 
-func _floatingBodyCollider() -> void:
+func _floatingCollider() -> void:
 	bodyCollider.position.y = BODY_COLLIDER_POSITION
 	_bodyColliderShape.radius = BODY_COLLIDER_RADIUS
 	_bodyColliderShape.height = BODY_COLLIDER_HEIGHT
 
-func _standingBodyCollider() -> void:
+	_groundCastShape.radius = GROUND_CAST_RADIUS
+
+func _standingCollider() -> void:
 	bodyCollider.position.y = CHARACTER_POSITION_BUFFERED
 	_bodyColliderShape.height = CHARACTER_HEIGHT_BUFFERED
 
+	_groundCastShape.radius = BODY_COLLIDER_RADIUS # Detect slopes, as the ground cast in its normal state is too small to detect slopes
 
 
 # Physics functions
@@ -257,6 +260,8 @@ func _processCollisions() -> void:
 		return
 	else:
 		enterGround()
+	
+	_footOffset = _footData.offset
 
 
 	# Stepping collision checks
@@ -274,14 +279,15 @@ func _processCollisions() -> void:
 			return
 
 
-	if not _footData.grounded and _groundData.offset > GROUND_DISTANCE_BUFFER:
+	if not _footData.grounded:
 		# If it turns out that our foot is not grounded and the ground is still larger than the distance buffer, we fall
-		leaveGround()
+		_grounded = _groundData.offset > GROUND_DISTANCE_BUFFER
+
 	elif _validStepDepth:
 		# If we are not stepping at all, we calculate a point in the direction the player is moving 
 		# slightly behind the edge of the player hitbox. This allows us to perform a bit of smoothing
 
-		_probePointInDirection(_footData, global_position, velocity.normalized(), min(BODY_COLLIDER_RADIUS, sqrt(_velocityPlaneLength)), 4)
+		_probePointInDirection(_footData, global_position, velocity.normalized(), FORWARD_DETECTION_DISTANCE, 5)
 
 
 func _calculateVelocity(delta : float) -> void:
@@ -307,10 +313,9 @@ func _calculateVelocity(delta : float) -> void:
 		else:
 			# The two cross products produce the final slope vector to rotate velocity by
 			velocity = Utility.Math.rotateVectorOntoPlane(velocity, line.cross(_footData.normal).cross(line).normalized())
-	else:
-		if _stepState == StepState.none:
-			return
-
+		
+		return
+	elif _stepState != StepState.none:
 		var absOffset := absf(_groundedData.offset)
 
 		if absOffset > STEP_MAX_HEIGHT:
@@ -318,10 +323,17 @@ func _calculateVelocity(delta : float) -> void:
 			velocity.y = 0
 		elif absOffset > MIN_STEP_SPEED:
 			velocity.y -= maxf(absOffset / delta, MIN_STEP_SPEED) * STEP_SPEED_FACTOR * signf(_groundedData.offset)
+
+			return
 		else:
 			position.y -= _groundedData.offset # Modify position directly for better snapping
 			_stepState = StepState.none
 			velocity.y = 0
+
+	#if _groundedData.offset > COLLISION_EPSILON:
+	velocity.y = -_groundedData.offset / STEP_SPEED_FACTOR
+	
+	
 
 
 func _resetFrame() -> void:
@@ -372,7 +384,7 @@ func _processFootCollisionData(result : GroundData) -> void:
 		result.grounded = true
 
 
-# Gives the farthest point on the line from startingPos towards direction * distance, which is continuously grounded
+# Gives the farthest point on the line from startingPos towards direction
 func _probePointInDirection(result : GroundData, startingPos : Vector3, direction : Vector3, distance : float, iterations : int) -> void:
 	var iterDistance := distance / iterations
 	var iterShift := direction * iterDistance
@@ -396,7 +408,7 @@ func _probePointInDirection(result : GroundData, startingPos : Vector3, directio
 		result.offset = dist
 		result.normal = collision.normal as Vector3
 		result.grounded = true
-		
+
 		pos += iterShift
 		pos.y = result.point.y
 
@@ -491,7 +503,7 @@ func _highestGroundPointGlobal() -> Vector3:
 	return result
 
 # The maximum ground distance introduces some leniency, which changes whether the player is on the ground or not
-func _bufferedGroundMaxDistance() -> float:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+func _bufferedGroundMaxDistance() -> float:
 	if _grounded:
 		return BUFFERED_MAX_GROUND_DISTANCE
 	return GROUND_DISTANCE_BUFFER
