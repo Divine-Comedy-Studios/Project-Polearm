@@ -2,10 +2,6 @@
 
 [ext_resource type="Script" uid="uid://jth8cpsjn3vy" path="res://Entities/Player/Physics/PlayerPhysics.gd" id="1_72kpf"]
 
-[node name="PlayerPhysics" type="Node3D" unique_id=1399611852]
+[node name="Physics" type="Node3D" unique_id=887152139]
 script = ExtResource("1_72kpf")
 metadata/_custom_type_script = "uid://jth8cpsjn3vy"
-
-[node name="LedgeSideCast" type="RayCast3D" parent="." unique_id=1595255139]
-
-[node name="LedgeTopCast" type="RayCast3D" parent="." unique_id=1027590789]

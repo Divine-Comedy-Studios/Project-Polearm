@@ -31,9 +31,9 @@ class LedgeData:
 #region Exported variables
 
 @export_group("Ledge settings")
-@export var MAX_LEDGE_DISTANCE : float = 0.4
-@export var MAX_LEDGE_HEIGHT : float = 2.4
-@export var MIN_LEDGE_HEIGHT : float = 1.4
+@export var LEDGE_MAX_DISTANCE : float = 0.4
+@export var LEDGE_MAX_HEIGHT : float = 2.4
+@export var LEDGE_MIN_HEIGHT : float = 1.4
 
 @export_group("Jump settings")
 @export var JUMP_BUFFER : float
@@ -60,7 +60,7 @@ func _physics_process(delta : float) -> void:
 
 
 func _process(_delta : float) -> void:
-	pass#DEBUG_drawCollisionPoints()
+	pass
 
 
 #endregion
