@@ -1,11 +1,29 @@
+@tool
+
 extends Node3D
 class_name XBotMesh
 
 
-@onready var surface := $Alpha_Surface_007 as MeshInstance3D
-@onready var joints := $Alpha_Joints_007 as MeshInstance3D
+@export var _skeleton : Skeleton3D = null:
+	set(skeleton):
+		_skeleton = skeleton
+		_resetSkeleton()
 
 
-func acceptSkeleton(skeleton : Skeleton3D) -> void:
-	surface.skeleton = skeleton.get_path()
-	joints.skeleton = skeleton.get_path()
+var _surface : MeshInstance3D = null
+var _joints : MeshInstance3D = null
+
+
+func _ready() -> void:
+	_resetSkeleton()
+
+
+func _resetSkeleton() -> void:
+	if not is_inside_tree():
+		return
+	
+	_surface = $Alpha_Surface_007 as MeshInstance3D
+	_joints = $Alpha_Joints_007 as MeshInstance3D
+
+	_surface.skeleton = _skeleton.get_path()
+	_joints.skeleton = _skeleton.get_path()
