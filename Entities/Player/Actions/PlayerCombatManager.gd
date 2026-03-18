@@ -23,10 +23,10 @@ class_name PlayerCombatManager
 
 #region Member variables
 
-@onready var comboTree : PlayerComboAction = PlayerComboAction.new()
-@onready var currentComboAction : PlayerComboAction = comboTree
+var comboTree : PlayerComboAction = PlayerComboAction.new()
+@onready var currentComboAction : PlayerComboAction = null
 
-var previousCombos : Array[Player.ComboType]
+var previousCombos : Array[PlayerCombo.Type]
 
 #endregion
 
@@ -37,20 +37,12 @@ func _ready() -> void:
 	assert(resources != null, "PlayerCombatManager._ready(): Resource container not assigned!")
 
 	for combo in unlockedCombos:
-		unlockCombo(combo)
+		_unlockCombo(combo)
 
 #endregion
 
 
 #region Public functions
-
-func unlockCombo(combo : PlayerCombo) -> void:
-	var combos := comboTree
-	for action in combo.ACTIONS:
-		if not combos.tree.has(action.TYPE):
-			combos.tree[action.TYPE] = PlayerComboAction.new(action)
-		combos = combos.tree[action.TYPE]
-	combos.FINAL_COMBO_TYPE = combo.TYPE
 
 
 func resetActiveCombo() -> void:
@@ -73,7 +65,7 @@ func registerComboAction(action : PlayerAction.Type) -> String:
 	
 	var current = currentComboAction.tree[action] # The type of this variable will be unsure depending on the position in the tree
 	
-	if current.TYPE != Player.ComboType.none:
+	if current.TYPE != PlayerCombo.Type.none:
 		if previousCombos.size() == PREVIOUS_COMBO_COUNT:
 			previousCombos.pop_front()
 		previousCombos.append(current.TYPE)
@@ -85,10 +77,25 @@ func registerComboAction(action : PlayerAction.Type) -> String:
 	return current.ANIMATION
 
 # Returns 0 if the combo wasn't used previously
-func comboPreviousUse(combo : Player.ComboType) -> int:
+func comboPreviousUse(combo : PlayerCombo.Type) -> int:
 	for x in range(1, previousCombos.size() + 1):
 		if previousCombos[-x] == combo:
 			return x + 1
 	return 0
+
+#endregion
+
+
+#region Private functions
+
+func _unlockCombo(combo : PlayerCombo) -> void:
+	var comboAction := comboTree
+	for action in combo.ACTIONS:
+		comboAction = comboAction.tree[action.TYPE]
+
+		if not comboAction.tree.has(action.TYPE):
+			comboAction = PlayerComboAction.new(action)
+
+	comboAction.FINAL_ATTACK_MARKER = combo.TYPE
 
 #endregion
