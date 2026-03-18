@@ -48,7 +48,7 @@ class_name PlayerResources
 #region Scene members
 
 @export_group("Scene members")
-@export var model : PlayerModel
+@export var actionManager : PlayerActionManager
 
 #endregion
 
@@ -56,7 +56,7 @@ class_name PlayerResources
 #region Built-in functions
 
 func _ready() -> void:
-	assert(model != null, "PlayerResources._ready(): Player model not assigned!")
+	assert(actionManager != null, "PlayerResources._ready(): Player action manager not assigned!")
 
 
 func _physics_process(delta: float) -> void:
@@ -79,7 +79,7 @@ func loseHealth(amount : float) -> void:
 	health = max(health - amount, 0)
 	
 	if health == 0:
-		model.switchTo(PlayerAction.Type.death)
+		actionManager.switchTo(PlayerAction.Type.death)
 
 #endregion
 

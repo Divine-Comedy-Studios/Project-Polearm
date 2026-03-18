@@ -12,12 +12,6 @@ class_name Player
 
 #region Enums
 
-enum ComboType {
-	none,
-	unknown = none,
-	
-}
-
 enum FlowState {
 	none,
 	mortal,
@@ -34,10 +28,7 @@ enum FlowState {
 
 #region Scene Members
 
-@onready var inputManager := $InputManager as PlayerInputManager
-@onready var model := $Model as PlayerModel
 @onready var cameraManager := $CameraManager as PlayerCameraManager
-@onready var visuals := $XBotMesh as XBotMesh
 
 #endregion
 
@@ -55,10 +46,5 @@ func _ready() -> void:
 	init()
 
 	cameraManager.setFollowTarget(self)
-	visuals.acceptSkeleton(model.skeleton)
-
-
-func _physics_process(delta: float) -> void:
-	tick(delta)
 
 #endregion

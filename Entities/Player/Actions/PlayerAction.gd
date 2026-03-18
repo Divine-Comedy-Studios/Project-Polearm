@@ -92,7 +92,7 @@ enum Priority {
 #region Scene members
 
 var player : Player
-var container : PlayerActionContainer
+var manager : PlayerActionManager
 var combatManager : PlayerCombatManager
 var actionData : PlayerActionData
 var resources : PlayerResources
@@ -116,14 +116,14 @@ var _next : Type = Type.none # Guaranteed next action after the current one has 
 
 func init(
 	player_ : Player,
-	container_ : PlayerActionContainer,
+	manager_ : PlayerActionManager,
 	combatManager_ : PlayerCombatManager,
 	actionData_ : PlayerActionData,
 	resources_ : PlayerResources,
 	animationPlayer_ : AnimationPlayer,
 ) -> void:
 	player = player_
-	container = container_
+	manager = manager_
 	combatManager = combatManager_
 	actionData = actionData_
 	resources = resources_
@@ -134,9 +134,9 @@ func init(
 func enter() -> void:
 	resources.payAction(self)
 	
-	if combatManager.isNextComboAction(TYPE):
-		ANIMATION_NAME = combatManager.registerComboAction(TYPE)
-		
+	# if combatManager.isNextComboAction(TYPE):
+	#	ANIMATION_NAME = combatManager.registerComboAction(TYPE)
+
 	animationPlayer.play(ANIMATION_NAME)
 	
 	enterImpl()
@@ -160,8 +160,8 @@ func tick(input : PlayerInputManager.Data, delta : float) -> void:
 	
 	tickImpl(input, delta)
 
-	if actionData.rootMotionEnabled(ANIMATION_NAME, _progress):
-		_processRootMotion(delta)
+	# if actionData.rootMotionEnabled(ANIMATION_NAME, _progress):
+	#	_processRootMotion(delta)
 
 
 # This checks if the current action should continue or if not, the action to transition to based on all inputs
@@ -192,7 +192,7 @@ static func hasHigherPriority(first : PlayerAction, second : PlayerAction) -> bo
 	return first.PRIORITY > second.PRIORITY
 
 func hasHigherPriorityThan(second : Type) -> bool:
-	return PRIORITY > container.actions[second].PRIORITY
+	return PRIORITY > manager.actions[second].PRIORITY
 
 
 #endregion
@@ -217,8 +217,8 @@ func _checkAndSetNext(actionType : Type) -> void:
 	if _next == Type.none: # If it were none, just set the action type
 		_next = actionType
 
-	var action := container.actions[actionType]
-	if resources.canAffordAction(action) and hasHigherPriority(container.actions[_next], action): # Check for the priorities of the potential next actions
+	var action := manager.actions[actionType]
+	if resources.canAffordAction(action) and hasHigherPriority(manager.actions[_next], action): # Check for the priorities of the potential next actions
 		_next = actionType
 
 
@@ -226,7 +226,7 @@ func _checkAndSetNext(actionType : Type) -> void:
 func _highestPriorityAction(input : PlayerInputManager.Data) -> Type:
 	# Go through all higher priority actions and immediately return them if possible as they can cancel the current action
 	for actionType in input.actions:
-		var action := container.actions[actionType]
+		var action := manager.actions[actionType]
 
 		# If both animations have the same type, just ignore it and break
 		if action.TYPE == TYPE:
