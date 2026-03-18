@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dhsuh2ufuvwdp"]
 
-[ext_resource type="Script" uid="uid://cn381b6mnpegx" path="res://Common/Tools/CSGStair.gd" id="1_t2xum"]
+[ext_resource type="Script" uid="uid://cn381b6mnpegx" path="res://Common/Tools/CSG/CSGStair.gd" id="1_t2xum"]
 [ext_resource type="Material" uid="uid://bxph5pp01vonr" path="res://Assets/Materials/Prototype/Obstacle.tres" id="2_btwux"]
 [ext_resource type="Material" uid="uid://p2ekc74yxtq1" path="res://Assets/Materials/Prototype/ObstacleGreen.tres" id="3_8n46m"]
 [ext_resource type="Material" uid="uid://bihtu5l32o8it" path="res://Assets/Materials/Prototype/ObsctacleOrange.tres" id="4_bhsjy"]
