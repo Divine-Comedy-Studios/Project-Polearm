@@ -10,6 +10,7 @@ export_credentials.cfg
 # Godot addon ignors
 addons/*/examples
 addons/godot-git-plugin/
+addons/Asset_Drawer/
 
 # Imported translations (automatically generated from CSV files)
 *.translation
