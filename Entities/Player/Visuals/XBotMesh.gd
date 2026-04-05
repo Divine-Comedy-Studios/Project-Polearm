@@ -22,8 +22,8 @@ func _resetSkeleton() -> void:
 	if not is_inside_tree():
 		return
 	
-	_surface = $Alpha_Surface_007 as MeshInstance3D
-	_joints = $Alpha_Joints_007 as MeshInstance3D
+	_surface = $Alpha_Surface as MeshInstance3D
+	_joints = $Alpha_Joints as MeshInstance3D
 
 	_surface.skeleton = _skeleton.get_path()
 	_joints.skeleton = _skeleton.get_path()
