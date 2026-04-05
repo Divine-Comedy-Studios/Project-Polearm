@@ -1,16 +1,19 @@
 [gd_scene format=3 uid="uid://c0atl8ffoeq5u"]
 
 [ext_resource type="Script" uid="uid://da7enr8axqhyb" path="res://Interfaces/Menus/MainMenu/StartMenu/StartMenu.gd" id="1_006fw"]
+[ext_resource type="Theme" uid="uid://eptqqy8sm6gl" path="res://Interfaces/Themes/MenuTheme.tres" id="1_ijn5t"]
 [ext_resource type="Script" uid="uid://cfdlgc8aalbtr" path="res://Interfaces/Elements/GameMenuButton.gd" id="2_1kon5"]
 
 [node name="StartMenu" type="Control" unique_id=1875216693]
 physics_interpolation_mode = 0
+texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_ijn5t")
 script = ExtResource("1_006fw")
 metadata/_custom_type_script = "uid://cyn28bbc16luj"
 
@@ -37,6 +40,7 @@ layout_mode = 2
 theme_override_constants/separation = 9
 
 [node name="Continue" type="Button" parent="HBoxContainer/MarginContainer/VBoxContainer" unique_id=1927661442]
+texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 3
 text = "Continue"
@@ -51,6 +55,7 @@ script = ExtResource("2_1kon5")
 metadata/_custom_type_script = "uid://cfdlgc8aalbtr"
 
 [node name="Options" type="Button" parent="HBoxContainer/MarginContainer/VBoxContainer" unique_id=903404609]
+texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 3
 text = "Options"
@@ -58,6 +63,7 @@ script = ExtResource("2_1kon5")
 metadata/_custom_type_script = "uid://cfdlgc8aalbtr"
 
 [node name="Quit Game" type="Button" parent="HBoxContainer/MarginContainer/VBoxContainer" unique_id=322889893]
+texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 3
 text = "Quit Game"
