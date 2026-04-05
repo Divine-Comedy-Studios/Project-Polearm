@@ -1,7 +1,0 @@
-[gd_scene format=3 uid="uid://djyqxmgh8kuy3"]
-
-[ext_resource type="Script" uid="uid://jth8cpsjn3vy" path="res://Entities/Player/Physics/PlayerPhysics.gd" id="1_72kpf"]
-
-[node name="Physics" type="Node3D" unique_id=887152139]
-script = ExtResource("1_72kpf")
-metadata/_custom_type_script = "uid://jth8cpsjn3vy"
