@@ -1,15 +1,15 @@
 [remap]
 
-importer="scene"
+importer="animation_library"
 importer_version=1
-type="PackedScene"
-uid="uid://cadi4o4s5f2vw"
-path="res://.godot/imported/XBot.glb-5aee32a73d7ab349285f8f90306b58a6.scn"
+type="AnimationLibrary"
+uid="uid://dtemkfm7unxu4"
+path="res://.godot/imported/AnimTest.glb-1b31fac3f1c2c19a26b2e70c03e90cb0.res"
 
 [deps]
 
-source_file="res://Assets/3D Models/Characters/Player/XBot.glb"
-dest_files=["res://.godot/imported/XBot.glb-5aee32a73d7ab349285f8f90306b58a6.scn"]
+source_file="res://Assets/3D Models/Characters/Player/Animations/AnimTest.glb"
+dest_files=["res://.godot/imported/AnimTest.glb-1b31fac3f1c2c19a26b2e70c03e90cb0.res"]
 
 [params]
 
