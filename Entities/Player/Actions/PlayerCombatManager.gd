@@ -2,6 +2,22 @@ extends Node
 class_name PlayerCombatManager
 
 
+#region Enums
+
+enum FlowState {
+	none,
+	mortal,
+	cultivating,
+	enlightened,
+	sage,
+	immortal,
+	divine,
+	heavenly,
+}
+
+#endregion
+
+
 #region Exported variables
 
 @export_group("Combat config")

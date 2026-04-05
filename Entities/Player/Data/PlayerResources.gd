@@ -92,8 +92,8 @@ func gainFlow(amount : float) -> void:
 func loseFlow(amount : float) -> void:
 	flow = max(flow - amount, 0)
 
-func flowToState() -> Player.FlowState:
-	return Player.FlowState.values()[floori(FLOW_CURVE.sample(clampf(flow, 0, FLOW_CURVE.max_value + 0.5)))]
+func flowToState() -> PlayerCombatManager.FlowState:
+	return PlayerCombatManager.FlowState.values()[floori(FLOW_CURVE.sample(clampf(flow, 0, FLOW_CURVE.max_value + 0.5)))]
 
 #endregion
 

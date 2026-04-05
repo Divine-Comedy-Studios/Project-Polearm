@@ -1,17 +1,15 @@
 [gd_scene format=3 uid="uid://bgf6aphyao331"]
 
-[ext_resource type="Script" uid="uid://bjcvtl3iwfvuc" path="res://Entities/Player/Camera/PlayerCameraManager.gd" id="1_gvq4d"]
+[ext_resource type="Script" uid="uid://d3brdu3aih1ox" path="res://Entities/Player/Camera/PlayerCameraManager.cs" id="1_ye1s6"]
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="2_ye1s6"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_ij7sd"]
 
 [sub_resource type="Resource" id="Resource_i8oxm"]
 script = ExtResource("3_ij7sd")
 
-[node name="PlayerCameraManager" type="Node" unique_id=1956657863]
-script = ExtResource("1_gvq4d")
-CONTROLLER_SENSITIVITY = 100.0
-MOUSE_SENSITIVITY = 0.31
-metadata/_custom_type_script = "uid://bjcvtl3iwfvuc"
+[node name="PlayerCameraManager" type="Node" unique_id=448851904]
+script = ExtResource("1_ye1s6")
+metadata/_custom_type_script = "uid://d3brdu3aih1ox"
 
 [node name="FollowCam" type="Node3D" parent="." unique_id=113170500]
 transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 0, 0)

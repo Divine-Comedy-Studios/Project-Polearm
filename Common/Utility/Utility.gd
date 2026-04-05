@@ -1,5 +1,7 @@
 class_name Utility
 
+static var _mathSource := preload("res://Common/Utility/Math.cs")
+static var _enumsSource := preload("res://Common/Utility/Enums.cs")
 
-static var Enums := preload("res://Common/Utility/Enums.gd")
-static var Math := preload("res://Common/Utility/Math.gd")
+static var Math = _mathSource.new()
+static var Enums = _enumsSource.new()
