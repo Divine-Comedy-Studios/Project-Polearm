@@ -39,6 +39,10 @@ var inputs : Data = Data.new()
 
 #region Built-in functions
 
+func _ready() -> void:
+	assert(cameraManager != null, "PlayerInputManager._ready(): Camera manager was not assigned!")
+
+
 func _physics_process(_delta : float) -> void:
 	inputs.reset()
 	inputs.actions.append(PlayerAction.Type.idle)
@@ -84,7 +88,7 @@ func processMovementDirection() -> void:
 
 func processMovementActions():
 	if Input.is_action_pressed("Jump"):
-		inputs.actions.append(PlayerAction.Type.jumpBasic)
+		inputs.actions.append(PlayerAction.Type.jumpStill)
 	
 	if Input.is_action_pressed("Dodge"):
 		inputs.actions.append(PlayerAction.Type.dodgeBasic)
