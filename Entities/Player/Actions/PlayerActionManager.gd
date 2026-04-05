@@ -34,20 +34,19 @@ var currentAction : PlayerAction = null
 #region Built-in functions
 
 func _ready() -> void:
-	assert(player != null, "PlayerActionContainer._ready(): Player not assigned!")
+	assert(player != null, "PlayerActionManager._ready(): Player not assigned!")
 
-	assert(cameraManager != null, "PlayerActionContainer._ready(): Player camera manager not assigned!")
-	assert(inputManager != null, "PlayerActionContainer._ready(): Player input manager not assigned!")
+	assert(cameraManager != null, "PlayerActionManager._ready(): Player camera manager not assigned!")
+	assert(inputManager != null, "PlayerActionManager._ready(): Player input manager not assigned!")
 
-	assert(resources != null, "PlayerActionContainer._ready(): Player resources not assigned!")
-	assert(actionData != null, "PlayerActionContainer._ready(): Player action data not assigned!")
+	assert(resources != null, "PlayerActionManager._ready(): Player resources not assigned!")
+	assert(actionData != null, "PlayerActionManager._ready(): Player action data not assigned!")
 
-	assert(physics != null, "PlayerActionContainer._ready(): Player physics processor not assigned!")
+	assert(physics != null, "PlayerActionManager._ready(): Player physics processor not assigned!")
 
-	assert(combatManager != null, "PlayerActionContainer._ready(): Player combat manager not assigned!")
+	assert(combatManager != null, "PlayerActionManager._ready(): Player combat manager not assigned!")
 
-	assert(animationPlayer != null, "PlayerActionContainer._ready(): Player skeleton animation player not assigned!")
-
+	assert(animationPlayer != null, "PlayerActionManager._ready(): Player skeleton animation player not assigned!")
 
 	for child in get_children():
 		if child is PlayerAction:
