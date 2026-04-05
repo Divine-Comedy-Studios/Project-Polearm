@@ -8,9 +8,6 @@ class_name PlayerActionData
 @export var _transitionable : bool = true # originally false
 @export var _trackDirection : bool = false # If an action tracks the direction of the input, it also tracks the direction of the camera
 
-@export_group("Movement")
-@export var _rootMotion : bool = false
-
 @export_group("Combat")
 @export var _vulnerable : bool = true
 @export var _acceptsQueue : bool = false
@@ -30,10 +27,6 @@ func transitionable(animationName : String, time : float) -> bool:
 
 func trackDirection(animationName : String, time : float) -> bool:
 	return _getBooleanValue(animationName, "ActionData:_trackDirection", time)
-
-
-func rootMotionEnabled(animationName : String, time : float) -> bool:
-	return _getBooleanValue(animationName, "ActionData:_rootMotionEnabled", time)
 
 
 func vulnerable(animationName : String, time : float) -> bool:
