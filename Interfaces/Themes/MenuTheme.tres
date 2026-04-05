@@ -1,0 +1,53 @@
+[gd_resource type="Theme" format=3 uid="uid://eptqqy8sm6gl"]
+
+[ext_resource type="Texture2D" uid="uid://c1wxlpttkcdlu" path="res://Assets/Interfaces/UI Borders/Button/Hover.png" id="1_1g6g5"]
+[ext_resource type="Texture2D" uid="uid://dvhg5q1yp6qce" path="res://Assets/Interfaces/UI Borders/Button/Focus.png" id="1_bce2v"]
+[ext_resource type="Texture2D" uid="uid://d30dvblh2m2jh" path="res://Assets/Interfaces/UI Borders/Button/Normal.png" id="2_bce2v"]
+[ext_resource type="Texture2D" uid="uid://rfkkf3pel1ho" path="res://Assets/Interfaces/UI Borders/Button/Pressed.png" id="3_fjglp"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fjglp"]
+texture = ExtResource("1_bce2v")
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ayhec"]
+texture = ExtResource("1_1g6g5")
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ta3ny"]
+texture = ExtResource("2_bce2v")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6okpa"]
+texture = ExtResource("3_fjglp")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[resource]
+Button/colors/font_color = Color(0, 0, 0, 1)
+Button/colors/font_focus_color = Color(0, 0.9490196, 0.9490196, 1)
+Button/colors/font_hover_color = Color(0.9490196, 0, 0.9490196, 1)
+Button/colors/font_hover_pressed_color = Color(1, 1, 0, 1)
+Button/colors/font_pressed_color = Color(1, 1, 0, 1)
+Button/colors/icon_focus_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_normal_color = Color(1, 1, 1, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+Button/font_sizes/font_size = 16
+Button/fonts/font = null
+Button/icons/icon = null
+Button/styles/focus = SubResource("StyleBoxTexture_fjglp")
+Button/styles/hover = SubResource("StyleBoxTexture_ayhec")
+Button/styles/normal = SubResource("StyleBoxTexture_ta3ny")
+Button/styles/pressed = SubResource("StyleBoxTexture_6okpa")
