@@ -89,8 +89,6 @@ using System;
 		if (inputEvent is InputEventMouseMotion mouse && m_mouseCaptured && !m_controllerActive) {
 			Vector2 mouseDelta = mouse.Relative * MOUSE_SENSITIVITY;
 
-			GD.Print(mouseDelta);
-
 			_rotateCamera(m_followCam, new Vector2(-mouseDelta.Y, mouseDelta.X));
 		}
 	}
