@@ -40,11 +40,11 @@ func deactivateImpl() -> void:
 
 func exit() -> int:
 	if _startGamePressed:
-		return MainMenuUberState.ExitType.startGame
+		return MainMenuState.ExitType.startGame
 	if _quitGamePressed:
-		return MainMenuUberState.ExitType.quitGame
+		return MainMenuState.ExitType.quitGame
 
-	return MainMenuUberState.ExitType.none
+	return MainMenuState.ExitType.none
 
 #endregion
 
