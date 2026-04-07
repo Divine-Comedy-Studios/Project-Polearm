@@ -41,7 +41,7 @@ using System.Linq;
 	// Generall physics and collision settings
 
 	private const int MAX_GROUND_COLLISIONS = 4;
-	private const float COLLISION_EPSILON = 0.001f;
+	private const float COLLISION_EPSILON = 0.002f;
 	private const float GROUND_DISTANCE_BUFFER = 0.1f;
 	private const float MIN_STEP_SPEED = 0.1f;
 	private const float VELOCITY_VERTICAL_OVERCORRECTION_FACTOR = 2.0f;
@@ -109,10 +109,6 @@ using System.Linq;
 	private CapsuleShape3D m_bodyColliderShape;
 	private SphereShape3D m_groundCastShape;
 
-	private float m_bufferedGroundMaxDistance {
-		get => (m_distanceBufferEnabled ? (STEP_MAX_HEIGHT) * (1 + GROUND_DISTANCE_BUFFER) : GROUND_DISTANCE_BUFFER);
-	}
-
 
 	// State
 
@@ -126,7 +122,7 @@ using System.Linq;
 	private bool m_distanceBufferEnabled = true;
 
 	private StepState m_stepState = StepState.None;
-	private float m_velocityPlaneLengthSquared = 0;
+	private bool m_noFlatVelocity = true;
 
 	private Vector3 m_lastNonZeroDir = Vector3.Zero;
 
@@ -151,6 +147,7 @@ using System.Linq;
 	public void Init() {
 		Debug.Assert(bodyCollider != null, $"FloatingBody.Init(): Body collider is not assigned.");
     	Debug.Assert(groundCast != null, $"FloatingBody.Init(): Ground cast is not assigned.");
+
 
 		// References
 
@@ -290,10 +287,10 @@ using System.Linq;
 	public void forceGroundDataUpdate() => ForceGroundDataUpdate();
 	public void ForceGroundDataUpdate() {
 		if (m_stepState == StepState.Down) {
-			_processFootCollisionData(m_groundData);
+			_processFootCollisionData();
 		} else {
 			groundCast.ForceShapecastUpdate();
-			_processGroundCollisionData(m_groundData);
+			_processGroundCollisionData();
 			m_groundedData = m_groundData;
 		}
 	}
@@ -360,8 +357,8 @@ using System.Linq;
 
 		// First we check for ground collisions
 
-		_processGroundCollisionData(m_groundData);
-		_processFootCollisionData(m_footData);
+		_processGroundCollisionData();
+		_processFootCollisionData();
 
 		if (!m_groundData.Grounded && !m_footData.Grounded && !lastForwardProbeGrounded) {
 			DetachGround();
@@ -376,9 +373,9 @@ using System.Linq;
 
 		// Movement collision checks
 
-		m_velocityPlaneLengthSquared = Velocity.X * Velocity.X + Velocity.Z * Velocity.Z;
+		m_noFlatVelocity = Mathf.IsZeroApprox(Velocity.X * Velocity.X + Velocity.Z * Velocity.Z);
 
-		if (m_velocityPlaneLengthSquared == 0) { // Stepping collision checks
+		if (m_noFlatVelocity) { // Stepping collision checks
 			_calculateStepWallProbeQuery(GlobalPosition, m_groundData.Point);
 
 			if (!_checkStepDown())
@@ -389,7 +386,7 @@ using System.Linq;
 
 			// If we are moving, we calculate a point in the direction the player is moving 
 			// slightly behind the edge of the player hitbox. This allows us to perform smoothing
-			_probePointInDirection(m_footData, GlobalPosition, m_lastNonZeroDir);
+			_probePointInDirection(GlobalPosition, m_lastNonZeroDir);
 		}
 	}
 
@@ -403,13 +400,15 @@ using System.Linq;
 			return;
 		}
 
+		// GD.Print(m_stepState);
+
 		// Directly adapted from godot source code
 		Vector3 groundVelocity = Vector3.Zero;
 		if (m_groundState != null)
 			groundVelocity = m_groundState.GetVelocityAtLocalPosition(GlobalTransform.Origin - m_groundState.Transform.Origin);
 
 
-		if (m_velocityPlaneLengthSquared != 0) {
+		if (!m_noFlatVelocity) {
 			if (Mathf.Abs(m_groundData.Offset) < COLLISION_EPSILON) {
 				Position += Vector3.Down * m_groundData.Offset;
 				m_groundData.Offset = 0.0f;
@@ -428,28 +427,38 @@ using System.Linq;
 
 			if (absOffset > STEP_MAX_HEIGHT)
 				m_stepState = StepState.None;
-			else if (absOffset < COLLISION_EPSILON) {
-				m_stepState = StepState.None;
-				Position += Vector3.Down * m_groundedData.Offset;
-			} else {
-				float deltaOffset = m_groundedData.Offset / delta;
-				Velocity = new Vector3(
-					Velocity.X, 
-					-STEP_SPEED_FACTOR * ((Mathf.Abs(deltaOffset) >= MIN_STEP_SPEED) ? deltaOffset : MIN_STEP_SPEED),
-					Velocity.Z
-				);
-			}
-		} else if (Velocity.Y == 0.0) {
-			// When not moving and not stepping at all, the player is slowly readjusted to ground level
-			Velocity = new Vector3(
-				groundVelocity.X, 
-				groundVelocity.Y - m_groundedData.Offset / delta * MIN_STEP_SPEED,
-				groundVelocity.Z
-			);
-			MoveAndSlide();
-			Velocity = groundVelocity; // Reset velocity because velocity was zero in the first place
+			else {
+				absOffset = absOffset * STEP_SPEED_FACTOR / delta;
 
-			return;
+				if (absOffset < MIN_STEP_SPEED) {
+					m_stepState = StepState.None;
+
+					Velocity = new Vector3(Velocity.X, 0, Velocity.Z);
+					Position += Vector3.Down * m_groundedData.Offset;
+				} else {
+					Velocity = new Vector3(
+						Velocity.X, 
+						-Mathf.Sign(m_groundedData.Offset) * absOffset,
+						Velocity.Z
+					);
+				}
+			}
+		} else if (Mathf.IsZeroApprox(Velocity.Y)) {
+			// When not moving and not stepping at all, the player is slowly readjusted to ground level
+
+			float adjustVel = -m_groundData.Offset / delta * STEP_SPEED_FACTOR;
+
+			if (Mathf.Abs(adjustVel) > COLLISION_EPSILON) {
+				Velocity = new Vector3(
+					groundVelocity.X, 
+					groundVelocity.Y + adjustVel,
+					groundVelocity.Z
+				);
+				MoveAndSlide();
+				Velocity = Vector3.Zero;
+
+				return;
+			} else Position += Vector3.Down * m_groundData.Offset;
 		}
 		
 		Velocity += groundVelocity;
@@ -460,39 +469,36 @@ using System.Linq;
 
 	// Collision analysis functions
 
-	private void _processGroundCollisionData(GroundData result) {
-		result.Clear();
+	private void _processGroundCollisionData() {
+		m_groundData.Clear();
 
 		if (!groundCast.IsColliding())
 			return;
 
-		result.Point = _highestGroundPointGlobal();
-		result.Offset = _vertOffsetToPlayerGlobal(result.Point);
-		if (result.Offset > m_bufferedGroundMaxDistance)
+		m_groundData.Point = _highestGroundPointGlobal();
+		m_groundData.Offset = _vertOffsetToPlayerGlobal(m_groundData.Point);
+		if (m_groundData.Offset > _bufferedGroundMaxDistance())
 			return;
 
-		_setRayQuery(result.Point + Vector3.Up, result.Point - DOWNWARDS_RAY_LENGTH);
+		_setRayQuery(m_groundData.Point + Vector3.Up, m_groundData.Point - DOWNWARDS_RAY_LENGTH);
 		var normalRayCollision = GetWorld3D().DirectSpaceState.IntersectRay(m_rayQuery);
 		if (normalRayCollision.Count == 0)
 			return;
 
-		if (Mathf.Abs(result.Point.Y - ((Vector3)normalRayCollision["position"]).Y) > COLLISION_EPSILON)
+		if (Mathf.Abs(m_groundData.Point.Y - ((Vector3)normalRayCollision["position"]).Y) > COLLISION_EPSILON)
 			// If we can't hit the same point as the sphereCast, we assume for safety that we are not grounded
 			return;
 
-		if (((Rid)normalRayCollision["rid"]) != m_groundRID) { // Update the RID and physics body state of the current ground
-			m_groundRID = (Rid)normalRayCollision["rid"];
-			m_groundState = PhysicsServer3D.BodyGetDirectState(m_groundRID);
-		}
+		_setGroundObject(normalRayCollision);
 
-		result.Normal = (Vector3)normalRayCollision["normal"];
-		if (result.Normal.Y > SLOPE_MAX_ANGLE_COS)
+		m_groundData.Normal = (Vector3)normalRayCollision["normal"];
+		if (m_groundData.Normal.Y > SLOPE_MAX_ANGLE_COS)
 			// As the normal vector is normalized, its angle can be determined by simply checking for its height
-			result.Grounded = true;
+			m_groundData.Grounded = true;
 	}
 
-	private void _processFootCollisionData(GroundData result) {
-		result.Clear();
+	private void _processFootCollisionData() {
+		m_footData.Clear();
 
 		_setRayQuery(GlobalPosition + Vector3.Up, GlobalPosition - DOWNWARDS_RAY_LENGTH);
 		var collision = GetWorld3D().DirectSpaceState.IntersectRay(m_rayQuery);
@@ -500,22 +506,24 @@ using System.Linq;
 		if (collision.Count == 0)
 			return;
 
-		result.Point = (Vector3)collision["position"];
-		result.Offset = _vertOffsetToPlayerGlobal(result.Point);
-		result.Normal = (Vector3)collision["normal"];
+		if (m_groundState == null)
+			_setGroundObject(collision);
 
-		if (result.Offset <= m_bufferedGroundMaxDistance && result.Normal.Y > SLOPE_MAX_ANGLE_COS)
+		m_footData.Point = (Vector3)collision["position"];
+		m_footData.Offset = _vertOffsetToPlayerGlobal(m_footData.Point);
+		m_footData.Normal = (Vector3)collision["normal"];
+
+		if (m_footData.Offset <= _bufferedGroundMaxDistance() && m_footData.Normal.Y > SLOPE_MAX_ANGLE_COS)
 			// As the normal vector is normalized, its angle can be determined by simply checking for its height
-			result.Grounded = true;
+			m_footData.Grounded = true;
 	}
 
 	// Gives the farthest point on the line from startingPos towards direction
-	private void _probePointInDirection(GroundData result, Vector3 startingPos, Vector3 direction) {
+	private void _probePointInDirection(Vector3 startingPos, Vector3 direction) {
 		bool skippedOnce = false; // This allows us to skip one false collision
 
 		float iterDistance = FORWARD_PROBE_DISTANCE / FORWARD_PROBE_COUNT;
-		direction *= iterDistance;
-		Vector3 iterShift = new Vector3(direction.X, 0, direction.Y);
+		Vector3 iterShift = new Vector3(direction.X, 0, direction.Z) * iterDistance;
 
 		Vector3 pos = startingPos;
 
@@ -538,7 +546,7 @@ using System.Linq;
 			Vector3 collNorm = (Vector3)collision["normal"];
 
 			float dist = pos.Y - collPos.Y;
-			if (dist > m_bufferedGroundMaxDistance || collNorm.Y <= SLOPE_MAX_ANGLE_COS) {
+			if (dist > _bufferedGroundMaxDistance() || collNorm.Y <= SLOPE_MAX_ANGLE_COS) {
 				if (skippedOnce)
 					return;
 
@@ -548,12 +556,19 @@ using System.Linq;
 			
 			skippedOnce = false; // We reset the skip so that we can skip again the next time
 
-			result.Point = collPos;
-			result.Offset = dist;
-			result.Normal = collNorm;
-			result.Grounded = true;
+			m_footData.Point = collPos;
+			m_footData.Offset = dist;
+			m_footData.Normal = collNorm;
+			m_footData.Grounded = true;
 
-			pos.Y = result.Point.Y; // We only shift the next detection point upwards if the point was on valid ground
+			pos.Y = m_footData.Point.Y; // We only shift the next detection point upwards if the point was on valid ground
+		}
+	}
+
+	private void _setGroundObject(Godot.Collections.Dictionary collision) {
+		if (((Rid)collision["rid"]) != m_groundRID) { // Update the RID and physics body state of the current ground
+			m_groundRID = (Rid)collision["rid"];
+			m_groundState = PhysicsServer3D.BodyGetDirectState(m_groundRID);
 		}
 	}
 
@@ -650,6 +665,10 @@ using System.Linq;
 		}
 
 		return result;
+	}
+
+	private float _bufferedGroundMaxDistance() {
+		return m_distanceBufferEnabled ? STEP_MAX_HEIGHT * (1 + GROUND_DISTANCE_BUFFER) : GROUND_DISTANCE_BUFFER;
 	}
 
 	// Returns a negative value if the point is above the player, and a positive one if the point is below the player
