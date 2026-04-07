@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://de2gy04pjvv8m"]
+
+[ext_resource type="Texture2D" uid="uid://ctdbykm11ffsx" path="res://icon.svg" id="1_2l3vg"]
+[ext_resource type="Script" uid="uid://dk75a1458s82" path="res://Core/Game/LoadingScreen/LoadingScreen.gd" id="1_yj8cc"]
+
+[node name="LoadingScreen" type="Node" unique_id=2086141052]
+script = ExtResource("1_yj8cc")
+
+[node name="Node2D" type="Node2D" parent="." unique_id=1987303686]
+
+[node name="Icon" type="Sprite2D" parent="Node2D" unique_id=422839984]
+position = Vector2(1020, 535.0001)
+scale = Vector2(7.921875, 7.8125)
+texture = ExtResource("1_2l3vg")

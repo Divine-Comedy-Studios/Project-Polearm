@@ -1,23 +1,22 @@
 [gd_scene format=3 uid="uid://cnh3sfmjaqvme"]
 
-[ext_resource type="Script" uid="uid://c04l1hwm4qb74" path="res://Core/Game/GameStateMachine.gd" id="1_kydix"]
-[ext_resource type="Script" uid="uid://c2mvqn0m3b31" path="res://Core/Game/GameStates/LoadingGameState.gd" id="2_kydix"]
-[ext_resource type="Script" uid="uid://ckpjqjxoubneu" path="res://Core/Game/GameStates/PlayingGameState.gd" id="3_f6rc3"]
+[ext_resource type="Script" uid="uid://rel2uvuxn0si" path="res://Core/Game/Game.gd" id="1_kydix"]
+[ext_resource type="Script" uid="uid://gy4wwfkitxio" path="res://Core/Game/States/LoadingState.gd" id="2_kydix"]
+[ext_resource type="Script" uid="uid://c7d0eamu5janu" path="res://Core/Game/States/PlayingState.gd" id="3_f6rc3"]
 
-[node name="Game" type="Node" unique_id=1672999399]
+[node name="Game" type="Node" unique_id=1370080810]
 script = ExtResource("1_kydix")
-INITIAL_GAME_TYPE = 1
-metadata/_custom_type_script = "uid://c04l1hwm4qb74"
+metadata/_custom_type_script = "uid://rel2uvuxn0si"
 
-[node name="LoadingState" type="Node" parent="." unique_id=329497483 node_paths=PackedStringArray("_game")]
+[node name="LoadingState" type="Node" parent="." unique_id=1255108750 node_paths=PackedStringArray("_game")]
 process_mode = 4
 script = ExtResource("2_kydix")
-_game = NodePath("../GameState")
-SCENE_PATH = "res://Core/Game/GameStates/LoadingScreen.tscn"
-metadata/_custom_type_script = "uid://c2mvqn0m3b31"
+_game = NodePath("../PlayingState")
+SCENE_PATH = "res://Core/Game/LoadingScreen/LoadingScreen.tscn"
+metadata/_custom_type_script = "uid://gy4wwfkitxio"
 
-[node name="GameState" type="Node" parent="." unique_id=9757392]
+[node name="PlayingState" type="Node" parent="." unique_id=1815097184]
 process_mode = 4
 script = ExtResource("3_f6rc3")
 SCENE_PATH = "res://Stages/Documentation/Gym/Gym.tscn"
-metadata/_custom_type_script = "uid://ckpjqjxoubneu"
+metadata/_custom_type_script = "uid://c7d0eamu5janu"

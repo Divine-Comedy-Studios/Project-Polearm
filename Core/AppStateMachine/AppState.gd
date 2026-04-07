@@ -1,5 +1,5 @@
-extends Node
-class_name GameState
+extends BasicState
+class_name AppState
 
 
 #region Exported variables
@@ -8,18 +8,6 @@ class_name GameState
 
 #endregion
 
-
-#region Enums
-
-enum Type { 
-	none,
-	
-	loading,
-	playing,
-	paused,
-}
-
-#endregion
 
 #region Member variables
 
@@ -41,13 +29,17 @@ func _ready() -> void:
 #region Member functions
 
 func enter() -> void:
-	scene = createSceneImpl()
+	scene = _implCreateScene()
 	add_child(scene)
 
-	enterImpl()
+	process_mode = Node.PROCESS_MODE_INHERIT
+
+	_implEnter()
 
 func exit() -> void:
-	exitImpl()
+	_implExit()
+
+	process_mode = Node.PROCESS_MODE_DISABLED
 
 	remove_child(scene)
 	scene.queue_free()
@@ -56,21 +48,19 @@ func exit() -> void:
 #endregion
 
 
-#region Implementation functions
+#region Implementation & Virtual functions
 
-func type() -> Type:
-	return Type.none
-
-func createSceneImpl() -> Node:
+func _implCreateScene() -> Node:
 	return _sceneResource.instantiate()
 
-func enterImpl() -> void:
-	process_mode = Node.PROCESS_MODE_INHERIT
+func _implEnter() -> void:
+	pass
 
-func exitImpl() -> void:
-	process_mode = Node.PROCESS_MODE_DISABLED
+func _implExit() -> void:
+	pass
 
-func nextState() -> Type:
-	return Type.none
+
+func nextState() -> int:
+	return 0
 
 #endregion

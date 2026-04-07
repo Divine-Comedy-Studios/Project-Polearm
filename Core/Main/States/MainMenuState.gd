@@ -1,5 +1,5 @@
-extends UberState
-class_name MainMenuUberState
+extends AppState
+class_name MainMenuState
 
 
 #region Enums
@@ -15,7 +15,7 @@ enum ExitType {
 
 #region Scene members
 
-@export var _game : GameUberState = null
+@export var _game : GameState = null
 
 #endregion
 
@@ -25,7 +25,7 @@ enum ExitType {
 func _ready() -> void:
 	var err := ResourceLoader.load_threaded_request(SCENE_PATH)
 
-	assert(err == OK, "MainMenuUberState._ready(): Request to load the scene resource failed!")
+	assert(err == OK, "MainMenuState._ready(): Request to load the scene resource failed!")
 
 #endregion
 
@@ -39,7 +39,7 @@ func finishedLoading() -> bool:
 		ResourceLoader.THREAD_LOAD_IN_PROGRESS:
 			return false
 		_:
-			assert(false, "MainMenuUberState.finishedLoading(): Loading scene resource failed")
+			assert(false, "MainMenuState.finishedLoading(): Loading scene resource failed")
 	
 	return false
 
@@ -48,33 +48,26 @@ func finishedLoading() -> bool:
 
 #region Implementation functions
 
-func type() -> Type:
-	return Type.mainMenu
-
-
-func createSceneImpl() -> Node:
+func _implCreateScene() -> Node:
 	assert( \
 		ResourceLoader.load_threaded_get_status(SCENE_PATH) == ResourceLoader.THREAD_LOAD_LOADED, \
-		"MainMenuUberState.createSceneImpl(): Scene resource has not finished loading! Please use the MainMenuUberState.finishedLoading() function.")
+		"MainMenuState.createSceneImpl(): Scene resource has not finished loading! Please use the MainMenuState.finishedLoading() function.")
 
 	_sceneResource = ResourceLoader.load_threaded_get(SCENE_PATH)
 	return _sceneResource.instantiate()
 
-func enterImpl() -> void:
-	pass
 
-func exitImpl() -> void:
-	pass
+func type() -> int:
+	return Main.Type.mainMenu
 
-
-func nextState() -> Type:
+func nextState() -> int:
 	match scene.exit() as int:
 		ExitType.startGame:
 			if _game.finishedLoading():
-				return Type.game
+				return Main.Type.game
 		ExitType.quitGame:
-			return Type.quit
+			return Main.Type.quit
 
-	return Type.none
+	return Main.Type.none
 
 #endregion

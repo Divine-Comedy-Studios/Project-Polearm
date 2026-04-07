@@ -1,27 +1,30 @@
 [gd_scene format=3 uid="uid://gfs4a5wowsa"]
 
 [ext_resource type="Script" uid="uid://c31gnbehqoq8y" path="res://Core/Main/Main.gd" id="1_ycf5l"]
-[ext_resource type="Script" uid="uid://cpetiw40mhprd" path="res://Core/Main/UberStates/BootUberState.gd" id="3_jgmb7"]
-[ext_resource type="Script" uid="uid://da6qvutamfeu7" path="res://Core/Main/UberStates/GameUberState.gd" id="4_jgmb7"]
-[ext_resource type="Script" uid="uid://c53qsvtvhijbt" path="res://Core/Main/UberStates/MainMenuUberState.gd" id="4_x511n"]
+[ext_resource type="Script" uid="uid://56qy2l42kqa8" path="res://Core/Main/States/BootState.gd" id="2_2cw8b"]
+[ext_resource type="Script" uid="uid://rsh5cj6cpwis" path="res://Core/Main/States/MainMenuState.gd" id="3_1s610"]
+[ext_resource type="Script" uid="uid://bicl85c04tdj7" path="res://Core/Main/States/GameState.gd" id="4_jgmb7"]
 
 [node name="Main" type="Node" unique_id=1689907238]
 script = ExtResource("1_ycf5l")
 metadata/_custom_type_script = "uid://c31gnbehqoq8y"
 
-[node name="BootState" type="Node" parent="." unique_id=60879716 node_paths=PackedStringArray("_mainMenu")]
-script = ExtResource("3_jgmb7")
+[node name="BootState" type="Node" parent="." unique_id=137023619 node_paths=PackedStringArray("_mainMenu")]
+process_mode = 4
+script = ExtResource("2_2cw8b")
 _mainMenu = NodePath("../MainMenuState")
 SCENE_PATH = "res://Core/Main/Boot/Boot.tscn"
-metadata/_custom_type_script = "uid://cpetiw40mhprd"
+metadata/_custom_type_script = "uid://56qy2l42kqa8"
 
-[node name="MainMenuState" type="Node" parent="." unique_id=1653639788 node_paths=PackedStringArray("_game")]
-script = ExtResource("4_x511n")
+[node name="MainMenuState" type="Node" parent="." unique_id=1829472734 node_paths=PackedStringArray("_game")]
+process_mode = 4
+script = ExtResource("3_1s610")
 _game = NodePath("../GameState")
 SCENE_PATH = "res://Interfaces/Menus/MainMenu/MainMenu.tscn"
-metadata/_custom_type_script = "uid://c53qsvtvhijbt"
+metadata/_custom_type_script = "uid://rsh5cj6cpwis"
 
-[node name="GameState" type="Node" parent="." unique_id=761398070]
+[node name="GameState" type="Node" parent="." unique_id=556089681]
+process_mode = 4
 script = ExtResource("4_jgmb7")
 SCENE_PATH = "res://Core/Game/Game.tscn"
-metadata/_custom_type_script = "uid://da6qvutamfeu7"
+metadata/_custom_type_script = "uid://bicl85c04tdj7"

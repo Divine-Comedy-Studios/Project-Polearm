@@ -1,39 +1,24 @@
-extends Node
+extends AppStateMachine
 class_name Main
 
 
-#region Member variables
+#region Enums
 
-var uberStates : Dictionary[UberState.Type, UberState] = { }
-
-var _currentState : UberState = null
-
-#endregion
-
-
-#region Build-in functions
-
-func _ready() -> void:
-	for child in get_children():
-		if child is UberState:
-			uberStates[child.type()] = child
+enum Type {
+	none,
 	
-	_currentState = uberStates[UberState.Type.boot]
-	_currentState.enter()
-
-func _process(_delta : float) -> void:
-	var nextState := _currentState.nextState()
-	if nextState != UberState.Type.none:
-		_switchTo(nextState)
+	boot,
+	quit,
+	mainMenu,
+	game,
+}
 
 #endregion
 
 
-#region Private functions
+#region Override functions
 
-func _switchTo(nextState : UberState.Type):
-	_currentState.exit()
-	_currentState = uberStates[nextState]
-	_currentState.enter()
+func _initialState() -> int:
+	return Type.boot
 
 #endregion
