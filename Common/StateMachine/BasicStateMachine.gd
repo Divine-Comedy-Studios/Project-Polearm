@@ -1,14 +1,13 @@
+@warning_ignore_start("unused_parameter")
+
 extends Node
 class_name BasicStateMachine
 
 
 #region Member variables
 
-var states : Dictionary[int, BasicState] = { }
-
-var _currentState : BasicState = null
-
-var _interruptState : int = 0
+var states : Dictionary[StringName, BasicState] = { }
+var currentState : BasicState = null
 
 #endregion
 
@@ -17,45 +16,48 @@ var _interruptState : int = 0
 
 func init() -> void:
 	for child in get_children():
-		_implChildInit(child)
+		_implStateInit(child)
 	
-	_implInit()
+	_enterState(_initialState())
 
-func updateStates() -> void:
-	var nextState := _nextState()
-	if nextState != 0:
-		_exitCurrentState()
-		_enterState(nextState)
+func update() -> void:
+	_switchState(_nextState())
 
-
-func interrupt(type : int) -> void:
-	_interruptState = type
+func interrupt(type : StringName) -> void:
+	_switchState(_interruptState(type))
 
 #endregion
 
 
 #region Private functions
 
-func _exitCurrentState() -> void:
-	_currentState.exit()
+func _enterState(type : StringName) -> void:
+	currentState = states[type]
+	currentState.enter()
 
-func _enterState(type : int) -> void:
-	_currentState = states[type]
-	_currentState.enter()
+func _switchState(type : StringName) -> void:
+	if type.is_empty():
+		return
+
+	currentState.exit()
+	_enterState(type)
 
 #endregion
 
 
 #region Implementation & Virtual functions
 
-func _implChildInit(_child : Node) -> void:
+func _implStateInit(child : Node) -> void:
 	pass
 
-func _implInit() -> void:
-	pass
+func _initialState() -> StringName:
+	return StringName()
 
 
-func _nextState() -> int:
-	return 0
+func _nextState() -> StringName:
+	return StringName()
+
+func _interruptState(type : StringName) -> StringName:
+	return type
 
 #endregion

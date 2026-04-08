@@ -10,8 +10,8 @@ func enter() -> void:
 func exit() -> void:
 	pass
 
-	
-func type() -> int:
-	return 0
+
+func type() -> StringName:
+	return StringName()
 
 #endregion
