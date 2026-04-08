@@ -17,10 +17,10 @@ func _implExit() -> void:
 	_sceneResource = null # Also delete the scene resource, as we only boot once
 
 
-func type() -> int:
+func type() -> StringName:
 	return Main.Type.boot
 
-func nextState() -> int:
+func nextState() -> StringName:
 	if not scene.readyToSwitch():
 		return Main.Type.none
 	if not _mainMenu.finishedLoading():

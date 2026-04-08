@@ -21,10 +21,10 @@ func _ready() -> void:
 
 #region Override functions
 
-func type() -> int:
+func type() -> StringName:
 	return Game.Type.loading
 
-func nextState() -> int:
+func nextState() -> StringName:
 	if not scene.readyToSwitch():
 		return Game.Type.none
 	if not _game.finishedLoading():

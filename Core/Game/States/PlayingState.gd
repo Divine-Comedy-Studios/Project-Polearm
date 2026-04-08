@@ -39,7 +39,7 @@ func _implCreateScene() -> Node:
 	return _sceneResource.instantiate()
 
 
-func type() -> int:
+func type() -> StringName:
 	return Game.Type.playing
 
 #endregion

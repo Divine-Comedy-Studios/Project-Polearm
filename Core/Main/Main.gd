@@ -2,23 +2,22 @@ extends AppStateMachine
 class_name Main
 
 
-#region Enums
+#region Helper classes
 
-enum Type {
-	none,
-	
-	boot,
-	quit,
-	mainMenu,
-	game,
-}
+class Type:
+	const none := StringName()
 
-#endregion
+	const boot := &"boot"
+	const quit := &"quit"
+	const mainMenu := &"mainMenu"
+	const game := &"game"
+
+#endregion      
 
 
 #region Override functions
 
-func _initialState() -> int:
+func _initialState() -> StringName:
 	return Type.boot
 
 #endregion

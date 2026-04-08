@@ -8,30 +8,19 @@ func _ready() -> void:
 	init()
 
 func _process(_delta : float) -> void:
-	updateStates()
+	update()
 
 #endregion
 
 
 #region Override functions
 
-func _implChildInit(child : Node) -> void:
+func _implStateInit(child : Node) -> void:
 	if child is AppState:
 		states[child.type()] = child as BasicState
 
-func _implInit() -> void:
-	_enterState(_initialState())
 
-
-func _nextState() -> int:
-	return _currentState.nextState()
-
-#endregion
-
-
-#region Virtual functions
-
-func _initialState() -> int:
-	return 0
+func _nextState() -> StringName:
+	return currentState.nextState()
 
 #endregion

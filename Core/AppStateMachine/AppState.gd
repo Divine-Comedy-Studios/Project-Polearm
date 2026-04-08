@@ -60,7 +60,7 @@ func _implExit() -> void:
 	pass
 
 
-func nextState() -> int:
-	return 0
+func nextState() -> StringName:
+	return StringName()
 
 #endregion

@@ -2,22 +2,21 @@ extends AppStateMachine
 class_name Game
 
 
-#region Enums
+#region Helper classes
 
-enum Type { 
-	none,
-	
-	loading,
-	playing,
-	paused,
-}
+class Type:
+	const none := StringName()
 
-#endregion
+	const loading := &"loading"
+	const playing := &"playing"
+	const paused := &"paused"
+
+#endregion                                                                                    
 
 
 #region Override functions
 
-func _initialState() -> int:
+func _initialState() -> StringName:
 	return Type.loading
 
 #endregion

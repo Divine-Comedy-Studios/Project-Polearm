@@ -39,10 +39,10 @@ func _implCreateScene() -> Node:
 	return _sceneResource.instantiate()
 
 
-func type() -> int:
+func type() -> StringName:
 	return Main.Type.game
 
-func nextState() -> int:
+func nextState() -> StringName:
 	return Main.Type.none
 
 #endregion

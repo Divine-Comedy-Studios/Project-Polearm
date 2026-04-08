@@ -57,10 +57,10 @@ func _implCreateScene() -> Node:
 	return _sceneResource.instantiate()
 
 
-func type() -> int:
+func type() -> StringName:
 	return Main.Type.mainMenu
 
-func nextState() -> int:
+func nextState() -> StringName:
 	match scene.exit() as int:
 		ExitType.startGame:
 			if _game.finishedLoading():
