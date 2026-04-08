@@ -2,7 +2,7 @@ extends Node
 class_name ISMInputManager
 
 
-#region Helper structure
+#region Helper classes
 
 class Data:
 	var cancel : bool = false
