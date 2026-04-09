@@ -2,21 +2,44 @@ extends Area3D
 class_name Hitbox
 
 
-#region Exported variables
+#region Helper classes
 
-@export var DAMAGE : float
+class Data extends Resource:
+	var damage : float
 
 #endregion
 
 
 #region Member variables
 
+var data : Data = null
+
 var _excluded : Array[Hurtbox] = [ ]
 
 #endregion
 
 
+#region Built-in functions
+
+func _ready() -> void:
+	monitoring = false
+	monitorable = false
+
+#endregion
+
+
 #region Public functions
+
+func activate(hitData : Data) -> void:
+	data = hitData
+	monitorable = true
+
+func deactivate() -> void:
+	data = null
+	monitorable = false
+
+	clear()
+
 
 func exclude(box : Hurtbox) -> void:
 	_excluded.push_back(box)
