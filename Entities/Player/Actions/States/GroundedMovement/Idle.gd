@@ -1,8 +1,8 @@
 extends PlayerGroundedMovement
 
 
-func enterImpl() -> void:
-	player.velocity = Vector3.ZERO
+func _enter() -> void:
+	player().velocity = Vector3.ZERO
 
 func exitImpl() -> void:
 	pass

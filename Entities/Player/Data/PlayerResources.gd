@@ -1,4 +1,4 @@
-extends Node
+extends EntityResources
 class_name PlayerResources
 
 
@@ -8,26 +8,18 @@ class_name PlayerResources
 
 @export var godMode : bool = false
 
-@export var invincibility : bool = false
 @export var slowMotion : bool = false # 天机
 
 @export var sonOfHeaven : bool = false
 
-@export var unlockedActions : Array[PlayerAction.Type]
+@export var unlockedActions : Array[StringName]
 
 
 @export_group("Resources")
 
-@export var health : float = 1000
-@export var maxHealth : float = 1000
-
-@export var energy : float = 0 # 灵气
-@export var maxEnergy : float = 1000
-
-@export var flow : float = 0 # 道势
 @export var MAX_FLOW : float = 1000
 
-@export var spiritOrbs : int = 0 # 魄
+@export var spirits : int = 0 # 魄
 @export var healthUpgrades : int = 0 # 3 for a full upgrade
 
 # @export var inventory : Array[Items]
@@ -45,80 +37,28 @@ class_name PlayerResources
 #endregion
 
 
-#region Scene members
+#region Member variables
 
-@export_group("Scene members")
-@export var actionManager : PlayerActionManager
+var flow : float = 0.0:
+	get:
+		return flow
+	set(value):
+		flow = clampf(value, 0.0, MAX_FLOW)
 
 #endregion
 
 
 #region Built-in functions
 
-func _ready() -> void:
-	assert(actionManager != null, "PlayerResources._ready(): Player action manager not assigned!")
-
-
 func _physics_process(delta: float) -> void:
-	loseFlow(delta * BASE_FLOW_DECREASE_RATE * flowModifier)
+	flow -= delta * BASE_FLOW_DECREASE_RATE * flowModifier
 
 #endregion
 
 
 #region Public functions
 
-#endregion
-
-
-#region Health functionality
-
-func gainHealth(amount : float) -> void:
-	health = min(health + amount, maxHealth)
-
-func loseHealth(amount : float) -> void:
-	health = max(health - amount, 0)
-	
-	if health == 0:
-		actionManager.switchTo(PlayerAction.Type.death)
-
-#endregion
-
-
-#region Flow functionality
-
-func gainFlow(amount : float) -> void:
-	flow = min(flow + amount, MAX_FLOW)
-
-func loseFlow(amount : float) -> void:
-	flow = max(flow - amount, 0)
-
 func flowToState() -> PlayerCombatManager.FlowState:
 	return PlayerCombatManager.FlowState.values()[floori(FLOW_CURVE.sample(clampf(flow, 0, FLOW_CURVE.max_value + 0.5)))]
-
-#endregion
-
-
-#region Energy functionality
-
-func gainEnergy(amount : float) -> void:
-	energy = min(energy + amount, maxEnergy)
-
-func loseEnergy(amount : float) -> void:
-	energy = max(energy - amount, 0)
-
-#endregion
-
-
-#region Action functionality
-
-func canAffordAction(action : PlayerAction) -> bool:
-	if action.ENERGY_COST <= energy:
-		return true
-	return false
-
-func payAction(action : PlayerAction) -> void:
-	energy -= action.ENERGY_COST
-
-#endregion
 
 #endregion

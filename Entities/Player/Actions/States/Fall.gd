@@ -5,21 +5,21 @@ extends PlayerAction
 @export var TERMINAL_VELOCITY : float = 20
 
 
-func enterImpl() -> void:
+func _implEnter() -> void:
 	pass
 
-func exitImpl() -> void:
-	player.velocity.y = 0
+func _implExit() -> void:
+	player().velocity.y = 0
 
 
-func tickImpl(_input : PlayerInputManager.Data, _delta : float) -> void:
-	player.velocity.y = maxf(player.velocity.y - ACCELERATION, -TERMINAL_VELOCITY)
+func _tick(_delta : float) -> void:
+	player().velocity.y = maxf(player().velocity.y - ACCELERATION, -TERMINAL_VELOCITY)
 
 
-func nextStateImpl(next : Type):
-	if player.onGround():
+func _implNextAction(next : StringName) -> StringName:
+	if player().onGround():
 		return next
-	if next != Type.none and not hasHigherPriorityThan(next):
+	if next != Type.none and next != Type.jumpStill and not hasHigherPriorityThan(next):
 		return next
-	
+
 	return Type.none

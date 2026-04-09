@@ -8,7 +8,7 @@ class Data extends RefCounted:
 	var inputDirection : Vector2
 	var direction : Vector2
 
-	var actions : Array[PlayerAction.Type]
+	var actions : Array[StringName]
 	
 	func reset() -> void:
 		actions.clear() # Both directions don't have to be reset because they will be reassigned every time
@@ -91,6 +91,6 @@ func processMovementActions():
 		inputs.actions.append(PlayerAction.Type.jumpStill)
 	
 	if Input.is_action_pressed("Dodge"):
-		inputs.actions.append(PlayerAction.Type.dodgeBasic)
+		inputs.actions.append(PlayerAction.Type.dodge)
 
 #endregion

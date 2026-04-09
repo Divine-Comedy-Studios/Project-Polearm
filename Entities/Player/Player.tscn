@@ -7,11 +7,13 @@
 [ext_resource type="PackedScene" uid="uid://bgf6aphyao331" path="res://Entities/Player/Camera/PlayerCameraManager.tscn" id="3_1des2"]
 [ext_resource type="PackedScene" uid="uid://dbsruilakgfp4" path="res://Entities/Player/Visuals/XBotMesh.scn" id="5_an6q6"]
 [ext_resource type="PackedScene" uid="uid://bsl7ik5iueomu" path="res://Entities/Player/Actions/PlayerActionManager.tscn" id="6_hacra"]
-[ext_resource type="Script" uid="uid://620any2k6qha" path="res://Entities/Player/Actions/PlayerCombatManager.gd" id="7_061yh"]
-[ext_resource type="AnimationLibrary" uid="uid://fee1qugxe5kg" path="res://Entities/Player/Data/ActionData.res" id="8_jynvv"]
-[ext_resource type="Script" uid="uid://nvdk7gl3vqfs" path="res://Entities/Player/Data/PlayerActionData.gd" id="8_uw7o4"]
+[ext_resource type="Script" uid="uid://620any2k6qha" path="res://Entities/Player/Combat/PlayerCombatManager.gd" id="7_061yh"]
+[ext_resource type="AnimationLibrary" path="res://Entities/Player/Data/Resources/FrameData.res" id="8_061yh"]
+[ext_resource type="Script" uid="uid://dalncdreadf0e" path="res://Entities/Player/Data/PlayerFrameData.gd" id="8_jynvv"]
 [ext_resource type="AnimationLibrary" uid="uid://cv5ycwrplr0f3" path="res://Entities/Player/Visuals/Resources/AnimTest.res" id="9_hacra"]
+[ext_resource type="Script" uid="uid://bqnrmaixryldl" path="res://Entities/Entity/Data/EntityAnimationPlayer.gd" id="11_061yh"]
 [ext_resource type="PackedScene" uid="uid://c6ck6empr4lu2" path="res://Entities/Player/Visuals/Skeleton.scn" id="11_lmeus"]
+[ext_resource type="Script" uid="uid://bv00x87qa7xh2" path="res://Entities/Entity/Utility/EntityAnimationPlayerHelper.gd" id="14_uw7o4"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_an6q6"]
 
@@ -23,6 +25,74 @@ _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.114286, 1), 0.0, 0.0, 0, 0, Ve
 point_count = 8
 metadata/_snap_count = 70
 metadata/_snap_enabled = true
+
+[sub_resource type="Animation" id="Animation_uw7o4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FrameData:_comboPause")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FrameData:_acceptsQueue")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FrameData:_transitionable")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FrameData:_rotationTracking")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("FrameData:_invincible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gallu"]
+_data = {
+&"RESET": SubResource("Animation_uw7o4")
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jynvv"]
 
@@ -52,12 +122,6 @@ script = ExtResource("2_761t5")
 _player = NodePath("..")
 metadata/_custom_type_script = "uid://jth8cpsjn3vy"
 
-[node name="Resources" type="Node" parent="." unique_id=534401950 node_paths=PackedStringArray("actionManager")]
-script = ExtResource("2_hacra")
-FLOW_CURVE = SubResource("Curve_prnb2")
-actionManager = NodePath("../ActionManager")
-metadata/_custom_type_script = "uid://bjw3tygpodtev"
-
 [node name="CameraManager" parent="." unique_id=1956657863 instance=ExtResource("3_1des2")]
 INVERT_VERTICAL = 1.0
 
@@ -67,34 +131,53 @@ WALK_LIMIT_SQUARED = 0.25
 cameraManager = NodePath("../CameraManager")
 metadata/_custom_type_script = "uid://ls6r1csl2o7j"
 
-[node name="ActionManager" parent="." unique_id=1997911714 node_paths=PackedStringArray("player", "cameraManager", "inputManager", "resources", "actionData", "physics", "combatManager", "animationPlayer") instance=ExtResource("6_hacra")]
-player = NodePath("..")
-cameraManager = NodePath("../CameraManager")
-inputManager = NodePath("../InputManager")
-resources = NodePath("../Resources")
-actionData = NodePath("../ActionData")
-physics = NodePath("../Physics")
-combatManager = NodePath("../CombatManager")
-animationPlayer = NodePath("../AnimationPlayer")
+[node name="Resources" type="Node" parent="." unique_id=534401950 node_paths=PackedStringArray("actionManager")]
+script = ExtResource("2_hacra")
+FLOW_CURVE = SubResource("Curve_prnb2")
+actionManager = NodePath("../ActionManager")
+metadata/_custom_type_script = "uid://bjw3tygpodtev"
 
-[node name="CombatManager" type="Node" parent="." unique_id=2042843911 node_paths=PackedStringArray("resources")]
+[node name="CombatManager" type="Node" parent="." unique_id=145437591 node_paths=PackedStringArray("resources")]
+process_mode = 4
 script = ExtResource("7_061yh")
 resources = NodePath("../Resources")
 metadata/_custom_type_script = "uid://620any2k6qha"
 
-[node name="ActionData" type="AnimationPlayer" parent="." unique_id=927924093]
-process_mode = 4
-libraries/ = ExtResource("8_jynvv")
-script = ExtResource("8_uw7o4")
-metadata/_custom_type_script = "uid://nvdk7gl3vqfs"
+[node name="ActionManager" parent="." unique_id=1997911714 node_paths=PackedStringArray("cameraManager", "inputManager", "physics", "entity", "frameData", "resources", "combatManager", "animationPlayer") instance=ExtResource("6_hacra")]
+cameraManager = NodePath("../CameraManager")
+inputManager = NodePath("../InputManager")
+physics = NodePath("../Physics")
+entity = NodePath("..")
+frameData = NodePath("../FrameData")
+resources = NodePath("../Resources")
+combatManager = NodePath("../CombatManager")
+animationPlayer = NodePath("../AnimationPlayer")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=89124178]
+[node name="FrameData" type="AnimationPlayer" parent="." unique_id=1236217834]
+process_mode = 4
+libraries/ = SubResource("AnimationLibrary_gallu")
+libraries/FrameData = ExtResource("8_061yh")
+script = ExtResource("8_jynvv")
+metadata/_custom_type_script = "uid://dalncdreadf0e"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1961180600]
 root_motion_track = NodePath("Skeleton:root")
 callback_mode_process = 0
 libraries/ = SubResource("AnimationLibrary_jynvv")
 libraries/AnimTest = ExtResource("9_hacra")
+script = ExtResource("11_061yh")
+rootOrientation = Quaternion(-0.70710677, 0, 0, 0.70710677)
+metadata/_custom_type_script = "uid://bqnrmaixryldl"
 
 [node name="Skeleton" parent="." unique_id=1577552881 instance=ExtResource("11_lmeus")]
 
 [node name="Mesh" parent="." unique_id=114163421 node_paths=PackedStringArray("_skeleton") instance=ExtResource("5_an6q6")]
 _skeleton = NodePath("../Skeleton")
+
+[node name="EntityAnimationHelper" type="Node" parent="." unique_id=729820358 node_paths=PackedStringArray("_animationPlayer", "_skeleton")]
+script = ExtResource("14_uw7o4")
+_animationPlayer = NodePath("../AnimationPlayer")
+_frameDataLibrary = ExtResource("8_061yh")
+_skeleton = NodePath("../Skeleton")
+_rootBonePath = &"root"
+metadata/_custom_type_script = "uid://bv00x87qa7xh2"

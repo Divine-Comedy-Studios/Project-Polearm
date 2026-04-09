@@ -1,55 +1,78 @@
 [gd_scene format=3 uid="uid://bsl7ik5iueomu"]
 
-[ext_resource type="Script" uid="uid://c6uuhry54uwkk" path="res://Entities/Player/Actions/PlayerActionManager.gd" id="1_xghap"]
-[ext_resource type="Script" uid="uid://p1qurm2f1bvl" path="res://Entities/Player/Actions/States/Idle.gd" id="3_nw1e5"]
-[ext_resource type="Script" uid="uid://ca6i0s8oneqjc" path="res://Entities/Player/Actions/States/Walk.gd" id="4_qx7na"]
-[ext_resource type="Script" uid="uid://du8txlrr2po7v" path="res://Entities/Player/Actions/States/Run.gd" id="5_05o5l"]
-[ext_resource type="Script" uid="uid://dl2i1du40oh38" path="res://Entities/Player/Actions/States/Sprint.gd" id="6_jnval"]
+[ext_resource type="Script" uid="uid://d0kf1f6gldsxt" path="res://Entities/Player/Actions/PlayerActionManager.gd" id="1_xghap"]
+[ext_resource type="Script" uid="uid://d1f6s1sq7da14" path="res://Entities/BasicEntity/Data/EntityActionData.gd" id="3_jverr"]
+[ext_resource type="Script" uid="uid://p1qurm2f1bvl" path="res://Entities/Player/Actions/States/GroundedMovement/Idle.gd" id="3_nw1e5"]
+[ext_resource type="Script" uid="uid://ca6i0s8oneqjc" path="res://Entities/Player/Actions/States/GroundedMovement/Walk.gd" id="4_qx7na"]
+[ext_resource type="Script" uid="uid://du8txlrr2po7v" path="res://Entities/Player/Actions/States/GroundedMovement/Run.gd" id="5_05o5l"]
 [ext_resource type="Script" uid="uid://bes4y6b0to8sw" path="res://Entities/Player/Actions/States/Fall.gd" id="7_6kv4j"]
+[ext_resource type="Script" uid="uid://ban17448vrjlj" path="res://Entities/Player/Actions/States/Jump.gd" id="7_jverr"]
 
-[node name="PlayerActionManager" type="Node" unique_id=1997911714]
+[sub_resource type="Resource" id="Resource_6evvv"]
+script = ExtResource("3_jverr")
+ANIMATION_LIBRARY_NAME = &"AnimTest"
+ANIMATION_NAME = &"Idle"
+metadata/_custom_type_script = "uid://d1f6s1sq7da14"
+
+[sub_resource type="Resource" id="Resource_urjga"]
+script = ExtResource("3_jverr")
+ANIMATION_LIBRARY_NAME = &"AnimTest"
+ANIMATION_NAME = &"Walk"
+metadata/_custom_type_script = "uid://d1f6s1sq7da14"
+
+[sub_resource type="Resource" id="Resource_obuag"]
+script = ExtResource("3_jverr")
+ANIMATION_LIBRARY_NAME = &"AnimTest"
+ANIMATION_NAME = &"Run"
+metadata/_custom_type_script = "uid://d1f6s1sq7da14"
+
+[sub_resource type="Resource" id="Resource_jverr"]
+script = ExtResource("3_jverr")
+ANIMATION_LIBRARY_NAME = &"AnimTest"
+ANIMATION_NAME = &"Idle"
+metadata/_custom_type_script = "uid://d1f6s1sq7da14"
+
+[node name="PlayerActionManager" type="Node" unique_id=876347207]
 script = ExtResource("1_xghap")
 metadata/_custom_type_script = "uid://c6uuhry54uwkk"
 
 [node name="Idle" type="Node" parent="." unique_id=1328239224]
 process_mode = 4
 script = ExtResource("3_nw1e5")
-TYPE = 1
-ANIMATION_NAME = "Idle"
+TYPE = &"idle"
+data = SubResource("Resource_6evvv")
 metadata/_custom_type_script = "uid://jc1g0sv32qq1"
 
 [node name="Walk" type="Node" parent="." unique_id=258317391]
 process_mode = 4
 script = ExtResource("4_qx7na")
 WALK_SPEED = 2.0
-TYPE = 2
+TYPE = &"walk"
 PRIORITY = 1
-ANIMATION_NAME = "Walk"
+data = SubResource("Resource_urjga")
 metadata/_custom_type_script = "uid://jc1g0sv32qq1"
 
 [node name="Run" type="Node" parent="." unique_id=1934963847]
 process_mode = 4
 script = ExtResource("5_05o5l")
-RUN_SPEED = 5.0
-TYPE = 3
+RUN_SPEED = 10.0
+TYPE = &"run"
 PRIORITY = 1
-ANIMATION_NAME = "Run"
-metadata/_custom_type_script = "uid://jc1g0sv32qq1"
-
-[node name="Sprint" type="Node" parent="." unique_id=1808821777]
-process_mode = 4
-script = ExtResource("6_jnval")
-RUN_SPEED = 8.0
-TYPE = 4
-PRIORITY = 1
-ANIMATION_NAME = "Sprint"
+data = SubResource("Resource_obuag")
 metadata/_custom_type_script = "uid://jc1g0sv32qq1"
 
 [node name="Fall" type="Node" parent="." unique_id=187095907]
 process_mode = 4
 script = ExtResource("7_6kv4j")
 ACCELERATION = 0.5
-TYPE = 9
+TYPE = &"fall"
 PRIORITY = 20
-ANIMATION_NAME = "Fall"
+data = SubResource("Resource_jverr")
+metadata/_custom_type_script = "uid://jc1g0sv32qq1"
+
+[node name="Jump" type="Node" parent="." unique_id=1897210185]
+process_mode = 4
+script = ExtResource("7_jverr")
+TYPE = &"jump"
+PRIORITY = 30
 metadata/_custom_type_script = "uid://jc1g0sv32qq1"
