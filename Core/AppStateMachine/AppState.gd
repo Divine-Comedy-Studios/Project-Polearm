@@ -61,6 +61,6 @@ func _implExit() -> void:
 
 
 func nextState() -> StringName:
-	return StringName()
+	return NONE_TYPE
 
 #endregion

@@ -17,7 +17,7 @@ func _process(_delta : float) -> void:
 
 func _implStateInit(child : Node) -> void:
 	if child is AppState:
-		states[child.type()] = child as BasicState
+		insertState(child)
 
 
 func _nextState() -> StringName:
