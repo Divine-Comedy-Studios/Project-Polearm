@@ -1,16 +1,16 @@
 extends PlayerAction
 
 
-func enterImpl() -> void:
+func _implEnter() -> void:
 	pass
 
-func exitImpl() -> void:
-	pass
-
-
-func tickImpl(_input : PlayerInputManager.Data, _delta : float) -> void:
+func _implExit() -> void:
 	pass
 
 
-func nextStateImpl(next : Type) -> Type:
+func _tick(_delta : float) -> void:
+	pass
+
+
+func _implNextAction(next : StringName) -> StringName:
 	return next
