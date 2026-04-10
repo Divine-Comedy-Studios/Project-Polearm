@@ -10,8 +10,9 @@ class_name EntityResources
 @export var invincible : bool = false # Overrides the current invincibility of the state
 
 @export_group("Properties")
-@export var maxHealth : float = 0.0
-@export var maxEnergy : float = 0.0
+@export var maxHealth : float = 100.0
+@export var maxEnergy : float = 100.0
+@export var maxSuperArmor : float = 100.0
 
 #endregion
 
@@ -26,17 +27,23 @@ class_name EntityResources
 
 #region Member variables
 
-var health : float = 0.0:
+@onready var health : float = maxHealth:
 	get:
 		return health
 	set(value):
 		health = clampf(value, 0.0, maxHealth)
 
-var energy : float = 0.0:
+@onready var energy : float = maxEnergy:
 	get:
 		return energy
 	set(value):
 		energy = clampf(value, 0.0, maxEnergy)
+
+@onready var superArmor : float = maxSuperArmor:
+	get:
+		return superArmor
+	set(value):
+		superArmor = clampf(value, 0.0, maxSuperArmor)
 
 #endregion
 
@@ -52,11 +59,19 @@ func _ready() -> void:
 #region Public functions
 
 func takeDamage(hitData : Hitbox.Data) -> void:
-	_implTakeDamage(hitData)
+	if invincible:
+		return
+	if not actionManager.currentState.vulnerable():
+		return
+
+	if not actionManager.currentState.interruptable():
+		superArmor -= hitData.superArmorDamage
+
 	health -= hitData.damage
 
-	if not invincible and not actionManager.currentState.invincible():
-		actionManager.interrupt(EntityAction.Type.damage)
+	actionManager.interrupt(EntityAction.Type.damage)
+
+	_implTakeDamage(hitData)
 
 
 func payable(action : EntityAction) -> bool:
