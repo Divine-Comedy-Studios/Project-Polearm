@@ -4,7 +4,7 @@
 ## Generation Date: 2026-04-09
 ## 
 ## Prompt: Write a GDScript tool script named EntityAnimationHelper which has exported
-## properties for EntityAnimationPlayer (_animationPlayer), Skeleton3D (_skeleton),
+## properties for EntityAnimationManager (_animationPlayer), Skeleton3D (_skeleton),
 ## StringName/_rootBonePath, and AnimationLibrary (_frameDataLibrary), grouped with
 ## @export_category. Syncs missing animations from _animationPlayer into _frameDataLibrary
 ## (stripped of library prefix), extracts root bone orientation from skeleton and assigns
@@ -21,11 +21,16 @@ extends Node
 
 @export_category("Animation")
 
-@export var _animationPlayer: EntityAnimationPlayer:
+@export var _animationManager : EntityAnimationManager:
 	set(value):
-		_animationPlayer = value
-		_connect_animation_player_signals()
-		_sync_frame_data_library()
+		_animationManager = value
+		var player := _animationManager.get_node(_animationManager.anim_player)
+
+		if player == null:
+			push_warning("EntityAnimationHelper: Animation Manager has no valid animation player assigned!")
+			return
+
+		_animationPlayer = player
 
 @export var _frameDataLibrary: AnimationLibrary:
 	set(value):
@@ -44,6 +49,17 @@ extends Node
 	set(value):
 		_rootBonePath = value
 		_update_root_orientation()
+
+#endregion
+
+
+#region Member variables
+
+var _animationPlayer : AnimationPlayer:
+	set(value):
+		_animationPlayer = value
+		_connect_animation_player_signals()
+		_sync_frame_data_library()
 
 #endregion
 
@@ -99,6 +115,7 @@ func _sync_frame_data_library() -> void:
 
 	var all_animations: PackedStringArray = _animationPlayer.get_animation_list()
 
+	var edited := false
 	for full_name : String in all_animations:
 		var source_anim : Animation = _animationPlayer.get_animation(full_name)
 
@@ -124,13 +141,15 @@ func _sync_frame_data_library() -> void:
 				"EntityAnimationHelper: Failed to add animation '%s' to _frameDataLibrary (error %d)."
 				% [anim_key, err]
 			)
+		else:
+			edited = true
 	
-	# Notify the editor that the resource has been modified and needs saving
-	if not _frameDataLibrary.resource_path.is_empty():
-		ResourceSaver.save(_frameDataLibrary)
-	else:
-		# Embedded resource — mark the scene dirty instead
-		EditorInterface.mark_scene_as_unsaved()
+	if edited: # Notify the editor that the resource has been modified and needs saving
+		if not _frameDataLibrary.resource_path.is_empty():
+			ResourceSaver.save(_frameDataLibrary)
+		else:
+			# Embedded resource — mark the scene dirty instead
+			EditorInterface.mark_scene_as_unsaved()
 
 #endregion
 
