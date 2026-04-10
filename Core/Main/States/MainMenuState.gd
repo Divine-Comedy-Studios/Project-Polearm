@@ -1,21 +1,9 @@
 extends AppState
-class_name MainMenuState
-
-
-#region Enums
-
-enum ExitType {
-	none,
-	startGame,
-	quitGame,
-}
-
-#endregion
 
 
 #region Scene members
 
-@export var _game : GameState = null
+@export var _game : AppState = null
 
 #endregion
 
@@ -61,13 +49,11 @@ func type() -> StringName:
 	return Main.Type.mainMenu
 
 func nextState() -> StringName:
-	match scene.exit() as int:
-		ExitType.startGame:
-			if _game.finishedLoading():
-				return Main.Type.game
-		ExitType.quitGame:
-			return Main.Type.quit
+	var next : StringName = scene.exit()
 
-	return Main.Type.none
+	if next == Main.Type.game and not _game.finishedLoading():
+		return Main.Type.none
+	
+	return next
 
 #endregion
