@@ -1,8 +1,7 @@
 extends AppState
-class_name BootState
 
 
-@export var _mainMenu : MainMenuState = null
+@export var _mainMenu : AppState = null
 
 
 func _ready() -> void:

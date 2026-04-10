@@ -11,7 +11,8 @@ class_name EntityFrameData
 @export var _rotationTracking : float = 0.0
 
 @export_group("Behavior")
-@export var _invincible : bool = false
+@export var _vulnerable : bool = false
+@export var _interruptable : bool = false
 
 #endregion
 
@@ -25,8 +26,11 @@ func rotationTracking(animationName : StringName, time : float) -> float:
 	return _getValue(animationName, ^"FrameData:_rotationTracking", time) as float
 
 
-func invincible(animationName : StringName, time : float) -> bool:
-	return _getValue(animationName, ^"FrameData:_invincible", time) as bool
+func vulnerable(animationName : StringName, time : float) -> bool:
+	return _getValue(animationName, ^"FrameData:_vulnerable", time) as bool
+
+func interruptable(animationName : StringName, time : float) -> bool:
+	return _getValue(animationName, ^"FrameData:_interruptable", time) as bool
 
 #endregion
 

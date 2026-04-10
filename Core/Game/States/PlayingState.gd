@@ -1,5 +1,4 @@
 extends AppState
-class_name PlayingState
 
 
 #region Build-in functions

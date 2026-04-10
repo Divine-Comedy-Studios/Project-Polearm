@@ -13,9 +13,7 @@ class Type:
 	
 
 	# Ground movement actions
-	const walk := &"walk"
-	const run := &"run"
-	const sprint := &"sprin"
+	const move := &"move"
 	
 
 	# Jumping
@@ -88,6 +86,7 @@ enum Priority {
 #region Exported variables
 
 @export_category("Behavior")
+@export var INPUT_BUFFER_FRAMES : int = 0
 @export var QUEUEABLE : bool = false # Only some actions should be able to be put into a queue
 
 @export_category("Combat")
@@ -108,11 +107,14 @@ var _queue : StringName = Type.none # Queued action, used for combos and bufferi
 func player() -> Player:
 	return context.entity as Player
 
+func inputs() -> PlayerInputManager.Data:
+	return context.inputManager.inputs
+
 func frameData() -> PlayerFrameData:
 	return context.frameData as PlayerFrameData
 
-func inputs() -> PlayerInputManager.Data:
-	return context.inputManager.inputs
+func animator() -> EntityAnimationManager:
+	return context.animator
 
 #endregion
 

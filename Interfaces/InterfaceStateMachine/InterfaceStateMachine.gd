@@ -48,7 +48,7 @@ func _process(_delta : float) -> void:
 
 #region Public functions
 
-func exit() -> int:
+func exit() -> StringName:
 	return _currentMenu.exit()
 
 #endregion

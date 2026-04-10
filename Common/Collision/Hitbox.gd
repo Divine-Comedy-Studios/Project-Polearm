@@ -6,6 +6,7 @@ class_name Hitbox
 
 class Data extends Resource:
 	var damage : float
+	var superArmorDamage : float
 
 #endregion
 

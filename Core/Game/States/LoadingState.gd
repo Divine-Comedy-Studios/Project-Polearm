@@ -1,10 +1,9 @@
 extends AppState
-class_name LoadingState
 
 
 #region Exported variables
 
-@export var _game : PlayingState = null
+@export var _game : AppState = null
 
 #endregion
 

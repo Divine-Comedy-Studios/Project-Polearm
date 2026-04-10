@@ -30,6 +30,7 @@ func _onHit(area : Area3D) -> void:
 
 #region Implementation functions
 
+@warning_ignore("unused_parameter")
 func _implHit(hitbox : Hitbox) -> void:
 	pass
 

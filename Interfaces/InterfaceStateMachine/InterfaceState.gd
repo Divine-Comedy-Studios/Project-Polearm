@@ -59,7 +59,7 @@ func nextMenu(inputs : ISMInputManager.Data) -> Type:
 func deactivateImpl() -> void:
 	pass
 
-func exit() -> int:
-	return 0
+func exit() -> StringName:
+	return BasicState.TYPE_NONE
 
 #endregion

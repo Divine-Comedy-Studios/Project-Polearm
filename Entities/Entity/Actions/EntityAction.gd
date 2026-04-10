@@ -9,7 +9,7 @@ class_name EntityAction
 class Type:
 	# These types are all general states which are universal across all entities
 
-	const none := NONE_TYPE
+	const none := TYPE_NONE
 
 	const idle := &"idle"
 	const damage := &"dmg"
@@ -95,6 +95,15 @@ func interrupt(actionType : StringName) -> StringName:
 	return Type.none
 
 
+# Frame data interface
+
+func vulnerable() -> bool:
+	return context.frameData.vulnerable(data.ANIMATION_NAME, _progress)
+
+func interruptable() -> bool:
+	return context.frameData.interruptable(data.ANIMATION_NAME, _progress)
+
+
 # Explicit definition of higher priority
 
 static func hasHigherPriority(first : EntityAction, second : EntityAction) -> bool:
@@ -120,13 +129,13 @@ func _processRootMotion(delta : float) -> void:
 		return
 	
 	var entityQuaternion := context.entity.get_quaternion()
-	var rootQuaternion := context.animationPlayer.rootOrientation
+	var rootQuaternion := context.animator.rootOrientation
 
-	context.entity.set_quaternion(rootQuaternion.inverse() * entityQuaternion * context.animationPlayer.get_root_motion_rotation())
+	context.entity.set_quaternion(rootQuaternion.inverse() * entityQuaternion * context.animator.get_root_motion_rotation())
 	context.entity.velocity = (
-		context.animationPlayer.get_root_motion_rotation_accumulator().inverse() *
+		context.animator.get_root_motion_rotation_accumulator().inverse() *
 		rootQuaternion * entityQuaternion
-	) * context.animationPlayer.get_root_motion_position() / delta
+	) * context.animator.get_root_motion_position() / delta
 
 #endregion
 
@@ -139,8 +148,7 @@ func enter() -> void:
 		data = context.combatManager.registerComboAction(TYPE)
 
 	context.resources.pay(self) # The action is pretty much guaranteed to be payable at this point, if not, not a big deal
-	context.animationPlayer.play(data.ANIMATION_FULL_NAME)
-	
+
 	_enter()
 
 # This is executed on action exit and resets the action to prepare it for the next time it's activated
