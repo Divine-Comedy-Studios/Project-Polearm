@@ -38,13 +38,13 @@ func deactivateImpl() -> void:
 	_openOptionsPressed = false
 	_quitGamePressed = false
 
-func exit() -> int:
+func exit() -> StringName:
 	if _startGamePressed:
-		return MainMenuState.ExitType.startGame
+		return Main.Type.game
 	if _quitGamePressed:
-		return MainMenuState.ExitType.quitGame
+		return Main.Type.quit
 
-	return MainMenuState.ExitType.none
+	return Main.Type.none
 
 #endregion
 
