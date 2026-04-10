@@ -11,7 +11,7 @@ class_name EntityActionManager
 
 @export var combatManager : EntityCombatManager = null
 
-@export var animations : EntityAnimationManager = null
+@export var animator : EntityAnimationManager = null
 
 #endregion
 
@@ -35,7 +35,7 @@ func init() -> void:
 
 	assert(combatManager != null, "EntityActionManager._ready(): Entity combat manager not assigned!")
 
-	assert(animations != null, "EntityActionManager._ready(): Entity animation manager not assigned!")
+	assert(animator != null, "EntityActionManager._ready(): Entity animation manager not assigned!")
 
 	super.init()
 

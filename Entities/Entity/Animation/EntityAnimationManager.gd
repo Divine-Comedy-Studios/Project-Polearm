@@ -5,27 +5,29 @@ class_name EntityAnimationManager
 #region Helper structures
 
 class DriverType:
-	const simple := &"SimpleDriver"
-	const uniformBlendLine := &"UniformBlendLine"
-	const uniformBlendSpace := &"UniformBlendSpace"
-	const uniformSimple := &"UniformSimple"
+	const transition := &"Transition"
+	const animation := &"Animation"
+	const blendLine := &"BlendSpace1D"
+	const blendSpace := &"BlendSpace2D"
+	const addition := &"Add2"
+	const addition3 := &"Add3"
+	const subtraction := &"Sub2"
 
 
-class DriverContainer extends Resource:
-	var driver : AnimationNode = null
+class TransitionDriverActivity extends Resource:
+	var name : StringName = StringName()
+	var slot : int = 0
 
-	var _name : StringName = StringName()
-	var _active : bool = false
+#endregion
 
 
-	func simple() -> AnimationNodeAnimation:
-		return driver as AnimationNodeAnimation
+#region Constants
 
-	func uniformBlendLine() -> AnimationNodeAnimation:
-		return driver as AnimationNodeBlendSpace1D
+# Parameter names
 
-	func uniformBlendSpace() -> AnimationNodeAnimation:
-		return driver as AnimationNodeBlendSpace2D
+const PARAMETER_BLEND_POS := &"blend_position"
+const PARAMETER_ADD := &"add_amount"
+const PARAMETER_SUB := &"sub_amount"
 
 #endregion
 
@@ -39,32 +41,15 @@ class DriverContainer extends Resource:
 
 #region Member variables
 
-const TRANSITION_NAME := &"transition"
-const OUTPUT_NAME := &"output"
-
-
 # References
 
 @onready var _animationPlayer : AnimationPlayer = get_node(anim_player)
 @onready var _defaultAnimation : Animation = get_animation(DEFAULT_ANIMATION_NAME)
 
 
-# Animation tree
+# Animation blend tree reference
 
-var _transition : AnimationNodeTransition
-var _transitionSlots : Array[bool]
-
-
-
-var _activeDriverType : StringName
-var _activeDriverName : StringName
-
-var _driverPool : Dictionary[StringName, Dictionary] = {
-	DriverType.simple : { },
-	DriverType.uniformBlendLine : { },
-	DriverType.uniformBlendSpace : { },
-	DriverType.uniformSimple : { },
-}
+var _transitionDriverActivity : Dictionary[StringName, TransitionDriverActivity] = { }
 
 
 # Root motion
@@ -80,40 +65,98 @@ func _ready() -> void:
 	assert(_animationPlayer != null, "EntityAnimationManager._ready(): Animation player not found!")
 	assert(_defaultAnimation != null, "EntityAnimationManager._ready(): Default animation not found!")
 
-	_initTransitionNode()
-
 #endregion
 
 
 #region Public functions
 
-func transitionTo(driver : DriverContainer, duration : float) -> void:
-	_transition.xfade_time = duration
+func transitionTo(transDriverName : StringName, driverName : StringName) -> void:
+	var activity := _transitionDriverActivity.get(transDriverName) as TransitionDriverActivity
+	if activity == null:
+		_transitionDriverActivity[transDriverName] = TransitionDriverActivity.new()
+		activity = _transitionDriverActivity.get(transDriverName) as TransitionDriverActivity
+	
+	activity.slot += (1 if activity.slot == 0 else -1)
+	activity.name = driverName
+
+	tree_root.disconnect_node(transDriverName, activity.slot)
+	tree_root.connect_node(transDriverName, activity.slot, driverName)
+	set(parameterName(transDriverName, &"transition_request"), transitionDriver(transDriverName).get_input_name(activity.slot))
 
 
-func simple(animation : Animation) -> DriverContainer:
-	pass
+# Driver functions
+
+func transitionDriver(driverName : StringName) -> AnimationNodeTransition:
+	return tree_root.get_node(driverName) as AnimationNodeTransition
+
+func animationDriver(driverName : StringName) -> AnimationNodeAnimation:
+	return tree_root.get_node(driverName) as AnimationNodeAnimation
+
+func additionDriver(driverName: StringName) -> AnimationNodeAdd2:
+	return tree_root.get_node(driverName) as AnimationNodeAdd2
+
+func addition3Driver(driverName: StringName) -> AnimationNodeAdd3:
+	return tree_root.get_node(driverName) as AnimationNodeAdd3
+
+func subtractionDriver(driverName: StringName) -> AnimationNodeSub2:
+	return tree_root.get_node(driverName) as AnimationNodeSub2
+
+func blendLineDriver(driverName : StringName) -> AnimationNodeBlendSpace1D:
+	return tree_root.get_node(driverName) as AnimationNodeBlendSpace1D
+
+func blendSpaceDriver(driverName : StringName) -> AnimationNodeBlendSpace2D:
+	return tree_root.get_node(driverName) as AnimationNodeBlendSpace2D
 
 
-func uniformBlendLine() -> DriverContainer:
-	pass
+# Driver configuration
 
-func uniformBlendLineSetAnimation(driver : DriverContainer, pos : float, animation : StringName) -> int:
-	pass
+func setAdditionAmount(driverName : StringName, pos : Vector3) -> void:
+	set(parameterName(driverName, PARAMETER_ADD), pos)
 
-func uniformBlendLineSetPosition(pos : float) -> void:
-	pass
+func setAddition3Amount(driverName : StringName, pos : Vector3) -> void:
+	set(parameterName(driverName, PARAMETER_ADD), pos)
+
+func setSubtractionAmount(driverName : StringName, pos : Vector3) -> void:
+	set(parameterName(driverName, PARAMETER_SUB), pos)
+
+func setBlendLinePosition(driverName : StringName, pos : float) -> void:
+	set(parameterName(driverName, PARAMETER_BLEND_POS), pos)
+
+func setBlendSpacePosition(driverName : StringName, pos : Vector3) -> void:
+	set(parameterName(driverName, PARAMETER_BLEND_POS), pos)
 
 
-func uniformBlendSpace() -> DriverContainer:
-	pass
+# Driver names
 
-func uniformBlendSpaceSetAnimation(driver : DriverContainer, pos : Vector2, animation : StringName) -> int:
-	pass
+func transitionDriverName(index : int, parent : StringName = StringName()) -> StringName:
+	return _parentToString(parent) + DriverType.transition + _indexToString(index)
 
-func uniformBlendShapeSetPosition(pos : Vector2) -> void:
-	pass
+func animationDriverName(index : int, parent : StringName = StringName()) -> StringName:
+	return _parentToString(parent) + DriverType.animation + _indexToString(index)
 
+func additionDriverName(index: int, parent: StringName = StringName()) -> StringName:
+	return _parentToString(parent) + DriverType.addition + _indexToString(index)
+
+func addition3DriverName(index: int, parent: StringName = StringName()) -> StringName:
+	return _parentToString(parent) + DriverType.addition3 + _indexToString(index)
+
+func subtractionDriverName(index: int, parent: StringName = StringName()) -> StringName:
+	return _parentToString(parent) + DriverType.subtraction + _indexToString(index)
+
+func blendLineDriverName(index : int, parent : StringName = StringName()) -> StringName:
+	return _parentToString(parent) + DriverType.blendLine + _indexToString(index)
+
+func blendSpaceDriverName(index : int, parent : StringName = StringName()) -> StringName:
+	return _parentToString(parent) + DriverType.blendSpace + _indexToString(index)
+
+
+# Parameter names
+
+func parameterName(driverName : StringName, paramName : StringName) -> StringName:
+	return "parameters/" + driverName + "/" + paramName
+
+
+# Get animation from animation player
 
 func animation(animationName : StringName) -> Animation:
 	var anim := _animationPlayer.get_animation(animationName)
@@ -127,133 +170,15 @@ func animation(animationName : StringName) -> Animation:
 #endregion
 
 
-
 #region Private functions
 
-func _initTransitionNode() -> void:
-	_transition = AnimationNodeTransition.new()
-	_transition.input_count = 3
-
-	tree_root.add_node(TRANSITION_NAME, _transition)
-	tree_root.connect_node(TRANSITION_NAME, 0, OUTPUT_NAME)
-
-
-# Get a unused driver
-
-func _unusedSimpleDriver() -> DriverContainer:
-	var container := findUnusedDriver(DriverType.simple)
-	if container.driver == null:
-		container.driver = AnimationNodeAnimation.new()
-		container.driver.animation = DEFAULT_ANIMATION_NAME
-
-	return container
-
-func _unusedBlendLine() -> DriverContainer:
-	var container := findUnusedDriver(DriverType.uniformBlendLine)
-	if container.driver == null:
-		container.driver = AnimationNodeBlendSpace1D.new()
-
-	return container
-
-func _unusedBlendSpace() -> DriverContainer:
-	var container := findUnusedDriver(DriverType.uniformBlendSpace)
-	if container.driver == null:
-		container.driver = AnimationNodeBlendSpace2D.new()
-
-	return container
-
-func _unusedUniformSimpleDriver() -> DriverContainer:
-	var container := findUnusedDriver(DriverType.uniformSimple)
-	if container.driver == null:
-		container.driver = AnimationNodeAnimation.new()
-		container.driver.animation = DEFAULT_ANIMATION_NAME
-
-	return container
-
-
-func findUnusedDriver(driverType : StringName) -> DriverContainer:
-	var pool := _driverPool.get(driverType) as Dictionary
-	var poolSize := pool.size()
-
-	for container : DriverContainer in pool:
-		if not container.active:
-			container.active = true
-			return container
-
-
-	var driverName := driverType + str(poolSize + 1)
-	
-	var container := DriverContainer.new()
-	container.driver = null
-	container._name = driverName
-	container._active = true
-
-	pool[driverName] = container
-
-	return container
-
-
-# Clean a driver and mark it for reuse
-
-func _clearSimpleDriver(driverName : StringName) -> void:
-	var driver := _deactivateDriver(DriverType.simple, driverName) as AnimationNodeAnimation
-
-	driver.advance_on_start = false
-	driver.animation = DEFAULT_ANIMATION_NAME
-	driver.loop_mode = Animation.LOOP_NONE
-	driver.play_mode = AnimationNodeAnimation.PLAY_MODE_FORWARD
-	driver.start_offset = 0.0
-	driver.stretch_time_scale = false
-	driver.timeline_length = 0.0
-	driver.use_custom_timeline = false
-
-func _clearBlendLine(driverName : StringName) -> void:
-	var driver := _deactivateDriver(DriverType.uniformBlendLine, driverName) as AnimationNodeBlendSpace1D
-
-	driver.blend_mode = AnimationNodeBlendSpace1D.BLEND_MODE_INTERPOLATED
-
-func _clearBlendSpace(driverName : StringName) -> void:
-	var driver := _deactivateDriver(DriverType.uniformBlendSpace, driverName) as AnimationNodeBlendSpace2D
-
-	driver.blend_mode = AnimationNodeBlendSpace2D.BLEND_MODE_INTERPOLATED
-
-func _clearUniformSimpleDriver(driverName : StringName) -> void:
-	var driver := _deactivateDriver(DriverType.uniformSimple, driverName) as AnimationNodeAnimation
-
-	driver.advance_on_start = false
-	driver.animation = DEFAULT_ANIMATION_NAME
-	driver.loop_mode = Animation.LOOP_NONE
-	driver.play_mode = AnimationNodeAnimation.PLAY_MODE_FORWARD
-	driver.start_offset = 0.0
-	driver.stretch_time_scale = false
-	driver.timeline_length = 0.0
-	driver.use_custom_timeline = false
-
-
-func _deactivateDriver(driverType : StringName, driverName : StringName) -> AnimationNode:
-	var driverContainer := _driverContainer(driverType, driverName)
-	driverContainer.active = false
-
-	return driverContainer.driver
-
-
-# Register a driver to the tree
-func _registerDriver(driverName : StringName, driver : AnimationNode) -> void:	
-	tree_root.add_node(driverName, driver)
-
-	_transition.input_count += 1
-	tree_root.connect_node(driverName, _transition.input_count, TRANSITION_NAME)
-
-
-# Find drivers
-
-func _driver(driverName : StringName) -> AnimationNode:
+func _getDriver(driverName : StringName) -> AnimationNode:
 	return tree_root.get_node(driverName)
 
-func _driverContainer(driverType : StringName, driverName : StringName) -> DriverContainer:
-	return _driverPool.get(driverType)[driverName] as DriverContainer
+func _indexToString(index : int) -> StringName:
+	return StringName() if index == 0 else StringName(&" " + str(index + 1))
 
-func _activeDriverContainer() -> DriverContainer:
-	return _driverContainer(_activeDriverType, _activeDriverName)
+func _parentToString(parentName : StringName) -> StringName:
+	return StringName() if parentName.is_empty() else StringName(parentName + &"/")
 
 #endregion

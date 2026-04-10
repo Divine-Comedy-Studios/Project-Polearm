@@ -177,6 +177,6 @@ func _update_root_orientation() -> void:
 	var bone_pose: Transform3D = _skeleton.get_bone_global_pose(bone_idx)
 	var orientation: Quaternion = bone_pose.basis.get_rotation_quaternion()
 
-	_animationPlayer.rootOrientation = orientation
+	_animationManager.rootOrientation = orientation
 
 #endregion

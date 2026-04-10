@@ -129,13 +129,13 @@ func _processRootMotion(delta : float) -> void:
 		return
 	
 	var entityQuaternion := context.entity.get_quaternion()
-	var rootQuaternion := context.animations.rootOrientation
+	var rootQuaternion := context.animator.rootOrientation
 
-	context.entity.set_quaternion(rootQuaternion.inverse() * entityQuaternion * context.animations.get_root_motion_rotation())
+	context.entity.set_quaternion(rootQuaternion.inverse() * entityQuaternion * context.animator.get_root_motion_rotation())
 	context.entity.velocity = (
-		context.animations.get_root_motion_rotation_accumulator().inverse() *
+		context.animator.get_root_motion_rotation_accumulator().inverse() *
 		rootQuaternion * entityQuaternion
-	) * context.animations.get_root_motion_position() / delta
+	) * context.animator.get_root_motion_position() / delta
 
 #endregion
 
@@ -148,8 +148,7 @@ func enter() -> void:
 		data = context.combatManager.registerComboAction(TYPE)
 
 	context.resources.pay(self) # The action is pretty much guaranteed to be payable at this point, if not, not a big deal
-	context.animations.play(data.ANIMATION_FULL_NAME)
-	
+
 	_enter()
 
 # This is executed on action exit and resets the action to prepare it for the next time it's activated
