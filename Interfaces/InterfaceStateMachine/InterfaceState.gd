@@ -9,6 +9,7 @@ enum Type {
 	
 	quitConfirmMenu,
 	startMenu,
+	saves,
 	options,
 	pause,
 	gameOptions,

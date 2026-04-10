@@ -30,6 +30,9 @@ func nextMenu(inputs : ISMInputManager.Data) -> Type:
 	if _openOptionsPressed:
 		return Type.options
 	
+	if _savesPressed:
+		return Type.saves
+	
 	return Type.none
 
 func deactivateImpl() -> void:
