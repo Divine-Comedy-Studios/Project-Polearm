@@ -15,7 +15,7 @@ var currentState : BasicState = null
 #region Public functions
 
 func init() -> void:
-	_states.get_or_add(BasicState.NONE_TYPE, BasicState.NONE)
+	_states.get_or_add(BasicState.TYPE_NONE, BasicState.NONE)
 
 	for child in get_children():
 		_implStateInit(child)

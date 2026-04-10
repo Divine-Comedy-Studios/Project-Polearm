@@ -5,7 +5,7 @@ class_name BasicState
 #region Constants
 
 static var NONE := BasicState.new()
-const NONE_TYPE := StringName()
+const TYPE_NONE := StringName()
 
 #endregion
 
@@ -20,6 +20,6 @@ func exit() -> void:
 
 
 func type() -> StringName:
-	return NONE_TYPE
+	return TYPE_NONE
 
 #endregion
