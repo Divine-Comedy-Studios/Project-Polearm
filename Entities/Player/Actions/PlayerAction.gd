@@ -85,11 +85,11 @@ enum Priority {
 
 #region Exported variables
 
-@export_category("Behavior")
+@export_group("Behavior")
 @export var INPUT_BUFFER_FRAMES : int = 0
 @export var QUEUEABLE : bool = false # Only some actions should be able to be put into a queue
 
-@export_category("Combat")
+@export_group("Combat")
 @export var ENEMY_DETECTABLE : bool = false
 
 #endregion
@@ -113,7 +113,7 @@ func inputs() -> PlayerInputManager.Data:
 func frameData() -> PlayerFrameData:
 	return context.frameData as PlayerFrameData
 
-func animator() -> EntityAnimationManager:
+func animator() -> EntityAnimator:
 	return context.animator
 
 #endregion
@@ -189,7 +189,7 @@ func _nextAction() -> StringName:
 
 
 func _processDirectionAngle() -> float:
-	return player().basis.z.signed_angle_to(
+	return (-player().basis.z).signed_angle_to(
 		Vector3(inputs().direction.x, 0, inputs().direction.y), 
 		Vector3.UP
 	)
