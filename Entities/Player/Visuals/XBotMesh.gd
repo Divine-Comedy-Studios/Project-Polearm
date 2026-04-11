@@ -6,8 +6,9 @@ class_name XBotMesh
 
 @export var _skeleton : Skeleton3D = null:
 	set(skeleton):
-		_skeleton = skeleton
-		_resetSkeleton()
+		if skeleton != null:
+			_skeleton = skeleton
+			_resetSkeleton()
 
 
 var _surface : MeshInstance3D = null

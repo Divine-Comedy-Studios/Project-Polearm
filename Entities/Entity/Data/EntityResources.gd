@@ -1,5 +1,3 @@
-@warning_ignore_start("unused_parameter")
-
 extends Node
 class_name EntityResources
 
@@ -87,13 +85,16 @@ func pay(action : EntityAction) -> void:
 
 #region Implementation functions
 
+@warning_ignore("unused_parameter")
 func _implTakeDamage(hitData : Hitbox.Data) -> void:
 	pass
 
 
+@warning_ignore("unused_parameter")
 func _implPayable(action : EntityAction) -> bool:
 	return true
 
+@warning_ignore("unused_parameter")
 func _implPay(action : EntityAction) -> void:
 	pass
 

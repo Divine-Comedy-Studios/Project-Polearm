@@ -1,5 +1,3 @@
-@warning_ignore_start("unused_parameter")
-
 extends BasicState
 class_name EntityAction
 
@@ -120,7 +118,7 @@ func hasHigherPriorityThan(second : StringName) -> bool:
 # If enabled, this will influence the direction the player faces using the direction of the input package
 func _processDirection(delta : float) -> void:
 	var rotationTrackingSpeed := context.frameData.rotationTracking(data.ANIMATION_NAME, _progress) * delta
-	if not is_zero_approx(rotationTrackingSpeed):
+	if rotationTrackingSpeed != 0.0:
 		context.entity.rotate_y(clampf(_processDirectionAngle(), -rotationTrackingSpeed, rotationTrackingSpeed))
 
 # If enabled, this will add root motion to the animation
@@ -169,6 +167,8 @@ func type() -> StringName:
 func _implInit() -> void:
 	pass
 
+
+@warning_ignore("unused_parameter")
 func _tick(delta : float) -> void:
 	pass
 
@@ -186,6 +186,7 @@ func _processActions() -> void:
 func _nextAction() -> StringName:
 	return Type.none
 
+@warning_ignore("unused_parameter")
 func _implActionViable(action : EntityAction) -> bool:
 	return true
 

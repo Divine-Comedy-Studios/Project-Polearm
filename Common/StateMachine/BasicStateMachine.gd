@@ -1,5 +1,3 @@
-@warning_ignore_start("unused_parameter")
-
 extends Node
 class_name BasicStateMachine
 
@@ -59,6 +57,7 @@ func _switchState(type : StringName) -> void:
 
 #region Implementation & Virtual functions
 
+@warning_ignore("unused_parameter")
 func _implStateInit(child : Node) -> void:
 	pass
 

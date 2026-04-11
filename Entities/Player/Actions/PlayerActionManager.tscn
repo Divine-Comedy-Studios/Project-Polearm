@@ -3,12 +3,32 @@
 [ext_resource type="Script" uid="uid://d0kf1f6gldsxt" path="res://Entities/Player/Actions/PlayerActionManager.gd" id="1_xghap"]
 [ext_resource type="Script" uid="uid://d1f6s1sq7da14" path="res://Entities/Entity/Data/EntityActionData.gd" id="3_jverr"]
 [ext_resource type="Script" uid="uid://p1qurm2f1bvl" path="res://Entities/Player/Actions/States/Grounded/Idle.gd" id="3_nw1e5"]
+[ext_resource type="Script" uid="uid://cnyeww8lnsnok" path="res://Entities/Player/Actions/States/Grounded/GroundedLocomotion.gd" id="4_6ll7i"]
+[ext_resource type="Script" uid="uid://cqy3drroysy4k" path="res://Entities/Player/Data/PlayerActionData.gd" id="5_8427c"]
 
 [sub_resource type="Resource" id="Resource_6evvv"]
 script = ExtResource("3_jverr")
 ANIMATION_LIBRARY_NAME = &"AnimTest"
 ANIMATION_NAME = &"Idle"
 metadata/_custom_type_script = "uid://d1f6s1sq7da14"
+
+[sub_resource type="Resource" id="Resource_xghap"]
+script = ExtResource("5_8427c")
+ANIMATION_LIBRARY_NAME = &"AnimTest"
+ANIMATION_NAME = &"Idle"
+metadata/_custom_type_script = "uid://cqy3drroysy4k"
+
+[sub_resource type="Resource" id="Resource_jverr"]
+script = ExtResource("5_8427c")
+ANIMATION_LIBRARY_NAME = &"AnimTest"
+ANIMATION_NAME = &"Walk"
+metadata/_custom_type_script = "uid://cqy3drroysy4k"
+
+[sub_resource type="Resource" id="Resource_urjga"]
+script = ExtResource("5_8427c")
+ANIMATION_LIBRARY_NAME = &"AnimTest"
+ANIMATION_NAME = &"Run"
+metadata/_custom_type_script = "uid://cqy3drroysy4k"
 
 [node name="PlayerActionManager" type="Node" unique_id=1294535758]
 script = ExtResource("1_xghap")
@@ -19,4 +39,14 @@ process_mode = 4
 script = ExtResource("3_nw1e5")
 TYPE = &"idle"
 data = SubResource("Resource_6evvv")
+metadata/_custom_type_script = "uid://jc1g0sv32qq1"
+
+[node name="Move" type="Node" parent="." unique_id=1229341547]
+process_mode = 4
+script = ExtResource("4_6ll7i")
+IDLE_DATA = SubResource("Resource_xghap")
+WALK_DATA = SubResource("Resource_jverr")
+RUN_DATA = SubResource("Resource_urjga")
+TYPE = &"move"
+PRIORITY = 1
 metadata/_custom_type_script = "uid://jc1g0sv32qq1"

@@ -4,9 +4,9 @@
 ## Generation Date: 2026-04-09
 ## 
 ## Prompt: Write a GDScript tool script named EntityAnimationHelper which has exported
-## properties for EntityAnimationManager (_animationPlayer), Skeleton3D (_skeleton),
+## properties for EntityAnimator (_animationPlayer), Skeleton3D (_skeleton),
 ## StringName/_rootBonePath, and AnimationLibrary (_frameDataLibrary), grouped with
-## @export_category. Syncs missing animations from _animationPlayer into _frameDataLibrary
+## @export_group. Syncs missing animations from _animationPlayer into _frameDataLibrary
 ## (stripped of library prefix), extracts root bone orientation from skeleton and assigns
 ## it to _animationPlayer.rootOrientation, and removes itself from the scene tree on _ready.
 ##
@@ -19,12 +19,12 @@ extends Node
 
 #region Exported Properties
 
-@export_category("Animation")
+@export_group("Animation")
 
-@export var _animationManager : EntityAnimationManager:
+@export var _animator : EntityAnimator:
 	set(value):
-		_animationManager = value
-		var player := _animationManager.get_node(_animationManager.anim_player)
+		_animator = value
+		var player := _animator.get_node(_animator.anim_player)
 
 		if player == null:
 			push_warning("EntityAnimationHelper: Animation Manager has no valid animation player assigned!")
@@ -38,7 +38,7 @@ extends Node
 		_sync_frame_data_library()
 
 
-@export_category("Skeleton")
+@export_group("Skeleton")
 
 @export var _skeleton: Skeleton3D:
 	set(value):
@@ -161,7 +161,7 @@ func _sync_frame_data_library() -> void:
 func _update_root_orientation() -> void:
 	if not is_instance_valid(_skeleton):
 		return
-	if not is_instance_valid(_animationPlayer):
+	if not is_instance_valid(_animator):
 		return
 	if _rootBonePath.is_empty():
 		return
@@ -177,6 +177,6 @@ func _update_root_orientation() -> void:
 	var bone_pose: Transform3D = _skeleton.get_bone_global_pose(bone_idx)
 	var orientation: Quaternion = bone_pose.basis.get_rotation_quaternion()
 
-	_animationManager.rootOrientation = orientation
+	_animator.rootOrientation = orientation
 
 #endregion

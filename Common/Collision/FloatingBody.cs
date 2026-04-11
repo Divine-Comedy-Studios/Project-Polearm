@@ -187,6 +187,8 @@ using System.Linq;
 
 	// Movement functions
 
+	public void accelerateFlat(Vector3 target, float accelerationDt) => AccelerateFlat(new Vector2(target.X, target.Y), accelerationDt);
+	public void AccelerateFlat(Vector3 target, float accelerationDt) =>AccelerateFlat(new Vector2(target.X, target.Y), accelerationDt);
 	public void accelerateFlat(Vector2 target, float accelerationDt) => AccelerateFlat(target, accelerationDt);
 	public void AccelerateFlat(Vector2 target, float accelerationDt) {
 		Velocity = new Vector3(

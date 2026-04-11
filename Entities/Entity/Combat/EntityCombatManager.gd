@@ -1,5 +1,3 @@
-@warning_ignore_start("unused_parameter")
-
 extends Node
 class_name EntityCombatManager
 
@@ -62,6 +60,7 @@ func registerComboAction(action : StringName) -> EntityActionData:
 
 #region Implementation functions
 
+@warning_ignore("unused_parameter")
 func _resetFinishedCombo(action : EntityComboAction) -> void:
 	pass
 
