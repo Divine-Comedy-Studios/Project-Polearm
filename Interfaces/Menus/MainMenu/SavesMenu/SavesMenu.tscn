@@ -31,15 +31,23 @@ theme_override_constants/separation = 150
 [node name="Control" type="Control" parent="HBoxContainer" unique_id=1620957170]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer" unique_id=1425320903]
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1066124421]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer" unique_id=1425320903]
 custom_minimum_size = Vector2(300, 427)
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer" unique_id=1354261490]
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/MarginContainer" unique_id=1354261490]
 layout_mode = 2
 theme_override_constants/separation = 9
 
-[node name="SaveOne" type="Button" parent="HBoxContainer/MarginContainer/VBoxContainer" unique_id=1927661442]
+[node name="SaveOne" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer" unique_id=1927661442]
 texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 3
@@ -47,14 +55,14 @@ text = "Save 1"
 script = ExtResource("3_nu7pv")
 metadata/_custom_type_script = "uid://cfdlgc8aalbtr"
 
-[node name="SaveTwo" type="Button" parent="HBoxContainer/MarginContainer/VBoxContainer" unique_id=2059408295]
+[node name="SaveTwo" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer" unique_id=2059408295]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Save 2"
 script = ExtResource("3_nu7pv")
 metadata/_custom_type_script = "uid://cfdlgc8aalbtr"
 
-[node name="SaveThree" type="Button" parent="HBoxContainer/MarginContainer/VBoxContainer" unique_id=903404609]
+[node name="SaveThree" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer" unique_id=903404609]
 texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 3

@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://dc22sqf8b6cxf"
+
+[deps]
+
+files=["res://Interfaces/Language/ProjectPolearmLanguages.en.translation", "res://Interfaces/Language/ProjectPolearmLanguages.zh_CN.translation", "res://Interfaces/Language/ProjectPolearmLanguages.es.translation", "res://Interfaces/Language/ProjectPolearmLanguages.fr.translation", "res://Interfaces/Language/ProjectPolearmLanguages.de.translation", "res://Interfaces/Language/ProjectPolearmLanguages.it.translation", "res://Interfaces/Language/ProjectPolearmLanguages.ja.translation"]
+
+source_file="res://Interfaces/Language/ProjectPolearmLanguages.csv"
+dest_files=["res://Interfaces/Language/ProjectPolearmLanguages.en.translation", "res://Interfaces/Language/ProjectPolearmLanguages.zh_CN.translation", "res://Interfaces/Language/ProjectPolearmLanguages.es.translation", "res://Interfaces/Language/ProjectPolearmLanguages.fr.translation", "res://Interfaces/Language/ProjectPolearmLanguages.de.translation", "res://Interfaces/Language/ProjectPolearmLanguages.it.translation", "res://Interfaces/Language/ProjectPolearmLanguages.ja.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://dewxnxvy14tjr"]
 
-[ext_resource type="Script" uid="uid://cyn28bbc16luj" path="res://Interfaces/InterfaceStateMachine/InterfaceState.gd" id="1_lp0oy"]
-[ext_resource type="Texture2D" uid="uid://ctdbykm11ffsx" path="res://icon.svg" id="2_lp0oy"]
+[ext_resource type="Script" uid="uid://gftlfiyvamph" path="res://Interfaces/Menus/OptionsMenu/GameOptions/GameOptionSettings.gd" id="2_y5cya"]
 
 [node name="GameOptions" type="Control" unique_id=2031472548]
 layout_mode = 3
@@ -10,10 +9,120 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_lp0oy")
+script = ExtResource("2_y5cya")
 metadata/_custom_type_script = "uid://cyn28bbc16luj"
 
-[node name="Icon" type="Sprite2D" parent="." unique_id=1802255644]
-position = Vector2(199.5, 648)
-scale = Vector2(1.9765625, 4.09375)
-texture = ExtResource("2_lp0oy")
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=926986500]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer" unique_id=1672722479]
+custom_minimum_size = Vector2(800, 0)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/MarginContainer" unique_id=1618013708]
+layout_mode = 2
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="Lables" type="VBoxContainer" parent="CenterContainer/MarginContainer/HBoxContainer" unique_id=405633660]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 30
+
+[node name="Language" type="Label" parent="CenterContainer/MarginContainer/HBoxContainer/Lables" unique_id=1796002443]
+layout_mode = 2
+text = "UI_GAMEOPTIONS_LANGUAGE"
+
+[node name="Sensitivity" type="Label" parent="CenterContainer/MarginContainer/HBoxContainer/Lables" unique_id=168707602]
+layout_mode = 2
+text = "UI_GAMEOPTIONS_CAMERASENSITIVITY"
+
+[node name="InverseY" type="Label" parent="CenterContainer/MarginContainer/HBoxContainer/Lables" unique_id=656342922]
+layout_mode = 2
+text = "UI_GAMEOPTIONS_INVERSEY"
+
+[node name="CamShake" type="Label" parent="CenterContainer/MarginContainer/HBoxContainer/Lables" unique_id=1078505405]
+layout_mode = 2
+text = "UI_GAMEOPTIONS_CAMERASHAKE"
+
+[node name="Rumble" type="Label" parent="CenterContainer/MarginContainer/HBoxContainer/Lables" unique_id=2026895949]
+layout_mode = 2
+text = "UI_GAMEOPTIONS_RUMBLE"
+
+[node name="Buttons" type="VBoxContainer" parent="CenterContainer/MarginContainer/HBoxContainer" unique_id=483417729]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/separation = 30
+
+[node name="Language" type="OptionButton" parent="CenterContainer/MarginContainer/HBoxContainer/Buttons" unique_id=878794785]
+layout_mode = 2
+item_count = 7
+popup/item_0/text = "English"
+popup/item_0/id = 0
+popup/item_1/text = "Chinese"
+popup/item_1/id = 4
+popup/item_2/text = "Español"
+popup/item_2/id = 1
+popup/item_3/text = "Français"
+popup/item_3/id = 2
+popup/item_4/text = "Deutsch"
+popup/item_4/id = 3
+popup/item_5/text = "Italian"
+popup/item_5/id = 6
+popup/item_6/text = "Japanese"
+popup/item_6/id = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/MarginContainer/HBoxContainer/Buttons" unique_id=810788600]
+layout_mode = 2
+
+[node name="Sensitivity" type="HSlider" parent="CenterContainer/MarginContainer/HBoxContainer/Buttons/HBoxContainer" unique_id=274056126]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 0.1
+max_value = 5.0
+step = 0.1
+value = 0.1
+
+[node name="Label" type="Label" parent="CenterContainer/MarginContainer/HBoxContainer/Buttons/HBoxContainer" unique_id=1137906893]
+layout_mode = 2
+text = "0.0"
+
+[node name="InverseY" type="CheckButton" parent="CenterContainer/MarginContainer/HBoxContainer/Buttons" unique_id=32230375]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/MarginContainer/HBoxContainer/Buttons" unique_id=2086634683]
+layout_mode = 2
+
+[node name="CamShake" type="HSlider" parent="CenterContainer/MarginContainer/HBoxContainer/Buttons/HBoxContainer2" unique_id=242403366]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.1
+
+[node name="Label" type="Label" parent="CenterContainer/MarginContainer/HBoxContainer/Buttons/HBoxContainer2" unique_id=508533615]
+layout_mode = 2
+text = "0.0"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/MarginContainer/HBoxContainer/Buttons" unique_id=33523015]
+layout_mode = 2
+
+[node name="Rumble" type="HSlider" parent="CenterContainer/MarginContainer/HBoxContainer/Buttons/HBoxContainer3" unique_id=181476467]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.1
+
+[node name="Label" type="Label" parent="CenterContainer/MarginContainer/HBoxContainer/Buttons/HBoxContainer3" unique_id=1133653538]
+layout_mode = 2
+text = "0.0"
+
+[connection signal="item_selected" from="CenterContainer/MarginContainer/HBoxContainer/Buttons/Language" to="." method="_on_language_selected"]
+[connection signal="value_changed" from="CenterContainer/MarginContainer/HBoxContainer/Buttons/HBoxContainer/Sensitivity" to="." method="_on_sensitivity_changed"]
+[connection signal="toggled" from="CenterContainer/MarginContainer/HBoxContainer/Buttons/InverseY" to="." method="_on_y_inverse_toggled"]
+[connection signal="value_changed" from="CenterContainer/MarginContainer/HBoxContainer/Buttons/HBoxContainer2/CamShake" to="." method="_on_shake_changed"]
+[connection signal="value_changed" from="CenterContainer/MarginContainer/HBoxContainer/Buttons/HBoxContainer3/Rumble" to="." method="_on_rumble_changed"]

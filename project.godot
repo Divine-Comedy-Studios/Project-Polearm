@@ -23,8 +23,9 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-IndieBlueprintObjectPoolManager="uid://nyltou1uqbdp"
+IndieBlueprintObjectPoolManager="*uid://nyltou1uqbdp"
 PhantomCameraManager="*uid://duq6jhf6unyis"
+SettingsManager="*uid://covgehn0y4vp2"
 
 [debug_draw_3d]
 
@@ -213,6 +214,10 @@ ui_pause={
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":6,"pressure":0.0,"pressed":false,"script":null)
 ]
 }
+
+[internationalization]
+
+locale/translations=PackedStringArray("res://Interfaces/Language/ProjectPolearmLanguages.de.translation", "res://Interfaces/Language/ProjectPolearmLanguages.en.translation", "res://Interfaces/Language/ProjectPolearmLanguages.es.translation", "res://Interfaces/Language/ProjectPolearmLanguages.fr.translation", "res://Interfaces/Language/ProjectPolearmLanguages.it.translation", "res://Interfaces/Language/ProjectPolearmLanguages.ja.translation", "res://Interfaces/Language/ProjectPolearmLanguages.zh_CN.translation")
 
 [layer_names]
 

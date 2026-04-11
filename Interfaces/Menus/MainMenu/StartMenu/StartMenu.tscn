@@ -17,60 +17,54 @@ theme = ExtResource("1_ijn5t")
 script = ExtResource("1_006fw")
 metadata/_custom_type_script = "uid://cyn28bbc16luj"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=562557462]
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1529800702]
 layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -200.0
-offset_right = 300.0
-offset_bottom = 200.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 150
 
-[node name="Control" type="Control" parent="HBoxContainer" unique_id=1620957170]
-layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer" unique_id=1425320903]
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer" unique_id=1425320903]
 custom_minimum_size = Vector2(300, 427)
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer" unique_id=1354261490]
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/MarginContainer" unique_id=1354261490]
 layout_mode = 2
 theme_override_constants/separation = 9
 
-[node name="Continue" type="Button" parent="HBoxContainer/MarginContainer/VBoxContainer" unique_id=1927661442]
+[node name="Continue" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer" unique_id=1927661442]
 texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 3
-text = "Continue"
+text = "UI_STARTMENU_PLAY"
 script = ExtResource("2_1kon5")
 metadata/_custom_type_script = "uid://cfdlgc8aalbtr"
 
-[node name="Saves" type="Button" parent="HBoxContainer/MarginContainer/VBoxContainer" unique_id=2059408295]
+[node name="Saves" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer" unique_id=2059408295]
 layout_mode = 2
 size_flags_vertical = 3
-text = "Saves"
+text = "UI_STARTMENU_SAVES"
 script = ExtResource("2_1kon5")
 metadata/_custom_type_script = "uid://cfdlgc8aalbtr"
 
-[node name="Options" type="Button" parent="HBoxContainer/MarginContainer/VBoxContainer" unique_id=903404609]
+[node name="Options" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer" unique_id=903404609]
 texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 3
-text = "Options"
+text = "UI_STARTMENU_OPTIONS"
 script = ExtResource("2_1kon5")
 metadata/_custom_type_script = "uid://cfdlgc8aalbtr"
 
-[node name="Quit Game" type="Button" parent="HBoxContainer/MarginContainer/VBoxContainer" unique_id=322889893]
+[node name="Quit Game" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer" unique_id=322889893]
 texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 3
-text = "Quit Game"
+text = "UI_STARTMENU_QUIT"
 script = ExtResource("2_1kon5")
 metadata/_custom_type_script = "uid://cfdlgc8aalbtr"
 
-[connection signal="pressed" from="HBoxContainer/MarginContainer/VBoxContainer/Continue" to="." method="_on_continue_pressed"]
-[connection signal="pressed" from="HBoxContainer/MarginContainer/VBoxContainer/Saves" to="." method="_on_saves_pressed"]
-[connection signal="pressed" from="HBoxContainer/MarginContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
-[connection signal="pressed" from="HBoxContainer/MarginContainer/VBoxContainer/Quit Game" to="." method="_on_exit_game_pressed"]
+[connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/Continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/Saves" to="." method="_on_saves_pressed"]
+[connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/Quit Game" to="." method="_on_exit_game_pressed"]

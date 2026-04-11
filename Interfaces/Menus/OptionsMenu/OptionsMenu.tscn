@@ -17,28 +17,20 @@ theme = ExtResource("1_6cgsf")
 script = ExtResource("1_5i6ub")
 metadata/_custom_type_script = "uid://cyn28bbc16luj"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=2101487307]
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=656385101]
 layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -268.0
-offset_right = 450.0
-offset_bottom = 268.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
-theme_override_constants/separation = 150
 
-[node name="Control" type="Control" parent="HBoxContainer" unique_id=496331462]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=1791295312]
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=1791295312]
 custom_minimum_size = Vector2(300, 536)
 layout_mode = 2
 theme_override_constants/separation = 9
 
-[node name="Game" type="Button" parent="HBoxContainer/VBoxContainer" unique_id=1782292192]
+[node name="Game" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1782292192]
 layout_mode = 2
 size_flags_vertical = 3
 focus_neighbor_top = NodePath("../Keyboard")
@@ -46,7 +38,7 @@ focus_neighbor_bottom = NodePath("../Video")
 text = "Game"
 script = ExtResource("1_4i0wx")
 
-[node name="Video" type="Button" parent="HBoxContainer/VBoxContainer" unique_id=1311041032]
+[node name="Video" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1311041032]
 layout_mode = 2
 size_flags_vertical = 3
 focus_neighbor_top = NodePath("../Game")
@@ -54,7 +46,7 @@ focus_neighbor_bottom = NodePath("../Audio")
 text = "Video"
 script = ExtResource("1_4i0wx")
 
-[node name="Audio" type="Button" parent="HBoxContainer/VBoxContainer" unique_id=39059709]
+[node name="Audio" type="Button" parent="CenterContainer/VBoxContainer" unique_id=39059709]
 layout_mode = 2
 size_flags_vertical = 3
 focus_neighbor_top = NodePath("../Video")
@@ -62,7 +54,7 @@ focus_neighbor_bottom = NodePath("../Controller")
 text = "Audio"
 script = ExtResource("1_4i0wx")
 
-[node name="Controller" type="Button" parent="HBoxContainer/VBoxContainer" unique_id=1959844565]
+[node name="Controller" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1959844565]
 layout_mode = 2
 size_flags_vertical = 3
 focus_neighbor_top = NodePath("../Audio")
@@ -70,7 +62,7 @@ focus_neighbor_bottom = NodePath("../Keyboard")
 text = "Controller"
 script = ExtResource("1_4i0wx")
 
-[node name="Keyboard" type="Button" parent="HBoxContainer/VBoxContainer" unique_id=1797674113]
+[node name="Keyboard" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1797674113]
 layout_mode = 2
 size_flags_vertical = 3
 focus_neighbor_top = NodePath("../Controller")
@@ -78,8 +70,8 @@ focus_neighbor_bottom = NodePath("../Game")
 text = "Keyboard"
 script = ExtResource("1_4i0wx")
 
-[connection signal="pressed" from="HBoxContainer/VBoxContainer/Game" to="." method="_on_game_pressed"]
-[connection signal="pressed" from="HBoxContainer/VBoxContainer/Video" to="." method="_on_video_pressed"]
-[connection signal="pressed" from="HBoxContainer/VBoxContainer/Audio" to="." method="_on_audio_pressed"]
-[connection signal="pressed" from="HBoxContainer/VBoxContainer/Controller" to="." method="_on_controller_pressed"]
-[connection signal="pressed" from="HBoxContainer/VBoxContainer/Keyboard" to="." method="_on_keyboard_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Game" to="." method="_on_game_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Video" to="." method="_on_video_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Audio" to="." method="_on_audio_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Controller" to="." method="_on_controller_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Keyboard" to="." method="_on_keyboard_pressed"]

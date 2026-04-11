@@ -38,6 +38,7 @@ BACK_MENU = 2
 BACK_MENU = 1
 
 [node name="SavesMenu" parent="." unique_id=1875216693 instance=ExtResource("6_0ye7o")]
+visible = false
 script = ExtResource("7_0xxrw")
 BACK_MENU = 2
 

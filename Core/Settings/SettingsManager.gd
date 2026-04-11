@@ -3,11 +3,16 @@ extends Node
 const SETTINGS_PATH = "user://settings.cfg"
 var config = ConfigFile.new()
 
+enum Language { ENGLISH, CHINESE, SPANISH, FRENCH, GERMAN, ITALIAN, JAPANESE }
+
 # Default values
-var Settings : Dictionary[String, Dictionary] = {
+const DEFAULT_SETTINGS : Dictionary[String, Dictionary] = {
 	"game": {
-        "language": "English"
-		
+        "language": Language.ENGLISH,
+		"camera sensitivity": 1.0,
+		"invert y": false,
+		"camera shake": 1.0,
+		"rumble": 1.0
 	},
 	"video": {
 		"fullscreen": true, 
@@ -51,9 +56,44 @@ var Settings : Dictionary[String, Dictionary] = {
 	}
 }
 
+var Settings : Dictionary = DEFAULT_SETTINGS.duplicate(true)
+
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
+
+	print("Settings are Loaded!")
 	loadSettings()
 
 func loadSettings():
-	pass
+
+	var error = config.load(SETTINGS_PATH)
+	if error != OK:
+		print("No Seettings found!")
+		saveSettings()
+		return
+	
+	for section in Settings.keys():
+		for key in Settings[section].keys():
+			Settings[section][key] = config.get_value(section, key, Settings[section][key])
+
+	applyGame()
+
+func saveSettings():
+	print("Setting Settings!")
+	for section in Settings.keys():
+		for key in Settings[section].keys():
+			config.set_value(section, key, Settings[section][key])
+	config.save(SETTINGS_PATH)
+
+func applyGame():
+
+	# Apply Language Settins
+	var langCodes = ["en", "zh", "es", "fr", "de", "it", "ja"]
+	var langID = Settings["game"]["language"]
+
+	if langID >= 0 and langID < langCodes.size():
+		var selectedLocale = langCodes[langID]
+		TranslationServer.set_locale(selectedLocale)
+	else: TranslationServer.set_locale("en")
+
+	# need all the other game settings to do anything
