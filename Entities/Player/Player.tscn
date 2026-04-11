@@ -142,6 +142,14 @@ bodyCollider = NodePath("BodyCollider")
 groundCast = NodePath("GroundCast")
 metadata/_custom_type_script = "uid://bxsyxv2j03wr"
 
+[node name="AnimationHelper" type="Node" parent="." unique_id=295879441 node_paths=PackedStringArray("_animator", "_skeleton")]
+script = ExtResource("14_uw7o4")
+_animator = NodePath("../Animator")
+_frameDataLibrary = ExtResource("15_gallu")
+_skeleton = NodePath("../Skeleton")
+_rootBonePath = &"root"
+metadata/_custom_type_script = "uid://del87rrtko1do"
+
 [node name="BodyCollider" type="CollisionShape3D" parent="." unique_id=810581492]
 shape = SubResource("CapsuleShape3D_an6q6")
 debug_fill = false
@@ -178,16 +186,6 @@ script = ExtResource("7_061yh")
 resources = NodePath("../Resources")
 metadata/_custom_type_script = "uid://620any2k6qha"
 
-[node name="ActionManager" parent="." unique_id=1997911714 node_paths=PackedStringArray("cameraManager", "inputManager", "physics", "entity", "frameData", "resources", "combatManager", "animator") instance=ExtResource("6_hacra")]
-cameraManager = NodePath("../CameraManager")
-inputManager = NodePath("../InputManager")
-physics = NodePath("../Physics")
-entity = NodePath("..")
-frameData = NodePath("../FrameData")
-resources = NodePath("../Resources")
-combatManager = NodePath("../CombatManager")
-animator = NodePath("../Animator")
-
 [node name="FrameData" type="AnimationPlayer" parent="." unique_id=1236217834]
 process_mode = 4
 libraries/ = SubResource("AnimationLibrary_gallu")
@@ -204,6 +202,7 @@ parameters/Transition/current_state = "state_0"
 parameters/Transition/transition_request = ""
 parameters/Transition/current_index = 0
 script = ExtResource("10_uw7o4")
+DEFAULT_ANIMATION_NAME = &"AnimTest/T-Pose"
 rootOrientation = Quaternion(-0.70710677, 0, 0, 0.70710677)
 metadata/_custom_type_script = "uid://xf353hthe1bw"
 
@@ -212,16 +211,18 @@ root_node = NodePath("../..")
 libraries/ = SubResource("AnimationLibrary_jynvv")
 libraries/AnimTest = ExtResource("9_hacra")
 
+[node name="ActionManager" parent="." unique_id=1997911714 node_paths=PackedStringArray("cameraManager", "inputManager", "physics", "entity", "frameData", "resources", "combatManager", "animator") instance=ExtResource("6_hacra")]
+cameraManager = NodePath("../CameraManager")
+inputManager = NodePath("../InputManager")
+physics = NodePath("../Physics")
+entity = NodePath("..")
+frameData = NodePath("../FrameData")
+resources = NodePath("../Resources")
+combatManager = NodePath("../CombatManager")
+animator = NodePath("../Animator")
+
 [node name="Skeleton" parent="." unique_id=1577552881 instance=ExtResource("11_lmeus")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 
 [node name="Mesh" parent="." unique_id=114163421 node_paths=PackedStringArray("_skeleton") instance=ExtResource("5_an6q6")]
 _skeleton = NodePath("../Skeleton")
-
-[node name="AnimationHelper" type="Node" parent="." unique_id=295879441 node_paths=PackedStringArray("_animator", "_skeleton")]
-script = ExtResource("14_uw7o4")
-_animator = NodePath("../Animator")
-_frameDataLibrary = ExtResource("15_gallu")
-_skeleton = NodePath("../Skeleton")
-_rootBonePath = &"root"
-metadata/_custom_type_script = "uid://del87rrtko1do"

@@ -5,12 +5,12 @@ class_name PlayerAnimator
 #region Override functions
 
 func _playInitialAnimation() -> void:
-	var transitionHandle := transitionHandle()
+	var transHandle := transitionHandle()
 
-	var animationHandle := animationHandle()
-	var animationDriver := animationDriver(animationHandle)
-	animationDriver.animation = DEFAULT_ANIMATION_NAME
+	var handle := animationHandle()
+	var driver := animationDriver(handle)
+	driver.animation = DEFAULT_ANIMATION_NAME
 
-	transitionTo(transitionHandle, animationHandle)
+	transitionTo(transHandle, handle)
 
 #endregion

@@ -43,7 +43,6 @@ const PARAMETER_SUB := &"sub_amount"
 
 # References
 
-@onready var _animationPlayer : AnimationPlayer = get_node(anim_player)
 @onready var _defaultAnimation : Animation = get_animation(DEFAULT_ANIMATION_NAME)
 
 
@@ -61,8 +60,7 @@ var _transitionDriverActivity : Dictionary[StringName, TransitionDriverActivity]
 
 #region Built-in functions
 
-func init() -> void:
-	assert(_animationPlayer != null, "EntityAnimator._ready(): Animation player not found!")
+func _ready() -> void:
 	assert(_defaultAnimation != null, "EntityAnimator._ready(): Default animation not found!")
 
 	_playInitialAnimation()
@@ -158,10 +156,10 @@ func parameterName(driverName : StringName, paramName : StringName) -> StringNam
 	return "parameters/" + driverName + "/" + paramName
 
 
-# Get animation from animation player
+# Safe animation retrieval
 
 func animation(animName : StringName) -> Animation:
-	var anim := _animationPlayer.get_animation(animName)
+	var anim := get_animation(animName)
 
 	if anim == null:
 		push_error("EntityAnimator.animation(): Animation not found! Returning default animation.")

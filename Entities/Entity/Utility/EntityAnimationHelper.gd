@@ -161,7 +161,7 @@ func _sync_frame_data_library() -> void:
 func _update_root_orientation() -> void:
 	if not is_instance_valid(_skeleton):
 		return
-	if not is_instance_valid(_animationPlayer):
+	if not is_instance_valid(_animator):
 		return
 	if _rootBonePath.is_empty():
 		return
