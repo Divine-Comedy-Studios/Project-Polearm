@@ -4,7 +4,7 @@ const SETTINGS_PATH = "user://settings.cfg"
 var config = ConfigFile.new()
 
 # Default values
-var Settings : Dictionary = {
+var Settings : Dictionary[String, Dictionary] = {
 	"game": {
         "language": "English"
 		
@@ -19,35 +19,35 @@ var Settings : Dictionary = {
 		"sfx": 0.8
 	},
 	"controller": {
-		"Light attack": null,
-		"Heavy attack": null,
-		"Jump": null,
-		"Shoot": JOY_BUTTON_B,
-		"Target left": null,
-		"Target right": null,
-		"Dodge": null,
-		"Sprint": null,
-		"Launcher": null,
-		"Held target toggle": null,
-		"Switch weapon": null,
-		"Taunt": null
+		"Light attack": JOY_BUTTON_X,
+		"Heavy attack": JOY_BUTTON_Y,
+		"Jump": JOY_BUTTON_A,
+		"Shoot": JOY_AXIS_TRIGGER_LEFT,
+		"Target left": JOY_BUTTON_LEFT_SHOULDER,
+		"Target right": JOY_BUTTON_RIGHT_SHOULDER,
+		"Dodge": JOY_BUTTON_B,
+		"Sprint": JOY_BUTTON_LEFT_STICK,
+		"Launcher": JOY_BUTTON_DPAD_UP,
+		"Held target toggle": JOY_BUTTON_RIGHT_STICK,
+		"Switch weapon": JOY_BUTTON_DPAD_RIGHT,
+		"Taunt": JOY_BUTTON_BACK
 	},
 	"keyboard": {
-		"Light attack": null,
-		"Heavy attack": null,
-		"Jump": null,
-		"Shoot": null,
-		"Target left": null,
-		"Target right": null,
-		"Dodge": null,
-		"Sprint": null,
-		"Launcher": null,
-		"Held target toggle": null,
+		"Light attack": MOUSE_BUTTON_LEFT,
+		"Heavy attack": MOUSE_BUTTON_RIGHT,
+		"Jump": KEY_SPACE,
+		"Shoot": KEY_F,
+		"Target left": KEY_Q,
+		"Target right": KEY_E,
+		"Dodge": KEY_SHIFT,
+		"Sprint": KEY_CTRL,
+		"Launcher": KEY_ALT,
+		"Held target toggle": KEY_T,
 		"Move left": KEY_A,
 		"Move right": KEY_D,
 		"Move forwards": KEY_W,
 		"Move backwards": KEY_S,
-		"Taunt": null
+		"Taunt": KEY_R
 	}
 }
 
