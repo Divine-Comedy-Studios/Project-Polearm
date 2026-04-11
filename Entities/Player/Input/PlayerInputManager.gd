@@ -5,7 +5,10 @@ class_name PlayerInputManager
 # Input data container
 class Data extends RefCounted:
 	var cameraDirection : Vector2
+
 	var inputDirection : Vector2
+	var inputMagnitude : float
+
 	var direction : Vector2
 
 	var actions : Array[StringName]
@@ -17,7 +20,7 @@ class Data extends RefCounted:
 #region Exported variables
 
 @export_group("Config")
-@export var WALK_LIMIT_SQUARED : float
+
 
 #endregion
 
@@ -62,15 +65,12 @@ func processMovementDirection() -> void:
 	
 	if inputs.inputDirection == Vector2.ZERO:
 		return
-		
-	if Input.is_action_pressed("Sprint"):
-		inputs.actions.append(PlayerAction.Type.sprint)
-	elif inputs.inputDirection.length_squared() > WALK_LIMIT_SQUARED:
-		inputs.actions.append(PlayerAction.Type.run)
-	else:
-		inputs.actions.append(PlayerAction.Type.walk)
-	
-	inputs.inputDirection = inputs.inputDirection.normalized()
+
+	inputs.inputMagnitude = inputs.inputDirection.length()
+	inputs.inputDirection /= inputs.inputMagnitude
+
+	inputs.actions.append(PlayerAction.Type.move)
+
 
 	# The code below is a transformation of the input direction by the angle the camera is currently pointing in
 	#
