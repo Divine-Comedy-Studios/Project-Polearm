@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://dewxnxvy14tjr"]
 
+[ext_resource type="Script" uid="uid://cyn28bbc16luj" path="res://Interfaces/InterfaceStateMachine/InterfaceState.gd" id="1_y5cya"]
 [ext_resource type="Script" uid="uid://gftlfiyvamph" path="res://Interfaces/Menus/OptionsMenu/GameOptions/GameOptionSettings.gd" id="2_y5cya"]
 
 [node name="GameOptions" type="Control" unique_id=2031472548]
@@ -9,7 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("2_y5cya")
+script = ExtResource("1_y5cya")
 metadata/_custom_type_script = "uid://cyn28bbc16luj"
 
 [node name="CenterContainer" type="CenterContainer" parent="." unique_id=926986500]
@@ -19,6 +20,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("2_y5cya")
 
 [node name="MarginContainer" type="MarginContainer" parent="CenterContainer" unique_id=1672722479]
 custom_minimum_size = Vector2(800, 0)
@@ -121,8 +123,8 @@ step = 0.1
 layout_mode = 2
 text = "0.0"
 
-[connection signal="item_selected" from="CenterContainer/MarginContainer/HBoxContainer/Buttons/Language" to="." method="_on_language_selected"]
-[connection signal="value_changed" from="CenterContainer/MarginContainer/HBoxContainer/Buttons/HBoxContainer/Sensitivity" to="." method="_on_sensitivity_changed"]
-[connection signal="toggled" from="CenterContainer/MarginContainer/HBoxContainer/Buttons/InverseY" to="." method="_on_y_inverse_toggled"]
-[connection signal="value_changed" from="CenterContainer/MarginContainer/HBoxContainer/Buttons/HBoxContainer2/CamShake" to="." method="_on_shake_changed"]
-[connection signal="value_changed" from="CenterContainer/MarginContainer/HBoxContainer/Buttons/HBoxContainer3/Rumble" to="." method="_on_rumble_changed"]
+[connection signal="item_selected" from="CenterContainer/MarginContainer/HBoxContainer/Buttons/Language" to="CenterContainer" method="_on_language_selected"]
+[connection signal="value_changed" from="CenterContainer/MarginContainer/HBoxContainer/Buttons/HBoxContainer/Sensitivity" to="CenterContainer" method="_on_sensitivity_changed"]
+[connection signal="toggled" from="CenterContainer/MarginContainer/HBoxContainer/Buttons/InverseY" to="CenterContainer" method="_on_y_inverse_toggled"]
+[connection signal="value_changed" from="CenterContainer/MarginContainer/HBoxContainer/Buttons/HBoxContainer2/CamShake" to="CenterContainer" method="_on_shake_changed"]
+[connection signal="value_changed" from="CenterContainer/MarginContainer/HBoxContainer/Buttons/HBoxContainer3/Rumble" to="CenterContainer" method="_on_rumble_changed"]

@@ -35,7 +35,7 @@ layout_mode = 2
 size_flags_vertical = 3
 focus_neighbor_top = NodePath("../Keyboard")
 focus_neighbor_bottom = NodePath("../Video")
-text = "Game"
+text = "UI_OPTIONS_GAMEPLAY"
 script = ExtResource("1_4i0wx")
 
 [node name="Video" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1311041032]
@@ -43,7 +43,7 @@ layout_mode = 2
 size_flags_vertical = 3
 focus_neighbor_top = NodePath("../Game")
 focus_neighbor_bottom = NodePath("../Audio")
-text = "Video"
+text = "UI_OPTIONS_VIDEO"
 script = ExtResource("1_4i0wx")
 
 [node name="Audio" type="Button" parent="CenterContainer/VBoxContainer" unique_id=39059709]
@@ -51,7 +51,7 @@ layout_mode = 2
 size_flags_vertical = 3
 focus_neighbor_top = NodePath("../Video")
 focus_neighbor_bottom = NodePath("../Controller")
-text = "Audio"
+text = "UI_OPTIONS_AUDIO"
 script = ExtResource("1_4i0wx")
 
 [node name="Controller" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1959844565]
@@ -59,7 +59,7 @@ layout_mode = 2
 size_flags_vertical = 3
 focus_neighbor_top = NodePath("../Audio")
 focus_neighbor_bottom = NodePath("../Keyboard")
-text = "Controller"
+text = "UI_OPTIONS_CONTROLLER"
 script = ExtResource("1_4i0wx")
 
 [node name="Keyboard" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1797674113]
@@ -67,7 +67,7 @@ layout_mode = 2
 size_flags_vertical = 3
 focus_neighbor_top = NodePath("../Controller")
 focus_neighbor_bottom = NodePath("../Game")
-text = "Keyboard"
+text = "UI_OPTIONS_KEYBOARD"
 script = ExtResource("1_4i0wx")
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Game" to="." method="_on_game_pressed"]

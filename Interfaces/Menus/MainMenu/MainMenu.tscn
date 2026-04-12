@@ -35,6 +35,7 @@ script = ExtResource("4_ayaka")
 BACK_MENU = 2
 
 [node name="StartMenu" parent="." unique_id=2089339401 instance=ExtResource("2_4mftg")]
+visible = false
 BACK_MENU = 1
 
 [node name="SavesMenu" parent="." unique_id=1875216693 instance=ExtResource("6_0ye7o")]
@@ -46,7 +47,7 @@ BACK_MENU = 2
 visible = false
 BACK_MENU = 2
 
-[node name="GameOptions" parent="." unique_id=12045681 instance=ExtResource("11_3nt47")]
+[node name="GameOptions" parent="." unique_id=2031472548 instance=ExtResource("11_3nt47")]
 visible = false
 script = ExtResource("12_ayaka")
 BACK_MENU = 4
@@ -62,11 +63,10 @@ script = ExtResource("10_yincg")
 BACK_MENU = 4
 
 [node name="ControllerMapping" parent="." unique_id=125246150 instance=ExtResource("4_0vu78")]
-visible = false
 script = ExtResource("5_smu38")
 BACK_MENU = 4
 
-[node name="KeyboardMapping" parent="." unique_id=2031472548 instance=ExtResource("7_smu38")]
+[node name="KeyboardMapping" parent="." unique_id=1058254332 instance=ExtResource("7_smu38")]
 visible = false
 script = ExtResource("8_kuglm")
 BACK_MENU = 4

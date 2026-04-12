@@ -1,17 +1,16 @@
-extends Control
+extends CenterContainer
 
 # All Setting Variables
-@onready var langSetting : OptionButton = $"CenterContainer/MarginContainer/HBoxContainer/Buttons/Language"
-@onready var camSensSetting : HSlider = $"CenterContainer/MarginContainer/HBoxContainer/Buttons/HBoxContainer/Sensitivity"
-@onready var yInvSetting : CheckButton = $"CenterContainer/MarginContainer/HBoxContainer/Buttons/InverseY"
-@onready var camShakeSetting : HSlider = $"CenterContainer/MarginContainer/HBoxContainer/Buttons/HBoxContainer2/CamShake"
-@onready var rumSetting : HSlider = $"CenterContainer/MarginContainer/HBoxContainer/Buttons/HBoxContainer3/Rumble"
+@onready var langSetting : OptionButton = $"MarginContainer/HBoxContainer/Buttons/Language"
+@onready var camSensSetting : HSlider = $"MarginContainer/HBoxContainer/Buttons/HBoxContainer/Sensitivity"
+@onready var yInvSetting : CheckButton = $"MarginContainer/HBoxContainer/Buttons/InverseY"
+@onready var camShakeSetting : HSlider = $"MarginContainer/HBoxContainer/Buttons/HBoxContainer2/CamShake"
+@onready var rumSetting : HSlider = $"MarginContainer/HBoxContainer/Buttons/HBoxContainer3/Rumble"
 
 # All Numerics
-
-@onready var camSensLabel : Label = $"CenterContainer/MarginContainer/HBoxContainer/Buttons/HBoxContainer/Label"
-@onready var camShakeLabel : Label = $"CenterContainer/MarginContainer/HBoxContainer/Buttons/HBoxContainer2/Label"
-@onready var rumLabel : Label = $"CenterContainer/MarginContainer/HBoxContainer/Buttons/HBoxContainer3/Label"
+@onready var camSensLabel : Label = $"MarginContainer/HBoxContainer/Buttons/HBoxContainer/Label"
+@onready var camShakeLabel : Label = $"MarginContainer/HBoxContainer/Buttons/HBoxContainer2/Label"
+@onready var rumLabel : Label = $"MarginContainer/HBoxContainer/Buttons/HBoxContainer3/Label"
 
 
 func _ready() -> void:

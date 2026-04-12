@@ -1,5 +1,5 @@
 id,en,zh_CN,es,fr,de,it,ja
-UI_STARTMENU_PLAY,Play,____,Jugar,Jouer,Start,Gioca,___
-UI_STARTMENU_SAVES,Saves,,,,Spielst�nde,,
+UI_STARTMENU_PLAY,Play,开始,Jugar,Jouer,Start,Gioca,プレイ
+UI_STARTMENU_SAVES,Saves,,,,Spielst�nde,,
 UI_STARTMENU_OPTIONS,Options,,,,Einstellungen,,
 UI_STARTMENU_QUIT,Quit,,,,,,

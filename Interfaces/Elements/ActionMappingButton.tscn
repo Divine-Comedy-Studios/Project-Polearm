@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://cebbhco3k6a5n"]
+
+[ext_resource type="Script" uid="uid://cbdax7xlgilxj" path="res://Interfaces/Elements/ActionMappingButton.gd" id="1_p6qin"]
+[ext_resource type="Texture2D" uid="uid://ctdbykm11ffsx" path="res://icon.svg" id="2_imbfr"]
+
+[node name="ActionMappingButton" type="Button" unique_id=1216139286]
+custom_minimum_size = Vector2(450, 50)
+anchors_preset = -1
+anchor_right = 0.13000001
+anchor_bottom = 0.026
+offset_right = -441.28003
+offset_bottom = -42.544003
+script = ExtResource("1_p6qin")
+symbolIcon = ExtResource("2_imbfr")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=352325450]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="HBoxContainer" unique_id=1078053597]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 34
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="HBoxContainer" unique_id=1339575044]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="Symbol" type="TextureRect" parent="HBoxContainer" unique_id=739119443]
+layout_mode = 2
+size_flags_horizontal = 8
+expand_mode = 2
