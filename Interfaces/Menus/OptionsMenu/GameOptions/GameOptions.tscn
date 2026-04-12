@@ -46,7 +46,7 @@ text = "UI_GAMEOPTIONS_CAMERASENSITIVITY"
 
 [node name="InverseY" type="Label" parent="CenterContainer/MarginContainer/HBoxContainer/Lables" unique_id=656342922]
 layout_mode = 2
-text = "UI_GAMEOPTIONS_INVERSEY"
+text = "UI_GAMEOPTIONS_INVERTY"
 
 [node name="CamShake" type="Label" parent="CenterContainer/MarginContainer/HBoxContainer/Lables" unique_id=1078505405]
 layout_mode = 2
