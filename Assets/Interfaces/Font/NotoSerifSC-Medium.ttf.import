@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://b866kejse8dif"
-path="res://.godot/imported/NotoSerifSC-Medium.ttf-b27b14d3f8b37d7779e6cdd7a1899cd5.fontdata"
+path="res://.godot/imported/NotoSerifSC-Medium.ttf-3a3c11837f174ef9d1493dbcea788cbb.fontdata"
 
 [deps]
 
-source_file="res://Interfaces/Font/NotoSerifSC-Medium.ttf"
-dest_files=["res://.godot/imported/NotoSerifSC-Medium.ttf-b27b14d3f8b37d7779e6cdd7a1899cd5.fontdata"]
+source_file="res://Assets/Interfaces/Font/NotoSerifSC-Medium.ttf"
+dest_files=["res://.godot/imported/NotoSerifSC-Medium.ttf-3a3c11837f174ef9d1493dbcea788cbb.fontdata"]
 
 [params]
 
