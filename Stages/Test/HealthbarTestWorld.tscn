@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://2v10i2wwq4q7"]
+
+[ext_resource type="PackedScene" uid="uid://2twxnnq3mj7i" path="res://Common/Camera/SceneCamera/SceneCamera.tscn" id="1_afw32"]
+[ext_resource type="PackedScene" uid="uid://cw0odb4ptjf2p" path="res://Common/Healthbar/Healthbar.tscn" id="2_1157w"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_6vbmq"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_afw32"]
+viewport_path = NodePath("SubViewport")
+
+[node name="Node3D" type="Node3D" unique_id=438590031]
+
+[node name="SceneCamera" parent="." unique_id=1015597522 instance=ExtResource("1_afw32")]
+transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, -0.15588021, 2.0410995, 4.563466)
+top_level = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=894078038]
+mesh = SubResource("BoxMesh_6vbmq")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=2099564350]
+transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, -0.15588021, 1.0672523, 2.1405287)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=252259099]
+transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, -0.15588021, 2.1862502, 0.07204199)
+
+[node name="Healthbar" parent="." unique_id=937509818 instance=ExtResource("2_1157w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8727344, 0)
+texture = SubResource("ViewportTexture_afw32")
+MAX_HEALTH = 100

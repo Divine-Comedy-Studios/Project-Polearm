@@ -1,5 +1,7 @@
 extends CenterContainer
 
+#region Button Path Variables
+
 @onready var forward : ActionMappingButton = $"HBoxContainer/Left Colon/Forward"
 @onready var backward : ActionMappingButton = $"HBoxContainer/Left Colon/Backward"
 @onready var jump : ActionMappingButton = $"HBoxContainer/Left Colon/Jump"
@@ -17,6 +19,8 @@ extends CenterContainer
 @onready var launcher : ActionMappingButton = $"HBoxContainer/Right Colon/Launcher"
 @onready var target : ActionMappingButton = $"HBoxContainer/Right Colon/Target"
 @onready var taunt : ActionMappingButton = $"HBoxContainer/Right Colon/Taunt"
+
+#endregion 
 
 const KEY_ICONS : Dictionary = {
 	# --- Letters ---
@@ -95,10 +99,12 @@ const KEY_ICONS : Dictionary = {
 	MOUSE_BUTTON_RIGHT: preload("res://Assets/Interfaces/ButtonSymbols/Keyboard & Mouse/mouse_right.png"),
 	MOUSE_BUTTON_MIDDLE: preload("res://Assets/Interfaces/ButtonSymbols/Keyboard & Mouse/mouse_middle.png"),
 }
+
+var buttonMap : Dictionary = { }
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-
-	var buttonMap : Dictionary = {
+	
+	buttonMap = {
 		"Light attack": lightAttack,
 		"Heavy attack": heavyAttack,
 		"Jump": jump,
@@ -117,19 +123,27 @@ func _ready() -> void:
 		"Switch weapon": switchWeapon # Added this as it's in your @onready but not in default keyboard settings
 	}
 
-	for action in SettingsManager.DEFAULT_SETTINGS["keyboard"]:
+	# Apply the Images
+	for action in SettingsManager.Settings["keyboard"]:
 		if buttonMap.has(action):
 			var button = buttonMap[action]
-			var keyCode = SettingsManager.DEFAULT_SETTINGS["keyboard"][action]
+			var keyCode = SettingsManager.Settings["keyboard"][action]
+			button.setBinding(KEY_ICONS.get(keyCode, null))
+			button.remapped.connect(_on_remapped.bind(action, button))
 
-			if KEY_ICONS.has(keyCode):
-				button.symbolIcon = KEY_ICONS[keyCode]
-				if button.symbol:
-					button.symbol.texture = KEY_ICONS[keyCode]
-			else:
-				print("Missing icon in KEY_ICONS for: ", action, " (KeyID: ", keyCode, ")")
+func _on_remapped(keyCode: int, inputType: ActionMappingButton.InputDic, direction: int, action: String, button: ActionMappingButton) -> void:
+	var icon = KEY_ICONS.get(keyCode, null)
 
+	for otherAction in SettingsManager.Settings["keyboard"]:
+		if otherAction == action:
+			continue
+		if SettingsManager.Settings["keyboard"][otherAction] == keyCode:
+			var oldKeyCode = SettingsManager.Settings["keyboard"][action]
+			SettingsManager.Settings["keyboard"][otherAction] = oldKeyCode
+			if buttonMap.has(otherAction):
+				buttonMap[otherAction].setBinding(KEY_ICONS.get(oldKeyCode, null))
+			break
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+	SettingsManager.Settings["keyboard"][action] = keyCode
+	button.setBinding(icon)
+	SettingsManager.saveSettings()

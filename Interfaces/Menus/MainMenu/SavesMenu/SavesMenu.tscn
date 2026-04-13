@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://eptqqy8sm6gl" path="res://Interfaces/Themes/MenuTheme.tres" id="1_lftp1"]
 [ext_resource type="Script" uid="uid://cyn28bbc16luj" path="res://Interfaces/InterfaceStateMachine/InterfaceState.gd" id="2_hhihh"]
-[ext_resource type="Script" uid="uid://cfdlgc8aalbtr" path="res://Interfaces/Elements/GameMenuButton.gd" id="3_nu7pv"]
+[ext_resource type="Script" uid="uid://cfdlgc8aalbtr" path="res://Interfaces/UIElements/GameMenuButton.gd" id="3_nu7pv"]
 
 [node name="SavesMenu" type="Control" unique_id=1875216693]
 physics_interpolation_mode = 0

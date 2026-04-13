@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cyn28bbc16luj" path="res://Interfaces/InterfaceStateMachine/InterfaceState.gd" id="1_lh7t6"]
 [ext_resource type="Script" uid="uid://3av2lvxkeruk" path="res://Interfaces/Menus/OptionsMenu/KeyboardMapping/KeyboardMappingSettings.gd" id="2_6p261"]
-[ext_resource type="PackedScene" uid="uid://cebbhco3k6a5n" path="res://Interfaces/Elements/ActionMappingButton.tscn" id="2_7kj8o"]
+[ext_resource type="PackedScene" uid="uid://cebbhco3k6a5n" path="res://Interfaces/UIElements/ActionMappingButton.tscn" id="2_7kj8o"]
 
 [node name="KeyboardMapping" type="Control" unique_id=2031472548]
 layout_mode = 3
@@ -33,35 +33,35 @@ theme_override_constants/separation = 10
 
 [node name="Forward" parent="CenterContainer/HBoxContainer/Left Colon" unique_id=1216139286 instance=ExtResource("2_7kj8o")]
 layout_mode = 2
-labelText = "UI_KEYBOARDMAPPING_FORWARD"
+LABLE_TEXT = "UI_KEYBOARDMAPPING_FORWARD"
 
 [node name="Backward" parent="CenterContainer/HBoxContainer/Left Colon" unique_id=656282874 instance=ExtResource("2_7kj8o")]
 layout_mode = 2
-labelText = "UI_KEYBOARDMAPPING_BACKWARD"
+LABLE_TEXT = "UI_KEYBOARDMAPPING_BACKWARD"
 
 [node name="Jump" parent="CenterContainer/HBoxContainer/Left Colon" unique_id=145371861 instance=ExtResource("2_7kj8o")]
 layout_mode = 2
-labelText = "UI_KEYBOARDMAPPING_JUMP"
+LABLE_TEXT = "UI_KEYBOARDMAPPING_JUMP"
 
 [node name="SwitchWeapon" parent="CenterContainer/HBoxContainer/Left Colon" unique_id=263474164 instance=ExtResource("2_7kj8o")]
 layout_mode = 2
-labelText = "UI_KEYBOARDMAPPING_SWITCHWEAPON"
+LABLE_TEXT = "UI_KEYBOARDMAPPING_SWITCHWEAPON"
 
 [node name="TargetLeft" parent="CenterContainer/HBoxContainer/Left Colon" unique_id=695666736 instance=ExtResource("2_7kj8o")]
 layout_mode = 2
-labelText = "UI_KEYBOARDMAPPING_TARGETLEFT"
+LABLE_TEXT = "UI_KEYBOARDMAPPING_TARGETLEFT"
 
 [node name="TargetRight" parent="CenterContainer/HBoxContainer/Left Colon" unique_id=556712619 instance=ExtResource("2_7kj8o")]
 layout_mode = 2
-labelText = "UI_KEYBOARDMAPPING_TARGETRIGHT"
+LABLE_TEXT = "UI_KEYBOARDMAPPING_TARGETRIGHT"
 
 [node name="LightAttack" parent="CenterContainer/HBoxContainer/Left Colon" unique_id=1837073152 instance=ExtResource("2_7kj8o")]
 layout_mode = 2
-labelText = "UI_KEYBOARDMAPPING_LIGHTATTACK"
+LABLE_TEXT = "UI_KEYBOARDMAPPING_LIGHTATTACK"
 
 [node name="HeavyAttack" parent="CenterContainer/HBoxContainer/Left Colon" unique_id=1336830619 instance=ExtResource("2_7kj8o")]
 layout_mode = 2
-labelText = "UI_KEYBOARDMAPPING_HEAVYATTACK"
+LABLE_TEXT = "UI_KEYBOARDMAPPING_LIGHTATTACK"
 
 [node name="Right Colon" type="VBoxContainer" parent="CenterContainer/HBoxContainer" unique_id=204551368]
 layout_mode = 2
@@ -69,32 +69,32 @@ theme_override_constants/separation = 10
 
 [node name="Left" parent="CenterContainer/HBoxContainer/Right Colon" unique_id=1384317894 instance=ExtResource("2_7kj8o")]
 layout_mode = 2
-labelText = "UI_KEYBOARDMAPPING_LEFT"
+LABLE_TEXT = "UI_KEYBOARDMAPPING_LEFT"
 
 [node name="Right" parent="CenterContainer/HBoxContainer/Right Colon" unique_id=1634248380 instance=ExtResource("2_7kj8o")]
 layout_mode = 2
-labelText = "UI_KEYBOARDMAPPING_RIGHT"
+LABLE_TEXT = "UI_KEYBOARDMAPPING_RIGHT"
 
 [node name="Dodge" parent="CenterContainer/HBoxContainer/Right Colon" unique_id=515172439 instance=ExtResource("2_7kj8o")]
 layout_mode = 2
-labelText = "UI_KEYBOARDMAPPING_DODGE"
+LABLE_TEXT = "UI_KEYBOARDMAPPING_DODGE"
 
 [node name="Sprint" parent="CenterContainer/HBoxContainer/Right Colon" unique_id=2010923946 instance=ExtResource("2_7kj8o")]
 layout_mode = 2
-labelText = "UI_KEYBOARDMAPPING_SPRINT"
+LABLE_TEXT = "UI_KEYBOARDMAPPING_SPRINT"
 
 [node name="Shoot" parent="CenterContainer/HBoxContainer/Right Colon" unique_id=373602084 instance=ExtResource("2_7kj8o")]
 layout_mode = 2
-labelText = "UI_KEYBOARDMAPPING_SHOOT"
+LABLE_TEXT = "UI_KEYBOARDMAPPING_SHOOT"
 
 [node name="Launcher" parent="CenterContainer/HBoxContainer/Right Colon" unique_id=1682102111 instance=ExtResource("2_7kj8o")]
 layout_mode = 2
-labelText = "UI_KEYBOARDMAPPING_LAUNCHER"
+LABLE_TEXT = "UI_KEYBOARDMAPPING_LAUNCHER"
 
 [node name="Target" parent="CenterContainer/HBoxContainer/Right Colon" unique_id=748315492 instance=ExtResource("2_7kj8o")]
 layout_mode = 2
-labelText = "UI_KEYBOARDMAPPING_TARGET"
+LABLE_TEXT = "UI_KEYBOARDMAPPING_TARGET"
 
 [node name="Taunt" parent="CenterContainer/HBoxContainer/Right Colon" unique_id=227402805 instance=ExtResource("2_7kj8o")]
 layout_mode = 2
-labelText = "UI_KEYBOARDMAPPING_TAUNT"
+LABLE_TEXT = "UI_KEYBOARDMAPPING_TAUNT"

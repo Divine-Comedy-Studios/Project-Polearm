@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cebbhco3k6a5n"]
 
-[ext_resource type="Script" uid="uid://cbdax7xlgilxj" path="res://Interfaces/Elements/ActionMappingButton.gd" id="1_p6qin"]
+[ext_resource type="Script" uid="uid://cbdax7xlgilxj" path="res://Interfaces/UIElements/ActionMappingButton.gd" id="1_p6qin"]
 [ext_resource type="Texture2D" uid="uid://ctdbykm11ffsx" path="res://icon.svg" id="2_imbfr"]
 
 [node name="ActionMappingButton" type="Button" unique_id=1216139286]

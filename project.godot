@@ -53,7 +53,7 @@ enabled=PackedStringArray("res://addons/anim_player_refactor/plugin.cfg", "res:/
 [gui]
 
 theme/default_font_multichannel_signed_distance_field=true
-theme/custom_font="uid://b866kejse8dif"
+theme/custom_font="uid://bl3mnutkjryck"
 
 [input]
 

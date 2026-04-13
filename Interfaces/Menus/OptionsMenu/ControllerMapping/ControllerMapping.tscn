@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://cnusbpv84eyf0"]
 
 [ext_resource type="Script" uid="uid://cyn28bbc16luj" path="res://Interfaces/InterfaceStateMachine/InterfaceState.gd" id="1_7v3hs"]
-[ext_resource type="PackedScene" uid="uid://cebbhco3k6a5n" path="res://Interfaces/Elements/ActionMappingButton.tscn" id="2_4b14h"]
+[ext_resource type="PackedScene" uid="uid://cebbhco3k6a5n" path="res://Interfaces/UIElements/ActionMappingButton.tscn" id="2_4b14h"]
+[ext_resource type="Script" uid="uid://ql52nw6840ep" path="res://Interfaces/Menus/OptionsMenu/ControllerMapping/ControllerMappingSettings.gd" id="2_b78gs"]
 
 [node name="ControllerMapping" type="Control" unique_id=125246150]
 layout_mode = 3
@@ -20,6 +21,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("2_b78gs")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer" unique_id=1837179978]
 layout_mode = 2
@@ -31,27 +33,33 @@ theme_override_constants/separation = 10
 
 [node name="Jump" parent="CenterContainer/HBoxContainer/Left Colon" unique_id=1216139286 instance=ExtResource("2_4b14h")]
 layout_mode = 2
-labelText = "UI_CONTROLLERMAPPING_JUMP"
+LABLE_TEXT = "UI_CONTROLLERMAPPING_JUMP"
+INPUT_MODE = 1
 
 [node name="SwitchWeapon" parent="CenterContainer/HBoxContainer/Left Colon" unique_id=1126757994 instance=ExtResource("2_4b14h")]
 layout_mode = 2
-labelText = "UI_CONTROLLERMAPPING_SWITCHWEAPON"
+LABLE_TEXT = "UI_CONTROLLERMAPPING_SWITCHWEAPON"
+INPUT_MODE = 1
 
 [node name="TargetLeft" parent="CenterContainer/HBoxContainer/Left Colon" unique_id=1781410498 instance=ExtResource("2_4b14h")]
 layout_mode = 2
-labelText = "UI_CONTROLLERMAPPING_TARGETLEFT"
+LABLE_TEXT = "UI_CONTROLLERMAPPING_SWITCHWEAPON"
+INPUT_MODE = 1
 
 [node name="TargetRight" parent="CenterContainer/HBoxContainer/Left Colon" unique_id=154676886 instance=ExtResource("2_4b14h")]
 layout_mode = 2
-labelText = "UI_CONTROLLERMAPPING_TARGETRIGHT"
+LABLE_TEXT = "UI_CONTROLLERMAPPING_TARGETRIGHT"
+INPUT_MODE = 1
 
 [node name="LightAttack" parent="CenterContainer/HBoxContainer/Left Colon" unique_id=1239274261 instance=ExtResource("2_4b14h")]
 layout_mode = 2
-labelText = "UI_CONTROLLERMAPPING_LIGHTATTACK"
+LABLE_TEXT = "UI_CONTROLLERMAPPING_LIGHTATTACK"
+INPUT_MODE = 1
 
 [node name="HeavyAttack" parent="CenterContainer/HBoxContainer/Left Colon" unique_id=318456018 instance=ExtResource("2_4b14h")]
 layout_mode = 2
-labelText = "UI_CONTROLLERMAPPING_HEAVYATTACK"
+LABLE_TEXT = "UI_CONTROLLERMAPPING_HEAVYATTACK"
+INPUT_MODE = 1
 
 [node name="Right Colon" type="VBoxContainer" parent="CenterContainer/HBoxContainer" unique_id=1993309962]
 layout_mode = 2
@@ -59,24 +67,30 @@ theme_override_constants/separation = 10
 
 [node name="Dodge" parent="CenterContainer/HBoxContainer/Right Colon" unique_id=1295914242 instance=ExtResource("2_4b14h")]
 layout_mode = 2
-labelText = "UI_CONTROLLERMAPPING_DODGE"
+LABLE_TEXT = "UI_CONTROLLERMAPPING_DODGE"
+INPUT_MODE = 1
 
 [node name="Sprint" parent="CenterContainer/HBoxContainer/Right Colon" unique_id=1101762541 instance=ExtResource("2_4b14h")]
 layout_mode = 2
-labelText = "UI_CONTROLLERMAPPING_SPRINT"
+LABLE_TEXT = "UI_CONTROLLERMAPPING_SPRINT"
+INPUT_MODE = 1
 
 [node name="Shoot" parent="CenterContainer/HBoxContainer/Right Colon" unique_id=361470708 instance=ExtResource("2_4b14h")]
 layout_mode = 2
-labelText = "UI_CONTROLLERMAPPING_SHOOT"
+LABLE_TEXT = "UI_CONTROLLERMAPPING_SHOOT"
+INPUT_MODE = 1
 
 [node name="Launcher" parent="CenterContainer/HBoxContainer/Right Colon" unique_id=1868718643 instance=ExtResource("2_4b14h")]
 layout_mode = 2
-labelText = "UI_CONTROLLERMAPPING_LAUNCHER"
+LABLE_TEXT = "UI_CONTROLLERMAPPING_LAUNCHER"
+INPUT_MODE = 1
 
 [node name="Target" parent="CenterContainer/HBoxContainer/Right Colon" unique_id=1902124974 instance=ExtResource("2_4b14h")]
 layout_mode = 2
-labelText = "UI_CONTROLLERMAPPING_TARGET"
+LABLE_TEXT = "UI_CONTROLLERMAPPING_TARGET"
+INPUT_MODE = 1
 
 [node name="Taunt" parent="CenterContainer/HBoxContainer/Right Colon" unique_id=1825164760 instance=ExtResource("2_4b14h")]
 layout_mode = 2
-labelText = "UI_CONTROLLERMAPPING_TAUNT"
+LABLE_TEXT = "UI_CONTROLLERMAPPING_TAUNT"
+INPUT_MODE = 1

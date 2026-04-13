@@ -24,18 +24,18 @@ const DEFAULT_SETTINGS : Dictionary[String, Dictionary] = {
 		"sfx": 0.8
 	},
 	"controller": {
-		"Light attack": JOY_BUTTON_X,
-		"Heavy attack": JOY_BUTTON_Y,
-		"Jump": JOY_BUTTON_A,
-		"Shoot": JOY_AXIS_TRIGGER_LEFT,
-		"Target left": JOY_BUTTON_LEFT_SHOULDER,
-		"Target right": JOY_BUTTON_RIGHT_SHOULDER,
-		"Dodge": JOY_BUTTON_B,
-		"Sprint": JOY_BUTTON_LEFT_STICK,
-		"Launcher": JOY_BUTTON_DPAD_UP,
-		"Held target toggle": JOY_BUTTON_RIGHT_STICK,
-		"Switch weapon": JOY_BUTTON_DPAD_RIGHT,
-		"Taunt": JOY_BUTTON_BACK
+		"Light attack": {"type": "button", "id": JOY_BUTTON_X},
+		"Heavy attack": {"type": "button", "id": JOY_BUTTON_Y},
+		"Jump": {"type": "button", "id": JOY_BUTTON_A},
+		"Shoot": {"type": "axis", "id": JOY_AXIS_TRIGGER_LEFT, "direction": 1},
+		"Target left": {"type": "button", "id": JOY_BUTTON_LEFT_SHOULDER},
+		"Target right": {"type": "button", "id": JOY_BUTTON_RIGHT_SHOULDER},
+		"Dodge": {"type": "button", "id": JOY_BUTTON_B},
+		"Sprint": {"type": "button", "id": JOY_BUTTON_LEFT_STICK},
+		"Launcher": {"type": "button", "id": JOY_BUTTON_DPAD_UP},
+		"Held target toggle": {"type": "button", "id": JOY_BUTTON_RIGHT_STICK},
+		"Switch weapon": {"type": "button", "id": JOY_BUTTON_DPAD_RIGHT},
+		"Taunt": {"type": "button", "id": JOY_BUTTON_BACK}
 	},
 	"keyboard": {
 		"Light attack": MOUSE_BUTTON_LEFT,
@@ -52,11 +52,14 @@ const DEFAULT_SETTINGS : Dictionary[String, Dictionary] = {
 		"Move right": KEY_D,
 		"Move forwards": KEY_W,
 		"Move backwards": KEY_S,
+		"Switch weapon": KEY_F,
 		"Taunt": KEY_R
 	}
 }
 
 var Settings : Dictionary = DEFAULT_SETTINGS.duplicate(true)
+
+var isRemapping : bool = false
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
