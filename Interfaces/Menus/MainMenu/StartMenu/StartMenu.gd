@@ -32,6 +32,8 @@ func nextMenu(inputs : ISMInputManager.Data) -> Type:
 	
 	if _savesPressed:
 		return Type.saves
+	if _quitGamePressed:
+		return Type.quitConfirmMenu
 	
 	return Type.none
 
@@ -44,8 +46,6 @@ func deactivateImpl() -> void:
 func exit() -> StringName:
 	if _startGamePressed:
 		return Main.Type.game
-	if _quitGamePressed:
-		return Main.Type.quit
 
 	return Main.Type.none
 
