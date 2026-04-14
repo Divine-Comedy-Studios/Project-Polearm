@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://dvykeeeeon0qa"]
+
+[ext_resource type="Script" uid="uid://5q0dxq2wk20s" path="res://Common/ValueBar/ValueBarUI/ValueBarUI.gd" id="1_narf7"]
+[ext_resource type="Texture2D" uid="uid://civ4me10g6qei" path="res://Assets/Textures/Healthbar/DefaultProgress.png" id="2_6pvtr"]
+[ext_resource type="Texture2D" uid="uid://b0nj0qib5h30v" path="res://Assets/Textures/Healthbar/DefaultUnder.png" id="3_t8rqo"]
+
+[sub_resource type="Gradient" id="Gradient_narf7"]
+offsets = PackedFloat32Array(0, 0.5730769, 1)
+colors = PackedColorArray(1, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vxpqq"]
+
+[node name="ValueBar" type="CanvasLayer" unique_id=143768914]
+script = ExtResource("1_narf7")
+VALUE_TEXTURE = ExtResource("2_6pvtr")
+CHANGE_TEXTURE = ExtResource("2_6pvtr")
+BACKGROUND_TEXTURE = ExtResource("3_t8rqo")
+PROGRESS_GRADIENT = SubResource("Gradient_narf7")
+
+[node name="Panel" type="Panel" parent="." unique_id=1537903984]
+texture_filter = 1
+offset_right = 200.0
+offset_bottom = 12.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxEmpty_vxpqq")
+
+[node name="ChangeBar" type="TextureProgressBar" parent="Panel" unique_id=861369477]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+value = 50.0
+nine_patch_stretch = true
+stretch_margin_left = 6
+stretch_margin_top = 6
+stretch_margin_right = 6
+stretch_margin_bottom = 6
+texture_under = ExtResource("3_t8rqo")
+texture_progress = ExtResource("2_6pvtr")
+
+[node name="ValueBar" type="TextureProgressBar" parent="Panel" unique_id=625305292]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+nine_patch_stretch = true
+stretch_margin_left = 6
+stretch_margin_top = 6
+stretch_margin_right = 6
+stretch_margin_bottom = 6
+texture_progress = ExtResource("2_6pvtr")
+
+[node name="Timer" type="Timer" parent="." unique_id=1348858143]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_onTimeout"]
