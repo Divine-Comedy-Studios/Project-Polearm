@@ -14,7 +14,7 @@ viewport_path = NodePath("SubViewport")
 transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, -0.15588021, 2.0410995, 4.563466)
 top_level = true
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=894078038]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=894078038 groups=["Player"]]
 mesh = SubResource("BoxMesh_6vbmq")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=2099564350]
@@ -26,4 +26,4 @@ transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, -0.15588
 [node name="Healthbar" parent="." unique_id=937509818 instance=ExtResource("2_1157w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8727344, 0)
 texture = SubResource("ViewportTexture_afw32")
-MAX_HEALTH = 100
+GROUP_NAME = &"Player"

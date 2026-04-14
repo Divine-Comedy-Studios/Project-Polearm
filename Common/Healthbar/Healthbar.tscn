@@ -13,25 +13,27 @@ colors = PackedColorArray(1, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vxpqq"]
 
-[node name="Healthbar" type="Sprite3D" unique_id=937509818]
+[node name="ValueBar" type="Sprite3D" unique_id=937509818]
 billboard = 1
 texture_filter = 0
 texture = SubResource("ViewportTexture_nskoq")
 script = ExtResource("2_tj6tc")
+SIZE = null
 HEALTH_GRADIENT = SubResource("Gradient_tj6tc")
+MAX_HEALTH = null
 
 [node name="SubViewport" type="SubViewport" parent="." unique_id=219752742]
 transparent_bg = true
-size = Vector2i(200, 10)
+size = Vector2i(200, 12)
 
 [node name="Panel" type="Panel" parent="SubViewport" unique_id=1537903984]
 offset_right = 200.0
-offset_bottom = 10.0
+offset_bottom = 12.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxEmpty_vxpqq")
 
-[node name="Healthbar" type="TextureProgressBar" parent="SubViewport/Panel" unique_id=861369477]
+[node name="ChangeBar" type="TextureProgressBar" parent="SubViewport/Panel" unique_id=861369477]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
@@ -45,14 +47,21 @@ stretch_margin_left = 6
 stretch_margin_top = 6
 stretch_margin_right = 6
 stretch_margin_bottom = 6
-texture_under = ExtResource("1_vxpqq")
 texture_progress = ExtResource("2_08g3m")
 
-[node name="Damagebar" type="TextureProgressBar" parent="SubViewport/Panel/Healthbar" unique_id=625305292]
-visible = false
+[node name="ValueBar" type="TextureProgressBar" parent="SubViewport/Panel/ChangeBar" unique_id=625305292]
+z_index = -1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+value = 100.0
+nine_patch_stretch = true
+stretch_margin_left = 6
+stretch_margin_top = 6
+stretch_margin_right = 6
+stretch_margin_bottom = 6
+texture_under = ExtResource("1_vxpqq")
+texture_progress = ExtResource("2_08g3m")
