@@ -35,7 +35,6 @@ func buttonPressed() -> void:
 	listening = true
 	symbol.texture = null
 	SettingsManager.isRemapping = true
-	print(SettingsManager.isRemapping)
 	set_process_input(true)
 
 func setBinding(icon: Texture2D) -> void:
@@ -57,12 +56,10 @@ func _input(event: InputEvent) -> void:
 			if event.pressed:
 				listening = false
 				awaitingEscRelease = true
-				print("hey")
 			else:
 				awaitingEscRelease = false
 				SettingsManager.isRemapping = false
 				set_process_input(false)
-				print("hoe")
 			return
 
 		if event.pressed and listening:

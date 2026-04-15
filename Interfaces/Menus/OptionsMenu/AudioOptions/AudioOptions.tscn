@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://3vnyxp2i1ac0"]
 
 [ext_resource type="Script" uid="uid://cyn28bbc16luj" path="res://Interfaces/InterfaceStateMachine/InterfaceState.gd" id="1_h6nrm"]
+[ext_resource type="Script" uid="uid://dvqxemvjo43pv" path="res://Interfaces/Menus/OptionsMenu/AudioOptions/AudioOptionsSettings.gd" id="2_r1b7j"]
 
 [node name="AudioOptions" type="Control" unique_id=2031472548]
 layout_mode = 3
@@ -19,6 +20,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("2_r1b7j")
 
 [node name="MarginContainer" type="MarginContainer" parent="CenterContainer" unique_id=520806444]
 custom_minimum_size = Vector2(800, 0)
@@ -52,9 +54,12 @@ layout_mode = 2
 [node name="Master" type="HSlider" parent="CenterContainer/MarginContainer/HBoxContainer/Slider/HBoxContainer" unique_id=14992839]
 layout_mode = 2
 size_flags_horizontal = 3
+max_value = 1.0
+step = 0.01
 
 [node name="Label" type="Label" parent="CenterContainer/MarginContainer/HBoxContainer/Slider/HBoxContainer" unique_id=21836935]
 layout_mode = 2
+size_flags_horizontal = 8
 text = "100%"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/MarginContainer/HBoxContainer/Slider" unique_id=570854650]
@@ -63,9 +68,12 @@ layout_mode = 2
 [node name="Music" type="HSlider" parent="CenterContainer/MarginContainer/HBoxContainer/Slider/HBoxContainer2" unique_id=172671193]
 layout_mode = 2
 size_flags_horizontal = 3
+max_value = 1.0
+step = 0.01
 
 [node name="Label" type="Label" parent="CenterContainer/MarginContainer/HBoxContainer/Slider/HBoxContainer2" unique_id=2095856718]
 layout_mode = 2
+size_flags_horizontal = 8
 text = "100%"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/MarginContainer/HBoxContainer/Slider" unique_id=179871778]
@@ -74,7 +82,14 @@ layout_mode = 2
 [node name="Sfx" type="HSlider" parent="CenterContainer/MarginContainer/HBoxContainer/Slider/HBoxContainer3" unique_id=1698962711]
 layout_mode = 2
 size_flags_horizontal = 3
+max_value = 1.0
+step = 0.01
 
 [node name="Label" type="Label" parent="CenterContainer/MarginContainer/HBoxContainer/Slider/HBoxContainer3" unique_id=1444749767]
 layout_mode = 2
+size_flags_horizontal = 8
 text = "100%"
+
+[connection signal="value_changed" from="CenterContainer/MarginContainer/HBoxContainer/Slider/HBoxContainer/Master" to="CenterContainer" method="_on_master_value_changed"]
+[connection signal="value_changed" from="CenterContainer/MarginContainer/HBoxContainer/Slider/HBoxContainer2/Music" to="CenterContainer" method="_on_music_value_changed"]
+[connection signal="value_changed" from="CenterContainer/MarginContainer/HBoxContainer/Slider/HBoxContainer3/Sfx" to="CenterContainer" method="_on_sfx_value_changed"]

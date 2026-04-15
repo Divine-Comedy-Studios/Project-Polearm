@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cwwqmgybgoy3v"]
 
-[ext_resource type="Script" uid="uid://cyn28bbc16luj" path="res://Interfaces/InterfaceStateMachine/InterfaceState.gd" id="1_h2m4t"]
+[ext_resource type="Script" uid="uid://bmdkrgtuaq1to" path="res://Interfaces/Menus/MainMenu/QuitConfirmMenu/QuitConfrimMenu.gd" id="1_h2m4t"]
 
 [node name="QuitConfirmMenu" type="Control" unique_id=1621337902]
 layout_mode = 3
@@ -20,6 +20,37 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="CenterContainer" unique_id=208079217]
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer" unique_id=871743635]
 layout_mode = 2
-text = "REally wanna Quit????"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/MarginContainer" unique_id=967798334]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/MarginContainer/VBoxContainer" unique_id=1309334030]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+size_flags_vertical = 0
+text = "UI_QUITCONFIRMMENU_CONFIRM"
+
+[node name="Control" type="Control" parent="CenterContainer/MarginContainer/VBoxContainer" unique_id=308031474]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/MarginContainer/VBoxContainer" unique_id=1358576647]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="Yes" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1310654685]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "UI_QUITCONFIRMMENU_YES"
+
+[node name="No" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1949122401]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "UI_QUITCONFIRMMENU_NO"
+
+[connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/HBoxContainer/Yes" to="." method="_on_yes_pressed"]
+[connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/HBoxContainer/No" to="." method="_on_no_pressed"]
+[connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/HBoxContainer/No" to="CenterContainer" method="_on_no_pressed"]

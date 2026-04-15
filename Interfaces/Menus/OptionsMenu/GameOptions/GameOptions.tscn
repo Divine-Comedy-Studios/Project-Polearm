@@ -31,28 +31,28 @@ layout_mode = 2
 theme_override_constants/separation = 30
 alignment = 1
 
-[node name="Lables" type="VBoxContainer" parent="CenterContainer/MarginContainer/HBoxContainer" unique_id=405633660]
+[node name="Labels" type="VBoxContainer" parent="CenterContainer/MarginContainer/HBoxContainer" unique_id=405633660]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 30
 
-[node name="Language" type="Label" parent="CenterContainer/MarginContainer/HBoxContainer/Lables" unique_id=1796002443]
+[node name="Language" type="Label" parent="CenterContainer/MarginContainer/HBoxContainer/Labels" unique_id=1796002443]
 layout_mode = 2
 text = "UI_GAMEOPTIONS_LANGUAGE"
 
-[node name="Sensitivity" type="Label" parent="CenterContainer/MarginContainer/HBoxContainer/Lables" unique_id=168707602]
+[node name="Sensitivity" type="Label" parent="CenterContainer/MarginContainer/HBoxContainer/Labels" unique_id=168707602]
 layout_mode = 2
 text = "UI_GAMEOPTIONS_CAMERASENSITIVITY"
 
-[node name="InverseY" type="Label" parent="CenterContainer/MarginContainer/HBoxContainer/Lables" unique_id=656342922]
+[node name="InverseY" type="Label" parent="CenterContainer/MarginContainer/HBoxContainer/Labels" unique_id=656342922]
 layout_mode = 2
 text = "UI_GAMEOPTIONS_INVERTY"
 
-[node name="CamShake" type="Label" parent="CenterContainer/MarginContainer/HBoxContainer/Lables" unique_id=1078505405]
+[node name="CamShake" type="Label" parent="CenterContainer/MarginContainer/HBoxContainer/Labels" unique_id=1078505405]
 layout_mode = 2
 text = "UI_GAMEOPTIONS_CAMERASHAKE"
 
-[node name="Rumble" type="Label" parent="CenterContainer/MarginContainer/HBoxContainer/Lables" unique_id=2026895949]
+[node name="Rumble" type="Label" parent="CenterContainer/MarginContainer/HBoxContainer/Labels" unique_id=2026895949]
 layout_mode = 2
 text = "UI_GAMEOPTIONS_RUMBLE"
 

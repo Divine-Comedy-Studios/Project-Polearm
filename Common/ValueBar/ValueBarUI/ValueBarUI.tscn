@@ -10,7 +10,7 @@ colors = PackedColorArray(1, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vxpqq"]
 
-[node name="ValueBar" type="CanvasLayer" unique_id=143768914]
+[node name="ValueBarUI" type="CanvasLayer" unique_id=143768914]
 script = ExtResource("1_narf7")
 VALUE_TEXTURE = ExtResource("2_6pvtr")
 CHANGE_TEXTURE = ExtResource("2_6pvtr")

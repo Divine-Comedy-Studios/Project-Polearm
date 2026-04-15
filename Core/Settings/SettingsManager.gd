@@ -5,6 +5,10 @@ var config = ConfigFile.new()
 
 enum Language { ENGLISH, CHINESE, SPANISH, FRENCH, GERMAN, ITALIAN, JAPANESE }
 
+enum WindowMode { WINDOWED, FULL_SCREEN, BORDERLESS }
+
+enum Resolution { ULTRAWIDE, RES_1080P, RES_900P, RES_720P, RES_540P }
+
 # Default values
 const DEFAULT_SETTINGS : Dictionary[String, Dictionary] = {
 	"game": {
@@ -15,13 +19,16 @@ const DEFAULT_SETTINGS : Dictionary[String, Dictionary] = {
 		"rumble": 1.0
 	},
 	"video": {
-		"fullscreen": true, 
-		"resolution": Vector2i(1920, 1080)
+		"window mode": WindowMode.BORDERLESS, 
+		"resolution": Resolution.RES_1080P,
+		"vsync": true,
+		"gamma": 1.0
 	},
 	"audio": {
-		"master": 0.8, 
-		"music": 0.8, 
-		"sfx": 0.8
+		"master": 1.0, 
+		"music": 1.0, 
+		"sfx": 1.0,
+		"mute on focus loss": true
 	},
 	"controller": {
 		"Light attack": {"type": "button", "id": JOY_BUTTON_X},
@@ -52,7 +59,7 @@ const DEFAULT_SETTINGS : Dictionary[String, Dictionary] = {
 		"Move right": KEY_D,
 		"Move forwards": KEY_W,
 		"Move backwards": KEY_S,
-		"Switch weapon": KEY_F,
+		"Switch weapon": KEY_C,
 		"Taunt": KEY_R
 	}
 }
@@ -67,7 +74,7 @@ func _ready() -> void:
 	print("Settings are Loaded!")
 	loadSettings()
 
-func loadSettings():
+func loadSettings() -> void:
 
 	var error = config.load(SETTINGS_PATH)
 	if error != OK:
@@ -80,15 +87,19 @@ func loadSettings():
 			Settings[section][key] = config.get_value(section, key, Settings[section][key])
 
 	applyGame()
+	applyVideo()
+	applyAudio()
+	applyController()
+	applyKeyboard()
 
-func saveSettings():
+func saveSettings() -> void:
 	print("Setting Settings!")
 	for section in Settings.keys():
 		for key in Settings[section].keys():
 			config.set_value(section, key, Settings[section][key])
 	config.save(SETTINGS_PATH)
 
-func applyGame():
+func applyGame() -> void:
 
 	# Apply Language Settins
 	var langCodes = ["en", "zh", "es", "fr", "de", "it", "ja"]
@@ -99,4 +110,79 @@ func applyGame():
 		TranslationServer.set_locale(selectedLocale)
 	else: TranslationServer.set_locale("en")
 
-	# need all the other game settings to do anything
+func applyVideo() -> void:
+	var video = Settings["video"]
+
+	# Window Mode
+	match video["window mode"]:
+		WindowMode.WINDOWED:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
+		WindowMode.FULL_SCREEN:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+		WindowMode.BORDERLESS:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, true)
+
+	# Resolution
+	if video["window mode"] == WindowMode.WINDOWED:
+		var resIndex = video["resolution"]
+		var targetRes = Vector2i(1920, 1080)
+		match resIndex:
+			Resolution.ULTRAWIDE: targetRes = Vector2i(2560, 1080)
+			Resolution.RES_1080P: targetRes = Vector2i(1920, 1080)
+			Resolution.RES_900P: targetRes = Vector2i(1600, 900)
+			Resolution.RES_720P: targetRes = Vector2i(1280, 720)
+			Resolution.RES_540P: targetRes = Vector2i(960, 540)
+		get_window().size = targetRes
+		get_window().move_to_center()
+
+	# VSync
+	var vsyncState = DisplayServer.VSYNC_ENABLED if video["vsync"] else DisplayServer.VSYNC_DISABLED
+	DisplayServer.window_set_vsync_mode(vsyncState)
+
+	# Gamma
+	var worldEnv = get_tree().root.find_child("WorldEnvironment", true, false)
+	if worldEnv and worldEnv.environment:
+		worldEnv.environment.adjustment_enabled = true
+		worldEnv.environment.adjustment_brightness = video["gamma"]
+		
+func applyAudio() -> void:
+	pass
+
+func applyController() -> void:
+	for action in Settings["controller"].keys():
+		var data = Settings["controller"][action]
+
+		var events = InputMap.action_get_events(action)
+		for event in events:
+			if event is InputEventJoypadButton or event is InputEventJoypadMotion:
+				InputMap.action_erase_event(action, event)
+		
+		if data["type"] == "button":
+			var newEvent = InputEventJoypadButton.new()
+			newEvent.button_index = data["id"]
+			InputMap.action_add_event(action, newEvent)
+		elif data["type"] == "axis":
+			var newEvent = InputEventJoypadMotion.new()
+			newEvent.axis = data["id"]
+			newEvent.axis_value = data["direction"]
+			InputMap.action_add_event(action, newEvent)
+
+func applyKeyboard() -> void:
+	for action in Settings["keyboard"].keys():
+		var keyCode = Settings["keyboard"][action]
+
+		var events = InputMap.action_get_events(action)
+		for event in events:
+			if event is InputEventKey or event is InputEventMouseButton:
+				InputMap.action_erase_event(action, event)
+		
+		if keyCode is MouseButton:
+			var newEvent = InputEventMouseButton.new()
+			newEvent.button_index = keyCode
+			InputMap.action_add_event(action, newEvent)
+		else:
+			var newEvent = InputEventKey.new()
+			newEvent.physical_keycode = keyCode
+			InputMap.action_add_event(action, newEvent)

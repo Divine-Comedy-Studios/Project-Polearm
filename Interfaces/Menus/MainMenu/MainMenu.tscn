@@ -44,7 +44,6 @@ script = ExtResource("7_0xxrw")
 BACK_MENU = 2
 
 [node name="OptionsMenu" parent="." unique_id=865326453 instance=ExtResource("3_f6nv7")]
-visible = false
 BACK_MENU = 2
 
 [node name="GameOptions" parent="." unique_id=2031472548 instance=ExtResource("11_3nt47")]
@@ -63,6 +62,7 @@ script = ExtResource("10_yincg")
 BACK_MENU = 4
 
 [node name="ControllerMapping" parent="." unique_id=125246150 instance=ExtResource("4_0vu78")]
+visible = false
 script = ExtResource("5_smu38")
 BACK_MENU = 4
 

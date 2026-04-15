@@ -63,7 +63,3 @@ func exit() -> StringName:
 	return BasicState.TYPE_NONE
 
 #endregion
-
-
-func _on_language_selected(index: int) -> void:
-	pass # Replace with function body.
