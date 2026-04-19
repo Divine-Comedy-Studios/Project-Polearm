@@ -51,3 +51,4 @@ Button/styles/focus = SubResource("StyleBoxTexture_fjglp")
 Button/styles/hover = SubResource("StyleBoxTexture_ayhec")
 Button/styles/normal = SubResource("StyleBoxTexture_ta3ny")
 Button/styles/pressed = SubResource("StyleBoxTexture_6okpa")
+VBoxContainer/constants/separation = 12
