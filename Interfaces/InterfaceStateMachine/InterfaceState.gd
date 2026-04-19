@@ -32,7 +32,9 @@ enum Type {
 #region Member functions
 
 func activate() -> void:
+	process_mode = Node.PROCESS_MODE_INHERIT
 	show()
+
 	if not currentButton:
 		currentButton = find_next_valid_focus()
 	
@@ -40,6 +42,7 @@ func activate() -> void:
 		currentButton.grab_focus()
 
 func deactivate() -> void:
+	process_mode = Node.PROCESS_MODE_DISABLED
 	currentButton = get_viewport().gui_get_focus_owner()
 	hide()
 
