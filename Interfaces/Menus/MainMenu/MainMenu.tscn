@@ -11,12 +11,10 @@
 [ext_resource type="Script" uid="uid://bcfuyeyuuq7n1" path="res://Interfaces/Menus/MainMenu/SavesMenu/SavesMenu.gd" id="7_0xxrw"]
 [ext_resource type="PackedScene" uid="uid://cthgc7cm7suej" path="res://Interfaces/Menus/OptionsMenu/KeyboardMapping/KeyboardMapping.tscn" id="7_smu38"]
 [ext_resource type="PackedScene" uid="uid://3vnyxp2i1ac0" path="res://Interfaces/Menus/OptionsMenu/AudioOptions/AudioOptions.tscn" id="8_6nkw5"]
-[ext_resource type="Script" uid="uid://pgyhhnbdkno5" path="res://Interfaces/Menus/OptionsMenu/KeyboardMapping/KeyboardMapping.gd" id="8_kuglm"]
 [ext_resource type="Script" uid="uid://dmm6hc5f7l4s2" path="res://Interfaces/Menus/OptionsMenu/AudioOptions/AudioOptions.gd" id="10_yincg"]
 [ext_resource type="PackedScene" uid="uid://dewxnxvy14tjr" path="res://Interfaces/Menus/OptionsMenu/GameOptions/GameOptions.tscn" id="11_3nt47"]
 [ext_resource type="Script" uid="uid://celjwc20dqkr8" path="res://Interfaces/Menus/OptionsMenu/GameOptions/GameOptions.gd" id="12_ayaka"]
 [ext_resource type="PackedScene" uid="uid://b8ng1m4gseuer" path="res://Interfaces/Menus/OptionsMenu/VideoOptions/VideoOptions.tscn" id="13_0ye7o"]
-[ext_resource type="Script" uid="uid://6tv3tv4exou" path="res://Interfaces/Menus/OptionsMenu/VideoOptions/VideoOptions.gd" id="14_0xxrw"]
 
 [node name="MainMenu" type="CanvasLayer" unique_id=2044156185]
 process_mode = 3
@@ -56,8 +54,6 @@ BACK_MENU = 4
 [node name="VideoOptions" parent="." unique_id=889703237 instance=ExtResource("13_0ye7o")]
 process_mode = 4
 visible = false
-script = ExtResource("14_0xxrw")
-BACK_MENU = 4
 
 [node name="AudioOptions" parent="." unique_id=805272734 instance=ExtResource("8_6nkw5")]
 process_mode = 4
@@ -74,5 +70,3 @@ BACK_MENU = 4
 [node name="KeyboardMapping" parent="." unique_id=1058254332 instance=ExtResource("7_smu38")]
 process_mode = 4
 visible = false
-script = ExtResource("8_kuglm")
-BACK_MENU = 4
