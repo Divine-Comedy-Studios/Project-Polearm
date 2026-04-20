@@ -10,7 +10,8 @@ func setCoreTransition(destTransitionHandle : StringName, fadeTime : float) -> A
 
 	transitionDriver(&"CoreTransition").xfade_time = fadeTime
 
-	if not transitionTo(&"CoreTransition", &"Basic"):
+	# IMPORTANT: Guarantee that the destination transition handle is always named the same as the input
+	if not transitionTo(&"CoreTransition", destTransitionHandle):
 		destTransitionDriver.xfade_time = fadeTime # If we were already on the correct path, we transition using the inner transitioner instead
 	
 	return destTransitionDriver
