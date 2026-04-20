@@ -40,6 +40,32 @@ var context : EntityActionManager
 @export var data : EntityActionData = null
 
 var _progress : float
+var frameDataScale : float = 1.0
+
+#endregion
+
+
+#region Override functions
+
+# This is executed on action enter
+func enter() -> void:
+	if context.combatManager.isNextComboAction(TYPE):
+		data = context.combatManager.registerComboAction(TYPE)
+
+	context.resources.pay(self) # The action is pretty much guaranteed to be payable at this point, if not, not a big deal
+
+	_enter()
+
+# This is executed on action exit and resets the action to prepare it for the next time it's activated
+func exit() -> void:
+	_exit()
+	
+	_progress = 0
+	frameDataScale = 1.0
+
+
+func type() -> StringName:
+	return TYPE
 
 #endregion
 
@@ -57,12 +83,12 @@ func tick(delta : float) -> void:
 	_tick(delta)
 	_processRootMotion(delta)
 
-	_progress += delta
+	_progress += delta * frameDataScale
 
 
 # Action switching behavior
 func nextAction() -> StringName:
-	_processActions()
+	_preprocessActions()
 
 	if not context.frameData.transitionable(data.ANIMATION_NAME, _progress):
 		return Type.none
@@ -76,11 +102,14 @@ func actionViability(action : EntityAction) -> int:
 	if action.TYPE == TYPE and not REPEATABLE:
 		return -1
 	
-	if context.resources.payable(action):
-		if _implActionViable(action):
-			return 1
+	if not context.resources.payable(action):
+		return 0
+	if not action.available():
+		return 0
+	if not _implActionViability(action):
+		return 0
 
-	return 0
+	return 1
 
 
 # Interrupt immediately triggers a state switch aslong as the priority of the interrupt is higher than the priority of the current state
@@ -138,39 +167,14 @@ func _processRootMotion(delta : float) -> void:
 #endregion
 
 
-#region Override functions
-
-# This is executed on action enter
-func enter() -> void:
-	if context.combatManager.isNextComboAction(TYPE):
-		data = context.combatManager.registerComboAction(TYPE)
-
-	context.resources.pay(self) # The action is pretty much guaranteed to be payable at this point, if not, not a big deal
-
-	_enter()
-
-# This is executed on action exit and resets the action to prepare it for the next time it's activated
-func exit() -> void:
-	_exit()
-	
-	_progress = 0
-
-
-func type() -> StringName:
-	return TYPE
-
-#endregion
-
-
 #region Implementation & Virtual functions
 
 func _implInit() -> void:
 	pass
 
 
-@warning_ignore("unused_parameter")
-func _tick(delta : float) -> void:
-	pass
+func available() -> bool:
+	return true
 
 
 func _enter() -> void:
@@ -180,14 +184,19 @@ func _exit() -> void:
 	pass
 
 
-func _processActions() -> void:
+@warning_ignore("unused_parameter")
+func _tick(delta : float) -> void:
+	pass
+
+
+func _preprocessActions() -> void:
 	pass
 
 func _nextAction() -> StringName:
 	return Type.none
 
 @warning_ignore("unused_parameter")
-func _implActionViable(action : EntityAction) -> bool:
+func _implActionViability(action : EntityAction) -> bool:
 	return true
 
 
