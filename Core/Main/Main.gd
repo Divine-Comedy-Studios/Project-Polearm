@@ -12,16 +12,16 @@ class Type:
 	const mainMenu := &"mainMenu"
 	const game := &"game"
 
-#endregion      
+#endregion
 
 
 #region Built-in functions
 
-func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton: # Automatic mouse focus
-		if event.pressed && Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
-			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-			return
+# func _unhandled_input(event: InputEvent) -> void:
+#	if event is InputEventMouseButton: # Automatic mouse focus
+#		if event.pressed && Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
+#			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+#			return
 
 #endregion
 
