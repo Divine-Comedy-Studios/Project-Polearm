@@ -25,7 +25,6 @@ config/icon="res://icon.svg"
 
 IndieBlueprintObjectPoolManager="*uid://nyltou1uqbdp"
 PhantomCameraManager="*uid://duq6jhf6unyis"
-SettingsManager="*uid://covgehn0y4vp2"
 
 [debug_draw_3d]
 

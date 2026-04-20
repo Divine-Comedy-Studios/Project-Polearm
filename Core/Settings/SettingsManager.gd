@@ -1,188 +1,261 @@
 extends Node
+class_name SettingsManager
 
-const SETTINGS_PATH = "user://settings.cfg"
-var config = ConfigFile.new()
 
-enum Language { ENGLISH, CHINESE, SPANISH, FRENCH, GERMAN, ITALIAN, JAPANESE }
+#region Enums
 
-enum WindowMode { WINDOWED, FULL_SCREEN, BORDERLESS }
+enum Resolution {
+	ultrawide,
+	p1080,
+	p900,
+	p720,
+	p540
+} 
 
-enum Resolution { ULTRAWIDE, RES_1080P, RES_900P, RES_720P, RES_540P }
+#endregion
 
-# Default values
+
+#region Constants
+
+const SETTINGS_PATH : String = "user://settings.cfg"
+
 const DEFAULT_SETTINGS : Dictionary[String, Dictionary] = {
-	"game": {
-        "language": Language.ENGLISH,
-		"camera sensitivity": 1.0,
-		"invert y": false,
-		"camera shake": 1.0,
-		"rumble": 1.0
+	"game" : {
+        "language" : "en", ### @todo why not directly use the string?
+		"camera sensitivity" : 1.0,
+		"invert y" : false,
+		"camera shake" : 1.0,
+		"rumble" : 1.0,
 	},
-	"video": {
-		"window mode": WindowMode.BORDERLESS, 
-		"resolution": Resolution.RES_1080P,
-		"vsync": true,
-		"gamma": 1.0
+	"video" : {
+		"window mode" : DisplayServer.WINDOW_MODE_FULLSCREEN, ### @todo why not use the godot enum directly?
+		"resolution" : Resolution.p1080,
+		"vsync" : true,
+		"gamma" : 1.0,
 	},
-	"audio": {
-		"master": 1.0, 
-		"music": 1.0, 
-		"sfx": 1.0,
-		"mute on focus loss": true
+	"audio" : {
+		"master" : 1.0, 
+		"music" : 1.0, 
+		"sfx" : 1.0,
+		"mute on focus loss" : true,
 	},
-	"controller": {
-		"Light attack": {"type": "button", "id": JOY_BUTTON_X},
-		"Heavy attack": {"type": "button", "id": JOY_BUTTON_Y},
-		"Jump": {"type": "button", "id": JOY_BUTTON_A},
-		"Shoot": {"type": "axis", "id": JOY_AXIS_TRIGGER_LEFT, "direction": 1},
-		"Target left": {"type": "button", "id": JOY_BUTTON_LEFT_SHOULDER},
-		"Target right": {"type": "button", "id": JOY_BUTTON_RIGHT_SHOULDER},
-		"Dodge": {"type": "button", "id": JOY_BUTTON_B},
-		"Sprint": {"type": "button", "id": JOY_BUTTON_LEFT_STICK},
-		"Launcher": {"type": "button", "id": JOY_BUTTON_DPAD_UP},
-		"Held target toggle": {"type": "button", "id": JOY_BUTTON_RIGHT_STICK},
-		"Switch weapon": {"type": "button", "id": JOY_BUTTON_DPAD_RIGHT},
-		"Taunt": {"type": "button", "id": JOY_BUTTON_BACK}
+	"controller" : { ### @todo remove button type
+		"Light attack" : {"type" : "button", "id" : JoyButton.JOY_BUTTON_X},
+		"Heavy attack" : {"type" : "button", "id" : JoyButton.JOY_BUTTON_Y},
+		"Jump" : {"type" : "button", "id" : JoyButton.JOY_BUTTON_A},
+		"Shoot" : {"type" : "axis", "id" : JoyAxis.JOY_AXIS_TRIGGER_LEFT, "direction" : 1}, ### @todo do not count trigger as a axis, unnecceseary
+		"Target left" : {"type" : "button", "id" : JoyButton.JOY_BUTTON_LEFT_SHOULDER},
+		"Target right" : {"type" : "button", "id" : JoyButton.JOY_BUTTON_RIGHT_SHOULDER},
+		"Dodge" : {"type" : "button", "id" : JoyButton.JOY_BUTTON_B},
+		"Sprint" : {"type" : "button", "id" : JoyButton.JOY_BUTTON_LEFT_STICK},
+		"Launcher" : {"type" : "button", "id" : JoyButton.JOY_BUTTON_DPAD_UP},
+		"Held target toggle" : {"type" : "button", "id" : JoyButton.JOY_BUTTON_RIGHT_STICK},
+		"Switch weapon" : {"type" : "button", "id" : JoyButton.JOY_BUTTON_DPAD_RIGHT},
+		"Taunt" : {"type" : "button", "id" : JoyButton.JOY_BUTTON_BACK},
 	},
-	"keyboard": {
-		"Light attack": MOUSE_BUTTON_LEFT,
-		"Heavy attack": MOUSE_BUTTON_RIGHT,
-		"Jump": KEY_SPACE,
-		"Shoot": KEY_F,
-		"Target left": KEY_Q,
-		"Target right": KEY_E,
-		"Dodge": KEY_SHIFT,
-		"Sprint": KEY_CTRL,
-		"Launcher": KEY_ALT,
-		"Held target toggle": KEY_T,
-		"Move left": KEY_A,
-		"Move right": KEY_D,
-		"Move forwards": KEY_W,
-		"Move backwards": KEY_S,
-		"Switch weapon": KEY_C,
-		"Taunt": KEY_R
+	"keyboard" : {
+		"Light attack" : MouseButton.MOUSE_BUTTON_LEFT,
+		"Heavy attack" : MouseButton.MOUSE_BUTTON_RIGHT,
+		"Jump" : Key.KEY_SPACE,
+		"Shoot" : Key.KEY_F,
+		"Target left" : Key.KEY_Q,
+		"Target right" : Key.KEY_E,
+		"Dodge" : Key.KEY_SHIFT,
+		"Sprint" : Key.KEY_CTRL,
+		"Launcher" : Key.KEY_ALT,
+		"Held target toggle" : Key.KEY_T,
+		"Move left" : Key.KEY_A,
+		"Move right" : Key.KEY_D,
+		"Move forwards" : Key.KEY_W,
+		"Move backwards" : Key.KEY_S,
+		"Switch weapon" : Key.KEY_C,
+		"Taunt" : Key.KEY_R,
 	}
 }
 
-var Settings : Dictionary = DEFAULT_SETTINGS.duplicate(true)
+const SUPPORTED_LANGUAGES : Array[String] = [
+	"en",
+	"zh",
+	"es",
+	"fr",
+	"de",
+	"it",
+	"ja",
+]
 
-var isRemapping : bool = false
+#endregion
+
+
+#region Member variables
+
+static var _file : ConfigFile = ConfigFile.new()
+
+#endregion
+
+
+#region Built-in functions
 
 func _ready() -> void:
-	process_mode = Node.PROCESS_MODE_ALWAYS
+	var error := _file.load(SETTINGS_PATH)
+	if error != Error.OK:
+		_saveDefaultSettings()
 
-	print("Settings are Loaded!")
-	loadSettings()
-
-func loadSettings() -> void:
-
-	var error = config.load(SETTINGS_PATH)
-	if error != OK:
-		print("No Seettings found!")
-		saveSettings()
 		return
-	
-	for section in Settings.keys():
-		for key in Settings[section].keys():
-			Settings[section][key] = config.get_value(section, key, Settings[section][key])
 
-	applyGame()
-	applyVideo()
-	applyAudio()
-	applyController()
-	applyKeyboard()
+#endregion
 
-func saveSettings() -> void:
-	print("Setting Settings!")
-	for section in Settings.keys():
-		for key in Settings[section].keys():
-			config.set_value(section, key, Settings[section][key])
-	config.save(SETTINGS_PATH)
 
-func applyGame() -> void:
+#region Public functions
 
-	# Apply Language Settins
-	var langCodes = ["en", "zh", "es", "fr", "de", "it", "ja"]
-	var langID = Settings["game"]["language"]
+static func getSectionNames() -> PackedStringArray:
+	return _file.get_sections()
 
-	if langID >= 0 and langID < langCodes.size():
-		var selectedLocale = langCodes[langID]
-		TranslationServer.set_locale(selectedLocale)
-	else: TranslationServer.set_locale("en")
+static func getSettingNames(section : String) -> PackedStringArray:
+	return _file.get_section_keys(section)
 
-func applyVideo() -> void:
-	var video = Settings["video"]
 
+# Get setting values
+
+static func getBool(section : String, key : String) -> bool:
+	return _file.get_value(section, key) as bool
+
+static func getInt(section : String, key : String) -> int:
+	return _file.get_value(section, key) as int
+
+static func getFloat(section : String, key : String) -> float:
+	return _file.get_value(section, key) as float
+
+static func getString(section : String, key : String) -> String:
+	return _file.get_value(section, key) as String
+
+
+static func setBool(section : String, key : String, value : bool) -> void:
+	_file.set_value(section, key, value)
+
+static func setInt(section : String, key : String, value : int) -> void:
+	_file.set_value(section, key, value)
+
+static func setFloat(section : String, key : String, value : float) -> void:
+	_file.set_value(section, key, value)
+
+static func setString(section : String, key : String, value : String) -> void:
+	_file.set_value(section, key, value)
+
+
+### @todo Remove configuring axis in the future
+static func getVariant(section : String, key : String) -> Variant:
+	return _file.get_value(section, key)
+
+static func setVariant(section : String, key : String, value : Variant) -> void:
+	_file.set_value(section, key, value)
+
+
+# Apply settings
+
+static func applyGameSettings() -> void:
+	var langCode := getString("game", "language")
+
+	if SUPPORTED_LANGUAGES.find(langCode) != -1:
+		TranslationServer.set_locale(langCode)
+	else:
+		TranslationServer.set_locale("en")
+		setString("game", "language", "en")
+
+
+static func applyVideoSettings() -> void:
 	# Window Mode
-	match video["window mode"]:
-		WindowMode.WINDOWED:
-			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
-		WindowMode.FULL_SCREEN:
-			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-		WindowMode.BORDERLESS:
-			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, true)
+	var windowMode := getInt("video", "window mode")
 
-	# Resolution
-	if video["window mode"] == WindowMode.WINDOWED:
-		var resIndex = video["resolution"]
-		var targetRes = Vector2i(1920, 1080)
-		match resIndex:
-			Resolution.ULTRAWIDE: targetRes = Vector2i(2560, 1080)
-			Resolution.RES_1080P: targetRes = Vector2i(1920, 1080)
-			Resolution.RES_900P: targetRes = Vector2i(1600, 900)
-			Resolution.RES_720P: targetRes = Vector2i(1280, 720)
-			Resolution.RES_540P: targetRes = Vector2i(960, 540)
-		get_window().size = targetRes
-		get_window().move_to_center()
+	if windowMode == DisplayServer.WINDOW_FLAG_BORDERLESS:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+		DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, true)
+	else:
+		DisplayServer.window_set_mode(windowMode)
+		DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
 
 	# VSync
-	var vsyncState = DisplayServer.VSYNC_ENABLED if video["vsync"] else DisplayServer.VSYNC_DISABLED
-	DisplayServer.window_set_vsync_mode(vsyncState)
+	DisplayServer.window_set_vsync_mode(
+		DisplayServer.VSYNC_ENABLED if getBool("video", "vsync") else DisplayServer.VSYNC_DISABLED)
+
+
+	### @todo Very unclean, needs urgent fixing
+
+	# Resolution
+	# if video["window mode"] == WindowMode.WINDOWED:
+	# 	var resIndex = video["resolution"]
+	#	var targetRes = Vector2i(1920, 1080)
+	#	match resIndex:
+	#		Resolution.ultrawide: targetRes = Vector2i(2560, 1080)
+	#		Resolution.p1080: targetRes = Vector2i(1920, 1080)
+	#		Resolution.p900: targetRes = Vector2i(1600, 900)
+	#		Resolution.p720: targetRes = Vector2i(1280, 720)
+	#		Resolution.p540: targetRes = Vector2i(960, 540)
+	#	get_window().size = targetRes
+	#	get_window().move_to_center()
 
 	# Gamma
-	var worldEnv = get_tree().root.find_child("WorldEnvironment", true, false)
-	if worldEnv and worldEnv.environment:
-		worldEnv.environment.adjustment_enabled = true
-		worldEnv.environment.adjustment_brightness = video["gamma"]
-		
-func applyAudio() -> void:
+	# var worldEnv := get_tree().root.find_child("WorldEnvironment", true, false)
+	# worldEnv.environment.adjustment_enabled = true
+	# worldEnv.environment.adjustment_brightness = video["gamma"]
+
+
+static func applyAudioSettings() -> void:
 	pass
 
-func applyController() -> void:
-	for action in Settings["controller"].keys():
-		var data = Settings["controller"][action]
 
-		var events = InputMap.action_get_events(action)
-		for event in events:
-			if event is InputEventJoypadButton or event is InputEventJoypadMotion:
-				InputMap.action_erase_event(action, event)
-		
-		if data["type"] == "button":
-			var newEvent = InputEventJoypadButton.new()
-			newEvent.button_index = data["id"]
-			InputMap.action_add_event(action, newEvent)
-		elif data["type"] == "axis":
-			var newEvent = InputEventJoypadMotion.new()
-			newEvent.axis = data["id"]
-			newEvent.axis_value = data["direction"]
-			InputMap.action_add_event(action, newEvent)
+static func applyKeyboardSettings() -> void:
+	for actionName : String in _file.get_section_keys("keyboard"):
+		var action := getInt("keyboard", actionName)
 
-func applyKeyboard() -> void:
-	for action in Settings["keyboard"].keys():
-		var keyCode = Settings["keyboard"][action]
-
-		var events = InputMap.action_get_events(action)
+		var events := InputMap.action_get_events(actionName)
 		for event in events:
 			if event is InputEventKey or event is InputEventMouseButton:
-				InputMap.action_erase_event(action, event)
-		
-		if keyCode is MouseButton:
-			var newEvent = InputEventMouseButton.new()
-			newEvent.button_index = keyCode
-			InputMap.action_add_event(action, newEvent)
+				InputMap.action_erase_event(actionName, event)
+
+		if action is MouseButton: ### @todo Very confident that this does not work
+			var event := InputEventMouseButton.new()
+			event.button_index = action as MouseButton
+			InputMap.action_add_event(actionName, event)
 		else:
-			var newEvent = InputEventKey.new()
-			newEvent.physical_keycode = keyCode
-			InputMap.action_add_event(action, newEvent)
+			var event := InputEventKey.new()
+			event.physical_keycode = action as Key
+			InputMap.action_add_event(actionName, event)
+
+
+static func applyControllerSettings() -> void:
+	for actionName : String in _file.get_section_keys("controller"):
+		var actionData := getVariant("controller", actionName) as Dictionary
+
+		var events := InputMap.action_get_events(actionName)
+		for event in events:
+			if event is InputEventJoypadButton or event is InputEventJoypadMotion:
+				InputMap.action_erase_event(actionName, event)
+		
+		if actionData["type"] == "button":
+			var event := InputEventJoypadButton.new()
+			event.button_index = actionData["id"]
+			InputMap.action_add_event(actionName, event)
+		elif actionData["type"] == "axis":
+			var event := InputEventJoypadMotion.new()
+			event.axis = actionData["id"]
+			event.axis_value = actionData["direction"]
+			InputMap.action_add_event(actionName, event)
+
+
+# File saving
+static func save() -> void:
+	_file.save(SETTINGS_PATH)
+
+#endregion
+
+
+#region Private functions
+
+static func _saveDefaultSettings() -> void:
+	for sectionName : String in DEFAULT_SETTINGS.keys():
+		for settingName : String in DEFAULT_SETTINGS[sectionName].keys():
+			_file.set_value(sectionName, settingName, DEFAULT_SETTINGS[sectionName][settingName])
+
+	assert(_file.load(SETTINGS_PATH) == Error.OK, "SettingsManager._saveDefaultSettings(): Could not load settings even after creating them! Something is seriously wrong.")
+
+#endregion
