@@ -91,10 +91,10 @@ const JOY_AXIS_ICONS : Dictionary[JoyAxis, Dictionary] = {
 
 func _ready() -> void:
 	# Apply the Images
-	for action in SettingsManager.Settings["controller"]:
+	for action in SettingsManager.getSettingNames("controller"):
 		if _buttonMap.has(action):
 			var button := _buttonMap[action]
-			var binding := SettingsManager.Settings["controller"][action] as Dictionary
+			var binding := SettingsManager.getVariant("controller", action) as Dictionary
 			var isAxis := (binding["type"] == "axis") as bool
 			var icon := _getJoyIcon(binding["id"], binding.get("direction", 0), isAxis)
 			button.setBinding(icon)
@@ -147,14 +147,14 @@ func _on_remapped(
 	var icon = _getJoyIcon(keyCode, direction, direction != 0)
 
 	# Duplicate check
-	for otherAction in SettingsManager.Settings["controller"]:
+	for otherAction : String in SettingsManager.getSettingNames("controller"):
 		if otherAction == action:
 			continue
 
-		var otherBinding = SettingsManager.Settings["controller"][otherAction]
+		var otherBinding := SettingsManager.getVariant("controller", otherAction) as Dictionary
 		if otherBinding["id"] == keyCode and otherBinding.get("direction", 0) == direction:
-			var oldBinding = SettingsManager.Settings["controller"][action]
-			SettingsManager.Settings["controller"][otherAction] = oldBinding
+			var oldBinding := SettingsManager.getVariant("controller", action) as Dictionary
+			SettingsManager.setVariant("controller", otherAction, oldBinding)
 			
 			if _buttonMap.has(otherAction):
 				var oldIcon = _getJoyIcon(oldBinding["id"], oldBinding.get("direction", 0), oldBinding["type"] == "axis")
@@ -164,7 +164,7 @@ func _on_remapped(
 
 	button.setBinding(icon)
 
-	SettingsManager.Settings["controller"][action] = newBinding
+	SettingsManager.setVariant("controller", action, newBinding)
 	SettingsManager.saveSettings()
 
 #endregion

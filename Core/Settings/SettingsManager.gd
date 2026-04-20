@@ -21,7 +21,7 @@ const SETTINGS_PATH : String = "user://settings.cfg"
 
 const DEFAULT_SETTINGS : Dictionary[String, Dictionary] = {
 	"game" : {
-        "language" : "en", ### @todo why not directly use the string?
+		"language" : "en", ### @todo why not directly use the string?
 		"camera sensitivity" : 1.0,
 		"invert y" : false,
 		"camera shake" : 1.0,
@@ -89,6 +89,8 @@ const SUPPORTED_LANGUAGES : Array[String] = [
 #region Member variables
 
 static var _file : ConfigFile = ConfigFile.new()
+
+static var isRemapping : bool = false
 
 #endregion
 
@@ -243,7 +245,7 @@ static func applyControllerSettings() -> void:
 
 
 # File saving
-static func save() -> void:
+static func saveSettings() -> void:
 	_file.save(SETTINGS_PATH)
 
 #endregion
@@ -256,6 +258,6 @@ static func _saveDefaultSettings() -> void:
 		for settingName : String in DEFAULT_SETTINGS[sectionName].keys():
 			_file.set_value(sectionName, settingName, DEFAULT_SETTINGS[sectionName][settingName])
 
-	assert(_file.load(SETTINGS_PATH) == Error.OK, "SettingsManager._saveDefaultSettings(): Could not load settings even after creating them! Something is seriously wrong.")
+	_file.save(SETTINGS_PATH)
 
 #endregion

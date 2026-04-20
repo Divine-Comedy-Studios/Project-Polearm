@@ -124,26 +124,26 @@ func _ready() -> void:
 	}
 
 	# Apply the Images
-	for action in SettingsManager.Settings["keyboard"]:
+	for action : String in SettingsManager.getSettingNames("keyboard"):
 		if buttonMap.has(action):
 			var button = buttonMap[action]
-			var keyCode = SettingsManager.Settings["keyboard"][action]
+			var keyCode := SettingsManager.getInt("keyboard", action)
 			button.setBinding(KEY_ICONS.get(keyCode, null))
 			button.remapped.connect(_on_remapped.bind(action, button))
 
 func _on_remapped(keyCode: int, inputType: ActionMappingButton.InputDic, direction: int, action: String, button: ActionMappingButton) -> void:
 	var icon = KEY_ICONS.get(keyCode, null)
 
-	for otherAction in SettingsManager.Settings["keyboard"]:
+	for otherAction : String in SettingsManager.getSettingNames("keyboard"):
 		if otherAction == action:
 			continue
-		if SettingsManager.Settings["keyboard"][otherAction] == keyCode:
-			var oldKeyCode = SettingsManager.Settings["keyboard"][action]
-			SettingsManager.Settings["keyboard"][otherAction] = oldKeyCode
+		if SettingsManager.getInt("keyboard", otherAction) == keyCode:
+			var oldKeyCode := SettingsManager.getInt("keyboard", action)
+			SettingsManager.setInt("keyboard", otherAction, oldKeyCode)
 			if buttonMap.has(otherAction):
 				buttonMap[otherAction].setBinding(KEY_ICONS.get(oldKeyCode, null))
 			break
 
-	SettingsManager.Settings["keyboard"][action] = keyCode
+	SettingsManager.setInt("keyboard", action, keyCode)
 	button.setBinding(icon)
 	SettingsManager.saveSettings()

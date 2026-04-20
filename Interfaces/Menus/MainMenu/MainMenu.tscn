@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b8hqumrxhfvmn"]
 
-[ext_resource type="Script" uid="uid://cdmfn0vdjybja" path="res://Interfaces/InterfaceStateMachine/InterfaceStateMachine.gd" id="1_0vu78"]
+[ext_resource type="Script" path="res://Interfaces/Menus/MainMenu/MainMenu.gd" id="1_ayaka"]
 [ext_resource type="PackedScene" uid="uid://c0atl8ffoeq5u" path="res://Interfaces/Menus/MainMenu/StartMenu/StartMenu.tscn" id="2_4mftg"]
 [ext_resource type="Script" uid="uid://7cjw5im7rxvp" path="res://Interfaces/InterfaceStateMachine/InputManager/InputManager.gd" id="2_4sgcv"]
 [ext_resource type="PackedScene" uid="uid://cwwqmgybgoy3v" path="res://Interfaces/Menus/MainMenu/QuitConfirmMenu/QuitConfirmMenu.tscn" id="3_3nt47"]
@@ -20,7 +20,7 @@
 
 [node name="MainMenu" type="CanvasLayer" unique_id=2044156185]
 process_mode = 3
-script = ExtResource("1_0vu78")
+script = ExtResource("1_ayaka")
 INITIAL_MENU_TYPE = 2
 metadata/_custom_type_script = "uid://cdmfn0vdjybja"
 
