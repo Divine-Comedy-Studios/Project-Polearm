@@ -55,6 +55,17 @@ func _ready() -> void:
 #endregion
 
 
+#region Override functions
+
+func _resetFinishedCombo(action : EntityComboAction) -> void:
+	if previousCombos.size() == MAX_PREVIOUS_COMBO_COUNT:
+		previousCombos.pop_front()
+
+	previousCombos.append(action.COMBO_TYPE)
+
+#endregion
+
+
 #region Public functions
 
 # Returns how many combos ago the current combo was used
@@ -64,16 +75,5 @@ func comboPreviousUse(combo : StringName) -> int:
 			return x + 1
 
 	return 0
-
-#endregion
-
-
-#region Override functions
-
-func _resetFinishedCombo(action : EntityComboAction) -> void:
-	if previousCombos.size() == MAX_PREVIOUS_COMBO_COUNT:
-		previousCombos.pop_front()
-
-	previousCombos.append(action.COMBO_TYPE)
 
 #endregion

@@ -41,6 +41,19 @@ func _physics_process(delta: float) -> void:
 #endregion
 
 
+#region Override functions
+
+func _implStateInit(child : Node) -> void:
+	if child is PlayerAction:
+		child.init(self)
+		insertAction(child)
+
+func _initialState() -> StringName:
+	return PlayerAction.Type.move
+
+#endregion
+
+
 #region Private functions
 
 # Input processing by sorting them by priority
@@ -74,18 +87,5 @@ func _processInputs():
 
 	# Sort current inputs
 	inputManager.inputs.actions.sort_custom(hasHigherPriority)
-
-#endregion
-
-
-#region Override functions
-
-func _implStateInit(child : Node) -> void:
-	if child is PlayerAction:
-		child.init(self)
-		insertAction(child)
-
-func _initialState() -> StringName:
-	return PlayerAction.Type.idle
 
 #endregion
