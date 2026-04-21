@@ -3,27 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cjlv0bg7byjx0"
-<<<<<<< HEAD
-path.s3tc="res://.godot/imported/warning.svg-c1b21c265e0842bbdc9ed10735995366.s3tc.ctex"
-path.etc2="res://.godot/imported/warning.svg-c1b21c265e0842bbdc9ed10735995366.etc2.ctex"
-metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
-=======
 path="res://.godot/imported/warning.svg-c1b21c265e0842bbdc9ed10735995366.ctex"
 metadata={
 "vram_texture": false
->>>>>>> f84d88b8ce38462cc967e630bf62d157573c36d4
 }
 
 [deps]
 
 source_file="res://addons/phantom_camera/icons/warning.svg"
-<<<<<<< HEAD
-dest_files=["res://.godot/imported/warning.svg-c1b21c265e0842bbdc9ed10735995366.s3tc.ctex", "res://.godot/imported/warning.svg-c1b21c265e0842bbdc9ed10735995366.etc2.ctex"]
-=======
 dest_files=["res://.godot/imported/warning.svg-c1b21c265e0842bbdc9ed10735995366.ctex"]
->>>>>>> f84d88b8ce38462cc967e630bf62d157573c36d4
 
 [params]
 
