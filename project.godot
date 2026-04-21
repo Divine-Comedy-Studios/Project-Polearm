@@ -16,7 +16,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="Project Polearm"
-run/main_scene="uid://bbifbqx1x67ct"
+run/main_scene="uid://gfs4a5wowsa"
 config/use_custom_user_dir=true
 config/features=PackedStringArray("4.6", "C#", "Forward Plus")
 config/icon="res://icon.svg"
@@ -230,3 +230,7 @@ locale/translations=PackedStringArray("res://Interfaces/Language/ProjectPolearmL
 
 3d/physics_engine="Jolt Physics"
 common/physics_interpolation=true
+
+[rendering]
+
+textures/vram_compression/import_etc2_astc=true
