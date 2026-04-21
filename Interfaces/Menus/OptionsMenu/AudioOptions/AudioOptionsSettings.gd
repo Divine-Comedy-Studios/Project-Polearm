@@ -12,38 +12,38 @@ extends CenterContainer
 
 func _ready() -> void:
 	# Initialize Master Volume
-	masterVolume.value = SettingsManager.Settings["audio"]["master"]
+	masterVolume.value = SettingsManager.getFloat("audio", "master")
 	masterVolume.value_changed.connect(_on_master_value_changed)
 	masterVolumeLabel.text = str(int(masterVolume.value*100))+"%"
 
 	# Initialize Master Volume
-	musicVolume.value = SettingsManager.Settings["audio"]["music"]
+	musicVolume.value = SettingsManager.getFloat("audio", "music")
 	musicVolume.value_changed.connect(_on_music_value_changed)
 	musicVolumeLabel.text = str(int(musicVolume.value*100))+"%"
 
 	# Initialize Master Volume
-	sfxVolume.value = SettingsManager.Settings["audio"]["sfx"]
+	sfxVolume.value = SettingsManager.getFloat("audio", "sfx")
 	sfxVolume.value_changed.connect(_on_sfx_value_changed)
 	sfxVolumeLabel.text = str(int(sfxVolume.value*100))+"%"
 
 func _on_master_value_changed(value: float) -> void:
-	SettingsManager.Settings["audio"]["master"] = value
+	SettingsManager.setFloat("audio", "master", value)
 	masterVolumeLabel.text = str(int(value*100))+"%"
 
 	SettingsManager.saveSettings()
-	SettingsManager.applyAudio()
+	SettingsManager.applyAudioSettings()
 
 func _on_music_value_changed(value: float) -> void:
-	SettingsManager.Settings["audio"]["music"] = value
+	SettingsManager.setFloat("audio", "music", value)
 	musicVolumeLabel.text = str(int(value*100))+"%"
 
 	SettingsManager.saveSettings()
-	SettingsManager.applyAudio()
+	SettingsManager.applyAudioSettings()
 
 
 func _on_sfx_value_changed(value: float) -> void:
-	SettingsManager.Settings["audio"]["sfx"] = value
+	SettingsManager.setFloat("audio", "sfx", value)
 	sfxVolumeLabel.text = str(int(value*100))+"%"
 
 	SettingsManager.saveSettings()
-	SettingsManager.applyAudio()
+	SettingsManager.applyAudioSettings()

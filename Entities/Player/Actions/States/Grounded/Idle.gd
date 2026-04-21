@@ -1,3 +1,5 @@
+# Fancy Idle class, activated upon staying idle for prolonged periods of time
+
 extends PlayerBasicGrounded
 
 
@@ -5,16 +7,12 @@ extends PlayerBasicGrounded
 
 
 func _enter() -> void:
-	var transitionHandle := animator().transitionHandle()
-	var transitionDriver := animator().transitionDriver(transitionHandle)
-	transitionDriver.xfade_time = 1.0
+	animator().animationDriver(
+		animator().unusedHandle(&"BasicTransition")).animation = data.ANIMATION_FULL_NAME
 
-	var animationHandle := animator().animationHandle()
-	var animationDriver := animator().animationDriver(animationHandle)
-	animationDriver.animation = data.ANIMATION_FULL_NAME
-
-	animator().transitionTo(transitionHandle, animationHandle)
+	animator().transitionToUnused(&"BasicTransition", 
+		animator().setCoreTransition(&"BasicTransition", data.ANIMATION_FADE_TIME))
 
 
 func _tick(delta : float) -> void:
-	player().accelerateFlat(Vector3.ZERO, FRICTION * delta)
+	player().accelerate(Vector3.ZERO, FRICTION * delta)

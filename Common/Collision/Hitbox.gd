@@ -5,8 +5,9 @@ class_name Hitbox
 #region Helper classes
 
 class Data extends Resource:
-	var damage : float
-	var superArmorDamage : float
+	var damage : float = 0.0
+	var superArmorDamage : float = 0.0
+	var force : Vector3 = Vector3.ZERO
 
 #endregion
 

@@ -7,12 +7,12 @@ class_name EntityFrameData
 #region Exported action properties
 
 @export_group("Animation")
-@export var _transitionable : bool = true
-@export var _rotationTracking : float = 0.0
+@export var _interruptable : bool = false # Can this action transition to an action of same or higher priority?
+@export var _transitionable : bool = true # Can the current action transition to a lower priority one?
+@export var _rotationTracking : float = 0.0 # Speed of rotation tracking
 
 @export_group("Behavior")
-@export var _vulnerable : bool = false
-@export var _interruptable : bool = false
+@export var _vulnerable : bool = false # Is the entity vulnerable?
 
 #endregion
 

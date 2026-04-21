@@ -21,7 +21,6 @@ class Type:
 
 	const jumpStill := &"STjump"
 	const jumpRun := &"RUjump"
-	const jumpSprint := &"SPjump"
 
 	# Falling
 	const fall := &"fall"
@@ -102,6 +101,37 @@ var _queue : StringName = Type.none # Queued action, used for combos and bufferi
 #endregion
 
 
+#region Override functions
+
+func _enter() -> void:
+	_implEnter()
+
+func _exit() -> void:
+	_queue = Type.none
+
+	_implExit()
+
+
+func _preprocessActions() -> void:
+	if frameData().acceptsQueue(data.ANIMATION_NAME, _progress): # Set the queued action
+		_checkAndSetQueue()
+
+func _nextAction() -> StringName:
+	# If a transition can occur and the queue is set, push the queue as the next action, else just take the best action in the inputs
+	return _implNextAction(_queue
+		if _queue != Type.none and actionViability(context.action(_queue)) == 1 else
+			_highestPriorityAction())
+
+
+func _processDirectionAngle() -> float:
+	return (-player().basis.z).signed_angle_to(
+		Vector3(inputs().direction.x, 0, inputs().direction.y), 
+		Vector3.UP
+	)
+
+#endregion
+
+
 #region Public funcitons
 
 func player() -> Player:
@@ -113,8 +143,11 @@ func inputs() -> PlayerInputManager.Data:
 func frameData() -> PlayerFrameData:
 	return context.frameData as PlayerFrameData
 
-func animator() -> EntityAnimator:
-	return context.animator
+func resources() -> PlayerResources:
+	return context.resources as PlayerResources
+
+func animator() -> PlayerAnimator:
+	return context.animator as PlayerAnimator
 
 #endregion
 
@@ -160,39 +193,10 @@ func _highestPriorityAction() -> StringName:
 				return actionType if candidate == Type.none else candidate
 
 			candidate = actionType
-		elif viability == -1:
+		elif viability == -1: # If the same action has been found, then stay in this action. This is the purpose of the tiebreaker
 			return Type.none
 
-	return candidate
-
-#endregion
-
-
-#region Override functions
-
-func _enter() -> void:
-	_implEnter()
-
-func _exit() -> void:
-	_queue = Type.none
-
-	_implExit()
-
-
-func _processActions() -> void:
-	if frameData().acceptsQueue(data.ANIMATION_NAME, _progress): # Set the queued action
-		_checkAndSetQueue()
-
-func _nextAction() -> StringName:
-	# If a transition can occur and the queue is set, push the queue as the next action, else just take the best action in the inputs
-	return _implNextAction(_queue if _queue != Type.none else _highestPriorityAction())
-
-
-func _processDirectionAngle() -> float:
-	return (-player().basis.z).signed_angle_to(
-		Vector3(inputs().direction.x, 0, inputs().direction.y), 
-		Vector3.UP
-	)
+	return Type.none
 
 #endregion
 

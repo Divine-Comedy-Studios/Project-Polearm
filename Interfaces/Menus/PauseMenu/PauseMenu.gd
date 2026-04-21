@@ -1,9 +1,11 @@
 extends InterfaceState
 
+
 # Signals that get redirected to the Interface Controller
 signal continuePressed
 signal openOptionsPressed
 signal openMainMenuPressed
+
 
 func _on_continue_pressed() -> void:
 	continuePressed.emit()

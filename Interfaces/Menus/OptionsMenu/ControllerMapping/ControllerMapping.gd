@@ -13,6 +13,7 @@ extends InterfaceState
 func type() -> Type:
 	return Type.controllerOptions
 
+
 func nextMenu(inputs : ISMInputManager.Data) -> Type:
 	if inputs.cancel:
 		return BACK_MENU

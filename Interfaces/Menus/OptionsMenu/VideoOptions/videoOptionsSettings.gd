@@ -13,46 +13,46 @@ extends CenterContainer
 func _ready() -> void:
 
 	# Initialize Window Mode
-	windowMode.selected = SettingsManager.Settings["video"]["window mode"]
+	windowMode.selected = SettingsManager.getInt("video", "window mode")
 	windowMode.item_selected.connect(_on_window_mode_selected)
 
 	# Initialize Resolution
-	resolution.selected = SettingsManager.Settings["video"]["resolution"]
+	resolution.selected = SettingsManager.getInt("video", "resolution")
 	resolution.item_selected.connect(_on_resolution_selected)
 
 	# Initialize Vsync
-	vSynch.button_pressed = SettingsManager.Settings["video"]["vsync"]
+	vSynch.button_pressed = SettingsManager.getBool("video", "vsync")
 	vSynch.toggled.connect(_on_vsync_toggled)
 
 	# Initialize Gamma Settings
-	gamma.value = SettingsManager.Settings["video"]["gamma"]
+	gamma.value = SettingsManager.getFloat("video", "gamma")
 	gamma.value_changed.connect(_on_gamma_value_changed)
 	gammaLabel.text = str(gamma.value)
 
 
 func _on_window_mode_selected(index: int) -> void:
-	SettingsManager.Settings["video"]["window mode"] = index
+	SettingsManager.setInt("video", "window mode", index)
 
 	resolution.disabled = (index == 1) # if Fullscreen then resolution disabled
 
 	SettingsManager.saveSettings()
-	SettingsManager.applyVideo()
+	SettingsManager.applyVideoSettings()
 
 func _on_resolution_selected(index: int) -> void:
-	SettingsManager.Settings["video"]["resolution"] = index
+	SettingsManager.setInt("video", "resolution", index)
 
 	SettingsManager.saveSettings()
-	SettingsManager.applyVideo()
+	SettingsManager.applyVideoSettings()
 
 func _on_vsync_toggled(status: bool) -> void:
-	SettingsManager.Settings["video"]["vsync"] = status
+	SettingsManager.setBool("video", "vsync", status)
 
 	SettingsManager.saveSettings()
-	SettingsManager.applyGame()
+	SettingsManager.applyGameSettings()
 
 func _on_gamma_value_changed(value: float) -> void:
-	SettingsManager.Settings["video"]["gamma"] = value
+	SettingsManager.setFloat("video", "gamma", value)
 	gammaLabel.text = str(value)
 
 	SettingsManager.saveSettings()
-	SettingsManager.applyVideo()
+	SettingsManager.applyVideoSettings()
