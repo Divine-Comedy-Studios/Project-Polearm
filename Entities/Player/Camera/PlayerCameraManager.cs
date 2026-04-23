@@ -71,7 +71,7 @@ using System;
 
 
 	public override void _UnhandledInput(InputEvent inputEvent) {
-		if (inputEvent is InputEventMouseMotion mouse && Input.MouseMode == Input.MouseModeEnum.Captured && !m_controllerActive) {
+		if (inputEvent is InputEventMouseMotion mouse && !m_controllerActive) { // && Input.MouseMode == Input.MouseModeEnum.Captured) {
 			Vector2 mouseDelta = mouse.Relative * MOUSE_SENSITIVITY;
 
 			_rotateCamera(m_followCam, new Vector2(-mouseDelta.Y, mouseDelta.X));
