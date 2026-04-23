@@ -47,8 +47,6 @@ var previousCombos : Array[StringName]
 #region Built-in functions
 
 func _ready() -> void:
-	assert(resources != null, "PlayerCombatManager._ready(): Resource container not assigned!")
-
 	for combo in unlockedCombos:
 		unlockCombo(combo)
 

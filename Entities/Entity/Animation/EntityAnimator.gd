@@ -54,7 +54,7 @@ const PARAMETER_CURRENT_STATE := &"current_state"
 @onready var _defaultAnimation : Animation = get_animation(DEFAULT_ANIMATION_NAME)
 
 
-# Animation blend tree reference
+# State
 
 var _transitionDriverActivity : Dictionary[StringName, TransitionDriverActivity] = { }
 
