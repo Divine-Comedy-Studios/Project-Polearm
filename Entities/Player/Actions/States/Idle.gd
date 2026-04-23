@@ -1,12 +1,14 @@
 # Fancy Idle class, activated upon staying idle for prolonged periods of time
 
-extends PlayerBasicGrounded
+extends PlayerAction
 
 
 @export var FRICTION : float = 30.0
 
 
-func _enter() -> void:
+func _implEnter() -> void:
+	resources().jumpCount.value = 0
+
 	animator().animationDriver(
 		animator().unusedHandle(&"BasicTransition")).animation = data.ANIMATION_FULL_NAME
 

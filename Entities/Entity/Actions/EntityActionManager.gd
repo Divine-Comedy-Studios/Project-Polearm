@@ -4,14 +4,13 @@ class_name EntityActionManager
 
 #region Scene members
 
-@export var entity : PhysicsBody3D = null
-
+@export_group("Scene members")
+@export var entity : Node3D = null
 @export var frameData : EntityFrameData = null
 @export var resources : EntityResources = null
-
-@export var combatManager : EntityCombatManager = null
-
 @export var animator : EntityAnimator = null
+
+@onready var combatManager : EntityCombatManager = $"CombatManager"
 
 #endregion
 
@@ -48,6 +47,6 @@ func init() -> void:
 
 
 func hasHigherPriority(a : StringName, b : StringName) -> bool:
-	return EntityAction.hasHigherPriority(action(a), action(b))
+	return EntityAction.hasHigherPriority(action(a) as EntityAction, action(b) as EntityAction)
 
 #endregion

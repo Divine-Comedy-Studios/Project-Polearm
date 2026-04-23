@@ -1,11 +1,19 @@
 [gd_scene format=3 uid="uid://bsl7ik5iueomu"]
 
 [ext_resource type="Script" uid="uid://d0kf1f6gldsxt" path="res://Entities/Player/Actions/PlayerActionManager.gd" id="1_xghap"]
-[ext_resource type="Script" uid="uid://cnyeww8lnsnok" path="res://Entities/Player/Actions/States/Grounded/GroundedLocomotion.gd" id="4_6ll7i"]
+[ext_resource type="Script" uid="uid://jth8cpsjn3vy" path="res://Entities/Player/Actions/States/Physics/PlayerPhysics.gd" id="2_71nor"]
+[ext_resource type="Script" uid="uid://620any2k6qha" path="res://Entities/Player/Combat/PlayerCombatManager.gd" id="2_rq852"]
+[ext_resource type="Script" uid="uid://c8b6ivlyaw41v" path="res://Entities/Entity/Combat/Combo/EntityCombo.gd" id="3_7bymk"]
+[ext_resource type="Resource" uid="uid://ccjpnfc5visow" path="res://Entities/Player/Resources/Combos/TestCombo.tres" id="4_7bymk"]
 [ext_resource type="Script" uid="uid://bes4y6b0to8sw" path="res://Entities/Player/Actions/States/Fall.gd" id="4_8427c"]
+[ext_resource type="Script" uid="uid://p1qurm2f1bvl" path="res://Entities/Player/Actions/States/Idle.gd" id="5_6evvv"]
 [ext_resource type="Script" uid="uid://cqy3drroysy4k" path="res://Entities/Player/Data/PlayerActionData.gd" id="5_8427c"]
-[ext_resource type="Script" uid="uid://p1qurm2f1bvl" path="res://Entities/Player/Actions/States/Grounded/Idle.gd" id="5_xghap"]
-[ext_resource type="Script" uid="uid://ban17448vrjlj" path="res://Entities/Player/Actions/States/Jump.gd" id="6_xghap"]
+[ext_resource type="Script" uid="uid://btagysn7t8n05" path="res://Entities/Player/Actions/States/Move.gd" id="6_rq852"]
+[ext_resource type="Script" uid="uid://bf7rav2dglxc4" path="res://Entities/Player/Actions/States/JumpStart.gd" id="6_urjga"]
+[ext_resource type="Script" uid="uid://c55k4ruofg4jc" path="res://Entities/Player/Actions/States/Jump.gd" id="7_jverr"]
+[ext_resource type="Script" uid="uid://vahqysuxajcw" path="res://Entities/Player/Actions/States/LightAttack.gd" id="8_6evvv"]
+[ext_resource type="Script" uid="uid://bb1weubijn6l2" path="res://Entities/Player/Actions/States/AirJumpStart.gd" id="10_7bymk"]
+[ext_resource type="Script" uid="uid://d2mcxn2vpp7ne" path="res://Entities/Player/Actions/States/LedgeGrab.gd" id="13_71nor"]
 
 [sub_resource type="Resource" id="Resource_xghap"]
 script = ExtResource("5_8427c")
@@ -32,10 +40,42 @@ metadata/_custom_type_script = "uid://cqy3drroysy4k"
 script = ExtResource("5_8427c")
 ANIMATION_LIBRARY_NAME = &"TestAnim"
 ANIMATION_NAME = &"Fall"
-ANIMATION_FADE_TIME = 0.3
 metadata/_custom_type_script = "uid://cqy3drroysy4k"
 
 [sub_resource type="Resource" id="Resource_8427c"]
+script = ExtResource("5_8427c")
+ANIMATION_LIBRARY_NAME = &"TestAnim"
+ANIMATION_NAME = &"Idle"
+metadata/_custom_type_script = "uid://cqy3drroysy4k"
+
+[sub_resource type="Resource" id="Resource_6evvv"]
+script = ExtResource("5_8427c")
+ANIMATION_LIBRARY_NAME = &"TestAnim"
+ANIMATION_NAME = &"JumpIdle"
+ANIMATION_FADE_TIME = 0.05
+metadata/_custom_type_script = "uid://cqy3drroysy4k"
+
+[sub_resource type="Resource" id="Resource_obuag"]
+script = ExtResource("5_8427c")
+ANIMATION_LIBRARY_NAME = &"TestAnim"
+ANIMATION_NAME = &"JumpRun"
+ANIMATION_FADE_TIME = 0.05
+metadata/_custom_type_script = "uid://cqy3drroysy4k"
+
+[sub_resource type="Resource" id="Resource_7bymk"]
+script = ExtResource("5_8427c")
+ANIMATION_LIBRARY_NAME = &"TestAnim"
+ANIMATION_NAME = &"JumpRun"
+ANIMATION_FADE_TIME = 0.05
+metadata/_custom_type_script = "uid://cqy3drroysy4k"
+
+[sub_resource type="Resource" id="Resource_rq852"]
+script = ExtResource("5_8427c")
+ANIMATION_LIBRARY_NAME = &"TestAnim"
+ANIMATION_NAME = &"Fall"
+metadata/_custom_type_script = "uid://cqy3drroysy4k"
+
+[sub_resource type="Resource" id="Resource_71nor"]
 script = ExtResource("5_8427c")
 ANIMATION_LIBRARY_NAME = &"TestAnim"
 ANIMATION_NAME = &"Idle"
@@ -45,9 +85,23 @@ metadata/_custom_type_script = "uid://cqy3drroysy4k"
 script = ExtResource("1_xghap")
 metadata/_custom_type_script = "uid://d0kf1f6gldsxt"
 
+[node name="PhysicsProcessor" type="Node3D" parent="." unique_id=1318673669 node_paths=PackedStringArray("_context")]
+process_mode = 4
+visible = false
+script = ExtResource("2_71nor")
+_context = NodePath("..")
+metadata/_custom_type_script = "uid://jth8cpsjn3vy"
+
+[node name="CombatManager" type="Node" parent="." unique_id=2076761952]
+process_mode = 4
+script = ExtResource("2_rq852")
+MAX_PREVIOUS_COMBO_COUNT = 3
+unlockedCombos = Array[ExtResource("3_7bymk")]([ExtResource("4_7bymk")])
+metadata/_custom_type_script = "uid://620any2k6qha"
+
 [node name="Move" type="Node" parent="." unique_id=1229341547]
 process_mode = 4
-script = ExtResource("4_6ll7i")
+script = ExtResource("6_rq852")
 IDLE_DATA = SubResource("Resource_xghap")
 WALK_DATA = SubResource("Resource_jverr")
 RUN_DATA = SubResource("Resource_urjga")
@@ -65,12 +119,51 @@ metadata/_custom_type_script = "uid://jc1g0sv32qq1"
 
 [node name="Idle" type="Node" parent="." unique_id=1482978748]
 process_mode = 4
-script = ExtResource("5_xghap")
+script = ExtResource("5_6evvv")
 TYPE = &"idle"
 data = SubResource("Resource_8427c")
 metadata/_custom_type_script = "uid://jc1g0sv32qq1"
 
-[node name="Jump" type="Node" parent="." unique_id=1364787152]
+[node name="JumpStart" type="Node" parent="." unique_id=1364787152]
 process_mode = 4
-script = ExtResource("6_xghap")
+script = ExtResource("6_urjga")
+JUMP_STILL_DATA = SubResource("Resource_6evvv")
+JUMP_RUN_DATA = SubResource("Resource_obuag")
+INPUT_BUFFER_FRAMES = 4
+QUEUEABLE = true
+TYPE = &"jumpStart"
+PRIORITY = 30
+REPEATABLE = true
+metadata/_custom_type_script = "uid://jc1g0sv32qq1"
+
+[node name="AirJumpStart" type="Node" parent="." unique_id=1893835723]
+process_mode = 4
+script = ExtResource("10_7bymk")
+TYPE = &"airJumpStart"
+PRIORITY = 30
+data = SubResource("Resource_7bymk")
+metadata/_custom_type_script = "uid://jc1g0sv32qq1"
+
+[node name="Jump" type="Node" parent="." unique_id=80986144]
+process_mode = 4
+script = ExtResource("7_jverr")
+TYPE = &"jump"
+PRIORITY = 31
+data = SubResource("Resource_rq852")
+metadata/_custom_type_script = "uid://jc1g0sv32qq1"
+
+[node name="LedgeGrab" type="Node" parent="." unique_id=403024180]
+script = ExtResource("13_71nor")
+TYPE = &"ledgeGrab"
+PRIORITY = 29
+data = SubResource("Resource_71nor")
+metadata/_custom_type_script = "uid://jc1g0sv32qq1"
+
+[node name="LightAttack" type="Node" parent="." unique_id=1240601807]
+process_mode = 4
+script = ExtResource("8_6evvv")
+QUEUEABLE = true
+TYPE = &"lightAttack"
+PRIORITY = 40
+REPEATABLE = true
 metadata/_custom_type_script = "uid://jc1g0sv32qq1"

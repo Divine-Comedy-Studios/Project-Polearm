@@ -6,7 +6,9 @@ class_name PlayerAction
 
 class Type:
 	const none := EntityAction.Type.none
-	
+
+
+	#region Grounded states
 
 	# Idle
 	const idle := EntityAction.Type.idle
@@ -14,57 +16,92 @@ class Type:
 
 	# Ground movement actions
 	const move := &"move"
-	
 
 	# Jumping
-	const jump := &"jump"
+	const jumpStart := &"jumpStart"
 
-	const jumpStill := &"STjump"
-	const jumpRun := &"RUjump"
+	# Dodge states
+	const dash := &"dash"
+
+	# Combat can cancel out movement, but not eachother, but may be queried
+	const lightAttack := &"lightAttack"
+	const heavyAttack := &"heavyAttack"
+
+	#endregion
+
+
+	#region Pure grounded states
+
+	# Landing
+	const landing := &"landing"
+
+	# Taunts
+	const taunt := &""
+
+	# Sprinting
+	const sprint := &"sprint"
+
+	#endregion
+
+
+	#region Aerial states
 
 	# Falling
 	const fall := &"fall"
+	const ledgeGrab := &"ledgeGrab"
 
-	# The landing animation can always determined, hence it needs no intermediate action
-	const landingStill := &"STland"
-	const landingRun := &"RUland"
-	
-
-	# Dodge states
-	const dodge := &"dodge"
-
-	const dodgeGround := &"GRdodge"
-	const dodgeAir := &"AIdodge"
+	#endregion
 
 
-	# Hit states
+	#region Grounded to aerial state
+	# Aerial versions of grounded states, NEVER used by input manager and refered to by explicitly
+
+	const airJumpStart := &"airJumpStart"
+	const airDash := &"airDash"
+
+	const airLightAttack := &"airLightAttack"
+	const airHeavyAttack := &"airHeavyAttack"
+
+	#endregion
+
+
+	#region Universal states
+
+	# Jumping behavior state
+	const jump := &"jump"
+
+	# Damage determines its behavior on the fly
 	const damage := EntityAction.Type.damage
-
-	const hitGround := &"GRhit"
-	const hitAir := &"AIhit"
-	const downedGround := &"GRdown"
-	const downedAir := &"AIdown"
-	const downedLanding := &"LAdown"
 
 	# u ded lmao skill issue
 	const death := &"dead"
 
+	#endregion
 
-	# Combat can cancel out movement, but not eachother, but may be queried
-	const lightAttack := &"LIattack"
-	const heavyAttack := &"HEattack"
-	
-	# The sidearm type cannot be determined during polling time
-	const sidearm := &"sidearm"
-	const ranged := &"ranged"
-	const whip := &"whip"
-	
-	const earthQuake := &"EQ"
-	const piercingShot := &"PS"
-	const sonOfHeaven := &"SOH"
 
-	# Taunts
-	const taunt := &""
+	#region Constants
+
+	const TO_AIR : Dictionary[StringName, StringName] = {
+		Type.idle : Type.fall,
+		Type.move : Type.fall,
+		Type.jumpStart : Type.airJumpStart,
+		Type.dash : Type.airDash,
+		Type.lightAttack : Type.airLightAttack,
+		Type.heavyAttack : Type.airHeavyAttack,
+
+		Type.fall : Type.fall,
+		Type.ledgeGrab : Type.ledgeGrab,
+
+		Type.jump : Type.jump,
+		Type.damage : Type.damage,
+		Type.death : Type.death,
+	}
+
+	#endregion
+
+	# const earthQuake := &"EQ"
+	# const piercingShot := &"PS"
+	# const sonOfHeaven := &"SOH"
 
 
 enum Priority {
@@ -94,21 +131,12 @@ enum Priority {
 #endregion
 
 
-#region Member variables
-
-var _queue : StringName = Type.none # Queued action, used for combos and buffering, not guaranteed to happen next
-
-#endregion
-
-
 #region Override functions
 
 func _enter() -> void:
 	_implEnter()
 
 func _exit() -> void:
-	_queue = Type.none
-
 	_implExit()
 
 
@@ -118,14 +146,19 @@ func _preprocessActions() -> void:
 
 func _nextAction() -> StringName:
 	# If a transition can occur and the queue is set, push the queue as the next action, else just take the best action in the inputs
-	return _implNextAction(_queue
-		if _queue != Type.none and actionViability(context.action(_queue)) == 1 else
+	var queue := (_context as PlayerActionManager).popActionQueue()
+	return _implNextAction(queue
+		if queue != Type.none and actionViability(_context.action(queue)) == 1 else
 			_highestPriorityAction())
 
 
 func _processDirectionAngle() -> float:
+	var flatInput := Vector3(inputs().direction.x, 0, inputs().direction.y)
+	if flatInput.is_zero_approx():
+		return 0.0
+
 	return (-player().basis.z).signed_angle_to(
-		Vector3(inputs().direction.x, 0, inputs().direction.y), 
+		flatInput, 
 		Vector3.UP
 	)
 
@@ -135,19 +168,25 @@ func _processDirectionAngle() -> float:
 #region Public funcitons
 
 func player() -> Player:
-	return context.entity as Player
+	return _context.entity as Player
+
+func context() -> PlayerActionManager:
+	return _context as PlayerActionManager
 
 func inputs() -> PlayerInputManager.Data:
-	return context.inputManager.inputs
+	return _context.inputManager.inputs
 
 func frameData() -> PlayerFrameData:
-	return context.frameData as PlayerFrameData
+	return _context.frameData as PlayerFrameData
 
 func resources() -> PlayerResources:
-	return context.resources as PlayerResources
+	return _context.resources as PlayerResources
 
 func animator() -> PlayerAnimator:
-	return context.animator as PlayerAnimator
+	return _context.animator as PlayerAnimator
+
+func combatManager() -> PlayerCombatManager:
+	return _context.combatManager as  PlayerCombatManager
 
 #endregion
 
@@ -160,32 +199,32 @@ func _checkAndSetQueue() -> void:
 		return
 
 	for actionType : StringName in inputs().actions:
-		var action := context.action(actionType) as PlayerAction
+		var action := _context.action(actionType) as PlayerAction
 		if not action.QUEUEABLE or actionViability(action) != 1:
 			continue
 
-		_queue = actionType
+		_context.pushActionQueue(actionType)
 		_insertComboPause()
 
 		return
 
 # Checks if a pause has been detected and a pause is part of the combo
 func _insertComboPause() -> void:
-	if not context.frameData.comboPause(data.ANIMATION_NAME, _progress):
+	if not _context.frameData.comboPause(data.ANIMATION_NAME, _progress):
 		return
 
-	if context.combatManager.isNextComboAction(Type.idle):
-		context.combatManager.registerComboAction(Type.idle) # Add the pause to the combo
+	if _context.combatManager.isNextComboAction(Type.idle):
+		_context.combatManager.registerComboAction(Type.idle) # Add the pause to the combo
 
 
-# Gets the highest priority action from the current input, given it has a higher pritority than the current one
+# Gets the highest priority action from the current input
 func _highestPriorityAction() -> StringName:
 	var candidate := Type.none
 
 	# Go through all higher priority actions and immediately return them if possible as they can cancel the current action
 	for actionType : StringName in inputs().actions:
-		var action := context.action(actionType) as PlayerAction
-		var viability := actionViability(action)
+		var action := _context.action(actionType) as PlayerAction
+		var viability := actionViability(action) # 0 == unviable, -1 == same action, 1 == possibly viable
 
 		# These checks here occur due to a tiebreaker when there are multiple actions with the same priority
 		if viability == 1:

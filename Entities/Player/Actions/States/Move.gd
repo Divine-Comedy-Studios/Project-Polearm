@@ -1,4 +1,4 @@
-extends PlayerBasicGrounded
+extends PlayerAction
 
 
 #region Constants
@@ -26,17 +26,14 @@ const MIN_PERIOD_MULTIPLIER := 0.7
 
 #region Member variables
 
-var _blendHandle : StringName = &"GroundedLocomotion"
-
-
 # Animation data
 
-var _walkPeriod : float
-var _runPeriod : float
+var _walkPeriod : float = 0.0
+var _runPeriod : float = 0.0
 
-var _maxPeriod : float
+var _maxPeriod : float = 0.0
 
-var _period : float
+var _period : float = 0.0
 
 #endregion
 
@@ -44,9 +41,9 @@ var _period : float
 #region Override functions
 
 func _implInit() -> void:
-	assert(IDLE_DATA != null, "GroundedLocomotion._implInit(): Idle action data not assigned")
-	assert(WALK_DATA != null, "GroundedLocomotion._implInit(): Walking action data not assigned")
-	assert(RUN_DATA != null, "GroundedLocomotion._implInit(): Running action data not assigned")
+	assert(IDLE_DATA != null, "PlayerActionMove._implInit(): Idle action data not assigned")
+	assert(WALK_DATA != null, "PlayerActionMove._implInit(): Walking action data not assigned")
+	assert(RUN_DATA != null, "PlayerActionMove._implInit(): Running action data not assigned")
 
 	animator().animationDriver(&"Idle").animation = IDLE_DATA.ANIMATION_FULL_NAME
 	animator().animationDriver(&"Walk").animation = WALK_DATA.ANIMATION_FULL_NAME
@@ -61,8 +58,10 @@ func _implInit() -> void:
 
 
 func _implEnter() -> void:
+	resources().jumpCount.value = 0
+
 	animator().setCoreTransition(&"AdvancedTransition", data.ANIMATION_FADE_TIME)
-	animator().transitionTo(&"AdvancedTransition", &"GroundedLocomotion")
+	animator().transitionTo(&"AdvancedTransition", &"Move")
 
 
 func _implExit() -> void:
@@ -84,7 +83,7 @@ func _tick(delta : float) -> void:
 
 func _processAnimations() -> void:
 	var normRange := maxf(
-		PPUtil.Math.toRangeNormalized(player().velocity.length(), WALK_SPEED_MAX, RUN_SPEED_MAX), 
+		clampf(PPUtil.Math.toRangeNormalized(player().velocity.length(), WALK_SPEED_MAX, RUN_SPEED_MAX), -1.0, 1.0), 
 		-MIN_PERIOD_MULTIPLIER
 	)
 	_period = maxf(
@@ -95,6 +94,6 @@ func _processAnimations() -> void:
 	frameDataScale = _walkPeriod / _period
 	animator().setScale(&"WalkScale", frameDataScale)
 	animator().setScale(&"RunScale", _runPeriod / _period)
-	animator().setBlendAmount(_blendHandle, normRange)
+	animator().setBlendAmount(&"Move", normRange)
 
 #endregion

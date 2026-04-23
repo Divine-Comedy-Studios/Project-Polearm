@@ -12,6 +12,7 @@ class Data extends RefCounted:
 	var direction : Vector2
 
 	var actions : Array[StringName]
+	var modifiers : Array[StringName]
 	
 	func reset() -> void:
 		inputDirection = Vector2.ZERO
@@ -19,6 +20,7 @@ class Data extends RefCounted:
 		direction = Vector2.ZERO
 
 		actions.clear()
+		modifiers.clear()
 
 
 #region Exported variables
@@ -93,10 +95,15 @@ func processMovementDirection() -> void:
 	).normalized()
 
 func processMovementActions():
+	if Input.is_action_just_pressed("Jump"):
+		inputs.actions.append(PlayerAction.Type.jumpStart)
 	if Input.is_action_pressed("Jump"):
-		inputs.actions.append(PlayerAction.Type.jump)
+		inputs.modifiers.append(PlayerAction.Type.jump)
+
+	#if Input.is_action_pressed("Dodge"):
+	#	inputs.actions.append(PlayerAction.Type.dodge)
 	
-	if Input.is_action_pressed("Dodge"):
-		inputs.actions.append(PlayerAction.Type.dodge)
+	if Input.is_action_just_pressed("Light attack"):
+		inputs.actions.append(PlayerAction.Type.lightAttack)
 
 #endregion

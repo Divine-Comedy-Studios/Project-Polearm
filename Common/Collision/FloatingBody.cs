@@ -83,9 +83,9 @@ using System.Linq;
 	#endregion
 
 
-	#region Scene Members
+	#region Scene members
 
-	[ExportGroup("Scene Members")]
+	[ExportGroup("Scene members")]
 	[Export] public CollisionShape3D bodyCollider = null;
 	[Export] public ShapeCast3D groundCast = null;
 
@@ -192,21 +192,40 @@ using System.Linq;
 
 	public void move(Vector3 velocity) => Move(velocity);
 	public void Move(Vector3 velocity) {
-		m_targetVelocity = velocity;
+		m_targetVelocity += velocity;
 	}
 
 	public void moveFlat(Vector3 velocity) => MoveFlat(new Vector2(velocity.X, velocity.Y));
 	public void MoveFlat(Vector3 velocity) => MoveFlat(new Vector2(velocity.X, velocity.Y));
 	public void moveFlat(Vector2 velocity) => MoveFlat(velocity);
 	public void MoveFlat(Vector2 velocity) {
-		m_targetVelocity.X = velocity.X;
-		m_targetVelocity.Y = velocity.Y;
+		m_targetVelocity.X += velocity.X;
+		m_targetVelocity.Z += velocity.Y;
 	}
 
 	public void moveVertical(float velocity) => MoveVertical(velocity);
 	public void MoveVertical(float velocity) {
+		m_targetVelocity.Y += velocity;
+	}
+
+
+	public void setMovement(Vector3 velocity) => SetMovement(velocity);
+	public void SetMovement(Vector3 velocity) {
+		m_targetVelocity = velocity;
+	}
+
+	public void setMovementFlat(Vector3 velocity) => SetMovementFlat(new Vector2(velocity.X, velocity.Y));
+	public void SetMovementFlat(Vector3 velocity) => SetMovementFlat(new Vector2(velocity.X, velocity.Y));
+	public void setMovementFlat(Vector2 velocity) => SetMovementFlat(velocity);
+	public void SetMovementFlat(Vector2 velocity) {
+		m_targetVelocity.X = velocity.X;
+		m_targetVelocity.Z = velocity.Y;
+	}
+	public void setMovementVertical(float velocity) => SetMovementVertical(velocity);
+	public void SetMovementVertical(float velocity) {
 		m_targetVelocity.Y = velocity;
 	}
+
 
 	// Acceleration based movement
 
@@ -288,7 +307,6 @@ using System.Linq;
 	}
 
 
-	// Ground functions
 	public Vector3 groundPoint() => GroundPoint();
 	public Vector3 GroundPoint() {
 		return m_groundedData.Point;
@@ -307,6 +325,9 @@ using System.Linq;
 
 		m_groundRID = new Rid();
 		m_groundState = null;
+
+		m_groundData.Clear();
+		m_footData.Clear();
 
 		_standingCollider();
 	}
@@ -330,11 +351,17 @@ using System.Linq;
 		}
 	}
 
-
-	// Utility functions
 	public bool slopeWalkable(Vector3 normalized) => SlopeWalkable(normalized);
 	public bool SlopeWalkable(Vector3 normalized) {
 		return normalized.Y > SLOPE_MAX_ANGLE_COS;
+	}
+
+
+	// Transformation getters
+
+	public Vector3 forward() => Forward();
+	public Vector3 Forward() {
+		return -Transform.Basis.Column2;
 	}
 
 	#endregion
@@ -395,15 +422,16 @@ using System.Linq;
 		_processGroundCollisionData();
 		_processFootCollisionData();
 
-		if (!m_groundData.Grounded && !m_footData.Grounded && !lastForwardProbeGrounded) {
+		if (m_groundData.Grounded || m_footData.Grounded || lastForwardProbeGrounded) {
+			if (!m_grounded)
+				AttachGround();
+		} else {
 			DetachGround();
 			return;
 		}
 
 		if (m_grounded)
 			m_distanceBufferEnabled = true;
-		else
-			attachGround();
 		
 
 		// Movement collision checks
@@ -453,11 +481,11 @@ using System.Linq;
 			line.Y += m_groundData.Offset / VELOCITY_VERTICAL_OVERCORRECTION_FACTOR;
 
 			// If the horizontal OR vertical component of line is too small
-			if (Mathf.Abs(line.Y) < COLLISION_EPSILON || PPUtil.Math.FlatLengthSquared(line) < COLLISION_EPSILON_SQARED)
+			if (PPUtil.Math.FlatLengthSquared(line) < COLLISION_EPSILON_SQARED) {
 				targetVelocity = PPUtil.Math.RotateVectorOntoPlane(targetVelocity, m_groundData.Normal);
-			else // The two cross products produce the final slope vector to rotate velocity by
+			} else // The two cross products produce the final slope vector to rotate velocity by
 				targetVelocity = PPUtil.Math.RotateVectorOntoPlane(targetVelocity, line.Cross(m_footData.Normal).Cross(line).Normalized());
-		} else {
+		} else if (m_groundedData.Grounded) {
 			float absOffset = Mathf.Abs(m_groundedData.Offset);
 
 			if (absOffset > STEP_MAX_HEIGHT)
