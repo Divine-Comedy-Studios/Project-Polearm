@@ -12,8 +12,7 @@ class_name PlayerResources
 
 @export_group("Resources")
 
-@export var maxJumpCount : int = 1
-@export var jumpCount : int = 0
+@export var jumpCount : IntegerResource = null
 
 @export var flow : ValueResource = null
 
