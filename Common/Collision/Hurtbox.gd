@@ -2,12 +2,24 @@ extends Area3D
 class_name Hurtbox
 
 
-#region Built-in funcitons
+#region Built-in functions
 
 func _ready() -> void:
 	area_entered.connect(_onHit)
 
 	monitorable = false
+	monitoring = true
+
+#endregion
+
+
+#region Public functions
+
+func enable() -> void:
+	monitoring = true
+
+func disable() -> void:
+	monitoring = false
 
 #endregion
 

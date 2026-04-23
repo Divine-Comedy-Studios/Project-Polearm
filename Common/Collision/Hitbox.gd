@@ -32,11 +32,11 @@ func _ready() -> void:
 
 #region Public functions
 
-func activate(hitData : Data) -> void:
+func enable(hitData : Data) -> void:
 	data = hitData
 	monitorable = true
 
-func deactivate() -> void:
+func disable() -> void:
 	data = null
 	monitorable = false
 

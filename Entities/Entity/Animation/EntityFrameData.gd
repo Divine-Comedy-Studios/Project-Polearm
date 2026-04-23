@@ -7,12 +7,11 @@ class_name EntityFrameData
 #region Exported action properties
 
 @export_group("Animation")
-@export var _interruptable : bool = false # Can this action transition to an action of same or higher priority?
-@export var _transitionable : bool = true # Can the current action transition to a lower priority one?
-@export var _rotationTracking : float = 0.0 # Speed of rotation tracking
+@export var _interruptable : bool = false # Can this action be affected by a state machine interrupt?
+@export var _transitionable : bool = true # Can the current action transition to another one?
 
 @export_group("Behavior")
-@export var _vulnerable : bool = false # Is the entity vulnerable?
+@export var _rotationTracking : float = 0.0 # Speed of rotation tracking
 
 #endregion
 
@@ -25,9 +24,6 @@ func transitionable(animationName : StringName, time : float) -> bool:
 func rotationTracking(animationName : StringName, time : float) -> float:
 	return _getValue(animationName, ^"FrameData:_rotationTracking", time) as float
 
-
-func vulnerable(animationName : StringName, time : float) -> bool:
-	return _getValue(animationName, ^"FrameData:_vulnerable", time) as bool
 
 func interruptable(animationName : StringName, time : float) -> bool:
 	return _getValue(animationName, ^"FrameData:_interruptable", time) as bool
