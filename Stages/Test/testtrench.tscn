@@ -1,0 +1,112 @@
+[gd_scene format=4 uid="uid://brsbh10ej2opi"]
+
+[ext_resource type="Script" uid="uid://cwu5cf7a0awcd" path="res://addons/func_godot/src/map/func_godot_map.gd" id="1_vfe17"]
+[ext_resource type="Resource" uid="uid://cnygh8csloaqa" path="res://Trenchbroom/ProjectPolearmMapSettings.tres" id="2_3mnn6"]
+[ext_resource type="Material" uid="uid://byucy5ve5rloo" path="res://Trenchbroom/textures/Greybox Textures/PNG/Dark/texture_07.tres" id="3_vfe17"]
+[ext_resource type="PackedScene" uid="uid://cyti0335fm7s0" path="res://Entities/Player/Player.tscn" id="4_3mnn6"]
+[ext_resource type="PackedScene" uid="uid://2twxnnq3mj7i" path="res://Common/Camera/SceneCamera/SceneCamera.tscn" id="5_ec1g0"]
+[ext_resource type="Shader" uid="uid://exx180lp74b0" path="res://Assets/Shaders/Sky/StylizedSky.gdshader" id="6_trpii"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_f7dji"]
+_surfaces = [{
+"aabb": AABB(-2.5, -0.25, -2.5, 5, 0.25, 9),
+"attribute_data": PackedByteArray("AACgwAAAID4AAKBAAAAgPgAAoEAAACg/AACgwAAAKD8AAH9AAAAoPwCAoMAAACg/AICgwAAAID4AAH9AAAAgPgAAf8AAAKBAAAB/wAAAoMAAgKBAAACgwACAoEAAAKBAAAB/QAAAoEAAgKDAAACgQACAoMAAAKDAAAB/QAAAoMAAAH/AAAAgPgCAoEAAACA+AICgQAAAKD8AAH/AAAAoPwAAoEAAACg/AACgwAAAKD8AAKDAAAAgPgAAoEAAACA+AACgwAAAID4AAKBAAAAgPgAAoEAAACg/AACgwAAAKD8AgE1BAAAoPwAAdkAAACg/AAB2QAAAID4AgE1BAAAgPgCATcEAAKBAAIBNwQAAoMAAAHbAAACgwAAAdsAAAKBAAIBNQQAAoEAAAHZAAACgQAAAdkAAAKDAAIBNQQAAoMAAgE3BAAAgPgAAdsAAACA+AAB2wAAAKD8AgE3BAAAoPwAAoEAAACg/AACgwAAAKD8AAKDAAAAgPgAAoEAAACA+"),
+"format": 34359742487,
+"index_count": 72,
+"index_data": PackedByteArray("AAABAAIAAAACAAMABAAFAAYABAAGAAcACAAJAAoACAAKAAsADAANAA4ADAAOAA8AEAARABIAEAASABMAFAAVABYAFAAWABcAGAAZABoAGAAaABsAHAAdAB4AHAAeAB8AIAAhACIAIAAiACMAJAAlACYAJAAmACcAKAApACoAKAAqACsALAAtAC4ALAAuAC8A"),
+"material": ExtResource("3_vfe17"),
+"name": "Greybox Textures/PNG/Dark/texture_07",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 48,
+"vertex_data": PackedByteArray("AAAgQAAAAAAAACDAAAAgwAAAAAAAACDAAAAgwAAAgL4AACDAAAAgQAAAgL4AACDAAAAgwAAAgL4AAABAAAAgwAAAgL4AACDAAAAgwAAAAAAAACDAAAAgwAAAAAAAAABAAAAgwAAAgL4AAABAAAAgQAAAgL4AAABAAAAgQAAAgL4AACDAAAAgwAAAgL4AACDAAAAgwAAAAAAAAABAAAAgwAAAAAAAACDAAAAgQAAAAAAAACDAAAAgQAAAAAAAAABAAAAgQAAAAAAAAABAAAAgQAAAAAAAACDAAAAgQAAAgL4AACDAAAAgQAAAgL4AAABAAAAgQAAAgL4AAABAAAAgwAAAgL4AAABAAAAgwAAAAAAAAABAAAAgQAAAAAAAAABAAAAgQAAAAAAAAABAAAAgwAAAAAAAAABAAAAgwAAAgL4AAABAAAAgQAAAgL4AAABAAAAgwAAAgL4AANBAAAAgwAAAgL4AAABAAAAgwAAAAAAAAABAAAAgwAAAAAAAANBAAAAgwAAAgL4AANBAAAAgQAAAgL4AANBAAAAgQAAAgL4AAABAAAAgwAAAgL4AAABAAAAgwAAAAAAAANBAAAAgwAAAAAAAAABAAAAgQAAAAAAAAABAAAAgQAAAAAAAANBAAAAgQAAAAAAAANBAAAAgQAAAAAAAAABAAAAgQAAAgL4AAABAAAAgQAAAgL4AANBAAAAgQAAAgL4AANBAAAAgwAAAgL4AANBAAAAgwAAAAAAAANBAAAAgQAAAAAAAANBA/////wAA/7//////AAD/v/////8AAP+//////wAA/78AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//v/9/AAD//////38AAP//////fwAA//////9/AAD//////3////9//7//f////3//v/9/////f/+//3////9//7////9//////////3//////////f/////////9///////9//3////+//3//f////7//f/9/////v/9//3////+//////wAA/7//////AAD/v/////8AAP+//////wAA/78AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//v/9/AAD//////38AAP//////fwAA//////9/AAD//////3////9//7//f////3//v/9/////f/+//3////9//7////9//////////3//////////f/////////9///////9//3////+//3//f////7//f/9/////v/9//3////+/")
+}]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ec1g0"]
+points = PackedVector3Array(2.5, 0, 2, 2.5, -0.25, 2, -2.5, 0, 2, -2.5, -0.25, 2, 2.5, 0, -2.5, 2.5, -0.25, -2.5, -2.5, 0, -2.5, -2.5, -0.25, -2.5)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_trpii"]
+points = PackedVector3Array(2.5, 0, 6.5, 2.5, -0.25, 6.5, -2.5, 0, 6.5, -2.5, -0.25, 6.5, 2.5, 0, 2, 2.5, -0.25, 2, -2.5, 0, 2, -2.5, -0.25, 2)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_othpa"]
+shader = ExtResource("6_trpii")
+shader_parameter/day_top_color = Color(0.1, 0.6, 1, 1)
+shader_parameter/day_bottom_color = Color(0.4, 0.8, 1, 1)
+shader_parameter/sunset_top_color = Color(0.7, 0.75, 1, 1)
+shader_parameter/sunset_bottom_color = Color(1, 0.5, 0.7, 1)
+shader_parameter/night_top_color = Color(0.02, 0, 0.04, 1)
+shader_parameter/night_bottom_color = Color(0.1, 0, 0.2, 1)
+shader_parameter/horizon_color = Color(0, 0.7, 0.8, 1)
+shader_parameter/horizon_blur = 0.05
+shader_parameter/sun_color = Color(10, 8, 1, 1)
+shader_parameter/sun_sunset_color = Color(10, 0, 0, 1)
+shader_parameter/sun_size = 0.2
+shader_parameter/sun_blur = 10.0
+shader_parameter/moon_color = Color(1, 0.95, 0.7, 1)
+shader_parameter/moon_size = 0.06
+shader_parameter/moon_blur = 0.1
+shader_parameter/clouds_edge_color = Color(0.8, 0.8, 0.98, 1)
+shader_parameter/clouds_top_color = Color(1, 1, 1, 1)
+shader_parameter/clouds_middle_color = Color(0.92, 0.92, 0.98, 1)
+shader_parameter/clouds_bottom_color = Color(0.83, 0.83, 0.94, 1)
+shader_parameter/clouds_speed = 2.0
+shader_parameter/clouds_direction = 0.2
+shader_parameter/clouds_scale = 1.0
+shader_parameter/clouds_cutoff = 0.3
+shader_parameter/clouds_fuzziness = 0.5
+shader_parameter/clouds_weight = 0.0
+shader_parameter/clouds_blur = 0.25
+shader_parameter/stars_speed = 1.0
+shader_parameter/overwritten_time = 0.0
+
+[sub_resource type="Sky" id="Sky_uesqs"]
+sky_material = SubResource("ShaderMaterial_othpa")
+
+[sub_resource type="Environment" id="Environment_k1kf5"]
+background_mode = 2
+sky = SubResource("Sky_uesqs")
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_sky_contribution = 0.67
+ambient_light_energy = 0.3
+
+[node name="Node3D" type="Node3D" unique_id=1696580281]
+
+[node name="FuncGodotMap" type="Node3D" parent="." unique_id=392945415]
+script = ExtResource("1_vfe17")
+local_map_file = "uid://c7rgcogankq7x"
+map_settings = ExtResource("2_3mnn6")
+metadata/_custom_type_script = "uid://cwu5cf7a0awcd"
+
+[node name="entity_0_worldspawn" type="StaticBody3D" parent="FuncGodotMap" unique_id=303987126]
+collision_mask = 0
+
+[node name="entity_0_mesh_instance" type="MeshInstance3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1066008319]
+mesh = SubResource("ArrayMesh_f7dji")
+
+[node name="entity_0_brush_0_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=949343528]
+shape = SubResource("ConvexPolygonShape3D_ec1g0")
+
+[node name="entity_0_brush_1_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=783148309]
+shape = SubResource("ConvexPolygonShape3D_trpii")
+
+[node name="Player" parent="." unique_id=1165042510 instance=ExtResource("4_3mnn6")]
+
+[node name="Visuals" type="Node" parent="." unique_id=1540447604]
+
+[node name="SceneCamera" parent="Visuals" unique_id=1015597522 instance=ExtResource("5_ec1g0")]
+transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 0, 0)
+top_level = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Visuals" unique_id=1454148134]
+environment = SubResource("Environment_k1kf5")
+
+[node name="SunAxis" type="Node3D" parent="Visuals" unique_id=214482567]
+transform = Transform3D(-4.371139e-08, 0.86602545, -0.49999997, 0, 0.49999997, 0.86602545, 1, 3.7855173e-08, -2.1855692e-08, 0, 0, 0)
+
+[node name="Sun" type="DirectionalLight3D" parent="Visuals/SunAxis" unique_id=1957022822]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1000)
+shadow_enabled = true
+shadow_transmittance_bias = -0.02
+shadow_opacity = 0.9
+shadow_blur = 6.35
