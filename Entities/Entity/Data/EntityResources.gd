@@ -4,13 +4,10 @@ class_name EntityResources
 
 #region Exported variables
 
-@export_group("States")
-@export var invincible : bool = false # Overrides the current invincibility of the state
-
-@export_group("Properties")
-@export var maxHealth : float = 100.0
-@export var maxEnergy : float = 100.0
-@export var maxSuperArmor : float = 100.0
+@export_group("Resources")
+@export var health : ValueResource = null
+@export var energy : ValueResource = null
+@export var superArmor : ValueResource = null
 
 #endregion
 
@@ -19,29 +16,6 @@ class_name EntityResources
 
 @export_group("Scene members")
 @export var actionManager : EntityActionManager
-
-#endregion
-
-
-#region Member variables
-
-@onready var health : float = maxHealth:
-	get:
-		return health
-	set(value):
-		health = clampf(value, 0.0, maxHealth)
-
-@onready var energy : float = maxEnergy:
-	get:
-		return energy
-	set(value):
-		energy = clampf(value, 0.0, maxEnergy)
-
-@onready var superArmor : float = maxSuperArmor:
-	get:
-		return superArmor
-	set(value):
-		superArmor = clampf(value, 0.0, maxSuperArmor)
 
 #endregion
 
@@ -57,26 +31,22 @@ func _ready() -> void:
 #region Public functions
 
 func takeDamage(hitData : Hitbox.Data) -> void:
-	if invincible:
-		return
 	if not actionManager.currentState.vulnerable():
 		return
 
-	if not actionManager.currentState.interruptable():
-		superArmor -= hitData.superArmorDamage
+	superArmor.value -= hitData.superArmorDamage
+	health.value -= hitData.damage
 
-	health -= hitData.damage
-
-	actionManager.interrupt(EntityAction.Type.damage)
-
-	_implTakeDamage(hitData)
+	if not health.locked:
+		actionManager.interrupt(EntityAction.Type.damage)
+		_implTakeDamage(hitData)
 
 
 func payable(action : EntityAction) -> bool:
-	return action.ENERGY_COST <= energy and _implPayable(action)
+	return action.ENERGY_COST <= energy.value and _implPayable(action)
 
 func pay(action : EntityAction) -> void:
-	energy -= action.ENERGY_COST
+	energy.value -= action.ENERGY_COST
 
 	_implPay(action)
 

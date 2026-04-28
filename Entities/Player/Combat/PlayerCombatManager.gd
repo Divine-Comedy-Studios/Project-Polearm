@@ -47,10 +47,19 @@ var previousCombos : Array[StringName]
 #region Built-in functions
 
 func _ready() -> void:
-	assert(resources != null, "PlayerCombatManager._ready(): Resource container not assigned!")
-
 	for combo in unlockedCombos:
 		unlockCombo(combo)
+
+#endregion
+
+
+#region Override functions
+
+func _resetFinishedCombo(action : EntityComboAction) -> void:
+	if previousCombos.size() == MAX_PREVIOUS_COMBO_COUNT:
+		previousCombos.pop_front()
+
+	previousCombos.append(action.COMBO_TYPE)
 
 #endregion
 
@@ -64,16 +73,5 @@ func comboPreviousUse(combo : StringName) -> int:
 			return x + 1
 
 	return 0
-
-#endregion
-
-
-#region Override functions
-
-func _resetFinishedCombo(action : EntityComboAction) -> void:
-	if previousCombos.size() == MAX_PREVIOUS_COMBO_COUNT:
-		previousCombos.pop_front()
-
-	previousCombos.append(action.COMBO_TYPE)
 
 #endregion

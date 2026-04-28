@@ -2,12 +2,17 @@
 
 [ext_resource type="Script" uid="uid://c31gnbehqoq8y" path="res://Core/Main/Main.gd" id="1_ycf5l"]
 [ext_resource type="Script" uid="uid://56qy2l42kqa8" path="res://Core/Main/States/BootState.gd" id="2_2cw8b"]
+[ext_resource type="Script" uid="uid://covgehn0y4vp2" path="res://Core/Settings/SettingsManager.gd" id="2_x511n"]
 [ext_resource type="Script" uid="uid://rsh5cj6cpwis" path="res://Core/Main/States/MainMenuState.gd" id="3_1s610"]
 [ext_resource type="Script" uid="uid://bicl85c04tdj7" path="res://Core/Main/States/GameState.gd" id="4_jgmb7"]
 
 [node name="Main" type="Node" unique_id=1689907238]
 script = ExtResource("1_ycf5l")
 metadata/_custom_type_script = "uid://c31gnbehqoq8y"
+
+[node name="SettingsManager" type="Node" parent="." unique_id=279612331]
+script = ExtResource("2_x511n")
+metadata/_custom_type_script = "uid://covgehn0y4vp2"
 
 [node name="BootState" type="Node" parent="." unique_id=137023619 node_paths=PackedStringArray("_mainMenu")]
 process_mode = 4

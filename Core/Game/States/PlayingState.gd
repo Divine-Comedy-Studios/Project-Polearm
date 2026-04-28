@@ -11,6 +11,23 @@ func _ready() -> void:
 #endregion
 
 
+#region Override functions
+
+func type() -> StringName:
+	return Game.Type.playing
+
+
+func _implCreateScene() -> Node:
+	assert( \
+		ResourceLoader.load_threaded_get_status(SCENE_PATH) == ResourceLoader.THREAD_LOAD_LOADED, \
+		"PlayingState.createSceneImpl(): Scene resource has not finished loading! Please use the PlayingState.finishedLoading() function.")
+
+	_sceneResource = ResourceLoader.load_threaded_get(SCENE_PATH)
+	return _sceneResource.instantiate()
+
+#endregion
+
+
 #region Public functions
 
 func finishedLoading() -> bool:
@@ -23,22 +40,5 @@ func finishedLoading() -> bool:
 			assert(false, "PlayingState.finishedLoading(): Loading scene resource failed")
 	
 	return false
-
-#endregion
-
-
-#region Override functions
-
-func _implCreateScene() -> Node:
-	assert( \
-		ResourceLoader.load_threaded_get_status(SCENE_PATH) == ResourceLoader.THREAD_LOAD_LOADED, \
-		"PlayingState.createSceneImpl(): Scene resource has not finished loading! Please use the PlayingState.finishedLoading() function.")
-
-	_sceneResource = ResourceLoader.load_threaded_get(SCENE_PATH)
-	return _sceneResource.instantiate()
-
-
-func type() -> StringName:
-	return Game.Type.playing
 
 #endregion

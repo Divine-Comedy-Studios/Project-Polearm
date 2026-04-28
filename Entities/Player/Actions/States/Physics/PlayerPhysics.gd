@@ -10,11 +10,13 @@ class LedgeData:
 
 	var point : Vector3 = Vector3.ZERO
 	var normal : Vector3 = Vector3.ZERO
+	var wallNormal : Vector3 = Vector3.ZERO
 
 	func reset() -> void:
 		collided = false
 		point = Vector3.ZERO
 		normal = Vector3.ZERO
+		wallNormal = Vector3.ZERO
 
 #endregion
 
@@ -22,13 +24,11 @@ class LedgeData:
 #region Exported variables
 
 @export_group("Ledge settings")
-@export var LEDGE_MAX_DISTANCE : float = 0.1
+@export var LEDGE_MAX_DISTANCE : float = 0.2
 
-@export var LEDGE_MIN_DEPTH : float = 0.05
-
-@export var LEDGE_MAX_HEIGHT : float = 2.3
-@export var LEDGE_MIN_HEIGHT : float = 2.1
-@export var LEDGE_MIN_CEILING_HEIGHT : float = 0.1
+@export var LEDGE_MAX_HEIGHT : float = 2.0
+@export var LEDGE_MIN_HEIGHT : float = 1.8
+@export var LEDGE_MIN_CEILING_HEIGHT : float = 0.2
 
 @export_range(-360, 360, 0.001, "radians_as_degrees") var LEDGE_SWEEP_SIDE_ANGLE : float = 0.1
 @export var LEDGE_SWEEP_COUNT : int = 24
@@ -39,7 +39,9 @@ class LedgeData:
 #region Scene members
 
 @export_group("Scene members")
-@export var _player : Player = null
+@export var _context : PlayerActionManager = null
+
+var _player : Player = null
 
 #endregion
 
@@ -48,11 +50,11 @@ class LedgeData:
 
 # References
 
-@onready var LEDGE_SWEEP_TOTAL_ANGLE := LEDGE_SWEEP_SIDE_ANGLE * 2
+@onready var LEDGE_SWEEP_TOTAL_ANGLE := LEDGE_SWEEP_SIDE_ANGLE * 2.0
 @onready var LEDGE_SWEEP_SINGLE_ANGLE := LEDGE_SWEEP_TOTAL_ANGLE / LEDGE_SWEEP_COUNT
 @onready var LEDGE_MAX_CEILING_OFFSET := LEDGE_MAX_HEIGHT + LEDGE_MIN_CEILING_HEIGHT
-@onready var LEDGE_SWEEP_DISTANCE : float = 1#_player.BODY_COLLIDER_RADIUS + LEDGE_MAX_DISTANCE
-@onready var LEDGE_MINIMUM_DIST : float = 1#_player.BODY_COLLIDER_RADIUS + LEDGE_MIN_DEPTH
+
+var LEDGE_SWEEP_DISTANCE : float = 0.0
 
 # State
 
@@ -69,7 +71,14 @@ var ledgeData : LedgeData = LedgeData.new()
 #region Built-in funcitons
 
 func _ready() -> void:
-	assert(_player != null, "PlayerPhysics._ready(): Player not assigned!")
+	assert(_context != null, "PlayerPhysics._ready(): Player action manager not assigned!")
+
+	await _context.ready
+	await _context.entity.ready
+
+	_player = _context.entity as Player
+
+	LEDGE_SWEEP_DISTANCE = _player.BODY_COLLIDER_RADIUS + LEDGE_MAX_DISTANCE
 
 	_rayQuery.collision_mask = _player.collision_mask
 
@@ -79,38 +88,29 @@ func _ready() -> void:
 #region Public funcitons
 
 func sweepLedge() -> void:
-	# Caching
-	var TOP_MAX_HEIGHT := global_position.y + LEDGE_MAX_CEILING_OFFSET
-	var TOP_MIN_HEIGHT := global_position.y + LEDGE_MIN_HEIGHT
+	var globalPos := _player.global_position
 
 	# Reset collision data first
 	ledgeData.reset()
 
 	# Calculate the position to start the ledge sweep at
-	var forward := -transform.basis.z
+	var forward : Vector3 = _player.forward()
 	var pos := Vector3(forward.x, 0, forward.z).rotated(Vector3.UP, -LEDGE_SWEEP_SIDE_ANGLE).normalized() * LEDGE_SWEEP_DISTANCE
 
 	var absCollidedAngle : float = INF
 	var currentAngle : float = -LEDGE_SWEEP_SIDE_ANGLE
 
-
 	for i : int in range(LEDGE_SWEEP_COUNT):
-		_setRayQuery(
-			Vector3(pos.x, TOP_MAX_HEIGHT, pos.z),
-			Vector3(pos.x, TOP_MIN_HEIGHT, pos.z))
-		
-		if _processLedgeCollision(TOP_MAX_HEIGHT):
+		if _processLedgeCollision(pos, globalPos):
 			absCollidedAngle = abs(currentAngle)
 
-
 		# Rotate the position vector to the next sweep point
-
 		currentAngle += LEDGE_SWEEP_SINGLE_ANGLE
 		if abs(currentAngle) > absCollidedAngle:
 			# If the angle of the place we are already collided at is smaller, then
 			# all other angles going forward will only grow bigger, hence we stop
 			return
-		
+
 		pos = pos.rotated(Vector3.UP, LEDGE_SWEEP_SINGLE_ANGLE) #.normalized() * LEDGE_SWEEP_DISTANCE
 
 #endregion
@@ -120,9 +120,17 @@ func sweepLedge() -> void:
 
 # Collision functions
 
-func _processLedgeCollision(maxHeight : float) -> bool:		
-	var collision := get_world_3d().direct_space_state.intersect_ray(_rayQuery)
+func _processLedgeCollision(pos : Vector3, globalPos : Vector3) -> bool:		
+	var globalPosX := pos.x + globalPos.x
+	var globalPosZ := pos.z + globalPos.z
+	var maxHeight := globalPos.y + LEDGE_MAX_CEILING_OFFSET
 
+	# Check vertical collision
+	_setRayQuery(
+		Vector3(globalPosX, maxHeight, globalPosZ),
+		Vector3(globalPosX, globalPos.y + LEDGE_MIN_HEIGHT, globalPosZ))
+
+	var collision := get_world_3d().direct_space_state.intersect_ray(_rayQuery)
 	if !collision:
 		return false
 	
@@ -133,11 +141,22 @@ func _processLedgeCollision(maxHeight : float) -> bool:
 		return false
 	if !_player.slopeWalkable(ledgeData.normal):
 		return false
-	
-	var toCollisionPoint := ledgeData.point - global_position
-	toCollisionPoint.y = 0
 
-	if toCollisionPoint.length() - LEDGE_MINIMUM_DIST < 0:
+	
+	# Check lower wall normal
+
+	var lowerWallOffset := ledgeData.point.y - LEDGE_MIN_CEILING_HEIGHT
+
+	_setRayQuery(
+		Vector3(globalPos.x, lowerWallOffset, globalPos.z),
+		Vector3(globalPosX, lowerWallOffset, globalPosZ))
+
+	collision = get_world_3d().direct_space_state.intersect_ray(_rayQuery)
+	if !collision:
+		return false
+
+	ledgeData.wallNormal = collision.normal as Vector3
+	if not is_zero_approx(ledgeData.wallNormal.y): # Only ledge grab on vertical surfaces
 		return false
 
 	ledgeData.collided = true

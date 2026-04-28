@@ -4,23 +4,29 @@ class_name EntityActionManager
 
 #region Scene members
 
-@export var entity : PhysicsBody3D = null
-
+@export_group("Scene members")
+@export var entity : Node3D = null
 @export var frameData : EntityFrameData = null
 @export var resources : EntityResources = null
-
-@export var combatManager : EntityCombatManager = null
-
 @export var animator : EntityAnimator = null
+
+@onready var combatManager : EntityCombatManager = $"CombatManager"
 
 #endregion
 
 
-#region Built-in functions
+#region Override functions
 
 func tick(delta: float) -> void:
 	update()
 	currentState.tick(delta)
+
+
+func _interruptState(type : StringName) -> StringName:
+	return currentState.interrupt(type)
+
+func _nextState() -> StringName:
+	return currentState.nextAction()
 
 #endregion
 
@@ -41,18 +47,6 @@ func init() -> void:
 
 
 func hasHigherPriority(a : StringName, b : StringName) -> bool:
-	return EntityAction.hasHigherPriority(action(a), action(b))
-
-#endregion
-
-
-#region Override functions
-
-func _interruptState(type : StringName) -> StringName:
-	return entity.interrupt(type)
-
-
-func _nextState() -> StringName:
-	return currentState.nextAction()
+	return EntityAction.hasHigherPriority(action(a) as EntityAction, action(b) as EntityAction)
 
 #endregion

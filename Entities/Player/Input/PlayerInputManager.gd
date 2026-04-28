@@ -12,9 +12,15 @@ class Data extends RefCounted:
 	var direction : Vector2
 
 	var actions : Array[StringName]
+	var modifiers : Array[StringName]
 	
 	func reset() -> void:
-		actions.clear() # Both directions don't have to be reset because they will be reassigned every time
+		inputDirection = Vector2.ZERO
+		inputMagnitude = 0.0
+		direction = Vector2.ZERO
+
+		actions.clear()
+		modifiers.clear()
 
 
 #region Exported variables
@@ -48,11 +54,12 @@ func _ready() -> void:
 
 func _physics_process(_delta : float) -> void:
 	inputs.reset()
+
+	# Add default options
 	inputs.actions.append(PlayerAction.Type.idle)
 
-	inputs.cameraDirection = cameraManager.cameraPlaneDirection()
+	# Input processing
 	processMovementDirection()
-	
 	processMovementActions()
 
 #endregion
@@ -61,15 +68,16 @@ func _physics_process(_delta : float) -> void:
 #region Private functions
 
 func processMovementDirection() -> void:
+	inputs.cameraDirection = cameraManager.cameraPlaneDirection()
 	inputs.inputDirection = Input.get_vector("Move left", "Move right", "Move forwards", "Move backwards")
-	
+
 	if inputs.inputDirection == Vector2.ZERO:
 		return
 
+	inputs.actions.append(PlayerAction.Type.move)
+
 	inputs.inputMagnitude = inputs.inputDirection.length()
 	inputs.inputDirection /= inputs.inputMagnitude
-
-	inputs.actions.append(PlayerAction.Type.move)
 
 
 	# The code below is a transformation of the input direction by the angle the camera is currently pointing in
@@ -87,10 +95,15 @@ func processMovementDirection() -> void:
 	).normalized()
 
 func processMovementActions():
+	if Input.is_action_just_pressed("Jump"):
+		inputs.actions.append(PlayerAction.Type.jumpStart)
 	if Input.is_action_pressed("Jump"):
-		inputs.actions.append(PlayerAction.Type.jumpStill)
+		inputs.modifiers.append(PlayerAction.Type.jump)
+
+	#if Input.is_action_pressed("Dodge"):
+	#	inputs.actions.append(PlayerAction.Type.dodge)
 	
-	if Input.is_action_pressed("Dodge"):
-		inputs.actions.append(PlayerAction.Type.dodge)
+	if Input.is_action_just_pressed("Light attack"):
+		inputs.actions.append(PlayerAction.Type.lightAttack)
 
 #endregion

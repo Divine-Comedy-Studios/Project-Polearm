@@ -5,8 +5,9 @@ class_name Hitbox
 #region Helper classes
 
 class Data extends Resource:
-	var damage : float
-	var superArmorDamage : float
+	var damage : float = 0.0
+	var superArmorDamage : float = 0.0
+	var force : Vector3 = Vector3.ZERO
 
 #endregion
 
@@ -31,11 +32,11 @@ func _ready() -> void:
 
 #region Public functions
 
-func activate(hitData : Data) -> void:
+func enable(hitData : Data) -> void:
 	data = hitData
 	monitorable = true
 
-func deactivate() -> void:
+func disable() -> void:
 	data = null
 	monitorable = false
 

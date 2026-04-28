@@ -11,7 +11,7 @@ using Godot;
 
 
 [GlobalClass] public partial class Player : FloatingBody {
-	#region Scene Members
+	#region Scene members
 
 	private PlayerCameraManager m_cameraManager = null;
 

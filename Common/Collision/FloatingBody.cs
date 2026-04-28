@@ -43,7 +43,6 @@ using System.Linq;
 	private const int MAX_GROUND_COLLISIONS = 4;
 	private const float COLLISION_EPSILON = 0.002f;
 	private const float GROUND_DISTANCE_BUFFER = 0.1f;
-	private const float MIN_STEP_SPEED = 0.1f;
 	private const float VELOCITY_VERTICAL_OVERCORRECTION_FACTOR = 2.0f;
 
 
@@ -55,7 +54,6 @@ using System.Linq;
 
 	// Hitbox configuration settings
 
-	private const float COLLIDER_FALLING_RADIUS_FACTOR = 0.6f;
 	private const float GROUND_CAST_DIST_TO_GROUND = 1.0f;
 	private const float STEP_RAY_VERTICAL_OFFSET = 0.03f;
 
@@ -80,14 +78,14 @@ using System.Linq;
 	[ExportGroup("Step settings")]
 	[Export] public float STEP_MAX_HEIGHT = 0.41f;
 	[Export] public float STEP_MIN_DEPTH = 0.3f;
-	[Export] public float STEP_SPEED_FACTOR = 0.4f;
+	[Export] public float STEP_SPEED_FACTOR = 5.0f;
 
 	#endregion
 
 
-	#region Scene Members
+	#region Scene members
 
-	[ExportGroup("Scene Members")]
+	[ExportGroup("Scene members")]
 	[Export] public CollisionShape3D bodyCollider = null;
 	[Export] public ShapeCast3D groundCast = null;
 
@@ -111,6 +109,8 @@ using System.Linq;
 
 
 	// State
+
+	private Vector3 m_targetVelocity = Vector3.Zero;
 
 	private bool m_collisionProcessingEnabled = true;
 
@@ -181,31 +181,83 @@ using System.Linq;
 	public void tick(float delta) => Tick(delta);
 	public void Tick(float delta) {
 		_processCollisions();
-		_moveAndSmooth(delta);
+		_calculateVelocity(delta);
+		MoveAndSlide();
 	}
 
 
 	// Movement functions
 
+	// Velocity based movement
+
+	public void move(Vector3 velocity) => Move(velocity);
+	public void Move(Vector3 velocity) {
+		m_targetVelocity += velocity;
+	}
+
+	public void moveFlat(Vector3 velocity) => MoveFlat(new Vector2(velocity.X, velocity.Y));
+	public void MoveFlat(Vector3 velocity) => MoveFlat(new Vector2(velocity.X, velocity.Y));
+	public void moveFlat(Vector2 velocity) => MoveFlat(velocity);
+	public void MoveFlat(Vector2 velocity) {
+		m_targetVelocity.X += velocity.X;
+		m_targetVelocity.Z += velocity.Y;
+	}
+
+	public void moveVertical(float velocity) => MoveVertical(velocity);
+	public void MoveVertical(float velocity) {
+		m_targetVelocity.Y += velocity;
+	}
+
+
+	public void setMovement(Vector3 velocity) => SetMovement(velocity);
+	public void SetMovement(Vector3 velocity) {
+		m_targetVelocity = velocity;
+	}
+
+	public void setMovementFlat(Vector3 velocity) => SetMovementFlat(new Vector2(velocity.X, velocity.Y));
+	public void SetMovementFlat(Vector3 velocity) => SetMovementFlat(new Vector2(velocity.X, velocity.Y));
+	public void setMovementFlat(Vector2 velocity) => SetMovementFlat(velocity);
+	public void SetMovementFlat(Vector2 velocity) {
+		m_targetVelocity.X = velocity.X;
+		m_targetVelocity.Z = velocity.Y;
+	}
+	public void setMovementVertical(float velocity) => SetMovementVertical(velocity);
+	public void SetMovementVertical(float velocity) {
+		m_targetVelocity.Y = velocity;
+	}
+
+
+	// Acceleration based movement
+
+	public void accelerate(Vector3 target, float accelerationDt) => Accelerate(target, accelerationDt);
+	public void Accelerate(Vector3 target, float accelerationDt) {
+		m_targetVelocity.X = Mathf.MoveToward(m_targetVelocity.X, target.X, accelerationDt);
+		m_targetVelocity.Y = Mathf.MoveToward(m_targetVelocity.Y, target.Y, accelerationDt);
+		m_targetVelocity.Z = Mathf.MoveToward(m_targetVelocity.Z, target.Z, accelerationDt);
+	}
+
 	public void accelerateFlat(Vector3 target, float accelerationDt) => AccelerateFlat(new Vector2(target.X, target.Y), accelerationDt);
-	public void AccelerateFlat(Vector3 target, float accelerationDt) =>AccelerateFlat(new Vector2(target.X, target.Y), accelerationDt);
+	public void AccelerateFlat(Vector3 target, float accelerationDt) => AccelerateFlat(new Vector2(target.X, target.Y), accelerationDt);
 	public void accelerateFlat(Vector2 target, float accelerationDt) => AccelerateFlat(target, accelerationDt);
 	public void AccelerateFlat(Vector2 target, float accelerationDt) {
-		Velocity = new Vector3(
-			Mathf.MoveToward(Velocity.X, target.X, accelerationDt),
-			Velocity.Y,
-			Mathf.MoveToward(Velocity.Z, target.Y, accelerationDt)
-		);
+		m_targetVelocity.X = Mathf.MoveToward(m_targetVelocity.X, target.X, accelerationDt);
+		m_targetVelocity.Z = Mathf.MoveToward(m_targetVelocity.Z, target.Y, accelerationDt);
 	}
 
 	public void accelerateVertical(float target, float accelerationDt) => AccelerateVertical(target, accelerationDt);
 	public void AccelerateVertical(float target, float accelerationDt) {
-		Velocity = new Vector3(
-			Velocity.X, 
-			Mathf.MoveToward(Velocity.Y, target, accelerationDt), 
-			Velocity.Z
-		);
+		m_targetVelocity.Y = Mathf.MoveToward(m_targetVelocity.Y, target, accelerationDt);
 	}
+
+	// Get target velocity
+
+	public Vector3 movement() => Movement();
+	public Vector3 Movement() {
+		return m_targetVelocity;
+	}
+
+
+	// Ground functions
 
 	public void snapToFloor() => SnapToFloor();
 	public void SnapToFloor() {
@@ -255,7 +307,6 @@ using System.Linq;
 	}
 
 
-	// Ground functions
 	public Vector3 groundPoint() => GroundPoint();
 	public Vector3 GroundPoint() {
 		return m_groundedData.Point;
@@ -274,6 +325,9 @@ using System.Linq;
 
 		m_groundRID = new Rid();
 		m_groundState = null;
+
+		m_groundData.Clear();
+		m_footData.Clear();
 
 		_standingCollider();
 	}
@@ -297,11 +351,17 @@ using System.Linq;
 		}
 	}
 
-
-	// Utility functions
 	public bool slopeWalkable(Vector3 normalized) => SlopeWalkable(normalized);
 	public bool SlopeWalkable(Vector3 normalized) {
 		return normalized.Y > SLOPE_MAX_ANGLE_COS;
+	}
+
+
+	// Transformation getters
+
+	public Vector3 forward() => Forward();
+	public Vector3 Forward() {
+		return -Transform.Basis.Column2;
 	}
 
 	#endregion
@@ -362,20 +422,21 @@ using System.Linq;
 		_processGroundCollisionData();
 		_processFootCollisionData();
 
-		if (!m_groundData.Grounded && !m_footData.Grounded && !lastForwardProbeGrounded) {
+		if (m_groundData.Grounded || m_footData.Grounded || lastForwardProbeGrounded) {
+			if (!m_grounded)
+				AttachGround();
+		} else {
 			DetachGround();
 			return;
 		}
 
 		if (m_grounded)
 			m_distanceBufferEnabled = true;
-		else
-			attachGround();
 		
 
 		// Movement collision checks
 
-		m_noFlatVelocity = Mathf.IsZeroApprox(Velocity.X * Velocity.X + Velocity.Z * Velocity.Z);
+		m_noFlatVelocity = Mathf.IsZeroApprox(PPUtil.Math.FlatLengthSquared(m_targetVelocity));
 
 		if (m_noFlatVelocity) { // Stepping collision checks
 			_calculateStepWallProbeQuery(GlobalPosition, m_groundData.Point);
@@ -384,7 +445,7 @@ using System.Linq;
 				_checkStepUp();
 
 		} else {
-			m_lastNonZeroDir = new Vector3(Velocity.X, 0, Velocity.Z).Normalized();
+			m_lastNonZeroDir = new Vector3(m_targetVelocity.X, 0, m_targetVelocity.Z).Normalized();
 
 			// If we are moving, we calculate a point in the direction the player is moving 
 			// slightly behind the edge of the player hitbox. This allows us to perform smoothing
@@ -393,22 +454,22 @@ using System.Linq;
 	}
 
 
-	private void _moveAndSmooth(float delta) {
+	private void _calculateVelocity(float delta) {
 		const float COLLISION_EPSILON_SQARED = COLLISION_EPSILON * COLLISION_EPSILON;
 
 		if (!m_grounded) { // Flying ignores all below calculations
-			MoveAndSlide();
-
+			Velocity = m_targetVelocity;
 			return;
 		}
-
-		// GD.Print(m_stepState);
 
 		// Directly adapted from godot source code
 		Vector3 groundVelocity = Vector3.Zero;
 		if (m_groundState != null)
 			groundVelocity = m_groundState.GetVelocityAtLocalPosition(GlobalTransform.Origin - m_groundState.Transform.Origin);
 
+
+		Vector3 correctionVelocity = Vector3.Zero;
+		Vector3 targetVelocity = m_targetVelocity;
 
 		if (!m_noFlatVelocity) {
 			if (Mathf.Abs(m_groundData.Offset) < COLLISION_EPSILON) {
@@ -420,52 +481,23 @@ using System.Linq;
 			line.Y += m_groundData.Offset / VELOCITY_VERTICAL_OVERCORRECTION_FACTOR;
 
 			// If the horizontal OR vertical component of line is too small
-			if (Mathf.Abs(line.Y) < COLLISION_EPSILON || (line.X * line.X + line.Z * line.Z) < COLLISION_EPSILON_SQARED)
-				Velocity = PPUtil_Math.RotateVectorOntoPlane(Velocity, m_groundData.Normal);
-			else // The two cross products produce the final slope vector to rotate velocity by
-				Velocity = PPUtil_Math.RotateVectorOntoPlane(Velocity, line.Cross(m_footData.Normal).Cross(line).Normalized());
-		} else if (m_stepState != StepState.None) {
+			if (PPUtil.Math.FlatLengthSquared(line) < COLLISION_EPSILON_SQARED) {
+				targetVelocity = PPUtil.Math.RotateVectorOntoPlane(targetVelocity, m_groundData.Normal);
+			} else // The two cross products produce the final slope vector to rotate velocity by
+				targetVelocity = PPUtil.Math.RotateVectorOntoPlane(targetVelocity, line.Cross(m_footData.Normal).Cross(line).Normalized());
+		} else if (m_groundedData.Grounded) {
 			float absOffset = Mathf.Abs(m_groundedData.Offset);
 
 			if (absOffset > STEP_MAX_HEIGHT)
 				m_stepState = StepState.None;
-			else {
-				absOffset = absOffset * STEP_SPEED_FACTOR / delta;
+			else if (absOffset < COLLISION_EPSILON) {
+				m_stepState = StepState.None;
 
-				if (absOffset < MIN_STEP_SPEED) {
-					m_stepState = StepState.None;
-
-					Velocity = new Vector3(Velocity.X, 0, Velocity.Z);
-					Position += Vector3.Down * m_groundedData.Offset;
-				} else {
-					Velocity = new Vector3(
-						Velocity.X, 
-						-Mathf.Sign(m_groundedData.Offset) * absOffset,
-						Velocity.Z
-					);
-				}
-			}
-		} else if (Mathf.IsZeroApprox(Velocity.Y)) {
-			// When not moving and not stepping at all, the player is slowly readjusted to ground level
-
-			float adjustVel = -m_groundData.Offset / delta * STEP_SPEED_FACTOR;
-
-			if (Mathf.Abs(adjustVel) > COLLISION_EPSILON) {
-				Velocity = new Vector3(
-					groundVelocity.X, 
-					groundVelocity.Y + adjustVel,
-					groundVelocity.Z
-				);
-				MoveAndSlide();
-				Velocity = Vector3.Zero;
-
-				return;
-			} else Position += Vector3.Down * m_groundData.Offset;
+				Position += Vector3.Down * m_groundedData.Offset;
+			} else correctionVelocity.Y = -m_groundedData.Offset / delta * STEP_SPEED_FACTOR;
 		}
-		
-		Velocity += groundVelocity;
 
-		MoveAndSlide();
+		Velocity = targetVelocity + correctionVelocity + groundVelocity;
 	}
 
 

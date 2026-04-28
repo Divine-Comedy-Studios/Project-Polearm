@@ -11,7 +11,7 @@ class_name Convention
 # 3.1. Always leave two sapces between two regions
 # 3.2. Always leave one space between the top and bottom of a region and its code
 # 4. Files <20 lines do not need regions
-# 5. Never comment regions
+# 5. Never add comments describing regions
 # 6. There should be no place in the file with more than two spaces
 # 7. When a comment comments an entire, unspaced block of code, don't leave a space to the code and one space above
 # 7.1. When a comment comments a spaced block of code, leave one space to the code and two spaces above

@@ -30,7 +30,7 @@ class Type:
 
 #region Scene members
 
-var context : EntityActionManager
+var _context : EntityActionManager
 
 #endregion
 
@@ -40,6 +40,34 @@ var context : EntityActionManager
 @export var data : EntityActionData = null
 
 var _progress : float
+var frameDataScale : float = 1.0
+
+#endregion
+
+
+#region Override functions
+
+# This is executed on action enter
+func enter() -> void:
+	if _context.combatManager.isNextComboAction(TYPE):
+		data = _context.combatManager.registerComboAction(TYPE)
+	else:
+		_context.combatManager.resetActiveCombo()
+
+	_context.resources.pay(self) # The action is pretty much guaranteed to be payable at this point, if not, not a big deal
+
+	_enter()
+
+# This is executed on action exit and resets the action to prepare it for the next time it's activated
+func exit() -> void:
+	_exit()
+	
+	_progress = 0
+	frameDataScale = 1.0
+
+
+func type() -> StringName:
+	return TYPE
 
 #endregion
 
@@ -47,7 +75,7 @@ var _progress : float
 #region Public funcitons
 
 func init(manager : EntityActionManager) -> void:
-	context = manager
+	_context = manager
 
 	_implInit()
 
@@ -57,14 +85,14 @@ func tick(delta : float) -> void:
 	_tick(delta)
 	_processRootMotion(delta)
 
-	_progress += delta
+	_progress += delta * frameDataScale
 
 
 # Action switching behavior
 func nextAction() -> StringName:
-	_processActions()
+	_preprocessActions()
 
-	if not context.frameData.transitionable(data.ANIMATION_NAME, _progress):
+	if not _context.frameData.transitionable(data.ANIMATION_NAME, _progress):
 		return Type.none
 
 	return _nextAction()
@@ -76,16 +104,17 @@ func actionViability(action : EntityAction) -> int:
 	if action.TYPE == TYPE and not REPEATABLE:
 		return -1
 	
-	if context.resources.payable(action):
-		if _implActionViable(action):
-			return 1
+	if not _context.resources.payable(action):
+		return 0
+	if not action._viable():
+		return 0
 
-	return 0
+	return 1
 
 
 # Interrupt immediately triggers a state switch aslong as the priority of the interrupt is higher than the priority of the current state
 func interrupt(actionType : StringName) -> StringName:
-	var action := context.action(actionType) as EntityAction
+	var action := _context.action(actionType) as EntityAction
 
 	if hasHigherPriority(action, self):
 		return actionType
@@ -96,10 +125,13 @@ func interrupt(actionType : StringName) -> StringName:
 # Frame data interface
 
 func vulnerable() -> bool:
-	return context.frameData.vulnerable(data.ANIMATION_NAME, _progress)
+	return _context.frameData.vulnerable(data.ANIMATION_NAME, _progress)
 
 func interruptable() -> bool:
-	return context.frameData.interruptable(data.ANIMATION_NAME, _progress)
+	return _context.frameData.interruptable(data.ANIMATION_NAME, _progress)
+
+func finished() -> bool:
+	return _context.frameData.transitionable(data.ANIMATION_NAME, _progress) and _context.animator.animation(data.ANIMATION_FULL_NAME).loop_mode == Animation.LOOP_NONE
 
 
 # Explicit definition of higher priority
@@ -108,7 +140,7 @@ static func hasHigherPriority(first : EntityAction, second : EntityAction) -> bo
 	return first.PRIORITY > second.PRIORITY
 
 func hasHigherPriorityThan(second : StringName) -> bool:
-	return PRIORITY > (context.action(second) as EntityAction).PRIORITY
+	return PRIORITY > (_context.action(second) as EntityAction).PRIORITY
 
 #endregion
 
@@ -117,59 +149,38 @@ func hasHigherPriorityThan(second : StringName) -> bool:
 
 # If enabled, this will influence the direction the player faces using the direction of the input package
 func _processDirection(delta : float) -> void:
-	var rotationTrackingSpeed := context.frameData.rotationTracking(data.ANIMATION_NAME, _progress) * delta
+	var rotationTrackingSpeed := _context.frameData.rotationTracking(data.ANIMATION_NAME, _progress) * delta
 	if rotationTrackingSpeed != 0.0:
-		context.entity.rotate_y(clampf(_processDirectionAngle(), -rotationTrackingSpeed, rotationTrackingSpeed))
+		_context.entity.rotate_y(clampf(_processDirectionAngle(), -rotationTrackingSpeed, rotationTrackingSpeed))
 
 # If enabled, this will add root motion to the animation
 func _processRootMotion(delta : float) -> void:
 	if not data.ROOT_MOTION:
 		return
 	
-	var entityQuaternion := context.entity.get_quaternion()
-	var rootQuaternion := context.animator.rootOrientation
+	var entityQuaternion := _context.entity.get_quaternion()
+	var rootQuaternion := _context.animator.rootOrientation
 
-	context.entity.set_quaternion(rootQuaternion.inverse() * entityQuaternion * context.animator.get_root_motion_rotation())
-	context.entity.velocity = (
-		context.animator.get_root_motion_rotation_accumulator().inverse() *
-		rootQuaternion * entityQuaternion
-	) * context.animator.get_root_motion_position() / delta
-
-#endregion
-
-
-#region Override functions
-
-# This is executed on action enter
-func enter() -> void:
-	if context.combatManager.isNextComboAction(TYPE):
-		data = context.combatManager.registerComboAction(TYPE)
-
-	context.resources.pay(self) # The action is pretty much guaranteed to be payable at this point, if not, not a big deal
-
-	_enter()
-
-# This is executed on action exit and resets the action to prepare it for the next time it's activated
-func exit() -> void:
-	_exit()
-	
-	_progress = 0
-
-
-func type() -> StringName:
-	return TYPE
+	_context.entity.set_quaternion(entityQuaternion * _context.animator.get_root_motion_rotation())
+	_context.entity.setMovement((
+		rootQuaternion.inverse() * _context.animator.get_root_motion_rotation_accumulator().inverse() *
+		entityQuaternion
+	) * _context.animator.get_root_motion_position() / delta)
 
 #endregion
 
 
 #region Implementation & Virtual functions
 
+func requestAction() -> StringName:
+	return Type.none
+
+
+func _viable() -> bool:
+	return true
+
+
 func _implInit() -> void:
-	pass
-
-
-@warning_ignore("unused_parameter")
-func _tick(delta : float) -> void:
 	pass
 
 
@@ -180,15 +191,16 @@ func _exit() -> void:
 	pass
 
 
-func _processActions() -> void:
+@warning_ignore("unused_parameter")
+func _tick(delta : float) -> void:
+	pass
+
+
+func _preprocessActions() -> void:
 	pass
 
 func _nextAction() -> StringName:
 	return Type.none
-
-@warning_ignore("unused_parameter")
-func _implActionViable(action : EntityAction) -> bool:
-	return true
 
 
 func _processDirectionAngle() -> float:

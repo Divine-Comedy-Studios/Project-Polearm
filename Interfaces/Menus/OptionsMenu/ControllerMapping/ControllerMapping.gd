@@ -15,7 +15,7 @@ func type() -> Type:
 
 
 func nextMenu(inputs : ISMInputManager.Data) -> Type:
-	if inputs.cancel:
+	if inputs.cancel and not SettingsManager.isRemapping:
 		return BACK_MENU
 	return Type.none
 

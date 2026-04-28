@@ -7,12 +7,11 @@ class_name EntityFrameData
 #region Exported action properties
 
 @export_group("Animation")
-@export var _transitionable : bool = true
-@export var _rotationTracking : float = 0.0
+@export var _interruptable : bool = false # Can this action be affected by a state machine interrupt?
+@export var _transitionable : bool = true # Can the current action transition to another one?
 
 @export_group("Behavior")
-@export var _vulnerable : bool = false
-@export var _interruptable : bool = false
+@export var _rotationTracking : float = 0.0 # Speed of rotation tracking
 
 #endregion
 
@@ -25,9 +24,6 @@ func transitionable(animationName : StringName, time : float) -> bool:
 func rotationTracking(animationName : StringName, time : float) -> float:
 	return _getValue(animationName, ^"FrameData:_rotationTracking", time) as float
 
-
-func vulnerable(animationName : StringName, time : float) -> bool:
-	return _getValue(animationName, ^"FrameData:_vulnerable", time) as bool
 
 func interruptable(animationName : StringName, time : float) -> bool:
 	return _getValue(animationName, ^"FrameData:_interruptable", time) as bool

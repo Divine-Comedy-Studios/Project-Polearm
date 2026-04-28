@@ -1,13 +1,21 @@
 extends AppState
 
 
+#region Scene members
+
 @export var _mainMenu : AppState = null
 
+#endregion
+
+
+#region Built-in functions
 
 func _ready() -> void:
 	assert(_mainMenu != null, "BootState._ready(): Main menu wasn't assigned!")
 
 	super._ready()
+
+#endregion
 
 
 #region Override functions

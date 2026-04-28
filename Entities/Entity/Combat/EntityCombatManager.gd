@@ -21,7 +21,7 @@ func unlockCombo(combo : EntityCombo) -> void:
 	for i : int in range(count):
 		var type := combo.ACTION_TYPES[i]
 
-		action = action.tree.get_or_add(type, combo.ACTIONS[i]) if not action.tree.has(type) else action.tree.get(type)
+		action = action.tree.get_or_add(type, EntityComboAction.new(combo.ACTIONS[i])) if not action.tree.has(type) else action.tree.get(type)
 
 	action.COMBO_TYPE = combo.TYPE
 
@@ -53,7 +53,7 @@ func registerComboAction(action : StringName) -> EntityActionData:
 	else:
 		_currentComboAction = current
 	
-	return current.data
+	return current.DATA
 
 #endregion
 

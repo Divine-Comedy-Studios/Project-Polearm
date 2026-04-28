@@ -4,7 +4,9 @@ extends Node2D
 @export var timer : float = 1
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _ready() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
 func _physics_process(delta: float) -> void:
 	timer -= delta
 

@@ -4,25 +4,22 @@ class_name PlayerResources
 
 #region Exported variables
 
-@export_group("States")
-
+@export_group("State")
 @export var godMode : bool = false
-
-@export var slowMotion : bool = false # 天机
-
-@export var sonOfHeaven : bool = false
-
+# @export var slowMotion : bool = false # 天机
 @export var unlockedActions : Array[StringName]
 
 
 @export_group("Resources")
 
-@export var MAX_FLOW : float = 1000
+@export var jumpCount : IntegerResource = null
 
-@export var spirits : int = 0 # 魄
-@export var healthUpgrades : int = 0 # 3 for a full upgrade
+@export var flow : ValueResource = null
+
+# @export var healthUpgrades : int = 0 # 3 for a full upgrade, resets to 0
 
 # @export var inventory : Array[Items]
+# @export var equipped : Array[Items]
 
 
 @export_group("Modifiers")
@@ -37,21 +34,10 @@ class_name PlayerResources
 #endregion
 
 
-#region Member variables
-
-var flow : float = 0.0:
-	get:
-		return flow
-	set(value):
-		flow = clampf(value, 0.0, MAX_FLOW)
-
-#endregion
-
-
 #region Built-in functions
 
 func _physics_process(delta: float) -> void:
-	flow -= delta * BASE_FLOW_DECREASE_RATE * flowModifier
+	flow.value -= delta * BASE_FLOW_DECREASE_RATE * flowModifier
 
 #endregion
 
@@ -59,6 +45,8 @@ func _physics_process(delta: float) -> void:
 #region Public functions
 
 func flowToState() -> PlayerCombatManager.FlowState:
-	return PlayerCombatManager.FlowState.values()[floori(FLOW_CURVE.sample(clampf(flow, 0, FLOW_CURVE.max_value + 0.5)))]
+	return PlayerCombatManager.FlowState.values()[
+		floori(FLOW_CURVE.sample(clampf(flow.value, 0, FLOW_CURVE.max_value + 0.5)))
+	]
 
 #endregion
