@@ -14,6 +14,9 @@
 [ext_resource type="Script" uid="uid://vahqysuxajcw" path="res://Entities/Player/Actions/States/LightAttack.gd" id="8_6evvv"]
 [ext_resource type="Script" uid="uid://bb1weubijn6l2" path="res://Entities/Player/Actions/States/AirJumpStart.gd" id="10_7bymk"]
 [ext_resource type="Script" uid="uid://d2mcxn2vpp7ne" path="res://Entities/Player/Actions/States/LedgeGrab.gd" id="13_71nor"]
+[ext_resource type="Script" uid="uid://cg0qx1buj4734" path="res://Entities/Player/Actions/States/Dash.gd" id="15_y2nh2"]
+[ext_resource type="Script" uid="uid://dw8f1x1gk3odw" path="res://Entities/Player/Actions/States/AirDash.gd" id="16_6ns0w"]
+[ext_resource type="Script" uid="uid://tpcj3x2f82ym" path="res://Entities/Player/Actions/States/Sprint.gd" id="17_6ns0w"]
 
 [sub_resource type="Resource" id="Resource_xghap"]
 script = ExtResource("5_8427c")
@@ -81,14 +84,43 @@ ANIMATION_LIBRARY_NAME = &"TestAnim"
 ANIMATION_NAME = &"Idle"
 metadata/_custom_type_script = "uid://cqy3drroysy4k"
 
+[sub_resource type="Resource" id="Resource_fh6tg"]
+script = ExtResource("5_8427c")
+ANIMATION_LIBRARY_NAME = &"TestAnim"
+ANIMATION_NAME = &"JumpIdle"
+metadata/_custom_type_script = "uid://cqy3drroysy4k"
+
+[sub_resource type="Resource" id="Resource_6ns0w"]
+script = ExtResource("5_8427c")
+ANIMATION_LIBRARY_NAME = &"TestAnim"
+ANIMATION_NAME = &"LightAttack1"
+metadata/_custom_type_script = "uid://cqy3drroysy4k"
+
+[sub_resource type="Resource" id="Resource_yl8et"]
+script = ExtResource("5_8427c")
+ANIMATION_LIBRARY_NAME = &"TestAnim"
+ANIMATION_NAME = &"Run"
+metadata/_custom_type_script = "uid://cqy3drroysy4k"
+
 [node name="PlayerActionManager" type="Node" unique_id=1294535758]
 script = ExtResource("1_xghap")
 metadata/_custom_type_script = "uid://d0kf1f6gldsxt"
+
+[node name="DashTimer" type="Timer" parent="." unique_id=575686984]
+process_callback = 0
+wait_time = 0.5
+one_shot = true
 
 [node name="PhysicsProcessor" type="Node3D" parent="." unique_id=1318673669 node_paths=PackedStringArray("_context")]
 process_mode = 4
 visible = false
 script = ExtResource("2_71nor")
+LEDGE_MAX_DISTANCE = null
+LEDGE_MAX_HEIGHT = null
+LEDGE_MIN_HEIGHT = null
+LEDGE_MIN_CEILING_HEIGHT = null
+LEDGE_SWEEP_SIDE_ANGLE = null
+LEDGE_SWEEP_COUNT = null
 _context = NodePath("..")
 metadata/_custom_type_script = "uid://jth8cpsjn3vy"
 
@@ -166,4 +198,30 @@ QUEUEABLE = true
 TYPE = &"lightAttack"
 PRIORITY = 40
 REPEATABLE = true
+metadata/_custom_type_script = "uid://jc1g0sv32qq1"
+
+[node name="Dash" type="Node" parent="." unique_id=674465894 node_paths=PackedStringArray("_timer")]
+process_mode = 4
+script = ExtResource("15_y2nh2")
+_timer = NodePath("../DashTimer")
+TYPE = &"dash"
+PRIORITY = 50
+data = SubResource("Resource_fh6tg")
+metadata/_custom_type_script = "uid://jc1g0sv32qq1"
+
+[node name="AirDash" type="Node" parent="." unique_id=2106919827 node_paths=PackedStringArray("_timer")]
+process_mode = 4
+script = ExtResource("16_6ns0w")
+_timer = NodePath("../DashTimer")
+TYPE = &"airDash"
+PRIORITY = 50
+data = SubResource("Resource_6ns0w")
+metadata/_custom_type_script = "uid://jc1g0sv32qq1"
+
+[node name="Sprint" type="Node" parent="." unique_id=1834573460]
+process_mode = 4
+script = ExtResource("17_6ns0w")
+TYPE = &"sprint"
+PRIORITY = 2
+data = SubResource("Resource_yl8et")
 metadata/_custom_type_script = "uid://jc1g0sv32qq1"

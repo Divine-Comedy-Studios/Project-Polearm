@@ -10,6 +10,7 @@ extends PlayerAction
 
 @export_group("Gravity settings")
 @export var GRAVITY : float = 20.0
+@export var FLOATING_TERMINAL_VELOCITY : float = 2.0
 @export var TERMINAL_VELOCITY : float = 30.0
 
 #endregion
@@ -37,13 +38,19 @@ func _tick(delta : float) -> void:
 		player().accelerateFlat(inputs().direction * targetSpeed, ACCELERATION * delta)
 
 	# Gravity
-	player().accelerateVertical(TERMINAL_VELOCITY, -GRAVITY * delta)
+	var terminalVel := TERMINAL_VELOCITY
 
-	# Ledge detection
-	context().physics.sweepLedge()
+	if player().velocity.y < 0:
+		if inputs().modifiers.has(Type.jump):
+			terminalVel = FLOATING_TERMINAL_VELOCITY
 
-	if context().physics.ledgeData.collided:
-		context().pushActionQueue(Type.ledgeGrab)
+		# Only do ledge detection if the player is properly falling and not deaccelerating
+		context().physics.sweepLedge()
+
+		if context().physics.ledgeData.collided:
+			context().pushActionQueue(Type.ledgeGrab)
+
+	player().accelerateVertical(-terminalVel, GRAVITY * delta)
 
 
 func _implNextAction(next : StringName) -> StringName:

@@ -40,8 +40,6 @@ func _implInit() -> void:
 
 
 func _implEnter() -> void:
-	resources().jumpCount.value = 0
-
 	_processAnimations()
 
 func _implExit() -> void:
