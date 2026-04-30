@@ -56,7 +56,6 @@ ambient_light_energy = 0.3
 
 [node name="Player" parent="." unique_id=1997770894 instance=ExtResource("2_d2u3u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 2.1386669)
-STEP_SPEED_FACTOR = 0.3
 
 [node name="Visuals" type="Node" parent="." unique_id=1391791017]
 
