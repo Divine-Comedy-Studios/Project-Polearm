@@ -140,7 +140,7 @@ func blendSpaceDriver(handle : StringName) -> AnimationNodeBlendSpace2D:
 func unusedHandle(transitionHandle : StringName) -> StringName:
 	var activity := _transitionDriverActivity.get(transitionHandle) as TransitionDriverActivity
 	assert(activity != null, "EntityAnimator.unusedHandle(): This function is only available to nodes which have been registered with registerAutoTransition()!")
-	
+
 	if activity.slot == 0:
 		return activity.secondAnim
 	return activity.firstAnim
