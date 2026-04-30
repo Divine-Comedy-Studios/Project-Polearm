@@ -1,0 +1,150 @@
+[gd_scene format=4 uid="uid://bbifbqx1x67ct"]
+
+[ext_resource type="PackedScene" uid="uid://2twxnnq3mj7i" path="res://Common/Camera/SceneCamera/SceneCamera.tscn" id="1_6ld1k"]
+[ext_resource type="Material" uid="uid://cgj2lr4vp41pl" path="res://Assets/Materials/Prototype/FloorGray.tres" id="1_r3mhs"]
+[ext_resource type="Shader" uid="uid://exx180lp74b0" path="res://Assets/Shaders/Sky/StylizedSky.gdshader" id="1_tsewk"]
+[ext_resource type="PackedScene" uid="uid://cyti0335fm7s0" path="res://Entities/Player/Player.tscn" id="2_d2u3u"]
+[ext_resource type="PackedScene" uid="uid://dobb4o5ifw1e6" path="res://Stages/Documentation/Gym/Obstacles/Ramps.tscn" id="5_jiqka"]
+[ext_resource type="PackedScene" uid="uid://4721tk72gs1t" path="res://Stages/Documentation/Gym/Obstacles/Steps.tscn" id="6_ji2m5"]
+[ext_resource type="PackedScene" uid="uid://bduaf0ou244na" path="res://Stages/Documentation/Gym/Obstacles/Bumps.tscn" id="7_tsewk"]
+[ext_resource type="PackedScene" uid="uid://duc76equt8iqk" path="res://Stages/Documentation/Gym/Obstacles/Round.tscn" id="8_tsewk"]
+[ext_resource type="PackedScene" uid="uid://dhsuh2ufuvwdp" path="res://Stages/Documentation/Gym/Obstacles/Stairs.tscn" id="9_jiqka"]
+[ext_resource type="Script" uid="uid://cwu5cf7a0awcd" path="res://addons/func_godot/src/map/func_godot_map.gd" id="10_8gnrv"]
+[ext_resource type="Resource" uid="uid://cnygh8csloaqa" path="res://Trenchbroom/ProjectPolearmMapSettings.tres" id="11_epoir"]
+[ext_resource type="Material" uid="uid://byucy5ve5rloo" path="res://Trenchbroom/textures/Greybox Textures/PNG/Dark/texture_07.tres" id="12_0l7lt"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jiqka"]
+shader = ExtResource("1_tsewk")
+shader_parameter/day_top_color = Color(0.1, 0.6, 1, 1)
+shader_parameter/day_bottom_color = Color(0.4, 0.8, 1, 1)
+shader_parameter/sunset_top_color = Color(0.7, 0.75, 1, 1)
+shader_parameter/sunset_bottom_color = Color(1, 0.5, 0.7, 1)
+shader_parameter/night_top_color = Color(0.02, 0, 0.04, 1)
+shader_parameter/night_bottom_color = Color(0.1, 0, 0.2, 1)
+shader_parameter/horizon_color = Color(0, 0.7, 0.8, 1)
+shader_parameter/horizon_blur = 0.05
+shader_parameter/sun_color = Color(10, 8, 1, 1)
+shader_parameter/sun_sunset_color = Color(10, 0, 0, 1)
+shader_parameter/sun_size = 0.2
+shader_parameter/sun_blur = 10.0
+shader_parameter/moon_color = Color(1, 0.95, 0.7, 1)
+shader_parameter/moon_size = 0.06
+shader_parameter/moon_blur = 0.1
+shader_parameter/clouds_edge_color = Color(0.8, 0.8, 0.98, 1)
+shader_parameter/clouds_top_color = Color(1, 1, 1, 1)
+shader_parameter/clouds_middle_color = Color(0.92, 0.92, 0.98, 1)
+shader_parameter/clouds_bottom_color = Color(0.83, 0.83, 0.94, 1)
+shader_parameter/clouds_speed = 2.0
+shader_parameter/clouds_direction = 0.2
+shader_parameter/clouds_scale = 1.0
+shader_parameter/clouds_cutoff = 0.3
+shader_parameter/clouds_fuzziness = 0.5
+shader_parameter/clouds_weight = 0.0
+shader_parameter/clouds_blur = 0.25
+shader_parameter/stars_speed = 1.0
+shader_parameter/overwritten_time = 0.0
+
+[sub_resource type="Sky" id="Sky_uesqs"]
+sky_material = SubResource("ShaderMaterial_jiqka")
+
+[sub_resource type="Environment" id="Environment_0qwk7"]
+background_mode = 2
+sky = SubResource("Sky_uesqs")
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_sky_contribution = 0.67
+ambient_light_energy = 0.3
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_blgbk"]
+_surfaces = [{
+"aabb": AABB(-2.5, -1, -2.5, 5, 1, 9),
+"attribute_data": PackedByteArray("AACgwAAAID4AAKBAAAAgPgAAoEAAAApAAACgwAAACkAAAH9AAAAKQACAoMAAAApAAICgwAAAID4AAH9AAAAgPgAAf8AAAKBAAAB/wAAAoMAAgKBAAACgwACAoEAAAKBAAAB/QAAAoEAAgKDAAACgQACAoMAAAKDAAAB/QAAAoMAAAH/AAAAgPgCAoEAAACA+AICgQAAACkAAAH/AAAAKQAAAoEAAAApAAACgwAAACkAAAKDAAAAgPgAAoEAAACA+AACgwAAAID4AAKBAAAAgPgAAoEAAACg/AACgwAAAKD8AgE1BAAAoPwAAdkAAACg/AAB2QAAAID4AgE1BAAAgPgCATcEAAKBAAIBNwQAAoMAAAHbAAACgwAAAdsAAAKBAAIBNQQAAoEAAAHZAAACgQAAAdkAAAKDAAIBNQQAAoMAAgE3BAAAgPgAAdsAAACA+AAB2wAAAKD8AgE3BAAAoPwAAoEAAACg/AACgwAAAKD8AAKDAAAAgPgAAoEAAACA+"),
+"format": 34359742487,
+"index_count": 72,
+"index_data": PackedByteArray("AAABAAIAAAACAAMABAAFAAYABAAGAAcACAAJAAoACAAKAAsADAANAA4ADAAOAA8AEAARABIAEAASABMAFAAVABYAFAAWABcAGAAZABoAGAAaABsAHAAdAB4AHAAeAB8AIAAhACIAIAAiACMAJAAlACYAJAAmACcAKAApACoAKAAqACsALAAtAC4ALAAuAC8A"),
+"material": ExtResource("12_0l7lt"),
+"name": "Greybox Textures/PNG/Dark/texture_07",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 48,
+"vertex_data": PackedByteArray("AAAgQAAAAAAAACDAAAAgwAAAAAAAACDAAAAgwAAAgL8AACDAAAAgQAAAgL8AACDAAAAgwAAAgL8AAABAAAAgwAAAgL8AACDAAAAgwAAAAAAAACDAAAAgwAAAAAAAAABAAAAgwAAAgL8AAABAAAAgQAAAgL8AAABAAAAgQAAAgL8AACDAAAAgwAAAgL8AACDAAAAgwAAAAAAAAABAAAAgwAAAAAAAACDAAAAgQAAAAAAAACDAAAAgQAAAAAAAAABAAAAgQAAAAAAAAABAAAAgQAAAAAAAACDAAAAgQAAAgL8AACDAAAAgQAAAgL8AAABAAAAgQAAAgL8AAABAAAAgwAAAgL8AAABAAAAgwAAAAAAAAABAAAAgQAAAAAAAAABAAAAgQAAAAAAAAABAAAAgwAAAAAAAAABAAAAgwAAAgL4AAABAAAAgQAAAgL4AAABAAAAgwAAAgL4AANBAAAAgwAAAgL4AAABAAAAgwAAAAAAAAABAAAAgwAAAAAAAANBAAAAgwAAAgL4AANBAAAAgQAAAgL4AANBAAAAgQAAAgL4AAABAAAAgwAAAgL4AAABAAAAgwAAAAAAAANBAAAAgwAAAAAAAAABAAAAgQAAAAAAAAABAAAAgQAAAAAAAANBAAAAgQAAAAAAAANBAAAAgQAAAAAAAAABAAAAgQAAAgL4AAABAAAAgQAAAgL4AANBAAAAgQAAAgL4AANBAAAAgwAAAgL4AANBAAAAgwAAAAAAAANBAAAAgQAAAAAAAANBA/////wAA/7//////AAD/v/////8AAP+//////wAA/78AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//v/9/AAD//////38AAP//////fwAA//////9/AAD//////3////9//7//f////3//v/9/////f/+//3////9//7////9//////////3//////////f/////////9///////9//3////+//3//f////7//f/9/////v/9//3////+//////wAA/7//////AAD/v/////8AAP+//////wAA/78AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//v/9/AAD//////38AAP//////fwAA//////9/AAD//////3////9//7//f////3//v/9/////f/+//3////9//7////9//////////3//////////f/////////9///////9//3////+//3//f////7//f/9/////v/9//3////+/")
+}]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_0yuoq"]
+points = PackedVector3Array(2.5, 0, 2, 2.5, -1, 2, -2.5, 0, 2, -2.5, -1, 2, 2.5, 0, -2.5, 2.5, -1, -2.5, -2.5, 0, -2.5, -2.5, -1, -2.5)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_7v1dt"]
+points = PackedVector3Array(2.5, 0, 6.5, 2.5, -0.25, 6.5, -2.5, 0, 6.5, -2.5, -0.25, 6.5, 2.5, 0, 2, 2.5, -0.25, 2, -2.5, 0, 2, -2.5, -0.25, 2)
+
+[node name="Gym" type="Node" unique_id=1076830952]
+
+[node name="Player" parent="." unique_id=1997770894 instance=ExtResource("2_d2u3u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 2.1386669)
+STEP_SPEED_FACTOR = 0.3
+
+[node name="Visuals" type="Node" parent="." unique_id=1391791017]
+
+[node name="SceneCamera" parent="Visuals" unique_id=1015597522 instance=ExtResource("1_6ld1k")]
+transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 0, 0)
+top_level = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Visuals" unique_id=2034854936]
+environment = SubResource("Environment_0qwk7")
+
+[node name="SunAxis" type="Node3D" parent="Visuals" unique_id=269714516]
+transform = Transform3D(-4.371139e-08, 0.86602545, -0.49999997, 0, 0.49999997, 0.86602545, 1, 3.7855173e-08, -2.1855692e-08, 0, 0, 0)
+
+[node name="Sun" type="DirectionalLight3D" parent="Visuals/SunAxis" unique_id=80417960]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1000)
+shadow_enabled = true
+shadow_transmittance_bias = -0.02
+shadow_opacity = 0.9
+shadow_blur = 6.35
+
+[node name="Geometry" type="Node" parent="." unique_id=255614809]
+
+[node name="Ground" type="CSGBox3D" parent="Geometry" unique_id=1174585820]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, 0, -0.6)
+material_override = ExtResource("1_r3mhs")
+use_collision = true
+collision_layer = 32768
+collision_mask = 0
+size = Vector3(200, 1, 200)
+
+[node name="JumpHeight" type="Node3D" parent="Geometry" unique_id=1328271858]
+
+[node name="JumpDistance" type="Node3D" parent="Geometry" unique_id=1794139538]
+
+[node name="Ramps" parent="Geometry" unique_id=7076619 instance=ExtResource("5_jiqka")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4.5, 0, 12.3280945)
+
+[node name="Steps" parent="Geometry" unique_id=793798539 instance=ExtResource("6_ji2m5")]
+
+[node name="Bumps" parent="Geometry" unique_id=1776097978 instance=ExtResource("7_tsewk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, -6.9500003)
+
+[node name="Round" parent="Geometry" unique_id=830021453 instance=ExtResource("8_tsewk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -19.100002)
+
+[node name="Stairs" parent="Geometry" unique_id=1187381614 instance=ExtResource("9_jiqka")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 18.090061, 0, -8.6)
+
+[node name="FuncGodotMap" type="Node3D" parent="Geometry" unique_id=1024012695]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.9, 1.5500001, 0)
+script = ExtResource("10_8gnrv")
+local_map_file = "uid://c7rgcogankq7x"
+map_settings = ExtResource("11_epoir")
+metadata/_custom_type_script = "uid://cwu5cf7a0awcd"
+
+[node name="entity_0_worldspawn" type="StaticBody3D" parent="Geometry/FuncGodotMap" unique_id=1264231397]
+collision_layer = 32768
+collision_mask = 0
+
+[node name="entity_0_mesh_instance" type="MeshInstance3D" parent="Geometry/FuncGodotMap/entity_0_worldspawn" unique_id=327979804]
+mesh = SubResource("ArrayMesh_blgbk")
+
+[node name="entity_0_brush_0_collision_shape" type="CollisionShape3D" parent="Geometry/FuncGodotMap/entity_0_worldspawn" unique_id=1807057205]
+shape = SubResource("ConvexPolygonShape3D_0yuoq")
+
+[node name="entity_0_brush_1_collision_shape" type="CollisionShape3D" parent="Geometry/FuncGodotMap/entity_0_worldspawn" unique_id=2094004822]
+shape = SubResource("ConvexPolygonShape3D_7v1dt")

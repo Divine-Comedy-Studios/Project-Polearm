@@ -1,14 +1,12 @@
-[gd_scene format=3 uid="uid://bbifbqx1x67ct"]
+[gd_scene format=4 uid="uid://dwstnn3n587jg"]
 
 [ext_resource type="PackedScene" uid="uid://2twxnnq3mj7i" path="res://Common/Camera/SceneCamera/SceneCamera.tscn" id="1_6ld1k"]
-[ext_resource type="Material" uid="uid://cgj2lr4vp41pl" path="res://Assets/Materials/Prototype/FloorGray.tres" id="1_r3mhs"]
 [ext_resource type="Shader" uid="uid://exx180lp74b0" path="res://Assets/Shaders/Sky/StylizedSky.gdshader" id="1_tsewk"]
 [ext_resource type="PackedScene" uid="uid://cyti0335fm7s0" path="res://Entities/Player/Player.tscn" id="2_d2u3u"]
-[ext_resource type="PackedScene" uid="uid://dobb4o5ifw1e6" path="res://Stages/Documentation/Gym/Obstacles/Ramps.tscn" id="5_jiqka"]
-[ext_resource type="PackedScene" uid="uid://4721tk72gs1t" path="res://Stages/Documentation/Gym/Obstacles/Steps.tscn" id="6_ji2m5"]
-[ext_resource type="PackedScene" uid="uid://bduaf0ou244na" path="res://Stages/Documentation/Gym/Obstacles/Bumps.tscn" id="7_tsewk"]
-[ext_resource type="PackedScene" uid="uid://duc76equt8iqk" path="res://Stages/Documentation/Gym/Obstacles/Round.tscn" id="8_tsewk"]
-[ext_resource type="PackedScene" uid="uid://dhsuh2ufuvwdp" path="res://Stages/Documentation/Gym/Obstacles/Stairs.tscn" id="9_jiqka"]
+[ext_resource type="Script" uid="uid://cwu5cf7a0awcd" path="res://addons/func_godot/src/map/func_godot_map.gd" id="5_pueq0"]
+[ext_resource type="Resource" uid="uid://cnygh8csloaqa" path="res://Trenchbroom/ProjectPolearmMapSettings.tres" id="6_pnhxc"]
+[ext_resource type="Material" uid="uid://byucy5ve5rloo" path="res://Trenchbroom/textures/Greybox Textures/PNG/Dark/texture_07.tres" id="7_4oxs2"]
+[ext_resource type="Material" uid="uid://duhe1khgqt2pp" path="res://Trenchbroom/textures/Greybox Textures/PNG/Green/texture_01.tres" id="7_ji2m5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jiqka"]
 shader = ExtResource("1_tsewk")
@@ -52,10 +50,44 @@ ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_sky_contribution = 0.67
 ambient_light_energy = 0.3
 
+[sub_resource type="ArrayMesh" id="ArrayMesh_ji2m5"]
+_surfaces = [{
+"aabb": AABB(-31, -0.5, -61.75, 64.5, 0.5, 64.5),
+"attribute_data": PackedByteArray("AACGwgAAID4AAHhCAAAgPgAAeEIAAJQ/AACGwgAAlD8AgL9AAACUPwAI9sIAAJQ/AAj2wgAAID4AgL9AAAAgPgCAv8AAAHhCAIC/wAAAhsIACPZCAACGwgAI9kIAAHhCAIC/QAAAeEIACPbCAAB4QgAI9sIAAIbCAIC/QAAAhsIAgL/AAAAgPgAI9kIAACA+AAj2QgAAlD8AgL/AAACUPwAAhkIAAJQ/AAB4wgAAlD8AAHjCAAAgPgAAhkIAACA+"),
+"format": 34359742487,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAAACAAMABAAFAAYABAAGAAcACAAJAAoACAAKAAsADAANAA4ADAAOAA8AEAARABIAEAASABMAFAAVABYAFAAWABcA"),
+"material": ExtResource("7_4oxs2"),
+"name": "Greybox Textures/PNG/Dark/texture_07",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("AAAGQgAAAAAAAHfCAAD4wQAAAAAAAHfCAAD4wQAAAL8AAHfCAAAGQgAAAL8AAHfCAAD4wQAAAL8AADBAAAD4wQAAAL8AAHfCAAD4wQAAAAAAAHfCAAD4wQAAAAAAADBAAAD4wQAAAL8AADBAAAAGQgAAAL8AADBAAAAGQgAAAL8AAHfCAAD4wQAAAL8AAHfCAAD4wQAAAAAAADBAAAD4wQAAAAAAAHfCAAAGQgAAAAAAAHfCAAAGQgAAAAAAADBAAAAGQgAAAAAAADBAAAAGQgAAAAAAAHfCAAAGQgAAAL8AAHfCAAAGQgAAAL8AADBAAAAGQgAAAL8AADBAAAD4wQAAAL8AADBAAAD4wQAAAAAAADBAAAAGQgAAAAAAADBA/////wAA/7//////AAD/v/////8AAP+//////wAA/78AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//v/9/AAD//////38AAP//////fwAA//////9/AAD//////3////9//7//f////3//v/9/////f/+//3////9//7////9//////////3//////////f/////////9///////9//3////+//3//f////7//f/9/////v/9//3////+/")
+}, {
+"aabb": AABB(-3.5, 0, -1.5, 1.25, 0.4375, 1.5),
+"attribute_data": PackedByteArray("AACQPQAAYLwAAOA9AABgvAAA4D0AAAAAAACQPQAAAAAAAAAAAAAAAAAAQL0AAAAAAABAvQAAYLwAAAAAAABgvAAAAAAAAOA9AAAAAAAAkD0AAEA9AACQPQAAQD0AAOA9AAAAAAAA4D0AAEC9AADgPQAAQL0AAJA9AAAAAAAAkD0AAAAAAABgvAAAQD0AAGC8AABAPQAAAAAAAAAAAAAAAAAAkL0AAAAAAADgvQAAAAAAAOC9AABgvAAAkL0AAGC8"),
+"format": 34359742487,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAAACAAMABAAFAAYABAAGAAcACAAJAAoACAAKAAsADAANAA4ADAAOAA8AEAARABIAEAASABMAFAAVABYAFAAWABcA"),
+"material": ExtResource("7_ji2m5"),
+"name": "Greybox Textures/PNG/Green/texture_01",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("AAAQwAAA4D4AAMC/AABgwAAA4D4AAMC/AABgwAAAAAAAAMC/AAAQwAAAAAAAAMC/AABgwAAAAAAAAAAAAABgwAAAAAAAAMC/AABgwAAA4D4AAMC/AABgwAAA4D4AAAAAAABgwAAAAAAAAAAAAAAQwAAAAAAAAAAAAAAQwAAAAAAAAMC/AABgwAAAAAAAAMC/AABgwAAA4D4AAAAAAABgwAAA4D4AAMC/AAAQwAAA4D4AAMC/AAAQwAAA4D4AAAAAAAAQwAAA4D4AAAAAAAAQwAAA4D4AAMC/AAAQwAAAAAAAAMC/AAAQwAAAAAAAAAAAAAAQwAAAAAAAAAAAAABgwAAAAAAAAAAAAABgwAAA4D4AAAAAAAAQwAAA4D4AAAAA/////wAA/7//////AAD/v/////8AAP+//////wAA/78AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//v/9/AAD//////38AAP//////fwAA//////9/AAD//////3////9//7//f////3//v/9/////f/+//3////9//7////9//////////3//////////f/////////9///////9//3////+//3//f////7//f/9/////v/9//3////+/")
+}]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_tsewk"]
+points = PackedVector3Array(33.5, 0, 2.75, 33.5, -0.5, 2.75, -31, 0, 2.75, -31, -0.5, 2.75, 33.5, 0, -61.75, 33.5, -0.5, -61.75, -31, 0, -61.75, -31, -0.5, -61.75)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_jiqka"]
+points = PackedVector3Array(-2.25, 0.4375, 0, -2.25, 0, 0, -3.5, 0.4375, 0, -3.5, 0, 0, -2.25, 0.4375, -1.5, -2.25, 0, -1.5, -3.5, 0.4375, -1.5, -3.5, 0, -1.5)
+
 [node name="Gym" type="Node" unique_id=1076830952]
 
 [node name="Player" parent="." unique_id=1997770894 instance=ExtResource("2_d2u3u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 2.1386669)
+STEP_MAX_HEIGHT = 0.438
 STEP_SPEED_FACTOR = 0.3
 
 [node name="Visuals" type="Node" parent="." unique_id=1391791017]
@@ -77,30 +109,21 @@ shadow_transmittance_bias = -0.02
 shadow_opacity = 0.9
 shadow_blur = 6.35
 
-[node name="Geometry" type="Node" parent="." unique_id=255614809]
+[node name="FuncGodotMap" type="Node3D" parent="." unique_id=826893974]
+script = ExtResource("5_pueq0")
+local_map_file = "uid://c7rgcogankq7x"
+map_settings = ExtResource("6_pnhxc")
+metadata/_custom_type_script = "uid://cwu5cf7a0awcd"
 
-[node name="Ground" type="CSGBox3D" parent="Geometry" unique_id=1174585820]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, 0, -0.6)
-material_override = ExtResource("1_r3mhs")
-use_collision = true
+[node name="entity_0_worldspawn" type="StaticBody3D" parent="FuncGodotMap" unique_id=1945086277]
 collision_layer = 32768
 collision_mask = 0
-size = Vector3(200, 1, 200)
 
-[node name="JumpHeight" type="Node3D" parent="Geometry" unique_id=1328271858]
+[node name="entity_0_mesh_instance" type="MeshInstance3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=332622666]
+mesh = SubResource("ArrayMesh_ji2m5")
 
-[node name="JumpDistance" type="Node3D" parent="Geometry" unique_id=1794139538]
+[node name="entity_0_brush_0_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1138012724]
+shape = SubResource("ConvexPolygonShape3D_tsewk")
 
-[node name="Ramps" parent="Geometry" unique_id=7076619 instance=ExtResource("5_jiqka")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4.5, 0, 12.3280945)
-
-[node name="Steps" parent="Geometry" unique_id=793798539 instance=ExtResource("6_ji2m5")]
-
-[node name="Bumps" parent="Geometry" unique_id=1776097978 instance=ExtResource("7_tsewk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, -6.9500003)
-
-[node name="Round" parent="Geometry" unique_id=830021453 instance=ExtResource("8_tsewk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -19.100002)
-
-[node name="Stairs" parent="Geometry" unique_id=1187381614 instance=ExtResource("9_jiqka")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 18.090061, 0, -8.6)
+[node name="entity_0_brush_1_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1227390735]
+shape = SubResource("ConvexPolygonShape3D_jiqka")

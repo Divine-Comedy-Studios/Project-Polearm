@@ -6,27 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://cyti0335fm7s0" path="res://Entities/Player/Player.tscn" id="4_3mnn6"]
 [ext_resource type="PackedScene" uid="uid://2twxnnq3mj7i" path="res://Common/Camera/SceneCamera/SceneCamera.tscn" id="5_ec1g0"]
 [ext_resource type="Shader" uid="uid://exx180lp74b0" path="res://Assets/Shaders/Sky/StylizedSky.gdshader" id="6_trpii"]
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_f7dji"]
-_surfaces = [{
-"aabb": AABB(-2.5, -0.25, -2.5, 5, 0.25, 9),
-"attribute_data": PackedByteArray("AACgwAAAID4AAKBAAAAgPgAAoEAAACg/AACgwAAAKD8AAH9AAAAoPwCAoMAAACg/AICgwAAAID4AAH9AAAAgPgAAf8AAAKBAAAB/wAAAoMAAgKBAAACgwACAoEAAAKBAAAB/QAAAoEAAgKDAAACgQACAoMAAAKDAAAB/QAAAoMAAAH/AAAAgPgCAoEAAACA+AICgQAAAKD8AAH/AAAAoPwAAoEAAACg/AACgwAAAKD8AAKDAAAAgPgAAoEAAACA+AACgwAAAID4AAKBAAAAgPgAAoEAAACg/AACgwAAAKD8AgE1BAAAoPwAAdkAAACg/AAB2QAAAID4AgE1BAAAgPgCATcEAAKBAAIBNwQAAoMAAAHbAAACgwAAAdsAAAKBAAIBNQQAAoEAAAHZAAACgQAAAdkAAAKDAAIBNQQAAoMAAgE3BAAAgPgAAdsAAACA+AAB2wAAAKD8AgE3BAAAoPwAAoEAAACg/AACgwAAAKD8AAKDAAAAgPgAAoEAAACA+"),
-"format": 34359742487,
-"index_count": 72,
-"index_data": PackedByteArray("AAABAAIAAAACAAMABAAFAAYABAAGAAcACAAJAAoACAAKAAsADAANAA4ADAAOAA8AEAARABIAEAASABMAFAAVABYAFAAWABcAGAAZABoAGAAaABsAHAAdAB4AHAAeAB8AIAAhACIAIAAiACMAJAAlACYAJAAmACcAKAApACoAKAAqACsALAAtAC4ALAAuAC8A"),
-"material": ExtResource("3_vfe17"),
-"name": "Greybox Textures/PNG/Dark/texture_07",
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 48,
-"vertex_data": PackedByteArray("AAAgQAAAAAAAACDAAAAgwAAAAAAAACDAAAAgwAAAgL4AACDAAAAgQAAAgL4AACDAAAAgwAAAgL4AAABAAAAgwAAAgL4AACDAAAAgwAAAAAAAACDAAAAgwAAAAAAAAABAAAAgwAAAgL4AAABAAAAgQAAAgL4AAABAAAAgQAAAgL4AACDAAAAgwAAAgL4AACDAAAAgwAAAAAAAAABAAAAgwAAAAAAAACDAAAAgQAAAAAAAACDAAAAgQAAAAAAAAABAAAAgQAAAAAAAAABAAAAgQAAAAAAAACDAAAAgQAAAgL4AACDAAAAgQAAAgL4AAABAAAAgQAAAgL4AAABAAAAgwAAAgL4AAABAAAAgwAAAAAAAAABAAAAgQAAAAAAAAABAAAAgQAAAAAAAAABAAAAgwAAAAAAAAABAAAAgwAAAgL4AAABAAAAgQAAAgL4AAABAAAAgwAAAgL4AANBAAAAgwAAAgL4AAABAAAAgwAAAAAAAAABAAAAgwAAAAAAAANBAAAAgwAAAgL4AANBAAAAgQAAAgL4AANBAAAAgQAAAgL4AAABAAAAgwAAAgL4AAABAAAAgwAAAAAAAANBAAAAgwAAAAAAAAABAAAAgQAAAAAAAAABAAAAgQAAAAAAAANBAAAAgQAAAAAAAANBAAAAgQAAAAAAAAABAAAAgQAAAgL4AAABAAAAgQAAAgL4AANBAAAAgQAAAgL4AANBAAAAgwAAAgL4AANBAAAAgwAAAAAAAANBAAAAgQAAAAAAAANBA/////wAA/7//////AAD/v/////8AAP+//////wAA/78AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//v/9/AAD//////38AAP//////fwAA//////9/AAD//////3////9//7//f////3//v/9/////f/+//3////9//7////9//////////3//////////f/////////9///////9//3////+//3//f////7//f/9/////v/9//3////+//////wAA/7//////AAD/v/////8AAP+//////wAA/78AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//v/9/AAD//////38AAP//////fwAA//////9/AAD//////3////9//7//f////3//v/9/////f/+//3////9//7////9//////////3//////////f/////////9///////9//3////+//3//f////7//f/9/////v/9//3////+/")
-}]
-
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ec1g0"]
-points = PackedVector3Array(2.5, 0, 2, 2.5, -0.25, 2, -2.5, 0, 2, -2.5, -0.25, 2, 2.5, 0, -2.5, 2.5, -0.25, -2.5, -2.5, 0, -2.5, -2.5, -0.25, -2.5)
-
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_trpii"]
-points = PackedVector3Array(2.5, 0, 6.5, 2.5, -0.25, 6.5, -2.5, 0, 6.5, -2.5, -0.25, 6.5, 2.5, 0, 2, 2.5, -0.25, 2, -2.5, 0, 2, -2.5, -0.25, 2)
+[ext_resource type="Material" uid="uid://cgj2lr4vp41pl" path="res://Assets/Materials/Prototype/FloorGray.tres" id="7_trpii"]
+[ext_resource type="PackedScene" uid="uid://dobb4o5ifw1e6" path="res://Stages/Documentation/Gym/Obstacles/Ramps.tscn" id="8_2i3sw"]
+[ext_resource type="PackedScene" uid="uid://4721tk72gs1t" path="res://Stages/Documentation/Gym/Obstacles/Steps.tscn" id="9_ael4p"]
+[ext_resource type="PackedScene" uid="uid://bduaf0ou244na" path="res://Stages/Documentation/Gym/Obstacles/Bumps.tscn" id="10_oiy8w"]
+[ext_resource type="PackedScene" uid="uid://duc76equt8iqk" path="res://Stages/Documentation/Gym/Obstacles/Round.tscn" id="11_f41t5"]
+[ext_resource type="PackedScene" uid="uid://dhsuh2ufuvwdp" path="res://Stages/Documentation/Gym/Obstacles/Stairs.tscn" id="12_eobhq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_othpa"]
 shader = ExtResource("6_trpii")
@@ -70,33 +55,38 @@ ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_sky_contribution = 0.67
 ambient_light_energy = 0.3
 
-[node name="Node3D" type="Node3D" unique_id=1696580281]
+[sub_resource type="ArrayMesh" id="ArrayMesh_ec1g0"]
+_surfaces = [{
+"aabb": AABB(-2.5, -1, -2.5, 5, 1, 9),
+"attribute_data": PackedByteArray("AACgwAAAID4AAKBAAAAgPgAAoEAAAApAAACgwAAACkAAAH9AAAAKQACAoMAAAApAAICgwAAAID4AAH9AAAAgPgAAf8AAAKBAAAB/wAAAoMAAgKBAAACgwACAoEAAAKBAAAB/QAAAoEAAgKDAAACgQACAoMAAAKDAAAB/QAAAoMAAAH/AAAAgPgCAoEAAACA+AICgQAAACkAAAH/AAAAKQAAAoEAAAApAAACgwAAACkAAAKDAAAAgPgAAoEAAACA+AACgwAAAID4AAKBAAAAgPgAAoEAAACg/AACgwAAAKD8AgE1BAAAoPwAAdkAAACg/AAB2QAAAID4AgE1BAAAgPgCATcEAAKBAAIBNwQAAoMAAAHbAAACgwAAAdsAAAKBAAIBNQQAAoEAAAHZAAACgQAAAdkAAAKDAAIBNQQAAoMAAgE3BAAAgPgAAdsAAACA+AAB2wAAAKD8AgE3BAAAoPwAAoEAAACg/AACgwAAAKD8AAKDAAAAgPgAAoEAAACA+"),
+"format": 34359742487,
+"index_count": 72,
+"index_data": PackedByteArray("AAABAAIAAAACAAMABAAFAAYABAAGAAcACAAJAAoACAAKAAsADAANAA4ADAAOAA8AEAARABIAEAASABMAFAAVABYAFAAWABcAGAAZABoAGAAaABsAHAAdAB4AHAAeAB8AIAAhACIAIAAiACMAJAAlACYAJAAmACcAKAApACoAKAAqACsALAAtAC4ALAAuAC8A"),
+"material": ExtResource("3_vfe17"),
+"name": "Greybox Textures/PNG/Dark/texture_07",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 48,
+"vertex_data": PackedByteArray("AAAgQAAAAAAAACDAAAAgwAAAAAAAACDAAAAgwAAAgL8AACDAAAAgQAAAgL8AACDAAAAgwAAAgL8AAABAAAAgwAAAgL8AACDAAAAgwAAAAAAAACDAAAAgwAAAAAAAAABAAAAgwAAAgL8AAABAAAAgQAAAgL8AAABAAAAgQAAAgL8AACDAAAAgwAAAgL8AACDAAAAgwAAAAAAAAABAAAAgwAAAAAAAACDAAAAgQAAAAAAAACDAAAAgQAAAAAAAAABAAAAgQAAAAAAAAABAAAAgQAAAAAAAACDAAAAgQAAAgL8AACDAAAAgQAAAgL8AAABAAAAgQAAAgL8AAABAAAAgwAAAgL8AAABAAAAgwAAAAAAAAABAAAAgQAAAAAAAAABAAAAgQAAAAAAAAABAAAAgwAAAAAAAAABAAAAgwAAAgL4AAABAAAAgQAAAgL4AAABAAAAgwAAAgL4AANBAAAAgwAAAgL4AAABAAAAgwAAAAAAAAABAAAAgwAAAAAAAANBAAAAgwAAAgL4AANBAAAAgQAAAgL4AANBAAAAgQAAAgL4AAABAAAAgwAAAgL4AAABAAAAgwAAAAAAAANBAAAAgwAAAAAAAAABAAAAgQAAAAAAAAABAAAAgQAAAAAAAANBAAAAgQAAAAAAAANBAAAAgQAAAAAAAAABAAAAgQAAAgL4AAABAAAAgQAAAgL4AANBAAAAgQAAAgL4AANBAAAAgwAAAgL4AANBAAAAgwAAAAAAAANBAAAAgQAAAAAAAANBA/////wAA/7//////AAD/v/////8AAP+//////wAA/78AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//v/9/AAD//////38AAP//////fwAA//////9/AAD//////3////9//7//f////3//v/9/////f/+//3////9//7////9//////////3//////////f/////////9///////9//3////+//3//f////7//f/9/////v/9//3////+//////wAA/7//////AAD/v/////8AAP+//////wAA/78AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//v/9/AAD//////38AAP//////fwAA//////9/AAD//////3////9//7//f////3//v/9/////f/+//3////9//7////9//////////3//////////f/////////9///////9//3////+//3//f////7//f/9/////v/9//3////+/")
+}]
 
-[node name="FuncGodotMap" type="Node3D" parent="." unique_id=392945415]
-script = ExtResource("1_vfe17")
-local_map_file = "uid://c7rgcogankq7x"
-map_settings = ExtResource("2_3mnn6")
-metadata/_custom_type_script = "uid://cwu5cf7a0awcd"
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_trpii"]
+points = PackedVector3Array(2.5, 0, 2, 2.5, -1, 2, -2.5, 0, 2, -2.5, -1, 2, 2.5, 0, -2.5, 2.5, -1, -2.5, -2.5, 0, -2.5, -2.5, -1, -2.5)
 
-[node name="entity_0_worldspawn" type="StaticBody3D" parent="FuncGodotMap" unique_id=303987126]
-collision_mask = 0
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_othpa"]
+points = PackedVector3Array(2.5, 0, 6.5, 2.5, -0.25, 6.5, -2.5, 0, 6.5, -2.5, -0.25, 6.5, 2.5, 0, 2, 2.5, -0.25, 2, -2.5, 0, 2, -2.5, -0.25, 2)
 
-[node name="entity_0_mesh_instance" type="MeshInstance3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1066008319]
-mesh = SubResource("ArrayMesh_f7dji")
+[node name="Node3D" type="Node" unique_id=283730589]
 
-[node name="entity_0_brush_0_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=949343528]
-shape = SubResource("ConvexPolygonShape3D_ec1g0")
-
-[node name="entity_0_brush_1_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=783148309]
-shape = SubResource("ConvexPolygonShape3D_trpii")
-
-[node name="Player" parent="." unique_id=1165042510 instance=ExtResource("4_3mnn6")]
+[node name="Player" parent="." unique_id=1210477223 instance=ExtResource("4_3mnn6")]
+STEP_SPEED_FACTOR = 0.3
 
 [node name="Visuals" type="Node" parent="." unique_id=1540447604]
 
 [node name="SceneCamera" parent="Visuals" unique_id=1015597522 instance=ExtResource("5_ec1g0")]
 transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 0, 0)
 top_level = true
+current = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Visuals" unique_id=1454148134]
 environment = SubResource("Environment_k1kf5")
@@ -110,3 +100,50 @@ shadow_enabled = true
 shadow_transmittance_bias = -0.02
 shadow_opacity = 0.9
 shadow_blur = 6.35
+
+[node name="FuncGodotMap" type="Node3D" parent="." unique_id=392945415]
+script = ExtResource("1_vfe17")
+local_map_file = "uid://c7rgcogankq7x"
+map_settings = ExtResource("2_3mnn6")
+metadata/_custom_type_script = "uid://cwu5cf7a0awcd"
+
+[node name="entity_0_worldspawn" type="StaticBody3D" parent="FuncGodotMap" unique_id=1177591089]
+collision_layer = 32768
+collision_mask = 0
+
+[node name="entity_0_mesh_instance" type="MeshInstance3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1571611406]
+mesh = SubResource("ArrayMesh_ec1g0")
+
+[node name="entity_0_brush_0_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=83453015]
+shape = SubResource("ConvexPolygonShape3D_trpii")
+
+[node name="entity_0_brush_1_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1684266823]
+shape = SubResource("ConvexPolygonShape3D_othpa")
+
+[node name="Geometry" type="Node" parent="." unique_id=641454265]
+
+[node name="Ground" type="CSGBox3D" parent="Geometry" unique_id=792278619]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, -1.7986252, -0.6)
+material_override = ExtResource("7_trpii")
+use_collision = true
+collision_layer = 32768
+collision_mask = 0
+size = Vector3(200, 1, 200)
+
+[node name="JumpHeight" type="Node3D" parent="Geometry" unique_id=818910167]
+
+[node name="JumpDistance" type="Node3D" parent="Geometry" unique_id=1946474974]
+
+[node name="Ramps" parent="Geometry" unique_id=187119212 instance=ExtResource("8_2i3sw")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4.5, 0, 12.3280945)
+
+[node name="Steps" parent="Geometry" unique_id=793798539 instance=ExtResource("9_ael4p")]
+
+[node name="Bumps" parent="Geometry" unique_id=1776097978 instance=ExtResource("10_oiy8w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, -6.9500003)
+
+[node name="Round" parent="Geometry" unique_id=830021453 instance=ExtResource("11_f41t5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -19.100002)
+
+[node name="Stairs" parent="Geometry" unique_id=1187381614 instance=ExtResource("12_eobhq")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 18.090061, 0, -8.6)
