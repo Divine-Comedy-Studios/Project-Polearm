@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bf4nqlgr0keno"
 path.s3tc="res://.godot/imported/texture_05.png-56ad28334f1d3f783cd2f00f002b484f.s3tc.ctex"
+path.etc2="res://.godot/imported/texture_05.png-56ad28334f1d3f783cd2f00f002b484f.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Trenchbroom/textures/Greybox Textures/PNG/Dark/texture_05.png"
-dest_files=["res://.godot/imported/texture_05.png-56ad28334f1d3f783cd2f00f002b484f.s3tc.ctex"]
+dest_files=["res://.godot/imported/texture_05.png-56ad28334f1d3f783cd2f00f002b484f.s3tc.ctex", "res://.godot/imported/texture_05.png-56ad28334f1d3f783cd2f00f002b484f.etc2.ctex"]
 
 [params]
 

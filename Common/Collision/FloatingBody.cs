@@ -78,7 +78,7 @@ using System.Linq;
 	[ExportGroup("Step settings")]
 	[Export] public float STEP_MAX_HEIGHT = 0.41f;
 	[Export] public float STEP_MIN_DEPTH = 0.3f;
-	[Export] public float STEP_SPEED_FACTOR = 5.0f;
+	[Export] public float STEP_SPEED_FACTOR = 0.3f;
 
 	#endregion
 

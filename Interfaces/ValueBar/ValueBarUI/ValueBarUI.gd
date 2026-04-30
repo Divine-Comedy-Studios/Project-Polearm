@@ -1,4 +1,4 @@
-class_name ValueBarUI extends CanvasLayer
+class_name ValueBarUI extends Panel
 
 #region Exported Variables
 
@@ -7,8 +7,6 @@ class_name ValueBarUI extends CanvasLayer
 @export var GROUP_INDEX : int
 @export var SIGNAL_NAME : StringName = &"valueChanged"
 @export var MAX_VALUE_SIGNAL : StringName = &"maxValueChanged"
-
-@export_group("Value Setting")
 
 @export_group("Visual Transform Settings")
 @export var SIZE := Vector2(200, 15)
@@ -24,10 +22,9 @@ class_name ValueBarUI extends CanvasLayer
 
 #region Node Variables
 
-@onready var panel : Panel = $"Panel"
 @onready var timer : Timer = $"Timer"
-@onready var changeBar : TextureProgressBar = $"Panel/ChangeBar"
-@onready var valueBar : TextureProgressBar = $"Panel/ValueBar"
+@onready var changeBar : TextureProgressBar = $"ChangeBar"
+@onready var valueBar : TextureProgressBar = $"ValueBar"
 
 #endregion
 
@@ -78,8 +75,8 @@ func updateColors() -> void:
 		valueBar.tint_progress = PROGRESS_GRADIENT.sample(valueRatio)
 
 func setupVisuals() -> void:
-	panel.custom_minimum_size = SIZE
-	panel.position = POS
+	self.custom_minimum_size = SIZE
+	self.position = POS
 
 	valueBar.texture_progress = VALUE_TEXTURE
 	changeBar.texture_progress = CHANGE_TEXTURE
@@ -94,3 +91,4 @@ func setupVisuals() -> void:
 func _onTimeout() -> void:
 	var tween = create_tween()
 	tween.tween_property(changeBar, "value", valueBar.value, 0.5).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+

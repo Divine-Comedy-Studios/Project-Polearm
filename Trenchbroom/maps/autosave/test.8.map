@@ -1,0 +1,35 @@
+// Game: ProjectPolearm
+// Format: Valve
+// entity 0
+{
+"mapversion" "220"
+"wad" ""
+"classname" "worldspawn"
+"_tb_mod" "Trenchbroom"
+// brush 0
+{
+( -128 -968 -8 ) ( -128 -967 -8 ) ( -128 -968 -7 ) "Greybox Textures/PNG/Dark/texture_07" [ 0 -1 0 0 ] [ 0 0 -1 160 ] 180 0.015625 0.015625
+( -128 -992 -8 ) ( -128 -992 -7 ) ( -127 -992 -8 ) "Greybox Textures/PNG/Dark/texture_07" [ 1 0 0 1008 ] [ 0 0 -1 160 ] 90 0.015625 0.015625
+( -128 -968 -16 ) ( -127 -968 -16 ) ( -128 -967 -16 ) "Greybox Textures/PNG/Dark/texture_07" [ -1 0 0 -1008 ] [ 0 -1 0 0 ] 0 0.015625 0.015625
+( -8 -856 0 ) ( -8 -855 0 ) ( -7 -856 0 ) "Greybox Textures/PNG/Dark/texture_07" [ 1 0 0 1008 ] [ 0 -1 0 0 ] 180 0.015625 0.015625
+( -8 1072 0 ) ( -7 1072 0 ) ( -8 1072 1 ) "Greybox Textures/PNG/Dark/texture_07" [ -1 0 0 -1008 ] [ 0 0 -1 160 ] 270 0.015625 0.015625
+( 1936 -856 0 ) ( 1936 -856 1 ) ( 1936 -855 0 ) "Greybox Textures/PNG/Dark/texture_07" [ 0 1 0 0 ] [ 0 0 -1 160 ] 0 0.015625 0.015625
+}
+// brush 1
+{
+( 32 96 0 ) ( 32 97 0 ) ( 32 96 1 ) "Greybox Textures/PNG/Green/texture_01" [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 32 96 0 ) ( 32 96 1 ) ( 33 96 0 ) "Greybox Textures/PNG/Green/texture_01" [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 32 96 0 ) ( 33 96 0 ) ( 32 97 0 ) "Greybox Textures/PNG/Green/texture_01" [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 112 160 16 ) ( 112 161 16 ) ( 113 160 16 ) "Greybox Textures/PNG/Green/texture_01" [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 112 160 16 ) ( 113 160 16 ) ( 112 160 17 ) "Greybox Textures/PNG/Green/texture_01" [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 112 160 16 ) ( 112 160 17 ) ( 112 161 16 ) "Greybox Textures/PNG/Green/texture_01" [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+}
+// entity 1
+{
+"classname" "func_group"
+"_tb_type" "_tb_layer"
+"_tb_name" "Objectives"
+"_tb_id" "1"
+"_tb_layer_sort_index" "0"
+}

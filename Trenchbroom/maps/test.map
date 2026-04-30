@@ -8,20 +8,28 @@
 "_tb_mod" "Trenchbroom"
 // brush 0
 {
-( -80 -56 -8 ) ( -80 -55 -8 ) ( -80 -56 -7 ) "Greybox Textures/PNG/Dark/texture_07" [ 0 -1 0 0 ] [ 0 0 -1 160 ] 90 0.015625 0.015625
-( -80 -80 -8 ) ( -80 -80 -7 ) ( -79 -80 -8 ) "Greybox Textures/PNG/Dark/texture_07" [ 1 0 0 -16 ] [ 0 0 -1 160 ] 0 0.015625 0.015625
-( -80 -56 -8 ) ( -79 -56 -8 ) ( -80 -55 -8 ) "Greybox Textures/PNG/Dark/texture_07" [ -1 0 0 16 ] [ 0 -1 0 0 ] 90 0.015625 0.015625
-( 40 56 0 ) ( 40 57 0 ) ( 41 56 0 ) "Greybox Textures/PNG/Dark/texture_07" [ 1 0 0 -16 ] [ 0 -1 0 0 ] 90 0.015625 0.015625
-( 40 80 0 ) ( 41 80 0 ) ( 40 80 1 ) "Greybox Textures/PNG/Dark/texture_07" [ -1 0 0 16 ] [ 0 0 -1 160 ] 270 0.015625 0.015625
-( 64 56 0 ) ( 64 56 1 ) ( 64 57 0 ) "Greybox Textures/PNG/Dark/texture_07" [ 0 1 0 0 ] [ 0 0 -1 160 ] 0 0.015625 0.015625
+( -1976 -968 -8 ) ( -1976 -967 -8 ) ( -1976 -968 -7 ) "Greybox Textures/PNG/Dark/texture_07" [ 0 -1 0 0 ] [ 0 0 -1 160 ] 180 0.015625 0.015625
+( -1976 -992 -8 ) ( -1976 -992 -7 ) ( -1975 -992 -8 ) "Greybox Textures/PNG/Dark/texture_07" [ 1 0 0 496 ] [ 0 0 -1 160 ] 90 0.015625 0.015625
+( -1976 -968 -16 ) ( -1975 -968 -16 ) ( -1976 -967 -16 ) "Greybox Textures/PNG/Dark/texture_07" [ -1 0 0 -496 ] [ 0 -1 0 0 ] 0 0.015625 0.015625
+( -1856 -856 0 ) ( -1856 -855 0 ) ( -1855 -856 0 ) "Greybox Textures/PNG/Dark/texture_07" [ 1 0 0 496 ] [ 0 -1 0 0 ] 180 0.015625 0.015625
+( -1856 1072 0 ) ( -1855 1072 0 ) ( -1856 1072 1 ) "Greybox Textures/PNG/Dark/texture_07" [ -1 0 0 -496 ] [ 0 0 -1 160 ] 270 0.015625 0.015625
+( 88 -856 0 ) ( 88 -856 1 ) ( 88 -855 0 ) "Greybox Textures/PNG/Dark/texture_07" [ 0 1 0 0 ] [ 0 0 -1 160 ] 0 0.015625 0.015625
 }
-// brush 1
+}
+// entity 1
 {
-( 64 -56 -8 ) ( 64 -55 -8 ) ( 64 -56 -7 ) "Greybox Textures/PNG/Dark/texture_07" [ 0 -1 0 0 ] [ 0 0 -1 160 ] 0 0.015625 0.015625
-( 64 -80 -8 ) ( 64 -80 -7 ) ( 65 -80 -8 ) "Greybox Textures/PNG/Dark/texture_07" [ 1 0 0 -160 ] [ 0 0 -1 160 ] 270 0.015625 0.015625
-( 64 -56 -8 ) ( 65 -56 -8 ) ( 64 -55 -8 ) "Greybox Textures/PNG/Dark/texture_07" [ -1 0 0 160 ] [ 0 -1 0 0 ] 0 0.015625 0.015625
-( 184 56 0 ) ( 184 57 0 ) ( 185 56 0 ) "Greybox Textures/PNG/Dark/texture_07" [ 1 0 0 -160 ] [ 0 -1 0 0 ] 0 0.015625 0.015625
-( 184 80 0 ) ( 185 80 0 ) ( 184 80 1 ) "Greybox Textures/PNG/Dark/texture_07" [ -1 0 0 160 ] [ 0 0 -1 160 ] 180 0.015625 0.015625
-( 208 56 0 ) ( 208 56 1 ) ( 208 57 0 ) "Greybox Textures/PNG/Dark/texture_07" [ 0 1 0 0 ] [ 0 0 -1 160 ] 270 0.015625 0.015625
+"classname" "func_group"
+"_tb_type" "_tb_layer"
+"_tb_name" "Hurdles"
+"_tb_id" "2"
+"_tb_layer_sort_index" "0"
+// brush 0
+{
+( -48 -112 0 ) ( -48 -111 0 ) ( -48 -112 1 ) "Greybox Textures/PNG/Green/texture_01" [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -48 -112 0 ) ( -48 -112 1 ) ( -47 -112 0 ) "Greybox Textures/PNG/Green/texture_01" [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -48 -112 0 ) ( -47 -112 0 ) ( -48 -111 0 ) "Greybox Textures/PNG/Green/texture_01" [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 0 -72 14 ) ( 0 -71 14 ) ( 1 -72 14 ) "Greybox Textures/PNG/Green/texture_01" [ 1 0 0 0 ] [ 0 -1 0 0 ] 270 1 1
+( 0 -72 8 ) ( 1 -72 8 ) ( 0 -72 9 ) "Greybox Textures/PNG/Green/texture_01" [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 0 -72 8 ) ( 0 -72 9 ) ( 0 -71 8 ) "Greybox Textures/PNG/Green/texture_01" [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
