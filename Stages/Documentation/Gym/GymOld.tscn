@@ -4,11 +4,11 @@
 [ext_resource type="Material" uid="uid://cgj2lr4vp41pl" path="res://Assets/Materials/Prototype/FloorGray.tres" id="1_r3mhs"]
 [ext_resource type="Shader" uid="uid://exx180lp74b0" path="res://Assets/Shaders/Sky/StylizedSky.gdshader" id="1_tsewk"]
 [ext_resource type="PackedScene" uid="uid://cyti0335fm7s0" path="res://Entities/Player/Player.tscn" id="2_d2u3u"]
-[ext_resource type="PackedScene" uid="uid://dobb4o5ifw1e6" path="res://Stages/Documentation/Gym/Obstacles/Ramps.tscn" id="5_jiqka"]
-[ext_resource type="PackedScene" uid="uid://4721tk72gs1t" path="res://Stages/Documentation/Gym/Obstacles/Steps.tscn" id="6_ji2m5"]
-[ext_resource type="PackedScene" uid="uid://bduaf0ou244na" path="res://Stages/Documentation/Gym/Obstacles/Bumps.tscn" id="7_tsewk"]
-[ext_resource type="PackedScene" uid="uid://duc76equt8iqk" path="res://Stages/Documentation/Gym/Obstacles/Round.tscn" id="8_tsewk"]
-[ext_resource type="PackedScene" uid="uid://dhsuh2ufuvwdp" path="res://Stages/Documentation/Gym/Obstacles/Stairs.tscn" id="9_jiqka"]
+[ext_resource type="PackedScene" uid="uid://dobb4o5ifw1e6" path="res://Stages/Documentation/Gym/ObstaclesOld/Ramps.tscn" id="5_jiqka"]
+[ext_resource type="PackedScene" uid="uid://4721tk72gs1t" path="res://Stages/Documentation/Gym/ObstaclesOld/Steps.tscn" id="6_ji2m5"]
+[ext_resource type="PackedScene" uid="uid://bduaf0ou244na" path="res://Stages/Documentation/Gym/ObstaclesOld/Bumps.tscn" id="7_tsewk"]
+[ext_resource type="PackedScene" uid="uid://duc76equt8iqk" path="res://Stages/Documentation/Gym/ObstaclesOld/Round.tscn" id="8_tsewk"]
+[ext_resource type="PackedScene" uid="uid://dhsuh2ufuvwdp" path="res://Stages/Documentation/Gym/ObstaclesOld/Stairs.tscn" id="9_jiqka"]
 [ext_resource type="Script" uid="uid://cwu5cf7a0awcd" path="res://addons/func_godot/src/map/func_godot_map.gd" id="10_8gnrv"]
 [ext_resource type="Resource" uid="uid://cnygh8csloaqa" path="res://Trenchbroom/ProjectPolearmMapSettings.tres" id="11_epoir"]
 [ext_resource type="Material" uid="uid://byucy5ve5rloo" path="res://Trenchbroom/textures/Greybox Textures/PNG/Dark/texture_07.tres" id="12_0l7lt"]
@@ -80,7 +80,6 @@ points = PackedVector3Array(2.5, 0, 6.5, 2.5, -0.25, 6.5, -2.5, 0, 6.5, -2.5, -0
 
 [node name="Player" parent="." unique_id=1997770894 instance=ExtResource("2_d2u3u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 2.1386669)
-STEP_SPEED_FACTOR = 0.3
 
 [node name="Visuals" type="Node" parent="." unique_id=1391791017]
 
