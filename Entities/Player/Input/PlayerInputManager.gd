@@ -100,8 +100,10 @@ func processMovementActions():
 	if Input.is_action_pressed("Jump"):
 		inputs.modifiers.append(PlayerAction.Type.jump)
 
-	#if Input.is_action_pressed("Dodge"):
-	#	inputs.actions.append(PlayerAction.Type.dodge)
+	if Input.is_action_just_pressed("Dash"):
+		inputs.actions.append(PlayerAction.Type.dash)
+	if Input.is_action_pressed("Dash"):
+		inputs.actions.append(PlayerAction.Type.sprint)
 	
 	if Input.is_action_just_pressed("Light attack"):
 		inputs.actions.append(PlayerAction.Type.lightAttack)

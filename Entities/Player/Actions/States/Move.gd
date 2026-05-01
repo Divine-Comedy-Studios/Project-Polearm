@@ -58,8 +58,6 @@ func _implInit() -> void:
 
 
 func _implEnter() -> void:
-	resources().jumpCount.value = 0
-
 	animator().setCoreTransition(&"AdvancedTransition", data.ANIMATION_FADE_TIME)
 	animator().transitionTo(&"AdvancedTransition", &"Move")
 

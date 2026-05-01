@@ -96,16 +96,16 @@ using System.Linq;
 
 	// References
 
-	private float CHARACTER_HEIGHT_BUFFERED;
-	private float CHARACTER_POSITION_BUFFERED;
+	private float CHARACTER_HEIGHT_BUFFERED = 0.0f;
+	private float CHARACTER_POSITION_BUFFERED = 0.0f;
 
-	private float BODY_COLLIDER_HEIGHT;
-	private float BODY_COLLIDER_POSITION;
+	private float BODY_COLLIDER_HEIGHT = 0.0f;
+	private float BODY_COLLIDER_POSITION = 0.0f;
 
-	private float SLOPE_MAX_ANGLE_COS;
+	private float SLOPE_MAX_ANGLE_COS = 0.0f;
 
-	private CapsuleShape3D m_bodyColliderShape;
-	private SphereShape3D m_groundCastShape;
+	private CapsuleShape3D m_bodyColliderShape = null;
+	private SphereShape3D m_groundCastShape = null;
 
 
 	// State
@@ -195,8 +195,8 @@ using System.Linq;
 		m_targetVelocity += velocity;
 	}
 
-	public void moveFlat(Vector3 velocity) => MoveFlat(new Vector2(velocity.X, velocity.Y));
-	public void MoveFlat(Vector3 velocity) => MoveFlat(new Vector2(velocity.X, velocity.Y));
+	public void moveFlat3(Vector3 velocity) => MoveFlat(new Vector2(velocity.X, velocity.Z));
+	public void MoveFlat3(Vector3 velocity) => MoveFlat(new Vector2(velocity.X, velocity.Z));
 	public void moveFlat(Vector2 velocity) => MoveFlat(velocity);
 	public void MoveFlat(Vector2 velocity) {
 		m_targetVelocity.X += velocity.X;
@@ -214,8 +214,8 @@ using System.Linq;
 		m_targetVelocity = velocity;
 	}
 
-	public void setMovementFlat(Vector3 velocity) => SetMovementFlat(new Vector2(velocity.X, velocity.Y));
-	public void SetMovementFlat(Vector3 velocity) => SetMovementFlat(new Vector2(velocity.X, velocity.Y));
+	public void setMovementFlat3(Vector3 velocity) => SetMovementFlat(new Vector2(velocity.X, velocity.Z));
+	public void SetMovementFlat3(Vector3 velocity) => SetMovementFlat(new Vector2(velocity.X, velocity.Z));
 	public void setMovementFlat(Vector2 velocity) => SetMovementFlat(velocity);
 	public void SetMovementFlat(Vector2 velocity) {
 		m_targetVelocity.X = velocity.X;
@@ -236,8 +236,8 @@ using System.Linq;
 		m_targetVelocity.Z = Mathf.MoveToward(m_targetVelocity.Z, target.Z, accelerationDt);
 	}
 
-	public void accelerateFlat(Vector3 target, float accelerationDt) => AccelerateFlat(new Vector2(target.X, target.Y), accelerationDt);
-	public void AccelerateFlat(Vector3 target, float accelerationDt) => AccelerateFlat(new Vector2(target.X, target.Y), accelerationDt);
+	public void accelerateFlat3(Vector3 target, float accelerationDt) => AccelerateFlat(new Vector2(target.X, target.Z), accelerationDt);
+	public void AccelerateFlat3(Vector3 target, float accelerationDt) => AccelerateFlat(new Vector2(target.X, target.Z), accelerationDt);
 	public void accelerateFlat(Vector2 target, float accelerationDt) => AccelerateFlat(target, accelerationDt);
 	public void AccelerateFlat(Vector2 target, float accelerationDt) {
 		m_targetVelocity.X = Mathf.MoveToward(m_targetVelocity.X, target.X, accelerationDt);
@@ -249,11 +249,18 @@ using System.Linq;
 		m_targetVelocity.Y = Mathf.MoveToward(m_targetVelocity.Y, target, accelerationDt);
 	}
 
-	// Get target velocity
+
+	// Get velocity
 
 	public Vector3 movement() => Movement();
 	public Vector3 Movement() {
 		return m_targetVelocity;
+	}
+
+	// Get last valid velocity
+	public Vector3 lastMovement() => LastMovement();
+	public Vector3 LastMovement() {
+		return m_lastNonZeroDir;
 	}
 
 

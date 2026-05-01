@@ -88,7 +88,7 @@ func _processInputBuffer() -> void:
 
 	# Insert inputs from the current batch
 	for inputType : StringName in inputManager.inputs.actions:
-		var currentAction := action(inputType)
+		var currentAction := action(inputType) as PlayerAction
 
 		if currentAction.INPUT_BUFFER_FRAMES > 0:
 			_bufferedInputs[currentAction.TYPE] = currentAction.INPUT_BUFFER_FRAMES
@@ -116,6 +116,7 @@ func _processActionQueue() -> void:
 
 func _processAerialStates() -> void:
 	if (entity as Player).onGround():
+		resources.jumpCount.value = 0
 		return
 	
 	var aerialInputs : Array[StringName] = []
