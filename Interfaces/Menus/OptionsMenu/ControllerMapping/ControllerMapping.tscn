@@ -70,9 +70,9 @@ layout_mode = 2
 LABLE_TEXT = "UI_CONTROLLERMAPPING_DODGE"
 INPUT_MODE = 1
 
-[node name="Sprint" parent="CenterContainer/HBoxContainer/Right Colon" unique_id=1101762541 instance=ExtResource("2_4b14h")]
+[node name="Dash" parent="CenterContainer/HBoxContainer/Right Colon" unique_id=1101762541 instance=ExtResource("2_4b14h")]
 layout_mode = 2
-LABLE_TEXT = "UI_CONTROLLERMAPPING_SPRINT"
+LABLE_TEXT = "UI_CONTROLLERMAPPING_DASH"
 INPUT_MODE = 1
 
 [node name="Shoot" parent="CenterContainer/HBoxContainer/Right Colon" unique_id=361470708 instance=ExtResource("2_4b14h")]
