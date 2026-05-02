@@ -1,13 +1,6 @@
 extends AppState
 
 
-#region Scene members
-
-@export var _game : AppState = null
-
-#endregion
-
-
 #region Built-in functions
 
 func _ready() -> void:
@@ -18,23 +11,7 @@ func _ready() -> void:
 #endregion
 
 
-#region Public functions
-
-func finishedLoading() -> bool:
-	match ResourceLoader.load_threaded_get_status(SCENE_PATH):
-		ResourceLoader.THREAD_LOAD_LOADED:
-			return true
-		ResourceLoader.THREAD_LOAD_IN_PROGRESS:
-			return false
-		_:
-			assert(false, "MainMenuState.finishedLoading(): Loading scene resource failed")
-	
-	return false
-
-#endregion
-
-
-#region Implementation functions
+#region Override functions
 
 func _implCreateScene() -> Node:
 	assert( \
@@ -45,15 +22,25 @@ func _implCreateScene() -> Node:
 	return _sceneResource.instantiate()
 
 
+func available() -> bool:
+	match ResourceLoader.load_threaded_get_status(SCENE_PATH):
+		ResourceLoader.THREAD_LOAD_LOADED:
+			return true
+		ResourceLoader.THREAD_LOAD_IN_PROGRESS:
+			return false
+		_:
+			assert(false, "MainMenuState.available(): Loading scene resource failed")
+	
+	return false
+
+func delayedExit() -> void:
+	_unload()
+	_sceneResource = null
+
 func type() -> StringName:
-	return Main.Type.mainMenu
+	return Type.mainMenu
 
 func nextState() -> StringName:
-	var next : StringName = scene.exit()
-
-	if next == Main.Type.game and not _game.finishedLoading():
-		return Main.Type.none
-	
-	return next
+	return scene.exit()
 
 #endregion
