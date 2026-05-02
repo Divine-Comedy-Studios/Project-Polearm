@@ -20,13 +20,17 @@ class_name ValueBarUI extends Panel
 
 #endregion 
 
-#region Node Variables
+
+#region Scene members
 
 @onready var timer : Timer = $"Timer"
 @onready var changeBar : TextureProgressBar = $"ChangeBar"
 @onready var valueBar : TextureProgressBar = $"ValueBar"
 
 #endregion
+
+
+#region Built-in funcitons
 
 func _ready() -> void:
 
@@ -54,19 +58,10 @@ func _ready() -> void:
 	setupVisuals()
 	updateColors()
 
+#endregion
 
-func _onValueChanged(newValue: float) -> void:
-	if newValue < valueBar.value:
-		timer.start()
-	valueBar.value = clamp(newValue, 0, valueBar.max_value)
 
-	updateColors()
-
-func _onMaxValueChanged(newMax: float) -> void:
-	valueBar.max_value = newMax
-	valueBar.value = clamp(valueBar.value, 0, valueBar.max_value)
-
-	updateColors()
+#region Public funcitons
 
 func updateColors() -> void:
 	var valueRatio = valueBar.value / valueBar.max_value
@@ -86,9 +81,31 @@ func setupVisuals() -> void:
 	changeBar.max_value = valueBar.max_value
 	changeBar.value = valueBar.value
 
+#endregion
 
+
+#region Private functions
+
+func _onValueChanged(newValue: float) -> void:
+	if newValue < valueBar.value:
+		timer.start()
+	valueBar.value = clamp(newValue, 0, valueBar.max_value)
+
+	updateColors()
+
+func _onMaxValueChanged(newMax: float) -> void:
+	valueBar.max_value = newMax
+	valueBar.value = clamp(valueBar.value, 0, valueBar.max_value)
+
+	updateColors()
+
+#endregion
+
+
+#region Signal functions
 
 func _onTimeout() -> void:
 	var tween = create_tween()
 	tween.tween_property(changeBar, "value", valueBar.value, 0.5).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 
+#endregion
