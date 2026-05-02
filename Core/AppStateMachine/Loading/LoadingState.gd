@@ -1,6 +1,13 @@
 extends AppState
 
 
+#region Scene members
+
+@onready var loadingScreen := $LoadingScreen as BasicLoadingScreen
+
+#endregion
+
+
 #region Member variables
 
 var _currentState : AppState = null
@@ -12,8 +19,7 @@ var _requestedState : AppState = null
 #region Built-in functions
 
 func _ready() -> void:
-	scene = $"LoadingScreen" as BasicLoadingScreen 
-	process_mode = Node.PROCESS_MODE_DISABLED
+	process_mode = Node.PROCESS_MODE_INHERIT
 
 #endregion
 
@@ -21,27 +27,26 @@ func _ready() -> void:
 #region Override functions
 
 func enter() -> void:
-	process_mode = Node.PROCESS_MODE_INHERIT
-	scene.enter()
+	loadingScreen.enter()
 
 func exit() -> void:
-	process_mode = Node.PROCESS_MODE_DISABLED
-
-	_requestedState.delayedExit()
+	_currentState.delayedExit()
 
 	_requestedState = null
 	_currentState = null
-	scene.exit()
+	loadingScreen.exit()
 
 
 func type() -> StringName:
 	return Type.loading
 
 func nextState() -> StringName:
-	if _requestedState.available():
-		return _requestedState.type()
+	if _requestedState == null:
+		return Type.none
+	if not _requestedState.available():
+		return Type.none
 
-	return Type.none
+	return _requestedState.type()
 
 #endregion
 

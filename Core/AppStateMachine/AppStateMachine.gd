@@ -46,8 +46,7 @@ func _nextState() -> StringName:
 
 	var nextState := state(next) as AppState
 	if not nextState.available():
-		loadingScreen.requestLoad(current, nextState)
-		return AppState.Type.loading
+		return loadingScreen.requestLoad(current, nextState)
 
 	current.delayedExit()
 	return next

@@ -21,13 +21,6 @@ class Type:
 #endregion
 
 
-#region Exported variables
-
-@export_file_path("*tscn", "*scn") var SCENE_PATH : String
-
-#endregion
-
-
 #region Scene members
 
 var stateMachine : AppStateMachine = null
@@ -35,29 +28,9 @@ var stateMachine : AppStateMachine = null
 #endregion
 
 
-#region Member variables
-
-var _sceneResource : PackedScene = null
-
-var scene : Node = null
-
-#endregion
-
-
-#region Built-in functions
-
-func _ready() -> void:
-	_sceneResource = load(SCENE_PATH)
-	scene = _implCreateScene()
-
-#endregion
-
-
 #region Override functions
 
 func enter() -> void:
-	add_child(scene)
-
 	process_mode = Node.PROCESS_MODE_INHERIT
 
 	_implEnter()
@@ -68,20 +41,7 @@ func exit() -> void:
 #endregion
 
 
-#region Private functions
-
-func _unload() -> void:
-	remove_child(scene)
-	scene.queue_free()
-	scene = null
-
-#endregion
-
-
 #region Implementation & Virtual functions
-
-func _implCreateScene() -> Node:
-	return _sceneResource.instantiate()
 
 func _implEnter() -> void:
 	pass
@@ -89,6 +49,7 @@ func _implEnter() -> void:
 
 func nextState() -> StringName:
 	return TYPE_NONE
+
 
 func delayedExit() -> void:
 	pass

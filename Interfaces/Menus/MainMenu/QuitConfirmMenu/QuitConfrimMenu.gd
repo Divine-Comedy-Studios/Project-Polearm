@@ -28,9 +28,9 @@ func deactivateImpl() -> void:
 
 func exit() -> StringName:
 	if _yesPressed:
-		return Main.Type.quit
+		return AppState.Type.quit
 
-	return Main.Type.none
+	return AppState.Type.none
 
 #endregion
 

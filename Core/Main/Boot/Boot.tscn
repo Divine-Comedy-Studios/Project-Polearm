@@ -1,11 +1,20 @@
-[gd_scene format=3 uid="uid://cj6e5myqfeajy"]
+[gd_scene format=3 uid="uid://dqfsomcbp0v3k"]
 
-[ext_resource type="Script" uid="uid://ckrwadwaw0b0h" path="res://Core/Main/Boot/Boot.gd" id="1_0byu4"]
-[ext_resource type="Texture2D" uid="uid://ctdbykm11ffsx" path="res://icon.svg" id="2_l5py6"]
+[ext_resource type="Script" uid="uid://56qy2l42kqa8" path="res://Core/Main/Boot/Boot.gd" id="1_4bay4"]
+[ext_resource type="Script" uid="uid://covgehn0y4vp2" path="res://Core/Settings/SettingsManager.gd" id="2_7i5h4"]
+[ext_resource type="Texture2D" uid="uid://ctdbykm11ffsx" path="res://icon.svg" id="3_8kl8t"]
 
-[node name="Boot" type="Node2D" unique_id=1893134298]
-script = ExtResource("1_0byu4")
+[node name="Boot" type="Node" unique_id=1863929709]
+process_mode = 4
+script = ExtResource("1_4bay4")
+metadata/_custom_type_script = "uid://56qy2l42kqa8"
 
-[node name="Icon" type="Sprite2D" parent="." unique_id=1949159219]
+[node name="SettingsManager" type="Node" parent="." unique_id=636289260]
+script = ExtResource("2_7i5h4")
+metadata/_custom_type_script = "uid://covgehn0y4vp2"
+
+[node name="Boot" type="Node2D" parent="." unique_id=1893134298]
+
+[node name="Icon" type="Sprite2D" parent="Boot" unique_id=1949159219]
 position = Vector2(551, 191)
-texture = ExtResource("2_l5py6")
+texture = ExtResource("3_8kl8t")

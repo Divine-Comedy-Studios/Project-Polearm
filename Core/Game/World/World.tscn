@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://b8g2l2mls2k6"]
+
+[ext_resource type="Script" uid="uid://dimj2il0dk1u2" path="res://Core/Game/World/World.gd" id="1_wgjyf"]
+[ext_resource type="PackedScene" uid="uid://c05rl7pbuscth" path="res://Stages/Documentation/Gym/GymOld.tscn" id="2_lf88h"]
+
+[node name="World" type="Node" unique_id=966975395]
+script = ExtResource("1_wgjyf")
+
+[node name="Gym" parent="." unique_id=1076830952 instance=ExtResource("2_lf88h")]

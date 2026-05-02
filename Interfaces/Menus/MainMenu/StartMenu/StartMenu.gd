@@ -45,9 +45,9 @@ func deactivateImpl() -> void:
 
 func exit() -> StringName:
 	if _startGamePressed:
-		return Main.Type.game
+		return AppState.Type.game
 
-	return Main.Type.none
+	return AppState.Type.none
 
 #endregion
 

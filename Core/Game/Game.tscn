@@ -1,22 +1,10 @@
 [gd_scene format=3 uid="uid://cnh3sfmjaqvme"]
 
 [ext_resource type="Script" uid="uid://rel2uvuxn0si" path="res://Core/Game/Game.gd" id="1_kydix"]
-[ext_resource type="Script" uid="uid://gy4wwfkitxio" path="res://Core/Game/States/LoadingState.gd" id="2_kydix"]
-[ext_resource type="Script" uid="uid://c7d0eamu5janu" path="res://Core/Game/States/PlayingState.gd" id="3_f6rc3"]
+[ext_resource type="PackedScene" uid="uid://b73rj84713qcp" path="res://Core/Game/Loading/LoadingScreen.tscn" id="2_kydix"]
 
 [node name="Game" type="Node" unique_id=1370080810]
 script = ExtResource("1_kydix")
 metadata/_custom_type_script = "uid://rel2uvuxn0si"
 
-[node name="LoadingState" type="Node" parent="." unique_id=1255108750 node_paths=PackedStringArray("_game")]
-process_mode = 4
-script = ExtResource("2_kydix")
-_game = NodePath("../PlayingState")
-SCENE_PATH = "res://Core/Game/LoadingScreen/LoadingScreen.tscn"
-metadata/_custom_type_script = "uid://gy4wwfkitxio"
-
-[node name="PlayingState" type="Node" parent="." unique_id=1815097184]
-process_mode = 4
-script = ExtResource("3_f6rc3")
-SCENE_PATH = "res://Stages/Documentation/Gym/Gym.tscn"
-metadata/_custom_type_script = "uid://c7d0eamu5janu"
+[node name="LoadingScreen" parent="." unique_id=148079785 instance=ExtResource("2_kydix")]

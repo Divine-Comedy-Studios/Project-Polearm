@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://b73rj84713qcp"]
+
+[ext_resource type="Script" uid="uid://d1l8xkhljshuj" path="res://Core/AppStateMachine/Loading/LoadingState.gd" id="1_yaaln"]
+[ext_resource type="Script" uid="uid://bpxisduqy04en" path="res://Core/Game/Loading/LoadingScreen.gd" id="2_ft3ok"]
+[ext_resource type="Texture2D" uid="uid://ctdbykm11ffsx" path="res://icon.svg" id="3_cf1cg"]
+
+[node name="LoadingScreen" type="Node" unique_id=148079785]
+script = ExtResource("1_yaaln")
+metadata/_custom_type_script = "uid://dsimdcatc5tk5"
+
+[node name="LoadingScreen" type="Control" parent="." unique_id=937061849]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_ft3ok")
+
+[node name="ColorRect" type="ColorRect" parent="LoadingScreen" unique_id=2042190817]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="LoadingScreen" unique_id=1177366338]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="LoadingScreen/CenterContainer" unique_id=713393299]
+layout_mode = 2
+texture = ExtResource("3_cf1cg")
+
+[node name="Timer" type="Timer" parent="LoadingScreen" unique_id=1450081625]
+wait_time = 0.3
+one_shot = true

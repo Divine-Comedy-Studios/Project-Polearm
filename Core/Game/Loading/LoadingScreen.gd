@@ -1,4 +1,4 @@
-extends Control
+extends BasicLoadingScreen
 
 
 #region Enums
@@ -29,16 +29,17 @@ var _loadingState := LoadingState.notLoaded
 #region Built-in funcitons
 
 func _ready() -> void:
-	modulate.a8 = 0
+	modulate.a8 = 255
 
-func _physics_process(delta: float) -> void:
-	_godotIcon.rotation += 1
+func _physics_process(delta : float) -> void:
+	_godotIcon.rotation += delta
 
-	if not _timer.is_stopped():
-		if _loadingState == LoadingState.loaded:
-			modulate.a8 = 255 * (_timer.time_left/ _timer.wait_time)
-		elif _loadingState == LoadingState.notLoaded:
-			modulate.a8 = 255 * (1.0 -(_timer.time_left/ _timer.wait_time))
+	if _timer.is_stopped():
+		modulate.a8 = 255 if _loadingState == LoadingState.notLoaded else 0
+	elif _loadingState == LoadingState.loaded:
+		modulate.a8 = int(255 * (_timer.time_left / _timer.wait_time))
+	elif _loadingState == LoadingState.notLoaded:
+		modulate.a8 = int(255 * (1.0 -(_timer.time_left / _timer.wait_time)))
 
 #endregion
 
@@ -46,12 +47,10 @@ func _physics_process(delta: float) -> void:
 #region Public funcitons
 
 func enter() -> void:
-	modulate.a8 = 255
 	_timer.start()
 	_loadingState = LoadingState.notLoaded
 	
 func exit() -> void:
-	modulate.a8 = 0
 	_timer.start()
 	_loadingState = LoadingState.loaded
 

@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://c3jf31enkc6q4"]
+
+[ext_resource type="Script" uid="uid://d1l8xkhljshuj" path="res://Core/AppStateMachine/Loading/LoadingState.gd" id="1_pcbyd"]
+[ext_resource type="Script" uid="uid://bp3eomjdc0pxy" path="res://Core/Main/Loading/LoadingScreen.gd" id="2_isj5o"]
+[ext_resource type="Texture2D" uid="uid://ctdbykm11ffsx" path="res://icon.svg" id="3_ju82w"]
+
+[node name="LoadingScreen" type="Node" unique_id=148079785]
+script = ExtResource("1_pcbyd")
+metadata/_custom_type_script = "uid://dsimdcatc5tk5"
+
+[node name="LoadingScreen" type="Control" parent="." unique_id=937061849]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_isj5o")
+
+[node name="CenterContainer" type="CenterContainer" parent="LoadingScreen" unique_id=1177366338]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="LoadingScreen/CenterContainer" unique_id=713393299]
+layout_mode = 2
+texture = ExtResource("3_ju82w")
+
+[node name="Timer" type="Timer" parent="LoadingScreen" unique_id=1450081625]
+wait_time = 0.3
+one_shot = true
