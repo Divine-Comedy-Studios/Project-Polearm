@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://deafv8fy7rwbb"]
 
-[ext_resource type="Script" uid="uid://vyxsiwv005q" path="res://Interfaces/Menus/PauseMenu/Pause Options/PauseOptions.gd" id="1_ch7jw"]
+[ext_resource type="Script" uid="uid://vyxsiwv005q" path="res://Interfaces/Menus/PauseMenu/PauseOptions/PauseOptions.gd" id="1_ch7jw"]
 [ext_resource type="Theme" uid="uid://eptqqy8sm6gl" path="res://Interfaces/Themes/MenuTheme.tres" id="1_i12rr"]
 [ext_resource type="Script" uid="uid://cfdlgc8aalbtr" path="res://Interfaces/UIElements/GameMenuButton.gd" id="2_57qva"]
 

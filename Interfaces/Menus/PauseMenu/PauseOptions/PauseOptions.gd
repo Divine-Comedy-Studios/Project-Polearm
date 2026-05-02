@@ -6,6 +6,7 @@ extends InterfaceState
 var _continuePressed := false
 var _optionsPressed := false
 var _mainMenuPressed := false
+var _exitMenu := false
 
 #endregion
 
@@ -15,24 +16,28 @@ var _mainMenuPressed := false
 func type() -> Type:
 	return Type.pause
 
-func nextMenu(inputs : ISMInputManager.Data) -> Type:		
+func nextMenu(inputs : ISMInputManager.Data) -> Type:
+	if inputs.cancel:
+		_exitMenu = true
+
 	if _optionsPressed:
 		return Type.options
 	
 	return Type.none
 
-func deactivateImpl() -> void:
+func _deactivateImpl() -> void:
 	_continuePressed = false
 	_optionsPressed = false
 	_mainMenuPressed = false
+	_exitMenu = false
 
 func exit() -> StringName:
-	if _continuePressed:
-		return Main.Type.game
+	if _continuePressed or _exitMenu:
+		return AppState.Type.world
 	if _mainMenuPressed:
-		return Main.Type.mainMenu
-	
-	return Main.Type.none
+		return AppState.Type.mainMenu
+
+	return AppState.Type.none
 
 #endregion
 

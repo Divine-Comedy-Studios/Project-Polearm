@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://cpepmq0oqn3w1"]
+
+[ext_resource type="Script" uid="uid://0ctaafdcixpy" path="res://Core/Game/PauseMenu/PauseMenu.gd" id="1_6dbdc"]
+[ext_resource type="PackedScene" uid="uid://cnqb8o2cbehq4" path="res://Interfaces/Menus/PauseMenu/PauseMenu.tscn" id="2_6dbdc"]
+
+[node name="PauseMenu" type="Node" unique_id=52204255]
+process_mode = 4
+physics_interpolation_mode = 2
+script = ExtResource("1_6dbdc")
+metadata/_custom_type_script = "uid://dsimdcatc5tk5"
+
+[node name="PauseMenu" parent="." unique_id=1914925635 instance=ExtResource("2_6dbdc")]
+visible = false

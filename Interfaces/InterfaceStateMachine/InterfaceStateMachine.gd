@@ -33,8 +33,7 @@ func _ready() -> void:
 			child.hide()
 			_menus[child.type()] = child
 	
-	_currentMenu = _menus[INITIAL_MENU_TYPE]
-	_currentMenu.activate()
+	enter()
 
 func _process(_delta : float) -> void:
 	inputManager.pollInputs()
@@ -48,8 +47,17 @@ func _process(_delta : float) -> void:
 
 #region Public functions
 
+func enter() -> void:	
+	_currentMenu = _menus[INITIAL_MENU_TYPE]
+	_currentMenu.activate()
+
 func exit() -> StringName:
-	return _currentMenu.exit()
+	var exitType := _currentMenu.exit()
+	if exitType != AppState.Type.none:
+		_currentMenu.deactivate()
+		_currentMenu = null
+
+	return exitType
 
 #endregion
 

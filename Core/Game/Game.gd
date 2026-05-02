@@ -4,6 +4,7 @@ extends AppStateMachine
 #region Constants
 
 const WORLD_PATH : String = "res://Core/Game/World/World.tscn"
+const PAUSE_MENU_PATH : String = "res://Core/Game/PauseMenu/PauseMenu.tscn"
 
 #endregion
 
@@ -11,6 +12,7 @@ const WORLD_PATH : String = "res://Core/Game/World/World.tscn"
 #region Scene members
 
 var _world : AppState = null
+var _pauseMenu : AppState = null
 
 #endregion
 
@@ -18,6 +20,7 @@ var _world : AppState = null
 #region Member variables
 
 var _worldResource : PackedScene = null
+var _pauseMenuResource : PackedScene = null
 
 var exitState : StringName = AppState.Type.none:
 	get():
@@ -36,16 +39,28 @@ func _ready() -> void:
 	super._ready()
 
 	var err := ResourceLoader.load_threaded_request(WORLD_PATH)
-	assert(err == OK, "Game._ready(): Request to load the scene resource failed!")
+	assert(err == OK, "Game._ready(): Request to load the world failed!")
+	err = ResourceLoader.load_threaded_request(PAUSE_MENU_PATH)
+	assert(err == OK, "Game._ready(): Request to load the pause menu failed!")
 
 
 func _process(delta : float) -> void:
+	var finishedLoading := true
+
 	if _world == null and available(WORLD_PATH):
+		finishedLoading = false
 		_worldResource = ResourceLoader.load_threaded_get(WORLD_PATH)
 		_world = _worldResource.instantiate()
 		add_child(_world)
 		insertState(_world)
-
+	if _pauseMenu == null and available(PAUSE_MENU_PATH):
+		finishedLoading = false
+		_pauseMenuResource = ResourceLoader.load_threaded_get(PAUSE_MENU_PATH)
+		_pauseMenu = _pauseMenuResource.instantiate()
+		add_child(_pauseMenu)
+		insertState(_pauseMenu)
+	
+	if finishedLoading:
 		loadingScreen.requestLoad(loadingScreen, _world as AppState)
 
 	super._process(delta)
