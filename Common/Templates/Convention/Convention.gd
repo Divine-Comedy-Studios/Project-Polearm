@@ -91,7 +91,7 @@ const CONSTANTS_IN_SCREAMING_SNAKE_CASE : float = 0.0
 
 #region Member variables
 
-
+var _member
 
 #endregion
 
