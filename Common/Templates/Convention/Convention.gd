@@ -79,12 +79,22 @@ const CONSTANTS_IN_SCREAMING_SNAKE_CASE : float = 0.0
 @export_group("Always use @export_group instead of @export_category")
 @export var animationConfig : Resource = null
 
+@export_group("If a exported variable functions roughly like a constant or private member variable, signal this by using the respective convention")
+@export var TECHNICALLY_NOT_CONSTANT : int = 1
+@export var _privateExportVar : PackedScene = null
+
 #endregion
 
 
 #region Scene members
 
+# Separate groups of scene members using comments
+# Variables without an underscore are public and may be accessed anywhere in the code
 
+var foo : Vector3 = Vector3.ZERO
+
+# Use a underscore to signal that a variable is private. ALWAYS signal a private variable. Private variables should NEVER be accessed outside the class
+var _privateBar : Vector2 = Vector2.ZERO
 
 #endregion
 
