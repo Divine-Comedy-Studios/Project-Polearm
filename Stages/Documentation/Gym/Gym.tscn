@@ -3,12 +3,15 @@
 [ext_resource type="PackedScene" uid="uid://2twxnnq3mj7i" path="res://Common/Camera/SceneCamera/SceneCamera.tscn" id="1_6ld1k"]
 [ext_resource type="Shader" uid="uid://exx180lp74b0" path="res://Assets/Shaders/Sky/StylizedSky.gdshader" id="1_tsewk"]
 [ext_resource type="PackedScene" uid="uid://cyti0335fm7s0" path="res://Entities/Player/Player.tscn" id="2_d2u3u"]
-[ext_resource type="Script" uid="uid://cwu5cf7a0awcd" path="res://addons/func_godot/src/map/func_godot_map.gd" id="5_pueq0"]
+[ext_resource type="Script" uid="uid://d1rene0g6t1ld" path="res://Trenchbroom/CustomScripts/funcGodotCustomBuild.gd" id="4_jiqka"]
+[ext_resource type="Material" uid="uid://bh5edhjdyq7w5" path="res://Trenchbroom/textures/Greybox Textures/PNG/Dark/texture_05.tres" id="6_jiqka"]
 [ext_resource type="Resource" uid="uid://cnygh8csloaqa" path="res://Trenchbroom/ProjectPolearmMapSettings.tres" id="6_pnhxc"]
-[ext_resource type="Material" uid="uid://byucy5ve5rloo" path="res://Trenchbroom/textures/Greybox Textures/PNG/Dark/texture_07.tres" id="7_4oxs2"]
-[ext_resource type="Material" uid="uid://duhe1khgqt2pp" path="res://Trenchbroom/textures/Greybox Textures/PNG/Green/texture_01.tres" id="7_ji2m5"]
+[ext_resource type="Material" uid="uid://c6b11dlqgrcl1" path="res://Trenchbroom/textures/Greybox Textures/PNG/Orange/texture_04.tres" id="7_jiqka"]
+[ext_resource type="Material" uid="uid://umhbtoiufcqe" path="res://Trenchbroom/textures/Greybox Textures/PNG/Red/texture_04.tres" id="8_uesqs"]
+[ext_resource type="Material" uid="uid://jsqy4sq8olgl" path="res://Trenchbroom/textures/Greybox Textures/PNG/Purple/texture_04.tres" id="9_0qwk7"]
+[ext_resource type="Material" uid="uid://ncyrxwvmmk0r" path="res://Trenchbroom/textures/Greybox Textures/PNG/Green/texture_04.tres" id="10_uesqs"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_jiqka"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gfyed"]
 shader = ExtResource("1_tsewk")
 shader_parameter/day_top_color = Color(0.1, 0.6, 1, 1)
 shader_parameter/day_bottom_color = Color(0.4, 0.8, 1, 1)
@@ -40,9 +43,9 @@ shader_parameter/stars_speed = 1.0
 shader_parameter/overwritten_time = 0.0
 
 [sub_resource type="Sky" id="Sky_uesqs"]
-sky_material = SubResource("ShaderMaterial_jiqka")
+sky_material = SubResource("ShaderMaterial_gfyed")
 
-[sub_resource type="Environment" id="Environment_0qwk7"]
+[sub_resource type="Environment" id="Environment_ji2m5"]
 background_mode = 2
 sky = SubResource("Sky_uesqs")
 ambient_light_source = 2
@@ -50,83 +53,150 @@ ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_sky_contribution = 0.67
 ambient_light_energy = 0.3
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_ji2m5"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_uesqs"]
 _surfaces = [{
-"aabb": AABB(-31, -0.5, -61.75, 64.5, 0.5, 64.5),
-"attribute_data": PackedByteArray("AACGwgAAID4AAHhCAAAgPgAAeEIAAJQ/AACGwgAAlD8AgL9AAACUPwAI9sIAAJQ/AAj2wgAAID4AgL9AAAAgPgCAv8AAAHhCAIC/wAAAhsIACPZCAACGwgAI9kIAAHhCAIC/QAAAeEIACPbCAAB4QgAI9sIAAIbCAIC/QAAAhsIAgL/AAAAgPgAI9kIAACA+AAj2QgAAlD8AgL/AAACUPwAAhkIAAJQ/AAB4wgAAlD8AAHjCAAAgPgAAhkIAACA+"),
+"aabb": AABB(-12.75, -0.5, -34.75, 25.5, 0.5, 37.5),
+"attribute_data": PackedByteArray("AADMwQAAID4AAMxBAAAgPgAAzEEAAJQ/AADMwQAAlD8AgL9AAACUPwAIisIAAJQ/AAiKwgAAID4AgL9AAAAgPgCAv8AAAMxBAIC/wAAAzMEACIpCAADMwQAIikIAAMxBAIC/QAAAzEEACIrCAADMQQAIisIAAMzBAIC/QAAAzMEAgL/AAAAgPgAIikIAACA+AAiKQgAAlD8AgL/AAACUPwAAzEEAAJQ/AADMwQAAlD8AAMzBAAAgPgAAzEEAACA+"),
 "format": 34359742487,
 "index_count": 36,
 "index_data": PackedByteArray("AAABAAIAAAACAAMABAAFAAYABAAGAAcACAAJAAoACAAKAAsADAANAA4ADAAOAA8AEAARABIAEAASABMAFAAVABYAFAAWABcA"),
-"material": ExtResource("7_4oxs2"),
-"name": "Greybox Textures/PNG/Dark/texture_07",
+"material": ExtResource("6_jiqka"),
+"name": "Greybox Textures/PNG/Dark/texture_05",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 24,
-"vertex_data": PackedByteArray("AAAGQgAAAAAAAHfCAAD4wQAAAAAAAHfCAAD4wQAAAL8AAHfCAAAGQgAAAL8AAHfCAAD4wQAAAL8AADBAAAD4wQAAAL8AAHfCAAD4wQAAAAAAAHfCAAD4wQAAAAAAADBAAAD4wQAAAL8AADBAAAAGQgAAAL8AADBAAAAGQgAAAL8AAHfCAAD4wQAAAL8AAHfCAAD4wQAAAAAAADBAAAD4wQAAAAAAAHfCAAAGQgAAAAAAAHfCAAAGQgAAAAAAADBAAAAGQgAAAAAAADBAAAAGQgAAAAAAAHfCAAAGQgAAAL8AAHfCAAAGQgAAAL8AADBAAAAGQgAAAL8AADBAAAD4wQAAAL8AADBAAAD4wQAAAAAAADBAAAAGQgAAAAAAADBA/////wAA/7//////AAD/v/////8AAP+//////wAA/78AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//v/9/AAD//////38AAP//////fwAA//////9/AAD//////3////9//7//f////3//v/9/////f/+//3////9//7////9//////////3//////////f/////////9///////9//3////+//3//f////7//f/9/////v/9//3////+/")
+"vertex_data": PackedByteArray("AABMQQAAAAAAAAvCAABMwQAAAAAAAAvCAABMwQAAAL8AAAvCAABMQQAAAL8AAAvCAABMwQAAAL8AADBAAABMwQAAAL8AAAvCAABMwQAAAAAAAAvCAABMwQAAAAAAADBAAABMwQAAAL8AADBAAABMQQAAAL8AADBAAABMQQAAAL8AAAvCAABMwQAAAL8AAAvCAABMwQAAAAAAADBAAABMwQAAAAAAAAvCAABMQQAAAAAAAAvCAABMQQAAAAAAADBAAABMQQAAAAAAADBAAABMQQAAAAAAAAvCAABMQQAAAL8AAAvCAABMQQAAAL8AADBAAABMQQAAAL8AADBAAABMwQAAAL8AADBAAABMwQAAAAAAADBAAABMQQAAAAAAADBA/////wAA/7//////AAD/v/////8AAP+//////wAA/78AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//v/9/AAD//////38AAP//////fwAA//////9/AAD//////3////9//7//f////3//v/9/////f/+//3////9//7////9//////////3//////////f/////////9///////9//3////+//3//f////7//f/9/////v/9//3////+/")
 }, {
-"aabb": AABB(-3.5, 0, -1.5, 1.25, 0.4375, 1.5),
-"attribute_data": PackedByteArray("AACQPQAAYLwAAOA9AABgvAAA4D0AAAAAAACQPQAAAAAAAAAAAAAAAAAAQL0AAAAAAABAvQAAYLwAAAAAAABgvAAAAAAAAOA9AAAAAAAAkD0AAEA9AACQPQAAQD0AAOA9AAAAAAAA4D0AAEC9AADgPQAAQL0AAJA9AAAAAAAAkD0AAAAAAABgvAAAQD0AAGC8AABAPQAAAAAAAAAAAAAAAAAAkL0AAAAAAADgvQAAAAAAAOC9AABgvAAAkL0AAGC8"),
+"aabb": AABB(-9.625, 0, -13.125, 5.25, 5, 11.375),
+"attribute_data": PackedByteArray("AKBNQQAAQL8AoHVBAABAvwCgdUEAAAAAAKBNQQAAAAAAgFzAAAAAAAAgG8EAAAAAACAbwQAAQL8AgFzAAABAvwCAXEAAoHVBAIBcQACgTUEAIBtBAKBNQQAgG0EAoHVBAIBcwACgdUEAIBvBAKB1QQAgG8EAoE1BAIBcwACgTUEAgFxAAABAvwAgG0EAAEC/ACAbQQAAAAAAgFxAAAAAAACgTcEAAAAAAKB1wQAAAAAAoHXBAABAvwCgTcEAAEC/ABCaQQAAIMEAEJpBAAAAAAAgDEEAAAAAANCewQAAAAAA0NDBAAAAAADQ0MEAACDBANCewQAAIMEA0J5BABCaQQDQnkEAIAxBANDQQQAgDEEA0NBBABCaQQDQnsEAEJpBANDQwQAQmkEA0NDBACAMQQDQnsEAIAxBACAMwQAAAAAAEJrBAAAAAAAQmsEAACDB"),
+"format": 34359742487,
+"index_count": 60,
+"index_data": PackedByteArray("AAABAAIAAAACAAMABAAFAAYABAAGAAcACAAJAAoACAAKAAsADAANAA4ADAAOAA8AEAARABIAEAASABMAFAAVABYAFAAWABcAGAAZABoAGwAcAB0AGwAdAB4AHwAgACEAHwAhACIAIwAkACUAIwAlACYAJwAoACkA"),
+"material": ExtResource("7_jiqka"),
+"name": "Greybox Textures/PNG/Orange/texture_04",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 42,
+"vertex_data": PackedByteArray("AADQwAAAwD4AAJzAAAD4wAAAwD4AAJzAAAD4wAAAAAAAAJzAAADQwAAAAAAAAJzAAAD4wAAAAAAAAOC/AAD4wAAAAAAAAJzAAAD4wAAAwD4AAJzAAAD4wAAAwD4AAOC/AAD4wAAAAAAAAOC/AADQwAAAAAAAAOC/AADQwAAAAAAAAJzAAAD4wAAAAAAAAJzAAAD4wAAAwD4AAOC/AAD4wAAAwD4AAJzAAADQwAAAwD4AAJzAAADQwAAAwD4AAOC/AADQwAAAwD4AAOC/AADQwAAAwD4AAJzAAADQwAAAAAAAAJzAAADQwAAAAAAAAOC/AADQwAAAAAAAAOC/AAD4wAAAAAAAAOC/AAD4wAAAwD4AAOC/AADQwAAAwD4AAOC/AAAawQAAoEAAAFLBAAAawQAAAAAAAFLBAACMwAAAAAAAAFLBAAAawQAAAAAAACDBAAAawQAAAAAAAFLBAAAawQAAoEAAAFLBAAAawQAAoEAAACDBAAAawQAAAAAAACDBAACMwAAAAAAAACDBAACMwAAAAAAAAFLBAAAawQAAAAAAAFLBAAAawQAAoEAAACDBAAAawQAAoEAAAFLBAACMwAAAAAAAAFLBAACMwAAAAAAAACDBAACMwAAAAAAAACDBAAAawQAAAAAAACDBAAAawQAAoEAAACDB/////wAA/7//////AAD/v/////8AAP+//////wAA/78AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//v/9/AAD//////38AAP//////fwAA//////9/AAD//////3////9//7//f////3//v/9/////f/+//3////9//7////9//////////3//////////f/////////9///////9//3////+//3//f////7//f/9/////v/9//3////+//////wAA/7//////AAD/v/////8AAP+/AAD/f/9//78AAP9//3//vwAA/3//f/+/AAD/f/9//7//fwAA//////9/AAD//////38AAP//////fwAA/////2++jsH/f/+/b76Owf9//79vvo7B/3//v2++jsH/f/+//3//f////7//f/9/////v/9//3////+/")
+}, {
+"aabb": AABB(-9.75, 0, -16.25, 5.375, 5.375, 14.5),
+"attribute_data": PackedByteArray("AHCGQQAAgL8AcJpBAACAvwBwmkEAAAAAAHCGQQAAAAAAgFzAAAAAAAAgG8EAAAAAACAbwQAAgL8AgFzAAACAvwCAXEAAcJpBAIBcQABwhkEAIBtBAHCGQQAgG0EAcJpBAIBcwABwmkEAIBvBAHCaQQAgG8EAcIZBAIBcwABwhkEAgFxAAACAvwAgG0EAAIC/ACAbQQAAAAAAgFxAAAAAAABwhsEAAAAAAHCawQAAAAAAcJrBAACAvwBwhsEAAIC/ABCaQQAALMEAEJpBAAAAAAAgDEEAAAAAAAjQwQAAAAAABAHCAAAAAAAEAcIAACzBAAjQwQAALMEACNBBABCaQQAI0EEAIAxBAAQBQgAgDEEABAFCABCaQQAI0MEAsCnBAAQBwgCwKcEABAHCAAAUPgAI0MEAABQ+ACAMwQAAAAAAEJrBAAAAAAAQmsEAACzB"),
+"format": 34359742487,
+"index_count": 60,
+"index_data": PackedByteArray("AAABAAIAAAACAAMABAAFAAYABAAGAAcACAAJAAoACAAKAAsADAANAA4ADAAOAA8AEAARABIAEAASABMAFAAVABYAFAAWABcAGAAZABoAGwAcAB0AGwAdAB4AHwAgACEAHwAhACIAIwAkACUAIwAlACYAJwAoACkA"),
+"material": ExtResource("8_uesqs"),
+"name": "Greybox Textures/PNG/Red/texture_04",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 42,
+"vertex_data": PackedByteArray("AAAIwQAAAD8AAJzAAAAcwQAAAD8AAJzAAAAcwQAAAAAAAJzAAAAIwQAAAAAAAJzAAAAcwQAAAAAAAOC/AAAcwQAAAAAAAJzAAAAcwQAAAD8AAJzAAAAcwQAAAD8AAOC/AAAcwQAAAAAAAOC/AAAIwQAAAAAAAOC/AAAIwQAAAAAAAJzAAAAcwQAAAAAAAJzAAAAcwQAAAD8AAOC/AAAcwQAAAD8AAJzAAAAIwQAAAD8AAJzAAAAIwQAAAD8AAOC/AAAIwQAAAD8AAOC/AAAIwQAAAD8AAJzAAAAIwQAAAAAAAJzAAAAIwQAAAAAAAOC/AAAIwQAAAAAAAOC/AAAcwQAAAAAAAOC/AAAcwQAAAD8AAOC/AAAIwQAAAD8AAOC/AAAawQAArEAAAILBAAAawQAAAAAAAILBAACMwAAAAAAAAILBAAAawQAAAAAAAFLBAAAawQAAAAAAAILBAAAawQAArEAAAILBAAAawQAArEAAAFLBAAAawQAAAAAAAFLBAACMwAAAAAAAAFLBAACMwAAAAAAAAILBAAAawQAAAAAAAILBAAAawQAArEAAAFLBAAAawQAArEAAAILBAACMwAAAAAAAAILBAACMwAAAAAAAAFLBAACMwAAAAAAAAFLBAAAawQAAAAAAAFLBAAAawQAArEAAAFLB/////wAA/7//////AAD/v/////8AAP+//////wAA/78AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//v/9/AAD//////38AAP//////fwAA//////9/AAD//////3////9//7//f////3//v/9/////f/+//3////9//7////9//////////3//////////f/////////9///////9//3////+//3//f////7//f/9/////v/9//3////+//////wAA/7//////AAD/v/////8AAP+/AAD/f/9//78AAP9//3//vwAA/3//f/+/AAD/f/9//7//fwAA//////9/AAD//////38AAP//////fwAA/////7/APr//f/8/v8A+v/9//z+/wD6//3//P7/APr//f/8//3//f////7//f/9/////v/9//3////+/")
+}, {
+"aabb": AABB(-0.625, 0, -0.625, 1.125, 0.125, 1.125),
+"attribute_data": PackedByteArray("AACAvwAAfL4AAKA/AAB8vgAAoD8AAIA7AACAvwAAgDsAAH4/AACAOwAAob8AAIA7AAChvwAAfL4AAH4/AAB8vgAAfr8AAKA/AAB+vwAAgL8AAKE/AACAvwAAoT8AAKA/AAB+PwAAoD8AAKG/AACgPwAAob8AAIC/AAB+PwAAgL8AAH6/AAB8vgAAoT8AAHy+AAChPwAAgDsAAH6/AACAOwAAgD8AAIA7AACgvwAAgDsAAKC/AAB8vgAAgD8AAHy+"),
 "format": 34359742487,
 "index_count": 36,
 "index_data": PackedByteArray("AAABAAIAAAACAAMABAAFAAYABAAGAAcACAAJAAoACAAKAAsADAANAA4ADAAOAA8AEAARABIAEAASABMAFAAVABYAFAAWABcA"),
-"material": ExtResource("7_ji2m5"),
-"name": "Greybox Textures/PNG/Green/texture_01",
+"material": ExtResource("9_0qwk7"),
+"name": "Greybox Textures/PNG/Purple/texture_04",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 24,
-"vertex_data": PackedByteArray("AAAQwAAA4D4AAMC/AABgwAAA4D4AAMC/AABgwAAAAAAAAMC/AAAQwAAAAAAAAMC/AABgwAAAAAAAAAAAAABgwAAAAAAAAMC/AABgwAAA4D4AAMC/AABgwAAA4D4AAAAAAABgwAAAAAAAAAAAAAAQwAAAAAAAAAAAAAAQwAAAAAAAAMC/AABgwAAAAAAAAMC/AABgwAAA4D4AAAAAAABgwAAA4D4AAMC/AAAQwAAA4D4AAMC/AAAQwAAA4D4AAAAAAAAQwAAA4D4AAAAAAAAQwAAA4D4AAMC/AAAQwAAAAAAAAMC/AAAQwAAAAAAAAAAAAAAQwAAAAAAAAAAAAABgwAAAAAAAAAAAAABgwAAA4D4AAAAAAAAQwAAA4D4AAAAA/////wAA/7//////AAD/v/////8AAP+//////wAA/78AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//v/9/AAD//////38AAP//////fwAA//////9/AAD//////3////9//7//f////3//v/9/////f/+//3////9//7////9//////////3//////////f/////////9///////9//3////+//3//f////7//f/9/////v/9//3////+/")
+"vertex_data": PackedByteArray("AAAAPwAAAD4AACC/AAAgvwAAAD4AACC/AAAgvwAAAAAAACC/AAAAPwAAAAAAACC/AAAgvwAAAAAAAAA/AAAgvwAAAAAAACC/AAAgvwAAAD4AACC/AAAgvwAAAD4AAAA/AAAgvwAAAAAAAAA/AAAAPwAAAAAAAAA/AAAAPwAAAAAAACC/AAAgvwAAAAAAACC/AAAgvwAAAD4AAAA/AAAgvwAAAD4AACC/AAAAPwAAAD4AACC/AAAAPwAAAD4AAAA/AAAAPwAAAD4AAAA/AAAAPwAAAD4AACC/AAAAPwAAAAAAACC/AAAAPwAAAAAAAAA/AAAAPwAAAAAAAAA/AAAgvwAAAAAAAAA/AAAgvwAAAD4AAAA/AAAAPwAAAD4AAAA//////wAA/7//////AAD/v/////8AAP+//////wAA/78AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//v/9/AAD//////38AAP//////fwAA//////9/AAD//////3////9//7//f////3//v/9/////f/+//3////9//7////9//////////3//////////f/////////9///////9//3////+//3//f////7//f/9/////v/9//3////+/")
+}, {
+"aabb": AABB(-9.625, 0, -10, 5.25, 3.625, 8.25),
+"attribute_data": PackedByteArray("AKAOQQAAAL8AoDZBAAAAvwCgNkEAAAAAAKAOQQAAAAAAgFzAAAAAAAAgG8EAAAAAACAbwQAAAL8AgFzAAAAAvwCAXEAAoDZBAIBcQACgDkEAIBtBAKAOQQAgG0EAoDZBAIBcwACgNkEAIBvBAKA2QQAgG8EAoA5BAIBcwACgDkEAgFxAAAAAvwAgG0EAAAC/ACAbQQAAAAAAgFxAAAAAAACgDsEAAAAAAKA2wQAAAAAAoDbBAAAAvwCgDsEAAAC/ABCaQQAA6MAAEJpBAAAAAAAgDEEAAAAAADBbwQAAAAAAmJ/BAAAAAACYn8EAAOjAADBbwQAA6MAAMFtBABCaQQAwW0EAIAxBAJifQQAgDEEAmJ9BABCaQQAwW8EAEJpBAJifwQAQmkEAmJ/BACAMQQAwW8EAIAxBACAMwQAAAAAAEJrBAAAAAAAQmsEAAOjA"),
+"format": 34359742487,
+"index_count": 60,
+"index_data": PackedByteArray("AAABAAIAAAACAAMABAAFAAYABAAGAAcACAAJAAoACAAKAAsADAANAA4ADAAOAA8AEAARABIAEAASABMAFAAVABYAFAAWABcAGAAZABoAGwAcAB0AGwAdAB4AHwAgACEAHwAhACIAIwAkACUAIwAlACYAJwAoACkA"),
+"material": ExtResource("10_uesqs"),
+"name": "Greybox Textures/PNG/Green/texture_04",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 42,
+"vertex_data": PackedByteArray("AACQwAAAgD4AAJzAAAC4wAAAgD4AAJzAAAC4wAAAAAAAAJzAAACQwAAAAAAAAJzAAAC4wAAAAAAAAOC/AAC4wAAAAAAAAJzAAAC4wAAAgD4AAJzAAAC4wAAAgD4AAOC/AAC4wAAAAAAAAOC/AACQwAAAAAAAAOC/AACQwAAAAAAAAJzAAAC4wAAAAAAAAJzAAAC4wAAAgD4AAOC/AAC4wAAAgD4AAJzAAACQwAAAgD4AAJzAAACQwAAAgD4AAOC/AACQwAAAgD4AAOC/AACQwAAAgD4AAJzAAACQwAAAAAAAAJzAAACQwAAAAAAAAOC/AACQwAAAAAAAAOC/AAC4wAAAAAAAAOC/AAC4wAAAgD4AAOC/AACQwAAAgD4AAOC/AAAawQAAaEAAACDBAAAawQAAAAAAACDBAACMwAAAAAAAACDBAAAawQAAAAAAANzAAAAawQAAAAAAACDBAAAawQAAaEAAACDBAAAawQAAaEAAANzAAAAawQAAAAAAANzAAACMwAAAAAAAANzAAACMwAAAAAAAACDBAAAawQAAAAAAACDBAAAawQAAaEAAANzAAAAawQAAaEAAACDBAACMwAAAAAAAACDBAACMwAAAAAAAANzAAACMwAAAAAAAANzAAAAawQAAAAAAANzAAAAawQAAaEAAANzA/////wAA/7//////AAD/v/////8AAP+//////wAA/78AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//v/9/AAD//////38AAP//////fwAA//////9/AAD//////3////9//7//f////3//v/9/////f/+//3////9//7////9//////////3//////////f/////////9///////9//3////+//3//f////7//f/9/////v/9//3////+//////wAA/7//////AAD/v/////8AAP+/AAD/f/9//78AAP9//3//vwAA/3//f/+/AAD/f/9//7//fwAA//////9/AAD//////38AAP//////fwAA/////0e0t8v/f/+/R7S3y/9//79HtLfL/3//v0e0t8v/f/+//3//f////7//f/9/////v/9//3////+/")
 }]
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_tsewk"]
-points = PackedVector3Array(33.5, 0, 2.75, 33.5, -0.5, 2.75, -31, 0, 2.75, -31, -0.5, 2.75, 33.5, 0, -61.75, 33.5, -0.5, -61.75, -31, 0, -61.75, -31, -0.5, -61.75)
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_0qwk7"]
+points = PackedVector3Array(12.75, 0, 2.75, 12.75, -0.5, 2.75, -12.75, 0, 2.75, -12.75, -0.5, 2.75, 12.75, 0, -34.75, 12.75, -0.5, -34.75, -12.75, 0, -34.75, -12.75, -0.5, -34.75)
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_jiqka"]
-points = PackedVector3Array(-2.25, 0.4375, 0, -2.25, 0, 0, -3.5, 0.4375, 0, -3.5, 0, 0, -2.25, 0.4375, -1.5, -2.25, 0, -1.5, -3.5, 0.4375, -1.5, -3.5, 0, -1.5)
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_pueq0"]
+points = PackedVector3Array(-6.5, 0.375, -1.75, -6.5, 0, -1.75, -7.75, 0.375, -1.75, -7.75, 0, -1.75, -6.5, 0.375, -4.875, -6.5, 0, -4.875, -7.75, 0.375, -4.875, -7.75, 0, -4.875)
 
-[node name="Gym" type="Node" unique_id=1076830952]
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_pnhxc"]
+points = PackedVector3Array(-8.5, 0.5, -1.75, -8.5, 0, -1.75, -9.75, 0.5, -1.75, -9.75, 0, -1.75, -8.5, 0.5, -4.875, -8.5, 0, -4.875, -9.75, 0.5, -4.875, -9.75, 0, -4.875)
 
-[node name="Player" parent="." unique_id=1997770894 instance=ExtResource("2_d2u3u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 2.1386669)
-<<<<<<< HEAD
-STEP_MAX_HEIGHT = 0.438
-STEP_SPEED_FACTOR = 0.3
-=======
->>>>>>> 9b26faf2103e523a2ea0f108c365f73979c58e93
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_4oxs2"]
+points = PackedVector3Array(0.5, 0.125, 0.5, 0.5, 0, 0.5, -0.625, 0.125, 0.5, -0.625, 0, 0.5, 0.5, 0.125, -0.625, 0.5, 0, -0.625, -0.625, 0.125, -0.625, -0.625, 0, -0.625)
 
-[node name="Visuals" type="Node" parent="." unique_id=1391791017]
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_l1jfe"]
+points = PackedVector3Array(-4.5, 0.25, -1.75, -4.5, 0, -1.75, -5.75, 0.25, -1.75, -5.75, 0, -1.75, -4.5, 0.25, -4.875, -4.5, 0, -4.875, -5.75, 0.25, -4.875, -5.75, 0, -4.875)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_viyit"]
+points = PackedVector3Array(-4.375, 0, -6.875, -9.625, 3.625, -6.875, -9.625, 0, -6.875, -4.375, 0, -10, -9.625, 3.625, -10, -9.625, 0, -10)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_y445v"]
+points = PackedVector3Array(-4.375, 0, -10, -9.625, 5.0000005, -10, -9.625, 0, -10, -4.375, 0, -13.125, -9.625, 5.0000005, -13.125, -9.625, 0, -13.125)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_dgdp0"]
+points = PackedVector3Array(-4.375, 0, -13.125, -9.625, 5.3749995, -13.125, -9.625, 0, -13.125, -4.375, 0, -16.25, -9.625, 5.3749995, -16.25, -9.625, 0, -16.25)
+
+[node name="Gym" type="Node" unique_id=470463708]
+
+[node name="Player" parent="." unique_id=1210477223 instance=ExtResource("2_d2u3u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+
+[node name="Visuals" type="Node" parent="." unique_id=72582827]
 
 [node name="SceneCamera" parent="Visuals" unique_id=1015597522 instance=ExtResource("1_6ld1k")]
 transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 0, 0)
 top_level = true
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="Visuals" unique_id=2034854936]
-environment = SubResource("Environment_0qwk7")
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Visuals" unique_id=1491915083]
+environment = SubResource("Environment_ji2m5")
 
-[node name="SunAxis" type="Node3D" parent="Visuals" unique_id=269714516]
+[node name="SunAxis" type="Node3D" parent="Visuals" unique_id=1512155435]
 transform = Transform3D(-4.371139e-08, 0.86602545, -0.49999997, 0, 0.49999997, 0.86602545, 1, 3.7855173e-08, -2.1855692e-08, 0, 0, 0)
 
-[node name="Sun" type="DirectionalLight3D" parent="Visuals/SunAxis" unique_id=80417960]
+[node name="Sun" type="DirectionalLight3D" parent="Visuals/SunAxis" unique_id=1823816658]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1000)
 shadow_enabled = true
 shadow_transmittance_bias = -0.02
 shadow_opacity = 0.9
 shadow_blur = 6.35
 
-[node name="FuncGodotMap" type="Node3D" parent="." unique_id=826893974]
-script = ExtResource("5_pueq0")
+[node name="FuncGodotMap" type="Node3D" parent="." unique_id=1261145830]
+script = ExtResource("4_jiqka")
 local_map_file = "uid://c7rgcogankq7x"
 map_settings = ExtResource("6_pnhxc")
 metadata/_custom_type_script = "uid://cwu5cf7a0awcd"
 
-[node name="entity_0_worldspawn" type="StaticBody3D" parent="FuncGodotMap" unique_id=1945086277]
+[node name="entity_0_worldspawn" type="StaticBody3D" parent="FuncGodotMap" unique_id=858011824]
 collision_layer = 32768
 collision_mask = 0
 
-[node name="entity_0_mesh_instance" type="MeshInstance3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=332622666]
-mesh = SubResource("ArrayMesh_ji2m5")
+[node name="entity_0_mesh_instance" type="MeshInstance3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1885408597]
+mesh = SubResource("ArrayMesh_uesqs")
 
-[node name="entity_0_brush_0_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1138012724]
-shape = SubResource("ConvexPolygonShape3D_tsewk")
+[node name="entity_0_brush_0_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1182335546]
+shape = SubResource("ConvexPolygonShape3D_0qwk7")
 
-[node name="entity_0_brush_1_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1227390735]
-shape = SubResource("ConvexPolygonShape3D_jiqka")
+[node name="entity_0_brush_1_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1569073034]
+shape = SubResource("ConvexPolygonShape3D_pueq0")
+
+[node name="entity_0_brush_2_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=134429078]
+shape = SubResource("ConvexPolygonShape3D_pnhxc")
+
+[node name="entity_0_brush_3_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=22617787]
+shape = SubResource("ConvexPolygonShape3D_4oxs2")
+
+[node name="entity_0_brush_4_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=86754133]
+shape = SubResource("ConvexPolygonShape3D_l1jfe")
+
+[node name="entity_0_brush_5_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=418565286]
+shape = SubResource("ConvexPolygonShape3D_viyit")
+
+[node name="entity_0_brush_6_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=384754383]
+shape = SubResource("ConvexPolygonShape3D_y445v")
+
+[node name="entity_0_brush_7_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=2140665607]
+shape = SubResource("ConvexPolygonShape3D_dgdp0")

@@ -79,7 +79,7 @@ LABLE_TEXT = "UI_KEYBOARDMAPPING_RIGHT"
 layout_mode = 2
 LABLE_TEXT = "UI_KEYBOARDMAPPING_DODGE"
 
-[node name="Sprint" parent="CenterContainer/HBoxContainer/Right Colon" unique_id=2010923946 instance=ExtResource("2_7kj8o")]
+[node name="Dash" parent="CenterContainer/HBoxContainer/Right Colon" unique_id=2010923946 instance=ExtResource("2_7kj8o")]
 layout_mode = 2
 LABLE_TEXT = "UI_KEYBOARDMAPPING_SPRINT"
 
