@@ -55,7 +55,6 @@ func exit() -> StringName:
 	var exitType := _currentMenu.exit()
 	if exitType != AppState.Type.none:
 		_currentMenu.deactivate()
-		_currentMenu = null
 
 	return exitType
 

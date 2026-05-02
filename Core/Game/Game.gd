@@ -22,6 +22,8 @@ var _pauseMenu : AppState = null
 var _worldResource : PackedScene = null
 var _pauseMenuResource : PackedScene = null
 
+var _finishedLoading : bool = false
+
 var exitState : StringName = AppState.Type.none:
 	get():
 		var tmp := exitState
@@ -45,23 +47,8 @@ func _ready() -> void:
 
 
 func _process(delta : float) -> void:
-	var finishedLoading := true
-
-	if _world == null and available(WORLD_PATH):
-		finishedLoading = false
-		_worldResource = ResourceLoader.load_threaded_get(WORLD_PATH)
-		_world = _worldResource.instantiate()
-		add_child(_world)
-		insertState(_world)
-	if _pauseMenu == null and available(PAUSE_MENU_PATH):
-		finishedLoading = false
-		_pauseMenuResource = ResourceLoader.load_threaded_get(PAUSE_MENU_PATH)
-		_pauseMenu = _pauseMenuResource.instantiate()
-		add_child(_pauseMenu)
-		insertState(_pauseMenu)
-	
-	if finishedLoading:
-		loadingScreen.requestLoad(loadingScreen, _world as AppState)
+	if not _finishedLoading:
+		_instantiateScenes()
 
 	super._process(delta)
 
@@ -86,7 +73,27 @@ func enter() -> void:
 
 #region Private functions
 
-func available(path : String, triggerAssert : bool = true) -> bool:
+func _instantiateScenes() -> void:
+	_finishedLoading = _available(WORLD_PATH) and _available(PAUSE_MENU_PATH)
+
+	if not _finishedLoading:
+		return
+
+	if _world == null:
+		_worldResource = ResourceLoader.load_threaded_get(WORLD_PATH)
+		_world = _worldResource.instantiate()
+		add_child(_world)
+		insertState(_world)
+	if _pauseMenu == null:
+		_pauseMenuResource = ResourceLoader.load_threaded_get(PAUSE_MENU_PATH)
+		_pauseMenu = _pauseMenuResource.instantiate()
+		add_child(_pauseMenu)
+		insertState(_pauseMenu)
+
+	loadingScreen.requestLoad(loadingScreen, _world as AppState)
+
+
+func _available(path : String, triggerAssert : bool = true) -> bool:
 	match ResourceLoader.load_threaded_get_status(path):
 		ResourceLoader.THREAD_LOAD_LOADED:
 			return true

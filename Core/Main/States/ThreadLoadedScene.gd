@@ -28,24 +28,27 @@ func _ready() -> void:
 
 #region Override functions
 
-func _implEnter() -> void:
-	_loadScene()
+func enter() -> void:
+	process_mode = Node.PROCESS_MODE_INHERIT
+
 	scene = _createScene()
 	add_child(scene)
 
-
-func delayedExit() -> void:
-	_sceneResource = null
+func exit() -> void:
 	_unload()
+	_sceneResource = null
 
-func available(triggerAssert : bool = true) -> bool:
+	process_mode = Node.PROCESS_MODE_DISABLED
+
+
+func available() -> bool:
 	match ResourceLoader.load_threaded_get_status(SCENE_PATH):
 		ResourceLoader.THREAD_LOAD_LOADED:
 			return true
 		ResourceLoader.THREAD_LOAD_IN_PROGRESS:
 			return false
 		_:
-			assert(!triggerAssert, "MainMenuState.available(): Loading scene resource failed")
+			_loadScene()
 	
 	return false
 
@@ -55,9 +58,6 @@ func available(triggerAssert : bool = true) -> bool:
 #region Private functions
 
 func _loadScene() -> void:
-	if available(false):
-		return
-
 	var err := ResourceLoader.load_threaded_request(SCENE_PATH)
 
 	assert(err == OK, "MainThreadLoadedScene._ready(): Request to load the scene resource failed!")

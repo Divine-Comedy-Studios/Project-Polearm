@@ -16,7 +16,7 @@ func init() -> void:
 	_states.get_or_add(BasicState.TYPE_NONE, BasicState.NONE)
 
 	for child in get_children():
-		_implStateInit(child)
+		insertState(child)
 
 	_enterState(_initialState())
 
@@ -28,9 +28,7 @@ func interrupt(type : StringName) -> void:
 	_switchState(_interruptState(type))
 
 
-func insertAction(value : BasicState) -> void: insertState(value)
-func insertState(value : BasicState) -> void:
-	_states[value.type()] = value
+func insertAction(value : Node) -> void: insertState(value)
 
 func action(type : StringName) -> BasicState: return state(type)
 func state(type : StringName) -> BasicState:
@@ -40,6 +38,9 @@ func state(type : StringName) -> BasicState:
 
 
 #region Private functions
+
+func _addState(value : BasicState) -> void:
+	_states[value.type()] = value
 
 func _enterState(type : StringName) -> void:
 	currentState = state(type)
@@ -58,8 +59,8 @@ func _switchState(type : StringName) -> void:
 #region Implementation & Virtual functions
 
 @warning_ignore("unused_parameter")
-func _implStateInit(child : Node) -> void:
-	pass
+func insertState(value : Node) -> void:
+	_states[value.type()] = value
 
 func _initialState() -> StringName:
 	return StringName()

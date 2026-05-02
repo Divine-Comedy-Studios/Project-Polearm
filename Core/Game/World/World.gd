@@ -22,11 +22,7 @@ func _ready() -> void:
 func _process(_delta : float) -> void:
 	if Input.is_action_just_pressed("ui_cancel"):
 		_next = Type.paused
-
-
-func _input(event : InputEvent) -> void:
-	if event is InputEventKey:
-		if event.pressed and event.keycode == UI_CANCEL_KEYCODE:
+		if Input.is_key_pressed(UI_CANCEL_KEYCODE):
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 #endregion
@@ -34,11 +30,13 @@ func _input(event : InputEvent) -> void:
 
 #region Override functions	
 
-func _implEnter() -> void:
+func enter() -> void:
+	process_mode = Node.PROCESS_MODE_INHERIT
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
-func delayedExit() -> void:
+func exit() -> void:
 	_next = Type.none
+	process_mode = Node.PROCESS_MODE_DISABLED
 
 
 func type() -> StringName:

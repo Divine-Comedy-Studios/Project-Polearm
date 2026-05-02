@@ -30,8 +30,6 @@ func enter() -> void:
 	loadingScreen.enter()
 
 func exit() -> void:
-	_currentState.delayedExit()
-
 	_requestedState = null
 	_currentState = null
 	loadingScreen.exit()
