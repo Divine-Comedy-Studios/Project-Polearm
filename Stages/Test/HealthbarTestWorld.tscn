@@ -10,11 +10,12 @@
 [sub_resource type="ViewportTexture" id="ViewportTexture_f7i5q"]
 viewport_path = NodePath("3D")
 
-[node name="Node3D" type="Node3D" unique_id=438590031]
+[node name="Node3D" type="Node" unique_id=1285167501]
 
 [node name="SceneCamera" parent="." unique_id=1015597522 instance=ExtResource("1_afw32")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35961187, 4.5309277)
 top_level = true
+current = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=894078038 groups=["Player"]]
 mesh = SubResource("BoxMesh_6vbmq")
@@ -30,8 +31,16 @@ transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, -0.15588
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=252259099]
 transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, -0.15588021, 2.1862502, 0.07204199)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=221114112]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1392265394]
 
-[node name="Icon" type="Sprite2D" parent="CanvasLayer" unique_id=622964682]
-position = Vector2(1614, 976)
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer" unique_id=1394664394]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Icon" type="Sprite2D" parent="CanvasLayer/CenterContainer" unique_id=622964682]
+position = Vector2(1731, 846)
+scale = Vector2(7.1992183, 6.7148447)
 texture = ExtResource("5_w8bdg")

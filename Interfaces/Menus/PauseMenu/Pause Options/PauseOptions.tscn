@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://deafv8fy7rwbb"]
+
+[ext_resource type="Script" uid="uid://vyxsiwv005q" path="res://Interfaces/Menus/PauseMenu/Pause Options/PauseOptions.gd" id="1_ch7jw"]
+[ext_resource type="Theme" uid="uid://eptqqy8sm6gl" path="res://Interfaces/Themes/MenuTheme.tres" id="1_i12rr"]
+[ext_resource type="Script" uid="uid://cfdlgc8aalbtr" path="res://Interfaces/UIElements/GameMenuButton.gd" id="2_57qva"]
+
+[node name="PauseOptions" type="Control" unique_id=947122342]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_i12rr")
+script = ExtResource("1_ch7jw")
+metadata/_custom_type_script = "uid://cyn28bbc16luj"
+
+[node name="MarginContainer" type="CenterContainer" parent="." unique_id=838401779]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer" unique_id=1192300233]
+custom_minimum_size = Vector2(300, 318)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer" unique_id=88660540]
+layout_mode = 2
+theme_override_constants/separation = 9
+
+[node name="Continue" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer" unique_id=1290287775]
+layout_mode = 2
+size_flags_vertical = 3
+focus_neighbor_top = NodePath("../Main Menu")
+focus_neighbor_bottom = NodePath("../Options")
+text = "UI_PAUSEOPTIONS_CONTINUE"
+script = ExtResource("2_57qva")
+
+[node name="Options" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer" unique_id=1029456603]
+layout_mode = 2
+size_flags_vertical = 3
+focus_neighbor_top = NodePath("../Continue")
+focus_neighbor_bottom = NodePath("../Main Menu")
+text = "UI_PAUSEOPTIONS_OPTIONS"
+script = ExtResource("2_57qva")
+
+[node name="Main Menu" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer" unique_id=1819317829]
+layout_mode = 2
+size_flags_vertical = 3
+focus_neighbor_top = NodePath("../Options")
+focus_neighbor_bottom = NodePath("../Continue")
+text = "UI_PAUSEOPTIONS_EXIT"
+script = ExtResource("2_57qva")
+
+[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/Continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/Main Menu" to="." method="_on_main_menu_pressed"]

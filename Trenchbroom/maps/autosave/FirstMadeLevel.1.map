@@ -1,0 +1,18 @@
+// Game: ProjectPolearm
+// Format: Valve
+// entity 0
+{
+"mapversion" "220"
+"wad" ""
+"classname" "worldspawn"
+"_tb_mod" "Trenchbroom"
+// brush 0
+{
+( -100 64 16 ) ( -100 -64 16 ) ( -100 -64 -16 ) "Greybox Textures/PNG/Green/texture_04" [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -100 -64 16 ) ( 100 -64 16 ) ( 100 -64 -16 ) "Greybox Textures/PNG/Green/texture_04" [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 100 -64 -16 ) ( 100 64 -16 ) ( -100 64 -16 ) "Greybox Textures/PNG/Green/texture_04" [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -100 64 16 ) ( 100 64 16 ) ( 100 -64 16 ) "Greybox Textures/PNG/Green/texture_04" [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 100 64 -16 ) ( 100 64 16 ) ( -100 64 16 ) "Greybox Textures/PNG/Green/texture_04" [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 100 -64 16 ) ( 100 64 16 ) ( 100 64 -16 ) "Greybox Textures/PNG/Green/texture_04" [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+}

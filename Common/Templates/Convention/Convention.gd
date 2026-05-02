@@ -101,7 +101,7 @@ var _privateBar : Vector2 = Vector2.ZERO
 
 #region Member variables
 
-
+var _member
 
 #endregion
 

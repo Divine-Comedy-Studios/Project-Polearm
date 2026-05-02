@@ -1,17 +1,8 @@
-extends InterfaceState
+extends InterfaceStateMachine
 
 
-# Signals that get redirected to the Interface Controller
-signal continuePressed
-signal openOptionsPressed
-signal openMainMenuPressed
-
-
-func _on_continue_pressed() -> void:
-	continuePressed.emit()
-
-func _on_options_pressed() -> void:
-	openOptionsPressed.emit()
-
-func _on_main_menu_pressed() -> void:
-	openMainMenuPressed.emit()
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseMotion:
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	elif event is InputEventJoypadButton or event is InputEventJoypadMotion:
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
