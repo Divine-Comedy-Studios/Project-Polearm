@@ -1,62 +1,62 @@
-[gd_scene format=3 uid="uid://c4osl43hbuh14"]
+[gd_scene format=3 uid="uid://cnqb8o2cbehq4"]
 
-[ext_resource type="Script" uid="uid://vyxsiwv005q" path="res://Interfaces/Menus/PauseMenu/PauseMenu.gd" id="1_w0rmh"]
-[ext_resource type="Script" uid="uid://cfdlgc8aalbtr" path="res://Interfaces/UIElements/GameMenuButton.gd" id="2_yj8jp"]
+[ext_resource type="Script" uid="uid://c6b703ctrle2l" path="res://Interfaces/Menus/PauseMenu/PauseMenu.gd" id="1_w0rmh"]
+[ext_resource type="Script" uid="uid://7cjw5im7rxvp" path="res://Interfaces/InterfaceStateMachine/InputManager/InputManager.gd" id="2_doeu6"]
+[ext_resource type="PackedScene" uid="uid://bbf2d281jeq4y" path="res://Interfaces/Menus/OptionsMenu/OptionsMenu.tscn" id="3_cgrnr"]
+[ext_resource type="PackedScene" uid="uid://deafv8fy7rwbb" path="res://Interfaces/Menus/PauseMenu/Pause Options/PauseOptions.tscn" id="4_6yn04"]
+[ext_resource type="PackedScene" uid="uid://dewxnxvy14tjr" path="res://Interfaces/Menus/OptionsMenu/GameOptions/GameOptions.tscn" id="5_apx62"]
+[ext_resource type="Script" uid="uid://celjwc20dqkr8" path="res://Interfaces/Menus/OptionsMenu/GameOptions/GameOptions.gd" id="6_fsrhc"]
+[ext_resource type="PackedScene" uid="uid://b8ng1m4gseuer" path="res://Interfaces/Menus/OptionsMenu/VideoOptions/VideoOptions.tscn" id="7_uqgmp"]
+[ext_resource type="Script" uid="uid://6tv3tv4exou" path="res://Interfaces/Menus/OptionsMenu/VideoOptions/VideoOptions.gd" id="8_74e1t"]
+[ext_resource type="PackedScene" uid="uid://3vnyxp2i1ac0" path="res://Interfaces/Menus/OptionsMenu/AudioOptions/AudioOptions.tscn" id="9_li8nt"]
+[ext_resource type="Script" uid="uid://dmm6hc5f7l4s2" path="res://Interfaces/Menus/OptionsMenu/AudioOptions/AudioOptions.gd" id="10_n46ru"]
+[ext_resource type="PackedScene" uid="uid://cnusbpv84eyf0" path="res://Interfaces/Menus/OptionsMenu/ControllerMapping/ControllerMapping.tscn" id="11_byafs"]
+[ext_resource type="Script" uid="uid://cb62bax61vhwy" path="res://Interfaces/Menus/OptionsMenu/ControllerMapping/ControllerMapping.gd" id="12_hsx72"]
+[ext_resource type="PackedScene" uid="uid://cthgc7cm7suej" path="res://Interfaces/Menus/OptionsMenu/KeyboardMapping/KeyboardMapping.tscn" id="13_mmoyh"]
+[ext_resource type="Script" uid="uid://pgyhhnbdkno5" path="res://Interfaces/Menus/OptionsMenu/KeyboardMapping/KeyboardMapping.gd" id="14_r5wq0"]
 
-[node name="PauseMenu" type="Control" unique_id=1473172923]
-process_mode = 2
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="PauseMenu" type="CanvasLayer" unique_id=1914925635]
 script = ExtResource("1_w0rmh")
-metadata/_custom_type_script = "uid://cyn28bbc16luj"
+INITIAL_MENU_TYPE = 5
+metadata/_custom_type_script = "uid://cdmfn0vdjybja"
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=812718561]
-custom_minimum_size = Vector2(300, 318)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -150.0
-offset_top = -159.0
-offset_right = 150.0
-offset_bottom = 159.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="InputManager" type="Node" parent="." unique_id=801568144]
+script = ExtResource("2_doeu6")
+metadata/_custom_type_script = "uid://7cjw5im7rxvp"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1342212408]
-layout_mode = 2
-theme_override_constants/separation = 9
+[node name="PauseOptions" parent="." unique_id=947122342 instance=ExtResource("4_6yn04")]
 
-[node name="Continue" type="Button" parent="MarginContainer/VBoxContainer" unique_id=2032558680]
-layout_mode = 2
-size_flags_vertical = 3
-focus_neighbor_top = NodePath("../Main Menu")
-focus_neighbor_bottom = NodePath("../Options")
-text = "Continue"
-script = ExtResource("2_yj8jp")
+[node name="OptionsMenu" parent="." unique_id=865326453 instance=ExtResource("3_cgrnr")]
+process_mode = 4
+visible = false
+BACK_MENU = 5
 
-[node name="Options" type="Button" parent="MarginContainer/VBoxContainer" unique_id=844106616]
-layout_mode = 2
-size_flags_vertical = 3
-focus_neighbor_top = NodePath("../Continue")
-focus_neighbor_bottom = NodePath("../Main Menu")
-text = "Options"
-script = ExtResource("2_yj8jp")
+[node name="GameOptions" parent="." unique_id=2031472548 instance=ExtResource("5_apx62")]
+process_mode = 4
+visible = false
+script = ExtResource("6_fsrhc")
+BACK_MENU = 4
 
-[node name="Main Menu" type="Button" parent="MarginContainer/VBoxContainer" unique_id=263316376]
-layout_mode = 2
-size_flags_vertical = 3
-focus_neighbor_top = NodePath("../Options")
-focus_neighbor_bottom = NodePath("../Continue")
-text = "Main Menu"
-script = ExtResource("2_yj8jp")
+[node name="VideoOptions" parent="." unique_id=1719290083 instance=ExtResource("7_uqgmp")]
+process_mode = 4
+visible = false
+script = ExtResource("8_74e1t")
+BACK_MENU = 4
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Continue" to="." method="_on_continue_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Main Menu" to="." method="_on_main_menu_pressed"]
+[node name="AudioOptions" parent="." unique_id=1890015755 instance=ExtResource("9_li8nt")]
+process_mode = 4
+visible = false
+script = ExtResource("10_n46ru")
+BACK_MENU = 4
+
+[node name="ControllerMapping" parent="." unique_id=125246150 instance=ExtResource("11_byafs")]
+process_mode = 4
+visible = false
+script = ExtResource("12_hsx72")
+BACK_MENU = 4
+
+[node name="KeyboardMapping" parent="." unique_id=334027440 instance=ExtResource("13_mmoyh")]
+process_mode = 4
+visible = false
+script = ExtResource("14_r5wq0")
+BACK_MENU = 4
