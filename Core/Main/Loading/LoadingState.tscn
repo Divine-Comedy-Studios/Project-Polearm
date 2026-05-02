@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://c3jf31enkc6q4"]
+
+[ext_resource type="Script" uid="uid://dsimdcatc5tk5" path="res://Core/AppStateMachine/AppState.gd" id="1_pcbyd"]
+
+[node name="LoadingState" type="Node" unique_id=148079785]
+process_mode = 4
+script = ExtResource("1_pcbyd")
+metadata/_custom_type_script = "uid://dsimdcatc5tk5"

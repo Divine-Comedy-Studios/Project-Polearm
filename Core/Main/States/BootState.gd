@@ -20,19 +20,18 @@ func _ready() -> void:
 
 #region Override functions
 
-func _implExit() -> void:
-	_sceneResource = null # Also delete the scene resource, as we only boot once
-
-
 func type() -> StringName:
-	return Main.Type.boot
+	return Type.boot
 
 func nextState() -> StringName:
-	if not scene.readyToSwitch():
-		return Main.Type.none
-	if not _mainMenu.finishedLoading():
-		return Main.Type.none
+	if not scene.finished():
+		return Type.none
 
-	return Main.Type.mainMenu
+	return Type.mainMenu
+
+
+func delayedExit() -> void:
+	_unload()
+	_sceneResource = null # Also delete the scene resource, as we only boot once
 
 #endregion

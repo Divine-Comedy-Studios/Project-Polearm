@@ -1,6 +1,13 @@
 extends AppState
 
 
+#region Imports
+
+const Game := preload("res://Core/Game/Game.gd")
+
+#endregion
+
+
 #region Built-in functions
 
 func _ready() -> void:
@@ -11,23 +18,7 @@ func _ready() -> void:
 #endregion
 
 
-#region Public functions
-
-func finishedLoading() -> bool:
-	match ResourceLoader.load_threaded_get_status(SCENE_PATH):
-		ResourceLoader.THREAD_LOAD_LOADED:
-			return true
-		ResourceLoader.THREAD_LOAD_IN_PROGRESS:
-			return false
-		_:
-			assert(false, "GameState.finishedLoading(): Loading scene resource failed")
-	
-	return false
-
-#endregion
-
-
-#region Implementation functions
+#region Override functions
 
 func _implCreateScene() -> Node:
 	assert(
@@ -39,9 +30,27 @@ func _implCreateScene() -> Node:
 
 
 func type() -> StringName:
-	return Main.Type.game
+	return Type.game
 
 func nextState() -> StringName:
-	return Main.Type.none
+	assert(scene != null, "GameState.nextState(): Game has to be properly instantiated!")
+
+	return (scene as Game).exitState
+
+
+func delayedExit() -> void:
+	_unload()
+	_sceneResource = null
+
+func available() -> bool:
+	match ResourceLoader.load_threaded_get_status(SCENE_PATH):
+		ResourceLoader.THREAD_LOAD_LOADED:
+			return true
+		ResourceLoader.THREAD_LOAD_IN_PROGRESS:
+			return false
+		_:
+			assert(false, "GameState.available(): Loading scene resource failed")
+	
+	return false
 
 #endregion

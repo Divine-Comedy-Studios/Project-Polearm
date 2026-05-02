@@ -10,5 +10,5 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	timer -= delta
 
-func readyToSwitch() -> bool:
+func finished() -> bool:
 	return timer < 0.0
