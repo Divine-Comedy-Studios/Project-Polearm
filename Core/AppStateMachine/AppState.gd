@@ -11,9 +11,10 @@ class Type:
 
 	const boot := &"boot"
 	const quit := &"quit"
-	const mainMenu := &"mainMenu"
+	const mainMenu := &"main"
 	const game := &"game"
 
+	const stageSelect := &"select"
 	const world := &"world"
 	const death := &"death"
 	const paused := &"paused"
@@ -30,13 +31,8 @@ var stateMachine : AppStateMachine = null
 
 #region Implementation & Virtual functions
 
-func _implEnter() -> void:
-	pass
-
-
 func nextState() -> StringName:
 	return TYPE_NONE
-
 
 func available() -> bool:
 	return true

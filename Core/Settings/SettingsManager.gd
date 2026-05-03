@@ -90,7 +90,7 @@ const SUPPORTED_LANGUAGES : Array[String] = [
 
 static var _file : ConfigFile = ConfigFile.new()
 
-static var isRemapping : bool = false
+static var isRemapping : bool = false ### @todo Part of the overall UI overhaul
 
 #endregion
 
