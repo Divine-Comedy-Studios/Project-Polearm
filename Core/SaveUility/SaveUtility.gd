@@ -5,34 +5,47 @@ class_name SaveUtility
 
 const SAVE_DATA_BASE_PATH : String = "user://saves/save_"
 const EXTENSION : String = ".dat"
+const SAVE_VERSION : int = 1
+
+const EMPTY_SAVE : Dictionary = {
+	"version" : 1,
+}
 
 #endregion
 
 
 #region Public funcitons
 
-func hasSave(slot : int) -> bool:
+static func hasSave(slot : int) -> bool:
 	var path := _getPath(slot) as String
 	return path != ""
 
-func loadSave(slot : int) -> Dictionary:
+static func loadSave(slot : int):
 	var path := _getPath(slot) as String
 
 	if path == "":
-		return {}
+		return EMPTY_SAVE
 
 	var file := FileAccess.open(path, FileAccess.READ)
 	if file == null:
 		push_error("SaveManager: Failed to open binary file for reading: " + error_string(FileAccess.get_open_error()))
-		return {}
+		return null
 
 	var content = file.get_var()
-	if content is Dictionary:
-		return content
-		
-	return {}
+	if not (content is Dictionary):
+		return null
 
-func writeSave(data : Dictionary, slot : int) -> void:
+	if not content.has("version") or content["version"] != SAVE_VERSION:
+		push_error("SaveManager: Save integrity check failed. Version mismatch or missing variables.")
+		return null
+
+	return content
+
+static func writeSave(data : Dictionary, slot : int) -> void:
+	if not data.has("version") or data["version"] != SAVE_VERSION:
+		push_error("SaveManager: Failed to write - missing or incorrect save version.")
+		return
+
 	var dir = DirAccess.open("user://")
 	if dir and not dir.dir_exists("saves"):
 		dir.make_dir("saves")
@@ -46,7 +59,7 @@ func writeSave(data : Dictionary, slot : int) -> void:
 		
 	file.store_var(data)
 	
-func clearSave(slot : int) -> void:
+static func clearSave(slot : int) -> void:
 	var path := _getPath(slot) as String
 
 	if path != "":
@@ -59,7 +72,7 @@ func clearSave(slot : int) -> void:
 
 #region Private functions
 
-func _getPath(slot: int) -> String:
+static func _getPath(slot: int) -> String:
 	var dir = DirAccess.open("user://")
 
 	if dir and not dir.dir_exists("saves"):
