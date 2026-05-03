@@ -28,11 +28,10 @@ const EMPTY_SAVE : Dictionary = {
 #region Public funcitons
 
 static func hasSave(slot : int) -> bool:
-	var path := _getPath(slot) as String
-	return path != ""
+	return _getAndVerifyPath(slot) != ""
 
 static func loadSave(slot : int) -> Dictionary:
-	var path := _getPath(slot) as String
+	var path := _getAndVerifyPath(slot)
 
 	if path == "":
 		return EMPTY_SAVE.duplicate(true)
@@ -40,26 +39,23 @@ static func loadSave(slot : int) -> Dictionary:
 	var file := FileAccess.open(path, FileAccess.READ)
 	if file == null:
 		push_error("SaveManager: Failed to open binary file for reading: " + error_string(FileAccess.get_open_error()))
-		return {}
+		return EMPTY_SAVE.duplicate(true)
 
 	var content = file.get_var()
 	if not (content is Dictionary):
-		return {}
+		return EMPTY_SAVE.duplicate(true)
 
 	if _verifyVersion(content):
-		return content
+		return content as Dictionary
 
-	return {}
+	return EMPTY_SAVE.duplicate(true)
+
 
 static func writeSave(data : Dictionary, slot : int) -> void:
 	if not _verifyVersion(data):
 		return
-
-	var dir = DirAccess.open("user://")
-	if dir and not dir.dir_exists("saves"):
-		dir.make_dir("saves")
 		
-	var path = SAVE_DATA_BASE_PATH + str(slot) + "." + EXTENSION
+	var path = SAVE_DATA_BASE_PATH + str(slot) + EXTENSION
 	var file := FileAccess.open(path, FileAccess.WRITE)
 	
 	if file == null:
@@ -69,25 +65,18 @@ static func writeSave(data : Dictionary, slot : int) -> void:
 	file.store_var(data)
 	
 static func clearSave(slot : int) -> void:
-	var path := _getPath(slot) as String
+	var path := _getAndVerifyPath(slot) as String
 
 	if path != "":
-		var dir = DirAccess.open("user://saves")
-		if dir:
-			dir.remove(path.get_file())
+		DirAccess.remove_absolute(path)
 
 #endregion
 
 
 #region Private functions
 
-static func _getPath(slot: int) -> String:
-	var dir = DirAccess.open("user://")
-
-	if dir and not dir.dir_exists("saves"):
-		dir.make_dir("saves")
-		
-	var path = SAVE_DATA_BASE_PATH + str(slot) + "." + EXTENSION
+static func _getAndVerifyPath(slot: int) -> String:
+	var path := SAVE_DATA_BASE_PATH + str(slot) + EXTENSION
 
 	if not FileAccess.file_exists(path):
 		return ""
