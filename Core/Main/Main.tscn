@@ -18,10 +18,9 @@ metadata/_custom_type_script = "uid://c31gnbehqoq8y"
 process_mode = 4
 script = ExtResource("3_1s610")
 SCENE_PATH = "res://Interfaces/Menus/MainMenu/MainMenu.tscn"
-metadata/_custom_type_script = "uid://rsh5cj6cpwis"
 
-[node name="GameState" type="Node" parent="." unique_id=556089681]
+[node name="GameState" type="Node" parent="." unique_id=556089681 node_paths=PackedStringArray("_mainMenuState")]
 process_mode = 4
 script = ExtResource("4_jgmb7")
+_mainMenuState = NodePath("../MainMenuState")
 SCENE_PATH = "res://Core/Game/Game.tscn"
-metadata/_custom_type_script = "uid://bicl85c04tdj7"

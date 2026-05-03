@@ -1,12 +1,11 @@
 class_name SaveUtility
 
 
-#region Enum
+#region Enums
 
-enum DEBUG_SaveFiles {
-  gym = 0x1FFFFFFF,
-  museum = 0x1FFFFFFF,
-  zoo = 0x2FFFFFFF,
+enum SaveFileVersion {
+	invalid = 0,
+	v0_0_1 = 1,
 }
 
 #endregion
@@ -14,12 +13,21 @@ enum DEBUG_SaveFiles {
 
 #region Constants
 
-const SAVE_DATA_BASE_PATH : String = "user://saves/save_"
-const EXTENSION : String = ".dat"
-const SAVE_VERSION : int = 1
+# Metadata
+
+const SAVE_FILE_BASE_PATH : String = "user://saves/save_%s.dat"
+const SAVE_FILE_VERSION : int = SaveFileVersion.v0_0_1
+
+
+# Save file & debug
+
+const DEBUG_TEMP_SAVE : int = -1
 
 const EMPTY_SAVE : Dictionary = {
-	"version" : 1,
+	"version" : SAVE_FILE_VERSION,
+}
+const DEBUG_SAVE : Dictionary = {
+	"version" : SaveFileVersion.invalid
 }
 
 #endregion
@@ -30,44 +38,49 @@ const EMPTY_SAVE : Dictionary = {
 static func hasSave(slot : int) -> bool:
 	return _getAndVerifyPath(slot) != ""
 
-static func loadSave(slot : int) -> Dictionary:
-	var path := _getAndVerifyPath(slot)
 
-	if path == "":
-		return EMPTY_SAVE.duplicate(true)
+static func loadSave(slot : int) -> Dictionary:
+	if slot == -1:
+		return DEBUG_SAVE.duplicate_deep()
+
+	var path := _getAndVerifyPath(slot)
+	if path.is_empty():
+		return EMPTY_SAVE.duplicate_deep()
+
+	# Having a bad file should send you to a special menu
 
 	var file := FileAccess.open(path, FileAccess.READ)
 	if file == null:
-		push_error("SaveManager: Failed to open binary file for reading: " + error_string(FileAccess.get_open_error()))
-		return EMPTY_SAVE.duplicate(true)
+		push_error("SaveManager.loadSave(): Failed to open binary file for reading: " + error_string(FileAccess.get_open_error()))
+		return { }
 
 	var content = file.get_var()
 	if not (content is Dictionary):
-		return EMPTY_SAVE.duplicate(true)
+		return { }
 
-	if _verifyVersion(content):
-		return content as Dictionary
+	if not _verifyIntegrity(content):
+		return { }
 
-	return EMPTY_SAVE.duplicate(true)
+	return content as Dictionary
 
 
-static func writeSave(data : Dictionary, slot : int) -> void:
-	if not _verifyVersion(data):
-		return
+static func writeSave(data : Dictionary, slot : int) -> bool:
+	if not _verifyIntegrity(data):
+		return false
 		
-	var path = SAVE_DATA_BASE_PATH + str(slot) + EXTENSION
+	var path := SAVE_FILE_BASE_PATH.format(str(slot))
 	var file := FileAccess.open(path, FileAccess.WRITE)
 	
 	if file == null:
-		push_error("SaveManager: Failed to open binary file for writing: " + error_string(FileAccess.get_open_error()))
-		return
-		
-	file.store_var(data)
+		push_error("SaveManager.writeSave(): Failed to open binary file for writing: " + error_string(FileAccess.get_open_error()))
+		return false
+
+	return file.store_var(data)
 	
 static func clearSave(slot : int) -> void:
 	var path := _getAndVerifyPath(slot) as String
 
-	if path != "":
+	if not path.is_empty():
 		DirAccess.remove_absolute(path)
 
 #endregion
@@ -76,16 +89,20 @@ static func clearSave(slot : int) -> void:
 #region Private functions
 
 static func _getAndVerifyPath(slot: int) -> String:
-	var path := SAVE_DATA_BASE_PATH + str(slot) + EXTENSION
+	var path := SAVE_FILE_BASE_PATH.format(str(slot))
 
 	if not FileAccess.file_exists(path):
-		return ""
+		return String()
 		
 	return path
-	
-static func _verifyVersion(data: Dictionary) -> bool:
-	if not data.has("version") or data["version"] != SAVE_VERSION:
-		push_error("SaveManager: Failed to write - missing or incorrect save version.")
+
+
+static func _verifyIntegrity(data: Dictionary) -> bool:
+	if (
+		not data.has("version") or 
+		data["version"] != SAVE_FILE_VERSION
+	):
+		push_error("SaveManager._verifyIntegrity(): Save file integrity check failed!")
 		return false
 	
 	return true

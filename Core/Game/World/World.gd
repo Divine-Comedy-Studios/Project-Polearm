@@ -1,11 +1,25 @@
-extends AppState
+extends GameState
+
+
+#region Exported variables
+
+@export var STAGE_PATHS : Dictionary[Stage.Type, String] = { }
+
+#endregion
 
 
 #region Member variables
 
-var UI_CANCEL_KEYCODE : Key = Key.KEY_ESCAPE
+# Stage
 
-var _next : StringName = Type.none
+var _currentStagePath : String = String()
+var _currentStageResource : PackedScene = null
+var _currentStage : Stage = null
+
+
+# State machine
+
+var _nextGameState : StringName = Type.none
 
 #endregion
 
@@ -13,36 +27,84 @@ var _next : StringName = Type.none
 #region Built-in functions
 
 func _ready() -> void:
-	var events := InputMap.action_get_events("ui_cancel")
-	for event : InputEvent in events:
+	pass
+
+
+# Handle transitioning to the pause menu
+func _input(event : InputEvent) -> void:
+	if event.is_action_pressed("ui_cancel"):
 		if event is InputEventKey:
-			UI_CANCEL_KEYCODE = event.keycode
-
-
-func _process(_delta : float) -> void:
-	if Input.is_action_just_pressed("ui_cancel"):
-		_next = Type.paused
-		if Input.is_key_pressed(UI_CANCEL_KEYCODE):
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+
+		_nextGameState = Type.paused
 
 #endregion
 
 
 #region Override functions	
 
-func enter() -> void:
-	process_mode = Node.PROCESS_MODE_INHERIT
+func _enter() -> void:
+	if _currentStage == null:
+		_loadStage()
+
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
-func exit() -> void:
-	_next = Type.none
-	process_mode = Node.PROCESS_MODE_DISABLED
+func _exit() -> void:
+	_nextGameState = Type.none
+
+
+func available() -> bool:
+	if _currentStage == null:
+		match ResourceLoader.load_threaded_get_status(_currentStagePath):
+			ResourceLoader.THREAD_LOAD_LOADED:
+				return true
+			ResourceLoader.THREAD_LOAD_IN_PROGRESS:
+				return false
+			_:
+				var payload : Variant = stateMachine.payload
+				if payload != null:
+					assert(payload is Stage.SaveData, "World._enter(): Payload must contain current level data!")
+					_requestLoadStage(payload as Stage.SaveData)
+					return false
+
+	return true
 
 
 func type() -> StringName:
 	return Type.world
 
 func nextState() -> StringName:
-	return _next
+	return _nextGameState
+
+#endregion
+
+
+#region Public functions
+
+func changeStage(stageData : Stage.SaveData) -> void:
+	_clearStageData()
+	_payload = stageData
+	_nextGameState = Type.world # This should bring us to the loading screen and back
+
+#endregion
+
+
+#region Private functions
+
+func _clearStageData() -> void:
+	_currentStage.queue_free()
+	_currentStage = null
+	_currentStageResource = null
+	_currentStagePath = String()
+
+
+func _requestLoadStage(stageData : Stage.SaveData) -> void:
+	pass
+
+func _loadStage() -> void:
+	_currentStage = _currentStageResource.instantiate()
+	add_child(_currentStage)
+
+	# Do something
 
 #endregion
