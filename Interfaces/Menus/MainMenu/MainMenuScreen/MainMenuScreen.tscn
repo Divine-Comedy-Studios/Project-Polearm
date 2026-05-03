@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://c0atl8ffoeq5u"]
 
-[ext_resource type="Script" uid="uid://da7enr8axqhyb" path="res://Interfaces/Menus/MainMenu/StartMenu/StartMenu.gd" id="1_006fw"]
+[ext_resource type="Script" uid="uid://da7enr8axqhyb" path="res://Interfaces/Menus/MainMenu/MainMenuScreen/MainMenuScreen.gd" id="1_006fw"]
 [ext_resource type="Theme" uid="uid://eptqqy8sm6gl" path="res://Interfaces/Themes/MenuTheme.tres" id="1_ijn5t"]
 [ext_resource type="Script" uid="uid://cfdlgc8aalbtr" path="res://Interfaces/UIElements/GameMenuButton.gd" id="2_1kon5"]
 
-[node name="StartMenu" type="Control" unique_id=1875216693]
+[node name="MainMenuScreen" type="Control" unique_id=1875216693]
 physics_interpolation_mode = 0
 texture_filter = 1
 layout_mode = 3

@@ -1,6 +1,13 @@
 extends AppState
 
 
+#region Imports
+
+const Game := preload("res://Core/Game/Game.gd")
+
+#endregion
+
+
 #region Scene members
 
 @onready var pauseMenu := $PauseMenu as InterfaceStateMachine
@@ -18,18 +25,27 @@ func _ready() -> void:
 
 #region Override functions
 
-func _implEnter() -> void:
+func enter() -> void:
+	process_mode = Node.PROCESS_MODE_INHERIT
 	pauseMenu.show()
 	pauseMenu.enter()
 
-
-func delayedExit() -> void:
+func exit() -> void:
 	pauseMenu.hide()
+	process_mode = Node.PROCESS_MODE_DISABLED
+
 
 func type() -> StringName:
 	return Type.paused
 
 func nextState() -> StringName:
-	return pauseMenu.exit()
+	var exitState := pauseMenu.exit()
+	if exitState == Type.none:
+		return Type.none
+	if exitState == Type.mainMenu:
+		(stateMachine as Game).exitState = exitState
+		return Type.none
+
+	return exitState
 
 #endregion

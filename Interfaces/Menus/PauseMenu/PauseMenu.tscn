@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://7cjw5im7rxvp" path="res://Interfaces/InterfaceStateMachine/InputManager/InputManager.gd" id="2_doeu6"]
 [ext_resource type="Script" uid="uid://covgehn0y4vp2" path="res://Core/Settings/SettingsManager.gd" id="2_fsrhc"]
 [ext_resource type="PackedScene" uid="uid://bbf2d281jeq4y" path="res://Interfaces/Menus/OptionsMenu/OptionsMenu.tscn" id="3_cgrnr"]
-[ext_resource type="PackedScene" uid="uid://deafv8fy7rwbb" path="res://Interfaces/Menus/PauseMenu/PauseOptions/PauseOptions.tscn" id="4_6yn04"]
+[ext_resource type="PackedScene" uid="uid://deafv8fy7rwbb" path="res://Interfaces/Menus/PauseMenu/PauseScreen/PauseScreen.tscn" id="4_6yn04"]
 [ext_resource type="PackedScene" uid="uid://dewxnxvy14tjr" path="res://Interfaces/Menus/OptionsMenu/GameOptions/GameOptions.tscn" id="5_apx62"]
 [ext_resource type="Script" uid="uid://celjwc20dqkr8" path="res://Interfaces/Menus/OptionsMenu/GameOptions/GameOptions.gd" id="6_fsrhc"]
 [ext_resource type="PackedScene" uid="uid://b8ng1m4gseuer" path="res://Interfaces/Menus/OptionsMenu/VideoOptions/VideoOptions.tscn" id="7_uqgmp"]
@@ -29,7 +29,7 @@ metadata/_custom_type_script = "uid://covgehn0y4vp2"
 script = ExtResource("2_doeu6")
 metadata/_custom_type_script = "uid://7cjw5im7rxvp"
 
-[node name="PauseOptions" parent="." unique_id=947122342 instance=ExtResource("4_6yn04")]
+[node name="PauseMenuScreen" parent="." unique_id=947122342 instance=ExtResource("4_6yn04")]
 
 [node name="OptionsMenu" parent="." unique_id=865326453 instance=ExtResource("3_cgrnr")]
 process_mode = 4

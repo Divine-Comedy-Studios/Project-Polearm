@@ -32,10 +32,10 @@ func _process(_delta : float) -> void:
 
 #region Override functions
 
-func _implStateInit(child : Node) -> void:
+func insertState(child : Node) -> void:
 	if child is AppState:
 		child.stateMachine = self
-		insertState(child)
+		_addState(child)
 
 
 func _nextState() -> StringName:
@@ -48,7 +48,6 @@ func _nextState() -> StringName:
 	if not nextState.available():
 		return loadingScreen.requestLoad(current, nextState)
 
-	current.delayedExit()
 	return next
 
 #endregion

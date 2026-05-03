@@ -28,19 +28,6 @@ var stateMachine : AppStateMachine = null
 #endregion
 
 
-#region Override functions
-
-func enter() -> void:
-	process_mode = Node.PROCESS_MODE_INHERIT
-
-	_implEnter()
-
-func exit() -> void:
-	process_mode = Node.PROCESS_MODE_DISABLED
-
-#endregion
-
-
 #region Implementation & Virtual functions
 
 func _implEnter() -> void:
@@ -50,9 +37,6 @@ func _implEnter() -> void:
 func nextState() -> StringName:
 	return TYPE_NONE
 
-
-func delayedExit() -> void:
-	pass
 
 func available() -> bool:
 	return true

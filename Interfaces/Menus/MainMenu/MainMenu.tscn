@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b8hqumrxhfvmn"]
 
-[ext_resource type="Script" path="res://Interfaces/Menus/MainMenu/MainMenu.gd" id="1_ayaka"]
-[ext_resource type="PackedScene" uid="uid://c0atl8ffoeq5u" path="res://Interfaces/Menus/MainMenu/StartMenu/StartMenu.tscn" id="2_4mftg"]
+[ext_resource type="Script" uid="uid://bhr3tyrv8yy1s" path="res://Interfaces/Menus/MainMenu/MainMenu.gd" id="1_ayaka"]
+[ext_resource type="PackedScene" uid="uid://c0atl8ffoeq5u" path="res://Interfaces/Menus/MainMenu/MainMenuScreen/MainMenuScreen.tscn" id="2_4mftg"]
 [ext_resource type="Script" uid="uid://7cjw5im7rxvp" path="res://Interfaces/InterfaceStateMachine/InputManager/InputManager.gd" id="2_4sgcv"]
 [ext_resource type="PackedScene" uid="uid://cwwqmgybgoy3v" path="res://Interfaces/Menus/MainMenu/QuitConfirmMenu/QuitConfirmMenu.tscn" id="3_3nt47"]
 [ext_resource type="PackedScene" uid="uid://bbf2d281jeq4y" path="res://Interfaces/Menus/OptionsMenu/OptionsMenu.tscn" id="3_f6nv7"]
@@ -33,7 +33,7 @@ process_mode = 4
 visible = false
 BACK_MENU = 2
 
-[node name="StartMenu" parent="." unique_id=2089339401 instance=ExtResource("2_4mftg")]
+[node name="MainMenuScreen" parent="." unique_id=2089339401 instance=ExtResource("2_4mftg")]
 BACK_MENU = 1
 
 [node name="SavesMenu" parent="." unique_id=1875216693 instance=ExtResource("6_0ye7o")]
