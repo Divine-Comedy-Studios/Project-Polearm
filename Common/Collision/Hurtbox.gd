@@ -1,14 +1,28 @@
+@tool
+
 extends Area3D
 class_name Hurtbox
+
+
+#region Exported variables
+
+@export_flags_3d_physics var layers : int:
+	get:
+		return collision_layer
+	set(value):
+		collision_layer = value
+
+#endregion
 
 
 #region Built-in functions
 
 func _ready() -> void:
-	area_entered.connect(_onHit)
+	if Engine.is_editor_hint():
+		collision_mask = 0
 
-	monitorable = false
-	monitoring = true
+		monitorable = true
+		monitoring = false
 
 #endregion
 
@@ -16,34 +30,18 @@ func _ready() -> void:
 #region Public functions
 
 func enable() -> void:
-	monitoring = true
+	monitorable = true
 
 func disable() -> void:
-	monitoring = false
+	monitorable = false
 
 #endregion
 
 
-#region Signal functions
-
-func _onHit(area : Area3D) -> void:
-	if not area is Hitbox:
-		return
-
-	var box := area as Hitbox
-	if box.excluded(self):
-		return
-
-	box.exclude(self)
-	_implHit(box)
-
-#endregion
-
-
-#region Implementation functions
+#region Virtual functions
 
 @warning_ignore("unused_parameter")
-func _implHit(hitbox : Hitbox) -> void:
+func recieveHit(hitData : Hitbox.Data) -> void:
 	pass
 
 #endregion

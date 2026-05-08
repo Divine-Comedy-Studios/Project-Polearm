@@ -1,3 +1,5 @@
+@tool
+
 extends Area3D
 class_name Hitbox
 
@@ -12,9 +14,20 @@ class Data extends Resource:
 #endregion
 
 
+#region Exported variables
+
+@export_flags_3d_physics var layers : int:
+	get:
+		return collision_mask
+	set(value):
+		collision_mask = value
+
+#endregion
+
+
 #region Member variables
 
-var data : Data = null
+var _data : Data = null
 
 var _excluded : Array[Hurtbox] = [ ]
 
@@ -24,8 +37,13 @@ var _excluded : Array[Hurtbox] = [ ]
 #region Built-in functions
 
 func _ready() -> void:
-	monitoring = false
-	monitorable = false
+	if Engine.is_editor_hint():
+		collision_layer = 0
+
+		monitoring = false # true if a hitbox should be enabled on start
+		monitorable = false
+
+	area_entered.connect(_onHit)
 
 #endregion
 
@@ -33,12 +51,11 @@ func _ready() -> void:
 #region Public functions
 
 func enable(hitData : Data) -> void:
-	data = hitData
-	monitorable = true
+	_data = hitData
+	monitoring = true
 
 func disable() -> void:
-	data = null
-	monitorable = false
+	monitoring = false
 
 	clear()
 
@@ -52,5 +69,21 @@ func clear() -> void:
 
 func excluded(box : Hurtbox) -> bool:
 	return _excluded.has(box)
+
+#endregion
+
+
+#region Signal functions
+
+func _onHit(area : Area3D) -> void:
+	if not area is Hurtbox:
+		return
+
+	var box := area as Hurtbox
+	if _excluded.has(box):
+		return
+
+	_excluded.push_back(box)
+	box.recieveHit(_data)
 
 #endregion
