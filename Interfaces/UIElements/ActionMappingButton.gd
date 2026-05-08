@@ -1,5 +1,3 @@
-@tool
-
 extends Button
 class_name ActionMappingButton
 
@@ -116,7 +114,6 @@ const CONTROLLER_AXIS_ICONS : Dictionary[int, Texture2D] = {
 
 #region Signals
 
-signal remapped(actionName : StringName, newAction : Dictionary[String, int], oldAction : Dictionary)
 signal listening(value : bool)
 
 #endregion
@@ -161,22 +158,12 @@ var _listening : bool = false:
 #region Built-in functions
 
 func _ready() -> void:
-	if not Engine.is_editor_hint():
-		mouse_entered.connect(_mouseEntered)
-		pressed.connect(_buttonPressed)
+	mouse_entered.connect(_mouseEntered)
+	pressed.connect(_buttonPressed)
 
-		flat = true
+	flat = true
 
-		var inputData := SettingsManager.getVariant("keyboard", ACTION_NAME) as Dictionary
-		match (inputData["type"] as SettingsManager.InputType):
-			SettingsManager.InputType.keyboard:
-				_icon.texture = KEY_ICONS[inputData["id"] as int]
-			SettingsManager.InputType.mouse:
-				_icon.texture = MOUSE_ICONS[inputData["id"] as int]
-			SettingsManager.InputType.controllerButton:
-				_icon.texture = CONTROLLER_BUTTON_ICONS[inputData["id"] as int]
-			SettingsManager.InputType.controllerAxis:
-				_icon.texture = CONTROLLER_AXIS_ICONS[inputData["id"] as int]
+	_updateTexture()
 
 
 func _input(event : InputEvent) -> void:
@@ -189,10 +176,29 @@ func _input(event : InputEvent) -> void:
 		SettingsManager.InputType.controller:
 			_checkControllerInput(event)
 
+
+func _process(_delta: float) -> void:
+	_updateTexture()
+
 #endregion
 
 
 #region Private functions
+
+# Texture updates
+
+func _updateTexture() -> void:
+	var inputData := SettingsManager.getVariant("keyboard", ACTION_NAME) as Dictionary
+	match (inputData["type"] as SettingsManager.InputType):
+		SettingsManager.InputType.keyboard:
+			_icon.texture = KEY_ICONS[inputData["id"] as int]
+		SettingsManager.InputType.mouse:
+			_icon.texture = MOUSE_ICONS[inputData["id"] as int]
+		SettingsManager.InputType.controllerButton:
+			_icon.texture = CONTROLLER_BUTTON_ICONS[inputData["id"] as int]
+		SettingsManager.InputType.controllerAxis:
+			_icon.texture = CONTROLLER_AXIS_ICONS[inputData["id"] as int]
+
 
 # Input capture & button presses
 
@@ -219,8 +225,20 @@ func _remap(section : String, type : SettingsManager.InputType, iconTex : Dictio
 		"type" : type,
 		"id" : code,
 	}
-	remapped.emit(ACTION_NAME, SettingsManager.getVariant(section, ACTION_NAME), data)
 
+	# Swap keys with action assigned to the same input
+	var oldAction := SettingsManager.getVariant(section, ACTION_NAME) as Dictionary
+	for otherActionName in SettingsManager.getSettingNames(section):
+		if otherActionName == ACTION_NAME:
+			continue
+
+		var inputData := SettingsManager.getVariant(section, otherActionName) as Dictionary
+		if inputData["type"] as int == data["type"] and inputData["id"] as int == data["id"]:
+			SettingsManager.setVariant(section, otherActionName, oldAction)
+
+			break
+
+	# Set settings
 	SettingsManager.setVariant(section, ACTION_NAME, data)
 	SettingsManager.saveSettings()
 
