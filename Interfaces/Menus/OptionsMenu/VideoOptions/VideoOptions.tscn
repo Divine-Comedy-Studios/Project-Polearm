@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://b8ng1m4gseuer"]
 
-[ext_resource type="Script" uid="uid://blnuc2e7yu08v" path="res://Interfaces/Menus/OptionsMenu/VideoOptions/videoOptionsSettings.gd" id="1_gwafx"]
-[ext_resource type="Script" uid="uid://cyn28bbc16luj" path="res://Interfaces/InterfaceStateMachine/InterfaceState.gd" id="1_sgr4n"]
+[ext_resource type="Script" uid="uid://6tv3tv4exou" path="res://Interfaces/Menus/OptionsMenu/VideoOptions/VideoOptions.gd" id="1_gwafx"]
 
 [node name="VideoOptions" type="Control" unique_id=2031472548]
 layout_mode = 3
@@ -10,7 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_sgr4n")
+script = ExtResource("1_gwafx")
 metadata/_custom_type_script = "uid://cyn28bbc16luj"
 
 [node name="CenterContainer" type="CenterContainer" parent="." unique_id=1397769588]
@@ -20,7 +19,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_gwafx")
 
 [node name="MarginContainer" type="MarginContainer" parent="CenterContainer" unique_id=2036469696]
 custom_minimum_size = Vector2(800, 0)
@@ -100,8 +98,3 @@ value = 0.1
 [node name="Label" type="Label" parent="CenterContainer/MarginContainer/HBoxContainer/Buttons/Gamma" unique_id=1635183455]
 layout_mode = 2
 text = "0.0"
-
-[connection signal="item_selected" from="CenterContainer/MarginContainer/HBoxContainer/Buttons/WindowMode" to="." method="_on_window_mode_selected"]
-[connection signal="item_selected" from="CenterContainer/MarginContainer/HBoxContainer/Buttons/Resolution" to="." method="_on_resolution_selected"]
-[connection signal="toggled" from="CenterContainer/MarginContainer/HBoxContainer/Buttons/Vsync" to="." method="_on_vsync_toggled"]
-[connection signal="value_changed" from="CenterContainer/MarginContainer/HBoxContainer/Buttons/Gamma/Gamma" to="CenterContainer" method="_on_gamma_value_changed"]

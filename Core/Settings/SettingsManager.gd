@@ -10,7 +10,23 @@ enum Resolution {
 	p900,
 	p720,
 	p540
-} 
+}
+
+enum InputType {
+	keyboard,
+	mouse,
+	controller,
+	controllerButton = controller,
+	controllerAxis
+}
+
+
+enum TargetMode {
+	leftStick,
+	bumper,
+	trigger,
+	dPad,
+}
 
 #endregion
 
@@ -26,6 +42,7 @@ const DEFAULT_SETTINGS : Dictionary[String, Dictionary] = {
 		"invert y" : false,
 		"camera shake" : 1.0,
 		"rumble" : 1.0,
+		"lastSave" : -1,
 	},
 	"video" : {
 		"window mode" : DisplayServer.WINDOW_MODE_FULLSCREEN, ### @todo why not use the godot enum directly?
@@ -39,38 +56,116 @@ const DEFAULT_SETTINGS : Dictionary[String, Dictionary] = {
 		"sfx" : 1.0,
 		"mute on focus loss" : true,
 	},
-	"controller" : { ### @todo remove button type
-		"Light attack" : {"type" : "button", "id" : JoyButton.JOY_BUTTON_X},
-		"Heavy attack" : {"type" : "button", "id" : JoyButton.JOY_BUTTON_Y},
-		"Jump" : {"type" : "button", "id" : JoyButton.JOY_BUTTON_A},
-		"Shoot" : {"type" : "axis", "id" : JoyAxis.JOY_AXIS_TRIGGER_LEFT, "direction" : 1}, ### @todo do not count trigger as a axis, unnecceseary
-		"Target left" : {"type" : "button", "id" : JoyButton.JOY_BUTTON_LEFT_SHOULDER},
-		"Target right" : {"type" : "button", "id" : JoyButton.JOY_BUTTON_RIGHT_SHOULDER},
-		"Dodge" : {"type" : "button", "id" : JoyButton.JOY_BUTTON_B},
-		"Dash" : {"type" : "button", "id" : JoyButton.JOY_BUTTON_LEFT_STICK},
-		"Launcher" : {"type" : "button", "id" : JoyButton.JOY_BUTTON_DPAD_UP},
-		"Held target toggle" : {"type" : "button", "id" : JoyButton.JOY_BUTTON_RIGHT_STICK},
-		"Switch weapon" : {"type" : "button", "id" : JoyButton.JOY_BUTTON_DPAD_RIGHT},
-		"Taunt" : {"type" : "button", "id" : JoyButton.JOY_BUTTON_BACK},
+	"controller" : {
+		"Light attack" : {
+			"type" : InputType.controllerButton,
+			"id" : JoyButton.JOY_BUTTON_X
+		},
+		"Heavy attack" : {
+			"type" : InputType.controllerButton,
+			"id" : JoyButton.JOY_BUTTON_Y
+		},
+		"Jump" : {
+			"type" : InputType.controllerButton,
+			"id" : JoyButton.JOY_BUTTON_A
+		},
+		"Shoot" : {
+			"type" : InputType.controllerButton,
+			"id" : JoyButton.JOY_BUTTON_B
+		},
+		"Dodge" : {
+			"type" : InputType.controllerButton,
+			"id" : JoyButton.JOY_BUTTON_LEFT_SHOULDER
+		},
+		"Dash" : {
+			"type" : InputType.controllerButton,
+			"id" : JoyButton.JOY_BUTTON_RIGHT_SHOULDER
+		},
+		"Launcher" : {
+			"type" : InputType.controllerButton,
+			"id" : JoyButton.JOY_BUTTON_DPAD_UP
+		},
+		"Held target toggle" : {
+			"type" : InputType.controllerButton,
+			"id" : JoyButton.JOY_BUTTON_RIGHT_STICK
+		},
+		"Switch weapon" : {
+			"type" : InputType.controllerButton,
+			"id" : JoyButton.JOY_BUTTON_DPAD_RIGHT
+		},
+		"Taunt" : {
+			"type" : InputType.controllerButton,
+			"id" : JoyButton.JOY_BUTTON_BACK
+		},
+		"targetStyle" : TargetMode.leftStick,
+		"triggerSensitivity" : 0.5
 	},
 	"keyboard" : {
-		"Light attack" : MouseButton.MOUSE_BUTTON_LEFT,
-		"Heavy attack" : MouseButton.MOUSE_BUTTON_RIGHT,
-		"Jump" : Key.KEY_SPACE,
-		"Shoot" : Key.KEY_F,
-		"Target left" : Key.KEY_Q,
-		"Target right" : Key.KEY_E,
-		"Dodge" : Key.KEY_SHIFT,
-		"Dash" : Key.KEY_CTRL,
-		"Launcher" : Key.KEY_ALT,
-		"Held target toggle" : Key.KEY_T,
-		"Move left" : Key.KEY_A,
-		"Move right" : Key.KEY_D,
-		"Move forwards" : Key.KEY_W,
-		"Move backwards" : Key.KEY_S,
-		"Switch weapon" : Key.KEY_C,
-		"Taunt" : Key.KEY_R,
-	}
+		"Light attack" : {
+			"type" : InputType.mouse,
+			"id" : MouseButton.MOUSE_BUTTON_LEFT
+		},
+		"Heavy attack" : {
+			"type" : InputType.mouse,
+			"id" : MouseButton.MOUSE_BUTTON_RIGHT
+		},
+		"Jump" : {
+			"type" : InputType.keyboard,
+			"id" : Key.KEY_SPACE
+		},
+		"Shoot" : {
+			"type" : InputType.keyboard,
+			"id" : Key.KEY_F
+		},
+		"Target left" : {
+			"type" : InputType.keyboard,
+			"id" : Key.KEY_Q
+		},
+		"Target right" : {
+			"type" : InputType.keyboard,
+			"id" : Key.KEY_E
+		},
+		"Dodge" : {
+			"type" : InputType.keyboard,
+			"id" : Key.KEY_SHIFT
+		},
+		"Dash" : {
+			"type" : InputType.keyboard,
+			"id" : Key.KEY_CTRL
+		},
+		"Launcher" : {
+			"type" : InputType.keyboard,
+			"id" : Key.KEY_ALT
+		},
+		"Held target toggle" : {
+			"type" : InputType.keyboard,
+			"id" : Key.KEY_T
+		},
+		"Move left" : {
+			"type" : InputType.keyboard,
+			"id" : Key.KEY_A
+		},
+		"Move right" : {
+			"type" : InputType.keyboard,
+			"id" : Key.KEY_D
+		},
+		"Move forwards" : {
+			"type" : InputType.keyboard,
+			"id" : Key.KEY_W
+		},
+		"Move backwards" : {
+			"type" : InputType.keyboard,
+			"id" : Key.KEY_S
+		},
+		"Switch weapon" : {
+			"type" : InputType.keyboard,
+			"id" : Key.KEY_C
+		},
+		"Taunt" : {
+			"type" : InputType.keyboard,
+			"id" : Key.KEY_R
+		},
+	},
 }
 
 const SUPPORTED_LANGUAGES : Array[String] = [
@@ -89,8 +184,6 @@ const SUPPORTED_LANGUAGES : Array[String] = [
 #region Member variables
 
 static var _file : ConfigFile = ConfigFile.new()
-
-static var isRemapping : bool = false ### @todo Part of the overall UI overhaul
 
 #endregion
 
@@ -233,14 +326,14 @@ static func applyControllerSettings() -> void:
 			if event is InputEventJoypadButton or event is InputEventJoypadMotion:
 				InputMap.action_erase_event(actionName, event)
 		
-		if actionData["type"] == "button":
+		if actionData["type"] == InputType.controllerButton:
 			var event := InputEventJoypadButton.new()
 			event.button_index = actionData["id"]
 			InputMap.action_add_event(actionName, event)
-		elif actionData["type"] == "axis":
+		elif actionData["type"] == InputType.controllerAxis:
 			var event := InputEventJoypadMotion.new()
 			event.axis = actionData["id"]
-			event.axis_value = actionData["direction"]
+			event.axis_value = actionData["triggerSensitivity"] as float
 			InputMap.action_add_event(actionName, event)
 
 

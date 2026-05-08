@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://c6b703ctrle2l" path="res://Interfaces/Menus/PauseMenu/PauseMenu.gd" id="1_w0rmh"]
 [ext_resource type="Script" uid="uid://7cjw5im7rxvp" path="res://Interfaces/InterfaceStateMachine/InputManager/InputManager.gd" id="2_doeu6"]
-[ext_resource type="Script" uid="uid://covgehn0y4vp2" path="res://Core/Settings/SettingsManager.gd" id="2_fsrhc"]
 [ext_resource type="PackedScene" uid="uid://bbf2d281jeq4y" path="res://Interfaces/Menus/OptionsMenu/OptionsMenu.tscn" id="3_cgrnr"]
 [ext_resource type="PackedScene" uid="uid://deafv8fy7rwbb" path="res://Interfaces/Menus/PauseMenu/PauseScreen/PauseScreen.tscn" id="4_6yn04"]
 [ext_resource type="PackedScene" uid="uid://dewxnxvy14tjr" path="res://Interfaces/Menus/OptionsMenu/GameOptions/GameOptions.tscn" id="5_apx62"]
@@ -11,19 +10,13 @@
 [ext_resource type="Script" uid="uid://6tv3tv4exou" path="res://Interfaces/Menus/OptionsMenu/VideoOptions/VideoOptions.gd" id="8_74e1t"]
 [ext_resource type="PackedScene" uid="uid://3vnyxp2i1ac0" path="res://Interfaces/Menus/OptionsMenu/AudioOptions/AudioOptions.tscn" id="9_li8nt"]
 [ext_resource type="Script" uid="uid://dmm6hc5f7l4s2" path="res://Interfaces/Menus/OptionsMenu/AudioOptions/AudioOptions.gd" id="10_n46ru"]
-[ext_resource type="PackedScene" uid="uid://cnusbpv84eyf0" path="res://Interfaces/Menus/OptionsMenu/ControllerMapping/ControllerMapping.tscn" id="11_byafs"]
-[ext_resource type="Script" uid="uid://cb62bax61vhwy" path="res://Interfaces/Menus/OptionsMenu/ControllerMapping/ControllerMapping.gd" id="12_hsx72"]
-[ext_resource type="PackedScene" uid="uid://cthgc7cm7suej" path="res://Interfaces/Menus/OptionsMenu/KeyboardMapping/KeyboardMapping.tscn" id="13_mmoyh"]
-[ext_resource type="Script" uid="uid://pgyhhnbdkno5" path="res://Interfaces/Menus/OptionsMenu/KeyboardMapping/KeyboardMapping.gd" id="14_r5wq0"]
+[ext_resource type="PackedScene" uid="uid://cnusbpv84eyf0" path="res://Interfaces/Menus/OptionsMenu/MappingOptions/Controller/ControllerMappingOptions.tscn" id="11_byafs"]
+[ext_resource type="PackedScene" uid="uid://cthgc7cm7suej" path="res://Interfaces/Menus/OptionsMenu/MappingOptions/Keyboard/KeyboardMappingOptions.tscn" id="13_mmoyh"]
 
 [node name="PauseMenu" type="CanvasLayer" unique_id=1914925635]
 script = ExtResource("1_w0rmh")
 INITIAL_MENU_TYPE = 5
 metadata/_custom_type_script = "uid://cdmfn0vdjybja"
-
-[node name="SettingsManager" type="Node" parent="." unique_id=2140205990]
-script = ExtResource("2_fsrhc")
-metadata/_custom_type_script = "uid://covgehn0y4vp2"
 
 [node name="InputManager" type="Node" parent="." unique_id=801568144]
 script = ExtResource("2_doeu6")
@@ -54,14 +47,10 @@ visible = false
 script = ExtResource("10_n46ru")
 BACK_MENU = 4
 
-[node name="ControllerMapping" parent="." unique_id=125246150 instance=ExtResource("11_byafs")]
+[node name="KeyboardMapping" parent="." unique_id=601317194 instance=ExtResource("13_mmoyh")]
 process_mode = 4
 visible = false
-script = ExtResource("12_hsx72")
-BACK_MENU = 4
 
-[node name="KeyboardMapping" parent="." unique_id=334027440 instance=ExtResource("13_mmoyh")]
+[node name="ControllerMapping" parent="." unique_id=984357258 instance=ExtResource("11_byafs")]
 process_mode = 4
 visible = false
-script = ExtResource("14_r5wq0")
-BACK_MENU = 4
