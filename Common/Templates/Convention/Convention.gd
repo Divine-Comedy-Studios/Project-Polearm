@@ -23,6 +23,25 @@ class_name Convention
 # 3. When naming variables, try to to it in the order of category + postfix
 
 
+#### Prefixes
+# These prefixes apply to variables, functions and signals
+# They should ALWAYS be used in the exact order presented if anything fulfills any of the below conditions
+# Separate prefixes with underscores
+#
+# 1. Private: _
+# 2. Debug: DEBUG
+# 3. Signal: SIG
+# 4. Coroutine / Async function: CO
+
+
+#region Import
+
+# To import a script from another file, ALWAYS use const and have the name of the type be exact to the name of the script
+const Convention := preload("res://Common/Templates/Convention/Convention.gd")
+
+#endregion
+
+
 #region Enums
 
 # Only class names, inner class names and enum names should be in PascalCase
