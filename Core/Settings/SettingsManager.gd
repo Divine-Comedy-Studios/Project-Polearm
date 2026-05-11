@@ -21,11 +21,17 @@ enum InputType {
 }
 
 
-enum TargetMode {
+enum TargetMode { ### @todo
 	leftStick,
 	bumper,
 	trigger,
 	dPad,
+}
+
+
+enum SettingVersion {
+	invalid = 0,
+	v0_0_1 = 1,
 }
 
 #endregion
@@ -34,15 +40,20 @@ enum TargetMode {
 #region Constants
 
 const SETTINGS_PATH : String = "user://settings.cfg"
+const SETTINGS_VERSION : int = SettingVersion.v0_0_1
+
 
 const DEFAULT_SETTINGS : Dictionary[String, Dictionary] = {
+	"metadata" : {
+		"version" : SETTINGS_VERSION,
+		"lastSave" : -1,
+	},
 	"game" : {
 		"language" : "en", ### @todo why not directly use the string?
 		"camera sensitivity" : 1.0,
 		"invert y" : false,
 		"camera shake" : 1.0,
 		"rumble" : 1.0,
-		"lastSave" : -1,
 	},
 	"video" : {
 		"window mode" : DisplayServer.WINDOW_MODE_FULLSCREEN, ### @todo why not use the godot enum directly?
@@ -333,7 +344,7 @@ static func applyControllerSettings() -> void:
 		elif actionData["type"] == InputType.controllerAxis:
 			var event := InputEventJoypadMotion.new()
 			event.axis = actionData["id"]
-			event.axis_value = actionData["triggerSensitivity"] as float
+			event.axis_value = getFloat("controller", "triggerSensitivity")
 			InputMap.action_add_event(actionName, event)
 
 
