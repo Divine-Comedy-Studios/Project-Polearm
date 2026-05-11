@@ -192,10 +192,9 @@ static var _file : ConfigFile = ConfigFile.new()
 
 func _ready() -> void:
 	var error := _file.load(SETTINGS_PATH)
-	if error != Error.OK:
-		_saveDefaultSettings()
+	_veryfiySetting()
 
-		return
+	return
 
 #endregion
 
@@ -352,5 +351,20 @@ static func _saveDefaultSettings() -> void:
 			_file.set_value(sectionName, settingName, DEFAULT_SETTINGS[sectionName][settingName])
 
 	_file.save(SETTINGS_PATH)
+
+static func _veryfiySetting() -> void:
+	var needs_save := false
+	
+	for section in DEFAULT_SETTINGS.keys():
+		for key in DEFAULT_SETTINGS[section].keys():
+			# Check if the loaded file is missing this specific setting
+			if not _file.has_section_key(section, key):
+				var default_value = DEFAULT_SETTINGS[section][key]
+				_file.set_value(section, key, default_value)
+				needs_save = true
+	
+	# If we found missing pieces and added them, save the updated file
+	if needs_save:
+		_file.save(SETTINGS_PATH)
 
 #endregion
