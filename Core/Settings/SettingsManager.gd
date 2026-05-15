@@ -380,8 +380,8 @@ static func _verifySettings() -> void:
 					_file.set_value(section, key, defaultValue)
 					needsSave = true
 				elif section == "metadata" and key == "version":
-					var currentVersion = value as int
-					if currentVersion as int != SETTINGS_VERSION:
+					var currentVersion := value as int
+					if currentVersion != SETTINGS_VERSION:
 						_processDeprecatedSettings(currentVersion)
 						return
 
