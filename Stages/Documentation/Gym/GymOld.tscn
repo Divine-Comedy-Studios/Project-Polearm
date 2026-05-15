@@ -76,7 +76,7 @@ points = PackedVector3Array(2.5, 0, 2, 2.5, -1, 2, -2.5, 0, 2, -2.5, -1, 2, 2.5,
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_7v1dt"]
 points = PackedVector3Array(2.5, 0, 6.5, 2.5, -0.25, 6.5, -2.5, 0, 6.5, -2.5, -0.25, 6.5, 2.5, 0, 2, 2.5, -0.25, 2, -2.5, 0, 2, -2.5, -0.25, 2)
 
-[node name="Gym" type="Node" unique_id=1076830952]
+[node name="GymOld" type="Node" unique_id=1076830952]
 
 [node name="Player" parent="." unique_id=1997770894 instance=ExtResource("2_d2u3u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 2.1386669)

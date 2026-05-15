@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dvhg5q1yp6qce"
-path="res://.godot/imported/Focus.png-d47a78a4c02fcb6eb8ee669ddf3a2ef4.ctex"
+uid="uid://c1wxlpttkcdlu"
+path="res://.godot/imported/Hover.png-0033a7bb8483b1486cde517c680a93e1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Interfaces/UI Borders/Button/Focus.png"
-dest_files=["res://.godot/imported/Focus.png-d47a78a4c02fcb6eb8ee669ddf3a2ef4.ctex"]
+source_file="res://Assets/Interfaces/ThemeTextures/Button/Hover.png"
+dest_files=["res://.godot/imported/Hover.png-0033a7bb8483b1486cde517c680a93e1.ctex"]
 
 [params]
 

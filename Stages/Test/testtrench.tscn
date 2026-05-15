@@ -119,12 +119,12 @@ points = PackedVector3Array(0.5, 0.125, 0.5, 0.5, 0, 0.5, -0.625, 0.125, 0.5, -0
 
 [node name="Player" parent="." unique_id=1210477223 instance=ExtResource("4_3mnn6")]
 
-[node name="Visuals" type="Node" parent="." unique_id=1540447604]
-
-[node name="SceneCamera" parent="Visuals" unique_id=1015597522 instance=ExtResource("5_ec1g0")]
+[node name="SceneCamera" parent="Player" unique_id=1015597522 instance=ExtResource("5_ec1g0")]
 transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 0, 0)
 top_level = true
 current = true
+
+[node name="Visuals" type="Node" parent="." unique_id=1540447604]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Visuals" unique_id=1454148134]
 environment = SubResource("Environment_k1kf5")
