@@ -1,33 +1,33 @@
 [gd_resource type="Theme" format=3 uid="uid://eptqqy8sm6gl"]
 
-[ext_resource type="Texture2D" uid="uid://c1wxlpttkcdlu" path="res://Assets/Interfaces/UI Borders/Button/Hover.png" id="1_1g6g5"]
-[ext_resource type="Texture2D" uid="uid://dvhg5q1yp6qce" path="res://Assets/Interfaces/UI Borders/Button/Focus.png" id="1_bce2v"]
-[ext_resource type="Texture2D" uid="uid://d30dvblh2m2jh" path="res://Assets/Interfaces/UI Borders/Button/Normal.png" id="2_bce2v"]
-[ext_resource type="Texture2D" uid="uid://rfkkf3pel1ho" path="res://Assets/Interfaces/UI Borders/Button/Pressed.png" id="3_fjglp"]
+[ext_resource type="Texture2D" uid="uid://dvhg5q1yp6qce" path="res://Assets/Interfaces/ThemeTextures/Button/Focus.png" id="1_l2ttk"]
+[ext_resource type="Texture2D" uid="uid://c1wxlpttkcdlu" path="res://Assets/Interfaces/ThemeTextures/Button/Hover.png" id="2_pqoyg"]
+[ext_resource type="Texture2D" uid="uid://d30dvblh2m2jh" path="res://Assets/Interfaces/ThemeTextures/Button/Normal.png" id="3_8mqnl"]
+[ext_resource type="Texture2D" uid="uid://rfkkf3pel1ho" path="res://Assets/Interfaces/ThemeTextures/Button/Pressed.png" id="4_d622n"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fjglp"]
-texture = ExtResource("1_bce2v")
+texture = ExtResource("1_l2ttk")
 texture_margin_left = 10.0
 texture_margin_top = 10.0
 texture_margin_right = 10.0
 texture_margin_bottom = 10.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ayhec"]
-texture = ExtResource("1_1g6g5")
+texture = ExtResource("2_pqoyg")
 texture_margin_left = 10.0
 texture_margin_top = 10.0
 texture_margin_right = 10.0
 texture_margin_bottom = 10.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ta3ny"]
-texture = ExtResource("2_bce2v")
+texture = ExtResource("3_8mqnl")
 texture_margin_left = 12.0
 texture_margin_top = 12.0
 texture_margin_right = 12.0
 texture_margin_bottom = 12.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6okpa"]
-texture = ExtResource("3_fjglp")
+texture = ExtResource("4_d622n")
 texture_margin_left = 12.0
 texture_margin_top = 12.0
 texture_margin_right = 12.0
@@ -35,20 +35,141 @@ texture_margin_bottom = 12.0
 
 [resource]
 Button/colors/font_color = Color(0, 0, 0, 1)
+Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
 Button/colors/font_focus_color = Color(0, 0.9490196, 0.9490196, 1)
 Button/colors/font_hover_color = Color(0.9490196, 0, 0.9490196, 1)
 Button/colors/font_hover_pressed_color = Color(1, 1, 0, 1)
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
 Button/colors/font_pressed_color = Color(1, 1, 0, 1)
+Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
 Button/colors/icon_focus_color = Color(1, 1, 1, 1)
 Button/colors/icon_hover_color = Color(1, 1, 1, 1)
 Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
 Button/colors/icon_normal_color = Color(1, 1, 1, 1)
 Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+Button/constants/align_to_largest_stylebox = 0
+Button/constants/h_separation = 4
+Button/constants/icon_max_width = 0
+Button/constants/line_spacing = 0
+Button/constants/outline_size = 0
 Button/font_sizes/font_size = 16
 Button/fonts/font = null
 Button/icons/icon = null
+Button/styles/disabled = null
+Button/styles/disabled_mirrored = null
 Button/styles/focus = SubResource("StyleBoxTexture_fjglp")
 Button/styles/hover = SubResource("StyleBoxTexture_ayhec")
+Button/styles/hover_mirrored = null
+Button/styles/hover_pressed = null
+Button/styles/hover_pressed_mirrored = null
 Button/styles/normal = SubResource("StyleBoxTexture_ta3ny")
+Button/styles/normal_mirrored = null
 Button/styles/pressed = SubResource("StyleBoxTexture_6okpa")
+Button/styles/pressed_mirrored = null
+CheckButton/colors/button_checked_color = Color(1, 1, 1, 1)
+CheckButton/colors/button_unchecked_color = Color(1, 1, 1, 1)
+CheckButton/colors/font_color = Color(0.875, 0.875, 0.875, 1)
+CheckButton/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
+CheckButton/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
+CheckButton/colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
+CheckButton/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+CheckButton/colors/font_outline_color = Color(0, 0, 0, 1)
+CheckButton/colors/font_pressed_color = Color(1, 1, 1, 1)
+CheckButton/colors/icon_disabled_color = Color(0, 0, 0, 1)
+CheckButton/colors/icon_focus_color = Color(0, 0, 0, 1)
+CheckButton/colors/icon_hover_color = Color(0, 0, 0, 1)
+CheckButton/colors/icon_hover_pressed_color = Color(0, 0, 0, 1)
+CheckButton/colors/icon_normal_color = Color(0, 0, 0, 1)
+CheckButton/colors/icon_pressed_color = Color(0, 0, 0, 1)
+CheckButton/constants/align_to_largest_stylebox = 0
+CheckButton/constants/check_v_offset = 0
+CheckButton/constants/h_separation = 4
+CheckButton/constants/icon_max_width = 0
+CheckButton/constants/line_spacing = 0
+CheckButton/constants/outline_size = 0
+CheckButton/font_sizes/font_size = 16
+CheckButton/fonts/font = null
+CheckButton/icons/checked = null
+CheckButton/icons/checked_disabled = null
+CheckButton/icons/checked_disabled_mirrored = null
+CheckButton/icons/checked_mirrored = null
+CheckButton/icons/icon = null
+CheckButton/icons/unchecked = null
+CheckButton/icons/unchecked_disabled = null
+CheckButton/icons/unchecked_disabled_mirrored = null
+CheckButton/icons/unchecked_mirrored = null
+CheckButton/styles/disabled = null
+CheckButton/styles/disabled_mirrored = null
+CheckButton/styles/focus = null
+CheckButton/styles/hover = null
+CheckButton/styles/hover_mirrored = null
+CheckButton/styles/hover_pressed = null
+CheckButton/styles/hover_pressed_mirrored = null
+CheckButton/styles/normal = null
+CheckButton/styles/normal_mirrored = null
+CheckButton/styles/pressed = null
+CheckButton/styles/pressed_mirrored = null
+HBoxContainer/constants/separation = 4
+HSlider/constants/center_grabber = 0
+HSlider/constants/grabber_offset = 0
+HSlider/constants/tick_offset = 0
+HSlider/icons/grabber = null
+HSlider/icons/grabber_disabled = null
+HSlider/icons/grabber_highlight = null
+HSlider/icons/tick = null
+HSlider/styles/grabber_area = null
+HSlider/styles/grabber_area_highlight = null
+HSlider/styles/slider = null
+Label/colors/font_color = Color(1, 1, 1, 1)
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
+Label/colors/font_shadow_color = Color(0, 0, 0, 0)
+Label/constants/line_spacing = 3
+Label/constants/outline_size = 0
+Label/constants/paragraph_spacing = 0
+Label/constants/shadow_offset_x = 1
+Label/constants/shadow_offset_y = 1
+Label/constants/shadow_outline_size = 1
+Label/font_sizes/font_size = 16
+Label/fonts/font = null
+Label/styles/focus = null
+Label/styles/normal = null
+MarginContainer/constants/margin_bottom = 0
+MarginContainer/constants/margin_left = 0
+MarginContainer/constants/margin_right = 0
+MarginContainer/constants/margin_top = 0
+OptionButton/colors/font_color = Color(0.875, 0.875, 0.875, 1)
+OptionButton/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
+OptionButton/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
+OptionButton/colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
+OptionButton/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+OptionButton/colors/font_outline_color = Color(0, 0, 0, 1)
+OptionButton/colors/font_pressed_color = Color(1, 1, 1, 1)
+OptionButton/colors/icon_disabled_color = Color(0, 0, 0, 1)
+OptionButton/colors/icon_focus_color = Color(0, 0, 0, 1)
+OptionButton/colors/icon_hover_color = Color(0, 0, 0, 1)
+OptionButton/colors/icon_hover_pressed_color = Color(0, 0, 0, 1)
+OptionButton/colors/icon_normal_color = Color(0, 0, 0, 1)
+OptionButton/colors/icon_pressed_color = Color(0, 0, 0, 1)
+OptionButton/constants/align_to_largest_stylebox = 0
+OptionButton/constants/arrow_margin = 4
+OptionButton/constants/h_separation = 4
+OptionButton/constants/icon_max_width = 0
+OptionButton/constants/line_spacing = 0
+OptionButton/constants/modulate_arrow = 0
+OptionButton/constants/outline_size = 0
+OptionButton/font_sizes/font_size = 16
+OptionButton/fonts/font = null
+OptionButton/icons/arrow = null
+OptionButton/icons/icon = null
+OptionButton/styles/disabled = null
+OptionButton/styles/disabled_mirrored = null
+OptionButton/styles/focus = null
+OptionButton/styles/hover = null
+OptionButton/styles/hover_mirrored = null
+OptionButton/styles/hover_pressed = null
+OptionButton/styles/hover_pressed_mirrored = null
+OptionButton/styles/normal = null
+OptionButton/styles/normal_mirrored = null
+OptionButton/styles/pressed = null
+OptionButton/styles/pressed_mirrored = null
 VBoxContainer/constants/separation = 12
