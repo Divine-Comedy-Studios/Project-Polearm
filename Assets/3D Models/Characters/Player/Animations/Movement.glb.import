@@ -3,13 +3,13 @@
 importer="animation_library"
 importer_version=1
 type="AnimationLibrary"
-uid="uid://c6hg3t7qbayix"
-path="res://.godot/imported/PlayerMovement.glb-79361e3df56fee0e170fa16ff3a51177.res"
+uid="uid://crqtp1scbupjt"
+path="res://.godot/imported/Movement.glb-628adeb315a2fbf0b78b6b352b193cde.res"
 
 [deps]
 
-source_file="res://Assets/3D Models/Characters/Player/Animations/PlayerMovement.glb"
-dest_files=["res://.godot/imported/PlayerMovement.glb-79361e3df56fee0e170fa16ff3a51177.res"]
+source_file="res://Assets/3D Models/Characters/Player/Animations/Movement.glb"
+dest_files=["res://.godot/imported/Movement.glb-628adeb315a2fbf0b78b6b352b193cde.res"]
 
 [params]
 
