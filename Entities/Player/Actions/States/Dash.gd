@@ -35,6 +35,6 @@ func _tick(delta : float) -> void:
 	if inputs().modifiers.has(Type.sprint):
 		context().pushActionQueue(Type.sprint)
 	elif player().onGround():
-		context().pushActionForced(Type.dashStop)
+		context().pushActionQueue(Type.dashStop)
 
 #endregion

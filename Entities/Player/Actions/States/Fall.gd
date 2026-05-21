@@ -21,8 +21,6 @@ func _implExit() -> void:
 
 
 func _tick(delta : float) -> void:
-	moveAerial(delta)
-
 	# Gravity
 	var terminalVel := TERMINAL_VELOCITY
 
@@ -37,6 +35,7 @@ func _tick(delta : float) -> void:
 			context().pushActionQueue(Type.ledgeGrab)
 
 	player().accelerateVertical(-terminalVel, GRAVITY * delta)
+	moveAerial(delta)
 
 
 func _implNextAction(next : StringName) -> StringName:

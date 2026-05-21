@@ -16,7 +16,7 @@ var _friction : float = 0.0
 #region Override functions
 
 func _implInit() -> void:
-	_maxSpeed = physics().MAX_RUN_SPEED
+	_maxSpeed = physics().MAX_AERIAL_SPEED
 	_accel = physics().AERIAL_ACCELERATION
 	_friction = physics().AERIAL_FRICTION
 

@@ -10,6 +10,10 @@ extends BasicAerialMovement
 @export var MAX_TIME_MILLISECONDS : float = 0.1
 @export var MULTI_JUMP_HEIGHT_FACTOR : float = 0.9
 
+@export_group("Animation data")
+@export var GROUND_JUMP_DATA : PlayerActionData = null
+@export var AIR_JUMP_DATA : PlayerActionData = null
+
 #endregion
 
 
@@ -23,9 +27,21 @@ var _jumpHeightFactor : float = 1.0
 
 #region Override functions
 
+func _implInit() -> void:
+	assert(GROUND_JUMP_DATA != null, "Player.Jump._implInit(): Ground jump animation data not set!")
+	assert(AIR_JUMP_DATA != null, "Player.Jump._implInit(): Air jump animation data not set!")
+
+	super._implInit()
+
+
 func _implEnter() -> void:
 	for i : int in range(resources().jumpCount.value):
 		_jumpHeightFactor *= MULTI_JUMP_HEIGHT_FACTOR
+
+	if not player().onGround():
+		data = AIR_JUMP_DATA
+	else:
+		data = GROUND_JUMP_DATA
 
 	player().detachGround()
 	player().disableCollisionProcessing()
@@ -44,12 +60,12 @@ func _tick(delta : float) -> void:
 	if player().onCeiling():
 		_framesSinceStarted = MAX_TIME_MILLISECONDS
 		return
-	
+
 	moveAerial(delta)
 
 	# Additional jump velocity
 	if inputs().modifiers.has(Type.jump):
-		player().accelerateVertical(MAX_JUMP_VELOCITY, _jumpHeightFactor * JUMP_ACCELERATION * minf(delta, MAX_TIME_MILLISECONDS - _framesSinceStarted))
+		player().accelerateVertical(MAX_JUMP_VELOCITY, _jumpHeightFactor * JUMP_ACCELERATION * minf(delta, absf(MAX_TIME_MILLISECONDS - _framesSinceStarted)))
 
 	_framesSinceStarted += delta
 

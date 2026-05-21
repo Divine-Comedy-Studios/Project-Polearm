@@ -49,6 +49,6 @@ func _tick(delta : float) -> void:
 	if inputs().modifiers.has(Type.sprint):
 		context().pushActionQueue(Type.sprint)
 	else:
-		context().pushActionForced(Type.sprintStop)
+		context().pushActionQueue(Type.sprintStop)
 
 #endregion
