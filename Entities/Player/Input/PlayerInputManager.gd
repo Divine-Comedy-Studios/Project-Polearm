@@ -101,9 +101,9 @@ func processMovementActions():
 		inputs.modifiers.append(PlayerAction.Type.jump)
 
 	if Input.is_action_just_pressed("Dash"):
-		inputs.actions.append(PlayerAction.Type.dash)
+		inputs.actions.append(PlayerAction.Type.dashStart)
 	if Input.is_action_pressed("Dash"):
-		inputs.actions.append(PlayerAction.Type.sprint)
+		inputs.modifiers.append(PlayerAction.Type.sprint)
 	
 	if Input.is_action_just_pressed("Light attack"):
 		inputs.actions.append(PlayerAction.Type.lightAttack)

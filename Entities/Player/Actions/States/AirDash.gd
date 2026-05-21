@@ -28,7 +28,7 @@ var _direction : Vector3 = Vector3.ZERO
 #region Override functions
 
 func _viable() -> bool:
-	return _timer.is_stopped()
+	return _timer.is_stopped() and resources().jumpCount.value < resources().jumpCount.maxValue
 
 
 func _implInit() -> void:
@@ -38,15 +38,11 @@ func _implInit() -> void:
 func _implEnter() -> void:
 	resources().jumpCount.value += 1
 
-	animator().animationDriver(
-		animator().unusedHandle(&"BasicTransition")).animation = data.ANIMATION_FULL_NAME
-	animator().transitionToUnused(&"BasicTransition", 
-		animator().setCoreTransition(&"BasicTransition", data.ANIMATION_FADE_TIME))
-
 	_direction = Vector3(inputs().direction.x, 0, inputs().direction.y)
 	if _direction.is_zero_approx():
 		_direction = player().forward()
-
+	
+	_setupBasicAnimation()
 
 func _implExit() -> void:
 	_direction = Vector3.ZERO

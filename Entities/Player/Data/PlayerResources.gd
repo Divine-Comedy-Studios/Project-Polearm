@@ -13,6 +13,7 @@ class_name PlayerResources
 @export_group("Resources")
 
 @export var jumpCount : IntegerResource = null
+@export var airDashed : bool = false
 
 @export var flow : ValueResource = null
 
@@ -24,12 +25,10 @@ class_name PlayerResources
 
 @export_group("Modifiers")
 
-# @export var witchModeTime : float # Duration of witch mode
-
-@export var BASE_FLOW_DECREASE_RATE : float
+@export var BASE_FLOW_DECREASE_RATE : float = 0.0
 @export var flowModifier : float = 1
 
-@export var FLOW_CURVE : Curve
+@export var FLOW_CURVE : Curve = null
 
 #endregion
 
@@ -46,7 +45,9 @@ func _physics_process(delta: float) -> void:
 
 func flowToState() -> PlayerCombatManager.FlowState:
 	return PlayerCombatManager.FlowState.values()[
-		floori(FLOW_CURVE.sample(clampf(flow.value, 0, FLOW_CURVE.max_value + 0.5)))
+		floori(FLOW_CURVE.sample(
+			clampf(flow.value, 0, FLOW_CURVE.max_value + 0.5) # The 0.5 will still get rounded down
+		)) + 1
 	]
 
 #endregion

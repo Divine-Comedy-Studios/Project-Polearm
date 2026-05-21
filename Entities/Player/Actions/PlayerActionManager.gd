@@ -17,6 +17,7 @@ class_name PlayerActionManager
 
 var _bufferedInputs : Dictionary[StringName, int] = { }
 
+var _actionForced : StringName = PlayerAction.Type.none
 var _actionQueue : StringName = PlayerAction.Type.none
 
 #endregion
@@ -45,10 +46,10 @@ func _physics_process(delta: float) -> void:
 
 #region Override functions
 
-func _implStateInit(child : Node) -> void:
+func insertState(child : Node) -> void:
 	if child is PlayerAction:
 		child.init(self)
-		insertAction(child)
+		_addState(child)
 
 func _initialState() -> StringName:
 	return PlayerAction.Type.move
@@ -66,6 +67,15 @@ func popActionQueue() -> StringName:
 	_actionQueue = PlayerAction.Type.none
 	return queue
 
+
+func pushActionForced(queue : StringName) -> void:
+	_actionForced = queue
+
+func popActionForced() -> StringName:
+	var queue := _actionForced
+	_actionForced = PlayerAction.Type.none
+	return queue
+
 #endregion
 
 
@@ -73,12 +83,16 @@ func popActionQueue() -> StringName:
 
 # Input processing by sorting them by priority
 func _processInputs():
-	_processInputBuffer()
-	_processActionQueue()
-	_processAerialStates()
+	if _actionForced != PlayerAction.Type.none:
+		inputManager.inputs.actions = [ popActionForced() ]
+		
+	else:
+		_processInputBuffer()
+		_processActionQueue()
+		_processAerialStates()
 
-	# Sort current inputs
-	inputManager.inputs.actions.sort_custom(hasHigherPriority)
+		# Sort current inputs
+		inputManager.inputs.actions.sort_custom(hasHigherPriority)
 
 
 func _processInputBuffer() -> void:
