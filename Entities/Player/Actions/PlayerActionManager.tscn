@@ -90,7 +90,7 @@ metadata/_custom_type_script = "uid://cqy3drroysy4k"
 [sub_resource type="Resource" id="Resource_6ll7i"]
 script = ExtResource("5_8427c")
 ANIMATION_LIBRARY_NAME = &"Movement"
-ANIMATION_NAME = &"JumpFallLoop"
+ANIMATION_NAME = &"FallLoop"
 metadata/_custom_type_script = "uid://cqy3drroysy4k"
 
 [sub_resource type="Resource" id="Resource_6evvv"]
@@ -117,7 +117,7 @@ metadata/_custom_type_script = "uid://cqy3drroysy4k"
 [sub_resource type="Resource" id="Resource_re4dn"]
 script = ExtResource("5_8427c")
 ANIMATION_LIBRARY_NAME = &"Movement"
-ANIMATION_NAME = &"JumpFallLoop"
+ANIMATION_NAME = &"Jump"
 ANIMATION_FADE_TIME = 0.1
 metadata/_custom_type_script = "uid://cqy3drroysy4k"
 
@@ -140,7 +140,7 @@ metadata/_custom_type_script = "uid://d0kf1f6gldsxt"
 
 [node name="DashTimer" type="Timer" parent="." unique_id=575686984]
 process_callback = 0
-wait_time = 0.3
+wait_time = 0.6
 one_shot = true
 
 [node name="PhysicsProcessor" type="Node3D" parent="." unique_id=1318673669 node_paths=PackedStringArray("_context")]
@@ -258,6 +258,8 @@ metadata/_custom_type_script = "uid://jc1g0sv32qq1"
 [node name="Jump" type="Node" parent="." unique_id=80986144]
 process_mode = 4
 script = ExtResource("7_jverr")
+JUMP_ACCELERATION = 20.0
+MAX_JUMP_VELOCITY = 10.0
 GROUND_JUMP_DATA = SubResource("Resource_re4dn")
 AIR_JUMP_DATA = SubResource("Resource_dvgj7")
 TYPE = &"jump"

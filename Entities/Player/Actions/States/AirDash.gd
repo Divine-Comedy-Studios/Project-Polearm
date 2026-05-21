@@ -10,14 +10,6 @@ extends PlayerAction
 #endregion
 
 
-#region Scene members
-
-@export_group("Scene members")
-@export var _timer : Timer = null
-
-#endregion
-
-
 #region Member variables
 
 var _direction : Vector3 = Vector3.ZERO
@@ -27,14 +19,6 @@ var _direction : Vector3 = Vector3.ZERO
 
 #region Override functions
 
-func _viable() -> bool:
-	return _timer.is_stopped() and resources().jumpCount.value < resources().jumpCount.maxValue
-
-
-func _implInit() -> void:
-	assert(_timer != null, "AirDash._implInit(): Assign dash timer!")
-
-
 func _implEnter() -> void:
 	resources().jumpCount.value += 1
 
@@ -43,10 +27,6 @@ func _implEnter() -> void:
 		_direction = player().forward()
 	
 	_setupBasicAnimation()
-
-func _implExit() -> void:
-	_direction = Vector3.ZERO
-	_timer.start()
 
 
 func _tick(delta : float) -> void:
