@@ -10,7 +10,7 @@ class_name EntityActionManager
 @export var resources : EntityResources = null
 @export var animator : EntityAnimator = null
 
-@onready var combatManager : EntityCombatManager = $"CombatManager"
+@onready var combatManager := $"CombatManager" as EntityCombatManager
 
 #endregion
 
