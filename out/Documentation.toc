@@ -1,0 +1,38 @@
+\babel@toc {german}{}\relax 
+\contentsline {section}{\numberline {1}Einleitung}{4}{}%
+\contentsline {subsection}{\numberline {1.1}Motivation und Relevanz}{4}{}%
+\contentsline {subsection}{\numberline {1.2}Zielsetzung und Produktdefinition}{4}{}%
+\contentsline {subsection}{\numberline {1.3}Erkenntnisfrage}{4}{}%
+\contentsline {section}{\numberline {2}Theoretischer Hintergrund \& Analyseframework}{4}{}%
+\contentsline {subsection}{\numberline {2.1}Definition von Gamedesign-Kriterien}{4}{}%
+\contentsline {subsection}{\numberline {2.2}Das MDA-Analyseframework (Fragebogen)}{4}{}%
+\contentsline {subsubsection}{\numberline {2.2.1}Mechanics (Spielmechaniken)}{4}{}%
+\contentsline {subsubsection}{\numberline {2.2.2}Dynamics (Spieldynamik und Interaktion)}{4}{}%
+\contentsline {subsubsection}{\numberline {2.2.3}Aesthetics (Ästhetik und emotionales Erleben)}{5}{}%
+\contentsline {subsection}{\numberline {2.3}Analyse der Referenzspiele}{6}{}%
+\contentsline {subsubsection}{\numberline {2.3.1}Referenzspiel 1}{6}{}%
+\contentsline {subsubsection}{\numberline {2.3.2}Referenzspiel 2}{6}{}%
+\contentsline {subsection}{\numberline {2.4}Ableitung der Designziele}{6}{}%
+\contentsline {section}{\numberline {3}Softwarearchitektur und technische Entwicklung}{6}{}%
+\contentsline {subsection}{\numberline {3.1}Systemarchitektur in Godot}{6}{}%
+\contentsline {subsection}{\numberline {3.2}Zentrale Gameplay-Systeme}{6}{}%
+\contentsline {subsubsection}{\numberline {3.2.1}Spielerbewegung und Kamera}{6}{}%
+\contentsline {subsubsection}{\numberline {3.2.2}Kampfsystem, Treffererkennung und Schadenslogik}{6}{}%
+\contentsline {subsection}{\numberline {3.3}Gegner-KI und Verhaltenslogik}{6}{}%
+\contentsline {section}{\numberline {4}Level- und Gegnerdesign}{6}{}%
+\contentsline {subsection}{\numberline {4.1}Gestaltung des Kampfabschnitts}{6}{}%
+\contentsline {subsection}{\numberline {4.2}Gegnerplatzierung (Enemy Placement)}{6}{}%
+\contentsline {section}{\numberline {5}Evaluation und Playtesting}{6}{}%
+\contentsline {subsection}{\numberline {5.1}Methodik des Playtests}{6}{}%
+\contentsline {subsection}{\numberline {5.2}Auswertung der Ergebnisse}{6}{}%
+\contentsline {subsection}{\numberline {5.3}Iteration aufgrund von Feedback}{6}{}%
+\contentsline {section}{\numberline {6}Schlussfolgerung \& Diskussion}{6}{}%
+\contentsline {subsection}{\numberline {6.1}Beantwortung der Erkenntnisfrage}{6}{}%
+\contentsline {subsection}{\numberline {6.2}Kritische Würdigung \& Ausblick}{6}{}%
+\contentsline {section}{\numberline {7}Reflexion}{6}{}%
+\contentsline {subsection}{\numberline {7.1}Reflexion des Arbeitsprozesses und der Gruppenarbeit}{6}{}%
+\contentsline {subsection}{\numberline {7.2}Reflexion über den Einsatz von KI-Hilfsmitteln}{6}{}%
+\contentsline {section}{\numberline {8}Verzeichnisse}{7}{}%
+\contentsline {subsection}{\numberline {8.1}Literatur- und Quellenverzeichnis}{7}{}%
+\contentsline {subsection}{\numberline {8.2}Assetliste (Modelle, Sounds, Texturen)}{7}{}%
+\contentsline {subsection}{\numberline {8.3}KI-Deklaration}{7}{}%
