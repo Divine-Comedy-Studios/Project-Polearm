@@ -58,22 +58,19 @@ func _implExit() -> void:
 
 func _tick(delta : float) -> void:
 	if player().onCeiling():
-		_framesSinceStarted = MAX_TIME_MILLISECONDS
+		context().interrupt(Type.fall)
 		return
 
 	moveAerial(delta)
 
 	# Additional jump velocity
-	if inputs().modifiers.has(Type.jump):
-		player().accelerateVertical(MAX_JUMP_VELOCITY, _jumpHeightFactor * JUMP_ACCELERATION * minf(delta, absf(MAX_TIME_MILLISECONDS - _framesSinceStarted)))
+	if inputs().modifiers.has(Type.jump) and _framesSinceStarted < MAX_TIME_MILLISECONDS:
+		player().accelerateVertical(MAX_JUMP_VELOCITY, _jumpHeightFactor * JUMP_ACCELERATION * minf(delta, MAX_TIME_MILLISECONDS - _framesSinceStarted))
 
 	_framesSinceStarted += delta
 
 
 func _implNextAction(next : StringName) -> StringName:
-	if _framesSinceStarted >= MAX_TIME_MILLISECONDS:
-		return next
-
-	return Type.none if context().hasHigherPriority(TYPE, next) else next
+	return next
 
 #endregion
