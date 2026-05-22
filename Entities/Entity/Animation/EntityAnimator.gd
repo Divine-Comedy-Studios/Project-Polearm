@@ -19,8 +19,30 @@ class DriverType:
 class TransitionDriverActivity extends Resource:
 	var slot : int = 0
 
-	var firstAnim : StringName
-	var secondAnim : StringName
+	var first : StringName
+	var second : StringName
+
+	func _init(driver : StringName, type : StringName) -> void:
+		first = driver + type + str(1)
+		second = driver + type + str(2)
+
+
+class ScaledAnimation extends Resource:
+	var anim : StringName
+	var scale : StringName
+
+	func _init(driver : StringName, idx : int) -> void:
+		var idxStr := str(idx)
+		anim = driver + &"Anim" + idxStr
+		scale = driver + &"Scale" + idxStr
+
+class AutoBlendDriver extends Resource:
+	var first : ScaledAnimation
+	var second : ScaledAnimation
+
+	func _init(driver : StringName) -> void:
+		first = ScaledAnimation.new(driver, 1)
+		second = ScaledAnimation.new(driver, 2)
 
 #endregion
 
@@ -57,6 +79,7 @@ const PARAMETER_CURRENT_STATE := &"current_state"
 # State
 
 var _transitionDriverActivity : Dictionary[StringName, TransitionDriverActivity] = { }
+var _autoBlendDrivers : Dictionary[StringName, AutoBlendDriver] = { }
 
 
 # Root motion
@@ -80,13 +103,16 @@ func _ready() -> void:
 
 # Transitions
 
-func registerAutoTransition(handle : StringName, first : StringName, second : StringName) -> void:
-	var activity := TransitionDriverActivity.new()
-	activity.firstAnim = first
-	activity.secondAnim = second
+func registerAutoTransition(handle : StringName, type : StringName) -> void:
+	var activity := TransitionDriverActivity.new(handle, type)
 	_transitionDriverActivity[handle] = activity
 
+func registerAutoBlendDriver(handle : StringName) -> void:
+	var data := AutoBlendDriver.new(handle)
+	_autoBlendDrivers[handle] = data
 
+
+# Transition to an unused driver in a transition driver registered with registerAutoTransition()
 func transitionToUnused(transitionHandle : StringName, driverHint : AnimationNodeTransition = null) -> void:
 	var activity := _transitionDriverActivity.get(transitionHandle) as TransitionDriverActivity
 	assert(activity != null, "EntityAnimator.transitionToUnused(): This function is only available to nodes which have been registered with registerAutoTransition()!")
@@ -97,6 +123,7 @@ func transitionToUnused(transitionHandle : StringName, driverHint : AnimationNod
 		(transitionDriver(transitionHandle) if driverHint == null else driverHint).get_input_name(activity.slot)
 	)
 
+# Transition to a driver
 func transitionTo(handle : StringName, slot : String) -> bool:
 	if transitionCurrent(handle) == slot:
 		return false
@@ -113,19 +140,19 @@ func transitionDriver(handle : StringName) -> AnimationNodeTransition:
 func animationDriver(handle : StringName) -> AnimationNodeAnimation:
 	return tree_root.get_node(handle) as AnimationNodeAnimation
 
-func additionDriver(handle: StringName) -> AnimationNodeAdd2:
+func additionDriver(handle : StringName) -> AnimationNodeAdd2:
 	return tree_root.get_node(handle) as AnimationNodeAdd2
 
-func addition3Driver(handle: StringName) -> AnimationNodeAdd3:
+func addition3Driver(handle : StringName) -> AnimationNodeAdd3:
 	return tree_root.get_node(handle) as AnimationNodeAdd3
 
-func subtractionDriver(handle: StringName) -> AnimationNodeSub2:
+func subtractionDriver(handle : StringName) -> AnimationNodeSub2:
 	return tree_root.get_node(handle) as AnimationNodeSub2
 
-func blendDriver(handle: StringName) -> AnimationNodeBlend2:
+func blendDriver(handle : StringName) -> AnimationNodeBlend2:
 	return tree_root.get_node(handle) as AnimationNodeBlend2
 
-func blend3Driver(handle: StringName) -> AnimationNodeBlend3:
+func blend3Driver(handle : StringName) -> AnimationNodeBlend3:
 	return tree_root.get_node(handle) as AnimationNodeBlend3
 
 func blendLineDriver(handle : StringName) -> AnimationNodeBlendSpace1D:
@@ -135,15 +162,18 @@ func blendSpaceDriver(handle : StringName) -> AnimationNodeBlendSpace2D:
 	return tree_root.get_node(handle) as AnimationNodeBlendSpace2D
 
 
-# Driver handles
+func autoBlendDriver(handle : StringName) -> AutoBlendDriver:
+	return _autoBlendDrivers.get(handle) as AutoBlendDriver
 
+
+# Get handle for an unused driver in a transition driver registered with registerAutoTransition()
 func unusedHandle(transitionHandle : StringName) -> StringName:
 	var activity := _transitionDriverActivity.get(transitionHandle) as TransitionDriverActivity
 	assert(activity != null, "EntityAnimator.unusedHandle(): This function is only available to nodes which have been registered with registerAutoTransition()!")
 
 	if activity.slot == 0:
-		return activity.secondAnim
-	return activity.firstAnim
+		return activity.second
+	return activity.first
 
 
 # Driver configuration

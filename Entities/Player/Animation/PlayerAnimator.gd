@@ -4,6 +4,7 @@ class_name PlayerAnimator
 
 #region Public functions
 
+# Set the transition driver which the core transition driver points to
 func setCoreTransition(destTransitionHandle : StringName, fadeTime : float) -> AnimationNodeTransition:
 	var destTransitionDriver := transitionDriver(destTransitionHandle)
 	destTransitionDriver.xfade_time = 0.0
@@ -22,9 +23,12 @@ func setCoreTransition(destTransitionHandle : StringName, fadeTime : float) -> A
 #region Override functions
 
 func _initialize() -> void:
-	var driver := animationDriver(&"BasicAnim1")
+	var driver := animationDriver(&"BasicTransitionAnim1")
 	driver.animation = DEFAULT_ANIMATION_NAME
 
-	registerAutoTransition(&"BasicTransition", &"BasicAnim1", &"BasicAnim2")
+	registerAutoTransition(&"BasicTransition", &"Anim")
+	registerAutoTransition(&"BlendTransition", &"Driver")
+	registerAutoBlendDriver(&"BlendTransitionDriver1")
+	registerAutoBlendDriver(&"BlendTransitionDriver2")
 
 #endregion
