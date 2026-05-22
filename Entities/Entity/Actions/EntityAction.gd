@@ -103,9 +103,13 @@ func actionViability(action : EntityAction) -> int:
 	# If both animations have the same type, just ignore it and break
 	if action.TYPE == TYPE and not REPEATABLE:
 		return -1
-	
+
 	if not _context.resources.payable(action):
 		return 0
+
+	if action.PRIORITY < PRIORITY:
+		if _context.frameData.nonLowerable(data.ANIMATION_NAME, _progress): # Excecution order of if statements in GDScript is always a bit funny
+			return 0
 	if not action._viable():
 		return 0
 

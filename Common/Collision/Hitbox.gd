@@ -16,7 +16,7 @@ class Data extends Resource:
 
 #region Exported variables
 
-@export_flags_3d_physics var layers : int:
+@export_flags_3d_physics var LAYERS : int:
 	get:
 		return collision_mask
 	set(value):

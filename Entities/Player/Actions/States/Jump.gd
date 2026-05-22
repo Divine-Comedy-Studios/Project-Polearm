@@ -1,12 +1,7 @@
-extends PlayerAction
+extends BasicAerialMovement
 
 
 #region Exported variables
-
-@export_group("Movement settings")
-@export var MAX_SPEED : float = 5.0
-@export var ACCELERATION : float = 20.0
-@export var FRICTION : float = 10.0
 
 @export_group("Jump settings")
 @export var BASE_JUMP_VELOCITY : float = 7.0
@@ -14,6 +9,10 @@ extends PlayerAction
 @export var MAX_JUMP_VELOCITY : float = 15.0
 @export var MAX_TIME_MILLISECONDS : float = 0.1
 @export var MULTI_JUMP_HEIGHT_FACTOR : float = 0.9
+
+@export_group("Animation data")
+@export var GROUND_JUMP_DATA : PlayerActionData = null
+@export var AIR_JUMP_DATA : PlayerActionData = null
 
 #endregion
 
@@ -28,18 +27,27 @@ var _jumpHeightFactor : float = 1.0
 
 #region Override functions
 
+func _implInit() -> void:
+	assert(GROUND_JUMP_DATA != null, "Player.Jump._implInit(): Ground jump animation data not set!")
+	assert(AIR_JUMP_DATA != null, "Player.Jump._implInit(): Air jump animation data not set!")
+
+	super._implInit()
+
+
 func _implEnter() -> void:
 	for i : int in range(resources().jumpCount.value):
 		_jumpHeightFactor *= MULTI_JUMP_HEIGHT_FACTOR
+
+	if not player().onGround():
+		data = AIR_JUMP_DATA
+	else:
+		data = GROUND_JUMP_DATA
 
 	player().detachGround()
 	player().disableCollisionProcessing()
 	player().setMovementVertical(_jumpHeightFactor * BASE_JUMP_VELOCITY)
 
-	animator().animationDriver(
-		animator().unusedHandle(&"BasicTransition")).animation = data.ANIMATION_FULL_NAME
-	animator().transitionToUnused(&"BasicTransition", 
-		animator().setCoreTransition(&"BasicTransition", data.ANIMATION_FADE_TIME))
+	_setupBasicAnimation()
 
 
 func _implExit() -> void:
@@ -53,17 +61,11 @@ func _tick(delta : float) -> void:
 		_framesSinceStarted = MAX_TIME_MILLISECONDS
 		return
 
-	# Movement
-	var targetSpeed := minf(inputs().inputMagnitude * MAX_SPEED, MAX_SPEED)
-
-	if is_zero_approx(targetSpeed):
-		player().accelerateFlat(Vector3.ZERO, FRICTION * delta)
-	else:
-		player().accelerateFlat(inputs().direction * targetSpeed, ACCELERATION * delta)
+	moveAerial(delta)
 
 	# Additional jump velocity
 	if inputs().modifiers.has(Type.jump):
-		player().accelerateVertical(MAX_JUMP_VELOCITY, _jumpHeightFactor * JUMP_ACCELERATION * minf(delta, MAX_TIME_MILLISECONDS - _framesSinceStarted))
+		player().accelerateVertical(MAX_JUMP_VELOCITY, _jumpHeightFactor * JUMP_ACCELERATION * minf(delta, absf(MAX_TIME_MILLISECONDS - _framesSinceStarted)))
 
 	_framesSinceStarted += delta
 

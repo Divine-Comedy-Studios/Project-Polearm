@@ -10,12 +10,6 @@ const MIN_PERIOD_MULTIPLIER := 0.7
 
 #region Exported variables
 
-@export_group("Movement settings")
-@export var ACCELERATION : float = 25.0
-@export var RUN_SPEED_MAX : float = 5.0
-@export var WALK_SPEED_MAX : float = 2.0
-
-
 @export_group("Animation settings")
 @export var IDLE_DATA : PlayerActionData = null
 @export var WALK_DATA : PlayerActionData = null
@@ -25,6 +19,13 @@ const MIN_PERIOD_MULTIPLIER := 0.7
 
 
 #region Member variables
+
+# Movement settings
+
+var _maxWalkSpeed : float = 0.0
+var _maxRunSpeed : float = 0.0
+var _accel : float = 0.0
+
 
 # Animation data
 
@@ -44,6 +45,12 @@ func _implInit() -> void:
 	assert(IDLE_DATA != null, "PlayerActionMove._implInit(): Idle action data not assigned")
 	assert(WALK_DATA != null, "PlayerActionMove._implInit(): Walking action data not assigned")
 	assert(RUN_DATA != null, "PlayerActionMove._implInit(): Running action data not assigned")
+
+
+	_maxWalkSpeed = physics().MAX_WALK_SPEED
+	_maxRunSpeed = physics().MAX_RUN_SPEED
+	_accel = physics().GROUNDED_ACCELERATION
+
 
 	animator().animationDriver(&"Idle").animation = IDLE_DATA.ANIMATION_FULL_NAME
 	animator().animationDriver(&"Walk").animation = WALK_DATA.ANIMATION_FULL_NAME
@@ -68,8 +75,8 @@ func _implExit() -> void:
 
 func _tick(delta : float) -> void:
 	# Movement
-	var targetSpeed := minf(inputs().inputMagnitude * RUN_SPEED_MAX, RUN_SPEED_MAX)
-	player().accelerateFlat(inputs().direction * targetSpeed, ACCELERATION * delta)
+	var targetSpeed := minf(inputs().inputMagnitude * _maxRunSpeed, _maxRunSpeed)
+	player().accelerateFlat(inputs().direction * targetSpeed, _accel * delta)
 
 	# Animation
 	_processAnimations()
@@ -81,7 +88,7 @@ func _tick(delta : float) -> void:
 
 func _processAnimations() -> void:
 	var normRange := maxf(
-		clampf(PPUtil.Math.toRangeNormalized(player().velocity.length(), WALK_SPEED_MAX, RUN_SPEED_MAX), -1.0, 1.0), 
+		clampf(PPUtil.Math.toRangeNormalized(player().velocity.length(), _maxWalkSpeed, _maxRunSpeed), -1.0, 1.0), 
 		-MIN_PERIOD_MULTIPLIER
 	)
 	_period = maxf(

@@ -20,8 +20,8 @@ class Type:
 	# Jumping
 	const jumpStart := &"jumpStart"
 
-	# Dodge states
-	const dash := &"dash"
+	# Dash states
+	const dashStart := &"dashStart"
 
 	# Combat can cancel out movement, but not eachother, but may be queried
 	const lightAttack := &"lightAttack"
@@ -40,6 +40,10 @@ class Type:
 
 	# Sprinting
 	const sprint := &"sprint"
+	const sprintStop := &"sprintStop"
+
+	# Dashing
+	const dashStop := &"dashStop"
 
 	#endregion
 
@@ -57,7 +61,7 @@ class Type:
 	# Aerial versions of grounded states, NEVER used by input manager and refered to by explicitly
 
 	const airJumpStart := &"airJumpStart"
-	const airDash := &"airDash"
+	const airDashStart := &"airDashStart"
 
 	const airLightAttack := &"airLightAttack"
 	const airHeavyAttack := &"airHeavyAttack"
@@ -69,6 +73,9 @@ class Type:
 
 	# Jumping behavior state
 	const jump := &"jump"
+
+	# Dashing behavior state
+	const dash := &"dash"
 
 	# Damage determines its behavior on the fly
 	const damage := EntityAction.Type.damage
@@ -85,7 +92,7 @@ class Type:
 		Type.idle : Type.fall,
 		Type.move : Type.fall,
 		Type.jumpStart : Type.airJumpStart,
-		Type.dash : Type.airDash,
+		Type.dashStart : Type.airDashStart,
 		Type.lightAttack : Type.airLightAttack,
 		Type.heavyAttack : Type.airHeavyAttack,
 
@@ -93,6 +100,7 @@ class Type:
 		Type.ledgeGrab : Type.ledgeGrab,
 
 		Type.jump : Type.jump,
+		Type.dash : Type.dash,
 		Type.damage : Type.damage,
 		Type.death : Type.death,
 	}
@@ -173,6 +181,9 @@ func player() -> Player:
 func context() -> PlayerActionManager:
 	return _context as PlayerActionManager
 
+func physics() -> PlayerPhysics:
+	return _context.physics as PlayerPhysics
+
 func inputs() -> PlayerInputManager.Data:
 	return _context.inputManager.inputs
 
@@ -236,6 +247,14 @@ func _highestPriorityAction() -> StringName:
 			return Type.none
 
 	return Type.none
+
+
+# Convenient function to setup the animation for states which only use the basic animation
+func _setupBasicAnimation() -> void:
+	animator().animationDriver(
+		animator().unusedHandle(&"BasicTransition")).animation = data.ANIMATION_FULL_NAME
+	animator().transitionToUnused(&"BasicTransition", 
+		animator().setCoreTransition(&"BasicTransition", data.ANIMATION_FADE_TIME))
 
 #endregion
 

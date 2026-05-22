@@ -6,100 +6,132 @@
 [ext_resource type="Script" uid="uid://c8b6ivlyaw41v" path="res://Entities/Entity/Combat/Combo/EntityCombo.gd" id="3_7bymk"]
 [ext_resource type="Resource" uid="uid://ccjpnfc5visow" path="res://Entities/Player/Resources/Combos/TestCombo.tres" id="4_7bymk"]
 [ext_resource type="Script" uid="uid://bes4y6b0to8sw" path="res://Entities/Player/Actions/States/Fall.gd" id="4_8427c"]
-[ext_resource type="Script" uid="uid://p1qurm2f1bvl" path="res://Entities/Player/Actions/States/Idle.gd" id="5_6evvv"]
 [ext_resource type="Script" uid="uid://cqy3drroysy4k" path="res://Entities/Player/Data/PlayerActionData.gd" id="5_8427c"]
 [ext_resource type="Script" uid="uid://btagysn7t8n05" path="res://Entities/Player/Actions/States/Move.gd" id="6_rq852"]
-[ext_resource type="Script" uid="uid://bf7rav2dglxc4" path="res://Entities/Player/Actions/States/JumpStart.gd" id="6_urjga"]
+[ext_resource type="Script" uid="uid://bf7rav2dglxc4" path="res://Entities/Player/Actions/States/TransitionAction/JumpStart.gd" id="6_urjga"]
+[ext_resource type="Script" uid="uid://l7akydniqjk2" path="res://Entities/Player/Actions/States/IdleOrStop.gd" id="6_yl8et"]
 [ext_resource type="Script" uid="uid://c55k4ruofg4jc" path="res://Entities/Player/Actions/States/Jump.gd" id="7_jverr"]
 [ext_resource type="Script" uid="uid://vahqysuxajcw" path="res://Entities/Player/Actions/States/LightAttack.gd" id="8_6evvv"]
-[ext_resource type="Script" uid="uid://bb1weubijn6l2" path="res://Entities/Player/Actions/States/AirJumpStart.gd" id="10_7bymk"]
+[ext_resource type="Script" uid="uid://bb1weubijn6l2" path="res://Entities/Player/Actions/States/TransitionAction/AirJumpStart.gd" id="11_6ns0w"]
 [ext_resource type="Script" uid="uid://d2mcxn2vpp7ne" path="res://Entities/Player/Actions/States/LedgeGrab.gd" id="13_71nor"]
 [ext_resource type="Script" uid="uid://cg0qx1buj4734" path="res://Entities/Player/Actions/States/Dash.gd" id="15_y2nh2"]
-[ext_resource type="Script" uid="uid://dw8f1x1gk3odw" path="res://Entities/Player/Actions/States/AirDash.gd" id="16_6ns0w"]
+[ext_resource type="Script" uid="uid://c53u6shanxeug" path="res://Entities/Player/Actions/States/TransitionAction/AirDashStart.gd" id="16_yl8et"]
 [ext_resource type="Script" uid="uid://tpcj3x2f82ym" path="res://Entities/Player/Actions/States/Sprint.gd" id="17_6ns0w"]
+[ext_resource type="Script" uid="uid://3fen78mrevq4" path="res://Entities/Player/Actions/States/TransitionAction/DashStart.gd" id="17_fh6tg"]
+
+[sub_resource type="Resource" id="Resource_8427c"]
+script = ExtResource("5_8427c")
+ANIMATION_LIBRARY_NAME = &"Movement"
+ANIMATION_NAME = &"Idle"
+metadata/_custom_type_script = "uid://cqy3drroysy4k"
 
 [sub_resource type="Resource" id="Resource_xghap"]
 script = ExtResource("5_8427c")
-ANIMATION_LIBRARY_NAME = &"TestAnim"
+ANIMATION_LIBRARY_NAME = &"Movement"
 ANIMATION_NAME = &"Idle"
 ANIMATION_FADE_TIME = 0.1
 metadata/_custom_type_script = "uid://cqy3drroysy4k"
 
 [sub_resource type="Resource" id="Resource_jverr"]
 script = ExtResource("5_8427c")
-ANIMATION_LIBRARY_NAME = &"TestAnim"
-ANIMATION_NAME = &"Walk"
+ANIMATION_LIBRARY_NAME = &"Movement"
+ANIMATION_NAME = &"WalkLoop"
 ANIMATION_FADE_TIME = 0.1
 metadata/_custom_type_script = "uid://cqy3drroysy4k"
 
 [sub_resource type="Resource" id="Resource_urjga"]
 script = ExtResource("5_8427c")
-ANIMATION_LIBRARY_NAME = &"TestAnim"
-ANIMATION_NAME = &"Run"
+ANIMATION_LIBRARY_NAME = &"Movement"
+ANIMATION_NAME = &"RunLoop"
+ANIMATION_FADE_TIME = 0.1
+metadata/_custom_type_script = "uid://cqy3drroysy4k"
+
+[sub_resource type="Resource" id="Resource_wu1xb"]
+script = ExtResource("5_8427c")
+ANIMATION_LIBRARY_NAME = &"Movement"
+ANIMATION_NAME = &"DashStart"
+ANIMATION_FADE_TIME = 0.1
+metadata/_custom_type_script = "uid://cqy3drroysy4k"
+
+[sub_resource type="Resource" id="Resource_6ns0w"]
+script = ExtResource("5_8427c")
+ANIMATION_LIBRARY_NAME = &"Movement"
+ANIMATION_NAME = &"DashStart"
+ANIMATION_FADE_TIME = 0.1
+metadata/_custom_type_script = "uid://cqy3drroysy4k"
+
+[sub_resource type="Resource" id="Resource_fh6tg"]
+script = ExtResource("5_8427c")
+ANIMATION_LIBRARY_NAME = &"Movement"
+ANIMATION_NAME = &"DashLoop"
+ANIMATION_FADE_TIME = 0.1
+metadata/_custom_type_script = "uid://cqy3drroysy4k"
+
+[sub_resource type="Resource" id="Resource_1ws56"]
+script = ExtResource("5_8427c")
+ANIMATION_LIBRARY_NAME = &"Movement"
+ANIMATION_NAME = &"DashStop"
+metadata/_custom_type_script = "uid://cqy3drroysy4k"
+
+[sub_resource type="Resource" id="Resource_yl8et"]
+script = ExtResource("5_8427c")
+ANIMATION_LIBRARY_NAME = &"Movement"
+ANIMATION_NAME = &"SprintLoop"
+ANIMATION_FADE_TIME = 0.1
+metadata/_custom_type_script = "uid://cqy3drroysy4k"
+
+[sub_resource type="Resource" id="Resource_x5srs"]
+script = ExtResource("5_8427c")
+ANIMATION_LIBRARY_NAME = &"Movement"
+ANIMATION_NAME = &"SprintStop"
 ANIMATION_FADE_TIME = 0.1
 metadata/_custom_type_script = "uid://cqy3drroysy4k"
 
 [sub_resource type="Resource" id="Resource_6ll7i"]
 script = ExtResource("5_8427c")
-ANIMATION_LIBRARY_NAME = &"TestAnim"
-ANIMATION_NAME = &"Fall"
-metadata/_custom_type_script = "uid://cqy3drroysy4k"
-
-[sub_resource type="Resource" id="Resource_8427c"]
-script = ExtResource("5_8427c")
-ANIMATION_LIBRARY_NAME = &"TestAnim"
-ANIMATION_NAME = &"Idle"
+ANIMATION_LIBRARY_NAME = &"Movement"
+ANIMATION_NAME = &"FallLoop"
 metadata/_custom_type_script = "uid://cqy3drroysy4k"
 
 [sub_resource type="Resource" id="Resource_6evvv"]
 script = ExtResource("5_8427c")
-ANIMATION_LIBRARY_NAME = &"TestAnim"
-ANIMATION_NAME = &"JumpIdle"
+ANIMATION_LIBRARY_NAME = &"Movement"
+ANIMATION_NAME = &"JumpIdleStart"
 ANIMATION_FADE_TIME = 0.05
 metadata/_custom_type_script = "uid://cqy3drroysy4k"
 
 [sub_resource type="Resource" id="Resource_obuag"]
 script = ExtResource("5_8427c")
-ANIMATION_LIBRARY_NAME = &"TestAnim"
-ANIMATION_NAME = &"JumpRun"
+ANIMATION_LIBRARY_NAME = &"Movement"
+ANIMATION_NAME = &"JumpMoveStart"
 ANIMATION_FADE_TIME = 0.05
 metadata/_custom_type_script = "uid://cqy3drroysy4k"
 
 [sub_resource type="Resource" id="Resource_7bymk"]
 script = ExtResource("5_8427c")
-ANIMATION_LIBRARY_NAME = &"TestAnim"
-ANIMATION_NAME = &"JumpRun"
+ANIMATION_LIBRARY_NAME = &"Movement"
+ANIMATION_NAME = &"JumpDoubleStart"
 ANIMATION_FADE_TIME = 0.05
 metadata/_custom_type_script = "uid://cqy3drroysy4k"
 
-[sub_resource type="Resource" id="Resource_rq852"]
+[sub_resource type="Resource" id="Resource_re4dn"]
 script = ExtResource("5_8427c")
-ANIMATION_LIBRARY_NAME = &"TestAnim"
-ANIMATION_NAME = &"Fall"
+ANIMATION_LIBRARY_NAME = &"Movement"
+ANIMATION_NAME = &"Jump"
+ANIMATION_FADE_TIME = 0.1
+metadata/_custom_type_script = "uid://cqy3drroysy4k"
+
+[sub_resource type="Resource" id="Resource_dvgj7"]
+script = ExtResource("5_8427c")
+ANIMATION_LIBRARY_NAME = &"Movement"
+ANIMATION_NAME = &"JumpDouble"
+ANIMATION_FADE_TIME = 0.1
 metadata/_custom_type_script = "uid://cqy3drroysy4k"
 
 [sub_resource type="Resource" id="Resource_71nor"]
 script = ExtResource("5_8427c")
-ANIMATION_LIBRARY_NAME = &"TestAnim"
+ANIMATION_LIBRARY_NAME = &"Movement"
 ANIMATION_NAME = &"Idle"
-metadata/_custom_type_script = "uid://cqy3drroysy4k"
-
-[sub_resource type="Resource" id="Resource_fh6tg"]
-script = ExtResource("5_8427c")
-ANIMATION_LIBRARY_NAME = &"TestAnim"
-ANIMATION_NAME = &"JumpIdle"
-metadata/_custom_type_script = "uid://cqy3drroysy4k"
-
-[sub_resource type="Resource" id="Resource_6ns0w"]
-script = ExtResource("5_8427c")
-ANIMATION_LIBRARY_NAME = &"TestAnim"
-ANIMATION_NAME = &"LightAttack1"
-metadata/_custom_type_script = "uid://cqy3drroysy4k"
-
-[sub_resource type="Resource" id="Resource_yl8et"]
-script = ExtResource("5_8427c")
-ANIMATION_LIBRARY_NAME = &"TestAnim"
-ANIMATION_NAME = &"Run"
 metadata/_custom_type_script = "uid://cqy3drroysy4k"
 
 [node name="PlayerActionManager" type="Node" unique_id=1294535758]
@@ -108,19 +140,13 @@ metadata/_custom_type_script = "uid://d0kf1f6gldsxt"
 
 [node name="DashTimer" type="Timer" parent="." unique_id=575686984]
 process_callback = 0
-wait_time = 0.5
+wait_time = 0.6
 one_shot = true
 
 [node name="PhysicsProcessor" type="Node3D" parent="." unique_id=1318673669 node_paths=PackedStringArray("_context")]
 process_mode = 4
 visible = false
 script = ExtResource("2_71nor")
-LEDGE_MAX_DISTANCE = null
-LEDGE_MAX_HEIGHT = null
-LEDGE_MIN_HEIGHT = null
-LEDGE_MIN_CEILING_HEIGHT = null
-LEDGE_SWEEP_SIDE_ANGLE = null
-LEDGE_SWEEP_COUNT = null
 _context = NodePath("..")
 metadata/_custom_type_script = "uid://jth8cpsjn3vy"
 
@@ -131,6 +157,13 @@ MAX_PREVIOUS_COMBO_COUNT = 3
 unlockedCombos = Array[ExtResource("3_7bymk")]([ExtResource("4_7bymk")])
 metadata/_custom_type_script = "uid://620any2k6qha"
 
+[node name="Idle" type="Node" parent="." unique_id=1482978748]
+process_mode = 4
+script = ExtResource("6_yl8et")
+TYPE = &"idle"
+data = SubResource("Resource_8427c")
+metadata/_custom_type_script = "uid://jc1g0sv32qq1"
+
 [node name="Move" type="Node" parent="." unique_id=1229341547]
 process_mode = 4
 script = ExtResource("6_rq852")
@@ -138,7 +171,59 @@ IDLE_DATA = SubResource("Resource_xghap")
 WALK_DATA = SubResource("Resource_jverr")
 RUN_DATA = SubResource("Resource_urjga")
 TYPE = &"move"
-PRIORITY = 1
+PRIORITY = 3
+metadata/_custom_type_script = "uid://jc1g0sv32qq1"
+
+[node name="DashStart" type="Node" parent="." unique_id=1081685995 node_paths=PackedStringArray("_timer")]
+process_mode = 4
+script = ExtResource("17_fh6tg")
+_timer = NodePath("../DashTimer")
+TARGET_TYPE = &"dash"
+TYPE = &"dashStart"
+PRIORITY = 51
+data = SubResource("Resource_wu1xb")
+metadata/_custom_type_script = "uid://jc1g0sv32qq1"
+
+[node name="AirDashStart" type="Node" parent="." unique_id=2106919827]
+process_mode = 4
+script = ExtResource("16_yl8et")
+TARGET_TYPE = &"dash"
+TYPE = &"airDashStart"
+PRIORITY = 51
+data = SubResource("Resource_6ns0w")
+metadata/_custom_type_script = "uid://jc1g0sv32qq1"
+
+[node name="Dash" type="Node" parent="." unique_id=674465894]
+process_mode = 4
+script = ExtResource("15_y2nh2")
+TYPE = &"dash"
+PRIORITY = 50
+data = SubResource("Resource_fh6tg")
+metadata/_custom_type_script = "uid://jc1g0sv32qq1"
+
+[node name="DashStop" type="Node" parent="." unique_id=539227709]
+process_mode = 4
+script = ExtResource("6_yl8et")
+TYPE = &"dashStop"
+PRIORITY = 4
+data = SubResource("Resource_1ws56")
+metadata/_custom_type_script = "uid://jc1g0sv32qq1"
+
+[node name="Sprint" type="Node" parent="." unique_id=1834573460]
+process_mode = 4
+script = ExtResource("17_6ns0w")
+TYPE = &"sprint"
+PRIORITY = 6
+data = SubResource("Resource_yl8et")
+metadata/_custom_type_script = "uid://jc1g0sv32qq1"
+
+[node name="SprintStop" type="Node" parent="." unique_id=33316294]
+process_mode = 4
+script = ExtResource("6_yl8et")
+FRICTION_MULTIPLIER = 0.5
+TYPE = &"sprintStop"
+PRIORITY = 5
+data = SubResource("Resource_x5srs")
 metadata/_custom_type_script = "uid://jc1g0sv32qq1"
 
 [node name="Fall" type="Node" parent="." unique_id=1664492832]
@@ -147,13 +232,6 @@ script = ExtResource("4_8427c")
 TYPE = &"fall"
 PRIORITY = 20
 data = SubResource("Resource_6ll7i")
-metadata/_custom_type_script = "uid://jc1g0sv32qq1"
-
-[node name="Idle" type="Node" parent="." unique_id=1482978748]
-process_mode = 4
-script = ExtResource("5_6evvv")
-TYPE = &"idle"
-data = SubResource("Resource_8427c")
 metadata/_custom_type_script = "uid://jc1g0sv32qq1"
 
 [node name="JumpStart" type="Node" parent="." unique_id=1364787152]
@@ -170,7 +248,8 @@ metadata/_custom_type_script = "uid://jc1g0sv32qq1"
 
 [node name="AirJumpStart" type="Node" parent="." unique_id=1893835723]
 process_mode = 4
-script = ExtResource("10_7bymk")
+script = ExtResource("11_6ns0w")
+TARGET_TYPE = &"jump"
 TYPE = &"airJumpStart"
 PRIORITY = 30
 data = SubResource("Resource_7bymk")
@@ -179,9 +258,12 @@ metadata/_custom_type_script = "uid://jc1g0sv32qq1"
 [node name="Jump" type="Node" parent="." unique_id=80986144]
 process_mode = 4
 script = ExtResource("7_jverr")
+JUMP_ACCELERATION = 20.0
+MAX_JUMP_VELOCITY = 10.0
+GROUND_JUMP_DATA = SubResource("Resource_re4dn")
+AIR_JUMP_DATA = SubResource("Resource_dvgj7")
 TYPE = &"jump"
 PRIORITY = 31
-data = SubResource("Resource_rq852")
 metadata/_custom_type_script = "uid://jc1g0sv32qq1"
 
 [node name="LedgeGrab" type="Node" parent="." unique_id=403024180]
@@ -198,30 +280,4 @@ QUEUEABLE = true
 TYPE = &"lightAttack"
 PRIORITY = 40
 REPEATABLE = true
-metadata/_custom_type_script = "uid://jc1g0sv32qq1"
-
-[node name="Dash" type="Node" parent="." unique_id=674465894 node_paths=PackedStringArray("_timer")]
-process_mode = 4
-script = ExtResource("15_y2nh2")
-_timer = NodePath("../DashTimer")
-TYPE = &"dash"
-PRIORITY = 50
-data = SubResource("Resource_fh6tg")
-metadata/_custom_type_script = "uid://jc1g0sv32qq1"
-
-[node name="AirDash" type="Node" parent="." unique_id=2106919827 node_paths=PackedStringArray("_timer")]
-process_mode = 4
-script = ExtResource("16_6ns0w")
-_timer = NodePath("../DashTimer")
-TYPE = &"airDash"
-PRIORITY = 50
-data = SubResource("Resource_6ns0w")
-metadata/_custom_type_script = "uid://jc1g0sv32qq1"
-
-[node name="Sprint" type="Node" parent="." unique_id=1834573460]
-process_mode = 4
-script = ExtResource("17_6ns0w")
-TYPE = &"sprint"
-PRIORITY = 2
-data = SubResource("Resource_yl8et")
 metadata/_custom_type_script = "uid://jc1g0sv32qq1"

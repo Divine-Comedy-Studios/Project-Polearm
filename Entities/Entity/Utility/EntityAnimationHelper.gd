@@ -50,6 +50,10 @@ extends Node
 		_rootBonePath = value
 		_update_root_orientation()
 
+
+@warning_ignore("unused_private_class_variable")
+@export_tool_button("Update Frame Data") var _updateFDFunction = _sync_frame_data_library
+
 #endregion
 
 

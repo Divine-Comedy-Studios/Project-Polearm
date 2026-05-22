@@ -6,7 +6,7 @@ class_name Hurtbox
 
 #region Exported variables
 
-@export_flags_3d_physics var layers : int:
+@export_flags_3d_physics var LAYERS : int:
 	get:
 		return collision_layer
 	set(value):

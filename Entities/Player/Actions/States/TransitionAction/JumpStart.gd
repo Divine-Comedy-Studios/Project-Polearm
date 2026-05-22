@@ -3,11 +3,6 @@ extends PlayerAction
 
 #region Exported variables
 
-@export_group("Movement settings")
-@export var STILL_SPEED_MAX : float = 2.0
-@export var RUN_SPEED_MAX : float = 5.0
-@export var FRICTION : float = 30.0
-
 @export_group("Animation settings")
 @export var JUMP_STILL_DATA : PlayerActionData = null
 @export var JUMP_RUN_DATA : PlayerActionData = null
@@ -16,6 +11,12 @@ extends PlayerAction
 
 
 #region Member variables
+
+# Movement settings
+var _friction : float = 0.0
+
+
+# Animation
 
 var _jumpStillPeriod : float = 0.0
 var _jumpRunPeriod : float = 0.0
@@ -30,6 +31,8 @@ func _viable() -> bool:
 
 
 func _implInit() -> void:
+	_friction = physics().GROUNDED_FRICTION
+
 	animator().animationDriver(&"JumpStill").animation = JUMP_STILL_DATA.ANIMATION_FULL_NAME
 	animator().animationDriver(&"JumpRun").animation = JUMP_RUN_DATA.ANIMATION_FULL_NAME
 
@@ -40,6 +43,8 @@ func _implInit() -> void:
 
 
 func _implEnter() -> void:
+	resources().airDashed = false
+
 	_processAnimations()
 
 func _implExit() -> void:
@@ -47,7 +52,7 @@ func _implExit() -> void:
 
 
 func _tick(delta : float) -> void:
-	player().accelerate(Vector3.ZERO, FRICTION * delta)
+	player().accelerate(Vector3.ZERO, _friction * delta)
 	context().pushActionQueue(Type.jump)
 
 #endregion
@@ -64,7 +69,12 @@ func _processAnimations() -> void:
 		frameDataScale = _jumpStillPeriod / _jumpRunPeriod
 		return
 
-	var normRange := clampf(PPUtil.Math.toRangeNormalized(player().velocity.length(), STILL_SPEED_MAX, RUN_SPEED_MAX), 0.0, 1.0)
+	var normRange := clampf(
+		PPUtil.Math.toRangeNormalized(
+			player().velocity.length(), 
+			physics().MAX_WALK_SPEED, 
+			physics().MAX_RUN_SPEED),
+		0.0, 1.0)
 	var duration := _jumpStillPeriod + normRange * (_jumpRunPeriod - _jumpStillPeriod)
 
 	frameDataScale = _jumpStillPeriod / duration

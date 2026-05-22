@@ -35,15 +35,12 @@ func _viable() -> bool:
 
 
 func _implEnter() -> void:
-	_currentLedgeData = context().physics.ledgeData
+	_currentLedgeData = physics().ledgeData
 
 	resources().jumpCount.value = 0
 	player().setMovement(Vector3.ZERO)
 
-	animator().animationDriver(
-		animator().unusedHandle(&"BasicTransition")).animation = data.ANIMATION_FULL_NAME
-	animator().transitionToUnused(&"BasicTransition", 
-		animator().setCoreTransition(&"BasicTransition", data.ANIMATION_FADE_TIME))
+	_setupBasicAnimation()
 
 func _implExit() -> void:
 	_lastPosition = player().global_position
