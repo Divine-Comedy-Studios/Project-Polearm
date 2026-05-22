@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cbdax7xlgilxj" path="res://Interfaces/UIElements/ActionMappingButton.gd" id="1_p6qin"]
 
 [node name="ActionMappingButton" type="Button" unique_id=951180259 node_paths=PackedStringArray("_label", "_icon")]
-custom_minimum_size = Vector2(450, 50)
+custom_minimum_size = Vector2(350, 50)
 anchors_preset = -1
 anchor_right = 0.13000001
 anchor_bottom = 0.026
@@ -30,5 +30,5 @@ vertical_alignment = 1
 
 [node name="Symbol" type="TextureRect" parent="HBoxContainer" unique_id=739119443]
 layout_mode = 2
-size_flags_horizontal = 8
+size_flags_horizontal = 10
 expand_mode = 2

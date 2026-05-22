@@ -8,8 +8,7 @@ enum Resolution {
 	ultrawide,
 	p1080,
 	p900,
-	p720,
-	p540
+	p720
 }
 
 enum InputType {

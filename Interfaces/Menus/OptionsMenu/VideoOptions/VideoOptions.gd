@@ -11,13 +11,13 @@ extends InterfaceState
 #region Scene members
 
 # All Buttons
-@onready var windowMode : OptionButton = $"CenterContainer/MarginContainer/HBoxContainer/Buttons/WindowMode"
-@onready var resolution : OptionButton = $"CenterContainer/MarginContainer/HBoxContainer/Buttons/Resolution"
-@onready var vSynch : CheckButton = $"CenterContainer/MarginContainer/HBoxContainer/Buttons/Vsync"
-@onready var gamma : HSlider = $"CenterContainer/MarginContainer/HBoxContainer/Buttons/Gamma/Gamma"
+@onready var windowMode : OptionButton = $"CenterContainer/MarginContainer/HBoxContainer/Labels/HBoxContainer/WindowMode2"
+@onready var resolution : OptionButton = $"CenterContainer/MarginContainer/HBoxContainer/Labels/HBoxContainer2/Resolution2"
+@onready var vSynch : CheckBox = $"CenterContainer/MarginContainer/HBoxContainer/Labels/HBoxContainer3/Vsync2"
+@onready var gamma : HSlider = $"CenterContainer/MarginContainer/HBoxContainer/Labels/HBoxContainer4/Gamma2/Gamma"
 
 # All Numerics
-@onready var gammaLabel : Label = $"CenterContainer/MarginContainer/HBoxContainer/Buttons/Gamma/Label"
+@onready var gammaLabel : Label = $"CenterContainer/MarginContainer/HBoxContainer/Labels/HBoxContainer4/Gamma2/Label"
 
 #endregion
 
