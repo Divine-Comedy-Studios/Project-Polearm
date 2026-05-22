@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://vahqysuxajcw" path="res://Entities/Player/Actions/States/LightAttack.gd" id="8_6evvv"]
 [ext_resource type="Script" uid="uid://bb1weubijn6l2" path="res://Entities/Player/Actions/States/TransitionAction/AirJumpStart.gd" id="11_6ns0w"]
 [ext_resource type="Script" uid="uid://d2mcxn2vpp7ne" path="res://Entities/Player/Actions/States/LedgeGrab.gd" id="13_71nor"]
+[ext_resource type="Script" uid="uid://cw8j6wjk2wc80" path="res://Entities/Player/Actions/States/TransitionAction/Landing.gd" id="14_fh6tg"]
 [ext_resource type="Script" uid="uid://cg0qx1buj4734" path="res://Entities/Player/Actions/States/Dash.gd" id="15_y2nh2"]
 [ext_resource type="Script" uid="uid://c53u6shanxeug" path="res://Entities/Player/Actions/States/TransitionAction/AirDashStart.gd" id="16_yl8et"]
 [ext_resource type="Script" uid="uid://tpcj3x2f82ym" path="res://Entities/Player/Actions/States/Sprint.gd" id="17_6ns0w"]
@@ -91,6 +92,20 @@ metadata/_custom_type_script = "uid://cqy3drroysy4k"
 script = ExtResource("5_8427c")
 ANIMATION_LIBRARY_NAME = &"Movement"
 ANIMATION_NAME = &"FallLoop"
+metadata/_custom_type_script = "uid://cqy3drroysy4k"
+
+[sub_resource type="Resource" id="Resource_e0d0n"]
+script = ExtResource("5_8427c")
+ANIMATION_LIBRARY_NAME = &"Movement"
+ANIMATION_NAME = &"JumpIdleStop"
+ANIMATION_FADE_TIME = 0.1
+metadata/_custom_type_script = "uid://cqy3drroysy4k"
+
+[sub_resource type="Resource" id="Resource_ququc"]
+script = ExtResource("5_8427c")
+ANIMATION_LIBRARY_NAME = &"Movement"
+ANIMATION_NAME = &"JumpRunStop"
+ANIMATION_FADE_TIME = 0.1
 metadata/_custom_type_script = "uid://cqy3drroysy4k"
 
 [sub_resource type="Resource" id="Resource_6evvv"]
@@ -232,6 +247,15 @@ script = ExtResource("4_8427c")
 TYPE = &"fall"
 PRIORITY = 20
 data = SubResource("Resource_6ll7i")
+metadata/_custom_type_script = "uid://jc1g0sv32qq1"
+
+[node name="Landing" type="Node" parent="." unique_id=72866213]
+process_mode = 4
+script = ExtResource("14_fh6tg")
+LANDING_STILL_DATA = SubResource("Resource_e0d0n")
+LANDING_RUN_DATA = SubResource("Resource_ququc")
+TYPE = &"landing"
+PRIORITY = 4
 metadata/_custom_type_script = "uid://jc1g0sv32qq1"
 
 [node name="JumpStart" type="Node" parent="." unique_id=1364787152]
