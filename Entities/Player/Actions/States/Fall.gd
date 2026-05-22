@@ -39,8 +39,8 @@ func _tick(delta : float) -> void:
 
 
 func _implNextAction(next : StringName) -> StringName:
-	if player().onGround():
-		return next
+	if player().onGround(): # Player landing on ground
+		return Type.landing
 	if next != Type.none and not hasHigherPriorityThan(next):
 		return next
 

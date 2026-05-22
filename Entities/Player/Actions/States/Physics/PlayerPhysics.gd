@@ -28,6 +28,7 @@ class LedgeData:
 @export var MAX_RUN_SPEED : float = 5.0
 @export var GROUNDED_ACCELERATION : float = 30.0
 @export var GROUNDED_FRICTION : float = 30.0
+@export var REDUCED_GROUNDED_FRICTION : float = 15.0
 
 @export var MAX_AERIAL_SPEED : float = 5.0
 @export var AERIAL_ACCELERATION : float = 20.0

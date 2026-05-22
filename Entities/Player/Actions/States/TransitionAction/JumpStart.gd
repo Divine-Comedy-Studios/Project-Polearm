@@ -31,15 +31,12 @@ func _viable() -> bool:
 
 
 func _implInit() -> void:
-	_friction = physics().GROUNDED_FRICTION
+	_friction = physics().REDUCED_GROUNDED_FRICTION
 
-	animator().animationDriver(&"JumpStill").animation = JUMP_STILL_DATA.ANIMATION_FULL_NAME
-	animator().animationDriver(&"JumpRun").animation = JUMP_RUN_DATA.ANIMATION_FULL_NAME
+	data = JUMP_STILL_DATA
 
 	_jumpStillPeriod = animator().animation(JUMP_STILL_DATA.ANIMATION_FULL_NAME).length
 	_jumpRunPeriod = animator().animation(JUMP_RUN_DATA.ANIMATION_FULL_NAME).length
-
-	data = JUMP_STILL_DATA
 
 
 func _implEnter() -> void:
@@ -61,13 +58,7 @@ func _tick(delta : float) -> void:
 #region Private functions
 
 func _processAnimations() -> void:
-	animator().setCoreTransition(&"AdvancedTransition", data.ANIMATION_FADE_TIME)
-	animator().transitionTo(&"AdvancedTransition", &"Jump")
-
-	if not player().onGround():
-		animator().setBlendAmount(&"Jump", 1.0)
-		frameDataScale = _jumpStillPeriod / _jumpRunPeriod
-		return
+	# Calculate factors to blend the animations between their different states
 
 	var normRange := clampf(
 		PPUtil.Math.toRangeNormalized(
@@ -76,10 +67,22 @@ func _processAnimations() -> void:
 			physics().MAX_RUN_SPEED),
 		0.0, 1.0)
 	var duration := _jumpStillPeriod + normRange * (_jumpRunPeriod - _jumpStillPeriod)
-
 	frameDataScale = _jumpStillPeriod / duration
-	animator().setScale(&"JumpStillScale", frameDataScale)
-	animator().setScale(&"JumpRunScale", _jumpRunPeriod / duration)
-	animator().setBlendAmount(&"Jump", normRange)
+
+
+	# Setup animations
+
+	var blendHandle := animator().unusedHandle(&"BlendTransition")
+	var autoBlender := animator().autoBlendDriver(blendHandle)
+
+	animator().animationDriver(autoBlender.first.anim).animation = JUMP_STILL_DATA.ANIMATION_FULL_NAME
+	animator().animationDriver(autoBlender.second.anim).animation = JUMP_RUN_DATA.ANIMATION_FULL_NAME
+
+	animator().setScale(autoBlender.first.scale, frameDataScale)
+	animator().setScale(autoBlender.second.scale, _jumpRunPeriod / duration)
+	animator().setBlendAmount(blendHandle, normRange)
+
+	animator().transitionToUnused(&"BlendTransition", 
+		animator().setCoreTransition(&"BlendTransition", data.ANIMATION_FADE_TIME))
 
 #endregion
