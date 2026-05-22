@@ -12,7 +12,7 @@ class_name PlayerBasicTransitionAciton
 #region Override functions
 
 func _implEnter() -> void:
-	_setupBasicAnimation()
+	_animationSetupBasic()
 
 
 func _tick(_delta : float) -> void:

@@ -29,7 +29,7 @@ func _implInit() -> void:
 
 
 func _implEnter() -> void:
-	_setupBasicAnimation()
+	_animationSetupBasic()
 
 
 func _implExit() -> void:

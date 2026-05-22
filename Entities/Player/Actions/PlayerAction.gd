@@ -19,6 +19,7 @@ class Type:
 
 	# Jumping
 	const jumpStart := &"jumpStart"
+	const jump := &"jump"
 
 	# Dash states
 	const dashStart := &"dashStart"
@@ -61,6 +62,8 @@ class Type:
 	# Aerial versions of grounded states, NEVER used by input manager and refered to by explicitly
 
 	const airJumpStart := &"airJumpStart"
+	const airJump := &"airJump"
+
 	const airDashStart := &"airDashStart"
 
 	const airLightAttack := &"airLightAttack"
@@ -70,9 +73,6 @@ class Type:
 
 
 	#region Universal states
-
-	# Jumping behavior state
-	const jump := &"jump"
 
 	# Dashing behavior state
 	const dash := &"dash"
@@ -99,7 +99,7 @@ class Type:
 		Type.fall : Type.fall,
 		Type.ledgeGrab : Type.ledgeGrab,
 
-		Type.jump : Type.jump,
+		Type.jump : Type.airJump,
 		Type.dash : Type.dash,
 		Type.damage : Type.damage,
 		Type.death : Type.death,
@@ -250,7 +250,7 @@ func _highestPriorityAction() -> StringName:
 
 
 # Convenient function to setup the animation for states which only use the basic animation
-func _setupBasicAnimation() -> void:
+func _animationSetupBasic() -> void:
 	animator().animationDriver(
 		animator().unusedHandle(&"BasicTransition")).animation = data.ANIMATION_FULL_NAME
 	animator().transitionToUnused(&"BasicTransition", 

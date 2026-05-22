@@ -14,7 +14,7 @@ extends BasicAerialMovement
 #region Override functions
 
 func _implEnter() -> void:
-	_setupBasicAnimation()
+	_animationSetupBasic()
 
 func _implExit() -> void:
 	player().setMovementVertical(0.0)

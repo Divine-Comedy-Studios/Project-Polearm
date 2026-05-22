@@ -40,7 +40,7 @@ func _implEnter() -> void:
 	resources().jumpCount.value = 0
 	player().setMovement(Vector3.ZERO)
 
-	_setupBasicAnimation()
+	_animationSetupBasic()
 
 func _implExit() -> void:
 	_lastPosition = player().global_position
