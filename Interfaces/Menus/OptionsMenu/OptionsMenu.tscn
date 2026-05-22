@@ -26,11 +26,11 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=1791295312]
-custom_minimum_size = Vector2(300, 536)
 layout_mode = 2
-theme_override_constants/separation = 9
+theme_override_constants/separation = 40
 
 [node name="Game" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1782292192]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_vertical = 3
 focus_neighbor_top = NodePath("../Keyboard")
@@ -39,6 +39,7 @@ text = "UI_OPTIONS_GAMEPLAY"
 script = ExtResource("1_4i0wx")
 
 [node name="Video" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1311041032]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_vertical = 3
 focus_neighbor_top = NodePath("../Game")
@@ -47,6 +48,7 @@ text = "UI_OPTIONS_VIDEO"
 script = ExtResource("1_4i0wx")
 
 [node name="Audio" type="Button" parent="CenterContainer/VBoxContainer" unique_id=39059709]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_vertical = 3
 focus_neighbor_top = NodePath("../Video")
@@ -55,6 +57,7 @@ text = "UI_OPTIONS_AUDIO"
 script = ExtResource("1_4i0wx")
 
 [node name="Controller" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1959844565]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_vertical = 3
 focus_neighbor_top = NodePath("../Audio")
@@ -63,6 +66,7 @@ text = "UI_OPTIONS_CONTROLLER"
 script = ExtResource("1_4i0wx")
 
 [node name="Keyboard" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1797674113]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_vertical = 3
 focus_neighbor_top = NodePath("../Controller")

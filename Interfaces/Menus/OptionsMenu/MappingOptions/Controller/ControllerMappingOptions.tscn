@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://pgyhhnbdkno5" path="res://Interfaces/Menus/OptionsMenu/MappingOptions/MappingOptions.gd" id="1_a1q1k"]
 [ext_resource type="PackedScene" uid="uid://cebbhco3k6a5n" path="res://Interfaces/UIElements/ActionMappingButton.tscn" id="2_4b14h"]
 
-[node name="ControllerMapping" type="Control" unique_id=984357258 node_paths=PackedStringArray("_buttonContainer")]
+[node name="ControllerMapping" type="Control" unique_id=984357258]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,7 +14,6 @@ script = ExtResource("1_a1q1k")
 MAPPING_TYPE = "controller"
 TYPE = 9
 BACK_MENU = 4
-_buttonContainer = NodePath("CenterContainer/HBoxContainer")
 metadata/_custom_type_script = "uid://cyn28bbc16luj"
 
 [node name="CenterContainer" type="CenterContainer" parent="." unique_id=2078417268]
@@ -26,6 +25,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer" unique_id=1837179978]
+custom_minimum_size = Vector2(800, 0)
 layout_mode = 2
 theme_override_constants/separation = 100
 

@@ -11,16 +11,16 @@ extends InterfaceState
 #region Scene members
 
 # All Setting Variables
-@onready var langSetting : OptionButton = $"CenterContainer/MarginContainer/HBoxContainer/Buttons/Language"
-@onready var camSensSetting : HSlider = $"CenterContainer/MarginContainer/HBoxContainer/Buttons/HBoxContainer/Sensitivity"
-@onready var yInvSetting : CheckButton = $"CenterContainer/MarginContainer/HBoxContainer/Buttons/InverseY"
-@onready var camShakeSetting : HSlider = $"CenterContainer/MarginContainer/HBoxContainer/Buttons/HBoxContainer2/CamShake"
-@onready var rumSetting : HSlider = $"CenterContainer/MarginContainer/HBoxContainer/Buttons/HBoxContainer3/Rumble"
+@onready var langSetting : OptionButton = $"CenterContainer/MarginContainer/Labels/HBoxContainer1/LanguageButton"
+@onready var camSensSetting : HSlider = $"CenterContainer/MarginContainer/Labels/HBoxContainer2/HBoxContainer/Sensitivity"
+@onready var yInvSetting : CheckBox = $"CenterContainer/MarginContainer/Labels/HBoxContainer3/InverseY"
+@onready var camShakeSetting : HSlider = $"CenterContainer/MarginContainer/Labels/HBoxContainer4/HBoxContainer/CamShake"
+@onready var rumSetting : HSlider = $"CenterContainer/MarginContainer/Labels/HBoxContainer5/HBoxContainer/Rumble"
 
 # All Numerics
-@onready var camSensLabel : Label = $"CenterContainer/MarginContainer/HBoxContainer/Buttons/HBoxContainer/Label"
-@onready var camShakeLabel : Label = $"CenterContainer/MarginContainer/HBoxContainer/Buttons/HBoxContainer2/Label"
-@onready var rumLabel : Label = $"CenterContainer/MarginContainer/HBoxContainer/Buttons/HBoxContainer3/Label"
+@onready var camSensLabel : Label = $"CenterContainer/MarginContainer/Labels/HBoxContainer2/HBoxContainer/Label"
+@onready var camShakeLabel : Label = $"CenterContainer/MarginContainer/Labels/HBoxContainer4/HBoxContainer/Label"
+@onready var rumLabel : Label = $"CenterContainer/MarginContainer/Labels/HBoxContainer5/HBoxContainer/Label"
 
 #endregion
 

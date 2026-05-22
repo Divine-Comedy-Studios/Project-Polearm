@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://b8ng1m4gseuer"]
 
 [ext_resource type="Script" uid="uid://6tv3tv4exou" path="res://Interfaces/Menus/OptionsMenu/VideoOptions/VideoOptions.gd" id="1_gwafx"]
+[ext_resource type="Theme" uid="uid://eptqqy8sm6gl" path="res://Interfaces/Themes/MenuTheme.tres" id="1_qmr7p"]
 
 [node name="VideoOptions" type="Control" unique_id=2031472548]
 layout_mode = 3
@@ -9,6 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_qmr7p")
 script = ExtResource("1_gwafx")
 metadata/_custom_type_script = "uid://cyn28bbc16luj"
 
@@ -30,34 +32,22 @@ theme_override_constants/separation = 30
 alignment = 1
 
 [node name="Labels" type="VBoxContainer" parent="CenterContainer/MarginContainer/HBoxContainer" unique_id=418598839]
+custom_minimum_size = Vector2(800, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 30
 
-[node name="WindowMode" type="Label" parent="CenterContainer/MarginContainer/HBoxContainer/Labels" unique_id=1420429012]
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/MarginContainer/HBoxContainer/Labels" unique_id=952924380]
+layout_mode = 2
+
+[node name="WindowMode" type="Label" parent="CenterContainer/MarginContainer/HBoxContainer/Labels/HBoxContainer" unique_id=1420429012]
 layout_mode = 2
 text = "UI_VIDEOOPTIONS_WINDOWMODE"
+vertical_alignment = 1
 
-[node name="Resolution" type="Label" parent="CenterContainer/MarginContainer/HBoxContainer/Labels" unique_id=1929686736]
+[node name="WindowMode2" type="OptionButton" parent="CenterContainer/MarginContainer/HBoxContainer/Labels/HBoxContainer" unique_id=959292216]
 layout_mode = 2
-text = "UI_VIDEOOPTIONS_RESOLUTION"
-
-[node name="Vsync" type="Label" parent="CenterContainer/MarginContainer/HBoxContainer/Labels" unique_id=883042489]
-layout_mode = 2
-text = "UI_VIDEOOPTIONS_VSYNC"
-
-[node name="Gamma" type="Label" parent="CenterContainer/MarginContainer/HBoxContainer/Labels" unique_id=1172104311]
-layout_mode = 2
-text = "UI_VIDEOOPTIONS_GAMMA
-"
-
-[node name="Buttons" type="VBoxContainer" parent="CenterContainer/MarginContainer/HBoxContainer" unique_id=379993931]
-layout_mode = 2
-size_flags_horizontal = 8
-theme_override_constants/separation = 30
-
-[node name="WindowMode" type="OptionButton" parent="CenterContainer/MarginContainer/HBoxContainer/Buttons" unique_id=959292216]
-layout_mode = 2
+size_flags_horizontal = 10
 item_count = 3
 popup/item_0/text = "UI_VIDEOOPTIONS_WINDOWED"
 popup/item_0/id = 0
@@ -66,35 +56,65 @@ popup/item_1/id = 3
 popup/item_2/text = "UI_VIDEOOPTIONS_BORDERLESS"
 popup/item_2/id = 1
 
-[node name="Resolution" type="OptionButton" parent="CenterContainer/MarginContainer/HBoxContainer/Buttons" unique_id=1035395494]
+[node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/MarginContainer/HBoxContainer/Labels" unique_id=316492088]
 layout_mode = 2
-item_count = 5
+
+[node name="Resolution" type="Label" parent="CenterContainer/MarginContainer/HBoxContainer/Labels/HBoxContainer2" unique_id=1929686736]
+layout_mode = 2
+text = "UI_VIDEOOPTIONS_RESOLUTION"
+vertical_alignment = 1
+
+[node name="Resolution2" type="OptionButton" parent="CenterContainer/MarginContainer/HBoxContainer/Labels/HBoxContainer2" unique_id=1035395494]
+layout_mode = 2
+size_flags_horizontal = 10
+item_count = 4
 popup/item_0/text = "UI_VIDEOOPTIONS_ULTRAWIDE"
 popup/item_0/id = 0
 popup/item_1/text = "UI_VIDEOOPTIONS_RES_1080P"
 popup/item_1/id = 1
 popup/item_2/text = "UI_VIDEOOPTIONS_RES_900P"
 popup/item_2/id = 2
-popup/item_3/text = "UI_VIDEOOPTIONS_RES_700P"
+popup/item_3/text = "UI_VIDEOOPTIONS_RES_720P"
 popup/item_3/id = 3
-popup/item_4/text = "UI_VIDEOOPTIONS_RES_540P"
-popup/item_4/id = 4
 
-[node name="Vsync" type="CheckButton" parent="CenterContainer/MarginContainer/HBoxContainer/Buttons" unique_id=495381549]
+[node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/MarginContainer/HBoxContainer/Labels" unique_id=1129917660]
 layout_mode = 2
 
-[node name="Gamma" type="HBoxContainer" parent="CenterContainer/MarginContainer/HBoxContainer/Buttons" unique_id=827779304]
+[node name="Vsync" type="Label" parent="CenterContainer/MarginContainer/HBoxContainer/Labels/HBoxContainer3" unique_id=883042489]
+layout_mode = 2
+text = "UI_VIDEOOPTIONS_VSYNC"
+vertical_alignment = 1
+
+[node name="Vsync2" type="CheckBox" parent="CenterContainer/MarginContainer/HBoxContainer/Labels/HBoxContainer3" unique_id=343143201]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="CenterContainer/MarginContainer/HBoxContainer/Labels" unique_id=1384161364]
 layout_mode = 2
 
-[node name="Gamma" type="HSlider" parent="CenterContainer/MarginContainer/HBoxContainer/Buttons/Gamma" unique_id=1471668902]
+[node name="Gamma" type="Label" parent="CenterContainer/MarginContainer/HBoxContainer/Labels/HBoxContainer4" unique_id=1172104311]
 layout_mode = 2
-size_flags_horizontal = 3
+text = "UI_VIDEOOPTIONS_GAMMA"
+vertical_alignment = 1
+
+[node name="Gamma2" type="HBoxContainer" parent="CenterContainer/MarginContainer/HBoxContainer/Labels/HBoxContainer4" unique_id=827779304]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="Gamma" type="HSlider" parent="CenterContainer/MarginContainer/HBoxContainer/Labels/HBoxContainer4/Gamma2" unique_id=1471668902]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+size_flags_horizontal = 10
 size_flags_vertical = 4
 min_value = 0.1
 max_value = 3.0
 step = 0.1
 value = 0.1
 
-[node name="Label" type="Label" parent="CenterContainer/MarginContainer/HBoxContainer/Buttons/Gamma" unique_id=1635183455]
+[node name="Label" type="Label" parent="CenterContainer/MarginContainer/HBoxContainer/Labels/HBoxContainer4/Gamma2" unique_id=1635183455]
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
+size_flags_horizontal = 8
 text = "0.0"
+horizontal_alignment = 3
