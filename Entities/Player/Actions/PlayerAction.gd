@@ -139,12 +139,20 @@ enum Priority {
 #endregion
 
 
+#region Member variables
+
+var _queue : PlayerAction = null
+
+#endregion
+
+
 #region Override functions
 
 func _enter() -> void:
 	_implEnter()
 
 func _exit() -> void:
+	_queue = null
 	_implExit()
 
 
@@ -213,11 +221,14 @@ func _checkAndSetQueue() -> void:
 		var action := _context.action(actionType) as PlayerAction
 		if not action.QUEUEABLE or actionViability(action) != 1:
 			continue
+		if _queue == null or hasHigherPriority(action, _queue):
+			_queue = action
+			_insertComboPause()
 
-		_context.pushActionQueue(actionType)
-		_insertComboPause()
-
-		return
+			return
+	
+	if _queue != null:
+		_context.pushActionQueue(_queue.TYPE)
 
 # Checks if a pause has been detected and a pause is part of the combo
 func _insertComboPause() -> void:

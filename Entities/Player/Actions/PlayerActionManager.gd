@@ -87,8 +87,8 @@ func _processInputs():
 		inputManager.inputs.actions = [ popActionForced() ]
 		
 	else:
-		_processInputBuffer()
 		_processActionQueue()
+		_processInputBuffer()
 		_processAerialStates()
 
 		# Sort current inputs
