@@ -128,9 +128,6 @@ func interrupt(actionType : StringName) -> StringName:
 
 # Frame data interface
 
-func vulnerable() -> bool:
-	return _context.frameData.vulnerable(data.ANIMATION_NAME, _progress)
-
 func interruptable() -> bool:
 	return _context.frameData.interruptable(data.ANIMATION_NAME, _progress)
 
