@@ -28,16 +28,18 @@ class LedgeData:
 @export var MAX_RUN_SPEED : float = 5.0
 @export var GROUNDED_ACCELERATION : float = 30.0
 @export var GROUNDED_FRICTION : float = 30.0
-@export var REDUCED_GROUNDED_FRICTION : float = 15.0
+@export var REDUCED_GROUNDED_FRICTION : float = 5.0
 
 @export_group("Aerial movement settings")
 @export var MAX_AERIAL_SPEED : float = 5.0
 @export var AERIAL_ACCELERATION : float = 20.0
 @export var AERIAL_FRICTION : float = 10.0
+@export var REDUCED_AERIAL_FRICTION : float = 5.0
 
 @export_group("Jump settings")
 @export var BASE_JUMP_VELOCITY : float = 7.0
 @export var JUMP_ACCELERATION : float = 30.0
+@export var REDUCED_JUMP_GRAVITY : float = 10.0
 
 @export_group("Ledge settings")
 @export var LEDGE_MAX_DISTANCE : float = 0.2

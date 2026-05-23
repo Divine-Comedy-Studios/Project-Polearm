@@ -9,7 +9,7 @@ func _viable() -> bool:
 
 
 func _implInit() -> void:
-	_aerialFriction = physics().AERIAL_FRICTION
+	_aerialFriction = physics().REDUCED_AERIAL_FRICTION
 
 func _implEnter() -> void:
 	resources().jumpCount.value += 1

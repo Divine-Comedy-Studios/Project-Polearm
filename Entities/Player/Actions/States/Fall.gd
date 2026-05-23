@@ -11,6 +11,13 @@ extends BasicAerialMovement
 #endregion
 
 
+#region Member variables
+
+var _terminalVel : float = GRAVITY
+
+#endregion
+
+
 #region Override functions
 
 func _implEnter() -> void:
@@ -22,11 +29,12 @@ func _implExit() -> void:
 
 func _tick(delta : float) -> void:
 	# Gravity
-	var terminalVel := TERMINAL_VELOCITY
 
 	if player().velocity.y < 0:
 		if inputs().modifiers.has(Type.jump):
-			terminalVel = FLOATING_TERMINAL_VELOCITY
+			_terminalVel = FLOATING_TERMINAL_VELOCITY
+		else:
+			_terminalVel = TERMINAL_VELOCITY
 
 		# Only do ledge detection if the player is properly falling and not deaccelerating
 		context().physics.sweepLedge()
@@ -34,7 +42,7 @@ func _tick(delta : float) -> void:
 		if context().physics.ledgeData.collided:
 			context().pushActionQueue(Type.ledgeGrab)
 
-	player().accelerateVertical(-terminalVel, GRAVITY * delta)
+	player().accelerateVertical(-_terminalVel, GRAVITY * delta)
 	moveAerial(delta)
 
 

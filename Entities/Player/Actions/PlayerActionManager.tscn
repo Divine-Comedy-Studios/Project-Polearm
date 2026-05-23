@@ -195,6 +195,8 @@ process_mode = 4
 script = ExtResource("17_fh6tg")
 _timer = NodePath("../DashTimer")
 TARGET_TYPE = &"dash"
+INPUT_BUFFER_FRAMES = 4
+QUEUEABLE = true
 TYPE = &"dashStart"
 PRIORITY = 51
 data = SubResource("Resource_wu1xb")
@@ -204,6 +206,8 @@ metadata/_custom_type_script = "uid://jc1g0sv32qq1"
 process_mode = 4
 script = ExtResource("16_yl8et")
 TARGET_TYPE = &"dash"
+INPUT_BUFFER_FRAMES = 4
+QUEUEABLE = true
 TYPE = &"airDashStart"
 PRIORITY = 51
 data = SubResource("Resource_6ns0w")
@@ -265,10 +269,8 @@ script = ExtResource("6_urjga")
 JUMP_STILL_DATA = SubResource("Resource_6evvv")
 JUMP_RUN_DATA = SubResource("Resource_obuag")
 INPUT_BUFFER_FRAMES = 4
-QUEUEABLE = true
 TYPE = &"jumpStart"
 PRIORITY = 30
-REPEATABLE = true
 metadata/_custom_type_script = "uid://jc1g0sv32qq1"
 
 [node name="Jump" type="Node" parent="." unique_id=80986144]
@@ -279,8 +281,6 @@ QUEUEABLE = null
 ENEMY_DETECTABLE = null
 TYPE = &"jump"
 PRIORITY = 31
-REPEATABLE = null
-ENERGY_COST = null
 data = SubResource("Resource_djij5")
 metadata/_custom_type_script = "uid://jc1g0sv32qq1"
 
@@ -288,8 +288,9 @@ metadata/_custom_type_script = "uid://jc1g0sv32qq1"
 process_mode = 4
 script = ExtResource("11_6ns0w")
 TARGET_TYPE = &"jump"
+INPUT_BUFFER_FRAMES = 4
 TYPE = &"airJumpStart"
-PRIORITY = 30
+PRIORITY = 32
 data = SubResource("Resource_7bymk")
 metadata/_custom_type_script = "uid://jc1g0sv32qq1"
 
@@ -297,7 +298,7 @@ metadata/_custom_type_script = "uid://jc1g0sv32qq1"
 process_mode = 4
 script = ExtResource("18_wu1xb")
 TYPE = &"airJump"
-PRIORITY = 31
+PRIORITY = 30
 data = SubResource("Resource_6awf7")
 metadata/_custom_type_script = "uid://jc1g0sv32qq1"
 
