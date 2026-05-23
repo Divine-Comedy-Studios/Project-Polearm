@@ -2,13 +2,19 @@ extends PlayerAction
 class_name BasicAerialMovement
 
 
-#region Member variables
+#region Exported variables
 
-# Movement settings
+@export var MAX_ENTRY_SPEED : float = 10.0
+
+#endregion
+
+
+#region Member variables
 
 var _maxSpeed : float = 0.0
 var _accel : float = 0.0
 var _friction : float = 0.0
+var _entrySpeed : float = 0.0
 
 #endregion
 
@@ -25,9 +31,9 @@ func _implInit() -> void:
 
 #region Public functions
 
-func moveAerial(delta : float) -> void:	
-	# Movement
-	var targetSpeed := minf(inputs().inputMagnitude * _maxSpeed, _maxSpeed)
+func moveAerial(delta : float) -> void:
+	var cap := maxf(_entrySpeed, _maxSpeed)
+	var targetSpeed := minf(inputs().inputMagnitude * cap, cap)
 
 	if is_zero_approx(targetSpeed):
 		player().accelerateFlat(Vector3.ZERO, _friction * delta)

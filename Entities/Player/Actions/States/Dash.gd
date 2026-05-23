@@ -26,7 +26,7 @@ func _implEnter() -> void:
 	else:
 		_direction = _direction.normalized()
 
-	_animationSetupBasic()
+	_setupBasicAnimation()
 
 
 func _tick(delta : float) -> void:
