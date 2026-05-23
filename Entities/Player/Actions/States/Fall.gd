@@ -4,7 +4,8 @@ extends BasicAerialMovement
 #region Exported variables
 
 @export_group("Gravity settings")
-@export var GRAVITY : float = 20.0
+@export var FALL_GRAVITY : float = 50.0
+@export var JUMP_CUT_GRAVITY : float = 80.0
 @export var FLOATING_TERMINAL_VELOCITY : float = 2.0
 @export var TERMINAL_VELOCITY : float = 30.0
 
@@ -14,27 +15,33 @@ extends BasicAerialMovement
 #region Override functions
 
 func _implEnter() -> void:
-	_animationSetupBasic()
+	_entrySpeed = minf(Vector3(player().velocity.x, 0.0, player().velocity.z).length(), MAX_ENTRY_SPEED)
+	_setupBasicAnimation()
 
 func _implExit() -> void:
 	player().setMovementVertical(0.0)
 
 
 func _tick(delta : float) -> void:
-	# Gravity
-	var terminalVel := TERMINAL_VELOCITY
+		# Gravity
 
-	if player().velocity.y < 0:
-		if inputs().modifiers.has(Type.jump):
-			terminalVel = FLOATING_TERMINAL_VELOCITY
+	var gravity : float
+	var terminalVel : float
+
+	if inputs().modifiers.has(Type.jump):
+		gravity = FALL_GRAVITY
+		terminalVel = FLOATING_TERMINAL_VELOCITY
+	else:
+		gravity = JUMP_CUT_GRAVITY
+		terminalVel = TERMINAL_VELOCITY
 
 		# Only do ledge detection if the player is properly falling and not deaccelerating
-		context().physics.sweepLedge()
+	context().physics.sweepLedge()
 
-		if context().physics.ledgeData.collided:
-			context().pushActionQueue(Type.ledgeGrab)
+	if context().physics.ledgeData.collided:
+		context().pushActionQueue(Type.ledgeGrab)
 
-	player().accelerateVertical(-terminalVel, GRAVITY * delta)
+	player().accelerateVertical(-terminalVel, gravity * delta)
 	moveAerial(delta)
 
 

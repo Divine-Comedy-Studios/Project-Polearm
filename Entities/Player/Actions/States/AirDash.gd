@@ -26,7 +26,7 @@ func _implEnter() -> void:
 	if _direction.is_zero_approx():
 		_direction = player().forward()
 	
-	_animationSetupBasic()
+	_setupBasicAnimation()
 
 
 func _tick(delta : float) -> void:
