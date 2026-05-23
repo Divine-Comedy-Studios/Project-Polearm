@@ -19,6 +19,7 @@
 [ext_resource type="Script" uid="uid://c53u6shanxeug" path="res://Entities/Player/Actions/States/TransitionAction/AirDashStart.gd" id="16_yl8et"]
 [ext_resource type="Script" uid="uid://tpcj3x2f82ym" path="res://Entities/Player/Actions/States/Sprint.gd" id="17_6ns0w"]
 [ext_resource type="Script" uid="uid://3fen78mrevq4" path="res://Entities/Player/Actions/States/TransitionAction/DashStart.gd" id="17_fh6tg"]
+[ext_resource type="Script" uid="uid://b7l2j8josovnk" path="res://Entities/Player/Actions/States/AirJump.gd" id="18_wu1xb"]
 
 [sub_resource type="Resource" id="Resource_8427c"]
 script = ExtResource("5_8427c")
@@ -122,6 +123,13 @@ ANIMATION_NAME = &"JumpMoveStart"
 ANIMATION_FADE_TIME = 0.05
 metadata/_custom_type_script = "uid://cqy3drroysy4k"
 
+[sub_resource type="Resource" id="Resource_djij5"]
+script = ExtResource("5_8427c")
+ANIMATION_LIBRARY_NAME = &"Movement"
+ANIMATION_NAME = &"Jump"
+ANIMATION_FADE_TIME = 0.1
+metadata/_custom_type_script = "uid://cqy3drroysy4k"
+
 [sub_resource type="Resource" id="Resource_7bymk"]
 script = ExtResource("5_8427c")
 ANIMATION_LIBRARY_NAME = &"Movement"
@@ -129,14 +137,7 @@ ANIMATION_NAME = &"JumpDoubleStart"
 ANIMATION_FADE_TIME = 0.05
 metadata/_custom_type_script = "uid://cqy3drroysy4k"
 
-[sub_resource type="Resource" id="Resource_re4dn"]
-script = ExtResource("5_8427c")
-ANIMATION_LIBRARY_NAME = &"Movement"
-ANIMATION_NAME = &"Jump"
-ANIMATION_FADE_TIME = 0.1
-metadata/_custom_type_script = "uid://cqy3drroysy4k"
-
-[sub_resource type="Resource" id="Resource_dvgj7"]
+[sub_resource type="Resource" id="Resource_6awf7"]
 script = ExtResource("5_8427c")
 ANIMATION_LIBRARY_NAME = &"Movement"
 ANIMATION_NAME = &"JumpDouble"
@@ -270,6 +271,19 @@ PRIORITY = 30
 REPEATABLE = true
 metadata/_custom_type_script = "uid://jc1g0sv32qq1"
 
+[node name="Jump" type="Node" parent="." unique_id=80986144]
+process_mode = 4
+script = ExtResource("7_jverr")
+INPUT_BUFFER_FRAMES = null
+QUEUEABLE = null
+ENEMY_DETECTABLE = null
+TYPE = &"jump"
+PRIORITY = 31
+REPEATABLE = null
+ENERGY_COST = null
+data = SubResource("Resource_djij5")
+metadata/_custom_type_script = "uid://jc1g0sv32qq1"
+
 [node name="AirJumpStart" type="Node" parent="." unique_id=1893835723]
 process_mode = 4
 script = ExtResource("11_6ns0w")
@@ -279,15 +293,12 @@ PRIORITY = 30
 data = SubResource("Resource_7bymk")
 metadata/_custom_type_script = "uid://jc1g0sv32qq1"
 
-[node name="Jump" type="Node" parent="." unique_id=80986144]
+[node name="AirJump" type="Node" parent="." unique_id=1884686110]
 process_mode = 4
-script = ExtResource("7_jverr")
-JUMP_ACCELERATION = 20.0
-MAX_JUMP_VELOCITY = 10.0
-GROUND_JUMP_DATA = SubResource("Resource_re4dn")
-AIR_JUMP_DATA = SubResource("Resource_dvgj7")
-TYPE = &"jump"
+script = ExtResource("18_wu1xb")
+TYPE = &"airJump"
 PRIORITY = 31
+data = SubResource("Resource_6awf7")
 metadata/_custom_type_script = "uid://jc1g0sv32qq1"
 
 [node name="LedgeGrab" type="Node" parent="." unique_id=403024180]
