@@ -163,6 +163,7 @@ one_shot = true
 process_mode = 4
 visible = false
 script = ExtResource("2_71nor")
+MAX_RUN_SPEED = 5.5
 _context = NodePath("..")
 metadata/_custom_type_script = "uid://jth8cpsjn3vy"
 
@@ -276,9 +277,6 @@ metadata/_custom_type_script = "uid://jc1g0sv32qq1"
 [node name="Jump" type="Node" parent="." unique_id=80986144]
 process_mode = 4
 script = ExtResource("7_jverr")
-INPUT_BUFFER_FRAMES = null
-QUEUEABLE = null
-ENEMY_DETECTABLE = null
 TYPE = &"jump"
 PRIORITY = 31
 data = SubResource("Resource_djij5")
