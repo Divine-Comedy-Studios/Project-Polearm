@@ -63,8 +63,8 @@ func _processAnimations() -> void:
 	var normRange := clampf(
 		PPUtil.Math.toRangeNormalized(
 			player().velocity.length(), 
-			physics().MAX_WALK_SPEED, 
-			physics().MAX_RUN_SPEED),
+			physics().WALK_SPEED, 
+			physics().RUN_SPEED),
 		0.0, 1.0)
 	var duration := _jumpStillPeriod + normRange * (_jumpRunPeriod - _jumpStillPeriod)
 	frameDataScale = _jumpStillPeriod / duration

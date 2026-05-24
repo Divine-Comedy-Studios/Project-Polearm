@@ -22,8 +22,8 @@ const MIN_PERIOD_MULTIPLIER := 0.7
 
 # Movement settings
 
-var _maxWalkSpeed : float = 0.0
-var _maxRunSpeed : float = 0.0
+var _walkSpeed : float = 0.0
+var _runSpeed : float = 0.0
 var _accel : float = 0.0
 
 
@@ -47,8 +47,8 @@ func _implInit() -> void:
 	assert(RUN_DATA != null, "PlayerActionMove._implInit(): Running action data not assigned")
 
 
-	_maxWalkSpeed = physics().MAX_WALK_SPEED
-	_maxRunSpeed = physics().MAX_RUN_SPEED
+	_walkSpeed = physics().WALK_SPEED
+	_runSpeed = physics().RUN_SPEED
 	_accel = physics().GROUNDED_ACCELERATION
 
 
@@ -75,7 +75,7 @@ func _implExit() -> void:
 
 func _tick(delta : float) -> void:
 	# Movement
-	var targetSpeed := minf(inputs().inputMagnitude * _maxRunSpeed, _maxRunSpeed)
+	var targetSpeed := minf(inputs().inputMagnitude * _runSpeed, _runSpeed)
 	player().accelerateFlat(inputs().direction * targetSpeed, _accel * delta)
 
 	# Animation
@@ -88,7 +88,7 @@ func _tick(delta : float) -> void:
 
 func _processAnimations() -> void:
 	var normRange := maxf(
-		clampf(PPUtil.Math.toRangeNormalized(player().velocity.length(), _maxWalkSpeed, _maxRunSpeed), -1.0, 1.0), 
+		clampf(PPUtil.Math.toRangeNormalized(player().velocity.length(), _walkSpeed, _runSpeed), -1.0, 1.0), 
 		-MIN_PERIOD_MULTIPLIER
 	)
 	_period = maxf(

@@ -24,14 +24,15 @@ class LedgeData:
 #region Exported variables
 
 @export_group("Grounded movement settings")
-@export var MAX_WALK_SPEED : float = 2.0
-@export var MAX_RUN_SPEED : float = 5.0
+@export var WALK_SPEED : float = 2.0
+@export var RUN_SPEED : float = 5.5
+@export var SPRINT_SPEED : float = 12.0
 @export var GROUNDED_ACCELERATION : float = 30.0
 @export var GROUNDED_FRICTION : float = 30.0
 @export var REDUCED_GROUNDED_FRICTION : float = 5.0
 
 @export_group("Aerial movement settings")
-@export var MAX_AERIAL_SPEED : float = 5.0
+@export var MAX_AERIAL_SPEED : float = 6.5
 @export var AERIAL_ACCELERATION : float = 20.0
 @export var AERIAL_FRICTION : float = 10.0
 @export var REDUCED_AERIAL_FRICTION : float = 5.0

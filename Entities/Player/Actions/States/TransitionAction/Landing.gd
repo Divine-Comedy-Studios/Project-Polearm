@@ -56,8 +56,8 @@ func _processAnimations() -> void:
 	var normRange := clampf(
 		PPUtil.Math.toRangeNormalized(
 			Vector2(player().velocity.x, player().velocity.z).length(), 
-			physics().MAX_WALK_SPEED, 
-			physics().MAX_RUN_SPEED),
+			physics().WALK_SPEED, 
+			physics().RUN_SPEED),
 		0.0, 1.0)
 	var duration := _landStillPeriod + normRange * (_landRunPeriod - _landStillPeriod)
 	frameDataScale = _landStillPeriod / duration

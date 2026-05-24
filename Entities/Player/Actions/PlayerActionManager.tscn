@@ -14,7 +14,7 @@
 [ext_resource type="Script" uid="uid://vahqysuxajcw" path="res://Entities/Player/Actions/States/LightAttack.gd" id="8_6evvv"]
 [ext_resource type="Script" uid="uid://bb1weubijn6l2" path="res://Entities/Player/Actions/States/TransitionAction/AirJumpStart.gd" id="11_6ns0w"]
 [ext_resource type="Script" uid="uid://d2mcxn2vpp7ne" path="res://Entities/Player/Actions/States/LedgeGrab.gd" id="13_71nor"]
-[ext_resource type="Script" path="res://Entities/Player/Actions/States/TransitionAction/Landing.gd" id="14_fh6tg"]
+[ext_resource type="Script" uid="uid://cw8j6wjk2wc80" path="res://Entities/Player/Actions/States/TransitionAction/Landing.gd" id="14_fh6tg"]
 [ext_resource type="Script" uid="uid://cg0qx1buj4734" path="res://Entities/Player/Actions/States/Dash.gd" id="15_y2nh2"]
 [ext_resource type="Script" uid="uid://c53u6shanxeug" path="res://Entities/Player/Actions/States/TransitionAction/AirDashStart.gd" id="16_yl8et"]
 [ext_resource type="Script" uid="uid://tpcj3x2f82ym" path="res://Entities/Player/Actions/States/Sprint.gd" id="17_6ns0w"]
@@ -163,11 +163,7 @@ one_shot = true
 process_mode = 4
 visible = false
 script = ExtResource("2_71nor")
-MAX_RUN_SPEED = 5.5
-REDUCED_GROUNDED_FRICTION = 0.0
-MAX_AERIAL_SPEED = 6.0
 AERIAL_ACCELERATION = 50.0
-AERIAL_FRICTION = 20.0
 BASE_JUMP_VELOCITY = 20.0
 JUMP_ACCELERATION = 20.0
 _context = NodePath("..")
@@ -284,6 +280,7 @@ metadata/_custom_type_script = "uid://jc1g0sv32qq1"
 [node name="Jump" type="Node" parent="." unique_id=80986144]
 process_mode = 4
 script = ExtResource("7_jverr")
+RISE_GRAVITY = 180.0
 jumpHeightFactor = 0.9
 TYPE = &"jump"
 PRIORITY = 31
