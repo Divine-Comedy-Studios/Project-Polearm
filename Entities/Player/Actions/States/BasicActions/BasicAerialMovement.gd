@@ -7,9 +7,9 @@ class_name BasicAerialMovement
 # Movement settings
 
 var _maxSpeed : float = 0.0
+var _maxSpeedSq : float = 0.0
 var _accel : float = 0.0
 var _friction : float = 0.0
-var _maxEntrySpeed : float = 12.0
 var _entrySpeed : float = 0.0
 
 #endregion
@@ -19,8 +19,10 @@ var _entrySpeed : float = 0.0
 
 func _implInit() -> void:
 	_maxSpeed = physics().MAX_AERIAL_SPEED
+	_maxSpeedSq = _maxSpeed * _maxSpeed
 	_accel = physics().AERIAL_ACCELERATION
 	_friction = physics().AERIAL_FRICTION
+	_entrySpeed = physics().SPRINT_SPEED
 
 #endregion
 
@@ -28,12 +30,11 @@ func _implInit() -> void:
 #region Public functions
 
 func moveAerial(delta : float) -> void:
-	var maxSpeedCap := maxf(_entrySpeed, _maxSpeed)
-	var targetSpeed := minf(inputs().inputMagnitude * maxSpeedCap, maxSpeedCap)
+	var targetSpeed := minf(inputs().inputMagnitude * _maxSpeed, _maxSpeed)
 
-	if is_zero_approx(targetSpeed):
-		player().accelerateFlat(Vector3.ZERO, _friction * delta)
-	else:
+	if not is_zero_approx(targetSpeed) and player().movement().length_squared() < _maxSpeedSq:
 		player().accelerateFlat(inputs().direction * targetSpeed, _accel * delta)
+	else:
+		player().accelerateFlat(Vector3.ZERO, _friction * delta)
 
 #endregion
