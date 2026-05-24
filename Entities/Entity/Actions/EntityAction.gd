@@ -116,14 +116,8 @@ func actionViability(action : EntityAction) -> int:
 	return 1
 
 
-# Interrupt immediately triggers a state switch aslong as the priority of the interrupt is higher than the priority of the current state
 func interrupt(actionType : StringName) -> StringName:
-	var action := _context.action(actionType) as EntityAction
-
-	if hasHigherPriority(action, self):
-		return actionType
-	
-	return Type.none
+	return actionType
 
 
 # Frame data interface
