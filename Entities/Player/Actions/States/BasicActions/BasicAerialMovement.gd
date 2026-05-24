@@ -32,9 +32,26 @@ func _implInit() -> void:
 func moveAerial(delta : float) -> void:
 	var targetSpeed := minf(inputs().inputMagnitude * _maxSpeed, _maxSpeed)
 
-	if not is_zero_approx(targetSpeed) and player().movement().length_squared() < _maxSpeedSq:
-		player().accelerateFlat(inputs().direction * targetSpeed, _accel * delta)
-	else:
-		player().accelerateFlat(Vector3.ZERO, _friction * delta)
+	if not is_zero_approx(targetSpeed):
+		# Get the old velocity
+		var velocity : Vector3 = player().movement()
+		var currentVelocity : Vector2 = Vector2(velocity.x, velocity.y)
+		var currentVelocityLen := currentVelocity.length_squared()
+		
+		# Conditionlessly accelerate the current velocity towards the requested direction
+		currentVelocity += inputs().inputDirection * inputs().inputMagnitude * _accel * delta
+		var newVelocityLen := currentVelocity.length_squared()
+
+		# If the velocity is larger than the max speed and hasn't gotten smaller, we normalize it and multiply it by its old length
+		if newVelocityLen > currentVelocityLen:
+			if currentVelocityLen > _maxSpeedSq: 
+				currentVelocity = (currentVelocity / sqrt(newVelocityLen)) * sqrt(currentVelocityLen)
+			elif newVelocityLen > _maxSpeedSq:
+				currentVelocity = (currentVelocity / sqrt(newVelocityLen)) * _maxSpeed
+
+		# Set the velocity
+		player().setMovementFlat3(currentVelocity)
+
+	player().accelerateFlat(Vector3.ZERO, _friction * delta)
 
 #endregion
