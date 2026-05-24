@@ -7,6 +7,7 @@
 
 [resource]
 script = ExtResource("3_fdwvo")
+inverse_scale_factor = 10.0
 entity_fgd = ExtResource("2_uaiaw")
 base_texture_dir = "res://Trenchbroom/textures"
 metadata/_custom_type_script = "uid://38q6k0ctahjn"
