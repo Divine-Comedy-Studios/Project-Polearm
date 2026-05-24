@@ -36,8 +36,10 @@ func _implInit() -> void:
 
 
 func _implEnter() -> void:
+	var velocity : Vector3 = player().movement()
+
 	if inputs().direction != Vector2.ZERO: # If the player is going in another direction, just snap him into the direction
-		player().setMovement(player().movement().length() * inputs().direction)
+		player().setMovementFlat(Vector2(velocity.x, velocity.z).length() * inputs().direction * physics().JUMP_DIRECTION_SNAP_FACTOR)
 
 	player().setMovementVertical(jumpHeightFactor * _baseJumpVel)
 
