@@ -31,6 +31,10 @@ class LedgeData:
 @export var GROUNDED_FRICTION : float = 30.0
 @export var REDUCED_GROUNDED_FRICTION : float = 5.0
 
+@export_group("Dash settings")
+@export var DASH_SPEED : float = 16.0
+@export var DASH_ACCELERATION : float = 50.0
+
 @export_group("Aerial movement settings")
 @export var MAX_AERIAL_SPEED : float = 6.5
 @export var AERIAL_ACCELERATION : float = 20.0
@@ -41,6 +45,7 @@ class LedgeData:
 @export var BASE_JUMP_VELOCITY : float = 7.0
 @export var JUMP_ACCELERATION : float = 30.0
 @export var REDUCED_JUMP_GRAVITY : float = 10.0
+@export var JUMP_DIRECTION_SNAP_FACTOR : float = 1.0
 
 @export_group("Ledge settings")
 @export var LEDGE_MAX_DISTANCE : float = 0.2
