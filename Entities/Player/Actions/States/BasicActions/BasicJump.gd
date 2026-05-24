@@ -7,7 +7,6 @@ class_name PlayerBasicJump
 @export_group("Dynamic jump settings")
 @export var MAX_TIME_MILLISECONDS : float = 0.1
 @export var RISE_GRAVITY : float = 60.0
-@export var JUMP_CUT_MULTIPLIER : float = 3.0
 
 #endregion
 
@@ -16,11 +15,12 @@ class_name PlayerBasicJump
 
 var _framesSinceStarted : float = 0.0
 
-@export_group("Dynamic jump")
-@export var jumpHeightFactor : float = 1.0
+@export var jumpHeightFactor : float = 1.0 # Export for testability, don't configure
 
 var _baseJumpVel : float = 0.0
 var _jumpAccel : float = 0.0
+
+var _gravity : float = 0.0 ### @todo Not a todo, but marker for when we want to change the jump gravity to be universal, remove otherwise
 
 #endregion
 
@@ -30,12 +30,17 @@ var _jumpAccel : float = 0.0
 func _implInit() -> void:
 	_baseJumpVel = physics().BASE_JUMP_VELOCITY
 	_jumpAccel = physics().JUMP_ACCELERATION
+	_gravity = physics().REDUCED_JUMP_GRAVITY
 
 	super._implInit()
 
 
 func _implEnter() -> void:
+	if inputs().direction != Vector2.ZERO: # If the player is going in another direction, just snap him into the direction
+		player().setMovement(player().movement().length() * inputs().direction)
+
 	player().setMovementVertical(jumpHeightFactor * _baseJumpVel)
+
 	_animationSetupBasic()
 
 func _implExit() -> void:
@@ -43,7 +48,7 @@ func _implExit() -> void:
 
 
 func _tick(delta : float) -> void:
-	if player().onCeiling():
+	if player().onCeiling() or player().movement().y == 0.0:
 		context().interrupt(Type.fall)
 		return
 
@@ -51,13 +56,12 @@ func _tick(delta : float) -> void:
 
 	# Additional jump velocity
 	if inputs().modifiers.has(Type.jump) and _framesSinceStarted < MAX_TIME_MILLISECONDS:
-		player().accelerateVertical(100.0, jumpHeightFactor * _jumpAccel * minf(delta, MAX_TIME_MILLISECONDS - _framesSinceStarted))
+		player().accelerateVertical(100.0, # Arbitrary maximum variable
+			jumpHeightFactor * _jumpAccel * minf(delta, MAX_TIME_MILLISECONDS - _framesSinceStarted)
+			+ RISE_GRAVITY * delta
+		)
 
-	# Rise gravity and jump cut
-	if not inputs().modifiers.has(Type.jump):
-		player().accelerateVertical(0.0, RISE_GRAVITY * JUMP_CUT_MULTIPLIER * delta)
-	else:
-		player().accelerateVertical(0.0, RISE_GRAVITY * delta)
+	player().accelerateVertical(0.0, RISE_GRAVITY * delta)
 
 	_framesSinceStarted += delta
 
