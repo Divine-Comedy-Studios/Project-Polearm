@@ -99,7 +99,10 @@ class Type:
 		Type.fall : Type.fall,
 		Type.ledgeGrab : Type.ledgeGrab,
 
-		Type.jump : Type.airJump,
+		# The jump types are mapped onto themselves as the start animations handles this
+		Type.jump : Type.jump,
+		Type.airJump : Type.airJump,
+
 		Type.dash : Type.dash,
 		Type.damage : Type.damage,
 		Type.death : Type.death,

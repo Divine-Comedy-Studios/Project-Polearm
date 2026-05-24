@@ -285,7 +285,7 @@ metadata/_custom_type_script = "uid://jc1g0sv32qq1"
 [node name="AirJumpStart" type="Node" parent="." unique_id=1893835723]
 process_mode = 4
 script = ExtResource("11_6ns0w")
-TARGET_TYPE = &"jump"
+TARGET_TYPE = &"airJump"
 INPUT_BUFFER_FRAMES = 4
 TYPE = &"airJumpStart"
 PRIORITY = 32
@@ -296,7 +296,7 @@ metadata/_custom_type_script = "uid://jc1g0sv32qq1"
 process_mode = 4
 script = ExtResource("18_wu1xb")
 TYPE = &"airJump"
-PRIORITY = 30
+PRIORITY = 31
 data = SubResource("Resource_6awf7")
 metadata/_custom_type_script = "uid://jc1g0sv32qq1"
 
