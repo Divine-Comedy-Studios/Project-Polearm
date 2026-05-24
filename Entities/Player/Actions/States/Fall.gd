@@ -4,8 +4,7 @@ extends BasicAerialMovement
 #region Exported variables
 
 @export_group("Gravity settings")
-@export var FALL_GRAVITY : float = 50.0
-@export var FAST_FALL_GRAVITY : float = 80.0
+@export var FALL_GRAVITY : float = 80.0
 @export var FLOATING_TERMINAL_VELOCITY : float = 2.0
 @export var TERMINAL_VELOCITY : float = 30.0
 
@@ -15,7 +14,6 @@ extends BasicAerialMovement
 #region Override functions
 
 func _implEnter() -> void:
-	_entrySpeed = minf(Vector3(player().velocity.x, 0.0, player().velocity.z).length(), _maxEntrySpeed)
 	_animationSetupBasic()
 
 func _implExit() -> void:
@@ -23,21 +21,18 @@ func _implExit() -> void:
 
 
 func _tick(delta : float) -> void:
-	var gravity : float
-	var terminalVel : float
+	var terminalVel := 0.0
 
-	if inputs().modifiers.has(Type.jump):
-		gravity = FALL_GRAVITY
+	if inputs().modifiers.has(Type.jump): # Check if player is floating
 		terminalVel = FLOATING_TERMINAL_VELOCITY
 	else:
-		gravity = FAST_FALL_GRAVITY
 		terminalVel = TERMINAL_VELOCITY
 
 	context().physics.sweepLedge()
 	if context().physics.ledgeData.collided:
 		context().pushActionQueue(Type.ledgeGrab)
 
-	player().accelerateVertical(-terminalVel, gravity * delta)
+	player().accelerateVertical(-terminalVel, FALL_GRAVITY * delta)
 	moveAerial(delta)
 
 
