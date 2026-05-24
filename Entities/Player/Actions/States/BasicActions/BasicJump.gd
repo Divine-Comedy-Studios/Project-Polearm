@@ -6,21 +6,18 @@ class_name PlayerBasicJump
 
 @export_group("Dynamic jump settings")
 @export var MAX_TIME_MILLISECONDS : float = 0.1
+@export var RISE_GRAVITY : float = 60.0
+@export var JUMP_CUT_MULTIPLIER : float = 3.0
 
 #endregion
 
 
 #region Member variables
 
-# Variable jump height
-
 var _framesSinceStarted : float = 0.0
 
 @export_group("Dynamic jump")
 @export var jumpHeightFactor : float = 1.0
-
-
-# Settings cache
 
 var _baseJumpVel : float = 0.0
 var _jumpAccel : float = 0.0
@@ -34,10 +31,11 @@ func _implInit() -> void:
 	_baseJumpVel = physics().BASE_JUMP_VELOCITY
 	_jumpAccel = physics().JUMP_ACCELERATION
 
+	super._implInit()
+
 
 func _implEnter() -> void:
 	player().setMovementVertical(jumpHeightFactor * _baseJumpVel)
-
 	_animationSetupBasic()
 
 func _implExit() -> void:
@@ -54,6 +52,12 @@ func _tick(delta : float) -> void:
 	# Additional jump velocity
 	if inputs().modifiers.has(Type.jump) and _framesSinceStarted < MAX_TIME_MILLISECONDS:
 		player().accelerateVertical(100.0, jumpHeightFactor * _jumpAccel * minf(delta, MAX_TIME_MILLISECONDS - _framesSinceStarted))
+
+	# Rise gravity and jump cut
+	if not inputs().modifiers.has(Type.jump):
+		player().accelerateVertical(0.0, RISE_GRAVITY * JUMP_CUT_MULTIPLIER * delta)
+	else:
+		player().accelerateVertical(0.0, RISE_GRAVITY * delta)
 
 	_framesSinceStarted += delta
 
