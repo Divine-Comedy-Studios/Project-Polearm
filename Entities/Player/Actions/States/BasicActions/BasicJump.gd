@@ -36,10 +36,9 @@ func _implInit() -> void:
 
 
 func _implEnter() -> void:
-	var velocity : Vector3 = player().movement()
+	var horizontalVel := Vector2(player().movement().x, player().movement().z)
 
-	if inputs().direction != Vector2.ZERO: # If the player is going in another direction, just snap him into the direction
-		var horizontalVel := Vector2(velocity.x, velocity.z)
+	if not inputs().direction.is_zero_approx() and not horizontalVel.is_zero_approx(): # If the player is going in another direction, just snap him into the direction
 		var velLen := horizontalVel.length()
 		var directionVelocityDot := inputs().direction.dot(horizontalVel / velLen)
 
