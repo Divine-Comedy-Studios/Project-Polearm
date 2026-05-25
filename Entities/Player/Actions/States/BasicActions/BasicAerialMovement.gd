@@ -35,7 +35,7 @@ func moveAerial(delta : float) -> void:
 	if not is_zero_approx(targetSpeed):
 		# Get the old velocity
 		var velocity : Vector3 = player().movement()
-		var currentVelocity : Vector2 = Vector2(velocity.x, velocity.y)
+		var currentVelocity : Vector2 = Vector2(velocity.x, velocity.z)
 		var currentVelocityLen := currentVelocity.length_squared()
 		
 		# Conditionlessly accelerate the current velocity towards the requested direction
