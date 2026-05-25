@@ -262,7 +262,7 @@ metadata/_custom_type_script = "uid://jc1g0sv32qq1"
 [node name="SprintStop" type="Node" parent="." unique_id=33316294]
 process_mode = 4
 script = ExtResource("6_yl8et")
-FRICTION_MULTIPLIER = 0.9
+FRICTION_MULTIPLIER = 0.7
 TYPE = &"sprintStop"
 PRIORITY = 5
 data = SubResource("Resource_x5srs")
@@ -272,7 +272,7 @@ metadata/_custom_type_script = "uid://jc1g0sv32qq1"
 process_mode = 4
 script = ExtResource("4_8427c")
 FALL_GRAVITY = 55.0
-FLOATING_TERMINAL_VELOCITY = 7.0
+FLOATING_TERMINAL_VELOCITY = 4.0
 TERMINAL_VELOCITY = 20.0
 TYPE = &"fall"
 PRIORITY = 20
