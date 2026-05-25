@@ -131,6 +131,8 @@ func _processActionQueue() -> void:
 func _processAerialStates() -> void:
 	if (entity as Player).onGround():
 		resources.jumpCount.value = 0
+		resources.airDashed = false
+
 		return
 	
 	var aerialInputs : Array[StringName] = []

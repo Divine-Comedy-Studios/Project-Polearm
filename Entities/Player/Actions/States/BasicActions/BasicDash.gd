@@ -31,7 +31,7 @@ func _implEnter() -> void:
 			var velLen := horizontalVel.length()
 			var directionVelocityDot := inputDir.dot(horizontalVel / velLen)
 
-			player().setMovementFlat3(velLen * inputDir * (physics().DIRECTIONAL_SNAP_FACTOR * (1.0 - directionVelocityDot) + directionVelocityDot))
+			player().setMovement(_direction * velLen * (physics().DIRECTIONAL_SNAP_FACTOR * (1.0 - directionVelocityDot) + directionVelocityDot))
 
 	_animationSetupBasic()
 
