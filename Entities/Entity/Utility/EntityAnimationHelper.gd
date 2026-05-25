@@ -120,7 +120,6 @@ func _sync_frame_data_library() -> void:
 
 	var all_animations: PackedStringArray = _animationPlayer.get_animation_list()
 
-	var edited := false
 	for full_name : String in all_animations:
 		var source_anim : Animation = _animationPlayer.get_animation(full_name)
 
@@ -131,30 +130,36 @@ func _sync_frame_data_library() -> void:
 			anim_key = anim_key.substr(slash_idx + 1)
 
 		# If the animation is already present in the frame data, verify its length
-		var _frameDataAnim := _frameDataLibrary.get_animation(anim_key)
-		if _frameDataAnim != null:
-			_frameDataAnim.length = source_anim.length
-			continue
-
-		# Generate the animation
-		var frame_anim := Animation.new()
-		frame_anim.length = source_anim.length
-
-		var err := _frameDataLibrary.add_animation(anim_key, frame_anim)
-		if err != Error.OK:
-			push_warning(
-				"EntityAnimationHelper: Failed to add animation '%s' to _frameDataLibrary (error %d)."
-				% [anim_key, err]
-			)
+		var frameDataAnim := _frameDataLibrary.get_animation(anim_key)
+		if frameDataAnim != null:
+			frameDataAnim.length = source_anim.length
 		else:
-			edited = true
-	
-	if edited: # Notify the editor that the resource has been modified and needs saving
-		if not _frameDataLibrary.resource_path.is_empty():
-			ResourceSaver.save(_frameDataLibrary)
-		else:
-			# Embedded resource — mark the scene dirty instead
-			EditorInterface.mark_scene_as_unsaved()
+			# Generate the animation
+			frameDataAnim = Animation.new()
+			frameDataAnim.length = source_anim.length
+
+			var err := _frameDataLibrary.add_animation(anim_key, frameDataAnim)
+			if err != Error.OK:
+				push_warning(
+					"EntityAnimationHelper: Failed to add animation '%s' to _frameDataLibrary (error %d)."
+					% [anim_key, err]
+				)
+		
+		# Appended: bit naive behavior to always add the correct finished marker at the end for each animation
+		var animFinishedTrack := frameDataAnim.find_track("FrameData:_finished", Animation.TYPE_VALUE)
+		if animFinishedTrack != -1:
+			frameDataAnim.remove_track(animFinishedTrack)
+
+		animFinishedTrack = frameDataAnim.add_track(Animation.TYPE_VALUE)
+		frameDataAnim.track_set_path(animFinishedTrack, "FrameData:_finished")
+		frameDataAnim.track_insert_key(animFinishedTrack, 0.0, false)
+		frameDataAnim.track_insert_key(animFinishedTrack, frameDataAnim.length, true)
+
+	if not _frameDataLibrary.resource_path.is_empty():
+		ResourceSaver.save(_frameDataLibrary)
+	else:
+		# Embedded resource — mark the scene dirty instead
+		EditorInterface.mark_scene_as_unsaved()
 
 
 ## _clean_frame_data_library()
