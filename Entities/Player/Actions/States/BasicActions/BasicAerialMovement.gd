@@ -10,7 +10,6 @@ var _maxSpeed : float = 0.0
 var _maxSpeedSq : float = 0.0
 var _accel : float = 0.0
 var _friction : float = 0.0
-var _entrySpeed : float = 0.0
 
 #endregion
 
@@ -22,7 +21,6 @@ func _implInit() -> void:
 	_maxSpeedSq = _maxSpeed * _maxSpeed
 	_accel = physics().AERIAL_ACCELERATION
 	_friction = physics().AERIAL_FRICTION
-	_entrySpeed = physics().SPRINT_SPEED
 
 #endregion
 
