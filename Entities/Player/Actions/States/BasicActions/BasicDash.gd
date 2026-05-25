@@ -19,11 +19,12 @@ func _implInit() -> void:
 	_accel = physics().DASH_ACCELERATION
 
 func _implEnter() -> void:
-	player().setMovementFlat(Vector2.ZERO) # Reset horizontal speed before dash, the player won't move faster than this anyways
-
 	_direction = Vector3(inputs().direction.x, 0, inputs().direction.y)
 	if _direction.is_zero_approx():
 		_direction = player().forward()
+	else:
+		player().setMovementFlat(
+			Vector2(player().movement().x, player().movement().z).length() * inputs().direction * physics().DIRECTIONAL_SNAP_FACTOR)
 
 	_animationSetupBasic()
 
