@@ -19,11 +19,18 @@ func _implInit() -> void:
 	_accel = physics().DASH_ACCELERATION
 
 func _implEnter() -> void:
-	_direction = Vector3(inputs().direction.x, 0, inputs().direction.y)
-	if _direction.is_zero_approx():
+	var inputDir := inputs().direction
+
+	if inputDir.is_zero_approx():
 		_direction = player().forward()
 	else:
-		player().setMovementFlat3(player().movement().length() * _direction * physics().DIRECTIONAL_SNAP_FACTOR)
+		_direction = Vector3(inputDir.x, 0.0, inputDir.y)
+
+		var horizontalVel := Vector2(player().movement().x, player().movement().z)
+		var velLen := horizontalVel.length()
+		var directionVelocityDot := inputDir.dot(horizontalVel / velLen)
+
+		player().setMovementFlat3(velLen * inputDir * (physics().DIRECTIONAL_SNAP_FACTOR * (1.0 - directionVelocityDot) + directionVelocityDot))
 
 	_animationSetupBasic()
 

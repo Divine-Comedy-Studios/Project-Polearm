@@ -23,6 +23,7 @@ class Type:
 
 	# Dash states
 	const dashStart := &"dashStart"
+	const dash := &"dash"
 
 	# Combat can cancel out movement, but not eachother, but may be queried
 	const lightAttack := &"lightAttack"
@@ -59,12 +60,13 @@ class Type:
 
 
 	#region Grounded to aerial state
-	# Aerial versions of grounded states, NEVER used by input manager and refered to by explicitly
+	# Aerial versions of grounded states, NEVER used by input manager
 
 	const airJumpStart := &"airJumpStart"
 	const airJump := &"airJump"
 
 	const airDashStart := &"airDashStart"
+	const airDash := &"airDash"
 
 	const airLightAttack := &"airLightAttack"
 	const airHeavyAttack := &"airHeavyAttack"
@@ -73,9 +75,6 @@ class Type:
 
 
 	#region Universal states
-
-	# Dashing behavior state
-	const dash := &"dash"
 
 	# Damage determines its behavior on the fly
 	const damage := EntityAction.Type.damage
@@ -103,7 +102,8 @@ class Type:
 		Type.jump : Type.jump,
 		Type.airJump : Type.airJump,
 
-		Type.dash : Type.dash,
+		Type.dash : Type.airDash,
+
 		Type.damage : Type.damage,
 		Type.death : Type.death,
 	}

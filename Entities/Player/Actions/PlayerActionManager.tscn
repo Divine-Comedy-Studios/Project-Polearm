@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://c55k4ruofg4jc" path="res://Entities/Player/Actions/States/Jump.gd" id="7_jverr"]
 [ext_resource type="Script" uid="uid://vahqysuxajcw" path="res://Entities/Player/Actions/States/LightAttack.gd" id="8_6evvv"]
 [ext_resource type="Script" uid="uid://bb1weubijn6l2" path="res://Entities/Player/Actions/States/TransitionAction/AirJumpStart.gd" id="11_6ns0w"]
+[ext_resource type="Script" uid="uid://oyhtbomcato" path="res://Entities/Player/Actions/States/BasicActions/BasicDash.gd" id="12_1ws56"]
 [ext_resource type="Script" uid="uid://d2mcxn2vpp7ne" path="res://Entities/Player/Actions/States/LedgeGrab.gd" id="13_71nor"]
 [ext_resource type="Script" uid="uid://cw8j6wjk2wc80" path="res://Entities/Player/Actions/States/TransitionAction/Landing.gd" id="14_fh6tg"]
 [ext_resource type="Script" uid="uid://cg0qx1buj4734" path="res://Entities/Player/Actions/States/Dash.gd" id="15_y2nh2"]
@@ -55,13 +56,6 @@ ANIMATION_NAME = &"DashStart"
 ANIMATION_FADE_TIME = 0.1
 metadata/_custom_type_script = "uid://cqy3drroysy4k"
 
-[sub_resource type="Resource" id="Resource_6ns0w"]
-script = ExtResource("5_8427c")
-ANIMATION_LIBRARY_NAME = &"Movement"
-ANIMATION_NAME = &"DashStart"
-ANIMATION_FADE_TIME = 0.1
-metadata/_custom_type_script = "uid://cqy3drroysy4k"
-
 [sub_resource type="Resource" id="Resource_fh6tg"]
 script = ExtResource("5_8427c")
 ANIMATION_LIBRARY_NAME = &"Movement"
@@ -73,6 +67,20 @@ metadata/_custom_type_script = "uid://cqy3drroysy4k"
 script = ExtResource("5_8427c")
 ANIMATION_LIBRARY_NAME = &"Movement"
 ANIMATION_NAME = &"DashStop"
+metadata/_custom_type_script = "uid://cqy3drroysy4k"
+
+[sub_resource type="Resource" id="Resource_6ns0w"]
+script = ExtResource("5_8427c")
+ANIMATION_LIBRARY_NAME = &"Movement"
+ANIMATION_NAME = &"DashStart"
+ANIMATION_FADE_TIME = 0.1
+metadata/_custom_type_script = "uid://cqy3drroysy4k"
+
+[sub_resource type="Resource" id="Resource_dvgj7"]
+script = ExtResource("5_8427c")
+ANIMATION_LIBRARY_NAME = &"Movement"
+ANIMATION_NAME = &"DashLoop"
+ANIMATION_FADE_TIME = 0.1
 metadata/_custom_type_script = "uid://cqy3drroysy4k"
 
 [sub_resource type="Resource" id="Resource_yl8et"]
@@ -164,8 +172,6 @@ process_mode = 4
 visible = false
 script = ExtResource("2_71nor")
 AERIAL_ACCELERATION = 50.0
-AERIAL_FRICTION = 1.0
-REDUCED_AERIAL_FRICTION = 2.0
 BASE_JUMP_VELOCITY = 10.0
 _context = NodePath("..")
 metadata/_custom_type_script = "uid://jth8cpsjn3vy"
@@ -206,17 +212,6 @@ PRIORITY = 51
 data = SubResource("Resource_wu1xb")
 metadata/_custom_type_script = "uid://jc1g0sv32qq1"
 
-[node name="AirDashStart" type="Node" parent="." unique_id=2106919827]
-process_mode = 4
-script = ExtResource("16_yl8et")
-TARGET_TYPE = &"dash"
-INPUT_BUFFER_FRAMES = 4
-QUEUEABLE = true
-TYPE = &"airDashStart"
-PRIORITY = 51
-data = SubResource("Resource_6ns0w")
-metadata/_custom_type_script = "uid://jc1g0sv32qq1"
-
 [node name="Dash" type="Node" parent="." unique_id=674465894]
 process_mode = 4
 script = ExtResource("15_y2nh2")
@@ -231,6 +226,25 @@ script = ExtResource("6_yl8et")
 TYPE = &"dashStop"
 PRIORITY = 4
 data = SubResource("Resource_1ws56")
+metadata/_custom_type_script = "uid://jc1g0sv32qq1"
+
+[node name="AirDashStart" type="Node" parent="." unique_id=2106919827]
+process_mode = 4
+script = ExtResource("16_yl8et")
+TARGET_TYPE = &"dash"
+INPUT_BUFFER_FRAMES = 4
+QUEUEABLE = true
+TYPE = &"airDashStart"
+PRIORITY = 51
+data = SubResource("Resource_6ns0w")
+metadata/_custom_type_script = "uid://jc1g0sv32qq1"
+
+[node name="AirDash" type="Node" parent="." unique_id=1031443340]
+process_mode = 4
+script = ExtResource("12_1ws56")
+TYPE = &"airDash"
+PRIORITY = 50
+data = SubResource("Resource_dvgj7")
 metadata/_custom_type_script = "uid://jc1g0sv32qq1"
 
 [node name="Sprint" type="Node" parent="." unique_id=1834573460]
