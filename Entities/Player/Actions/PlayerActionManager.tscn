@@ -171,8 +171,12 @@ one_shot = true
 process_mode = 4
 visible = false
 script = ExtResource("2_71nor")
-AERIAL_ACCELERATION = 50.0
-BASE_JUMP_VELOCITY = 10.0
+MAX_AERIAL_SPEED = 7.0
+AERIAL_FRICTION = 2.0
+REDUCED_AERIAL_FRICTION = 1.0
+DIRECTIONAL_SNAP_FACTOR = 0.7
+BASE_JUMP_VELOCITY = 11.0
+JUMP_ACCELERATION = 40.0
 _context = NodePath("..")
 metadata/_custom_type_script = "uid://jth8cpsjn3vy"
 
@@ -267,7 +271,7 @@ metadata/_custom_type_script = "uid://jc1g0sv32qq1"
 [node name="Fall" type="Node" parent="." unique_id=1664492832]
 process_mode = 4
 script = ExtResource("4_8427c")
-FALL_GRAVITY = 50.0
+FALL_GRAVITY = 55.0
 FLOATING_TERMINAL_VELOCITY = 5.0
 TERMINAL_VELOCITY = 20.0
 TYPE = &"fall"
@@ -317,6 +321,7 @@ metadata/_custom_type_script = "uid://jc1g0sv32qq1"
 [node name="AirJump" type="Node" parent="." unique_id=1884686110]
 process_mode = 4
 script = ExtResource("18_wu1xb")
+MULTI_JUMP_HEIGHT_FACTOR = 0.97
 jumpHeightFactor = 0.5
 TYPE = &"airJump"
 PRIORITY = 31
