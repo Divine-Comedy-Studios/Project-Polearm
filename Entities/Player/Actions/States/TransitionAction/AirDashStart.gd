@@ -6,4 +6,5 @@ func _viable() -> bool:
 
 func _implEnter() -> void:
 	resources().airDashed = true
+
 	super._implEnter()
