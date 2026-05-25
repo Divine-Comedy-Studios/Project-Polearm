@@ -50,7 +50,9 @@ func _implExit() -> void:
 
 func _tick(delta : float) -> void:
 	player().accelerate(Vector3.ZERO, _friction * delta)
-	context().pushActionQueue(Type.jump)
+
+	if finished():
+		context().interrupt(Type.jump)
 
 #endregion
 

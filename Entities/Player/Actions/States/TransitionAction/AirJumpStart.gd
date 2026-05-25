@@ -1,4 +1,4 @@
-extends PlayerBasicTransitionAciton
+extends PlayerAction
 
 
 var _aerialFriction : float = 0.0
@@ -15,10 +15,11 @@ func _implEnter() -> void:
 	resources().jumpCount.value += 1
 	resources().airDashed = false
 
-	super._implEnter()
+	_animationSetupBasic()
 
 
 func _tick(delta : float) -> void:
 	player().accelerate(Vector3.ZERO, _aerialFriction * delta)
 
-	super._tick(delta)
+	if finished():
+		context().interrupt(Type.airJump)
