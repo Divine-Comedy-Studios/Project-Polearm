@@ -23,8 +23,7 @@ func _implEnter() -> void:
 	if _direction.is_zero_approx():
 		_direction = player().forward()
 	else:
-		player().setMovementFlat(
-			Vector2(player().movement().x, player().movement().z).length() * inputs().direction * physics().DIRECTIONAL_SNAP_FACTOR)
+		player().setMovementFlat3(player().movement().length() * _direction * physics().DIRECTIONAL_SNAP_FACTOR)
 
 	_animationSetupBasic()
 

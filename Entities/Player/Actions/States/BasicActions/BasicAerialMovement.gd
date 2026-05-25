@@ -50,7 +50,7 @@ func moveAerial(delta : float) -> void:
 				currentVelocity = (currentVelocity / sqrt(newVelocityLen)) * _maxSpeed
 
 		# Set the velocity
-		player().setMovementFlat3(currentVelocity)
+		player().setMovementFlat(currentVelocity)
 
 	player().accelerateFlat(Vector3.ZERO, _friction * delta)
 
