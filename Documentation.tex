@@ -8,6 +8,9 @@
 \onehalfspacing 
 \usepackage{graphicx}
 \usepackage{enumitem}
+\usepackage{parskip}
+\usepackage[backend=biber, style=authortitle-ibid]{biblatex}
+\addbibresource{sources.bib}
 
 \title{
     \textbf{\Huge Project-Polearm} \\ [0.2em]
@@ -28,44 +31,88 @@
 
 \section{Einleitung}
 \subsection{Motivation und Relevanz}
+
+Hack-and-Slash Spiele gehören zu den technisch anspruchsvollsten Genres der Spieleentwicklung. Das Zusammenspiel von Spielerbewegung, Kampfsystem, Gegnerverhalten und Leveldesign muss genau aufeinander abgestimmt sein. Dabei ist das Fenster, in dem sich ein befriedigendes Spielerlebnis entfaltet, sehr eng. Genau dieses Zusammenspiel aber fasziniert uns als Spieler und stellt als Entwickler eine ebenso komplexe Herausforderung dar.
+
+Die vorliegende Maturitätsarbeit entstand aus dem Wunsch, nicht nur Spiele zu spielen, sondern sie genauer zu verstehen und selbst eines zu entwickeln. Das Genre setzt dabei eine hohe Messlatte. Schon kleine Änderungen an einzelnen Systemen haben spürbare Auswirkungen auf das gesamte Spielgefühl. Dies macht die Entwicklung anspruchsvoll und bietet eine lehrreiche Erfahrung.
+
+Da das Genre seine grösste Popularität zwischen 2001 und 2012 erlebte und heute nur noch eine kleine, aber treue Nische bedient, bietet es eine günstige Ausgangslage. Es existiert ausreichend Referenzmaterial aus einer designtechnisch reifen Ära, und gleichzeitig besteht Freiraum für moderne Interpretationen klassischer Mechaniken.
+
 \subsection{Zielsetzung und Produktdefinition}
+
+Ziel dieser Arbeit ist die Entwicklung eines spielbaren 3D-Hack-and-Slash Prototypen mit der Game Engine Godot. Der Schwerpunkt liegt dabei auf der technischen Umsetzung der zentralen Spielsysteme sowie deren Dokumentation und Evaluation.
+
+Das Endprodukt umfasst einen zusammenhängenden Kampfabschnitt mit mindestens zwei unterscheidbaren Gegnertypen, die sich eigenständig bewegen und angreifen können. Die zentralen Spielmechaniken umfassen grundlegende Spielerbewegungen im dreidimensionalen Raum, Kampfmechaniken, Gegner-KI und übergeordnete Spielsysteme, Menüs oder Neustart nach dem Tod. Die Softwarearchitektur der wichtigsten Systeme wird durch Grafiken dokumentiert.
+
+Ergänzend zur technischen Entwicklung werden zwei Referenzspiele des Genres anhand eines ausgearbeiteten Analyseframeworks untersucht. Die daraus gewonnenen Erkenntnisse fliessen direkt in das Design des Prototypen ein. Schliesslich wird der Prototyp in einem strukturierten Playtest mit ca. fünf Testpersonen evaluiert und die Ergebnisse ausgewertet.
+
 \subsection{Erkenntnisfrage}
 
-\section{Theoretischer Hintergrund \& Analyseframework}
-\subsection{Definition von Gamedesign-Kriterien}
-\subsection{Das MDA-Analyseframework (Fragebogen)}
-Im Folgenden wird der strukturierte Fragebogen auf Basis des MDA-Frameworks (Mechanics, Dynamics, Aesthetics) dargestellt. Die Evaluation basiert auf insgesamt 15 gezielten Fragen, um den Prototyp sowie die Referenzspiele messbar zu analysieren.
+Im Zentrum unserer Arbeit steht folgende Erkenntnisfrage:
 
-\subsubsection{Mechanics (Spielmechaniken)}
-\begin{enumerate}[label=\textbf{M\arabic*}, leftmargin=1.5cm, itemsep=0.5em]
-    \item \textit{[Frage 1: Z.B. Wie intuitiv ist das grundlegende Angriffssystem?]}
-    \item \textit{[Frage 2: Z.B. Wie präzise fühlt sich das Treffer- und Schadensfeedback an?]}
-    \item \textit{[Frage 3: Z.B. Wie unterscheidet sich das Verhalten der zwei Gegnertypen?]}
-    \item \textit{[Frage 4: Z.B. Hier eigene Frage zu den Mechaniken einfügen]}
-    \item \textit{[Frage 5: Z.B. Hier eigene Frage zu den Mechaniken einfügen]}
+\begin{quote}
+\textit{"Wie müssen Gegnerverhalten und Gegnerplatzierung in einem 3D-Hack-and-Slash-Prototyp gestaltet sein, damit ein zusammenhängender Kampfabschnitt mit nachvollziehbarem Spielfluss, angemessener Schwierigkeit und befriedigendem Spielergefühl entsteht?"}
+\end{quote}
+
+Diese Frage wird durch die Analyse bestehender Referenzspiele, die technische Umsetzung im Prototyp sowie die Auswertung der Playtests beantwortet.
+
+\section{Theoretischer Hintergrund \& Analyseframework}
+\subsection{Definition des Hack-and-Slash Genre}
+
+In der Videospielindustrie bezeichnet "Hack and Slash" eine Subgenre der Action Games. Der Fokus liegt dabei auf Echtzeitkampf mit Nahkampfwaffen, wie Schwertern, Äxten oder anderen Klingen. Fernkampfwaffen sind zwar vertreten, spielen aber nur eine untergeordnete und unterstützende Rolle. Das Genre entstammt den 2D Beat'em Up Games, entwickelte sich weiter in der 3D Ära und wurde vor allem durch Titel wie Devil May Cry (2001) oder Bayonetta (2009) geprägt.
+
+Die modernen Spiele zeichnen sich durch hohe Spielgeschwindigkeiten und stilvolle, fliessende Bewegungen aus. Das Verketten präziser Angriffs-Kombos, das gezielte Abbrechen von Bewegungen, I-Frames und strategisches Distanzmanagement zum Gegner zeichnen das Gameplay aus. Das, was ein überzeugendes Hack-and-Slash ausmacht, ist nicht allein die Anzahl dieser Mechaniken, sondern das Zusammenspiel dieser. Erst wenn präzises Kampfverhalten und befriedigendes Spielgefühl aufeinander abgestimmt sind, entsteht das genredefinierende Gefühl von Kontrolle und Ausdrucksstärke.
+
+Um dieses Zusammenspiel systematisch zu erfassen und vergleichbar zu machen, bedarf es eines geeigneten Analyserahmens. Im folgenden Abschnitt wird das MDA-Framework als methodisches Werkzeug eingeführt, das die Beziehung zwischen Spielregeln, emergenten Verhaltensmustern und dem emotionalen Spielerleben strukturiert beschreibt.
+
+\subsection{Das MDA-Analyseframework}
+
+Das MDA-Framework (Mechanics, Dynamics, Aesthetics) wurde von Hunicke, LeBlanc und Zubek entwickelt und ist ein formaler Ansatz zur Analyse und zum Verständnis von Spieldesign. Es beschreibt Spiele nicht als statisches Medium wie Buch oder Film, sondern als interaktives Erlebnis, welches aus dem Zusammenspiel dreier klar abgegrenzter Ebenen entsteht.
+
+Die unterste Ebene, die Mechaniken, umfasst die konkreten Regeln und Systeme eines Spiels. Darunter versteht man alles, was durch Daten und Algorithmen getrieben ist, wie Schadenswerte, Treffererkennung, Bewegungsgeschwindigkeit oder die Gegner-KI. Daraus entstehen zur Laufzeit die Dynamiken, also das emergente Verhalten, das sich aus dem Zusammenspiel von Mechaniken und Spielerentscheidungen ergibt. Konkret geht es um den Kampfrhythmus, taktische Ausweichmuster oder eskalierende Gegnerwellen. Die oberste Ebene, die Ästhetik, beschreibt schliesslich die emotionale Reaktion des Spielers auf dieses System. Gefühle wie Kontrolle und Befriedigung bei gelungenen Combos stehen im Vordergrund.
+
+Entscheidend ist die Kausalität zwischen den Ebenen. Mechaniken erzeugen Dynamiken, die wiederum Ästhetik erzeugen. Gleichzeitig erleben die Spieler das Game in umgekehrter Reihenfolge. Für die Analyse bestehender Spiele bedeutet das, dass man vom Spielgefühl beginnt und sich systematisch zu den Ursachen, also den Mechaniken, vorarbeiten muss.
+
+Dieses Framework eignet sich besonders gut für die Analyse von Hack-and-Slash Spielen, da das Genre ein besonders hohes Mass dieser Kausalität aufweist. Beispielsweise sind die genauen Parameter einer einzelnen Mechanik, wie einer Attacke, bedeutungslos, wenn sie nicht im Kontext weiterer Systeme, wie Gegnerlebenspunkten, Gegnerverhalten und Animationsgeschwindigkeit, betrachtet werden.\autocite{hunicke2004mda}
+
+Auf Basis dieses Frameworks wurde ein strukturierter Fragebogen mit 15 Fragen entwickelt, der die drei Ebenen getrennt betrachtet. Er dient als Grundlage für die Analyse der Referenzspiele in Abschnitt \ref{sec:Referenzspiel} sowie als inhaltliche Basis für den Playtest-Fragebogen in Kapitel \ref{sec:playtesting}.
+
+\subsection{Analysefragebogen}
+
+Die 15 Fragen sind den drei MDA-Ebenen zugeordnet und werden in umgekehrter Reihenfolge – von der Ästhetik zu den Mechaniken – gestellt, da die Analyse beim Spielgefühl beginnt und sich systematisch zu den Ursachen vorarbeitet.
+
+\subsubsection{Aesthetics (Ästhetik und emotionales Erleben)}
+\begin{enumerate}[label=\textbf{A\arabic*}, leftmargin=1.5cm, itemsep=0.5em]
+    \item Welche emotionale Reaktion löst der Kampf primär aus: Kontrolle, Befriedigung, Anspannung oder Frustration? Warum?
+    \item Wie gut vermittelt das audiovisuelle Feedback die Wucht und Präzision der Treffer? Wie?
+    \item Vermittelt die Gegnerplatzierung ein Gefühl von intentionalem Design, wirkt die Anordnung der Gegner durchdacht oder zufällig und wie beeinflusst diese das Empfinden des Spielers?
+    \item Verändert sich das emotionale Erleben im Verlauf des Kampfabschnitts und ist diese Veränderung spürbar und intentional?
+    \item Wirkt die Gegnerplatzierung im Raum natürlich und glaubwürdig — oder fühlt sie sich künstlich und aufgesetzt an?
 \end{enumerate}
 
 \subsubsection{Dynamics (Spieldynamik und Interaktion)}
 \begin{enumerate}[label=\textbf{D\arabic*}, leftmargin=1.5cm, itemsep=0.5em]
-    \item \textit{[Frage 6: Z.B. Entsteht durch die Gegnerplatzierung ein flüssiger Spielfluss (Flow)?]}
-    \item \textit{[Frage 7: Z.B. Wie variiert der Schwierigkeitsgrad im Verlauf des Kampfabschnitts?]}
-    \item \textit{[Frage 8: Z.B. Bietet das Spiel genügend taktische Optionen, um Angriffen auszuweichen?]}
-    \item \textit{[Frage 9: Z.B. Hier eigene Frage zu den Dynamiken einfügen]}
-    \item \textit{[Frage 10: Z.B. Hier eigene Frage zu den Dynamiken einfügen]}
+    \item Wie sieht ein typischer Kampfablauf von Beginn bis Ende aus, gibt es eine erkennbare Spannungskurve und hängt dieser vom Spielerfortschritt ab?
+    \item Erzeugt die Kombination verschiedener Gegnertypen innerhalb eines Encounters taktischen Druck oder agieren die Gegner unabhängig voneinander?
+    \item Entsteht durch Gegnerplatzierung und Encounter-Design ein flüssiger Spielfluss?
+    \item Wie erholt sich der Spieler nach einem Fehler, ist die Feedback-Schleife zwischen Fehler und Korrektur nachvollziehbar?
+    \item Wie beeinflusst die Anzahl gleichzeitig aktiver Gegner den Spielfluss — gibt es einen spürbaren Unterschied zwischen Einzelkämpfen und Gruppenkonfrontationen?
 \end{enumerate}
 
-\subsubsection{Aesthetics (Ästhetik und emotionales Erleben)}
-\begin{enumerate}[label=\textbf{A\arabic*}, leftmargin=1.5cm, itemsep=0.5em]
-    \item \textit{[Frage 11: Z.B. Wird das Kampfgefühl als befriedigend und ''stylish`` empfunden?]}
-    \item \textit{[Frage 12: Z.B. Wie gut vermittelt das visuelle Feedback (z.B. Effekte) die Wucht der Treffer?]}
-    \item \textit{[Frage 13: Z.B. Erinnert das Gesamtgefühl an die klassische Ära der Stylish-Action-Games?]}
-    \item \textit{[Frage 14: Z.B. Hier eigene Frage zur Ästhetik einfügen]}
-    \item \textit{[Frage 15: Z.B. Hier eigene Frage zur Ästhetik einfügen]}
+\subsubsection{Mechanics (Spielmechaniken)}
+\begin{enumerate}[label=\textbf{M\arabic*}, leftmargin=1.5cm, itemsep=0.5em]
+    \item Wie unterscheiden sich die Gegnertypen auf Mechanikenebene: Bewegungsgeschwindigkeit, Angriffsreichweite, Schadenswerte?
+    \item Wie ist das Angriffsverhalten der Gegner implementiert — reagieren sie aktiv auf den Spieler oder folgen sie festen vordefinierten Mustern?
+    \item Wie sind Spawnpunkte und Startpositionen der Gegner gestaltet — unterstützen sie den Spielfluss oder unterbrechen sie ihn?
+    \item Wie begrenzt das Leveldesign die Bewegungsoptionen von Spieler und Gegner — gibt es räumliche Einschränkungen die den Kampf beeinflussen?
+    \item Wie funktioniert die Treffererkennung und das Hitstun-System, wie lange ist ein Gegner nach einem Treffer verwundbar?
 \end{enumerate}
 
 \subsection{Analyse der Referenzspiele}
-\subsubsection{Referenzspiel 1}
-\subsubsection{Referenzspiel 2}
+\label{sec:Referenzspiel}
+
+\subsubsection{Ninja Gaiden II}
+\subsubsection{NieR: Automata}
 \subsection{Ableitung der Designziele}
 
 \section{Softwarearchitektur und technische Entwicklung}
@@ -80,6 +127,7 @@ Im Folgenden wird der strukturierte Fragebogen auf Basis des MDA-Frameworks (Mec
 \subsection{Gegnerplatzierung (Enemy Placement)}
 
 \section{Evaluation und Playtesting}
+\label{sec:playtesting}
 \subsection{Methodik des Playtests}
 \subsection{Auswertung der Ergebnisse}
 \subsection{Iteration aufgrund von Feedback}
@@ -95,7 +143,8 @@ Im Folgenden wird der strukturierte Fragebogen auf Basis des MDA-Frameworks (Mec
 \newpage
 \section{Verzeichnisse}
 \subsection{Literatur- und Quellenverzeichnis}
-\subsection{Assetliste (Modelle, Sounds, Texturen)}
+\printbibliography[heading=none]
+
 \subsection{KI-Deklaration}
 
-\end{document}o
+\end{document}
