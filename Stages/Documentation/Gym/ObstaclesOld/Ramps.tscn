@@ -8,7 +8,7 @@
 [node name="Ramps" type="CSGCombiner3D" unique_id=187119212]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 use_collision = true
-collision_layer = 32768
+collision_layer = 8421376
 collision_mask = 0
 
 [node name="SmallRampEnd" type="CSGBox3D" parent="." unique_id=203445296]

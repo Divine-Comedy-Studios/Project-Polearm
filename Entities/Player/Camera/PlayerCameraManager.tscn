@@ -6,10 +6,10 @@
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_ij7sd"]
 [ext_resource type="Script" uid="uid://b8hhnqsugykly" path="res://addons/phantom_camera/scripts/resources/camera_3d_resource.gd" id="5_i8oxm"]
 
-[sub_resource type="Resource" id="Resource_ij7sd"]
+[sub_resource type="Resource" id="Resource_i8oxm"]
 script = ExtResource("3_ij7sd")
 
-[sub_resource type="Resource" id="Resource_i8oxm"]
+[sub_resource type="Resource" id="Resource_xvv6x"]
 script = ExtResource("5_i8oxm")
 metadata/_custom_type_script = "uid://b8hhnqsugykly"
 
@@ -23,13 +23,13 @@ metadata/_custom_type_script = "uid://d3brdu3aih1ox"
 script = ExtResource("2_ij7sd")
 metadata/_custom_type_script = "uid://cs84umg5je0yd"
 
-[node name="Camera" type="Node3D" parent="." unique_id=113170500 node_paths=PackedStringArray("follow_target")]
+[node name="Camera" type="Node3D" parent="." unique_id=749819996 node_paths=PackedStringArray("follow_target")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 2.5)
 script = ExtResource("2_ye1s6")
 follow_mode = 6
 follow_target = NodePath("../FollowTarget")
-tween_resource = SubResource("Resource_ij7sd")
-camera_3d_resource = SubResource("Resource_i8oxm")
+tween_resource = SubResource("Resource_i8oxm")
+camera_3d_resource = SubResource("Resource_xvv6x")
 follow_offset = Vector3(0, 1.5, 0)
 follow_damping = true
 follow_distance = 2.5
