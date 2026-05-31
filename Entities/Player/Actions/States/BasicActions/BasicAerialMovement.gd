@@ -37,7 +37,7 @@ func moveAerial(delta : float) -> void:
 		var currentVelocityLen := currentVelocity.length_squared()
 		
 		# Conditionlessly accelerate the current velocity towards the requested direction
-		currentVelocity += inputs().inputDirection * inputs().inputMagnitude * _accel * delta
+		currentVelocity += inputs().direction * inputs().inputMagnitude * _accel * delta
 		var newVelocityLen := currentVelocity.length_squared()
 
 		# If the velocity is larger than the max speed and hasn't gotten smaller, we normalize it and multiply it by its old length
