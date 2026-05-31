@@ -14,6 +14,7 @@ const MIN_PERIOD_MULTIPLIER := 0.7
 @export var IDLE_DATA : PlayerActionData = null
 @export var WALK_DATA : PlayerActionData = null
 @export var RUN_DATA : PlayerActionData = null
+@export var BLEND_LERP : float = 0.3
 
 #endregion
 
@@ -34,7 +35,8 @@ var _runPeriod : float = 0.0
 
 var _maxPeriod : float = 0.0
 
-var _period : float = 0.0
+var _blendScale : float = 0.0
+
 
 #endregion
 
@@ -87,18 +89,18 @@ func _tick(delta : float) -> void:
 #region Private functions
 
 func _processAnimations() -> void:
-	var normRange := maxf(
+	_blendScale = lerpf(_blendScale, maxf(
 		clampf(PPUtil.Math.toRangeNormalized(player().velocity.length(), _walkSpeed, _runSpeed), -1.0, 1.0), 
 		-MIN_PERIOD_MULTIPLIER
-	)
-	_period = maxf(
-		_walkPeriod + normRange * (_runPeriod - _walkPeriod),
+	), BLEND_LERP)
+	var period = maxf(
+		_walkPeriod + _blendScale * (_runPeriod - _walkPeriod),
 		_walkPeriod * MIN_PERIOD_MULTIPLIER
 	)
 
-	frameDataScale = _walkPeriod / _period
+	frameDataScale = _walkPeriod / period
 	animator().setScale(&"WalkScale", frameDataScale)
-	animator().setScale(&"RunScale", _runPeriod / _period)
-	animator().setBlendAmount(&"Move", normRange)
+	animator().setScale(&"RunScale", _runPeriod / period)
+	animator().setBlendAmount(&"Move", _blendScale)
 
 #endregion
