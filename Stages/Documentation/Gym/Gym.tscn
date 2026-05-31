@@ -261,8 +261,9 @@ STEP_MAX_HEIGHT = 0.4
 [node name="Visuals" type="Node" parent="." unique_id=72582827]
 
 [node name="SceneCamera" parent="Visuals" unique_id=1015597522 instance=ExtResource("1_6ld1k")]
-transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 2.5)
 top_level = true
+h_offset = 0.5
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Visuals" unique_id=1491915083]
 environment = SubResource("Environment_ji2m5")
