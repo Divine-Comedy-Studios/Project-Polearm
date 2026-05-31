@@ -8,7 +8,6 @@ using System;
 	#region Helper classes
 
 	public class CameraInputData {
-       
         public float TargetDirection = 0.0f; // > 0 means targeting left, > 0 means targeting right
     }
 
@@ -18,29 +17,40 @@ using System;
 	#region Exported variables
 
 	[ExportGroup("Camera config")]
-    [Export] public float MIN_PITCH = -80;
-    [Export] public float MAX_PITCH = 30;
+	[Export(PropertyHint.Range, "-360,360,0.1,radians_as_degrees")]
+    public float MIN_PITCH = -0.9f;
+	[Export(PropertyHint.Range, "-360,360,0.1,radians_as_degrees")]
+    public float MAX_PITCH = 0.6f;
+	[Export] public float ROTATION_LERP = 0.2f;
 
     [ExportGroup("Controls")]
-    [Export] public float INVERT_VERTICAL = -1; // Set to 1 to invert y axis
+	[Export] public float STICK_RELATIVE_DEADZONE = 0.3f;
+    [Export] public float INVERT_VERTICAL = -1.0f; // Set to 1 to invert y axis
     [Export] public float CONTROLLER_SENSITIVITY = 0.1f;
-    [Export] public float MOUSE_SENSITIVITY = 0.1f;
+    [Export] public float MOUSE_SENSITIVITY = 0.01f;
 
 	#endregion
 
 
 	#region Scene members
 
-	private PhantomCamera3D m_followCam = null;
+	// Targets
+
+	private RemoteChild m_followTarget = null;
+
+
+	// Camera
+
+	private PhantomCamera3D m_camera = null;
 
 	#endregion
 
 
 	#region Member variables
 
-	public Vector2 Direction = Vector2.Zero;
+	// Input state
 
-	private PhantomCamera3D m_activeCam = null;
+	public Vector2 Direction = Vector2.Zero;
 
     private bool m_heldTargetToggle = false;
     private bool m_isTargeting = false; // Only active if the above toggle is true
@@ -53,20 +63,23 @@ using System;
 	#region Built-in functions
 
 	public override void _Ready() {
-		m_followCam = GetNode<Node3D>("FollowCam").AsPhantomCamera3D();
+		m_camera = GetNode<Node3D>("Camera").AsPhantomCamera3D();
+		m_followTarget = GetNode<RemoteChild>("FollowTarget");
 	}
 
 	public override void _PhysicsProcess(double delta) {
-		Direction = Input.GetVector("Camera left", "Camera right", "Camera down", "Camera up").Normalized();
+		Direction = _processControllerInput(Input.GetVector("Camera left", "Camera right", "Camera down", "Camera up"));
 
-		if (Direction.LengthSquared() > 0) {
+		if (Direction.LengthSquared() > 0.0) {
 			m_controllerActive = true;
 
-			_rotateCamera(m_followCam, new Vector2(
+			_rotateTarget(m_camera.FollowTarget, new Vector2(
 				Direction.Y * (float)delta * CONTROLLER_SENSITIVITY, 
 				Direction.X * (float)delta * CONTROLLER_SENSITIVITY
 			));
 		} else m_controllerActive = false;
+
+		_cameraRotationLerpToTarget();
 	}
 
 
@@ -74,7 +87,7 @@ using System;
 		if (inputEvent is InputEventMouseMotion mouse && !m_controllerActive && Input.MouseMode == Input.MouseModeEnum.Captured) {
 			Vector2 mouseDelta = mouse.Relative * MOUSE_SENSITIVITY;
 
-			_rotateCamera(m_followCam, new Vector2(-mouseDelta.Y, mouseDelta.X));
+			_rotateTarget(m_camera.FollowTarget, new Vector2(-mouseDelta.Y, mouseDelta.X));
 		}
 	}
 
@@ -85,9 +98,7 @@ using System;
 
 	public void setFollowTarget(Node3D node) => SetFollowTarget(node);
 	public void SetFollowTarget(Node3D node) {
-		m_followCam.FollowTarget = node;
-
-		m_activeCam = m_followCam; /// @todo TEMPORARY;
+		m_followTarget.SetRemoteParent(node);
 	}
 
 
@@ -100,7 +111,7 @@ using System;
 
 	public Vector2 cameraPlaneDirection() => CameraPlaneDirection();
 	public Vector2 CameraPlaneDirection() {
-		Vector3 direction = m_activeCam.Node3D.GlobalPosition - ((Vector3)m_activeCam.Node3D.Get("_follow_target_output_position")); /// @todo Private variable of PhantomCamera3D, maybe someday open PR to add a proper getter function
+		Vector3 direction = m_camera.FollowTarget.GlobalTransform.Basis.Z;
 		return new Vector2(direction.X, direction.Z).Normalized();
 	}
 
@@ -109,18 +120,39 @@ using System;
 
 	#region Private functions
 
+	// Manual input deadzone & directional snapping
+
+	public Vector2 _processControllerInput(Vector2 inputVec) {
+		if (Mathf.Abs(inputVec.Y / inputVec.X) < STICK_RELATIVE_DEADZONE)
+			inputVec.Y = 0.0f;
+		else if (Mathf.Abs(inputVec.X / inputVec.Y) < STICK_RELATIVE_DEADZONE)
+			inputVec.X = 0.0f;
+		
+		inputVec.X *= Mathf.Abs(inputVec.X);
+		inputVec.Y *= MathF.Abs(inputVec.Y);
+
+		return inputVec.Normalized();
+	}
+
+
 	// Camera functions
 
-	private void _rotateCamera(PhantomCamera3D camera, Vector2 angle) {
-		Vector3 cameraRotation = camera.GetThirdPersonRotationDegrees();
+	private void _rotateTarget(Node3D target, Vector2 angularVelocity) {
+		Vector3 rotation = target.Rotation;
 
-		cameraRotation = new Vector3(
-			Mathf.Clamp(cameraRotation.X + angle.X * INVERT_VERTICAL, MIN_PITCH, MAX_PITCH),
-			Mathf.Wrap(cameraRotation.Y - angle.Y, 0, 360),
-			cameraRotation.Z
+		rotation = new Vector3(
+			Mathf.Clamp(rotation.X + angularVelocity.X * INVERT_VERTICAL, MIN_PITCH, MAX_PITCH),
+			Mathf.Wrap(rotation.Y - angularVelocity.Y, 0.0f, 2.0f * Mathf.Pi),
+			rotation.Z
 		);
 
-		camera.SetThirdPersonRotationDegrees(cameraRotation);
+		target.Rotation = rotation;
+	}
+
+	private void _cameraRotationLerpToTarget() {
+		m_camera.SetThirdPersonQuaternion(
+			m_camera.GetThirdPersonQuaternion().Slerp(m_camera.FollowTarget.Quaternion, ROTATION_LERP)
+		);
 	}
 
 	#endregion

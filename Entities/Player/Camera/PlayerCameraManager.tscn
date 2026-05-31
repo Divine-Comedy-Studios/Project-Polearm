@@ -1,23 +1,50 @@
 [gd_scene format=3 uid="uid://bgf6aphyao331"]
 
 [ext_resource type="Script" uid="uid://d3brdu3aih1ox" path="res://Entities/Player/Camera/PlayerCameraManager.cs" id="1_ye1s6"]
+[ext_resource type="Script" uid="uid://cs84umg5je0yd" path="res://Common/Transform/RemoteChild.cs" id="2_ij7sd"]
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="2_ye1s6"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_ij7sd"]
+[ext_resource type="Script" uid="uid://b8hhnqsugykly" path="res://addons/phantom_camera/scripts/resources/camera_3d_resource.gd" id="5_i8oxm"]
 
 [sub_resource type="Resource" id="Resource_i8oxm"]
 script = ExtResource("3_ij7sd")
 
+[sub_resource type="Resource" id="Resource_xvv6x"]
+script = ExtResource("5_i8oxm")
+h_offset = 0.5
+metadata/_custom_type_script = "uid://b8hhnqsugykly"
+
 [node name="PlayerCameraManager" type="Node" unique_id=448851904]
 script = ExtResource("1_ye1s6")
+STICK_RELATIVE_DEADZONE = 0.5
+CONTROLLER_SENSITIVITY = 3.0
 metadata/_custom_type_script = "uid://d3brdu3aih1ox"
 
-[node name="FollowCam" type="Node3D" parent="." unique_id=113170500]
-transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 0, 0)
+[node name="FollowTarget" type="Node3D" parent="." unique_id=913806129]
+script = ExtResource("2_ij7sd")
+metadata/_custom_type_script = "uid://cs84umg5je0yd"
+
+[node name="CSGBox3D" type="CSGBox3D" parent="FollowTarget" unique_id=547444851]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, 0, 0)
+size = Vector3(0.1, 0.1, 0.1)
+
+[node name="Offset" type="Node3D" parent="FollowTarget" unique_id=1529831654]
+
+[node name="Camera" type="Node3D" parent="." unique_id=113170500 node_paths=PackedStringArray("follow_target", "look_at_target")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 2.5)
 script = ExtResource("2_ye1s6")
 follow_mode = 6
+follow_target = NodePath("../FollowTarget")
+look_at_target = NodePath("../FollowTarget")
 tween_resource = SubResource("Resource_i8oxm")
 tween_on_load = false
+camera_3d_resource = SubResource("Resource_xvv6x")
+follow_offset = Vector3(0, 1.5, 0)
 follow_damping = true
-follow_distance = 5.0
-spring_length = 5.0
+follow_distance = 2.5
+spring_length = 2.5
+collision_mask = 0
+align_transform_with_view = Callable()
+align_position_with_view = Callable()
+align_rotation_with_view = Callable()
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
