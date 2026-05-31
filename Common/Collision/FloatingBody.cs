@@ -3,6 +3,7 @@ using System;
 using System.Diagnostics;
 using System.Collections.Generic;
 using System.Linq;
+using System.ComponentModel;
 
 
 [GlobalClass] public partial class FloatingBody : CharacterBody3D {
@@ -104,6 +105,8 @@ using System.Linq;
 
 	private float SLOPE_MAX_ANGLE_COS = 0.0f;
 
+	private Vector3 STEP_MAX_HEIGHT_VEC = Vector3.Zero;
+
 	private CapsuleShape3D m_bodyColliderShape = null;
 	private SphereShape3D m_groundCastShape = null;
 
@@ -158,6 +161,8 @@ using System.Linq;
 		BODY_COLLIDER_POSITION = BODY_COLLIDER_HEIGHT / 2 + BODY_COLLIDER_FLOATING_HEIGHT;
 
 		SLOPE_MAX_ANGLE_COS = Mathf.Cos(SLOPE_MAX_ANGLE);
+
+		STEP_MAX_HEIGHT_VEC = new Vector3(0, STEP_MAX_HEIGHT, 0);
 
 		m_bodyColliderShape = (CapsuleShape3D)bodyCollider.Shape;
 		m_groundCastShape = (SphereShape3D)groundCast.Shape;
@@ -478,6 +483,8 @@ using System.Linq;
 		Vector3 correctionVelocity = Vector3.Zero;
 		Vector3 targetVelocity = m_targetVelocity;
 
+		bool lastFrameStill = Mathf.IsZeroApprox(PPUtil.Math.FlatLengthSquared(Velocity));
+
 		if (!m_noFlatVelocity) {
 			if (Mathf.Abs(m_groundData.Offset) < COLLISION_EPSILON) {
 				Position += Vector3.Down * m_groundData.Offset;
@@ -487,12 +494,14 @@ using System.Linq;
 			Vector3 line = GlobalPosition - m_footData.Point;
 			line.Y += m_groundData.Offset / VELOCITY_VERTICAL_OVERCORRECTION_FACTOR;
 
-			// If the horizontal OR vertical component of line is too small
-			if (PPUtil.Math.FlatLengthSquared(line) < COLLISION_EPSILON_SQARED) {
+			if (PPUtil.Math.FlatLengthSquared(line) < COLLISION_EPSILON_SQARED) { // If the horizontal component of line is too small
 				targetVelocity = PPUtil.Math.RotateVectorOntoPlane(targetVelocity, m_groundData.Normal);
-			} else // The two cross products produce the final slope vector to rotate velocity by
+			} else { // The two cross products produce the final slope vector to rotate velocity by
 				targetVelocity = PPUtil.Math.RotateVectorOntoPlane(targetVelocity, line.Cross(m_footData.Normal).Cross(line).Normalized());
-		} else if (m_groundedData.Grounded) {
+			}
+		}
+		
+		if ((lastFrameStill || m_noFlatVelocity) && m_groundedData.Grounded) {
 			float absOffset = Mathf.Abs(m_groundedData.Offset);
 
 			if (absOffset > STEP_MAX_HEIGHT)
@@ -503,6 +512,7 @@ using System.Linq;
 				Position += Vector3.Down * m_groundedData.Offset;
 			} else correctionVelocity.Y = -m_groundedData.Offset / delta * STEP_SPEED_FACTOR;
 		}
+
 
 		Velocity = targetVelocity + correctionVelocity + groundVelocity;
 	}
@@ -567,13 +577,18 @@ using System.Linq;
 		Vector3 iterShift = new Vector3(direction.X, 0, direction.Z) * iterDistance;
 
 		Vector3 pos = startingPos;
+		Vector3 oldPos = Vector3.Zero;
 
 		for (int i = 0; i < FORWARD_PROBE_COUNT; i++) {
+			oldPos = pos;
 			pos += iterShift;
 
-			Vector3 posOffset = new Vector3(0, STEP_MAX_HEIGHT, 0); // We make our ray slightly lower than the max step height to prevent stepping to high)
+			_setRayQuery(oldPos + STEP_MAX_HEIGHT_VEC, pos + STEP_MAX_HEIGHT_VEC);
+			if (GetWorld3D().DirectSpaceState.IntersectRay(m_rayQuery).Count != 0) {
+				return;
+			}
 
-			_setRayQuery(pos + posOffset, pos - DOWNWARDS_RAY_LENGTH);
+			_setRayQuery(pos + STEP_MAX_HEIGHT_VEC, pos - DOWNWARDS_RAY_LENGTH);
 			var collision = GetWorld3D().DirectSpaceState.IntersectRay(m_rayQuery);
 			if (collision.Count == 0) {
 				if (skippedOnce)
