@@ -1,16 +1,51 @@
-\documentclass[10pt, a4paper]{article}
+\documentclass[10pt]{article}
 
-\usepackage[utf8]{inputenc}
+
+% Packages
+
+\usepackage[
+    a4paper,
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    marginparwidth=1.75cm
+]{geometry}
+
+\usepackage{subfiles}
+
+% Spacing packages
+\usepackage{setspace}
+\usepackage{parskip}
+
+% Extra formatting packages
+\usepackage{csquotes}
+\usepackage{enumitem}
+
+% Language packages
 \usepackage[T1]{fontenc}
 \usepackage[german]{babel}
-\usepackage[top=2.5cm, bottom=2.5cm, left=3cm, right=2.5cm]{geometry}
-\usepackage{setspace}
-\onehalfspacing 
-\usepackage{graphicx}
-\usepackage{enumitem}
-\usepackage{parskip}
+
+% Formalities
 \usepackage[backend=biber, style=authortitle-ibid]{biblatex}
-\addbibresource{sources.bib}
+
+% Graphical packages
+\usepackage{graphicx}
+
+% Mathematical packages
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{siunitx}
+\usepackage{caption}
+
+
+% Definitions and setup
+
+\onehalfspacing
+\addbibresource{Source/sources.bib}
+
+
+% Title page
 
 \title{
     \textbf{\Huge Project-Polearm} \\ [0.2em]
@@ -21,7 +56,10 @@
 \author{Rodin Arslan, Zhile Zhu \\ \normalsize Klasse G23g}
 \date{\today}
 
+
 \begin{document}
+
+% Initial pages setup
 
 \maketitle
 \newpage
@@ -29,34 +67,14 @@
 \tableofcontents
 \newpage
 
+
 \section{Einleitung}
-\subsection{Motivation und Relevanz}
 
-Hack-and-Slash Spiele gehören zu den technisch anspruchsvollsten Genres der Spieleentwicklung. Das Zusammenspiel von Spielerbewegung, Kampfsystem, Gegnerverhalten und Leveldesign muss genau aufeinander abgestimmt sein. Dabei ist das Fenster, in dem sich ein befriedigendes Spielerlebnis entfaltet, sehr eng. Genau dieses Zusammenspiel aber fasziniert uns als Spieler und stellt als Entwickler eine ebenso komplexe Herausforderung dar.
+\subfile{Source/Einleitung}
 
-Die vorliegende Maturitätsarbeit entstand aus dem Wunsch, nicht nur Spiele zu spielen, sondern sie genauer zu verstehen und selbst eines zu entwickeln. Das Genre setzt dabei eine hohe Messlatte. Schon kleine Änderungen an einzelnen Systemen haben spürbare Auswirkungen auf das gesamte Spielgefühl. Dies macht die Entwicklung anspruchsvoll und bietet eine lehrreiche Erfahrung.
-
-Da das Genre seine grösste Popularität zwischen 2001 und 2012 erlebte und heute nur noch eine kleine, aber treue Nische bedient, bietet es eine günstige Ausgangslage. Es existiert ausreichend Referenzmaterial aus einer designtechnisch reifen Ära, und gleichzeitig besteht Freiraum für moderne Interpretationen klassischer Mechaniken.
-
-\subsection{Zielsetzung und Produktdefinition}
-
-Ziel dieser Arbeit ist die Entwicklung eines spielbaren 3D-Hack-and-Slash Prototypen mit der Game Engine Godot. Der Schwerpunkt liegt dabei auf der technischen Umsetzung der zentralen Spielsysteme sowie deren Dokumentation und Evaluation.
-
-Das Endprodukt umfasst einen zusammenhängenden Kampfabschnitt mit mindestens zwei unterscheidbaren Gegnertypen, die sich eigenständig bewegen und angreifen können. Die zentralen Spielmechaniken umfassen grundlegende Spielerbewegungen im dreidimensionalen Raum, Kampfmechaniken, Gegner-KI und übergeordnete Spielsysteme, Menüs oder Neustart nach dem Tod. Die Softwarearchitektur der wichtigsten Systeme wird durch Grafiken dokumentiert.
-
-Ergänzend zur technischen Entwicklung werden zwei Referenzspiele des Genres anhand eines ausgearbeiteten Analyseframeworks untersucht. Die daraus gewonnenen Erkenntnisse fliessen direkt in das Design des Prototypen ein. Schliesslich wird der Prototyp in einem strukturierten Playtest mit ca. fünf Testpersonen evaluiert und die Ergebnisse ausgewertet.
-
-\subsection{Erkenntnisfrage}
-
-Im Zentrum unserer Arbeit steht folgende Erkenntnisfrage:
-
-\begin{quote}
-\textit{"Wie müssen Gegnerverhalten und Gegnerplatzierung in einem 3D-Hack-and-Slash-Prototyp gestaltet sein, damit ein zusammenhängender Kampfabschnitt mit nachvollziehbarem Spielfluss, angemessener Schwierigkeit und befriedigendem Spielergefühl entsteht?"}
-\end{quote}
-
-Diese Frage wird durch die Analyse bestehender Referenzspiele, die technische Umsetzung im Prototyp sowie die Auswertung der Playtests beantwortet.
 
 \section{Theoretischer Hintergrund \& Analyseframework}
+
 \subsection{Definition des Hack-and-Slash Genre}
 
 In der Videospielindustrie bezeichnet "Hack and Slash" eine Subgenre der Action Games. Der Fokus liegt dabei auf Echtzeitkampf mit Nahkampfwaffen, wie Schwertern, Äxten oder anderen Klingen. Fernkampfwaffen sind zwar vertreten, spielen aber nur eine untergeordnete und unterstützende Rolle. Das Genre entstammt den 2D Beat'em Up Games, entwickelte sich weiter in der 3D Ära und wurde vor allem durch Titel wie Devil May Cry (2001) oder Bayonetta (2009) geprägt.
@@ -64,6 +82,7 @@ In der Videospielindustrie bezeichnet "Hack and Slash" eine Subgenre der Action 
 Die modernen Spiele zeichnen sich durch hohe Spielgeschwindigkeiten und stilvolle, fliessende Bewegungen aus. Das Verketten präziser Angriffs-Kombos, das gezielte Abbrechen von Bewegungen, I-Frames und strategisches Distanzmanagement zum Gegner zeichnen das Gameplay aus. Das, was ein überzeugendes Hack-and-Slash ausmacht, ist nicht allein die Anzahl dieser Mechaniken, sondern das Zusammenspiel dieser. Erst wenn präzises Kampfverhalten und befriedigendes Spielgefühl aufeinander abgestimmt sind, entsteht das genredefinierende Gefühl von Kontrolle und Ausdrucksstärke.
 
 Um dieses Zusammenspiel systematisch zu erfassen und vergleichbar zu machen, bedarf es eines geeigneten Analyserahmens. Im folgenden Abschnitt wird das MDA-Framework als methodisches Werkzeug eingeführt, das die Beziehung zwischen Spielregeln, emergenten Verhaltensmustern und dem emotionalen Spielerleben strukturiert beschreibt.
+
 
 \subsection{Das MDA-Analyseframework}
 
@@ -77,11 +96,14 @@ Dieses Framework eignet sich besonders gut für die Analyse von Hack-and-Slash S
 
 Auf Basis dieses Frameworks wurde ein strukturierter Fragebogen mit 15 Fragen entwickelt, der die drei Ebenen getrennt betrachtet. Er dient als Grundlage für die Analyse der Referenzspiele in Abschnitt \ref{sec:Referenzspiel} sowie als inhaltliche Basis für den Playtest-Fragebogen in Kapitel \ref{sec:playtesting}.
 
+
 \subsection{Analysefragebogen}
 
 Die 15 Fragen sind den drei MDA-Ebenen zugeordnet und werden in umgekehrter Reihenfolge – von der Ästhetik zu den Mechaniken – gestellt, da die Analyse beim Spielgefühl beginnt und sich systematisch zu den Ursachen vorarbeitet.
 
+
 \subsubsection{Aesthetics (Ästhetik und emotionales Erleben)}
+
 \begin{enumerate}[label=\textbf{A\arabic*}, leftmargin=1.5cm, itemsep=0.5em]
     \item Welche emotionale Reaktion löst der Kampf primär aus: Kontrolle, Befriedigung, Anspannung oder Frustration? Warum?
     \item Wie gut vermittelt das audiovisuelle Feedback die Wucht und Präzision der Treffer? Wie?
@@ -91,6 +113,7 @@ Die 15 Fragen sind den drei MDA-Ebenen zugeordnet und werden in umgekehrter Reih
 \end{enumerate}
 
 \subsubsection{Dynamics (Spieldynamik und Interaktion)}
+
 \begin{enumerate}[label=\textbf{D\arabic*}, leftmargin=1.5cm, itemsep=0.5em]
     \item Wie sieht der Levelabschnitt von Beginn bis Ende aus, erläutere erkennbare Muster und wie etwaige mit der Spannungskurve zusammenhängen?
     \item Erzeugt die Kombination verschiedener Gegnertypen innerhalb eines Encounters taktischen Druck oder agieren die Gegner unabhängig voneinander?
@@ -100,6 +123,7 @@ Die 15 Fragen sind den drei MDA-Ebenen zugeordnet und werden in umgekehrter Reih
 \end{enumerate}
 
 \subsubsection{Mechanics (Spielmechaniken)}
+
 \begin{enumerate}[label=\textbf{M\arabic*}, leftmargin=1.5cm, itemsep=0.5em]
     \item Wie unterscheiden sich die Gegnertypen auf Mechanikenebene: Bewegungsgeschwindigkeit, Angriffsreichweite, Schadenswerte?
     \item Wie ist das Angriffsverhalten der Gegner implementiert, reagieren sie aktiv auf den Spieler oder folgen sie festen vordefinierten Mustern?
@@ -108,7 +132,9 @@ Die 15 Fragen sind den drei MDA-Ebenen zugeordnet und werden in umgekehrter Reih
     \item Wie hängen die gedrückten Tasten mit dem visuellen Kampfereignissen zusammen, gibt es eine bestimmte Intention hinter den Tasten?
 \end{enumerate}
 
+
 \subsection{Analyse der Referenzspiele}
+
 \label{sec:Referenzspiel}
 
 \subsubsection{Ninja Gaiden II}
