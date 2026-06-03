@@ -1,11 +1,19 @@
-# Obsidian ignores
-.trash/
-.obsidian/workspace.json
+# Draw.io ignores
 
-# Obsidian plugin ignores
-.obsidian/plugins/*/data.json
-.obsidian/plugins/*/data.json.backup
-.obsidian/plugins/*/data.json.old
+*.bkp
+
+# Lataex ignores
+
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.pdf
+*.gz
+*.toc
 
 # MacOS ignores
-.DS_Store
+*.DS_Store
