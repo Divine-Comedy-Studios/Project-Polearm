@@ -17,7 +17,7 @@
 % Spacing packages
 \usepackage{setspace}
 \usepackage{parskip}
-
+    
 % Extra formatting packages
 \usepackage{csquotes}
 \usepackage{enumitem}
@@ -42,7 +42,7 @@
 % Definitions and setup
 
 \onehalfspacing
-\addbibresource{Source/sources.bib}
+\addbibresource{Source/Sources.bib}
 
 
 % Title page
@@ -57,6 +57,8 @@
 \date{\today}
 
 
+% Document
+
 \begin{document}
 
 % Initial pages setup
@@ -68,78 +70,9 @@
 \newpage
 
 
-\section{Einleitung}
-
 \subfile{Source/Einleitung}
 
-
-\section{Theoretischer Hintergrund \& Analyseframework}
-
-\subsection{Definition des Hack-and-Slash Genre}
-
-In der Videospielindustrie bezeichnet "Hack and Slash" eine Subgenre der Action Games. Der Fokus liegt dabei auf Echtzeitkampf mit Nahkampfwaffen, wie Schwertern, Äxten oder anderen Klingen. Fernkampfwaffen sind zwar vertreten, spielen aber nur eine untergeordnete und unterstützende Rolle. Das Genre entstammt den 2D Beat'em Up Games, entwickelte sich weiter in der 3D Ära und wurde vor allem durch Titel wie Devil May Cry (2001) oder Bayonetta (2009) geprägt.
-
-Die modernen Spiele zeichnen sich durch hohe Spielgeschwindigkeiten und stilvolle, fliessende Bewegungen aus. Das Verketten präziser Angriffs-Kombos, das gezielte Abbrechen von Bewegungen, I-Frames und strategisches Distanzmanagement zum Gegner zeichnen das Gameplay aus. Das, was ein überzeugendes Hack-and-Slash ausmacht, ist nicht allein die Anzahl dieser Mechaniken, sondern das Zusammenspiel dieser. Erst wenn präzises Kampfverhalten und befriedigendes Spielgefühl aufeinander abgestimmt sind, entsteht das genredefinierende Gefühl von Kontrolle und Ausdrucksstärke.
-
-Um dieses Zusammenspiel systematisch zu erfassen und vergleichbar zu machen, bedarf es eines geeigneten Analyserahmens. Im folgenden Abschnitt wird das MDA-Framework als methodisches Werkzeug eingeführt, das die Beziehung zwischen Spielregeln, emergenten Verhaltensmustern und dem emotionalen Spielerleben strukturiert beschreibt.
-
-
-\subsection{Das MDA-Analyseframework}
-
-Das MDA-Framework (Mechanics, Dynamics, Aesthetics) wurde von Hunicke, LeBlanc und Zubek entwickelt und ist ein formaler Ansatz zur Analyse und zum Verständnis von Spieldesign. Es beschreibt Spiele nicht als statisches Medium wie Buch oder Film, sondern als interaktives Erlebnis, welches aus dem Zusammenspiel dreier klar abgegrenzter Ebenen entsteht.
-
-Die unterste Ebene, die Mechaniken, umfasst die konkreten Regeln und Systeme eines Spiels. Darunter versteht man alles, was durch Daten und Algorithmen getrieben ist, wie Schadenswerte, Treffererkennung, Bewegungsgeschwindigkeit oder die Gegner-KI. Daraus entstehen zur Laufzeit die Dynamiken, also das emergente Verhalten, das sich aus dem Zusammenspiel von Mechaniken und Spielerentscheidungen ergibt. Konkret geht es um den Kampfrhythmus, taktische Ausweichmuster oder eskalierende Gegnerwellen. Die oberste Ebene, die Ästhetik, beschreibt schliesslich die emotionale Reaktion des Spielers auf dieses System. Gefühle wie Kontrolle und Befriedigung bei gelungenen Combos stehen im Vordergrund.
-
-Entscheidend ist die Kausalität zwischen den Ebenen. Mechaniken erzeugen Dynamiken, die wiederum Ästhetik erzeugen. Gleichzeitig erleben die Spieler das Game in umgekehrter Reihenfolge. Für die Analyse bestehender Spiele bedeutet das, dass man vom Spielgefühl beginnt und sich systematisch zu den Ursachen, also den Mechaniken, vorarbeiten muss.
-
-Dieses Framework eignet sich besonders gut für die Analyse von Hack-and-Slash Spielen, da das Genre ein besonders hohes Mass dieser Kausalität aufweist. Beispielsweise sind die genauen Parameter einer einzelnen Mechanik, wie einer Attacke, bedeutungslos, wenn sie nicht im Kontext weiterer Systeme, wie Gegnerlebenspunkten, Gegnerverhalten und Animationsgeschwindigkeit, betrachtet werden.\autocite{hunicke2004mda}
-
-Auf Basis dieses Frameworks wurde ein strukturierter Fragebogen mit 15 Fragen entwickelt, der die drei Ebenen getrennt betrachtet. Er dient als Grundlage für die Analyse der Referenzspiele in Abschnitt \ref{sec:Referenzspiel} sowie als inhaltliche Basis für den Playtest-Fragebogen in Kapitel \ref{sec:playtesting}.
-
-
-\subsection{Analysefragebogen}
-
-Die 15 Fragen sind den drei MDA-Ebenen zugeordnet und werden in umgekehrter Reihenfolge – von der Ästhetik zu den Mechaniken – gestellt, da die Analyse beim Spielgefühl beginnt und sich systematisch zu den Ursachen vorarbeitet.
-
-
-\subsubsection{Aesthetics (Ästhetik und emotionales Erleben)}
-
-\begin{enumerate}[label=\textbf{A\arabic*}, leftmargin=1.5cm, itemsep=0.5em]
-    \item Welche emotionale Reaktion löst der Kampf primär aus: Kontrolle, Befriedigung, Anspannung oder Frustration? Warum?
-    \item Wie gut vermittelt das audiovisuelle Feedback die Wucht und Präzision der Treffer? Wie?
-    \item Vermittelt die Gegnerplatzierung ein Gefühl von intentionalem Design, wirkt die Anordnung der Gegner durchdacht oder zufällig und wie beeinflusst diese das Empfinden des Spielers?
-    \item Verändert sich das emotionale Erleben im Verlauf des Levelabschnitts und ist eine Spannungskurve erkennbar?
-    \item Unterscheiden sich die Combos darin, welche Emotionen sie auslösen, bringen sie den Spieler in Bedrängnis oder gibt es ein Gefühl der Erleichterung?
-\end{enumerate}
-
-\subsubsection{Dynamics (Spieldynamik und Interaktion)}
-
-\begin{enumerate}[label=\textbf{D\arabic*}, leftmargin=1.5cm, itemsep=0.5em]
-    \item Wie sieht der Levelabschnitt von Beginn bis Ende aus, erläutere erkennbare Muster und wie etwaige mit der Spannungskurve zusammenhängen?
-    \item Erzeugt die Kombination verschiedener Gegnertypen innerhalb eines Encounters taktischen Druck oder agieren die Gegner unabhängig voneinander?
-    \item Entsteht durch Gegnerplatzierung/Spawnpunkte und deren Anzahl ein flüssiger Spielfluss, gibt es einen spürbaren Unterschied zwischen Einzel- und Gruppenkonfrontationen?
-    \item Wie erholt sich der Spieler nach einem Fehler, ist die Feedback-Schleife zwischen Fehler und Korrektur nachvollziehbar?
-    \item Gibt es verschiedene Combos/Kampfabläufe und folgen daraus verschiedene Arten die Gegner zu bekämpfen?
-\end{enumerate}
-
-\subsubsection{Mechanics (Spielmechaniken)}
-
-\begin{enumerate}[label=\textbf{M\arabic*}, leftmargin=1.5cm, itemsep=0.5em]
-    \item Wie unterscheiden sich die Gegnertypen auf Mechanikenebene: Bewegungsgeschwindigkeit, Angriffsreichweite, Schadenswerte?
-    \item Wie ist das Angriffsverhalten der Gegner implementiert, reagieren sie aktiv auf den Spieler oder folgen sie festen vordefinierten Mustern?
-    \item Wie begrenzt das Leveldesign die Bewegungsoptionen von Spieler und Gegner, gibt es räumliche Einschränkungen die den Kampf beeinflussen?
-    \item Wie ist das Hitstun-System und Knockback-System designed, lassen sich verschiedene Arten beobachten?
-    \item Wie hängen die gedrückten Tasten mit dem visuellen Kampfereignissen zusammen, gibt es eine bestimmte Intention hinter den Tasten?
-\end{enumerate}
-
-
-\subsection{Analyse der Referenzspiele}
-
-\label{sec:Referenzspiel}
-
-\subsubsection{Ninja Gaiden II}
-\subsubsection{NieR: Automata}
-\subsection{Ableitung der Designziele}
+\subfile{Source/Theorie}
 
 \section{Softwarearchitektur und technische Entwicklung}
 \subsection{Systemarchitektur in Godot}
@@ -166,10 +99,15 @@ Die 15 Fragen sind den drei MDA-Ebenen zugeordnet und werden in umgekehrter Reih
 \subsection{Reflexion des Arbeitsprozesses und der Gruppenarbeit}
 \subsection{Reflexion über den Einsatz von KI-Hilfsmitteln}
 
+
 \newpage
+
 \section{Verzeichnisse}
+
 \subsection{Literatur- und Quellenverzeichnis}
+
 \printbibliography[heading=none]
+
 
 \subsection{KI-Deklaration}
 
