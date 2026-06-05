@@ -16,7 +16,7 @@
 [ext_resource type="AnimationLibrary" uid="uid://dfqr4nawpg2vu" path="res://Assets/3D Models/Characters/Player/Animations/Movement.res" id="13_hl213"]
 [ext_resource type="AnimationLibrary" uid="uid://b3cu7qf5ygk0k" path="res://Assets/3D Models/Characters/Player/Animations/TPose.glb" id="14_5m37j"]
 [ext_resource type="Script" uid="uid://del87rrtko1do" path="res://Entities/Entity/Utility/EntityAnimationHelper.gd" id="14_uw7o4"]
-[ext_resource type="AnimationLibrary" uid="uid://do1b77mkleigh" path="res://Entities/Player/Resources/FrameData.res" id="15_gallu"]
+[ext_resource type="AnimationLibrary" path="res://Entities/Player/Resources/FrameData.res" id="15_gallu"]
 [ext_resource type="PackedScene" uid="uid://c6ck6empr4lu2" path="res://Entities/Player/Visuals/Skeleton.scn" id="17_5m37j"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_an6q6"]
@@ -165,6 +165,7 @@ process_mode = 4
 libraries/ = SubResource("AnimationLibrary_gallu")
 libraries/FrameData = ExtResource("15_gallu")
 script = ExtResource("9_uw7o4")
+_finished = true
 metadata/_custom_type_script = "uid://dalncdreadf0e"
 
 [node name="Animator" type="AnimationTree" parent="." unique_id=627681842]

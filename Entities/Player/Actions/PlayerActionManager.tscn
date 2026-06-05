@@ -14,7 +14,6 @@
 [ext_resource type="Script" uid="uid://vahqysuxajcw" path="res://Entities/Player/Actions/States/LightAttack.gd" id="8_6evvv"]
 [ext_resource type="Script" uid="uid://bsb2b7yi270tu" path="res://Entities/Player/Actions/States/TransitionAction/MoveStop.gd" id="9_x5srs"]
 [ext_resource type="Script" uid="uid://dqyhrw0qku77r" path="res://Entities/Player/Actions/States/TransitionAction/MoveTurn.gd" id="10_re4dn"]
-[ext_resource type="Script" uid="uid://xb4hqx5wmo3o" path="res://Entities/Player/Actions/States/TransitionAction/SprintTurn.gd" id="10_x5srs"]
 [ext_resource type="Script" uid="uid://bb1weubijn6l2" path="res://Entities/Player/Actions/States/TransitionAction/AirJumpStart.gd" id="11_6ns0w"]
 [ext_resource type="Script" uid="uid://oyhtbomcato" path="res://Entities/Player/Actions/States/BasicActions/BasicDash.gd" id="12_1ws56"]
 [ext_resource type="Script" uid="uid://d2mcxn2vpp7ne" path="res://Entities/Player/Actions/States/LedgeGrab.gd" id="13_71nor"]
@@ -103,6 +102,12 @@ ANIMATION_LIBRARY_NAME = &"Movement"
 ANIMATION_NAME = &"DashLoop"
 metadata/_custom_type_script = "uid://cqy3drroysy4k"
 
+[sub_resource type="Resource" id="Resource_l8es3"]
+script = ExtResource("5_8427c")
+ANIMATION_LIBRARY_NAME = &"Movement"
+ANIMATION_NAME = &"SprintLoop"
+metadata/_custom_type_script = "uid://cqy3drroysy4k"
+
 [sub_resource type="Resource" id="Resource_ay6x1"]
 script = ExtResource("5_8427c")
 ANIMATION_LIBRARY_NAME = &"Movement"
@@ -110,24 +115,6 @@ ANIMATION_NAME = &"SprintTurnLeft180"
 metadata/_custom_type_script = "uid://cqy3drroysy4k"
 
 [sub_resource type="Resource" id="Resource_nyvoi"]
-script = ExtResource("5_8427c")
-ANIMATION_LIBRARY_NAME = &"Movement"
-ANIMATION_NAME = &"SprintTurnRight180"
-metadata/_custom_type_script = "uid://cqy3drroysy4k"
-
-[sub_resource type="Resource" id="Resource_l8es3"]
-script = ExtResource("5_8427c")
-ANIMATION_LIBRARY_NAME = &"Movement"
-ANIMATION_NAME = &"SprintLoop"
-metadata/_custom_type_script = "uid://cqy3drroysy4k"
-
-[sub_resource type="Resource" id="Resource_ml4cg"]
-script = ExtResource("5_8427c")
-ANIMATION_LIBRARY_NAME = &"Movement"
-ANIMATION_NAME = &"SprintTurnLeft180"
-metadata/_custom_type_script = "uid://cqy3drroysy4k"
-
-[sub_resource type="Resource" id="Resource_ne5dw"]
 script = ExtResource("5_8427c")
 ANIMATION_LIBRARY_NAME = &"Movement"
 ANIMATION_NAME = &"SprintTurnRight180"
@@ -311,20 +298,11 @@ metadata/_custom_type_script = "uid://jc1g0sv32qq1"
 [node name="Sprint" type="Node" parent="." unique_id=1834573460]
 process_mode = 4
 script = ExtResource("17_6ns0w")
+SPRINT_DATA = SubResource("Resource_l8es3")
 TURN_LEFT_DATA = SubResource("Resource_ay6x1")
 TURN_RIGHT_DATA = SubResource("Resource_nyvoi")
-SPRINT_DATA = SubResource("Resource_l8es3")
 TYPE = &"sprint"
 PRIORITY = 6
-metadata/_custom_type_script = "uid://jc1g0sv32qq1"
-
-[node name="SprintTurn" type="Node" parent="." unique_id=895419015]
-process_mode = 4
-script = ExtResource("10_x5srs")
-TURN_LEFT_DATA = SubResource("Resource_ml4cg")
-TURN_RIGHT_DATA = SubResource("Resource_ne5dw")
-TYPE = &"sprintTurn"
-PRIORITY = 7
 metadata/_custom_type_script = "uid://jc1g0sv32qq1"
 
 [node name="SprintStop" type="Node" parent="." unique_id=33316294]
@@ -389,7 +367,7 @@ process_mode = 4
 script = ExtResource("18_wu1xb")
 RISE_GRAVITY = 28.0
 TYPE = &"airJump"
-PRIORITY = 31
+PRIORITY = 33
 data = SubResource("Resource_6awf7")
 metadata/_custom_type_script = "uid://jc1g0sv32qq1"
 
