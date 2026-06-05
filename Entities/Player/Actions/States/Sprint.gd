@@ -67,13 +67,6 @@ func _tick(delta : float) -> void:
 	# Switch to special turning state
 	_checkTurning()
 
-	var dir := inputs().direction
-	if dir.is_zero_approx():
-		_direction = player().forward()
-	else:
-		_direction.x = dir.x
-		_direction.z = dir.y
-
 	player().accelerateFlat3(_direction * _speed, _accel * delta)
 
 	if inputs().modifiers.has(Type.sprint):
@@ -81,12 +74,10 @@ func _tick(delta : float) -> void:
 	else:
 		context().pushActionQueue(Type.sprintStop)
 
-
 func _processDirection(delta : float) -> void:
 	if _turning:
 		var rotationTrackingSpeed := _turnTargetAngle / _turnDuration * delta
-		if rotationTrackingSpeed != 0.0:
-			_context.entity.rotate_y(rotationTrackingSpeed)
+		_context.entity.rotate_y(rotationTrackingSpeed)
 	else:
 		super._processDirection(delta)
 
@@ -96,23 +87,39 @@ func _processDirection(delta : float) -> void:
 #region Private functions
 
 func _checkTurning() -> void:
-	var forward3 : Vector3 = player().forward()
-	var forward = Vector2(forward3.x, forward3.z).normalized()
-	if not _turning and not is_zero_approx(inputs().inputMagnitude) and inputs().direction.dot(forward) < 0.8:
+	var zeroInputMag := is_zero_approx(inputs().inputMagnitude)
+
+	# First, check if the player was turning and if the animation is done
+	if _turning:
+		if finished():
+			exit()
+			enter()
+
+		return # If the player is turning, the target direction shouldn't be changed
+
+	_direction = player().forward()
+	_direction.y = 0.0
+	_direction = _direction.normalized()
+
+	if zeroInputMag:
+		return
+
+	# Check if the player has turned
+
+	var direction = Vector3(inputs().direction.x, 0.0, inputs().direction.y)
+	if direction.dot(_direction) < 0.2:
+		_turnTargetAngle = _direction.signed_angle_to(direction, Vector3.UP)
+
 		exit()
 
 		_turning = true
-		_turnTargetAngle = inputs().direction.angle_to(forward)
+		_direction = direction
 
 		if _turnTargetAngle > 0:
 			_targetAnimation = TURN_LEFT_DATA
 		else:
 			_targetAnimation = TURN_RIGHT_DATA
 
-		enter()
-
-	if _turning and finished():
-		exit()
 		enter()
 
 #endregion
