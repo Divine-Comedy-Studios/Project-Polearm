@@ -67,12 +67,14 @@ func _implInit() -> void:
 
 
 func _implEnter() -> void:
+	# Switch to special turning state
+	#var forward : Vector3 = player().forward()
+	#if inputs().direction.dot(Vector2(forward.x, forward.z).normalized()) < 0.8:
+	#	context().interrupt(Type.moveTurn)
+	#	return
+
 	animator().setCoreTransition(&"AdvancedTransition", data.ANIMATION_FADE_TIME)
 	animator().transitionTo(&"AdvancedTransition", &"Move")
-
-
-func _implExit() -> void:
-	pass
 
 
 func _tick(delta : float) -> void:
@@ -82,6 +84,13 @@ func _tick(delta : float) -> void:
 
 	# Animation
 	_processAnimations()
+
+
+func _implNextAction(next : StringName) -> StringName:
+	if next != Type.none and hasHigherPriorityThan(next):
+		return Type.moveStop
+
+	return next
 
 #endregion
 

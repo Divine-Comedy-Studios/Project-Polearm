@@ -40,6 +40,10 @@ class Type:
 	# Taunts
 	const taunt := &""
 
+	# Moving
+	const moveStop := &"moveStop"
+	const moveTurn := &"moveTurn"
+
 	# Sprinting
 	const sprint := &"sprint"
 	const sprintStop := &"sprintStop"
@@ -176,7 +180,7 @@ func _processDirectionAngle() -> float:
 	if flatInput.is_zero_approx():
 		return 0.0
 
-	return (-player().basis.z).signed_angle_to(
+	return player().forward().signed_angle_to(
 		flatInput, 
 		Vector3.UP
 	)
