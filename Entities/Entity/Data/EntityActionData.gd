@@ -6,7 +6,7 @@ class_name EntityActionData
 @export var ANIMATION_LIBRARY_NAME := StringName()
 @export var ANIMATION_NAME := StringName()
 @export var ROOT_MOTION : bool = false
-@export var ANIMATION_FADE_TIME : float = 0.2
+@export var ANIMATION_FADE_TIME : float = 0.1
 
 @export_group("Gameplay")
 @export var HIT_DATA : Hitbox.Data = null
