@@ -53,10 +53,6 @@ func _implExit() -> void:
 
 
 func _tick(delta : float) -> void:
-	if player().onCeiling() or player().movement().y == 0.0:
-		context().interrupt(Type.fall)
-		return
-
 	moveAerial(delta)
 
 	# Additional jump velocity
@@ -72,6 +68,10 @@ func _tick(delta : float) -> void:
 
 
 func _implNextAction(next : StringName) -> StringName:
+	if ((player().onCeiling() or player().movement().y < 0.01) and
+		(next == Type.none or context().hasHigherPriority(Type.fall, next))):
+		return Type.fall
+
 	return next
 
 #endregion
