@@ -17,7 +17,6 @@ var _friction : float = 0.0
 
 
 # Animation
-
 var _landStillPeriod : float = 0.0
 var _landRunPeriod : float = 0.0
 

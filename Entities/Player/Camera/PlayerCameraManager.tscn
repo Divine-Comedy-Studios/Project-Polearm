@@ -24,7 +24,7 @@ script = ExtResource("2_ij7sd")
 metadata/_custom_type_script = "uid://cs84umg5je0yd"
 
 [node name="Camera" type="Node3D" parent="." unique_id=749819996 node_paths=PackedStringArray("follow_target")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 2.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 3)
 script = ExtResource("2_ye1s6")
 follow_mode = 6
 follow_target = NodePath("../FollowTarget")
@@ -32,8 +32,8 @@ tween_resource = SubResource("Resource_i8oxm")
 camera_3d_resource = SubResource("Resource_xvv6x")
 follow_offset = Vector3(0, 1.5, 0)
 follow_damping = true
-follow_distance = 2.5
-spring_length = 2.5
+follow_distance = 3.0
+spring_length = 3.0
 collision_mask = 32768
 align_transform_with_view = Callable()
 align_position_with_view = Callable()
