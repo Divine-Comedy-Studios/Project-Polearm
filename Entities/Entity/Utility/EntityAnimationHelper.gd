@@ -152,6 +152,7 @@ func _sync_frame_data_library() -> void:
 
 		animFinishedTrack = frameDataAnim.add_track(Animation.TYPE_VALUE)
 		frameDataAnim.track_set_path(animFinishedTrack, "FrameData:_finished")
+		frameDataAnim.value_track_set_update_mode(animFinishedTrack, Animation.UPDATE_DISCRETE)
 		frameDataAnim.track_insert_key(animFinishedTrack, 0.0, false)
 		frameDataAnim.track_insert_key(animFinishedTrack, frameDataAnim.length, true)
 
