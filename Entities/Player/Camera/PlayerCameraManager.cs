@@ -29,6 +29,10 @@ using System;
     [Export] public float CONTROLLER_SENSITIVITY = 0.1f;
     [Export] public float MOUSE_SENSITIVITY = 0.01f;
 
+	[ExportGroup("AutoCam config")]
+	[Export] public float TIME_UNTIL_AUTO_CAM = 2.0f;
+	[Export] public float AUTO_CAM_VERTICAL_ANGLE = -0.1f;
+
 	#endregion
 
 
@@ -57,6 +61,8 @@ using System;
 
     private bool m_controllerActive = false;
 
+	private float m_timeUntilAutoCam = 0.0f;
+
 	#endregion
 
 
@@ -68,16 +74,29 @@ using System;
 	}
 
 	public override void _PhysicsProcess(double delta) {
+		m_timeUntilAutoCam -= (float) delta;
+
 		Direction = _processControllerInput(Input.GetVector("Camera left", "Camera right", "Camera down", "Camera up"));
 
 		if (Direction.LengthSquared() > 0.0) {
+			m_timeUntilAutoCam = TIME_UNTIL_AUTO_CAM;
+
 			m_controllerActive = true;
 
 			_rotateTarget(m_camera.FollowTarget, new Vector2(
-				Direction.Y * (float)delta * CONTROLLER_SENSITIVITY, 
+				Direction.Y * (float)delta * CONTROLLER_SENSITIVITY * INVERT_VERTICAL, 
 				Direction.X * (float)delta * CONTROLLER_SENSITIVITY
 			));
 		} else m_controllerActive = false;
+
+		if (m_timeUntilAutoCam <= 0.0f) {
+			/*
+			_rotateTarget(m_camera.FollowTarget, new Vector2(
+				AUTO_CAM_VERTICAL_ANGLE - m_camera.FollowTarget.Rotation.X,
+				
+			));
+			*/
+		}
 
 		_cameraRotationLerpToTarget();
 	}
@@ -85,9 +104,11 @@ using System;
 
 	public override void _UnhandledInput(InputEvent inputEvent) {
 		if (inputEvent is InputEventMouseMotion mouse && !m_controllerActive && Input.MouseMode == Input.MouseModeEnum.Captured) {
+			m_timeUntilAutoCam = TIME_UNTIL_AUTO_CAM;
+
 			Vector2 mouseDelta = mouse.Relative * MOUSE_SENSITIVITY;
 
-			_rotateTarget(m_camera.FollowTarget, new Vector2(-mouseDelta.Y, mouseDelta.X));
+			_rotateTarget(m_camera.FollowTarget, new Vector2(-mouseDelta.Y * INVERT_VERTICAL, mouseDelta.X));
 		}
 	}
 
@@ -127,7 +148,7 @@ using System;
 			inputVec.Y = 0.0f;
 		else if (Mathf.Abs(inputVec.X / inputVec.Y) < STICK_RELATIVE_DEADZONE)
 			inputVec.X = 0.0f;
-		
+
 		inputVec.X *= Mathf.Abs(inputVec.X);
 		inputVec.Y *= MathF.Abs(inputVec.Y);
 
@@ -141,7 +162,7 @@ using System;
 		Vector3 rotation = target.Rotation;
 
 		rotation = new Vector3(
-			Mathf.Clamp(rotation.X + angularVelocity.X * INVERT_VERTICAL, MIN_PITCH, MAX_PITCH),
+			Mathf.Clamp(rotation.X + angularVelocity.X, MIN_PITCH, MAX_PITCH),
 			Mathf.Wrap(rotation.Y - angularVelocity.Y, 0.0f, 2.0f * Mathf.Pi),
 			rotation.Z
 		);
