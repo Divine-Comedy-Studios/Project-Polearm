@@ -38,9 +38,18 @@ var _context : EntityActionManager
 #region Member variables
 
 @export var data : EntityActionData = null
+var frameDataScale : float = 1.0
+
+var payload : Variant = null:
+	get:
+		var tmp = payload
+		payload = null
+		return tmp
+	set(value):
+		payload = value
+
 
 var _progress : float
-var frameDataScale : float = 1.0
 
 #endregion
 

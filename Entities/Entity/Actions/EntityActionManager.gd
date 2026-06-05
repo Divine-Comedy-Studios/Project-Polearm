@@ -15,6 +15,19 @@ class_name EntityActionManager
 #endregion
 
 
+#region Member variables
+
+var payload : Variant = null:
+	get:
+		var tmp = payload
+		payload = null
+		return tmp
+	set(value):
+		payload = value
+
+#endregion
+
+
 #region Override functions
 
 func tick(delta: float) -> void:
@@ -23,10 +36,18 @@ func tick(delta: float) -> void:
 
 
 func _interruptState(type : StringName) -> StringName:
-	return currentState.interrupt(type)
+	var next : StringName = currentState.interrupt(type)
+	if next != AppState.Type.none:
+		payload = (currentState as EntityAction).payload
+
+	return next
 
 func _nextState() -> StringName:
-	return currentState.nextAction()
+	var next : StringName = currentState.nextAction()
+	if next != AppState.Type.none:
+		payload = (currentState as EntityAction).payload
+
+	return next
 
 #endregion
 
