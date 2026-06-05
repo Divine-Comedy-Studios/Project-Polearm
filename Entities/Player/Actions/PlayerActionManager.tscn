@@ -167,14 +167,14 @@ metadata/_custom_type_script = "uid://cqy3drroysy4k"
 [sub_resource type="Resource" id="Resource_7bymk"]
 script = ExtResource("5_8427c")
 ANIMATION_LIBRARY_NAME = &"Movement"
-ANIMATION_NAME = &"JumpDoubleStart"
+ANIMATION_NAME = &"JumpAirStart"
 ANIMATION_FADE_TIME = 0.0
 metadata/_custom_type_script = "uid://cqy3drroysy4k"
 
 [sub_resource type="Resource" id="Resource_6awf7"]
 script = ExtResource("5_8427c")
 ANIMATION_LIBRARY_NAME = &"Movement"
-ANIMATION_NAME = &"JumpDouble"
+ANIMATION_NAME = &"JumpAir"
 metadata/_custom_type_script = "uid://cqy3drroysy4k"
 
 [sub_resource type="Resource" id="Resource_71nor"]

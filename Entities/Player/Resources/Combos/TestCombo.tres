@@ -6,35 +6,35 @@
 
 [sub_resource type="Resource" id="Resource_vcmon"]
 script = ExtResource("2_7emtn")
-ANIMATION_LIBRARY_NAME = &"TestAnim"
-ANIMATION_NAME = &"LightAttack1"
+ANIMATION_LIBRARY_NAME = &"Combat"
+ANIMATION_NAME = &"Combo1_1"
 ROOT_MOTION = true
 metadata/_custom_type_script = "uid://cqy3drroysy4k"
 
 [sub_resource type="Resource" id="Resource_l80rc"]
 script = ExtResource("2_7emtn")
-ANIMATION_LIBRARY_NAME = &"TestAnim"
-ANIMATION_NAME = &"LightAttack2"
+ANIMATION_LIBRARY_NAME = &"Combat"
+ANIMATION_NAME = &"Combo1_2"
 ROOT_MOTION = true
 metadata/_custom_type_script = "uid://cqy3drroysy4k"
 
 [sub_resource type="Resource" id="Resource_l2mqv"]
 script = ExtResource("2_7emtn")
-ANIMATION_LIBRARY_NAME = &"TestAnim"
-ANIMATION_NAME = &"LightAttack3"
+ANIMATION_LIBRARY_NAME = &"Combat"
+ANIMATION_NAME = &"Combo1_3"
 ROOT_MOTION = true
 metadata/_custom_type_script = "uid://cqy3drroysy4k"
 
 [sub_resource type="Resource" id="Resource_mgqku"]
 script = ExtResource("2_7emtn")
-ANIMATION_LIBRARY_NAME = &"TestAnim"
-ANIMATION_NAME = &"LightAttack4"
+ANIMATION_LIBRARY_NAME = &"Combat"
+ANIMATION_NAME = &"Combo1_4"
 ROOT_MOTION = true
 metadata/_custom_type_script = "uid://cqy3drroysy4k"
 
 [resource]
 script = ExtResource("3_2isis")
-TYPE = &"testCombo"
+TYPE = &"combo1"
 ACTION_TYPES = Array[StringName]([&"lightAttack", &"lightAttack", &"lightAttack", &"lightAttack"])
 ACTIONS = Array[ExtResource("1_8ta00")]([SubResource("Resource_vcmon"), SubResource("Resource_l80rc"), SubResource("Resource_l2mqv"), SubResource("Resource_mgqku")])
 metadata/_custom_type_script = "uid://c8b6ivlyaw41v"

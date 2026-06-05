@@ -168,7 +168,7 @@ func _processRootMotion(delta : float) -> void:
 	_context.entity.set_quaternion(entityQuaternion * _context.animator.get_root_motion_rotation())
 	_context.entity.setMovement((
 		rootQuaternion.inverse() * _context.animator.get_root_motion_rotation_accumulator().inverse() *
-		entityQuaternion
+		entityQuaternion.inverse() 
 	) * _context.animator.get_root_motion_position() / delta)
 
 #endregion

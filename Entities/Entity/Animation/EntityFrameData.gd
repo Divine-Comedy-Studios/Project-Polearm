@@ -9,10 +9,12 @@ class_name EntityFrameData
 @export_group("Animation")
 @export var _transitionable : bool = true # Can the current action transition to another one?
 @export var _nonLowerable : bool = false # Can this action not transition to a lower priority state?
-@export var _finished : bool = false # Automatically generated at the end of each track
 
 @export_group("Behavior")
 @export var _rotationTracking : float = 0.0 # Speed of rotation tracking
+
+@export_group("Auto-Generated")
+@export var _finished : bool = false # Automatically generated at the end of each track
 
 #endregion
 
