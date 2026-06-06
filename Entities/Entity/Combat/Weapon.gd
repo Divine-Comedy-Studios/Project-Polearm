@@ -1,0 +1,52 @@
+@tool
+
+extends Node3D
+class_name Weapon
+
+
+#region Enums
+
+class Type:
+	const debugWeapon := &"debug"
+	const spear := &"spear"
+
+#endregion
+
+
+#region Exported variables
+
+@export var TYPE : StringName = Type.debugWeapon
+@export var DEFAULT_HIT_DATA : HitboxData = null
+
+#endregion
+
+
+#region Scene members
+
+@onready var _hitbox : Hitbox = $Hitbox
+
+#endregion
+
+
+#region Built-in functions
+
+func _ready() -> void:
+	assert(DEFAULT_HIT_DATA != null, "Weapon._ready(): Default hit data not set!")
+
+	_hitbox.disable()
+
+#endregion
+
+
+#region Public functions
+
+func enable(data : HitboxData = null) -> void:
+	_hitbox.enable(data if data != null else DEFAULT_HIT_DATA)
+
+func disable() -> void:
+	_hitbox.disable()
+
+func enabled() -> bool:
+	return _hitbox.enabled()
+
+#endregion

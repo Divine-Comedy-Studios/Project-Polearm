@@ -211,6 +211,9 @@ func resources() -> PlayerResources:
 func animator() -> PlayerAnimator:
 	return _context.animator as PlayerAnimator
 
+func weapon() -> Weapon:
+	return _context.weapon as Weapon
+
 func combatManager() -> PlayerCombatManager:
 	return _context.combatManager as  PlayerCombatManager
 

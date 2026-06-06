@@ -4,16 +4,6 @@ extends Area3D
 class_name Hitbox
 
 
-#region Helper classes
-
-class Data extends Resource:
-	var damage : float = 0.0
-	var superArmorDamage : float = 0.0
-	var force : Vector3 = Vector3.ZERO
-
-#endregion
-
-
 #region Exported variables
 
 @export_flags_3d_physics var LAYERS : int:
@@ -27,7 +17,7 @@ class Data extends Resource:
 
 #region Member variables
 
-var _data : Data = null
+var _data : HitboxData = null
 
 var _excluded : Array[Hurtbox] = [ ]
 
@@ -50,7 +40,7 @@ func _ready() -> void:
 
 #region Public functions
 
-func enable(hitData : Data) -> void:
+func enable(hitData : HitboxData) -> void:
 	_data = hitData
 	monitoring = true
 
@@ -58,6 +48,9 @@ func disable() -> void:
 	monitoring = false
 
 	clear()
+
+func enabled() -> bool:
+	return monitoring
 
 
 func exclude(box : Hurtbox) -> void:
@@ -69,6 +62,10 @@ func clear() -> void:
 
 func excluded(box : Hurtbox) -> bool:
 	return _excluded.has(box)
+
+func _physics_process(delta: float) -> void:
+	if enabled():
+		DebugDraw3D.draw_arrow_ray(global_position, global_transform.basis * Basis(Vector3.RIGHT, -PI / 2) * _data.FORCE, 10)
 
 #endregion
 
@@ -82,6 +79,8 @@ func _onHit(area : Area3D) -> void:
 	var box := area as Hurtbox
 	if _excluded.has(box):
 		return
+	
+	_data.directionalForce = global_transform.basis * Basis(Vector3.RIGHT, -PI / 2) * _data.FORCE
 
 	_excluded.push_back(box)
 	box.recieveHit(_data)

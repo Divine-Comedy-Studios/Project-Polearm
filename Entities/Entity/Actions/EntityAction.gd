@@ -90,6 +90,7 @@ func init(manager : EntityActionManager) -> void:
 
 
 func tick(delta : float) -> void:
+	_processWeapon()
 	_processDirection(delta)
 	_tick(delta)
 	_processRootMotion(delta)
@@ -151,6 +152,14 @@ func hasHigherPriorityThan(second : StringName) -> bool:
 
 #region Private functions
 
+func _processWeapon() -> void:
+	if _context.weapon != null:
+		if _context.frameData.weaponActivate(data.ANIMATION_NAME, _progress):
+			_context.weapon.enable(data.HIT_DATA)
+		elif _context.weapon.enabled():
+			_context.weapon.disable()
+
+
 # If enabled, this will influence the direction the player faces using the direction of the input package
 func _processDirection(delta : float) -> void:
 	var rotationTrackingSpeed := _context.frameData.rotationTracking(data.ANIMATION_NAME, _progress) * delta
@@ -161,7 +170,7 @@ func _processDirection(delta : float) -> void:
 func _processRootMotion(delta : float) -> void:
 	if not data.ROOT_MOTION:
 		return
-	
+
 	var entityQuaternion := _context.entity.get_quaternion()
 	var rootQuaternion := _context.animator.rootOrientation
 

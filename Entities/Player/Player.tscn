@@ -6,7 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://bgf6aphyao331" path="res://Entities/Player/Camera/PlayerCameraManager.tscn" id="3_1des2"]
 [ext_resource type="Script" uid="uid://cyecr71fggv70" path="res://Entities/Entity/Collisions/EntityHurtbox.gd" id="4_e34i1"]
 [ext_resource type="PackedScene" uid="uid://dbsruilakgfp4" path="res://Entities/Player/Visuals/XBotMesh.scn" id="5_an6q6"]
-[ext_resource type="Script" uid="uid://beiorgsa2hjgm" path="res://Common/Collision/Hitbox.gd" id="5_vcmon"]
+[ext_resource type="PackedScene" uid="uid://cqkvrwqakickj" path="res://Entities/Player/Combat/DebugWeapon.tscn" id="5_vcmon"]
+[ext_resource type="Script" uid="uid://413tgy3jmvma" path="res://Common/Collision/HitboxData.gd" id="6_h6pxy"]
 [ext_resource type="PackedScene" uid="uid://bsl7ik5iueomu" path="res://Entities/Player/Actions/PlayerActionManager.tscn" id="6_hacra"]
 [ext_resource type="Script" uid="uid://c12nkcphob0hm" path="res://Common/Resources/ValueResource.gd" id="8_gallu"]
 [ext_resource type="Script" uid="uid://dcimsqxk7jkvw" path="res://Common/Resources/IntegerResource.gd" id="8_samso"]
@@ -18,7 +19,7 @@
 [ext_resource type="AnimationLibrary" uid="uid://dfqr4nawpg2vu" path="res://Assets/3D Models/Characters/Player/Animations/Movement.res" id="13_hl213"]
 [ext_resource type="AnimationLibrary" uid="uid://b3cu7qf5ygk0k" path="res://Assets/3D Models/Characters/Player/Animations/TPose.glb" id="14_5m37j"]
 [ext_resource type="Script" uid="uid://del87rrtko1do" path="res://Entities/Entity/Utility/EntityAnimationHelper.gd" id="14_uw7o4"]
-[ext_resource type="AnimationLibrary" uid="uid://3m0se8vrr1v3" path="res://Entities/Player/Resources/FrameData.res" id="15_gallu"]
+[ext_resource type="AnimationLibrary" uid="uid://bc86us6nvyi6u" path="res://Entities/Player/Resources/FrameData.res" id="15_gallu"]
 [ext_resource type="PackedScene" uid="uid://c6ck6empr4lu2" path="res://Entities/Player/Visuals/Skeleton.scn" id="17_5m37j"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_an6q6"]
@@ -27,20 +28,11 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_e34i1"]
 radius = 0.2
-height = 1.5555664
+height = 1.55
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e34i1"]
-albedo_color = Color(0.7939393, 0.41447577, 0.25436702, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vcmon"]
-albedo_color = Color(0.9698536, 0.5442949, 0.45475674, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h6pxy"]
-albedo_color = Color(0.8627322, 0.4558586, 0.5871258, 1)
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_h6pxy"]
-radius = 0.3
-height = 1.3
+[sub_resource type="Resource" id="Resource_l80rc"]
+script = ExtResource("6_h6pxy")
+FORCE = Vector3(0, 3, 10)
 
 [sub_resource type="Resource" id="Resource_e34i1"]
 script = ExtResource("8_samso")
@@ -124,6 +116,18 @@ tracks/4/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("FrameData:_weaponActivate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gallu"]
 _data = {
@@ -171,6 +175,7 @@ external_skeleton = NodePath("../Skeleton")
 transform = Transform3D(-0.63575435, 0.011931799, -0.7717989, 0.036647655, 0.99921954, -0.014740088, 0.77102077, -0.03765569, -0.6356954, -0.008637563, 0.026503623, -0.025778975)
 script = ExtResource("4_e34i1")
 _resources = NodePath("../../Resources")
+LAYERS = 536870912
 metadata/_custom_type_script = "uid://cyecr71fggv70"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HurtboxAttachment/Hurtbox" unique_id=254222997]
@@ -184,41 +189,8 @@ bone_idx = 49
 use_external_skeleton = true
 external_skeleton = NodePath("../Skeleton")
 
-[node name="CSGCombiner3D" type="CSGCombiner3D" parent="WeaponAttachment" unique_id=2017345708]
-
-[node name="CSGSphere3D" type="CSGSphere3D" parent="WeaponAttachment/CSGCombiner3D" unique_id=931767058]
-transform = Transform3D(1.0000001, 1.4901161e-08, 0, 3.7252903e-09, 1, 2.9802322e-08, 7.450581e-09, -2.9802322e-08, 1.0000001, -1.1920929e-07, -0.049999982, -0.10000001)
-radius = 0.1
-material = SubResource("StandardMaterial3D_e34i1")
-
-[node name="CSGSphere3D2" type="CSGSphere3D" parent="WeaponAttachment/CSGCombiner3D" unique_id=1200076267]
-transform = Transform3D(1.0000001, 1.4901161e-08, 0, 3.7252903e-09, 1, 2.9802322e-08, 7.450581e-09, -2.9802322e-08, 1.0000001, -1.1995435e-07, -0.050000023, 0.10000004)
-radius = 0.1
-material = SubResource("StandardMaterial3D_e34i1")
-
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="WeaponAttachment/CSGCombiner3D" unique_id=307136342]
-transform = Transform3D(1.0000006, 4.8056245e-07, -7.450581e-09, 7.450581e-09, 1.0000007, 2.1457672e-06, 5.9604645e-08, -2.3841858e-07, 1.000004, 0, 0.6157228, 1.4901161e-08)
-radius = 0.05
-height = 1.2314453
-material = SubResource("StandardMaterial3D_vcmon")
-
-[node name="CSGSphere3D3" type="CSGSphere3D" parent="WeaponAttachment/CSGCombiner3D" unique_id=1748156249]
-transform = Transform3D(1, 0, 0, 0, 0.9999944, 0.003351026, 0, -0.003351026, 0.9999944, 3.7252903e-09, 1.2739668, 0)
-radius = 0.1
-material = SubResource("StandardMaterial3D_h6pxy")
-
-[node name="Hitbox" type="Area3D" parent="WeaponAttachment" unique_id=665855186]
-collision_layer = 0
-monitoring = false
-monitorable = false
-script = ExtResource("5_vcmon")
-LAYERS = 1
-metadata/_custom_type_script = "uid://beiorgsa2hjgm"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="WeaponAttachment/Hitbox" unique_id=170369278]
-transform = Transform3D(1.0000006, 4.8056245e-07, -7.450581e-09, 7.450581e-09, 1.0000007, 2.1457672e-06, 5.9604645e-08, -2.3841858e-07, 1.000004, -0.035728633, 0.8453922, 0.02523236)
-shape = SubResource("CapsuleShape3D_h6pxy")
-debug_color = Color(0, 0.6515532, 0.017827053, 0.41960785)
+[node name="DebugWeapon" parent="WeaponAttachment" unique_id=762137938 instance=ExtResource("5_vcmon")]
+DEFAULT_HIT_DATA = SubResource("Resource_l80rc")
 
 [node name="CameraManager" parent="." unique_id=1956657863 instance=ExtResource("3_1des2")]
 INVERT_VERTICAL = 1.0
@@ -284,13 +256,15 @@ libraries/Combat = ExtResource("13_5m37j")
 libraries/Movement = ExtResource("13_hl213")
 libraries/TPose = ExtResource("14_5m37j")
 
-[node name="ActionManager" parent="." unique_id=1997911714 node_paths=PackedStringArray("cameraManager", "inputManager", "entity", "frameData", "resources", "animator") instance=ExtResource("6_hacra")]
+[node name="ActionManager" parent="." unique_id=1997911714 node_paths=PackedStringArray("cameraManager", "inputManager", "entity", "frameData", "resources", "animator", "hurtbox", "weapon") instance=ExtResource("6_hacra")]
 cameraManager = NodePath("../CameraManager")
 inputManager = NodePath("../InputManager")
 entity = NodePath("..")
 frameData = NodePath("../FrameData")
 resources = NodePath("../Resources")
 animator = NodePath("../Animator")
+hurtbox = NodePath("../HurtboxAttachment/Hurtbox")
+weapon = NodePath("../WeaponAttachment/DebugWeapon")
 
 [node name="Skeleton" parent="." unique_id=941680751 instance=ExtResource("17_5m37j")]
 transform = Transform3D(-1, 0, 1.509958e-07, 0, 1, 0, -1.509958e-07, 0, -1, 0, 0, 0)

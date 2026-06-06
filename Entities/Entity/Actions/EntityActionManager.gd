@@ -9,6 +9,8 @@ class_name EntityActionManager
 @export var frameData : EntityFrameData = null
 @export var resources : EntityResources = null
 @export var animator : EntityAnimator = null
+@export var hurtbox : Hurtbox = null
+@export var weapon : Weapon = null
 
 @onready var combatManager := $"CombatManager" as EntityCombatManager
 

@@ -35,13 +35,16 @@ func enable() -> void:
 func disable() -> void:
 	monitorable = false
 
+func enabled() -> bool:
+	return monitorable
+
 #endregion
 
 
 #region Virtual functions
 
 @warning_ignore("unused_parameter")
-func recieveHit(hitData : Hitbox.Data) -> void:
+func recieveHit(hitData : HitboxData) -> void:
 	pass
 
 #endregion

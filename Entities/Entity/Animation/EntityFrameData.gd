@@ -12,6 +12,7 @@ class_name EntityFrameData
 
 @export_group("Behavior")
 @export var _rotationTracking : float = 0.0 # Speed of rotation tracking
+@export var _weaponActivate : bool = false # Is the weapon active
 
 @export_group("Auto-Generated")
 @export var _finished : bool = false # Automatically generated at the end of each track
@@ -26,6 +27,9 @@ func transitionable(animationName : StringName, time : float) -> bool:
 
 func nonLowerable(animationName : StringName, time : float) -> bool:
 	return _getValue(animationName, ^"FrameData:_nonLowerable", time) as bool
+
+func weaponActivate(animationName : StringName, time : float) -> bool:
+	return _getValue(animationName, ^"FrameData:_weaponActivate", time) as bool
 
 func finished(animationName : StringName, time : float) -> float:
 	return _getValue(animationName, ^"FrameData:_finished", time) as bool

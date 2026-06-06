@@ -30,12 +30,12 @@ func _ready() -> void:
 
 #region Public functions
 
-func takeDamage(hitData : Hitbox.Data) -> void:
+func takeDamage(hitData : HitboxData) -> void:
 	if not actionManager.currentState.vulnerable():
 		return
 
-	superArmor.value -= hitData.superArmorDamage
-	health.value -= hitData.damage
+	superArmor.value -= hitData.SUPER_ARMOR_DAMAGE
+	health.value -= hitData.DAMAGE
 
 	if not health.locked:
 		actionManager.interrupt(EntityAction.Type.damage)
@@ -56,7 +56,7 @@ func pay(action : EntityAction) -> void:
 #region Implementation functions
 
 @warning_ignore("unused_parameter")
-func _implTakeDamage(hitData : Hitbox.Data) -> void:
+func _implTakeDamage(hitData : HitboxData) -> void:
 	pass
 
 
