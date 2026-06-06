@@ -1,0 +1,203 @@
+// Game: ProjectPolearm
+// Format: Valve
+// entity 0
+{
+"mapversion" "220"
+"wad" ""
+"classname" "worldspawn"
+"_tb_mod" "Trenchbroom"
+// brush 0
+{
+( -3682 -968 -8 ) ( -3682 -967 -8 ) ( -3682 -968 -7 ) "Greybox Textures/PNG/Dark/texture_05" [ 0 -1 0 0 ] [ 0 0 -1 160 ] 90 0.015625 0.015625
+( -1976 -4800 -8 ) ( -1976 -4800 -7 ) ( -1975 -4800 -8 ) "Greybox Textures/PNG/Dark/texture_05" [ 1 0 0 496 ] [ 0 0 -1 160 ] 270 0.015625 0.015625
+( -1976 -968 -16 ) ( -1975 -968 -16 ) ( -1976 -967 -16 ) "Greybox Textures/PNG/Dark/texture_05" [ -1 0 0 -496 ] [ 0 -1 0 0 ] 180 0.015625 0.015625
+( -1856 -856 0 ) ( -1856 -855 0 ) ( -1855 -856 0 ) "Greybox Textures/PNG/Dark/texture_05" [ 1 0 0 496 ] [ 0 -1 0 0 ] 0 0.015625 0.015625
+( -1856 3888 0 ) ( -1855 3888 0 ) ( -1856 3888 1 ) "Greybox Textures/PNG/Dark/texture_05" [ -1 0 0 -496 ] [ 0 0 -1 160 ] 270 0.015625 0.015625
+( 3962 -856 0 ) ( 3962 -856 1 ) ( 3962 -855 0 ) "Greybox Textures/PNG/Dark/texture_05" [ 0 1 0 0 ] [ 0 0 -1 160 ] 180 0.015625 0.015625
+}
+}
+// entity 1
+{
+"classname" "func_group"
+"_tb_type" "_tb_layer"
+"_tb_name" "Hurdles"
+"_tb_id" "2"
+"_tb_layer_sort_index" "0"
+// brush 0
+{
+( -4 -20 0 ) ( -4 -19 0 ) ( -4 -20 1 ) "Greybox Textures/PNG/Purple/texture_04" [ 0 -1 0 0 ] [ 0 0 -1 4 ] 90 0.015625 0.015625
+( -20 -4 0 ) ( -20 -4 1 ) ( -19 -4 0 ) "Greybox Textures/PNG/Purple/texture_04" [ 1 0 0 -8 ] [ 0 0 -1 4 ] 180 0.015625 0.015625
+( -20 -20 0 ) ( -19 -20 0 ) ( -20 -19 0 ) "Greybox Textures/PNG/Purple/texture_04" [ -1 0 0 8 ] [ 0 -1 0 0 ] 270 0.015625 0.015625
+( 16 16 1 ) ( 16 17 1 ) ( 17 16 1 ) "Greybox Textures/PNG/Purple/texture_04" [ 1 0 0 -8 ] [ 0 -1 0 0 ] 180 0.015625 0.015625
+( 16 4 4 ) ( 17 4 4 ) ( 16 4 5 ) "Greybox Textures/PNG/Purple/texture_04" [ -1 0 0 8 ] [ 0 0 -1 4 ] 0 0.015625 0.015625
+( 4 16 4 ) ( 4 16 5 ) ( 4 17 4 ) "Greybox Textures/PNG/Purple/texture_04" [ 0 1 0 0 ] [ 0 0 -1 4 ] 180 0.015625 0.015625
+}
+// brush 1
+{
+( -54 -120 0 ) ( -54 -119 0 ) ( -54 -120 1 ) "Greybox Textures/PNG/Dark/texture_02" [ 0 -1 0 -88 ] [ 0 0 -1 0 ] 270 0.015625 0.015625
+( -72 -76 0 ) ( -72 -76 1 ) ( -71 -76 0 ) "Greybox Textures/PNG/Dark/texture_02" [ 1 0 0 56 ] [ 0 0 -1 0 ] 180 0.015625 0.015625
+( -72 -120 0 ) ( -71 -120 0 ) ( -72 -119 0 ) "Greybox Textures/PNG/Dark/texture_02" [ -1 0 0 -56 ] [ 0 -1 0 -88 ] 90 0.015625 0.015625
+( -24 -80 2 ) ( -24 -79 2 ) ( -23 -80 2 ) "Greybox Textures/PNG/Dark/texture_02" [ 1 0 0 56 ] [ 0 -1 0 -88 ] 270 0.015625 0.015625
+( -24 -64 8 ) ( -23 -64 8 ) ( -24 -64 9 ) "Greybox Textures/PNG/Dark/texture_02" [ -1 0 0 -56 ] [ 0 0 -1 0 ] 0 0.015625 0.015625
+( -24 -80 8 ) ( -24 -80 9 ) ( -24 -79 8 ) "Greybox Textures/PNG/Dark/texture_02" [ 0 1 0 88 ] [ 0 0 -1 0 ] 90 0.015625 0.015625
+}
+// brush 2
+{
+( -54 -140 0 ) ( -54 -139 0 ) ( -54 -140 1 ) "Greybox Textures/PNG/Green/texture_02" [ 0 -1 0 -344 ] [ 0 0 -1 0 ] 0 0.015625 0.015625
+( -72 -96 0 ) ( -72 -96 1 ) ( -71 -96 0 ) "Greybox Textures/PNG/Green/texture_02" [ 1 0 0 56 ] [ 0 0 -1 0 ] 270 0.015625 0.015625
+( -72 -140 0 ) ( -71 -140 0 ) ( -72 -139 0 ) "Greybox Textures/PNG/Green/texture_02" [ -1 0 0 -56 ] [ 0 -1 0 -344 ] 180 0.015625 0.015625
+( -24 -100 3 ) ( -24 -99 3 ) ( -23 -100 3 ) "Greybox Textures/PNG/Green/texture_02" [ 1 0 0 56 ] [ 0 -1 0 -344 ] 270 0.015625 0.015625
+( -24 -84 8 ) ( -23 -84 8 ) ( -24 -84 9 ) "Greybox Textures/PNG/Green/texture_02" [ -1 0 0 -56 ] [ 0 0 -1 0 ] 90 0.015625 0.015625
+( -24 -100 8 ) ( -24 -100 9 ) ( -24 -99 8 ) "Greybox Textures/PNG/Green/texture_02" [ 0 1 0 344 ] [ 0 0 -1 0 ] 180 0.015625 0.015625
+}
+// brush 3
+{
+( -54 -160 0 ) ( -54 -159 0 ) ( -54 -160 1 ) "Greybox Textures/PNG/Orange/texture_03" [ 0 -1 0 -600 ] [ 0 0 -1 0 ] 90 0.015625 0.015625
+( -72 -116 0 ) ( -72 -116 1 ) ( -71 -116 0 ) "Greybox Textures/PNG/Orange/texture_03" [ 1 0 0 56 ] [ 0 0 -1 0 ] 0 0.015625 0.015625
+( -72 -160 0 ) ( -71 -160 0 ) ( -72 -159 0 ) "Greybox Textures/PNG/Orange/texture_03" [ -1 0 0 -56 ] [ 0 -1 0 -600 ] 270 0.015625 0.015625
+( -24 -120 4 ) ( -24 -119 4 ) ( -23 -120 4 ) "Greybox Textures/PNG/Orange/texture_03" [ 1 0 0 56 ] [ 0 -1 0 -600 ] 90 0.015625 0.015625
+( -24 -104 8 ) ( -23 -104 8 ) ( -24 -104 9 ) "Greybox Textures/PNG/Orange/texture_03" [ -1 0 0 -56 ] [ 0 0 -1 0 ] 180 0.015625 0.015625
+( -24 -120 8 ) ( -24 -120 9 ) ( -24 -119 8 ) "Greybox Textures/PNG/Orange/texture_03" [ 0 1 0 600 ] [ 0 0 -1 0 ] 270 0.015625 0.015625
+}
+// brush 4
+{
+( -54 -180 0 ) ( -54 -179 0 ) ( -54 -180 1 ) "Greybox Textures/PNG/Red/texture_03" [ 0 -1 0 -856 ] [ 0 0 -1 0 ] 180 0.015625 0.015625
+( -72 -136 0 ) ( -72 -136 1 ) ( -71 -136 0 ) "Greybox Textures/PNG/Red/texture_03" [ 1 0 0 56 ] [ 0 0 -1 0 ] 90 0.015625 0.015625
+( -72 -180 0 ) ( -71 -180 0 ) ( -72 -179 0 ) "Greybox Textures/PNG/Red/texture_03" [ -1 0 0 -56 ] [ 0 -1 0 -856 ] 0 0.015625 0.015625
+( -24 -140 5 ) ( -24 -139 5 ) ( -23 -140 5 ) "Greybox Textures/PNG/Red/texture_03" [ 1 0 0 56 ] [ 0 -1 0 -856 ] 90 0.015625 0.015625
+( -24 -124 8 ) ( -23 -124 8 ) ( -24 -124 9 ) "Greybox Textures/PNG/Red/texture_03" [ -1 0 0 -56 ] [ 0 0 -1 0 ] 270 0.015625 0.015625
+( -24 -140 8 ) ( -24 -140 9 ) ( -24 -139 8 ) "Greybox Textures/PNG/Red/texture_03" [ 0 1 0 856 ] [ 0 0 -1 0 ] 0 0.015625 0.015625
+}
+// brush 5
+{
+( -156 -136 60 ) ( -156 -136 0 ) ( -156 -64 0 ) "Greybox Textures/PNG/Green/texture_02" [ 0 -1 0 43 ] [ 0 0 -1 0 ] 180 1 1
+( -156 -136 60 ) ( -96 -136 60 ) ( -96 -136 0 ) "Greybox Textures/PNG/Green/texture_02" [ 1 0 0 19 ] [ 0 0 -1 0 ] 180 1 1
+( -96 -136 0 ) ( -96 -64 0 ) ( -156 -64 0 ) "Greybox Textures/PNG/Green/texture_02" [ -1 0 0 -19 ] [ 0 -1 0 43 ] 180 1 1
+( -156 -64 0 ) ( -96 -64 0 ) ( -96 -136 60 ) "Greybox Textures/PNG/Green/texture_02" [ -1 0 0 -19 ] [ 0 -1 -2.220446049250313e-16 -64 ] 0 1 1
+( -96 -136 60 ) ( -96 -64 0 ) ( -96 -136 0 ) "Greybox Textures/PNG/Green/texture_02" [ 0 1 0 -43 ] [ 0 0 -1 0 ] 180 1 1
+}
+// brush 6
+{
+( -216 -136 72 ) ( -216 -136 0 ) ( -216 -64 0 ) "Greybox Textures/PNG/Orange/texture_03" [ 0 -1 0 43 ] [ 0 0 -1 0 ] 90 1 1
+( -216 -136 72 ) ( -156 -136 72 ) ( -156 -136 0 ) "Greybox Textures/PNG/Orange/texture_03" [ 1 0 0 79 ] [ 0 0 -1 0 ] 90 1 1
+( -156 -136 0 ) ( -156 -64 0 ) ( -216 -64 0 ) "Greybox Textures/PNG/Orange/texture_03" [ -1 0 0 -79 ] [ 0 -1 0 43 ] 90 1 1
+( -216 -64 0 ) ( -156 -64 0 ) ( -156 -136 72 ) "Greybox Textures/PNG/Orange/texture_03" [ -1 0 0 -79 ] [ 0 0 -1 0 ] 90 1 1
+( -156 -136 72 ) ( -156 -64 0 ) ( -156 -136 0 ) "Greybox Textures/PNG/Orange/texture_03" [ 0 1 0 -43 ] [ 0 0 -1 0 ] 90 1 1
+}
+// brush 7
+{
+( -276 -136 80 ) ( -276 -136 0 ) ( -276 -64 0 ) "Greybox Textures/PNG/Red/texture_03" [ 0 -1 0 43 ] [ 0 0 -1 0 ] 180 1 1
+( -276 -136 80 ) ( -216 -136 80 ) ( -216 -136 0 ) "Greybox Textures/PNG/Red/texture_03" [ 1 0 0 139 ] [ 0 0 -1 0 ] 180 1 1
+( -216 -136 0 ) ( -216 -64 0 ) ( -276 -64 0 ) "Greybox Textures/PNG/Red/texture_03" [ -1 0 0 -139 ] [ 0 -1 0 43 ] 180 1 1
+( -276 -64 0 ) ( -216 -64 0 ) ( -216 -136 80 ) "Greybox Textures/PNG/Red/texture_03" [ -1 0 0 -139 ] [ 0 0 -1 0 ] 180 1 1
+( -216 -136 80 ) ( -216 -64 0 ) ( -216 -136 0 ) "Greybox Textures/PNG/Red/texture_03" [ 0 1 0 -43 ] [ 0 0 -1 0 ] 180 1 1
+}
+// brush 8
+{
+( -49 20 0 ) ( -49 21 0 ) ( -49 20 1 ) "Greybox Textures/PNG/Green/texture_04" [ 0 -1 0 680 ] [ 0 0 -1 0 ] 180 0.015625 0.015625
+( -67 64 0 ) ( -67 64 1 ) ( -66 64 0 ) "Greybox Textures/PNG/Green/texture_04" [ 1 0 0 -264 ] [ 0 0 -1 0 ] 90 0.015625 0.015625
+( -67 20 0 ) ( -66 20 0 ) ( -67 21 0 ) "Greybox Textures/PNG/Green/texture_04" [ -1 0 0 264 ] [ 0 -1 0 680 ] 0 0.015625 0.015625
+( -19 60 8 ) ( -19 61 8 ) ( -18 60 8 ) "Greybox Textures/PNG/Green/texture_04" [ 1 0 0 -264 ] [ 0 -1 0 680 ] 270 0.015625 0.015625
+( -19 89 8 ) ( -18 89 8 ) ( -19 89 9 ) "Greybox Textures/PNG/Green/texture_04" [ -1 0 0 264 ] [ 0 0 -1 0 ] 180 0.015625 0.015625
+( -24 60 8 ) ( -24 60 9 ) ( -24 61 8 ) "Greybox Textures/PNG/Green/texture_04" [ 0 1 0 -680 ] [ 0 0 -1 0 ] 270 0.015625 0.015625
+}
+// brush 9
+{
+( -74 20 0 ) ( -74 21 0 ) ( -74 20 1 ) "Greybox Textures/PNG/Orange/texture_03" [ 0 -1 0 680 ] [ 0 0 -1 0 ] 0 0.015625 0.015625
+( -92 64 0 ) ( -92 64 1 ) ( -91 64 0 ) "Greybox Textures/PNG/Orange/texture_03" [ 1 0 0 312 ] [ 0 0 -1 0 ] 270 0.015625 0.015625
+( -92 20 0 ) ( -91 20 0 ) ( -92 21 0 ) "Greybox Textures/PNG/Orange/texture_03" [ -1 0 0 -312 ] [ 0 -1 0 680 ] 180 0.015625 0.015625
+( -44 60 30 ) ( -44 61 30 ) ( -43 60 30 ) "Greybox Textures/PNG/Orange/texture_03" [ 1 0 0 312 ] [ 0 -1 0 680 ] 270 0.015625 0.015625
+( -44 89 8 ) ( -43 89 8 ) ( -44 89 9 ) "Greybox Textures/PNG/Orange/texture_03" [ -1 0 0 -312 ] [ 0 0 -1 0 ] 0 0.015625 0.015625
+( -49 60 8 ) ( -49 60 9 ) ( -49 61 8 ) "Greybox Textures/PNG/Orange/texture_03" [ 0 1 0 -680 ] [ 0 0 -1 0 ] 90 0.015625 0.015625
+}
+// brush 10
+{
+( -99 20 0 ) ( -99 21 0 ) ( -99 20 1 ) "Greybox Textures/PNG/Red/texture_03" [ 0 -1 0 680 ] [ 0 0 -1 0 ] 0 0.015625 0.015625
+( -117 64 0 ) ( -117 64 1 ) ( -116 64 0 ) "Greybox Textures/PNG/Red/texture_03" [ 1 0 0 -136 ] [ 0 0 -1 0 ] 270 0.015625 0.015625
+( -117 20 0 ) ( -116 20 0 ) ( -117 21 0 ) "Greybox Textures/PNG/Red/texture_03" [ -1 0 0 136 ] [ 0 -1 0 680 ] 180 0.015625 0.015625
+( -69 60 50 ) ( -69 61 50 ) ( -68 60 50 ) "Greybox Textures/PNG/Red/texture_03" [ 1 0 0 -136 ] [ 0 -1 0 680 ] 90 0.015625 0.015625
+( -69 89 8 ) ( -68 89 8 ) ( -69 89 9 ) "Greybox Textures/PNG/Red/texture_03" [ -1 0 0 136 ] [ 0 0 -1 0 ] 0 0.015625 0.015625
+( -74 60 8 ) ( -74 60 9 ) ( -74 61 8 ) "Greybox Textures/PNG/Red/texture_03" [ 0 1 0 -680 ] [ 0 0 -1 0 ] 90 0.015625 0.015625
+}
+// brush 11
+{
+( -49 95 0 ) ( -49 96 0 ) ( -49 95 1 ) "Greybox Textures/PNG/Green/texture_04" [ 0 -1 0 360 ] [ 0 0 -1 0 ] 0 0.015625 0.015625
+( -67 139 0 ) ( -67 139 1 ) ( -66 139 0 ) "Greybox Textures/PNG/Green/texture_04" [ 1 0 0 760 ] [ 0 0 -1 0 ] 270 0.015625 0.015625
+( -67 95 0 ) ( -66 95 0 ) ( -67 96 0 ) "Greybox Textures/PNG/Green/texture_04" [ -1 0 0 -760 ] [ 0 -1 0 360 ] 180 0.015625 0.015625
+( -19 135 34 ) ( -19 136 34 ) ( -18 135 34 ) "Greybox Textures/PNG/Green/texture_04" [ 1 0 0 760 ] [ 0 -1 0 360 ] 0 0.015625 0.015625
+( -19 164 8 ) ( -18 164 8 ) ( -19 164 9 ) "Greybox Textures/PNG/Green/texture_04" [ -1 0 0 -760 ] [ 0 0 -1 0 ] 0 0.015625 0.015625
+( -24 135 8 ) ( -24 135 9 ) ( -24 136 8 ) "Greybox Textures/PNG/Green/texture_04" [ 0 1 0 -360 ] [ 0 0 -1 0 ] 90 0.015625 0.015625
+}
+// brush 12
+{
+( -74 95 0 ) ( -74 96 0 ) ( -74 95 1 ) "Greybox Textures/PNG/Orange/texture_03" [ 0 -1 0 360 ] [ 0 0 -1 0 ] 180 0.015625 0.015625
+( -92 139 0 ) ( -92 139 1 ) ( -91 139 0 ) "Greybox Textures/PNG/Orange/texture_03" [ 1 0 0 312 ] [ 0 0 -1 0 ] 90 0.015625 0.015625
+( -92 95 0 ) ( -91 95 0 ) ( -92 96 0 ) "Greybox Textures/PNG/Orange/texture_03" [ -1 0 0 -312 ] [ 0 -1 0 360 ] 0 0.015625 0.015625
+( -44 135 62 ) ( -44 136 62 ) ( -43 135 62 ) "Greybox Textures/PNG/Orange/texture_03" [ 1 0 0 312 ] [ 0 -1 0 360 ] 90 0.015625 0.015625
+( -44 164 8 ) ( -43 164 8 ) ( -44 164 9 ) "Greybox Textures/PNG/Orange/texture_03" [ -1 0 0 -312 ] [ 0 0 -1 0 ] 180 0.015625 0.015625
+( -49 135 8 ) ( -49 135 9 ) ( -49 136 8 ) "Greybox Textures/PNG/Orange/texture_03" [ 0 1 0 -360 ] [ 0 0 -1 0 ] 270 0.015625 0.015625
+}
+// brush 13
+{
+( -99 95 0 ) ( -99 96 0 ) ( -99 95 1 ) "Greybox Textures/PNG/Red/texture_03" [ 0 -1 0 360 ] [ 0 0 -1 0 ] 180 0.015625 0.015625
+( -117 139 0 ) ( -117 139 1 ) ( -116 139 0 ) "Greybox Textures/PNG/Red/texture_03" [ 1 0 0 888 ] [ 0 0 -1 0 ] 90 0.015625 0.015625
+( -117 95 0 ) ( -116 95 0 ) ( -117 96 0 ) "Greybox Textures/PNG/Red/texture_03" [ -1 0 0 -888 ] [ 0 -1 0 360 ] 0 0.015625 0.015625
+( -69 135 80 ) ( -69 136 80 ) ( -68 135 80 ) "Greybox Textures/PNG/Red/texture_03" [ 1 0 0 888 ] [ 0 -1 0 360 ] 270 0.015625 0.015625
+( -69 164 8 ) ( -68 164 8 ) ( -69 164 9 ) "Greybox Textures/PNG/Red/texture_03" [ -1 0 0 -888 ] [ 0 0 -1 0 ] 180 0.015625 0.015625
+( -74 135 8 ) ( -74 135 9 ) ( -74 136 8 ) "Greybox Textures/PNG/Red/texture_03" [ 0 1 0 -360 ] [ 0 0 -1 0 ] 270 0.015625 0.015625
+}
+// brush 14
+{
+( -74 170 0 ) ( -74 171 0 ) ( -74 170 1 ) "Greybox Textures/PNG/Orange/texture_03" [ 0 -1 0 40 ] [ 0 0 -1 0 ] 270 0.015625 0.015625
+( -92 214 0 ) ( -92 214 1 ) ( -91 214 0 ) "Greybox Textures/PNG/Orange/texture_03" [ 1 0 0 -712 ] [ 0 0 -1 0 ] 180 0.015625 0.015625
+( -92 170 0 ) ( -91 170 0 ) ( -92 171 0 ) "Greybox Textures/PNG/Orange/texture_03" [ -1 0 0 712 ] [ 0 -1 0 40 ] 90 0.015625 0.015625
+( -44 210 86 ) ( -44 211 86 ) ( -43 210 86 ) "Greybox Textures/PNG/Orange/texture_03" [ 1 0 0 -712 ] [ 0 -1 0 40 ] 270 0.015625 0.015625
+( -44 239 8 ) ( -43 239 8 ) ( -44 239 9 ) "Greybox Textures/PNG/Orange/texture_03" [ -1 0 0 712 ] [ 0 0 -1 0 ] 270 0.015625 0.015625
+( -49 210 8 ) ( -49 210 9 ) ( -49 211 8 ) "Greybox Textures/PNG/Orange/texture_03" [ 0 1 0 -40 ] [ 0 0 -1 0 ] 0 0.015625 0.015625
+}
+// brush 15
+{
+( -99 170 0 ) ( -99 171 0 ) ( -99 170 1 ) "Greybox Textures/PNG/Red/texture_03" [ 0 -1 0 40 ] [ 0 0 -1 0 ] 270 0.015625 0.015625
+( -117 214 0 ) ( -117 214 1 ) ( -116 214 0 ) "Greybox Textures/PNG/Red/texture_03" [ 1 0 0 -136 ] [ 0 0 -1 0 ] 180 0.015625 0.015625
+( -117 170 0 ) ( -116 170 0 ) ( -117 171 0 ) "Greybox Textures/PNG/Red/texture_03" [ -1 0 0 136 ] [ 0 -1 0 40 ] 90 0.015625 0.015625
+( -69 210 108 ) ( -69 211 108 ) ( -68 210 108 ) "Greybox Textures/PNG/Red/texture_03" [ 1 0 0 -136 ] [ 0 -1 0 40 ] 270 0.015625 0.015625
+( -69 239 8 ) ( -68 239 8 ) ( -69 239 9 ) "Greybox Textures/PNG/Red/texture_03" [ -1 0 0 136 ] [ 0 0 -1 0 ] 270 0.015625 0.015625
+( -74 210 8 ) ( -74 210 9 ) ( -74 211 8 ) "Greybox Textures/PNG/Red/texture_03" [ 0 1 0 -40 ] [ 0 0 -1 0 ] 0 0.015625 0.015625
+}
+// brush 16
+{
+( -49 170 0 ) ( -49 171 0 ) ( -49 170 1 ) "Greybox Textures/PNG/Green/texture_04" [ 0 -1 0 40 ] [ 0 0 -1 0 ] 90 0.015625 0.015625
+( -67 214 0 ) ( -67 214 1 ) ( -66 214 0 ) "Greybox Textures/PNG/Green/texture_04" [ 1 0 0 -264 ] [ 0 0 -1 0 ] 0 0.015625 0.015625
+( -67 170 0 ) ( -66 170 0 ) ( -67 171 0 ) "Greybox Textures/PNG/Green/texture_04" [ -1 0 0 264 ] [ 0 -1 0 40 ] 270 0.015625 0.015625
+( -19 210 66 ) ( -19 211 66 ) ( -18 210 66 ) "Greybox Textures/PNG/Green/texture_04" [ 1 0 0 -264 ] [ 0 -1 0 40 ] 180 0.015625 0.015625
+( -19 239 8 ) ( -18 239 8 ) ( -19 239 9 ) "Greybox Textures/PNG/Green/texture_04" [ -1 0 0 264 ] [ 0 0 -1 0 ] 90 0.015625 0.015625
+( -24 210 8 ) ( -24 210 9 ) ( -24 211 8 ) "Greybox Textures/PNG/Green/texture_04" [ 0 1 0 -40 ] [ 0 0 -1 0 ] 180 0.015625 0.015625
+}
+// brush 17
+{
+( -233 66 0 ) ( -233 67 0 ) ( -233 66 1 ) "Greybox Textures/PNG/Dark/texture_02" [ 0 -1 0 -21 ] [ 0 0 -1 0 ] 0 1 1
+( -220 65 0 ) ( -220 65 1 ) ( -219 65 0 ) "Greybox Textures/PNG/Dark/texture_02" [ 1 0 0 42 ] [ 0 0 -1 0 ] 0 1 1
+( -220 66 0 ) ( -219 66 0 ) ( -220 67 0 ) "Greybox Textures/PNG/Dark/texture_02" [ -1 0 0 -42 ] [ 0 -1 0 -21 ] 90 1 1
+( -208 95 5 ) ( -208 96 5 ) ( -207 95 5 ) "Greybox Textures/PNG/Dark/texture_02" [ 1 0 0 42 ] [ 0 -1 0 -21 ] 0 1 1
+( -208 91 1 ) ( -207 91 1 ) ( -208 91 2 ) "Greybox Textures/PNG/Dark/texture_02" [ -1 0 0 -42 ] [ 0 0 -1 0 ] 0 1 1
+( -182 95 1 ) ( -182 95 2 ) ( -182 96 1 ) "Greybox Textures/PNG/Dark/texture_02" [ 0 1 0 21 ] [ 0 0 -1 0 ] 0 1 1
+}
+// brush 18
+{
+( -222 165 0 ) ( -222 165 1 ) ( -222 164 0 ) "Greybox Textures/PNG/Green/texture_04" [ -1.0718754395722282e-15 -1 0 -13 ] [ 0 0 -1 0 ] 90 1 1
+( -192 153 1 ) ( -192 153 2 ) ( -191 153 1 ) "Greybox Textures/PNG/Green/texture_04" [ 1 -1.0718754395722282e-15 0 308 ] [ 0 0 -1 0 ] 180 1 1
+( -221 165 0 ) ( -221 164 0 ) ( -220 165 0 ) "Greybox Textures/PNG/Green/texture_04" [ 1.0718754395722282e-15 1 0 13 ] [ -1 1.0718754395722282e-15 0 -308 ] 90 1 1
+( -192 153 5 ) ( -191 153 5 ) ( -192 152 5 ) "Greybox Textures/PNG/Green/texture_04" [ -1.0718754395722282e-15 -1 0 -13 ] [ -1 1.0718754395722282e-15 0 -308 ] 180 1 1
+( -221 178 0 ) ( -220 178 0 ) ( -221 178 1 ) "Greybox Textures/PNG/Green/texture_04" [ -1 1.0718754395722282e-15 0 -308 ] [ 0 0 -1 0 ] 90 1 1
+( -196 153 1 ) ( -196 152 1 ) ( -196 153 2 ) "Greybox Textures/PNG/Green/texture_04" [ 1.0718754395722282e-15 1 0 13 ] [ 0 0 -1 0 ] 90 1 1
+}
+// brush 19
+{
+( -222 190 0 ) ( -222 190 1 ) ( -222 189 0 ) "Greybox Textures/PNG/Orange/texture_01" [ -1.0718754395722282e-15 -1 0 12 ] [ 0 0 -1 0 ] 270 1 1
+( -192 178 1 ) ( -192 178 2 ) ( -191 178 1 ) "Greybox Textures/PNG/Orange/texture_01" [ 1 -1.0718754395722282e-15 0 308 ] [ 0 0 -1 0 ] 0 1 1
+( -221 190 0 ) ( -221 189 0 ) ( -220 190 0 ) "Greybox Textures/PNG/Orange/texture_01" [ 1.0718754395722282e-15 1 0 -12 ] [ -1 1.0718754395722282e-15 0 -308 ] 270 1 1
+( -192 178 5 ) ( -191 178 5 ) ( -192 177 5 ) "Greybox Textures/PNG/Orange/texture_01" [ -1.0718754395722282e-15 -1 0 12 ] [ -1 1.0718754395722282e-15 0 -308 ] 0 1 1
+( -221 203 0 ) ( -220 203 0 ) ( -221 203 1 ) "Greybox Textures/PNG/Orange/texture_01" [ -1 1.0718754395722282e-15 0 -308 ] [ 0 0 -1 0 ] 270 1 1
+( -196 178 1 ) ( -196 177 1 ) ( -196 178 2 ) "Greybox Textures/PNG/Orange/texture_01" [ 1.0718754395722282e-15 1 0 -12 ] [ 0 0 -1 0 ] 270 1 1
+}
+}
