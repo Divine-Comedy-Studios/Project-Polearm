@@ -174,20 +174,35 @@ Zudem stellt der aufladbare Spezialangriff einen weiteren Kampfstil zur Verfügu
   \item[\textbf{M1}] \textbf{Wie unterscheiden sich die Gegnertypen auf Mechanikenebene: Bewegungsgeschwindigkeit, Angriffsreichweite, Schadenswerte?}
 \end{description}
 
+
+
 \begin{description}
   \item[\textbf{M2}] \textbf{Wie ist das Angriffsverhalten der Gegner implementiert, reagieren sie aktiv auf den Spieler oder folgen sie festen vordefinierten Mustern?}
 \end{description}
+
+
 
 \begin{description}
   \item[\textbf{M3}] \textbf{Wie begrenzt das Leveldesign die Bewegungsoptionen von Spieler und Gegner, gibt es räumliche Einschränkungen die den Kampf beeinflussen?}
 \end{description}
 
+
+
 \begin{description}
   \item[\textbf{M4}] \textbf{Wie ist das Hitstun-System und Knockback-System designed, lassen sich verschiedene Arten beobachten?}
 \end{description}
 
+Hinter den bereits erläuterteten Trefferarten, nämlich des Zucken und dem Sturz, steckt warscheinlich ein versteckter Wert. Dieser wird oft als \textit{Super-Armor} bezeichnet. Im Gegensatz zu einer konventionalen Rüstung in einen Spiel beschützt die Super-Armor den Spieler nicht direkt, denn die Super-Armor ist funktionell getrennt von der Lebensleiste. Jeden Angriff kann eine gewisse Anzahl von Lebenspunkten wegnehmen, aber auch einige Super-Armor Punkte. Solange diese nicht leer ist, wird der Charakter nur leicht Zucken, sobald sie leer ist, stürzt man auf den Boden. Spieler und Feinde besitzen beide diese Mechanik. Bei dem Rückstoss können Waffen zusätzliche auch eine Kraft und Richtig definieren, mit der der Feind weggestossen wird.
+
+Weder Spieler noch Feind haben in Ninja Gaiden Sigma Frames in Animationen, wo sie keinen Schaden nehmen können, sogenante \textit{Invincibility-Frames}, ausser bei Spezialangriffen und Aufsteh-Animation. Denn das Spiel erlaubt weder den Spieler, noch die Feinde für eine lange Zeit ununterbrochen anzugreifen. Der Spieler ist von der Länge der Combos limitiert, wonach dieser eine Wiederholungs-Animation spielen muss, und die Feinde werden auch von Ihren Combos und den KI-Manager von übermässigen Angriffen limitiert. Das heisst, selbst wenn jemand hilfslos auf den Boden liegt und angegriffen werden kann, wird dies meistens nicht passieren. Der Charakter versucht, nach einer gewissen Zeiteinheit von Inaktivität automatisch aufzustehen.
+
 \begin{description}
   \item[\textbf{M5}] \textbf{Wie hängen die gedrückten Tasten mit den visuellen Kampfereignissen zusammen, gibt es eine bestimmte Intention hinter den Tasten?}
 \end{description}
+
+Die Philosophie hinter den Angriffe in Ninja Gaiden folgt einen bestimmten Muster. Alle Aktionen beziehungsweise deren Animation, die auf den Knopf für den Leichten Angriff gebunden sind, haben einen schnelle Einführung in den Angriff, eine ebenfalls rasante Angriffsanimation und rapide Rückkehr zurück zum normalen Stand. Aktionen, die auf den Knopf für den Schweren Angriff gebunden sind, haben genau den Gegenteil als effekt. Deren Animationen sind oftmals länger und pompöuser, lassen den Protagonisten aber für eine längere Zeit verwundbar. Ausnahme zu diesen Regeln sind Angriffe, die am Ende von einer Combo ausgeführt werden, denn diese haben, wie erläutert, oftmals eine längere Wiederholungs-Animation. Ninja Gaiden schafft es aber, lange Angriffsanimationen nicht übermässig zu übertreiben. Genug um zu merken, dass man etwas schwierigeres gemacht hat, aber nicht genug, um den Spielfluss aufzuhalten.
+
+Die erwähnte gefühlte Ungenauigkeit in der Ausführung der Combos liegt an einer speziellen Input-Buffer Implementierung, welches in Ninja Gaiden Sigma vorhanden ist, aber bei anderen ähnlichen Hack-and-Slash games der Era nicht in dieser Form existiert. Man kann in Ninja Gaiden bereits während der ersten Attacke alle Inputs der vollen Kombo in der richtigen Reihenfolge drücken. Diese werden dann automatisch ausgeführt. Hingegen besitzt \textit{Devil May Cry 3}, ein Hack-and-Slash Spiel aus dieser Era ein Input-Buffering System, welches den nächsten Angriff in einer Sequenz speichern kann. Dieser ist sogar jederzeit änderbar, solange die Aktion nicht bereits ausgeführt worden ist. Bei Ninja Gaiden kann das nicht, und weitere Tasteninputs erweitern entweder die Combo, falls diese noch erweitert werden kann, oder werden schlichtweg nicht registriert. Damit fühlt sich das System viel reaktionsschneller an, denn dies ist es in einen gewissen Sinne auch. Trotzdem kann man Argumentierung, dass die Implementierung von Input-Buffering von Ninja Gaiden Sigma aktiv gegen das Sinnlose drücken von Knöpfen agiert und damit für mehr geschicktes Spielen sorgt. Der Entwickler muss sich dann entscheiden, welche Route man gehen soll.
+
 
 \end{document}
