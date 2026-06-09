@@ -132,7 +132,7 @@ signal listening(value : bool)
 
 @export_group("Remap config")
 @export var ACTION_NAME : StringName = StringName()
-@export var INPUT_MODE : SettingsManager.InputType =  SettingsManager.InputType.keyboard
+@export var INPUT_MODE : SettingsManager.InputType = SettingsManager.InputType.keyboard
 
 @export_group("Button config")
 @export var LABLE_TEXT : String:
@@ -188,7 +188,14 @@ func _process(_delta: float) -> void:
 # Texture updates
 
 func _updateTexture() -> void:
-	var inputData := SettingsManager.getVariant("keyboard", ACTION_NAME) as Dictionary
+	var section : String = String()
+	match INPUT_MODE:
+		SettingsManager.InputType.keyboard:
+			section = "keyboard"
+		SettingsManager.InputType.controller:
+			section = "controller"
+
+	var inputData := SettingsManager.getVariant(section, ACTION_NAME) as Dictionary
 	match (inputData["type"] as SettingsManager.InputType):
 		SettingsManager.InputType.keyboard:
 			_icon.texture = KEY_ICONS[inputData["id"] as int]
