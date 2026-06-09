@@ -1,5 +1,6 @@
 Dieses Dokument dient als Orientierungshilfe für die Inhalte der Abgabe und erläutert die aktuell implementierten Funktionen des Prototyps.
 
+
 ## Inhalt der ZIP-Datei
 
 Die ZIP-Datei enthält folgende Bestandteile:
@@ -7,12 +8,11 @@ Die ZIP-Datei enthält folgende Bestandteile:
 * Dieses README
 * Den schriftlichen Begleitbericht
 * Eine ausführbare Version des Spiels (`Spiel.exe`)
-* Ausgewählte Quellcodedateien:
+* Ausgewählte Quellcodedateien
 
 
 Der Begleitbericht ist grundsätzlich eigenständig verständlich. Das vorliegende README dient insbesondere dazu, die Verbindung zwischen den im Begleitbericht beschriebenen Systemen und den beigelegten Quellcodedateien herzustellen.
 
----
 
 ## Ausführen des Prototyps
 
@@ -29,7 +29,7 @@ Nach dem Start erscheint das Hauptmenü.
 Das Save-Menü besitzt derzeit noch keine Funktion und dient als Platzhalter. Einige Einstellungen wurden für diese Zwischenabgabe bewusst deaktiviert oder vereinfacht, um einen stabilen und reproduzierbaren Ablauf der Demo sicherzustellen.
 
 Im Bereich „Controller Mapping“ bzw. „Keyboard Mapping“ können die aktuell verwendeten Eingabebelegungen eingesehen werden. Es können auch Button Remappings vorgenommen werden.
----
+
 
 ## Die Greybox-Testumgebung (GYM)
 
@@ -94,7 +94,6 @@ Zusätzlich sind derzeit folgende Kampffunktionen implementiert:
 
 Die unterschiedlichen Animationen können durch wiederholtes Ausführen von Light Attacks beobachtet werden.
 
----
 
 ## Quellcode
 
