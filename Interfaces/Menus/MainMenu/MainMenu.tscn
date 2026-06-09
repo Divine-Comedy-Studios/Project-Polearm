@@ -64,12 +64,12 @@ process_mode = 4
 visible = false
 BACK_MENU = 4
 
-[node name="KeyboardMapping" parent="." unique_id=601317194 instance=ExtResource("7_smu38")]
+[node name="ControllerMapping" parent="." unique_id=984357258 instance=ExtResource("4_0vu78")]
 process_mode = 4
 visible = false
 theme = ExtResource("13_kuglm")
 
-[node name="ControllerMapping" parent="." unique_id=984357258 instance=ExtResource("4_0vu78")]
+[node name="KeyboardMapping" parent="." unique_id=601317194 instance=ExtResource("7_smu38")]
 process_mode = 4
 visible = false
 theme = ExtResource("13_kuglm")
