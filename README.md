@@ -29,7 +29,8 @@ Nach dem Start erscheint das Hauptmenü.
 
 Das Save-Menü besitzt derzeit noch keine Funktion und dient als Platzhalter. Einige Einstellungen wurden für diese Zwischenabgabe bewusst deaktiviert oder vereinfacht, um einen stabilen und reproduzierbaren Ablauf der Demo sicherzustellen.
 
-Im Bereich „Controller Mapping“ bzw. „Keyboard Mapping“ können die aktuell verwendeten Eingabebelegungen eingesehen werden. Dsa Button Mapping Menü hat allerdings auch keine Funktion, da wir sie abgestellt haben für diese Demo.
+Im Bereich „Controller Mapping“ bzw. „Keyboard Mapping“ können die aktuell verwendeten Eingabebelegungen eingesehen werden. Das Button Mapping Menü hat allerdings auch keine Funktion, da wir sie abgestellt haben für diese Demo. 
+Nur die Bewegungsmappings, Light Attack, Springen, und Dashen(dashen kann gehalten werden um ins sprinten überzugehen) sind funktional.
 
 
 ## Die Greybox-Testumgebung (GYM)
