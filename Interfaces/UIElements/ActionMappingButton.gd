@@ -147,10 +147,7 @@ signal listening(value : bool)
 
 #region Member variables
 
-var _listening : bool = false:
-	set(value):
-		listening.emit(value)
-		_listening = value
+var _listening : bool = false
 
 #endregion
 
@@ -170,14 +167,16 @@ func _input(event : InputEvent) -> void:
 	if not _listening or not event.is_pressed():
 		return
 
-	match INPUT_MODE:
-		SettingsManager.InputType.keyboard:
-			_checkKeyboardMouseInput(event)
-		SettingsManager.InputType.controller:
-			_checkControllerInput(event)
+	# match INPUT_MODE:
+	#	SettingsManager.InputType.keyboard:
+	#		_checkKeyboardMouseInput(event)
+	#	SettingsManager.InputType.controller:
+	#		_checkControllerInput(event)
 
 
 func _process(_delta: float) -> void:
+	listening.emit(_listening)
+
 	_updateTexture()
 
 #endregion
@@ -268,7 +267,7 @@ func _checkKeyboardMouseInput(event : InputEvent) -> void:
 func _checkControllerInput(event : InputEvent) -> void:
 	if event is InputEventJoypadButton:
 		_eventHandled()
-		_remap("controller", SettingsManager.InputType.controllerButton, CONTROLLER_BUTTON_ICONS, event.keycode)
+		_remap("controller", SettingsManager.InputType.controllerButton, CONTROLLER_BUTTON_ICONS, event.button_index)
 	elif event is InputEventJoypadMotion:
 		if event.axis == JoyAxis.JOY_AXIS_TRIGGER_LEFT or event.axis == JoyAxis.JOY_AXIS_TRIGGER_RIGHT:
 			_eventHandled()
