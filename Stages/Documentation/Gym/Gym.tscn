@@ -266,7 +266,6 @@ points = PackedVector3Array(43.2, 0.5, -18.300001, 43.2, 0, -18.300001, 37.2, 0.
 
 [node name="Player" parent="." unique_id=1210477223 instance=ExtResource("2_d2u3u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
-STEP_MAX_HEIGHT = 0.4
 
 [node name="Visuals" type="Node" parent="." unique_id=72582827]
 

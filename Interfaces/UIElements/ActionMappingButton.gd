@@ -163,7 +163,7 @@ func _ready() -> void:
 	_updateTexture()
 
 
-func _input(event : InputEvent) -> void:
+func _unhandled_input(event : InputEvent) -> void:
 	if not _listening or not event.is_pressed():
 		return
 
@@ -237,9 +237,13 @@ func _remap(section : String, type : SettingsManager.InputType, iconTex : Dictio
 	for otherActionName in SettingsManager.getSettingNames(section):
 		if otherActionName == ACTION_NAME:
 			continue
+		
+		var rawInputData = SettingsManager.getVariant(section, otherActionName)
+		if not rawInputData is Dictionary:
+			continue
 
-		var inputData := SettingsManager.getVariant(section, otherActionName) as Dictionary
-		if inputData["type"] as int == data["type"] and inputData["id"] as int == data["id"]:
+		var inputData := rawInputData as Dictionary
+		if (inputData["type"] as int) == data["type"] and (inputData["id"] as int) == data["id"]:
 			SettingsManager.setVariant(section, otherActionName, oldAction)
 
 			break

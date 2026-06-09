@@ -5,11 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://bbf2d281jeq4y" path="res://Interfaces/Menus/OptionsMenu/OptionsMenu.tscn" id="3_cgrnr"]
 [ext_resource type="PackedScene" uid="uid://deafv8fy7rwbb" path="res://Interfaces/Menus/PauseMenu/PauseScreen/PauseScreen.tscn" id="4_6yn04"]
 [ext_resource type="PackedScene" uid="uid://dewxnxvy14tjr" path="res://Interfaces/Menus/OptionsMenu/GameOptions/GameOptions.tscn" id="5_apx62"]
-[ext_resource type="Script" uid="uid://celjwc20dqkr8" path="res://Interfaces/Menus/OptionsMenu/GameOptions/GameOptions.gd" id="6_fsrhc"]
 [ext_resource type="PackedScene" uid="uid://b8ng1m4gseuer" path="res://Interfaces/Menus/OptionsMenu/VideoOptions/VideoOptions.tscn" id="7_uqgmp"]
-[ext_resource type="Script" uid="uid://6tv3tv4exou" path="res://Interfaces/Menus/OptionsMenu/VideoOptions/VideoOptions.gd" id="8_74e1t"]
 [ext_resource type="PackedScene" uid="uid://3vnyxp2i1ac0" path="res://Interfaces/Menus/OptionsMenu/AudioOptions/AudioOptions.tscn" id="9_li8nt"]
-[ext_resource type="Script" uid="uid://dmm6hc5f7l4s2" path="res://Interfaces/Menus/OptionsMenu/AudioOptions/AudioOptions.gd" id="10_n46ru"]
 [ext_resource type="PackedScene" uid="uid://cnusbpv84eyf0" path="res://Interfaces/Menus/OptionsMenu/MappingOptions/Controller/ControllerMappingOptions.tscn" id="11_byafs"]
 [ext_resource type="PackedScene" uid="uid://cthgc7cm7suej" path="res://Interfaces/Menus/OptionsMenu/MappingOptions/Keyboard/KeyboardMappingOptions.tscn" id="13_mmoyh"]
 
@@ -32,19 +29,16 @@ BACK_MENU = 5
 [node name="GameOptions" parent="." unique_id=2031472548 instance=ExtResource("5_apx62")]
 process_mode = 4
 visible = false
-script = ExtResource("6_fsrhc")
 BACK_MENU = 4
 
 [node name="VideoOptions" parent="." unique_id=1719290083 instance=ExtResource("7_uqgmp")]
 process_mode = 4
 visible = false
-script = ExtResource("8_74e1t")
 BACK_MENU = 4
 
 [node name="AudioOptions" parent="." unique_id=1890015755 instance=ExtResource("9_li8nt")]
 process_mode = 4
 visible = false
-script = ExtResource("10_n46ru")
 BACK_MENU = 4
 
 [node name="KeyboardMapping" parent="." unique_id=601317194 instance=ExtResource("13_mmoyh")]
