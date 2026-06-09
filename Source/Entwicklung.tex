@@ -5,32 +5,35 @@
 
 \section{Technische Entwicklung}
 
-\subsection{Überblick}
-
-Foobar
-
-
 \subsection{Gemeinsame Komponenten}
 
-\subsubsection{Treffererkennung mit Hit- und Hurtboxen}
+\subsubsection{FloatingBody - Ein Algorithmus für sanfte Bewegung auf rauen Oberflächen}
 
-Foobar
+Der Algorithmus wurde kreiert zu der sanften Besteigung von Treppen. Ein absoluter grossteil von Character-Controller-Tutorials in Godot behandeln das Thema der Treppen gar nicht, oder benutzen einen vereinfachten Algorithmus, der den Spieler die Treppe einfach hochteleportiert.
+
+...
+
+Es stellt sich heraus dass der Algorithmus sehr dazu geeignet ist, auch generelle, raue Oberflächen zu überwinden.
+
+...
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=15cm]{../Assets/FloatingBody.png}
+	\caption*{Aktivitätsdiagramm des FloatingBody-Algorithmus}
+\end{figure}
 
 
-\subsubsection{FloatingBody - Ein Algorithmus für die sanfte Bewegung auf unebenen Oberflächen}
+\newpage
 
-Foobar
+\subsection{Spieler}
 
+\subsection{Inheritance-Struktur}
 
-\subsection{Entity-Basisklasse}
-
-\subsubsection{Kampfsystem und Schadenslogik}
-
-Foobar
-
-
-\subsection{Implementierung des Spielers}
-
-Foobar
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=15cm]{../Assets/ClassHierarchy.png}
+	\caption*{Inheritance-Hierarchie vom Spieler und seinen Komponenten}
+\end{figure}
 
 \end{document}

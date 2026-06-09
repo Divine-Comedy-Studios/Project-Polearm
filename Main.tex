@@ -32,8 +32,6 @@
 % Graphical packages
 \usepackage{graphicx}
 \usepackage{abstract}
-\setlength{\absleftindent}{0pt}
-\setlength{\absrightindent}{0pt}
 
 % Mathematical packages
 \usepackage{amssymb}
@@ -48,14 +46,20 @@
 \onehalfspacing
 \addbibresource{Source/Sources.bib}
 
+\setlength{\absleftindent}{0pt}
+\setlength{\absrightindent}{0pt}
+
+\graphicspath{
+    { ./Assets/ }
+}
+
+
 % Document
 
 \begin{document}
 
 
-% Initial pages setup
-
-
+% Title page
 
 \begin{titlepage}
     \begin{center}
@@ -84,8 +88,11 @@
     \end{center}
 \end{titlepage}
 
-
 \newpage
+
+
+% Abstract
+
 \begin{abstract}
 Die vorliegende Maturitätsarbeit beschäftigt sich mit der Frage, wie Gegnerverhalten und Gegnerplatzierung in einem 3D-Hack-and-Slash-Prototypen gestaltet sein müssen, damit ein Kampfabschnitt mit nachvollziehbarem Spielfluss, angemessener Schwierigkeit und befriedigendem Spielgefühl entsteht. Das Genre ist dabei besonders herausfordernd, da schon kleine Änderungen an einzelnen Systemen spürbare Auswirkungen auf das gesamte Spielerlebnis haben.
 
@@ -97,9 +104,16 @@ Dieses Dokument stellt den Stand der Entwicklung und der Dokumentation im Stadio
 \end{abstract}
 
 \newpage
+
+
+% Table of contents
+
 \tableofcontents
+
 \newpage
 
+
+% Main document
 
 \subfile{Source/Einleitung}
 \newpage
@@ -112,6 +126,9 @@ Dieses Dokument stellt den Stand der Entwicklung und der Dokumentation im Stadio
 
 \subfile{Source/Reflektion}
 \newpage
+
+
+% Addendum
 
 \section{Verzeichnisse}
 
