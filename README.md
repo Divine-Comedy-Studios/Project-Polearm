@@ -8,6 +8,7 @@ Die ZIP-Datei enthält folgende Bestandteile:
 * Dieses README
 * Den schriftlichen Begleitbericht
 * Eine ausführbare Version des Spiels (`Spiel.exe`)
+* Arbeitsjournale
 * Ausgewählte Quellcodedateien
 
 
@@ -28,7 +29,7 @@ Nach dem Start erscheint das Hauptmenü.
 
 Das Save-Menü besitzt derzeit noch keine Funktion und dient als Platzhalter. Einige Einstellungen wurden für diese Zwischenabgabe bewusst deaktiviert oder vereinfacht, um einen stabilen und reproduzierbaren Ablauf der Demo sicherzustellen.
 
-Im Bereich „Controller Mapping“ bzw. „Keyboard Mapping“ können die aktuell verwendeten Eingabebelegungen eingesehen werden. Es können auch Button Remappings vorgenommen werden.
+Im Bereich „Controller Mapping“ bzw. „Keyboard Mapping“ können die aktuell verwendeten Eingabebelegungen eingesehen werden. Dsa Button Mapping Menü hat allerdings auch keine Funktion, da wir sie abgestellt haben für diese Demo.
 
 
 ## Die Greybox-Testumgebung (GYM)
@@ -95,5 +96,21 @@ Zusätzlich sind derzeit folgende Kampffunktionen implementiert:
 Die unterschiedlichen Animationen können durch wiederholtes Ausführen von Light Attacks beobachtet werden.
 
 
-## Quellcode
+## Ausgewählte Quellcodedateien
 
+Da der vollständige Quellcode des Projekts über ca. 7000 Zeilen selbst geschriebenen Code besitzt, haben wir uns einen repräsentativen Quärschnitt ausgesucht. Spezifisch jene, die auch in unseren Abbildungen im Begleitbericht representiert sind.
+
+**FloatingBody**
+
+**BasicStateMachine**
+**BasicState**
+**EntityActionManager**
+**EntityAction**
+**EntityResources**
+**EntityFrameData**
+**PlayerActionManager**
+**PlayerAction**
+**PlayerResources**
+**PlayerFrameData**
+**PlayerInputManager**
+**Player**
