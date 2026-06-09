@@ -7,9 +7,11 @@
 [ext_resource type="Resource" uid="uid://ccjpnfc5visow" path="res://Entities/Player/Resources/Combos/TestCombo.tres" id="4_7bymk"]
 [ext_resource type="Script" uid="uid://bes4y6b0to8sw" path="res://Entities/Player/Actions/States/Fall.gd" id="4_8427c"]
 [ext_resource type="Script" uid="uid://cqy3drroysy4k" path="res://Entities/Player/Data/PlayerActionData.gd" id="5_8427c"]
+[ext_resource type="Script" uid="uid://d1f6s1sq7da14" path="res://Entities/Entity/Data/EntityActionData.gd" id="6_re4dn"]
 [ext_resource type="Script" uid="uid://btagysn7t8n05" path="res://Entities/Player/Actions/States/Move.gd" id="6_rq852"]
 [ext_resource type="Script" uid="uid://bf7rav2dglxc4" path="res://Entities/Player/Actions/States/TransitionAction/JumpStart.gd" id="6_urjga"]
 [ext_resource type="Script" uid="uid://l7akydniqjk2" path="res://Entities/Player/Actions/States/IdleOrStop.gd" id="6_yl8et"]
+[ext_resource type="Resource" uid="uid://beb43700umvba" path="res://Entities/Player/Resources/Combos/AirTestCombo.res" id="7_e0d0n"]
 [ext_resource type="Script" uid="uid://c55k4ruofg4jc" path="res://Entities/Player/Actions/States/Jump.gd" id="7_jverr"]
 [ext_resource type="Script" uid="uid://vahqysuxajcw" path="res://Entities/Player/Actions/States/LightAttack.gd" id="8_6evvv"]
 [ext_resource type="Script" uid="uid://bsb2b7yi270tu" path="res://Entities/Player/Actions/States/TransitionAction/MoveStop.gd" id="9_x5srs"]
@@ -24,6 +26,34 @@
 [ext_resource type="Script" uid="uid://3fen78mrevq4" path="res://Entities/Player/Actions/States/TransitionAction/DashStart.gd" id="17_fh6tg"]
 [ext_resource type="Script" uid="uid://b7l2j8josovnk" path="res://Entities/Player/Actions/States/AirJump.gd" id="18_wu1xb"]
 
+[sub_resource type="Resource" id="Resource_ne5dw"]
+script = ExtResource("5_8427c")
+ANIMATION_LIBRARY_NAME = &"Combat"
+ANIMATION_NAME = &"ComboAir_2"
+ROOT_MOTION = true
+metadata/_custom_type_script = "uid://cqy3drroysy4k"
+
+[sub_resource type="Resource" id="Resource_0rp38"]
+script = ExtResource("5_8427c")
+ANIMATION_LIBRARY_NAME = &"Combat"
+ANIMATION_NAME = &"ComboAir_3"
+ROOT_MOTION = true
+metadata/_custom_type_script = "uid://cqy3drroysy4k"
+
+[sub_resource type="Resource" id="Resource_tk2if"]
+script = ExtResource("5_8427c")
+ANIMATION_LIBRARY_NAME = &"Combat"
+ANIMATION_NAME = &"ComboAir_4"
+ROOT_MOTION = true
+metadata/_custom_type_script = "uid://cqy3drroysy4k"
+
+[sub_resource type="Resource" id="Resource_bqpo4"]
+script = ExtResource("3_7bymk")
+TYPE = &"combo2"
+ACTION_TYPES = Array[StringName]([&"airLightAttack", &"airLightAttack", &"airLightAttack", &"airLightAttack"])
+ACTIONS = Array[ExtResource("6_re4dn")]([ExtResource("7_e0d0n"), SubResource("Resource_ne5dw"), SubResource("Resource_0rp38"), SubResource("Resource_tk2if")])
+metadata/_custom_type_script = "uid://c8b6ivlyaw41v"
+
 [sub_resource type="Resource" id="Resource_8427c"]
 script = ExtResource("5_8427c")
 ANIMATION_LIBRARY_NAME = &"Movement"
@@ -34,18 +64,21 @@ metadata/_custom_type_script = "uid://cqy3drroysy4k"
 script = ExtResource("5_8427c")
 ANIMATION_LIBRARY_NAME = &"Movement"
 ANIMATION_NAME = &"Idle"
+ANIMATION_FADE_TIME = 0.2
 metadata/_custom_type_script = "uid://cqy3drroysy4k"
 
 [sub_resource type="Resource" id="Resource_jverr"]
 script = ExtResource("5_8427c")
 ANIMATION_LIBRARY_NAME = &"Movement"
 ANIMATION_NAME = &"WalkLoop"
+ANIMATION_FADE_TIME = 0.2
 metadata/_custom_type_script = "uid://cqy3drroysy4k"
 
 [sub_resource type="Resource" id="Resource_urjga"]
 script = ExtResource("5_8427c")
 ANIMATION_LIBRARY_NAME = &"Movement"
 ANIMATION_NAME = &"RunLoop"
+ANIMATION_FADE_TIME = 0.2
 metadata/_custom_type_script = "uid://cqy3drroysy4k"
 
 [sub_resource type="Resource" id="Resource_re4dn"]
@@ -209,7 +242,7 @@ metadata/_custom_type_script = "uid://jth8cpsjn3vy"
 process_mode = 4
 script = ExtResource("2_rq852")
 MAX_PREVIOUS_COMBO_COUNT = 3
-unlockedCombos = Array[ExtResource("3_7bymk")]([ExtResource("4_7bymk")])
+unlockedCombos = Array[ExtResource("3_7bymk")]([ExtResource("4_7bymk"), SubResource("Resource_bqpo4")])
 metadata/_custom_type_script = "uid://620any2k6qha"
 
 [node name="Idle" type="Node" parent="." unique_id=1482978748]
@@ -253,7 +286,7 @@ process_mode = 4
 script = ExtResource("17_fh6tg")
 _timer = NodePath("../DashTimer")
 TARGET_TYPE = &"dash"
-INPUT_BUFFER_FRAMES = 4
+INPUT_BUFFER_FRAMES = 6
 QUEUEABLE = true
 TYPE = &"dashStart"
 PRIORITY = 51
@@ -339,7 +372,8 @@ process_mode = 4
 script = ExtResource("6_urjga")
 JUMP_STILL_DATA = SubResource("Resource_6evvv")
 JUMP_RUN_DATA = SubResource("Resource_obuag")
-INPUT_BUFFER_FRAMES = 4
+INPUT_BUFFER_FRAMES = 6
+QUEUEABLE = true
 TYPE = &"jumpStart"
 PRIORITY = 30
 metadata/_custom_type_script = "uid://jc1g0sv32qq1"
@@ -356,7 +390,8 @@ metadata/_custom_type_script = "uid://jc1g0sv32qq1"
 [node name="AirJumpStart" type="Node" parent="." unique_id=1893835723]
 process_mode = 4
 script = ExtResource("11_6ns0w")
-INPUT_BUFFER_FRAMES = 4
+INPUT_BUFFER_FRAMES = 6
+QUEUEABLE = true
 TYPE = &"airJumpStart"
 PRIORITY = 32
 data = SubResource("Resource_7bymk")
@@ -383,6 +418,15 @@ process_mode = 4
 script = ExtResource("8_6evvv")
 QUEUEABLE = true
 TYPE = &"lightAttack"
+PRIORITY = 41
+REPEATABLE = true
+metadata/_custom_type_script = "uid://jc1g0sv32qq1"
+
+[node name="AirLightAttack" type="Node" parent="." unique_id=994612286]
+process_mode = 4
+script = ExtResource("8_6evvv")
+QUEUEABLE = true
+TYPE = &"airLightAttack"
 PRIORITY = 40
 REPEATABLE = true
 metadata/_custom_type_script = "uid://jc1g0sv32qq1"

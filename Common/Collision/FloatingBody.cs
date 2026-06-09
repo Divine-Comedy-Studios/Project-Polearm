@@ -631,12 +631,6 @@ using System.ComponentModel;
 
 	// Stepping functions
 
-	/**
-	 * This can return three values depending on the result
-	 * 0: The probing was succesful
-	 * 1: The probing failed before the wall has been checked
-	 * 2: The probing failed during the wall check
-	 **/
 	private bool _checkStepDown() {
 		if (m_stepState == StepState.Down ||
 			!m_footData.Grounded ||

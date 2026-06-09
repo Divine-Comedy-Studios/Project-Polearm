@@ -4,17 +4,13 @@ class_name GameState
 
 #region Member variables
 
-var _payload : Variant = null
-
-#endregion
-
-
-#region Public functions
-
-func popPayload() -> Variant:
-	var tmp : Variant = _payload
-	_payload = null
-	return tmp
+var payload : Variant = null:
+	get:
+		var tmp = payload
+		payload = null
+		return tmp
+	set(value):
+		payload = value
 
 #endregion
 

@@ -52,6 +52,7 @@ extends Node
 
 
 @warning_ignore("unused_private_class_variable")
+@export_tool_button("Save Frame Data") var _saveFDFunction = _save_frame_data_library
 @export_tool_button("Update Frame Data") var _updateFDFunction = _sync_frame_data_library
 @export_tool_button("Cleanup Frame Data") var _cleanupFDFunction = _clean_frame_data_library
 
@@ -107,7 +108,11 @@ func _sync_frame_data_library_wrapper(_old_name: StringName, _new_name: StringNa
 #endregion
 
 
-#region Frame Data Sync
+#region Frame Data Helpers
+
+func _save_frame_data_library() -> void:
+	ResourceSaver.save(_frameDataLibrary)
+
 
 ## Loops through all animations in _animationPlayer and adds any missing ones
 ## into _frameDataLibrary as empty animations with matching length.

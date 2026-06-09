@@ -61,10 +61,10 @@ func available() -> bool:
 			ResourceLoader.THREAD_LOAD_IN_PROGRESS:
 				return false
 			_:
-				var payload : Variant = stateMachine.payload
-				if payload != null:
-					assert(payload is Stage.SaveData, "World._enter(): Payload must contain current level data!")
-					_requestLoadStage(payload as Stage.SaveData)
+				var payl : Variant = stateMachine.payload
+				if payl != null:
+					assert(payl is Stage.SaveData, "World._enter(): Payload must contain current level data!")
+					_requestLoadStage(payl as Stage.SaveData)
 					return false
 
 	return true

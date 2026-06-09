@@ -37,9 +37,6 @@ func _implInit() -> void:
 func _implEnter() -> void:
 	_processAnimations()
 
-func _implExit() -> void:
-	pass
-
 
 func _tick(delta : float) -> void:
 	player().accelerate(Vector3.ZERO, _friction * delta)

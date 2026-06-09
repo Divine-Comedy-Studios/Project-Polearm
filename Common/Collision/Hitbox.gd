@@ -63,10 +63,6 @@ func clear() -> void:
 func excluded(box : Hurtbox) -> bool:
 	return _excluded.has(box)
 
-func _physics_process(delta: float) -> void:
-	if enabled():
-		DebugDraw3D.draw_arrow_ray(global_position, global_transform.basis * Basis(Vector3.RIGHT, -PI / 2) * _data.FORCE, 10)
-
 #endregion
 
 
