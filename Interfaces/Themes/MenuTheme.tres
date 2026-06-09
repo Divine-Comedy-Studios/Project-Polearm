@@ -90,9 +90,13 @@ texture = ExtResource("21_u0hbg")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2opdd"]
 texture = ExtResource("22_c0m3y")
+expand_margin_top = 3.0
+expand_margin_bottom = 3.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pwian"]
 texture = ExtResource("23_r72pm")
+expand_margin_top = 3.0
+expand_margin_bottom = 3.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_htf3p"]
 texture = ExtResource("25_77o8a")
@@ -178,7 +182,7 @@ CheckBox/styles/normal = SubResource("StyleBoxTexture_bx1gd")
 CheckBox/styles/pressed = SubResource("StyleBoxTexture_6lhbt")
 HBoxContainer/constants/separation = 4
 HSlider/constants/center_grabber = 0
-HSlider/constants/grabber_offset = 0
+HSlider/constants/grabber_offset = 6
 HSlider/constants/tick_offset = 0
 HSlider/icons/grabber = ExtResource("17_hcmpd")
 HSlider/icons/grabber_disabled = ExtResource("18_8sst4")
