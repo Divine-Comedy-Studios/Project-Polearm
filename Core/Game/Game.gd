@@ -80,7 +80,7 @@ func _nextState() -> StringName:
 		return next
 
 	assert(current is GameState, "Game._nextState(): All game states should inherit from GameState EXCEPT and ONLY except the loading screen!")
-	payload = (current as GameState).popPayload()
+	payload = (current as GameState).payload
 
 	if not nextState.available():
 		return loadingScreen.requestLoad(current, nextState)

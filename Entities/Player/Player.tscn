@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bgf6aphyao331" path="res://Entities/Player/Camera/PlayerCameraManager.tscn" id="3_1des2"]
 [ext_resource type="Script" uid="uid://cyecr71fggv70" path="res://Entities/Entity/Collisions/EntityHurtbox.gd" id="4_e34i1"]
 [ext_resource type="PackedScene" uid="uid://dbsruilakgfp4" path="res://Entities/Player/Visuals/XBotMesh.scn" id="5_an6q6"]
-[ext_resource type="PackedScene" uid="uid://cqkvrwqakickj" path="res://Entities/Player/Combat/DebugWeapon.tscn" id="5_vcmon"]
+[ext_resource type="PackedScene" uid="uid://cqkvrwqakickj" path="res://Objects/Weapons/DebugWeapon/DebugWeapon.tscn" id="5_vcmon"]
 [ext_resource type="Script" uid="uid://413tgy3jmvma" path="res://Common/Collision/HitboxData.gd" id="6_h6pxy"]
 [ext_resource type="PackedScene" uid="uid://bsl7ik5iueomu" path="res://Entities/Player/Actions/PlayerActionManager.tscn" id="6_hacra"]
 [ext_resource type="Script" uid="uid://c12nkcphob0hm" path="res://Common/Resources/ValueResource.gd" id="8_gallu"]
@@ -19,7 +19,7 @@
 [ext_resource type="AnimationLibrary" uid="uid://dfqr4nawpg2vu" path="res://Assets/3D Models/Characters/Player/Animations/Movement.res" id="13_hl213"]
 [ext_resource type="AnimationLibrary" uid="uid://b3cu7qf5ygk0k" path="res://Assets/3D Models/Characters/Player/Animations/TPose.glb" id="14_5m37j"]
 [ext_resource type="Script" uid="uid://del87rrtko1do" path="res://Entities/Entity/Utility/EntityAnimationHelper.gd" id="14_uw7o4"]
-[ext_resource type="AnimationLibrary" uid="uid://bc86us6nvyi6u" path="res://Entities/Player/Resources/FrameData.res" id="15_gallu"]
+[ext_resource type="AnimationLibrary" uid="uid://bv1xejbktg585" path="res://Entities/Player/Resources/FrameData.res" id="15_gallu"]
 [ext_resource type="PackedScene" uid="uid://c6ck6empr4lu2" path="res://Entities/Player/Visuals/Skeleton.scn" id="17_5m37j"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_an6q6"]
@@ -175,7 +175,7 @@ external_skeleton = NodePath("../Skeleton")
 transform = Transform3D(-0.63575435, 0.011931799, -0.7717989, 0.036647655, 0.99921954, -0.014740088, 0.77102077, -0.03765569, -0.6356954, -0.008637563, 0.026503623, -0.025778975)
 script = ExtResource("4_e34i1")
 _resources = NodePath("../../Resources")
-LAYERS = 536870912
+LAYERS = 939524096
 metadata/_custom_type_script = "uid://cyecr71fggv70"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HurtboxAttachment/Hurtbox" unique_id=254222997]
@@ -183,7 +183,7 @@ shape = SubResource("CapsuleShape3D_e34i1")
 debug_color = Color(0.95256823, 6.738305e-07, 0.56044906, 0.41960785)
 
 [node name="WeaponAttachment" type="BoneAttachment3D" parent="." unique_id=2124309867]
-transform = Transform3D(-0.28051028, 0.82041717, 0.4982249, 0.9562605, 0.194002, 0.2189332, 0.08295665, 0.5378446, -0.8389517, 0.09873148, 0.85485935, 0.1995806)
+transform = Transform3D(-0.28051022, 0.82041717, 0.4982249, 0.9562602, 0.19400206, 0.21893314, 0.082956724, 0.5378449, -0.8389519, 0.09873146, 0.85485935, 0.19958057)
 bone_name = "Bone"
 bone_idx = 49
 use_external_skeleton = true
@@ -323,7 +323,6 @@ bones/30/rotation = Quaternion(-7.135961e-08, -0.07909221, 3.506039e-07, 0.99686
 bones/31/rotation = Quaternion(0.20804504, -0.079091854, 0.030798886, 0.97442967)
 bones/31/scale = Vector3(0.99999976, 1.0000004, 0.99999976)
 bones/32/rotation = Quaternion(7.34663e-09, 0.36861512, 3.405604e-07, 0.9295821)
-bones/32/scale = Vector3(0.99999946, 1.000001, 0.99999964)
 bones/33/rotation = Quaternion(-0.05256106, 0.36899278, 0.028086979, 0.9275197)
 bones/33/scale = Vector3(0.99999976, 0.9999997, 0.9999996)
 bones/34/rotation = Quaternion(-0.14801925, 0.39580095, 0.08891858, 0.90195644)

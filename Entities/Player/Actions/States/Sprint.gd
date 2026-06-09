@@ -8,6 +8,9 @@ extends PlayerAction
 @export var TURN_LEFT_DATA : PlayerActionData = null
 @export var TURN_RIGHT_DATA : PlayerActionData = null
 
+@export_group("Movement settings")
+@export var TURN_COS_THRESHHOLD : float = 0.5
+
 #endregion
 
 
@@ -107,7 +110,7 @@ func _checkTurning() -> void:
 	# Check if the player has turned
 
 	var direction = Vector3(inputs().direction.x, 0.0, inputs().direction.y)
-	if direction.dot(_direction) < 0.2:
+	if direction.dot(_direction) < TURN_COS_THRESHHOLD:
 		_turnTargetAngle = _direction.signed_angle_to(direction, Vector3.UP)
 
 		exit()

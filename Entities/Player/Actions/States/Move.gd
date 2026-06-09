@@ -38,6 +38,10 @@ var _maxPeriod : float = 0.0
 var _blendScale : float = 0.0
 
 
+# Turning state
+
+var _targetDirection : Vector3
+
 #endregion
 
 
@@ -67,11 +71,7 @@ func _implInit() -> void:
 
 
 func _implEnter() -> void:
-	# Switch to special turning state
-	#var forward : Vector3 = player().forward()
-	#if inputs().direction.dot(Vector2(forward.x, forward.z).normalized()) < 0.8:
-	#	context().interrupt(Type.moveTurn)
-	#	return
+	_targetDirection = player().forward()
 
 	animator().setCoreTransition(&"AdvancedTransition", data.ANIMATION_FADE_TIME)
 	animator().transitionTo(&"AdvancedTransition", &"Move")
@@ -82,15 +82,32 @@ func _tick(delta : float) -> void:
 	var targetSpeed := minf(inputs().inputMagnitude * _runSpeed, _runSpeed)
 	player().accelerateFlat(inputs().direction * targetSpeed, _accel * delta)
 
+	# Turning
+	if not inputs().direction.is_zero_approx():
+		_targetDirection = Vector3(inputs().direction.x, 0.0, inputs().direction.y)
+
 	# Animation
 	_processAnimations()
 
 
-func _implNextAction(next : StringName) -> StringName:
-	if next != Type.none and hasHigherPriorityThan(next):
-		return Type.moveStop
+func _processDirectionAngle() -> float:
+	return player().forward().signed_angle_to(
+		_targetDirection, 
+		Vector3.UP
+	)
 
-	return next
+
+func _implNextAction(next : StringName) -> StringName:
+	if next == Type.none:
+		return Type.none
+
+	if not hasHigherPriorityThan(next):
+		return next
+
+	if not is_zero_approx(_processDirectionAngle()):
+		return Type.none
+
+	return Type.moveStop
 
 #endregion
 

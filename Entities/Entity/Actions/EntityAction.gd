@@ -109,7 +109,7 @@ func nextAction() -> StringName:
 
 
 # Checks if a given action can be considered for the next one
-func actionViability(action : EntityAction) -> int:
+func actionViability(action : EntityAction, checkSelfLowerability : bool = true) -> int:
 	# If both animations have the same type, just ignore it and break
 	if action.TYPE == TYPE and not REPEATABLE:
 		return -1
@@ -117,9 +117,14 @@ func actionViability(action : EntityAction) -> int:
 	if not _context.resources.payable(action):
 		return 0
 
-	if action.PRIORITY < PRIORITY:
+	if action.PRIORITY == 0: # Actions with a 0 priority are automatically considered "passive states", i.e. they will not actively try to fight for the current state
+		if not finished():
+			return 0
+
+	if checkSelfLowerability and action.PRIORITY < PRIORITY:
 		if _context.frameData.nonLowerable(data.ANIMATION_NAME, _progress): # Excecution order of if statements in GDScript is always a bit funny
 			return 0
+
 	if not action._viable():
 		return 0
 
@@ -136,7 +141,7 @@ func interruptable() -> bool:
 	return _context.frameData.interruptable(data.ANIMATION_NAME, _progress)
 
 func finished() -> bool:
-	return _context.frameData.finished(data.ANIMATION_NAME, _progress) and _context.animator.animation(data.ANIMATION_FULL_NAME).loop_mode == Animation.LOOP_NONE
+	return _context.frameData.finished(data.ANIMATION_NAME, _progress) or _context.animator.animation(data.ANIMATION_FULL_NAME).loop_mode != Animation.LOOP_NONE
 
 
 # Explicit definition of higher priority

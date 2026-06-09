@@ -41,7 +41,7 @@ func _implEnter() -> void:
 
 
 func _processDirection(delta : float) -> void:
-	var rotationTrackingSpeed := _targetAngle * _duration / delta
+	var rotationTrackingSpeed := _targetAngle / (_duration / delta)
 	if rotationTrackingSpeed != 0.0:
 		_context.entity.rotate_y(rotationTrackingSpeed)
 

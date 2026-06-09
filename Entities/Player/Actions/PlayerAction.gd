@@ -229,7 +229,7 @@ func _checkAndSetQueue() -> void:
 
 	for actionType : StringName in inputs().actions:
 		var action := _context.action(actionType) as PlayerAction
-		if not action.QUEUEABLE or actionViability(action) != 1:
+		if not action.QUEUEABLE or actionViability(action, false) != 1:
 			continue
 		if _queue == null or hasHigherPriority(action, _queue):
 			_queue = action
