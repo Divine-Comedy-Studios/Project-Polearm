@@ -17,7 +17,7 @@ func type() -> Type:
 	return Type.pause
 
 func nextMenu(inputs : ISMInputManager.Data) -> Type:
-	if inputs.cancel:
+	if inputs.cancel or inputs.pause:
 		_exitMenu = true
 
 	if _optionsPressed:

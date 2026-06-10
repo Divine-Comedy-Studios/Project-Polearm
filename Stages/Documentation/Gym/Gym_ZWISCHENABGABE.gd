@@ -16,7 +16,7 @@ func _ready() -> void:
 
 # Handle transitioning to the pause menu
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_cancel"):
+	if event.is_action_pressed("ui_pause"):
 		if event is InputEventKey:
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
