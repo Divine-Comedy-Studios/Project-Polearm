@@ -164,14 +164,15 @@ func _ready() -> void:
 
 
 func _unhandled_input(event : InputEvent) -> void:
-	if not _listening or not event.is_pressed():
-		return
+	# if not _listening or not event.is_pressed():
+	#	return
 
 	# match INPUT_MODE:
 	#	SettingsManager.InputType.keyboard:
 	#		_checkKeyboardMouseInput(event)
 	#	SettingsManager.InputType.controller:
 	#		_checkControllerInput(event)
+	return
 
 
 func _process(_delta: float) -> void:
