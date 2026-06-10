@@ -4,12 +4,12 @@ importer="animation_library"
 importer_version=1
 type="AnimationLibrary"
 uid="uid://b3cu7qf5ygk0k"
-path="res://.godot/imported/TPose.glb-00e9c46fc8ae8674163decfe3c546bf7.res"
+path="res://.godot/imported/TPose.glb-6f19cd086670e22852e47dc86601d399.res"
 
 [deps]
 
-source_file="res://Assets/3D Models/Characters/Player/Animations/TPose.glb"
-dest_files=["res://.godot/imported/TPose.glb-00e9c46fc8ae8674163decfe3c546bf7.res"]
+source_file="res://Assets/3D Models/Characters/YBot/Animations/TPose.glb"
+dest_files=["res://.godot/imported/TPose.glb-6f19cd086670e22852e47dc86601d399.res"]
 
 [params]
 
