@@ -4,9 +4,9 @@
 [ext_resource type="Script" uid="uid://jth8cpsjn3vy" path="res://Entities/Player/Actions/States/Physics/PlayerPhysics.gd" id="2_71nor"]
 [ext_resource type="Script" uid="uid://620any2k6qha" path="res://Entities/Player/Combat/PlayerCombatManager.gd" id="2_rq852"]
 [ext_resource type="Script" uid="uid://c8b6ivlyaw41v" path="res://Entities/Entity/Combat/Combo/EntityCombo.gd" id="3_7bymk"]
-[ext_resource type="Resource" uid="uid://ccjpnfc5visow" path="res://Entities/Player/Resources/Combos/TestCombo.tres" id="4_7bymk"]
 [ext_resource type="Script" uid="uid://bes4y6b0to8sw" path="res://Entities/Player/Actions/States/Fall.gd" id="4_8427c"]
 [ext_resource type="Script" uid="uid://cqy3drroysy4k" path="res://Entities/Player/Data/PlayerActionData.gd" id="5_8427c"]
+[ext_resource type="Resource" uid="uid://tnaofpunyg6y" path="res://Entities/Player/Resources/Combos/TestCombo.res" id="5_dvgj7"]
 [ext_resource type="Script" uid="uid://btagysn7t8n05" path="res://Entities/Player/Actions/States/Move.gd" id="6_rq852"]
 [ext_resource type="Script" uid="uid://bf7rav2dglxc4" path="res://Entities/Player/Actions/States/TransitionAction/JumpStart.gd" id="6_urjga"]
 [ext_resource type="Script" uid="uid://l7akydniqjk2" path="res://Entities/Player/Actions/States/IdleOrStop.gd" id="6_yl8et"]
@@ -200,7 +200,7 @@ metadata/_custom_type_script = "uid://jth8cpsjn3vy"
 process_mode = 4
 script = ExtResource("2_rq852")
 MAX_PREVIOUS_COMBO_COUNT = 3
-unlockedCombos = Array[ExtResource("3_7bymk")]([ExtResource("4_7bymk"), ExtResource("7_e0d0n")])
+unlockedCombos = Array[ExtResource("3_7bymk")]([ExtResource("5_dvgj7"), ExtResource("7_e0d0n")])
 metadata/_custom_type_script = "uid://620any2k6qha"
 
 [node name="Idle" type="Node" parent="." unique_id=1482978748]
