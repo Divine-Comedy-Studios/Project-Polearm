@@ -10,7 +10,7 @@ class Type:
 	const none := TYPE_NONE
 
 	const idle := &"idle"
-	const damage := &"dmg"
+	const damage := &"damage"
 
 #endregion
 

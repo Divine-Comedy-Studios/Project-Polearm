@@ -36,6 +36,8 @@ class_name PlayerResources
 #region Built-in functions
 
 func _physics_process(delta: float) -> void:
+	super._physics_process(delta)
+
 	flow.value -= delta * BASE_FLOW_DECREASE_RATE * flowModifier
 
 #endregion

@@ -132,6 +132,20 @@ func transitionTo(handle : StringName, slot : String) -> bool:
 	return true
 
 
+# Set the transition driver which the core transition driver points to
+func setCoreTransition(destTransitionHandle : StringName, fadeTime : float) -> AnimationNodeTransition:
+	var destTransitionDriver := transitionDriver(destTransitionHandle)
+	destTransitionDriver.xfade_time = 0.0
+
+	transitionDriver(&"CoreTransition").xfade_time = fadeTime
+
+	# IMPORTANT: Guarantee that the destination transition handle is always named the same as the input
+	if not transitionTo(&"CoreTransition", destTransitionHandle):
+		destTransitionDriver.xfade_time = fadeTime # If we were already on the correct path, we transition using the inner transitioner instead
+	
+	return destTransitionDriver
+
+
 # Driver getters
 
 func transitionDriver(handle : StringName) -> AnimationNodeTransition:
