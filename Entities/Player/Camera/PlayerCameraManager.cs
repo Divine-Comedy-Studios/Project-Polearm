@@ -2,6 +2,7 @@ using Godot;
 using PhantomCamera;
 using PhantomCamera.Manager;
 using System;
+using System.Data.Common;
 
 
 [GlobalClass] public partial class PlayerCameraManager : Node {
@@ -102,13 +103,15 @@ using System;
 	}
 
 
-	public override void _UnhandledInput(InputEvent inputEvent) {
-		if (inputEvent is InputEventMouseMotion mouse && !m_controllerActive && Input.MouseMode == Input.MouseModeEnum.Captured) {
-			m_timeUntilAutoCam = TIME_UNTIL_AUTO_CAM;
+	public override void _Input(InputEvent inputEvent) {
+		if (!m_controllerActive && Input.MouseMode == Input.MouseModeEnum.Captured) {
+			if (inputEvent is InputEventMouseMotion mouse) {
+				m_timeUntilAutoCam = TIME_UNTIL_AUTO_CAM;
 
-			Vector2 mouseDelta = mouse.Relative * MOUSE_SENSITIVITY;
+				Vector2 mouseDelta = mouse.Relative * MOUSE_SENSITIVITY;
 
-			_rotateTarget(m_camera.FollowTarget, new Vector2(-mouseDelta.Y * INVERT_VERTICAL, mouseDelta.X));
+				_rotateTarget(m_camera.FollowTarget, new Vector2(-mouseDelta.Y * INVERT_VERTICAL, mouseDelta.X));
+			}
 		}
 	}
 
