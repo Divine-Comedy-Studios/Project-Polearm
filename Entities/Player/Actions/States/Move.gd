@@ -14,7 +14,7 @@ const MIN_PERIOD_MULTIPLIER := 0.7
 @export var IDLE_DATA : PlayerActionData = null
 @export var WALK_DATA : PlayerActionData = null
 @export var RUN_DATA : PlayerActionData = null
-@export var BLEND_LERP : float = 0.3
+@export var BLEND_LERP : float = 0.2
 
 #endregion
 
@@ -82,8 +82,7 @@ func _tick(delta : float) -> void:
 	var targetSpeed := minf(inputs().inputMagnitude * _runSpeed, _runSpeed)
 	player().accelerateFlat(inputs().direction * targetSpeed, _accel * delta)
 
-	# Turning
-	if not inputs().direction.is_zero_approx():
+	if not is_zero_approx(inputs().inputMagnitude):
 		_targetDirection = Vector3(inputs().direction.x, 0.0, inputs().direction.y)
 
 	# Animation

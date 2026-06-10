@@ -26,10 +26,10 @@ var _actionQueue : StringName = PlayerAction.Type.none
 #region Built-in functions
 
 func _ready() -> void:
-	assert(entity is Player, "PlayerStateMachine._ready(): The entity must be a Player!")
-	assert(cameraManager != null, "PlayerStateMachine._ready(): Player camera manager not assigned!")
-	assert(inputManager != null, "PlayerStateMachine._ready(): Player input manager not assigned!")
-	assert(physics != null, "PlayerStateMachine._ready(): Player physics processor not assigned!")
+	assert(entity is Player, "PlayerActionManager._ready(): The entity must be a Player!")
+	assert(cameraManager != null, "PlayerActionManager._ready(): Player camera manager not assigned!")
+	assert(inputManager != null, "PlayerActionManager._ready(): Player input manager not assigned!")
+	assert(physics != null, "PlayerActionManager._ready(): Player physics processor not assigned!")
 
 	init()
 

@@ -166,7 +166,7 @@ using System.Data.Common;
 
 		rotation = new Vector3(
 			Mathf.Clamp(rotation.X + angularVelocity.X, MIN_PITCH, MAX_PITCH),
-			Mathf.Wrap(rotation.Y - angularVelocity.Y, 0.0f, 2.0f * Mathf.Pi),
+			Mathf.Wrap(rotation.Y - angularVelocity.Y, -2.0f * Mathf.Pi, 2.0f * Mathf.Pi),
 			rotation.Z
 		);
 
