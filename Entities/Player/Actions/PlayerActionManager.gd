@@ -48,8 +48,9 @@ func _physics_process(delta: float) -> void:
 
 func insertState(child : Node) -> void:
 	if child is PlayerAction:
-		child.init(self)
-		_addState(child)
+		var asAction := child as PlayerAction
+		asAction.init(self)
+		_addState(asAction)
 
 func _initialState() -> StringName:
 	return PlayerAction.Type.move
