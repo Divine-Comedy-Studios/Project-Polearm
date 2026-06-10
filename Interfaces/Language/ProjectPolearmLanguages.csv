@@ -58,3 +58,6 @@ UI_KEYBOARDMAPPING_TAUNT,Taunt,嘲讽,Provocación,Provocation,Provokation,Provo
 UI_QUITCONFIRMMENU_CONFIRM,Do You Really Want To Quit?,确定要退出吗？,¿Realmente quieres salir?,Voulez-vous vraiment quitter?,Möchten Sie wirklich beenden?,Vuoi davvero uscire?,本当に終了しますか？,,,,,,,,
 UI_QUITCONFIRMMENU_YES,Yes,是,Sí,Oui,Ja,Sì,はい,,,,,,,,
 UI_QUITCONFIRMMENU_NO,No,否,No,Non,Nein,No,いいえ,,,,,,,,
+UI_PAUSEOPTIONS_CONTINUE,Continue,继续,Continuar,Continuer,Fortsetzen,Continua,続ける,,,,,,,,
+UI_PAUSEOPTIONS_OPTIONS,Options,选项,Opciones,Options,Optionen,Opzioni,オプション,,,,,,,,
+UI_PAUSEOPTIONS_EXIT,Exit,退出,Salir,Quitter,Beenden,Esci,終了,,,,,,,,
