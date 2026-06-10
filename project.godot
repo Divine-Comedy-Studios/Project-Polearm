@@ -16,7 +16,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="Project Polearm"
-run/main_scene="uid://gfs4a5wowsa"
+run/main_scene="uid://bbifbqx1x67ct"
 config/use_custom_user_dir=true
 config/features=PackedStringArray("4.6", "C#", "Forward Plus")
 config/icon="res://icon.svg"
@@ -107,6 +107,7 @@ ui_down={
 "Light attack"={
 "deadzone": 0.2,
 "events": [Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":2,"pressure":0.0,"pressed":true,"script":null)
+, Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":1,"position":Vector2(755, 32),"global_position":Vector2(771, 114),"factor":1.0,"button_index":1,"canceled":false,"pressed":true,"double_click":false,"script":null)
 ]
 }
 "Heavy attack"={
@@ -226,6 +227,9 @@ locale/translations=PackedStringArray("res://Interfaces/Language/ProjectPolearmL
 3d_physics/layer_1="Entities"
 3d_physics/layer_2="Player"
 3d_physics/layer_16="World"
+3d_physics/layer_27="PlayerWeapon"
+3d_physics/layer_28="EnemyWeapon"
+3d_physics/layer_29="EnvironmentalDamage"
 
 [physics]
 
