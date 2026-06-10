@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://dxp3fdawxb0ce"
-path="res://.godot/imported/YBot.glb-2dc51ec8a8ea8d429875753691539fce.scn"
+path="res://.godot/imported/YBot.glb-8fd388021042c91a4e69cb4c9dc54e4b.scn"
 
 [deps]
 
-source_file="res://Assets/3D Models/Characters/Player/YBot.glb"
-dest_files=["res://.godot/imported/YBot.glb-2dc51ec8a8ea8d429875753691539fce.scn"]
+source_file="res://Assets/3D Models/Characters/YBot/YBot.glb"
+dest_files=["res://.godot/imported/YBot.glb-8fd388021042c91a4e69cb4c9dc54e4b.scn"]
 
 [params]
 

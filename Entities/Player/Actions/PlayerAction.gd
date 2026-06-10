@@ -231,12 +231,10 @@ func _checkAndSetQueue() -> void:
 		var action := _context.action(actionType) as PlayerAction
 		if not action.QUEUEABLE or actionViability(action, false) != 1:
 			continue
-		if _queue == null or hasHigherPriority(action, _queue):
-			_queue = action
-			_insertComboPause()
+		
+		_queue = action
+		_insertComboPause()
 
-			return
-	
 	if _queue != null:
 		_context.pushActionQueue(_queue.TYPE)
 

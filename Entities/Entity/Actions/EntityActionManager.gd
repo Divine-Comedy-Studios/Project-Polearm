@@ -68,6 +68,9 @@ func init() -> void:
 
 	super.init()
 
+func vulnerable() -> bool:
+	return true
+
 
 func hasHigherPriority(a : StringName, b : StringName) -> bool:
 	return EntityAction.hasHigherPriority(action(a) as EntityAction, action(b) as EntityAction)

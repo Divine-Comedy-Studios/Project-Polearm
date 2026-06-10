@@ -3,10 +3,10 @@ extends InterfaceState
 
 #region Member variables
 
-var _continuePressed := false
-var _optionsPressed := false
-var _mainMenuPressed := false
-var _exitMenu := false
+var _continuePressed : bool = false
+var _optionsPressed : bool = false
+var _mainMenuPressed : bool = false
+var _exitMenu : bool = false
 
 #endregion
 
@@ -17,7 +17,7 @@ func type() -> Type:
 	return Type.pause
 
 func nextMenu(inputs : ISMInputManager.Data) -> Type:
-	if inputs.cancel:
+	if inputs.cancel or inputs.pause:
 		_exitMenu = true
 
 	if _optionsPressed:

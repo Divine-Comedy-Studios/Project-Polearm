@@ -1,4 +1,4 @@
-extends AppState
+extends GameState
 
 
 #region Imports

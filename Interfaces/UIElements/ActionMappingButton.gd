@@ -147,10 +147,7 @@ signal listening(value : bool)
 
 #region Member variables
 
-var _listening : bool = false:
-	set(value):
-		listening.emit(value)
-		_listening = value
+var _listening : bool = false
 
 #endregion
 
@@ -166,18 +163,21 @@ func _ready() -> void:
 	_updateTexture()
 
 
-func _input(event : InputEvent) -> void:
-	if not _listening or not event.is_pressed():
-		return
+func _unhandled_input(event : InputEvent) -> void:
+	# if not _listening or not event.is_pressed():
+	#	return
 
-	match INPUT_MODE:
-		SettingsManager.InputType.keyboard:
-			_checkKeyboardMouseInput(event)
-		SettingsManager.InputType.controller:
-			_checkControllerInput(event)
+	# match INPUT_MODE:
+	#	SettingsManager.InputType.keyboard:
+	#		_checkKeyboardMouseInput(event)
+	#	SettingsManager.InputType.controller:
+	#		_checkControllerInput(event)
+	return
 
 
 func _process(_delta: float) -> void:
+	listening.emit(_listening)
+
 	_updateTexture()
 
 #endregion
@@ -238,9 +238,13 @@ func _remap(section : String, type : SettingsManager.InputType, iconTex : Dictio
 	for otherActionName in SettingsManager.getSettingNames(section):
 		if otherActionName == ACTION_NAME:
 			continue
+		
+		var rawInputData = SettingsManager.getVariant(section, otherActionName)
+		if not rawInputData is Dictionary:
+			continue
 
-		var inputData := SettingsManager.getVariant(section, otherActionName) as Dictionary
-		if inputData["type"] as int == data["type"] and inputData["id"] as int == data["id"]:
+		var inputData := rawInputData as Dictionary
+		if (inputData["type"] as int) == data["type"] and (inputData["id"] as int) == data["id"]:
 			SettingsManager.setVariant(section, otherActionName, oldAction)
 
 			break
@@ -268,7 +272,7 @@ func _checkKeyboardMouseInput(event : InputEvent) -> void:
 func _checkControllerInput(event : InputEvent) -> void:
 	if event is InputEventJoypadButton:
 		_eventHandled()
-		_remap("controller", SettingsManager.InputType.controllerButton, CONTROLLER_BUTTON_ICONS, event.keycode)
+		_remap("controller", SettingsManager.InputType.controllerButton, CONTROLLER_BUTTON_ICONS, event.button_index)
 	elif event is InputEventJoypadMotion:
 		if event.axis == JoyAxis.JOY_AXIS_TRIGGER_LEFT or event.axis == JoyAxis.JOY_AXIS_TRIGGER_RIGHT:
 			_eventHandled()

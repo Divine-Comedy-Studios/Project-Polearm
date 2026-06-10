@@ -21,7 +21,7 @@ func _ready() -> void:
 
 #region Implementation functions
 
-func _implHit(hitbox : Hitbox) -> void:
-	_resources.takeDamage(hitbox.data)
+func recieveHit(data : HitboxData) -> void:
+	_resources.takeDamage(data)
 
 #endregion

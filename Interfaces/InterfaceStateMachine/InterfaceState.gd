@@ -56,6 +56,7 @@ func deactivate() -> void:
 func type() -> Type:
 	return Type.none
 
+@warning_ignore("unused_parameter")
 func nextMenu(inputs : ISMInputManager.Data) -> Type:
 	return Type.none
 

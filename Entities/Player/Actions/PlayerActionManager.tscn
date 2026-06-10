@@ -4,10 +4,9 @@
 [ext_resource type="Script" uid="uid://jth8cpsjn3vy" path="res://Entities/Player/Actions/States/Physics/PlayerPhysics.gd" id="2_71nor"]
 [ext_resource type="Script" uid="uid://620any2k6qha" path="res://Entities/Player/Combat/PlayerCombatManager.gd" id="2_rq852"]
 [ext_resource type="Script" uid="uid://c8b6ivlyaw41v" path="res://Entities/Entity/Combat/Combo/EntityCombo.gd" id="3_7bymk"]
-[ext_resource type="Resource" uid="uid://ccjpnfc5visow" path="res://Entities/Player/Resources/Combos/TestCombo.tres" id="4_7bymk"]
 [ext_resource type="Script" uid="uid://bes4y6b0to8sw" path="res://Entities/Player/Actions/States/Fall.gd" id="4_8427c"]
 [ext_resource type="Script" uid="uid://cqy3drroysy4k" path="res://Entities/Player/Data/PlayerActionData.gd" id="5_8427c"]
-[ext_resource type="Script" uid="uid://d1f6s1sq7da14" path="res://Entities/Entity/Data/EntityActionData.gd" id="6_re4dn"]
+[ext_resource type="Resource" uid="uid://tnaofpunyg6y" path="res://Entities/Player/Resources/Combos/TestCombo.res" id="5_dvgj7"]
 [ext_resource type="Script" uid="uid://btagysn7t8n05" path="res://Entities/Player/Actions/States/Move.gd" id="6_rq852"]
 [ext_resource type="Script" uid="uid://bf7rav2dglxc4" path="res://Entities/Player/Actions/States/TransitionAction/JumpStart.gd" id="6_urjga"]
 [ext_resource type="Script" uid="uid://l7akydniqjk2" path="res://Entities/Player/Actions/States/IdleOrStop.gd" id="6_yl8et"]
@@ -15,7 +14,6 @@
 [ext_resource type="Script" uid="uid://c55k4ruofg4jc" path="res://Entities/Player/Actions/States/Jump.gd" id="7_jverr"]
 [ext_resource type="Script" uid="uid://vahqysuxajcw" path="res://Entities/Player/Actions/States/LightAttack.gd" id="8_6evvv"]
 [ext_resource type="Script" uid="uid://bsb2b7yi270tu" path="res://Entities/Player/Actions/States/TransitionAction/MoveStop.gd" id="9_x5srs"]
-[ext_resource type="Script" uid="uid://dqyhrw0qku77r" path="res://Entities/Player/Actions/States/TransitionAction/MoveTurn.gd" id="10_re4dn"]
 [ext_resource type="Script" uid="uid://bb1weubijn6l2" path="res://Entities/Player/Actions/States/TransitionAction/AirJumpStart.gd" id="11_6ns0w"]
 [ext_resource type="Script" uid="uid://oyhtbomcato" path="res://Entities/Player/Actions/States/BasicActions/BasicDash.gd" id="12_1ws56"]
 [ext_resource type="Script" uid="uid://d2mcxn2vpp7ne" path="res://Entities/Player/Actions/States/LedgeGrab.gd" id="13_71nor"]
@@ -25,34 +23,6 @@
 [ext_resource type="Script" uid="uid://tpcj3x2f82ym" path="res://Entities/Player/Actions/States/Sprint.gd" id="17_6ns0w"]
 [ext_resource type="Script" uid="uid://3fen78mrevq4" path="res://Entities/Player/Actions/States/TransitionAction/DashStart.gd" id="17_fh6tg"]
 [ext_resource type="Script" uid="uid://b7l2j8josovnk" path="res://Entities/Player/Actions/States/AirJump.gd" id="18_wu1xb"]
-
-[sub_resource type="Resource" id="Resource_ne5dw"]
-script = ExtResource("5_8427c")
-ANIMATION_LIBRARY_NAME = &"Combat"
-ANIMATION_NAME = &"ComboAir_2"
-ROOT_MOTION = true
-metadata/_custom_type_script = "uid://cqy3drroysy4k"
-
-[sub_resource type="Resource" id="Resource_0rp38"]
-script = ExtResource("5_8427c")
-ANIMATION_LIBRARY_NAME = &"Combat"
-ANIMATION_NAME = &"ComboAir_3"
-ROOT_MOTION = true
-metadata/_custom_type_script = "uid://cqy3drroysy4k"
-
-[sub_resource type="Resource" id="Resource_tk2if"]
-script = ExtResource("5_8427c")
-ANIMATION_LIBRARY_NAME = &"Combat"
-ANIMATION_NAME = &"ComboAir_4"
-ROOT_MOTION = true
-metadata/_custom_type_script = "uid://cqy3drroysy4k"
-
-[sub_resource type="Resource" id="Resource_bqpo4"]
-script = ExtResource("3_7bymk")
-TYPE = &"combo2"
-ACTION_TYPES = Array[StringName]([&"airLightAttack", &"airLightAttack", &"airLightAttack", &"airLightAttack"])
-ACTIONS = Array[ExtResource("6_re4dn")]([ExtResource("7_e0d0n"), SubResource("Resource_ne5dw"), SubResource("Resource_0rp38"), SubResource("Resource_tk2if")])
-metadata/_custom_type_script = "uid://c8b6ivlyaw41v"
 
 [sub_resource type="Resource" id="Resource_8427c"]
 script = ExtResource("5_8427c")
@@ -91,18 +61,6 @@ metadata/_custom_type_script = "uid://cqy3drroysy4k"
 script = ExtResource("5_8427c")
 ANIMATION_LIBRARY_NAME = &"Movement"
 ANIMATION_NAME = &"RunStop"
-metadata/_custom_type_script = "uid://cqy3drroysy4k"
-
-[sub_resource type="Resource" id="Resource_b8qbd"]
-script = ExtResource("5_8427c")
-ANIMATION_LIBRARY_NAME = &"Movement"
-ANIMATION_NAME = &"IdleTurnLeft"
-metadata/_custom_type_script = "uid://cqy3drroysy4k"
-
-[sub_resource type="Resource" id="Resource_q6hpk"]
-script = ExtResource("5_8427c")
-ANIMATION_LIBRARY_NAME = &"Movement"
-ANIMATION_NAME = &"IdleTurnRight"
 metadata/_custom_type_script = "uid://cqy3drroysy4k"
 
 [sub_resource type="Resource" id="Resource_wu1xb"]
@@ -242,7 +200,7 @@ metadata/_custom_type_script = "uid://jth8cpsjn3vy"
 process_mode = 4
 script = ExtResource("2_rq852")
 MAX_PREVIOUS_COMBO_COUNT = 3
-unlockedCombos = Array[ExtResource("3_7bymk")]([ExtResource("4_7bymk"), SubResource("Resource_bqpo4")])
+unlockedCombos = Array[ExtResource("3_7bymk")]([ExtResource("5_dvgj7"), ExtResource("7_e0d0n")])
 metadata/_custom_type_script = "uid://620any2k6qha"
 
 [node name="Idle" type="Node" parent="." unique_id=1482978748]
@@ -270,15 +228,6 @@ FRICTION_MULTIPLIER = 0.2
 TYPE = &"moveStop"
 PRIORITY = 2
 data = SubResource("Resource_8gr7m")
-metadata/_custom_type_script = "uid://jc1g0sv32qq1"
-
-[node name="MoveTurn" type="Node" parent="." unique_id=1754043818]
-process_mode = 4
-script = ExtResource("10_re4dn")
-TURN_LEFT_DATA = SubResource("Resource_b8qbd")
-TURN_RIGHT_DATA = SubResource("Resource_q6hpk")
-TYPE = &"moveTurn"
-PRIORITY = 4
 metadata/_custom_type_script = "uid://jc1g0sv32qq1"
 
 [node name="DashStart" type="Node" parent="." unique_id=1081685995 node_paths=PackedStringArray("_timer")]

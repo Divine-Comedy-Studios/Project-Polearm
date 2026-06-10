@@ -13,8 +13,8 @@
 [ext_resource type="Material" path="res://Trenchbroom/textures/Greybox Textures/PNG/Green/texture_04.tres" id="10_uesqs"]
 [ext_resource type="Material" uid="uid://cosn5wkayhf52" path="res://Trenchbroom/textures/Greybox Textures/PNG/Red/texture_03.tres" id="11_viyit"]
 [ext_resource type="Material" uid="uid://rwe38pjq0qbw" path="res://Trenchbroom/textures/Greybox Textures/PNG/Orange/texture_01.tres" id="13_y445v"]
-[ext_resource type="Script" uid="uid://7qu7yjgfv0vf" path="res://Entities/Test/DummyEnemy.gd" id="14_l1jfe"]
-[ext_resource type="Script" uid="uid://cx8o3jdxc7uny" path="res://Entities/Test/Hurtbox.gd" id="15_viyit"]
+[ext_resource type="PackedScene" uid="uid://cvva3f7g876am" path="res://Entities/Test/Bean.tscn" id="14_l1jfe"]
+[ext_resource type="PackedScene" uid="uid://lt1fsbh33mh4" path="res://Entities/DummyEnemy/DummyEnemy.tscn" id="14_viyit"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gfyed"]
 shader = ExtResource("1_tsewk")
@@ -256,17 +256,10 @@ points = PackedVector3Array(70.3, 0.5, -26.9, 70.3, 0, -26.9, 65.3, 0.5, -26.9, 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_2oa3e"]
 points = PackedVector3Array(43.2, 0.5, -18.300001, 43.2, 0, -18.300001, 37.2, 0.5, -18.300001, 37.2, 0, -18.300001, 43.2, 0.5, -23.4, 43.2, 0, -23.4, 37.2, 0.5, -23.4, 37.2, 0, -23.4)
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_y445v"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_dgdp0"]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1niwp"]
-
 [node name="Gym" type="Node" unique_id=470463708]
 
 [node name="Player" parent="." unique_id=1210477223 instance=ExtResource("2_d2u3u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
-STEP_MAX_HEIGHT = 0.4
 
 [node name="Visuals" type="Node" parent="." unique_id=72582827]
 
@@ -399,25 +392,8 @@ shape = SubResource("ConvexPolygonShape3D_466e6")
 [node name="entity_0_brush_32_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=266949657]
 shape = SubResource("ConvexPolygonShape3D_2oa3e")
 
-[node name="DummyEnemy" type="CharacterBody3D" parent="." unique_id=214049841]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.107353, 7.9693775, 3.5632997)
-collision_mask = 32769
-script = ExtResource("14_l1jfe")
+[node name="Bean" parent="." unique_id=105737867 instance=ExtResource("14_l1jfe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1426464, 1.1693774, -6.6367006)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DummyEnemy" unique_id=174992636]
-shape = SubResource("CapsuleShape3D_y445v")
-
-[node name="CSGMesh3D" type="CSGMesh3D" parent="DummyEnemy" unique_id=24600477]
-mesh = SubResource("CapsuleMesh_dgdp0")
-
-[node name="Hurtbox" type="Area3D" parent="DummyEnemy" unique_id=1204731664 node_paths=PackedStringArray("characterBody")]
-collision_layer = 67108864
-collision_mask = 0
-monitoring = false
-script = ExtResource("15_viyit")
-characterBody = NodePath("..")
-LAYERS = 67108864
-metadata/_custom_type_script = "uid://wkn1pfa4kcmk"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DummyEnemy/Hurtbox" unique_id=1930758685]
-shape = SubResource("CapsuleShape3D_1niwp")
+[node name="DummyEnemy" parent="." unique_id=1502792759 instance=ExtResource("14_viyit")]
+transform = Transform3D(-0.81915206, 0, -0.57357645, 0, 1, 0, 0.57357645, 0, -0.81915206, -0.90000004, 0, -6.6)

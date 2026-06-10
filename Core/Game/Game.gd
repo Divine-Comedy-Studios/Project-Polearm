@@ -3,7 +3,8 @@ extends AppStateMachine
 
 #region Constants
 
-const WORLD_PATH : String = "res://Core/Game/World/World.tscn"
+# const WORLD_PATH : String = "res://Core/Game/World/World.tscn"
+const WORLD_PATH : String = "res://Stages/Documentation/Gym/Gym_ZWISCHENABGABE.tscn"
 const PAUSE_MENU_PATH : String = "res://Core/Game/PauseMenu/PauseMenu.tscn"
 const STAGE_SELECT_PATH : String = "res://Core/Game/PauseMenu/PauseMenu.tscn"
 
