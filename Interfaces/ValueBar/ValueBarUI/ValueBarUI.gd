@@ -1,31 +1,85 @@
-class_name ValueBarUI extends Panel
+@tool
 
-#region Exported Variables
-
-@export_group("Connection Settings")
-@export var GROUP_NAME : StringName
-@export var GROUP_INDEX : int
-@export var SIGNAL_NAME : StringName = &"valueChanged"
-@export var MAX_VALUE_SIGNAL : StringName = &"maxValueChanged"
-
-@export_group("Visual Transform Settings")
-@export var SIZE := Vector2(200, 15)
-@export var POS := Vector2(20, 20)
-@export var VALUE_TEXTURE : Texture2D
-@export var CHANGE_TEXTURE : Texture2D
-@export var BACKGROUND_TEXTURE : Texture2D
-@export var PROGRESS_GRADIENT : Gradient
-@export var CHANGE_COLOR := Color8(255,255,255)
-
-
-#endregion 
+extends Panel
+class_name ValueBarUI
 
 
 #region Scene members
 
-@onready var timer : Timer = $"Timer"
-@onready var changeBar : TextureProgressBar = $"ChangeBar"
-@onready var valueBar : TextureProgressBar = $"ValueBar"
+@export_group("Scene members")
+@export var timer : Timer = null
+@export var changeBar : TextureProgressBar = null
+@export var valueBar : TextureProgressBar = null
+
+#endregion
+
+
+#region Exported Variables
+
+@export_group("Value resource")
+
+@export var valueResource : ValueResource = null:
+	set(value):
+		valueResource = value
+
+		if valueResource == null:
+			return
+
+		valueResource.valueChanged.connect(_onValueChanged)
+		valueResource.maxValueChanged.connect(_onMaxValueChanged)
+
+		if changeBar and valueBar:
+			changeBar.max_value = valueResource.maxValue
+			changeBar.value = valueResource.value
+			valueBar.max_value = valueResource.maxValue
+			valueBar.value = valueResource.value
+
+			updateColors()
+
+
+@export_group("Color")
+
+@export var PROGRESS_GRADIENT : Gradient = null
+
+@export var CHANGE_COLOR : Color:
+	set(value):
+		if changeBar:
+			changeBar.tint_progress = value
+	get:
+		return changeBar.tint_progress
+
+
+@export_group("Textures")
+
+@export var VALUE_TEXTURE : Texture2D:
+	set(value):
+		if valueBar:
+			valueBar.texture_progress = value
+	get:
+		return valueBar.texture_progress
+
+@export var CHANGE_TEXTURE : Texture2D:
+	set(value):
+		if changeBar:
+			changeBar.texture_progress = value
+	get:
+		return changeBar.texture_progress
+
+@export var BACKGROUND_TEXTURE : Texture2D:
+	set(value):
+		if changeBar:
+			changeBar.texture_under = value
+	get:
+		return changeBar.texture_under
+	
+
+@export_group("Timer")
+@export var CHANGE_WAIT_TIME : float:
+	set(value):
+		if changeBar:
+			timer.wait_time = value
+	get:
+		return timer.wait_time
 
 #endregion
 
@@ -33,30 +87,10 @@ class_name ValueBarUI extends Panel
 #region Built-in funcitons
 
 func _ready() -> void:
+	if not Engine.is_editor_hint():
+		assert(valueResource != null, "ValueBar._ready(): Resource not set!")
 
-	# Connection Initialization
-	var nodes = get_tree().get_nodes_in_group(GROUP_NAME)
-
-	assert(nodes.size() > GROUP_INDEX, "ValueBar Error: No node found in group %s at index %d" % [GROUP_NAME, GROUP_INDEX])
-
-	var targetNode = nodes[GROUP_INDEX]
-
-	if targetNode.has_signal(SIGNAL_NAME):
-		targetNode.connect(SIGNAL_NAME, _onValueChanged)
-	else:
-		assert(false, "ValueBar Error: Target node missing signal: " + SIGNAL_NAME)
-
-	if targetNode.has_signal(MAX_VALUE_SIGNAL):
-		targetNode.connect(MAX_VALUE_SIGNAL, _onMaxValueChanged)
-
-	# Visual Transformation Initialization
-	if "max_value" in targetNode:
-		_onMaxValueChanged(targetNode.max_value)
-	if "current_value" in targetNode:
-		_onValueChanged(targetNode.current_value)
-
-	setupVisuals()
-	updateColors()
+		updateColors()
 
 #endregion
 
@@ -69,18 +103,6 @@ func updateColors() -> void:
 	if PROGRESS_GRADIENT:
 		valueBar.tint_progress = PROGRESS_GRADIENT.sample(valueRatio)
 
-func setupVisuals() -> void:
-	self.custom_minimum_size = SIZE
-	self.position = POS
-
-	valueBar.texture_progress = VALUE_TEXTURE
-	changeBar.texture_progress = CHANGE_TEXTURE
-	changeBar.texture_under = BACKGROUND_TEXTURE
-	changeBar.tint_progress = CHANGE_COLOR
-
-	changeBar.max_value = valueBar.max_value
-	changeBar.value = valueBar.value
-
 #endregion
 
 
@@ -89,6 +111,7 @@ func setupVisuals() -> void:
 func _onValueChanged(newValue: float) -> void:
 	if newValue < valueBar.value:
 		timer.start()
+	changeBar.value = valueBar.value
 	valueBar.value = clamp(newValue, 0, valueBar.max_value)
 
 	updateColors()
