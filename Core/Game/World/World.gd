@@ -10,8 +10,6 @@ extends GameState
 
 #region Member variables
 
-# Stage
-
 var _currentStagePath : String = String()
 var _currentStageResource : PackedScene = null
 var _currentStage : Stage = null
@@ -31,7 +29,7 @@ func _ready() -> void:
 
 
 # Handle transitioning to the pause menu
-func _input(event : InputEvent) -> void:
+func _unhandled_input(event : InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		if event is InputEventKey:
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
