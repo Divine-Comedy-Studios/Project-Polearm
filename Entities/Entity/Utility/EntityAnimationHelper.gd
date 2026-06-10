@@ -23,32 +23,36 @@ extends Node
 
 @export var _animator : EntityAnimator:
 	set(value):
-		_animator = value
-		var player := _animator.get_node(_animator.anim_player)
+		if Engine.is_editor_hint():
+			_animator = value
+			var player := _animator.get_node(_animator.anim_player)
 
-		if player == null:
-			push_warning("EntityAnimationHelper: Animation Manager has no valid animation player assigned!")
-			return
+			if player == null:
+				push_warning("EntityAnimationHelper: Animation Manager has no valid animation player assigned!")
+				return
 
-		_animationPlayer = player
+			_animationPlayer = player
 
 @export var _frameDataLibrary: AnimationLibrary:
 	set(value):
-		_frameDataLibrary = value
-		_sync_frame_data_library()
+		if Engine.is_editor_hint():
+			_frameDataLibrary = value
+			_sync_frame_data_library()
 
 
 @export_group("Skeleton")
 
 @export var _skeleton: Skeleton3D:
 	set(value):
-		_skeleton = value
-		_update_root_orientation()
+		if Engine.is_editor_hint():
+			_skeleton = value
+			_update_root_orientation()
 
 @export var _rootBonePath: StringName:
 	set(value):
-		_rootBonePath = value
-		_update_root_orientation()
+		if Engine.is_editor_hint():
+			_rootBonePath = value
+			_update_root_orientation()
 
 
 @warning_ignore("unused_private_class_variable")
@@ -63,9 +67,10 @@ extends Node
 
 var _animationPlayer : AnimationPlayer:
 	set(value):
-		_animationPlayer = value
-		_connect_animation_player_signals()
-		_sync_frame_data_library()
+		if Engine.is_editor_hint():
+			_animationPlayer = value
+			_connect_animation_player_signals()
+			_sync_frame_data_library()
 
 #endregion
 
@@ -78,6 +83,7 @@ func _ready() -> void:
 
 	# Remove this helper node from the scene tree at runtime
 	_disconnect_animation_player_signals()
+	get_parent().remove_child(self)
 	queue_free()
 
 #endregion
