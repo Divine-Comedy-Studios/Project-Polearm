@@ -172,8 +172,10 @@ In den folgenden Ordnern finden sich die wichtigsten Dateien des Quellprogrammes
 * `Stages/`: Levels und Räume
 	- `Documentation/Gym/Gym.tscn`: Die GYM des Spiels wo man nach den Starten des Spiels sich befindet
 * `Trenchbroom/`:
-	-
+	- ERGÄNGZE HIER TODO
 
 Die dick markierten Sachen wurden in den UML-Diagrammen aus den Begleitbericht erwähnt. Die Klassen besitzen in der Regel den gleichen Namen wie ihre Datei.
 
+
 ![image](Assets/Selfie.png)
+Wir bedanken uns bei Ihnen für Ihren Aufwand und hoffen, dass das Prototyp Ihnen gefällt!
