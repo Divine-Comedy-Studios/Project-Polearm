@@ -9,6 +9,10 @@ class_name EntityResources
 @export var energy : ValueResource = null
 @export var superArmor : ValueResource = null
 
+@export_group("Super armor config")
+@export var SUPER_ARMOR_RECOVERY_WAIT_TIME : float = 1.0
+@export var SUPER_ARMOR_RECOVERY_RATE : float = 10.0
+
 #endregion
 
 
@@ -20,10 +24,24 @@ class_name EntityResources
 #endregion
 
 
+#region Member variables
+
+var _superArmorWaitTime : float = 0.0
+
+#endregion
+
+
 #region Built-in functions
 
 func _ready() -> void:
 	assert(actionManager != null, "EntityResources._ready(): Entity action manager not assigned!")
+
+
+func _physics_process(delta : float) -> void:
+	if _superArmorWaitTime > 0.0:
+		_superArmorWaitTime = clampf(_superArmorWaitTime - delta, 0.0, SUPER_ARMOR_RECOVERY_WAIT_TIME)
+	else:
+		superArmor.value += SUPER_ARMOR_RECOVERY_RATE * delta
 
 #endregion
 
@@ -31,15 +49,16 @@ func _ready() -> void:
 #region Public functions
 
 func takeDamage(hitData : HitboxData) -> void:
-	if not actionManager.currentState.vulnerable():
+	if not actionManager.vulnerable() or health.locked:
 		return
+
+	_superArmorWaitTime = SUPER_ARMOR_RECOVERY_RATE
 
 	superArmor.value -= hitData.SUPER_ARMOR_DAMAGE
 	health.value -= hitData.DAMAGE
 
-	if not health.locked:
-		actionManager.interrupt(EntityAction.Type.damage)
-		_implTakeDamage(hitData)
+	actionManager.interrupt(EntityAction.Type.damage)
+	_implTakeDamage(hitData)
 
 
 func payable(action : EntityAction) -> bool:
