@@ -9,8 +9,8 @@ using System.Data.Common;
 	#region Helper classes
 
 	public class CameraInputData {
-        public float TargetDirection = 0.0f; // > 0 means targeting left, > 0 means targeting right
-    }
+		public float TargetDirection = 0.0f; // > 0 means targeting left, > 0 means targeting right
+	}
 
 	#endregion
 
@@ -19,16 +19,16 @@ using System.Data.Common;
 
 	[ExportGroup("Camera config")]
 	[Export(PropertyHint.Range, "-360,360,0.1,radians_as_degrees")]
-    public float MIN_PITCH = -0.9f;
+	public float MIN_PITCH = -0.9f;
 	[Export(PropertyHint.Range, "-360,360,0.1,radians_as_degrees")]
-    public float MAX_PITCH = 0.6f;
+	public float MAX_PITCH = 0.6f;
 	[Export] public float ROTATION_LERP = 0.2f;
 
-    [ExportGroup("Controls")]
+	[ExportGroup("Controls")]
 	[Export] public float STICK_RELATIVE_DEADZONE = 0.3f;
-    [Export] public float INVERT_VERTICAL = -1.0f; // Set to 1 to invert y axis
-    [Export] public float CONTROLLER_SENSITIVITY = 0.1f;
-    [Export] public float MOUSE_SENSITIVITY = 0.01f;
+	[Export] public float INVERT_VERTICAL = -1.0f; // Set to 1 to invert y axis
+	[Export] public float CONTROLLER_SENSITIVITY = 0.1f;
+	[Export] public float MOUSE_SENSITIVITY = 0.01f;
 
 	[ExportGroup("AutoCam config")]
 	[Export] public float TIME_UNTIL_AUTO_CAM = 2.0f;
@@ -57,10 +57,10 @@ using System.Data.Common;
 
 	public Vector2 Direction = Vector2.Zero;
 
-    private bool m_heldTargetToggle = false;
-    private bool m_isTargeting = false; // Only active if the above toggle is true
+	private bool m_heldTargetToggle = false;
+	private bool m_isTargeting = false; // Only active if the above toggle is true
 
-    private bool m_controllerActive = false;
+	private bool m_controllerActive = false;
 
 	private float m_timeUntilAutoCam = 0.0f;
 
