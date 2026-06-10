@@ -83,7 +83,6 @@ func _ready() -> void:
 
 	# Remove this helper node from the scene tree at runtime
 	_disconnect_animation_player_signals()
-	get_parent().remove_child(self)
 	queue_free()
 
 #endregion
