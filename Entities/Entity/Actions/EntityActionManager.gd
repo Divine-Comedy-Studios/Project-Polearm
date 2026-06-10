@@ -38,7 +38,7 @@ func tick(delta: float) -> void:
 
 
 func _interruptState(type : StringName) -> StringName:
-	var current = currentState as EntityAction
+	var current := currentState as EntityAction
 	var next : StringName = current.interrupt(type)
 	if next != EntityAction.Type.none:
 		payload = current.payload
@@ -46,7 +46,7 @@ func _interruptState(type : StringName) -> StringName:
 	return next
 
 func _nextState() -> StringName:
-	var current = currentState as EntityAction
+	var current := currentState as EntityAction
 	var next : StringName = current.nextAction()
 	if next != EntityAction.Type.none:
 		payload = current.payload

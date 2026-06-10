@@ -32,7 +32,8 @@ func insertAction(value : Node) -> void: insertState(value)
 
 func action(type : StringName) -> BasicState: return state(type)
 func state(type : StringName) -> BasicState:
-	return _states.get(type, BasicState.NONE) as BasicState
+	# return _states.get(type, BasicState.NONE) as BasicState
+	return _states.get(type) as BasicState
 
 #endregion
 
