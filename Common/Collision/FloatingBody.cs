@@ -494,13 +494,15 @@ using System.ComponentModel;
 			Vector3 line = GlobalPosition - m_footData.Point;
 			line.Y += m_groundData.Offset / VELOCITY_VERTICAL_OVERCORRECTION_FACTOR;
 
+			Vector3 vel = new Vector3(targetVelocity.X, 0.0f, targetVelocity.Z);
 			if (PPUtil.Math.FlatLengthSquared(line) < COLLISION_EPSILON_SQARED) { // If the horizontal component of line is too small
-				targetVelocity = PPUtil.Math.RotateVectorOntoPlane(targetVelocity, m_groundData.Normal);
+				vel = PPUtil.Math.RotateVectorOntoPlane(vel, m_groundData.Normal);
 			} else { // The two cross products produce the final slope vector to rotate velocity by
-				targetVelocity = PPUtil.Math.RotateVectorOntoPlane(targetVelocity, line.Cross(m_footData.Normal).Cross(line).Normalized());
+				vel = PPUtil.Math.RotateVectorOntoPlane(vel, line.Cross(m_footData.Normal).Cross(line).Normalized());
 			}
+			targetVelocity = new Vector3(vel.X, vel.Y + targetVelocity.Y, vel.Z);
 		}
-		
+
 		if ((lastFrameStill || m_noFlatVelocity) && m_groundedData.Grounded) {
 			float absOffset = Mathf.Abs(m_groundedData.Offset);
 
