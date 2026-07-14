@@ -41,6 +41,21 @@ func _implEnter() -> void:
 func _tick(delta : float) -> void:
 	player().accelerate(Vector3.ZERO, _friction * delta)
 
+
+func _implNextAction(next : StringName) -> StringName:
+	if next == Type.idle:
+		var speedSqared := Vector2(player().velocity.x, player().velocity.z).length_squared()
+		var maxSpeed := physics().MAX_AERIAL_SPEED
+
+		if speedSqared > maxSpeed * maxSpeed:
+			return Type.sprintStop
+
+		maxSpeed = physics().WALK_SPEED
+		if speedSqared > maxSpeed * maxSpeed:
+			return Type.moveStop
+
+	return next;
+
 #endregion
 
 
@@ -52,7 +67,7 @@ func _processAnimations() -> void:
 	var normRange := clampf(
 		PPUtil.Math.toRangeNormalized(
 			Vector2(player().velocity.x, player().velocity.z).length(), 
-			physics().WALK_SPEED, 
+			physics().WALK_SPEED,
 			physics().RUN_SPEED),
 		0.0, 1.0)
 	var duration := _landStillPeriod + normRange * (_landRunPeriod - _landStillPeriod)
