@@ -1,65 +1,10 @@
 \documentclass[../Main.tex]{subfiles}
 
-
 \begin{document}
 
-\section{Theoretischer Hintergrund \& Analyseframework}
+\section{Analyse von Referenzspielen}
 
-\subsection{Definition des Hack-and-Slash Genre}
-
-In der Videospielindustrie bezeichnet "Hack-and-Slash" das Subgenre der Action Games.\autocite{wikipedia_hackandslash} Der Fokus liegt dabei auf Echtzeitkampf mit Nahkampfwaffen, wie Schwertern, Äxten oder anderen Klingen. Fernkampfwaffen sind zwar vertreten, spielen aber nur eine untergeordnete und unterstützende Rolle. Das Genre entstammt den 2D Beat'em Up Games, entwickelte sich weiter in der 3D Ära und wurde vor allem durch Titel wie Devil May Cry (2001)\autocite{wikipedia_devilmaycry} oder Bayonetta (2009)\autocite{wikipedia_bayonetta} geprägt.
-
-Die modernen Spiele zeichnen sich durch hohe Spielgeschwindigkeiten und stilvolle, fliessende Bewegungen aus. Das Verketten präziser Angriffs-Kombos, das gezielte Abbrechen von Bewegungen, I-Frames und strategisches Distanzmanagement zum Gegner zeichnen das Gameplay aus. Das, was ein überzeugendes Hack-and-Slash ausmacht, ist nicht allein die Anzahl dieser Mechaniken, sondern das Zusammenspiel dieser. Erst wenn präzises Kampfverhalten und befriedigendes Spielgefühl aufeinander abgestimmt sind, entsteht das genredefinierende Gefühl von Kontrolle und Ausdrucksstärke.\autocite[s.5-s.7]{lindgren2025striking}
-
-Um dieses Zusammenspiel systematisch zu erfassen und vergleichbar zu machen, bedarf es eines geeigneten Analyserahmens. Im folgenden Abschnitt wird das MDA-Framework als methodisches Werkzeug eingeführt, das die Beziehung zwischen Spielregeln, emergenten Verhaltensmustern und dem emotionalen Spielerleben strukturiert beschreibt.
-
-
-\subsection{Das MDA-Analyseframework}
-
-Das MDA-Framework (Mechanics, Dynamics, Aesthetics) wurde von Hunicke, LeBlanc und Zubek entwickelt und ist ein formaler Ansatz zur Analyse und zum Verständnis von Spieldesign. Es beschreibt Spiele nicht als statisches Medium wie Buch oder Film, sondern als interaktives Erlebnis, welches aus dem Zusammenspiel dreier klar abgegrenzter Ebenen entsteht. Dieses Verständnis von Spielen als Zusammenspiel mehrerer Ebenen weist Parallelen zu Steven Swinks Konzept des Game Feel auf, das er in seinem Werk Game Feel: A Game Designer’s Guide to Virtual Sensation beschreibt. Swink definiert Game Feel als die subjektive Wahrnehmung der Steuerung und Rückmeldung eines Spiels und untersucht, weshalb sich bestimmte Spielmechaniken für den Spieler präzise, befriedigend oder wirkungsvoll anfühlen.\autocite[s.1-s.6]{swink2008gamefeel}
-
-Die unterste Ebene, die Mechaniken, umfasst die konkreten Regeln und Systeme eines Spiels. Darunter versteht man alles, was durch Daten und Algorithmen getrieben ist, wie Schadenswerte, Treffererkennung, Bewegungsgeschwindigkeit oder die Gegner-KI. Daraus entstehen zur Laufzeit die Dynamiken, also das emergente Verhalten, das sich aus dem Zusammenspiel von Mechaniken und Spielerentscheidungen ergibt. Konkret geht es um den Kampfrhythmus, taktische Ausweichmuster oder eskalierende Gegnerwellen. Die oberste Ebene, die Ästhetik, beschreibt schliesslich die emotionale Reaktion des Spielers auf dieses System. Gefühle wie Kontrolle und Befriedigung bei gelungenen Combos stehen im Vordergrund.
-
-Entscheidend ist die Kausalität zwischen den Ebenen. Mechaniken erzeugen Dynamiken, die wiederum Ästhetik erzeugen. Gleichzeitig erleben die Spieler das Game in umgekehrter Reihenfolge. Für die Analyse bestehender Spiele bedeutet das, dass man vom Spielgefühl beginnt und sich systematisch zu den Ursachen, also den Mechaniken, vorarbeiten muss.
-
-Dieses Framework eignet sich besonders gut für die Analyse von Hack-and-Slash Spielen, da das Genre ein besonders hohes Mass dieser Kausalität aufweist. Beispielsweise sind die genauen Parameter einer einzelnen Mechanik, wie einer Attacke, bedeutungslos, wenn sie nicht im Kontext weiterer Systeme, wie Gegnerlebenspunkten, Gegnerverhalten und Animationsgeschwindigkeit, betrachtet werden.\autocite{hunicke2004mda}
-
-Auf Basis dieses Frameworks wurde ein strukturierter Fragebogen mit 15 Fragen entwickelt, der die drei Ebenen getrennt betrachtet. Er dient als Grundlage für die Analyse der Referenzspiele ab den Abschnitt \ref{sec:Referenzspielanalyse} sowie als inhaltliche Basis für den Playtest-Fragebogen.
-
-
-\subsection{Analysefragebogen}
-
-Die 15 Fragen sind den drei MDA-Ebenen zugeordnet und werden in umgekehrter Reihenfolge gestellt, da die Analyse beim Spielgefühl beginnt und sich systematisch zu den Ursachen vorarbeitet. Thematisch sind die Fragen so ausgerichtet, dass sie gezielt Gegnerverhalten, Gegnerplatzierung, Spielfluss, Schwierigkeit und Feedback beleuchten, da diese Aspekte im Zentrum unserer Erkenntnisfrage stehen.
-
-\subsubsection{Aesthetics (Ästhetik und emotionales Erleben)}
-
-\begin{enumerate}[label=\textbf{A\arabic*}, leftmargin=1.5cm, itemsep=0.5em]
-    \item Welche emotionale Reaktion löst der Kampf primär aus: Kontrolle, Befriedigung, Anspannung oder Frustration? Warum?
-    \item Wie gut vermittelt das audiovisuelle Feedback die Wucht und Präzision der Treffer? Wie?
-    \item Vermittelt die Gegnerplatzierung ein Gefühl von intentionalem Design, wirkt die Anordnung der Gegner durchdacht oder zufällig und wie beeinflusst diese das Empfinden des Spielers?
-    \item Verändert sich das emotionale Erleben im Verlauf des Levelabschnitts und ist eine Spannungskurve erkennbar?
-    \item Unterscheiden sich die Combos darin, welche Emotionen sie auslösen, bringen sie den Spieler in Bedrängnis oder gibt es ein Gefühl der Erleichterung?
-\end{enumerate}
-
-\subsubsection{Dynamics (Spieldynamik und Interaktion)}
-
-\begin{enumerate}[label=\textbf{D\arabic*}, leftmargin=1.5cm, itemsep=0.5em]
-    \item Wie sieht der Levelabschnitt von Beginn bis Ende aus, erläutere erkennbare Muster und wie etwaige mit der Spannungskurve zusammenhängen?
-    \item Erzeugt die Kombination verschiedener Gegnertypen innerhalb eines Encounters taktischen Druck oder agieren die Gegner unabhängig voneinander?
-    \item Entsteht durch Gegnerplatzierung/Spawnpunkte und deren Anzahl ein flüssiger Spielfluss, gibt es einen spürbaren Unterschied zwischen Einzel- und Gruppenkonfrontationen?
-    \item Wie erholt sich der Spieler nach einem Fehler, ist die Feedback-Schleife zwischen Fehler und Korrektur nachvollziehbar?
-    \item Gibt es verschiedene Combos/Kampfabläufe und folgen daraus verschiedene Arten die Gegner zu bekämpfen?
-\end{enumerate}
-
-\subsubsection{Mechanics (Spielmechaniken)}
-
-\begin{enumerate}[label=\textbf{M\arabic*}, leftmargin=1.5cm, itemsep=0.5em]
-    \item Wie unterscheiden sich die Gegnertypen auf Mechanikenebene: Bewegungsgeschwindigkeit, Angriffsreichweite, Schadenswerte?
-    \item Wie ist das Angriffsverhalten der Gegner implementiert, reagieren sie aktiv auf den Spieler oder folgen sie festen vordefinierten Mustern?
-    \item Wie begrenzt das Leveldesign die Bewegungsoptionen von Spieler und Gegner, gibt es räumliche Einschränkungen die den Kampf beeinflussen?
-    \item Wie ist das Hitstun-System und Knockback-System designed, lassen sich verschiedene Arten beobachten?
-    \item Wie hängen die gedrückten Tasten mit dem visuellen Kampfereignissen zusammen, gibt es eine bestimmte Intention hinter den Tasten?
-\end{enumerate}
+\textcolor{red}{Rückmeldung und nier automata und vergleich}
 
 
 \subsection{Analyse: Ninja Gaiden Sigma Plus} \label{sec:Referenzspielanalyse}
@@ -213,5 +158,22 @@ Die Philosophie hinter den Angriffen in Ninja Gaiden folgt einem bestimmten Must
 
 Die bereits erwähnte gefühlte Ungenauigkeit in der Ausführung der Combos liegt an einer speziellen Input-Buffer-Implementierung, die in Ninja Gaiden Sigma vorhanden ist, in anderen ähnlichen Hack-and-Slash-Spielen der Ära aber nicht in dieser Form existiert. Man kann in Ninja Gaiden bereits während der ersten Attacke alle Inputs der vollen Combo in der richtigen Reihenfolge drücken, die dann automatisch ausgeführt werden. \textit{Devil May Cry 3} hingegen, ein Hack-and-Slash-Spiel aus derselben Ära, besitzt ein Input-Buffering-System, das den nächsten Angriff in einer Sequenz speichert und diesen sogar jederzeit ändern lässt, solange die Aktion noch nicht ausgeführt wurde.\autocite{dmcwiki_inputbuffering} Bei Ninja Gaiden ist das nicht möglich: Weitere Tasteninputs erweitern entweder die Combo, falls diese noch erweitert werden kann, oder werden schlichtweg nicht registriert. Das System fühlt sich dadurch reaktionsschneller an, was es in gewissem Sinne auch ist. Gleichzeitig lässt sich argumentieren, dass die Input-Buffer-Implementierung von Ninja Gaiden Sigma aktiv gegen sinnloses Knopfdrücken wirkt und damit geschicktes Spielen fördert. Der Entwickler muss dabei abwägen, welchen Weg er einschlagen möchte.
 
+\subsection{Analyse: NieR: Automata}
+
+\subsubsection{Inhaltlicher Kontext}
+
+\subsubsection{Asthetik}
+
+\subsubsection{Dynamik}
+
+\subsubsection{Mechanik}
+
+\subsection{Vergleich der Referenzspiele}
+
+\subsubsection{Gemeinsamkeiten}
+
+\subsubsection{Unterschiede}
+
+\subsubsection{Erkenntnisse für Project-Polearm}
 
 \end{document}

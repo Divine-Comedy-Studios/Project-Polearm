@@ -1,0 +1,314 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global/global}
+    \entry{dmcwiki_inputbuffering}{misc}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=cca1e5207fdfdac26054bf5861d89692}{%
+           family={{Devil May Cry Wiki contributors}},
+           familyi={D\bibinitperiod}}}%
+      }
+      \strng{namehash}{cca1e5207fdfdac26054bf5861d89692}
+      \strng{fullhash}{cca1e5207fdfdac26054bf5861d89692}
+      \strng{fullhashraw}{cca1e5207fdfdac26054bf5861d89692}
+      \strng{bibnamehash}{cca1e5207fdfdac26054bf5861d89692}
+      \strng{authorbibnamehash}{cca1e5207fdfdac26054bf5861d89692}
+      \strng{authornamehash}{cca1e5207fdfdac26054bf5861d89692}
+      \strng{authorfullhash}{cca1e5207fdfdac26054bf5861d89692}
+      \strng{authorfullhashraw}{cca1e5207fdfdac26054bf5861d89692}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{Devil May Cry Wiki}
+      \field{title}{Input Buffering}
+      \field{urlday}{9}
+      \field{urlmonth}{6}
+      \field{urlyear}{2026}
+      \field{year}{2026}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://devilmaycry.fandom.com/wiki/Input_Buffering
+      \endverb
+      \verb{url}
+      \verb https://devilmaycry.fandom.com/wiki/Input_Buffering
+      \endverb
+    \endentry
+    \entry{hunicke2004mda}{article}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=5eeee8f66d452006be5b86b51aed051d}{%
+           family={Hunicke},
+           familyi={H\bibinitperiod},
+           given={Robin},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=992dc5b90a2b657dc809457a03a5e723}{%
+           family={LeBlanc},
+           familyi={L\bibinitperiod},
+           given={Marc},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=1d8a43dfdd0afc35a7b19ffb5fabcccd}{%
+           family={Zubek},
+           familyi={Z\bibinitperiod},
+           given={Robert},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{8227749b4562a0c12a6a824e13041e1f}
+      \strng{fullhash}{8227749b4562a0c12a6a824e13041e1f}
+      \strng{fullhashraw}{8227749b4562a0c12a6a824e13041e1f}
+      \strng{bibnamehash}{8227749b4562a0c12a6a824e13041e1f}
+      \strng{authorbibnamehash}{8227749b4562a0c12a6a824e13041e1f}
+      \strng{authornamehash}{8227749b4562a0c12a6a824e13041e1f}
+      \strng{authorfullhash}{8227749b4562a0c12a6a824e13041e1f}
+      \strng{authorfullhashraw}{8227749b4562a0c12a6a824e13041e1f}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Proceedings of the AAAI Workshop on Challenges in Game AI}
+      \field{number}{1}
+      \field{title}{MDA: A Formal Approach to Game Design and Game Research}
+      \field{urlday}{22}
+      \field{urlmonth}{5}
+      \field{urlyear}{2026}
+      \field{volume}{4}
+      \field{year}{2004}
+      \field{urldateera}{ce}
+      \field{pages}{1\bibrangedash 5}
+      \range{pages}{5}
+      \verb{urlraw}
+      \verb https://users.cs.northwestern.edu/~hunicke/MDA.pdf
+      \endverb
+      \verb{url}
+      \verb https://users.cs.northwestern.edu/~hunicke/MDA.pdf
+      \endverb
+    \endentry
+    \entry{lindgren2025striking}{article}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=0ba001fce4779fd1b408da32609d9f94}{%
+           family={Lindgren},
+           familyi={L\bibinitperiod},
+           given={Anton},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=0d3de29dd77e18083ee0f9479a7786f2}{%
+           family={Barbosa},
+           familyi={B\bibinitperiod},
+           given={João},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=cc33924b458f169a89280dc9c3afd226}{%
+           family={Dlugoš},
+           familyi={D\bibinitperiod},
+           given={Patrik},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{a87a23c7e111cb3ccbf40dcb57267b9f}
+      \strng{fullhash}{a87a23c7e111cb3ccbf40dcb57267b9f}
+      \strng{fullhashraw}{a87a23c7e111cb3ccbf40dcb57267b9f}
+      \strng{bibnamehash}{a87a23c7e111cb3ccbf40dcb57267b9f}
+      \strng{authorbibnamehash}{a87a23c7e111cb3ccbf40dcb57267b9f}
+      \strng{authornamehash}{a87a23c7e111cb3ccbf40dcb57267b9f}
+      \strng{authorfullhash}{a87a23c7e111cb3ccbf40dcb57267b9f}
+      \strng{authorfullhashraw}{a87a23c7e111cb3ccbf40dcb57267b9f}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Bachelor Thesis in Game Design, Uppsala Universitet}
+      \field{title}{Striking Balance: Merging Animation and Control Elements for a Better Feel of Attacks}
+      \field{urlday}{9}
+      \field{urlmonth}{6}
+      \field{urlyear}{2026}
+      \field{year}{2025}
+      \field{urldateera}{ce}
+      \field{pages}{1\bibrangedash 79}
+      \range{pages}{79}
+      \verb{urlraw}
+      \verb https://urn.kb.se/resolve?urn=urn:nbn:se:uu:diva-506132
+      \endverb
+      \verb{url}
+      \verb https://urn.kb.se/resolve?urn=urn:nbn:se:uu:diva-506132
+      \endverb
+    \endentry
+    \entry{swink2008gamefeel}{book}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=f2deb65655f83a71ad7ee21ffdbe0329}{%
+           family={Swink},
+           familyi={S\bibinitperiod},
+           given={Steve},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Morgan Kaufmann}%
+      }
+      \strng{namehash}{f2deb65655f83a71ad7ee21ffdbe0329}
+      \strng{fullhash}{f2deb65655f83a71ad7ee21ffdbe0329}
+      \strng{fullhashraw}{f2deb65655f83a71ad7ee21ffdbe0329}
+      \strng{bibnamehash}{f2deb65655f83a71ad7ee21ffdbe0329}
+      \strng{authorbibnamehash}{f2deb65655f83a71ad7ee21ffdbe0329}
+      \strng{authornamehash}{f2deb65655f83a71ad7ee21ffdbe0329}
+      \strng{authorfullhash}{f2deb65655f83a71ad7ee21ffdbe0329}
+      \strng{authorfullhashraw}{f2deb65655f83a71ad7ee21ffdbe0329}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{9780123743282}
+      \field{title}{Game Feel: A Game Designer's Guide to Virtual Sensation}
+      \field{year}{2008}
+    \endentry
+    \entry{wikipedia_bayonetta}{misc}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=b6aea1a416c89509a7df1cbb69249cb6}{%
+           family={{Wikipedia contributors}},
+           familyi={W\bibinitperiod}}}%
+      }
+      \strng{namehash}{b6aea1a416c89509a7df1cbb69249cb6}
+      \strng{fullhash}{b6aea1a416c89509a7df1cbb69249cb6}
+      \strng{fullhashraw}{b6aea1a416c89509a7df1cbb69249cb6}
+      \strng{bibnamehash}{b6aea1a416c89509a7df1cbb69249cb6}
+      \strng{authorbibnamehash}{b6aea1a416c89509a7df1cbb69249cb6}
+      \strng{authornamehash}{b6aea1a416c89509a7df1cbb69249cb6}
+      \strng{authorfullhash}{b6aea1a416c89509a7df1cbb69249cb6}
+      \strng{authorfullhashraw}{b6aea1a416c89509a7df1cbb69249cb6}
+      \field{extraname}{1}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Bayonetta (video game)}
+      \field{urlday}{9}
+      \field{urlmonth}{6}
+      \field{urlyear}{2026}
+      \field{year}{2026}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://en.wikipedia.org/wiki/Bayonetta_(video_game)
+      \endverb
+      \verb{url}
+      \verb https://en.wikipedia.org/wiki/Bayonetta_(video_game)
+      \endverb
+    \endentry
+    \entry{wikipedia_devilmaycry}{misc}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=b6aea1a416c89509a7df1cbb69249cb6}{%
+           family={{Wikipedia contributors}},
+           familyi={W\bibinitperiod}}}%
+      }
+      \strng{namehash}{b6aea1a416c89509a7df1cbb69249cb6}
+      \strng{fullhash}{b6aea1a416c89509a7df1cbb69249cb6}
+      \strng{fullhashraw}{b6aea1a416c89509a7df1cbb69249cb6}
+      \strng{bibnamehash}{b6aea1a416c89509a7df1cbb69249cb6}
+      \strng{authorbibnamehash}{b6aea1a416c89509a7df1cbb69249cb6}
+      \strng{authornamehash}{b6aea1a416c89509a7df1cbb69249cb6}
+      \strng{authorfullhash}{b6aea1a416c89509a7df1cbb69249cb6}
+      \strng{authorfullhashraw}{b6aea1a416c89509a7df1cbb69249cb6}
+      \field{extraname}{2}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Devil May Cry (video game)}
+      \field{urlday}{9}
+      \field{urlmonth}{6}
+      \field{urlyear}{2026}
+      \field{year}{2026}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://en.wikipedia.org/wiki/Devil_May_Cry_(video_game)
+      \endverb
+      \verb{url}
+      \verb https://en.wikipedia.org/wiki/Devil_May_Cry_(video_game)
+      \endverb
+    \endentry
+    \entry{wikipedia_hackandslash}{misc}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=b6aea1a416c89509a7df1cbb69249cb6}{%
+           family={{Wikipedia contributors}},
+           familyi={W\bibinitperiod}}}%
+      }
+      \strng{namehash}{b6aea1a416c89509a7df1cbb69249cb6}
+      \strng{fullhash}{b6aea1a416c89509a7df1cbb69249cb6}
+      \strng{fullhashraw}{b6aea1a416c89509a7df1cbb69249cb6}
+      \strng{bibnamehash}{b6aea1a416c89509a7df1cbb69249cb6}
+      \strng{authorbibnamehash}{b6aea1a416c89509a7df1cbb69249cb6}
+      \strng{authornamehash}{b6aea1a416c89509a7df1cbb69249cb6}
+      \strng{authorfullhash}{b6aea1a416c89509a7df1cbb69249cb6}
+      \strng{authorfullhashraw}{b6aea1a416c89509a7df1cbb69249cb6}
+      \field{extraname}{3}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Hack and slash}
+      \field{urlday}{9}
+      \field{urlmonth}{6}
+      \field{urlyear}{2026}
+      \field{year}{2026}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://en.wikipedia.org/wiki/Hack_and_slash
+      \endverb
+      \verb{url}
+      \verb https://en.wikipedia.org/wiki/Hack_and_slash
+      \endverb
+    \endentry
+    \entry{wikipedia_ninjagaiden_2026}{article}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=b6aea1a416c89509a7df1cbb69249cb6}{%
+           family={{Wikipedia contributors}},
+           familyi={W\bibinitperiod}}}%
+      }
+      \strng{namehash}{b6aea1a416c89509a7df1cbb69249cb6}
+      \strng{fullhash}{b6aea1a416c89509a7df1cbb69249cb6}
+      \strng{fullhashraw}{b6aea1a416c89509a7df1cbb69249cb6}
+      \strng{bibnamehash}{b6aea1a416c89509a7df1cbb69249cb6}
+      \strng{authorbibnamehash}{b6aea1a416c89509a7df1cbb69249cb6}
+      \strng{authornamehash}{b6aea1a416c89509a7df1cbb69249cb6}
+      \strng{authorfullhash}{b6aea1a416c89509a7df1cbb69249cb6}
+      \strng{authorfullhashraw}{b6aea1a416c89509a7df1cbb69249cb6}
+      \field{extraname}{4}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{04}
+      \field{title}{Ninja Gaiden (2004 video game)}
+      \field{urlday}{4}
+      \field{urlmonth}{6}
+      \field{urlyear}{2026}
+      \field{year}{2026}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://en.wikipedia.org/w/index.php?title=Ninja_Gaiden_(2004_video_game)&oldid=1350493543
+      \endverb
+      \verb{url}
+      \verb https://en.wikipedia.org/w/index.php?title=Ninja_Gaiden_(2004_video_game)&oldid=1350493543
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
