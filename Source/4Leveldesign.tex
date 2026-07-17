@@ -5,9 +5,6 @@
 
 \section{Leveldesign} \label{sec:Leveldesign}
 
-\textcolor{red}{5 Quellen und unterteilung in Research on Combat Level Design, Derivation of Design Principles, Design of the Combat Section, Implementation in the Prototype und unterchapters https://chatgpt.com/share/6a4eaadf-5fd8-83eb-888d-edccc4e84524}
-
-
 \subsection{Recherche Leveldesign}
 Dieses Unterkapitel bündelt die recherchierten Designprinzipien thematisch in sechs Überkategorien. Diese werden besonders in Bezug auf das Hack-and-Slash-Genre verstanden. Wo möglich wird zusätzlich Bezug auf die Referenzanalyse (Kapitel~\ref{sec:Referenzspielanalyse}) genommen. Die unten genannten Designprinzipien variieren von abstrakten Denkmustern über praktisch anwendbare Methoden bis hin zu Gamedesign-Prozessen. Das liegt an der Vielfalt der Quellen und den verschiedenen Absichten der Autoren.
 \subsubsection{Kernmechanik-zentriertes Design}
@@ -68,14 +65,12 @@ Das \textit{Scaffolding} beschreibt als Leveldesignprinzip, wie neue Mechaniken 
 
 So soll beispielsweise in \game{Project-Polearm} ein Fernkämpfer isoliert eingeführt werden, bevor er mit einem Nahkämpfer kombiniert auftritt. Damit lässt sich der taktische Druck, den wir in \game{Ninja Gaiden Sigma Plus} bei der Kombination verschiedener Gegnertypen beobachtet haben, schrittweise aufbauen (Frage~D2, Kapitel~\ref{sec:Referenzspielanalyse}).
 
-\subsubsection{Prototyping, Iteration \& Playtesting}
+\subsubsection{Prototyping \& Iteration}
+Levels sollten nicht in einem Durchgang entworfen, sondern schrittweise entwickelt werden. Grundlegende Fragen lassen sich bereits vor jeder 3D-Geometrie klären, etwa mit nicht-digitalen Prototypen auf Papier oder mit Spielfiguren. Danach folgt üblicherweise die \textit{Graybox}, eine einfache Blockgeometrie, mit der Raumgrössen und Distanzen getestet werden, bevor die grafische Ausarbeitung beginnt.\autocite{totten2014architectural}
 
-\begin{itemize}[leftmargin=1.5cm]
-    \item \textcolor{red}{Nicht-digitale und Graybox-Prototypen (Totten): analoge Tests klären Grundfragen vor der 3D-Geometrie; Marinello: Konzept, Walkthrough, Blockworld; Bubble-Diagramme; Wachstum von einem Kernpunkt aus.}
-    \item \textcolor{red}{Playtest-Regeln (Totten): nicht eingreifen oder erklären, Happy Accidents zulassen, Feedback phasengerecht einholen, Redundanzregel für Signale (mehrere verschiedenartige Hinweise gleichzeitig).}
-    \item \textcolor{red}{Praxisstimmen: Taylor (Kitchen-Metapher, gefiltertes Feedback), HangLine (breites, informelles Testen deckt Bedienprobleme auf).}
-    \item \textcolor{red}{Bezug Project-Polearm: der geplante Playtest entspricht dem späten Typ (Fehler und Politur); ein früher Low-Fidelity-Test der Gegnerplatzierung fehlt bislang.}
-\end{itemize}
+Ein konkreter Ablauf dafür führt vom Konzept über einen \textit{Walkthrough}, eine schriftliche Beschreibung des Levelverlaufs samt Draufsicht-Karte, zur \textit{Blockworld}. Dabei weicht die Blockworld oft stärker vom ursprünglichen Plan ab als erwartet, weil sich Sichtlinien, Kameraverdeckung und tatsächliche Raumgrössen erst im 3D-Raum beurteilen lassen. Als Planungswerkzeug davor eignen sich \textit{Bubble-Diagramme}, die Räume als Blasen und deren Beziehungen statt genauer Geometrie festhalten, ähnlich den Proximity-Diagrammen aus Abschnitt~4.1.3. Beim Bauen der Blockworld empfiehlt es sich zudem, von einem einzelnen markanten Kernpunkt aus zu wachsen, statt das ganze Level gleichzeitig anzulegen.\autocite{gdc_leveldesignaday2020}
+
+Wie zentral diese iterative Arbeitsweise ist, zeigt Valve am Beispiel von \game{Half-Life 2}: Die Levels durchliefen mehrere vollständige Überarbeitungsdurchgänge, und die Entwickler bezeichnen ebendiese mehrfachen Iterationen rückblickend als einen Schlüssel zum Erfolg des Spiels, da sie deutlich bessere Designentscheidungen ermöglichten.\autocite{jacobson2005postmortem} Für \game{Project-Polearm} entspricht dieser Ablauf unserem eigenen Vorgehen, den Kampfabschnitt zuerst als Greybox zu bauen und iterativ zu verfeinern, bevor Grafik und Politur folgen.
 
 \subsection{Designziele und Herleitung}
 
