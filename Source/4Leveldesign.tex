@@ -14,6 +14,8 @@ Das Leveldesign wird von den Mechaniken getrieben; das Level ist demnach das Med
 
 Für \game{Project-Polearm} heisst das, dass die Welt auf schnellen, aggressiven Combat ausgerichtet sein muss und dass beispielsweise alle Gegner von derselben grundlegenden Klasse erben.
 
+\textcolor{red}{[Prüfen, Bericht-Code-Verknüpfung] Die Zwischenbewertung verlangt, dass solche Architekturaussagen im Code überprüfbar sind. Hier mit einem Halbsatz auf Kapitel~5 und die konkrete Basisklasse verweisen (etwa die Entity-Basisklasse, von der Spieler und Gegner erben), sobald die Gegnerklassen stehen.}
+
 \subsubsection{Kampf-Encounter-Design}
 Encounter-Design hat viel mit der \textit{Lesbarkeit} eines Levels oder eines Spielabschnitts zu tun. So bewegen sich Spieler schneller und unbekümmerter durch offene und überschaubare Flächen, während Horrorspiele eher in engen und geschlossenen Räumlichkeiten stattfinden. Ein Kampfraum sollte bereits vom Eingang aus lesbar sein: Ziel, Gegnerpositionen und Deckung müssen erkennbar sein, damit der Spieler eine Strategie fassen kann.\autocite{gdc_horizonquests2018} Je nachdem, wie übersichtlich ein Raum ist, muss ihn ein Spieler ein- oder mehrmals scannen. Bei Multiplayer-Spielen wie \game{Counter-Strike} macht dies einen Skillunterschied aus, da geübte Spieler den Raum schneller und mit den richtigen Abständen scannen.\autocite{totten2014architectural} Umgekehrt kann eine bewusste Verletzung dieser Lesbarkeit gezielt Überraschung erzeugen: In \game{Ninja Gaiden Sigma Plus} tauchen neue Gegner häufig ausserhalb des Sichtfeldes auf (siehe Frage~A3, Kapitel~\ref{sec:Referenzspielanalyse}).
 
@@ -66,11 +68,11 @@ Das \textit{Scaffolding} beschreibt als Leveldesignprinzip, wie neue Mechaniken 
 So soll beispielsweise in \game{Project-Polearm} ein Fernkämpfer isoliert eingeführt werden, bevor er mit einem Nahkämpfer kombiniert auftritt. Damit lässt sich der taktische Druck, den wir in \game{Ninja Gaiden Sigma Plus} bei der Kombination verschiedener Gegnertypen beobachtet haben, schrittweise aufbauen (Frage~D2, Kapitel~\ref{sec:Referenzspielanalyse}).
 
 \subsubsection{Prototyping \& Iteration}
-Levels sollten nicht in einem Durchgang entworfen, sondern schrittweise entwickelt werden. Grundlegende Fragen lassen sich bereits vor jeder 3D-Geometrie klären, etwa mit nicht-digitalen Prototypen auf Papier oder mit Spielfiguren. Danach folgt üblicherweise die \textit{Graybox}, eine einfache Blockgeometrie, mit der Raumgrössen und Distanzen getestet werden, bevor die grafische Ausarbeitung beginnt.\autocite{totten2014architectural}
+Level sollten nicht in einem Durchgang entworfen, sondern schrittweise entwickelt werden. Grundlegende Fragen lassen sich bereits vor jeder 3D-Geometrie klären, etwa mit nicht-digitalen Prototypen auf Papier oder mit Spielfiguren. Danach folgt üblicherweise die \textit{Greybox}, eine einfache Blockgeometrie, mit der Raumgrössen und Distanzen getestet werden, bevor die grafische Ausarbeitung beginnt.\autocite{totten2014architectural}
 
 Ein konkreter Ablauf dafür führt vom Konzept über einen \textit{Walkthrough}, eine schriftliche Beschreibung des Levelverlaufs samt Draufsicht-Karte, zur \textit{Blockworld}. Dabei weicht die Blockworld oft stärker vom ursprünglichen Plan ab als erwartet, weil sich Sichtlinien, Kameraverdeckung und tatsächliche Raumgrössen erst im 3D-Raum beurteilen lassen. Als Planungswerkzeug davor eignen sich \textit{Bubble-Diagramme}, die Räume als Blasen und deren Beziehungen statt genauer Geometrie festhalten, ähnlich den Proximity-Diagrammen aus Abschnitt~4.1.3. Beim Bauen der Blockworld empfiehlt es sich zudem, von einem einzelnen markanten Kernpunkt aus zu wachsen, statt das ganze Level gleichzeitig anzulegen.\autocite{gdc_leveldesignaday2020}
 
-Wie zentral diese iterative Arbeitsweise ist, zeigt Valve am Beispiel von \game{Half-Life 2}: Die Levels durchliefen mehrere vollständige Überarbeitungsdurchgänge, und die Entwickler bezeichnen ebendiese mehrfachen Iterationen rückblickend als einen Schlüssel zum Erfolg des Spiels, da sie deutlich bessere Designentscheidungen ermöglichten.\autocite{jacobson2005postmortem} Für \game{Project-Polearm} entspricht dieser Ablauf unserem eigenen Vorgehen, den Kampfabschnitt zuerst als Greybox zu bauen und iterativ zu verfeinern, bevor Grafik und Politur folgen.
+Wie zentral diese iterative Arbeitsweise ist, zeigt Valve am Beispiel von \game{Half-Life 2}: Die Level durchliefen mehrere vollständige Überarbeitungsdurchgänge, und die Entwickler bezeichnen ebendiese mehrfachen Iterationen rückblickend als einen Schlüssel zum Erfolg des Spiels, da sie deutlich bessere Designentscheidungen ermöglichten.\autocite{jacobson2005postmortem} Für \game{Project-Polearm} entspricht dieser Ablauf unserem eigenen Vorgehen, den Kampfabschnitt zuerst als Greybox zu bauen und iterativ zu verfeinern, bevor Grafik und Politur folgen.
 
 \subsection{Designziele und Herleitung}
 
@@ -86,10 +88,10 @@ Wie zentral diese iterative Arbeitsweise ist, zeigt Valve am Beispiel von \game{
 \begin{itemize}[leftmargin=1.5cm]
     \item \textcolor{red}{[Platzhalter] Konkrete Gestaltung des Kampfabschnitts aus den Designzielen: Raumlayout, Gegnerpositionen und Spawnpunkte, Wellenabfolge sowie Höhen- und Raumvariation.}
     \item \textcolor{red}{Direkteste Grundlagen laut Wissenslandkarte: Kapitel 1 (Encounter-Design), Kapitel 3 (Raumtypen) und Kapitel 4 (Pacing).}
-    \item \textcolor{red}{Planung vor dem Graybox gegebenenfalls mit einem Molekül- oder Bubble-Diagramm.}
+    \item \textcolor{red}{Planung vor der Greybox gegebenenfalls mit einem Molekül- oder Bubble-Diagramm.}
 \end{itemize}
 
-\subsection{Umsetzung im Prototypen}
+\subsection{Umsetzung im Prototyp}
 
 \begin{itemize}[leftmargin=1.5cm]
     \item \textcolor{red}{[Platzhalter] Umsetzung der Gestaltung in Godot: Greybox, Szenenaufbau und Gegnerplatzierung im Level.}
