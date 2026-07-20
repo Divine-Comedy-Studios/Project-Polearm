@@ -4,9 +4,7 @@
 
 \section{Analyse von Referenzspielen} \label{sec:Referenzspielanalyse}
 
-\textcolor{red}{Rückmeldung und nier automata und vergleich}
-
-In den folgenden Abschnitten (\ref{sec:ReferenzspielanalyseNinja} und \ref{sec:ReferenzspielanalyseNier}) wurden die Videospiele \game{Ninja Gaiden Sigma Plus} und \game{NieR: Automata} mithilfe des MDA-Fragebogens analysiert. Alle folgenden Aussagen beruhen auf unseren eigenen Beobachtungen. Wertungen wie \enquote{befriedigend} oder \enquote{fair} sind eigene Beobachtungen und Interpretationen des Spielerlebnisses. Aussagen über die technische Funktionsweise der Spielsysteme sind aus dem beobachteten Verhalten rekonstruiert. Wir hatten keinen Einblick in den Quellcode oder offizielle Dokumentation der Implementierung. \textcolor{red}{Wo eine Aussage besonders unsicher ist, kennzeichnen wir sie ausdrücklich als Vermutung.}
+In den folgenden Abschnitten (\ref{sec:ReferenzspielanalyseNinja} und \ref{sec:ReferenzspielanalyseNier}) wurden die Videospiele \game{Ninja Gaiden Sigma Plus} und \game{NieR: Automata} mithilfe des MDA-Fragebogens analysiert. Alle folgenden Aussagen beruhen auf unseren eigenen Beobachtungen. Wertungen wie \enquote{befriedigend} oder \enquote{fair} sind eigene Beobachtungen und Interpretationen des Spielerlebnisses. Aussagen über die technische Funktionsweise der Spielsysteme sind aus dem beobachteten Verhalten rekonstruiert. Wir hatten keinen Einblick in den Quellcode oder offizielle Dokumentation der Implementierung.
 
 \subsection{Analyse: Ninja Gaiden Sigma Plus} \label{sec:ReferenzspielanalyseNinja}
 
@@ -158,8 +156,6 @@ Weder Spieler noch Gegner verfügen in \game{Ninja Gaiden} über Frames in Anima
 Die Philosophie hinter den Angriffen in \game{Ninja Gaiden} folgt einem bestimmten Muster. Alle Aktionen, die auf den Knopf für den leichten Angriff gebunden sind, haben eine schnelle Einführung in den Angriff, eine rasante Angriffsanimation und eine rapide Rückkehr in den normalen Stand. Aktionen, die auf den Knopf für den schweren Angriff gebunden sind, haben genau den gegenteiligen Effekt: Deren Animationen sind länger und pompöser, lassen den Protagonisten aber für eine längere Zeit verwundbar. Eine Ausnahme bilden Angriffe am Ende einer Combo, die, wie erläutert, oft eine längere Wiederholungs-Animation besitzen. \game{Ninja Gaiden} schafft es dabei, lange Angriffsanimationen nicht übermässig zu übertreiben, gerade genug um zu merken, dass man etwas Anspruchsvolleres ausgeführt hat, aber nicht genug, um den Spielfluss aufzuhalten.
 
 Die bereits erwähnte gefühlte Ungenauigkeit in der Ausführung der Combos liegt an einer speziellen Input-Buffer-Implementierung, die in \game{Ninja Gaiden} vorhanden ist, in anderen ähnlichen Hack-and-Slash-Spielen der Ära aber nicht in dieser Form existiert. Man kann in \game{Ninja Gaiden} bereits während der ersten Attacke alle Inputs der vollen Combo in der richtigen Reihenfolge drücken, die dann automatisch ausgeführt werden. \game{Devil May Cry 3} hingegen, ein Hack-and-Slash-Spiel aus derselben Ära, besitzt ein Input-Buffering-System, das den nächsten Angriff in einer Sequenz speichert und diesen sogar jederzeit ändern lässt, solange die Aktion noch nicht ausgeführt wurde.\autocite{dmcwiki_inputbuffering}
-
-\textcolor{red}{[Prüfen, Quellenkritik aus Zwischenbewertung] Der DMC3-Vergleich stützt sich auf ein Fandom-Wiki, das laut Zwischenbewertung keine zentralen technischen Aussagen tragen soll. Entweder den Vergleich als eigene Beobachtung aus Devil May Cry 3 umformulieren (falls selbst gespielt), die Quelle ausdrücklich als Community-Dokumentation kennzeichnen, oder den Vergleich abschwächen.} Bei \game{Ninja Gaiden} ist das nicht möglich: Weitere Tasteninputs erweitern entweder die Combo, falls diese noch erweitert werden kann, oder werden schlichtweg nicht registriert. Das System fühlt sich dadurch reaktionsschneller an, was es in gewissem Sinne auch ist. Gleichzeitig lässt sich argumentieren, dass die Input-Buffer-Implementierung von \game{Ninja Gaiden} aktiv gegen sinnloses Knopfdrücken wirkt und damit geschicktes Spielen fördert. Der Entwickler muss dabei abwägen, welchen Weg er einschlagen möchte.
 
 \subsection{Analyse: NieR: Automata} \label{sec:ReferenzspielanalyseNier}
 
@@ -316,10 +312,42 @@ Auch die Tastenbelegung folgt einer erkennbaren Intention. Die linke und die obe
 
 \subsection{Vergleich der Referenzspiele} \label{sec:Vergleich}
 
+Die beiden Analysen in den Abschnitten~\ref{sec:ReferenzspielanalyseNinja} und~\ref{sec:ReferenzspielanalyseNier} haben zwei Spiele des Hack-and-Slash-Genres behandelt. Obwohl sie sich das Genre teilen, liessen sich nicht nur Gemeinsamkeiten, sondern auch deutliche Unterschiede feststellen. Diese Aspekte genau auszuformulieren hilft dabei, \game{Project-Polearm} so zu gestalten, dass es sich wie ein Hack-and-Slash spielt und dennoch eigene Mechaniken mitbringt.
+
 \subsubsection{Gemeinsamkeiten}
+
+Beide Spiele bauen Spannung auf ähnliche Weise auf, indem der Spielfluss auf eine stetige Eskalation von Gegnerzahl und Gegnertypen zusteuert. \game{Ninja Gaiden} erreicht dies durch mehr oder schwierigere Gegner (Frage~D1), \game{NieR: Automata} führt mit jeder Arena neue Typen und Variationen von Gegnern ein (Frage~A4). Bemerkenswert ist dabei, dass die Belastung des Spielers in beiden Spielen begrenzt wird: In \game{Ninja Gaiden} ist die Anzahl aktiver Gegner auf vermutlich maximal vier beschränkt, in \game{NieR: Automata} greifen wahrscheinlich nie mehr als zwei Nahkämpfer gleichzeitig an, und auch die Anzahl der Projektile scheint begrenzt. Die Begrenzung der gleichzeitigen Bedrohung scheint damit ein genreübergreifendes Werkzeug zu sein, um hohe Gegnerzahlen spielbar zu halten.
+
+Ebenso unterbrechen beide Spiele intensive Kampfszenen durch bewusst gesetzte Erholungsphasen. In \game{Ninja Gaiden} sinkt die Spannung spürbar gegen Ende jeder Welle, in \game{NieR: Automata} liegen gegnerarme Zwischenpassagen zwischen den Arenen. Beide sorgen so für ein kurzzeitiges Sinken der Anspannung und bieten Entlastung, wie sie auch in der Leveldesign-Literatur (Abschnitt~4.1.4) als Grundmuster beschrieben wird.
+
+Zudem wird der taktische Druck in beiden Spielen durch dasselbe Dilemma erzeugt. Die Kombination von Nah- und Fernkämpfern stellt den Spieler vor die Wahl, zuerst die störenden Fernkämpfer auszuschalten oder sich zuerst den sich nähernden Nahkämpfern zu stellen. In beiden Titeln ist der einzelne Gegner trivial, und erst die taktische und räumliche Kombination der Gegner in Gruppen macht das Spiel aus (Fragen~D2 und D3 beider Analysen).
+
+Schliesslich teilen beide Spiele ähnliche Kampf- und Erholungsmechaniken. Erstens sind in die Luft geschlagene Gegner wehrlos, während der Spieler absolute Macht über sie geniesst, was zu den befriedigendsten Momenten gehört. Zweitens bestrafen beide Spiele Fehler spürbar, bieten aber schnelle Erholungsmöglichkeiten und gewähren beim Aufstehen I-Frames.
 
 \subsubsection{Unterschiede}
 
+Der grundlegendste Unterschied liegt in der Kontrollphilosophie und lässt sich am unterschiedlichen Empfinden beider Spiele festmachen. \game{Ninja Gaiden} lebt von der dünnen Linie zwischen Kontrolle und totalem Kontrollverlust und bestraft sowohl übermässige Aggressivität als auch Passivität. \game{NieR: Automata} dagegen belohnt aggressives Handeln, da 2B schneller als ihre Gegner ist und dadurch leicht die Kontrolle behält; Spannung entsteht hier erst durch die Masse an Gegnern. Der Unterschied besteht also darin, dass Kontrolle in \game{Ninja Gaiden} ein prekärer Zustand ist, in \game{NieR: Automata} hingegen der Grundzustand.
+
+Der zweite zentrale Unterschied betrifft die Gegnerplatzierung, die in beiden Spielen kaum unterschiedlicher sein könnte. In \game{Ninja Gaiden} wirkt die Platzierung grösstenteils algorithmisch generiert und zufällig; ein Muster wird erst zur Laufzeit durch das dynamische Verhalten der Gegner erkennbar. In \game{NieR: Automata} ist es umgekehrt: Die Platzierung ist symmetrisch und wahrscheinlich manuell, doch diese Symmetrie geht verloren, sobald sich die Gegner bewegen. Vereinfacht platziert \game{NieR: Automata} die Gegner durchdacht, während sich die KI simpel verhält, wogegen \game{Ninja Gaiden} vermutlich zufällig platziert, sich die KI dafür aber durchdacht verhält.
+
+Daran schliesst der dritte Unterschied an, die Koordination der Gegner. Ihr Verhalten lässt sich in \game{Ninja Gaiden} am besten durch ein Rollensystem mit dynamischer Neuverteilung erklären, da die Gegner auf Zustände des Spielers reagieren, etwa auf einen Schadenszustand oder die Verteidigungshaltung. Die Gegner in \game{NieR: Automata} wirken dagegen unabhängig voneinander und scheinen nach festgelegten, klaren Mustern zu agieren, etwa nach dem Abstand zu 2B. Gleichzeitig gibt es vermutlich eine globale Begrenzung der Maximalzahl gleichzeitiger Angreifer und Projektile.
+
+Das Feedback beider Spiele nutzt unterschiedliche Kanäle. In \game{Ninja Gaiden} tragen waffenspezifische Klänge, Funken, Blut und Animationen die Information. \game{NieR: Automata} ergänzt diese um Vibration, Hitstop, Bildschirmzittern und lesbare Schadenszahlen. Der Rückstoss ist in beiden Spielen an sich gut umgesetzt; in \game{NieR: Automata} verwirrt jedoch ein Sonderfall: Der Rückstoss, den 2B erleidet, während sie von einer gegnerischen Combo getroffen wird, ist visuell kaum wahrnehmbar. Er drückt 2B aus dem Angriffsradius, ohne dass der Spieler es klar sieht, und erzeugt so den falschen Eindruck, man könnte zwischen den Schlägen zurückschlagen. \game{Ninja Gaiden} kommuniziert seinen Rückstoss dagegen in allen Fällen deutlich (Frage~A2).
+
+Schliesslich unterscheiden sich Eingabephilosophie und Raumlayout beider Spiele. \game{Ninja Gaiden} verlangt mit seinem strengen Input-Buffer präzise, vorausgeplante Eingaben und bestraft blindes Tastendrücken. \game{NieR: Automata} hingegen erlaubt Richtungswechsel mitten in der Combo sowie ein grosszügiges Ausweichfenster und ist somit auf Korrigierbarkeit und Zugänglichkeit ausgelegt. Beim Raum nutzen beide offene Kampfflächen, doch \game{Ninja Gaiden} setzt Verengung gezielt als Druckmittel ein, während \game{NieR: Automata} durchgehend flach und offen bleibt.
+
 \subsubsection{Erkenntnisse für Project-Polearm}
+
+\textcolor{red}{Dieser Teil muss nach dem prototyp angeschaut und neu geschrieben werden.}
+
+Für \game{Project-Polearm} folgt aus dem Vergleich zunächst eine Positionsentscheidung. Unsere Vision eines schnellen, aggressiven und stylischen Kampfes (Abschnitt~2.1) liegt näher am Spielgefühl von \game{NieR: Automata}: Aggression soll sich sicher und belohnt anfühlen. Zugleich zeigt \game{Ninja Gaiden}, dass Spannung auch aus der Möglichkeit des Kontrollverlusts gewonnen werden kann. Dafür könnte etwa ein Gegner sorgen, der sich nicht unterbrechen lässt. Wichtig ist dabei nur, dass sich nicht der Spieler schwach, sondern der Gegner übermässig stark anfühlt.
+
+Konkret übernehmen wir die gemeinsame Eskalationsstruktur beider Spiele. Die gestaffelte Einführung neuer Gegnertypen, Wellen mit Erholungsphasen und die Begrenzung gleichzeitiger Gefahren sind Mittel, mit denen sich dies erreichen lässt. Gerade die Begrenzung gleichzeitiger Angreifer ist eine der wichtigsten technischen Erkenntnisse, denn beide Spiele halten grosse Gegnerzahlen nur dadurch spielbar. Die geplanten zwei Gegnertypen legen wir als Nah- und Fernkämpfer aus, da beide Analysen zeigen, dass genau diese Kombination das stärkste taktische Dilemma erzeugt.
+
+Bei der Gegnerplatzierung sind beide Paradigmen möglich. Besonders zu beachten ist dabei, dass die Lesbarkeit erhalten bleibt und der Spieler nicht unfair überrascht wird.
+
+Für das Feedback wurde erkennbar, dass sich Informationen über verschiedene Kanäle vermitteln lassen; wichtig ist, diese stark genug auszulegen und darauf zu achten, dass sie sich nicht gegenseitig widersprechen. Als Vorbilder dienen das präzise, waffenbezogene Treffer-Feedback von \game{Ninja Gaiden} sowie das Telegraphieren von Angriffen in \game{NieR: Automata} durch leuchtende Augen, Partikel und Gewichtsverlagerung, das Fairness auch im Gruppenkampf sichert.
+
+Diese Erkenntnisse fliessen zusammen mit den Prinzipien aus der Literaturrecherche in die Designziele in Abschnitt~4.2 ein.
 
 \end{document}
