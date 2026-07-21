@@ -1,0 +1,676 @@
+// Game: ProjectPolearm
+// Format: Valve
+// entity 0
+{
+"mapversion" "220"
+"wad" ""
+"classname" "worldspawn"
+"_tb_mod" "Trenchbroom"
+// brush 0
+{
+( 160 192 0 ) ( 160 192 0.1428571428571388 ) ( 160 191.07692307692298 0 ) "Greybox Textures/PNG/Orange/texture_07" [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 160 192 0 ) ( 159.1428571428571 192 0 ) ( 160 192 0.1428571428571388 ) "Greybox Textures/PNG/Orange/texture_07" [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 256 384 -16 ) ( 255.1428571428571 384 -16 ) ( 256 383.076923076923 -16 ) "Greybox Textures/PNG/Orange/texture_07" [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 160 192 0 ) ( 160 191.07692307692298 0 ) ( 159.1428571428571 192 0 ) "Greybox Textures/PNG/Orange/texture_07" [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 256 384 -16 ) ( 256 384 -15.857142857142856 ) ( 255.1428571428571 384 -16 ) "Greybox Textures/PNG/Orange/texture_07" [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 256 384 -16 ) ( 256 383.076923076923 -16 ) ( 256 384 -15.857142857142856 ) "Greybox Textures/PNG/Orange/texture_07" [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+// brush 1
+{
+( 160 295.68000000000006 0 ) ( 160 296.96000000000004 0 ) ( 160 295.68000000000006 0.8 ) "Greybox Textures/PNG/Orange/texture_03" [ 0 -1 0 680 ] [ 0 0 -1 0 ] 0 0.015625 0.015625
+( 90.88000000000005 352 0 ) ( 90.88000000000005 352 0.8 ) ( 94.72000000000003 352 0 ) "Greybox Textures/PNG/Orange/texture_03" [ 1 0 0 312 ] [ 0 0 -1 0 ] 270 0.015625 0.015625
+( 90.88000000000005 295.68000000000006 0 ) ( 94.72000000000003 295.68000000000006 0 ) ( 90.88000000000005 296.96000000000004 0 ) "Greybox Textures/PNG/Orange/texture_03" [ -1 0 0 -312 ] [ 0 -1 0 680 ] 180 0.015625 0.015625
+( 275.2 346.88 24 ) ( 275.2 348.16 24 ) ( 279.03999999999985 346.88 24 ) "Greybox Textures/PNG/Orange/texture_03" [ 1 0 0 312 ] [ 0 -1 0 680 ] 270 0.015625 0.015625
+( 275.2 384 6.4 ) ( 279.03999999999985 384 6.4 ) ( 275.2 384 7.199999999999999 ) "Greybox Textures/PNG/Orange/texture_03" [ -1 0 0 -312 ] [ 0 0 -1 0 ] 0 0.015625 0.015625
+( 256 346.88 6.4 ) ( 256 346.88 7.199999999999999 ) ( 256 348.16 6.4 ) "Greybox Textures/PNG/Orange/texture_03" [ 0 1 0 -680 ] [ 0 0 -1 0 ] 90 0.015625 0.015625
+}
+// brush 2
+{
+( 160 384 -96 ) ( 160 384 -95.85714285714286 ) ( 160 383.076923076923 -96 ) "Greybox Textures/PNG/Orange/texture_07" [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 160 384 -96 ) ( 159.1428571428571 384 -96 ) ( 160 384 -95.85714285714286 ) "Greybox Textures/PNG/Orange/texture_07" [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 256 576 -112 ) ( 255.1428571428571 576 -112 ) ( 256 575.076923076923 -112 ) "Greybox Textures/PNG/Orange/texture_07" [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 160 384 -96 ) ( 160 383.076923076923 -96 ) ( 159.1428571428571 384 -96 ) "Greybox Textures/PNG/Orange/texture_07" [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 256 576 -112 ) ( 256 576 -111.85714285714286 ) ( 255.1428571428571 576 -112 ) "Greybox Textures/PNG/Orange/texture_07" [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 256 576 -112 ) ( 256 575.076923076923 -112 ) ( 256 576 -111.85714285714286 ) "Greybox Textures/PNG/Orange/texture_07" [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+}
+// entity 1
+{
+"classname" "func_group"
+"_tb_type" "_tb_group"
+"_tb_name" "SmallDoor"
+"_tb_id" "2"
+"_tb_linked_group_id" "{6c3d2bb6-4cc2-406d-87b2-ac1cff01d517}"
+"_tb_transformation" "1 0 0 -160 0 1 0 144 0 0 1 0 0 0 0 1"
+// brush 0
+{
+( 16 -48 40 ) ( 16 -47.75000000000003 40 ) ( 16 -48 41.25 ) "Greybox Textures/PNG/Red/texture_04" [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 16 -48 40 ) ( 16 -48 41.25 ) ( 16.5 -48 40 ) "Greybox Textures/PNG/Red/texture_04" [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 16 -48 40 ) ( 16.5 -48 40 ) ( 16 -47.75000000000003 40 ) "Greybox Textures/PNG/Red/texture_04" [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 32 48 80 ) ( 32 48.24999999999997 80 ) ( 32.5 48 80 ) "Greybox Textures/PNG/Red/texture_04" [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 32 48 80 ) ( 32.5 48 80 ) ( 32 48 81.25 ) "Greybox Textures/PNG/Red/texture_04" [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 32 48 80 ) ( 32 48 81.25 ) ( 32 48.24999999999997 80 ) "Greybox Textures/PNG/Red/texture_04" [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+// brush 1
+{
+( 16 -48 0 ) ( 16 -47.81818181818181 0 ) ( 16 -48 0.625 ) "Greybox Textures/PNG/Red/texture_04" [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 16 -48 0 ) ( 16 -48 0.625 ) ( 17 -48 0 ) "Greybox Textures/PNG/Red/texture_04" [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 16 -48 0 ) ( 17 -48 0 ) ( 16 -47.81818181818181 0 ) "Greybox Textures/PNG/Red/texture_04" [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 32 -16 40 ) ( 32 -15.81818181818187 40 ) ( 33 -16 40 ) "Greybox Textures/PNG/Red/texture_04" [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 32 -16 40 ) ( 33 -16 40 ) ( 32 -16 40.625 ) "Greybox Textures/PNG/Red/texture_04" [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 32 -16 40 ) ( 32 -16 40.625 ) ( 32 -15.81818181818187 40 ) "Greybox Textures/PNG/Red/texture_04" [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+// brush 2
+{
+( 16 16 0 ) ( 16 16.200000000000003 0 ) ( 16 16 1.25 ) "Greybox Textures/PNG/Red/texture_04" [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 16 16 0 ) ( 16 16 1.25 ) ( 17 16 0 ) "Greybox Textures/PNG/Red/texture_04" [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 16 16 0 ) ( 17 16 0 ) ( 16 16.200000000000003 0 ) "Greybox Textures/PNG/Red/texture_04" [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 32 48 40 ) ( 32 48.19999999999999 40 ) ( 33 48 40 ) "Greybox Textures/PNG/Red/texture_04" [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 32 48 40 ) ( 33 48 40 ) ( 32 48 41.25 ) "Greybox Textures/PNG/Red/texture_04" [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 32 48 40 ) ( 32 48 41.25 ) ( 32 48.19999999999999 40 ) "Greybox Textures/PNG/Red/texture_04" [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+}
+// entity 2
+{
+"classname" "func_group"
+"_tb_type" "_tb_group"
+"_tb_name" "SmallDoor"
+"_tb_id" "42"
+"_tb_linked_group_id" "{19a56d2d-27d4-48cd-994f-b315f97ed0ac}"
+"_tb_transformation" "-1.8369701987210297e-16 1 0 352.00000000000006 -1 -1.8369701987210297e-16 0 -4.263256414560601e-14 0 0 1 0 0 0 0 1"
+// brush 0
+{
+( 160 -176 40 ) ( 160 -176 41.25 ) ( 160 -176.5 40 ) "Greybox Textures/PNG/Red/texture_04" [ 2.220446049250313e-16 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 256 -192 80 ) ( 256 -192 81.25 ) ( 256.25 -192 80 ) "Greybox Textures/PNG/Red/texture_04" [ -1 2.220446049250313e-16 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 160 -176 40 ) ( 160 -176.5 40 ) ( 160.25 -176 40 ) "Greybox Textures/PNG/Red/texture_04" [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 256 -192 80 ) ( 256.25 -192 80 ) ( 256 -192.5 80 ) "Greybox Textures/PNG/Red/texture_04" [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 160 -176 40 ) ( 160.25 -176 40 ) ( 160 -176 41.25 ) "Greybox Textures/PNG/Red/texture_04" [ 1 -2.220446049250313e-16 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 256 -192 80 ) ( 256 -192.5 80 ) ( 256 -192 81.25 ) "Greybox Textures/PNG/Red/texture_04" [ -2.220446049250313e-16 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+// brush 1
+{
+( 160 -176 0 ) ( 160 -176 0.625 ) ( 160 -177 0 ) "Greybox Textures/PNG/Red/texture_04" [ 2.220446049250313e-16 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 192 -192 40 ) ( 192 -192 40.625 ) ( 192.18181818181813 -192 40 ) "Greybox Textures/PNG/Red/texture_04" [ -1 2.220446049250313e-16 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 160 -176 0 ) ( 160 -177 0 ) ( 160.1818181818182 -176 0 ) "Greybox Textures/PNG/Red/texture_04" [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 192 -192 40 ) ( 192.18181818181813 -192 40 ) ( 192 -193 40 ) "Greybox Textures/PNG/Red/texture_04" [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 160 -176 0 ) ( 160.1818181818182 -176 0 ) ( 160 -176 0.625 ) "Greybox Textures/PNG/Red/texture_04" [ 1 -2.220446049250313e-16 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 192 -192 40 ) ( 192 -193 40 ) ( 192 -192 40.625 ) "Greybox Textures/PNG/Red/texture_04" [ -2.220446049250313e-16 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+// brush 2
+{
+( 224 -176 0 ) ( 224 -176 1.25 ) ( 224 -177 0 ) "Greybox Textures/PNG/Red/texture_04" [ 2.220446049250313e-16 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 256 -192 40 ) ( 256 -192 41.25 ) ( 256.2 -192 40 ) "Greybox Textures/PNG/Red/texture_04" [ -1 2.220446049250313e-16 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 224 -176 0 ) ( 224 -177 0 ) ( 224.2 -176 0 ) "Greybox Textures/PNG/Red/texture_04" [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 256 -192 40 ) ( 256.2 -192 40 ) ( 256 -193 40 ) "Greybox Textures/PNG/Red/texture_04" [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 224 -176 0 ) ( 224.2 -176 0 ) ( 224 -176 1.25 ) "Greybox Textures/PNG/Red/texture_04" [ 1 -2.220446049250313e-16 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 256 -192 40 ) ( 256 -193 40 ) ( 256 -192 41.25 ) "Greybox Textures/PNG/Red/texture_04" [ -2.220446049250313e-16 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+}
+// entity 3
+{
+"classname" "func_group"
+"_tb_type" "_tb_group"
+"_tb_name" "SmallSmalllWall"
+"_tb_id" "43"
+"_tb_linked_group_id" "{0525e232-03eb-4fa1-b799-59c8c27317e5}"
+"_tb_transformation" "-1.8369701987210297e-16 1 0 351.99999999999994 -1 -1.8369701987210297e-16 0 192 0 0 1 -96 0 0 0 1"
+// brush 0
+{
+( 160 384 -96 ) ( 160 384 -95 ) ( 160 383.5 -96 ) "Greybox Textures/PNG/Red/texture_04" [ 2.220446049250313e-16 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 256 368 -16 ) ( 256 368 -15 ) ( 257 368 -16 ) "Greybox Textures/PNG/Red/texture_04" [ -1 2.220446049250313e-16 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 160 384 -96 ) ( 160 383.5 -96 ) ( 161 384 -96 ) "Greybox Textures/PNG/Red/texture_04" [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 256 368 -16 ) ( 257 368 -16 ) ( 256 367.5 -16 ) "Greybox Textures/PNG/Red/texture_04" [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 160 384 -96 ) ( 161 384 -96 ) ( 160 384 -95 ) "Greybox Textures/PNG/Red/texture_04" [ 1 -2.220446049250313e-16 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 256 368 -16 ) ( 256 367.5 -16 ) ( 256 368 -15 ) "Greybox Textures/PNG/Red/texture_04" [ -2.220446049250313e-16 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+}
+// entity 4
+{
+"classname" "func_group"
+"_tb_type" "_tb_group"
+"_tb_name" "SmallMiddleWall"
+"_tb_id" "21"
+"_tb_linked_group_id" "{2007f3e8-9ae0-4246-aa9c-2f3c77c1531d}"
+"_tb_transformation" "1 0 0 384 0 1 0 384 0 0 1 0 0 0 0 1"
+// brush 0
+{
+( 256 192 0 ) ( 256 194 0 ) ( 256 192 1 ) "Greybox Textures/PNG/Red/texture_04" [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 256 192 0 ) ( 256 192 1 ) ( 256.5 192 0 ) "Greybox Textures/PNG/Red/texture_04" [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 256 192 0 ) ( 256.5 192 0 ) ( 256 194 0 ) "Greybox Textures/PNG/Red/texture_04" [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 272 384 80 ) ( 272 386 80 ) ( 272.5 384 80 ) "Greybox Textures/PNG/Red/texture_04" [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 272 384 80 ) ( 272.5 384 80 ) ( 272 384 81 ) "Greybox Textures/PNG/Red/texture_04" [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 272 384 80 ) ( 272 384 81 ) ( 272 386 80 ) "Greybox Textures/PNG/Red/texture_04" [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+}
+// entity 5
+{
+"classname" "func_group"
+"_tb_type" "_tb_group"
+"_tb_name" "SmallMiddleWall"
+"_tb_id" "44"
+"_tb_linked_group_id" "{9923f43b-86d7-44d6-9617-0a29e12129b1}"
+"_tb_transformation" "1 0 0 272 0 1 0 384 0 0 1 0 0 0 0 1"
+// brush 0
+{
+( 144 192 0 ) ( 144 194 0 ) ( 144 192 1 ) "Greybox Textures/PNG/Red/texture_04" [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 144 192 0 ) ( 144 192 1 ) ( 144.5 192 0 ) "Greybox Textures/PNG/Red/texture_04" [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 144 192 0 ) ( 144.5 192 0 ) ( 144 194 0 ) "Greybox Textures/PNG/Red/texture_04" [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 160 384 80 ) ( 160 386 80 ) ( 160.5 384 80 ) "Greybox Textures/PNG/Red/texture_04" [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 160 384 80 ) ( 160.5 384 80 ) ( 160 384 81 ) "Greybox Textures/PNG/Red/texture_04" [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 160 384 80 ) ( 160 384 81 ) ( 160 386 80 ) "Greybox Textures/PNG/Red/texture_04" [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+}
+// entity 6
+{
+"classname" "func_group"
+"_tb_type" "_tb_group"
+"_tb_name" "SmallMiddleWall"
+"_tb_id" "45"
+"_tb_linked_group_id" "{4921093b-bc8b-4019-964a-58e0e253fb43}"
+"_tb_transformation" "1 0 0 272 0 1 0 576 0 0 1 -96 0 0 0 1"
+// brush 0
+{
+( 144 384 -96 ) ( 144 386 -96 ) ( 144 384 -95 ) "Greybox Textures/PNG/Red/texture_04" [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 144 384 -96 ) ( 144 384 -95 ) ( 144.5 384 -96 ) "Greybox Textures/PNG/Red/texture_04" [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 144 384 -96 ) ( 144.5 384 -96 ) ( 144 386 -96 ) "Greybox Textures/PNG/Red/texture_04" [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 160 576 -16 ) ( 160 578 -16 ) ( 160.5 576 -16 ) "Greybox Textures/PNG/Red/texture_04" [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 160 576 -16 ) ( 160.5 576 -16 ) ( 160 576 -15 ) "Greybox Textures/PNG/Red/texture_04" [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 160 576 -16 ) ( 160 576 -15 ) ( 160 578 -16 ) "Greybox Textures/PNG/Red/texture_04" [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+}
+// entity 7
+{
+"classname" "func_group"
+"_tb_type" "_tb_group"
+"_tb_name" "SmallMiddleWall"
+"_tb_id" "47"
+"_tb_linked_group_id" "{a647e7a2-f94c-4f95-8a53-fb9978ecf50a}"
+"_tb_transformation" "1 0 0 384 0 1 0 576 0 0 1 -96 0 0 0 1"
+// brush 0
+{
+( 256 384 -96 ) ( 256 386 -96 ) ( 256 384 -95 ) "Greybox Textures/PNG/Red/texture_04" [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 256 384 -96 ) ( 256 384 -95 ) ( 256.5 384 -96 ) "Greybox Textures/PNG/Red/texture_04" [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 256 384 -96 ) ( 256.5 384 -96 ) ( 256 386 -96 ) "Greybox Textures/PNG/Red/texture_04" [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 272 576 -16 ) ( 272 578 -16 ) ( 272.5 576 -16 ) "Greybox Textures/PNG/Red/texture_04" [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 272 576 -16 ) ( 272.5 576 -16 ) ( 272 576 -15 ) "Greybox Textures/PNG/Red/texture_04" [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 272 576 -16 ) ( 272 576 -15 ) ( 272 578 -16 ) "Greybox Textures/PNG/Red/texture_04" [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+}
+// entity 8
+{
+"classname" "func_group"
+"_tb_type" "_tb_group"
+"_tb_name" "SmallMiddleWall"
+"_tb_id" "48"
+"_tb_linked_group_id" "{1e285a8b-3c0b-443b-bcb3-018966a9b7c2}"
+"_tb_transformation" "1 0 0 384 0 1 0 576 0 0 1.2 -16 0 0 0 1"
+// brush 0
+{
+( 256 384 -16 ) ( 256 386 -16 ) ( 256 384 -14.8 ) "Greybox Textures/PNG/Red/texture_04" [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 256 384 -16 ) ( 256 384 -14.8 ) ( 256.5 384 -16 ) "Greybox Textures/PNG/Red/texture_04" [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 256 384 -16 ) ( 256.5 384 -16 ) ( 256 386 -16 ) "Greybox Textures/PNG/Red/texture_04" [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 272 576 80 ) ( 272 578 80 ) ( 272.5 576 80 ) "Greybox Textures/PNG/Red/texture_04" [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 272 576 80 ) ( 272.5 576 80 ) ( 272 576 81.2 ) "Greybox Textures/PNG/Red/texture_04" [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 272 576 80 ) ( 272 576 81.2 ) ( 272 578 80 ) "Greybox Textures/PNG/Red/texture_04" [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+}
+// entity 9
+{
+"classname" "func_group"
+"_tb_type" "_tb_group"
+"_tb_name" "SmallMiddleWall"
+"_tb_id" "49"
+"_tb_linked_group_id" "{74f7ff77-36c4-46c5-b593-c5917b9c2147}"
+"_tb_transformation" "1 0 0 272 0 1 0 576 0 0 1.2 -16 0 0 0 1"
+// brush 0
+{
+( 144 384 -16 ) ( 144 386 -16 ) ( 144 384 -14.8 ) "Greybox Textures/PNG/Red/texture_04" [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 144 384 -16 ) ( 144 384 -14.8 ) ( 144.5 384 -16 ) "Greybox Textures/PNG/Red/texture_04" [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 144 384 -16 ) ( 144.5 384 -16 ) ( 144 386 -16 ) "Greybox Textures/PNG/Red/texture_04" [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 160 576 80 ) ( 160 578 80 ) ( 160.5 576 80 ) "Greybox Textures/PNG/Red/texture_04" [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 160 576 80 ) ( 160.5 576 80 ) ( 160 576 81.2 ) "Greybox Textures/PNG/Red/texture_04" [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 160 576 80 ) ( 160 576 81.2 ) ( 160 578 80 ) "Greybox Textures/PNG/Red/texture_04" [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+}
+// entity 10
+{
+"classname" "func_group"
+"_tb_type" "_tb_group"
+"_tb_name" "BigFlat"
+"_tb_id" "11"
+"_tb_linked_group_id" "{360c3b8a-ad86-4065-994f-42ff48053675}"
+"_tb_transformation" "-1.8369701987210297e-16 1 0 496 -1 -1.8369701987210297e-16 0 576 0 0 1 -96 0 0 0 1"
+// brush 0
+{
+( 144 576 -96 ) ( 144 576 -95.85714285714286 ) ( 144 575.0769230769231 -96 ) "Greybox Textures/PNG/Orange/texture_07" [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 144 576 -96 ) ( 142.85714285714278 576 -96 ) ( 144 576 -95.85714285714286 ) "Greybox Textures/PNG/Orange/texture_07" [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 272 768 -112 ) ( 270.8571428571428 768 -112 ) ( 272 767.076923076923 -112 ) "Greybox Textures/PNG/Orange/texture_07" [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 144 576 -96 ) ( 144 575.0769230769231 -96 ) ( 142.85714285714278 576 -96 ) "Greybox Textures/PNG/Orange/texture_07" [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 272 768 -112 ) ( 272 768 -111.85714285714286 ) ( 270.8571428571428 768 -112 ) "Greybox Textures/PNG/Orange/texture_07" [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 272 768 -112 ) ( 272 767.076923076923 -112 ) ( 272 768 -111.85714285714286 ) "Greybox Textures/PNG/Orange/texture_07" [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+}
+// entity 11
+{
+"classname" "func_group"
+"_tb_type" "_tb_group"
+"_tb_name" "BigMiddleWall"
+"_tb_id" "23"
+"_tb_linked_group_id" "{29f27562-3d49-42b5-a263-f6b8e35f2675}"
+"_tb_transformation" "1 0 0 320 0 1 0 576 0 0 1 -96 0 0 0 1"
+// brush 0
+{
+( 128 576 -96 ) ( 128 577 -96 ) ( 128 576 -86 ) "Greybox Textures/PNG/Red/texture_04" [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 128 576 -96 ) ( 128 576 -86 ) ( 129 576 -96 ) "Greybox Textures/PNG/Red/texture_04" [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 128 576 -96 ) ( 129 576 -96 ) ( 128 577 -96 ) "Greybox Textures/PNG/Red/texture_04" [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 144 768 64 ) ( 144 769 64 ) ( 145 768 64 ) "Greybox Textures/PNG/Red/texture_04" [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 144 768 64 ) ( 145 768 64 ) ( 144 768 74 ) "Greybox Textures/PNG/Red/texture_04" [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 144 768 64 ) ( 144 768 74 ) ( 144 769 64 ) "Greybox Textures/PNG/Red/texture_04" [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+}
+// entity 12
+{
+"classname" "func_group"
+"_tb_type" "_tb_group"
+"_tb_name" "BigMiddleWall"
+"_tb_id" "50"
+"_tb_linked_group_id" "{c182d26e-c694-4169-97ea-ccab2d27d0aa}"
+"_tb_transformation" "1 0 0 464 0 1 0 576 0 0 1 -96 0 0 0 1"
+// brush 0
+{
+( 272 576 -96 ) ( 272 577 -96 ) ( 272 576 -86 ) "Greybox Textures/PNG/Red/texture_04" [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 272 576 -96 ) ( 272 576 -86 ) ( 273 576 -96 ) "Greybox Textures/PNG/Red/texture_04" [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 272 576 -96 ) ( 273 576 -96 ) ( 272 577 -96 ) "Greybox Textures/PNG/Red/texture_04" [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 288 768 64 ) ( 288 769 64 ) ( 289 768 64 ) "Greybox Textures/PNG/Red/texture_04" [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 288 768 64 ) ( 289 768 64 ) ( 288 768 74 ) "Greybox Textures/PNG/Red/texture_04" [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 288 768 64 ) ( 288 768 74 ) ( 288 769 64 ) "Greybox Textures/PNG/Red/texture_04" [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+}
+// entity 13
+{
+"classname" "func_group"
+"_tb_type" "_tb_group"
+"_tb_name" "BigCross"
+"_tb_id" "10"
+"_tb_linked_group_id" "{f014538e-fb33-4a93-9762-a4eb97fe481c}"
+"_tb_transformation" "1 0 0 80 0 1 0 1120 0 0 1 -80 0 0 0 1"
+// brush 0
+{
+( 144 896 -96 ) ( 144 896 -95 ) ( 144 894.6666666666665 -96 ) "Greybox Textures/PNG/Orange/texture_07" [ 2.220446049250313e-16 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 272 768 -80 ) ( 272 768 -79 ) ( 273.3333333333333 768 -80 ) "Greybox Textures/PNG/Orange/texture_07" [ -1 2.220446049250313e-16 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 144 896 -96 ) ( 144 894.6666666666665 -96 ) ( 145.33333333333331 896 -96 ) "Greybox Textures/PNG/Orange/texture_07" [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 272 768 -80 ) ( 273.3333333333333 768 -80 ) ( 272 766.6666666666666 -80 ) "Greybox Textures/PNG/Orange/texture_07" [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 144 896 -96 ) ( 145.33333333333331 896 -96 ) ( 144 896 -95 ) "Greybox Textures/PNG/Orange/texture_07" [ 1 -2.220446049250313e-16 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 272 768 -80 ) ( 272 766.6666666666666 -80 ) ( 272 768 -79 ) "Greybox Textures/PNG/Orange/texture_07" [ -2.220446049250313e-16 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+}
+// entity 14
+{
+"classname" "func_group"
+"_tb_type" "_tb_layer"
+"_tb_name" "Wall"
+"_tb_id" "22"
+"_tb_layer_sort_index" "0"
+}
+// entity 15
+{
+"classname" "func_group"
+"_tb_type" "_tb_group"
+"_tb_name" "SmallWideWall"
+"_tb_id" "20"
+"_tb_linked_group_id" "{08e92c4f-0056-4551-8814-51e50ae2b862}"
+"_tb_transformation" "1 0 0 208 0 3.999999999999999 0 576.0000000000002 0 0 1 80 0 0 0 1"
+"_tb_layer" "22"
+// brush 0
+{
+( 16 -192 80 ) ( 16 -188 80 ) ( 16 -192 81 ) "Greybox Textures/PNG/Red/texture_04" [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 16 -192 80 ) ( 16 -192 81 ) ( 16.5 -192 80 ) "Greybox Textures/PNG/Red/texture_04" [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 16 -192 80 ) ( 16.5 -192 80 ) ( 16 -188 80 ) "Greybox Textures/PNG/Red/texture_04" [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 32 192 160 ) ( 32 196 160 ) ( 32.5 192 160 ) "Greybox Textures/PNG/Red/texture_04" [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 32 192 160 ) ( 32.5 192 160 ) ( 32 192 161 ) "Greybox Textures/PNG/Red/texture_04" [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 32 192 160 ) ( 32 192 161 ) ( 32 196 160 ) "Greybox Textures/PNG/Red/texture_04" [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+}
+// entity 16
+{
+"classname" "func_group"
+"_tb_type" "_tb_group"
+"_tb_name" "BigDoor"
+"_tb_id" "4"
+"_tb_linked_group_id" "{c0187b18-e583-4961-ae25-c550dcc664c5}"
+"_tb_transformation" "1 0 0 208 0 1 0 -96 0 0 1 0 0 0 0 1"
+"_tb_layer" "22"
+// brush 0
+{
+( 384 -96 0 ) ( 384 -95.75 0 ) ( 384 -96 2 ) "Greybox Textures/PNG/Red/texture_04" [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 384 -96 0 ) ( 384 -96 2 ) ( 384.25 -96 0 ) "Greybox Textures/PNG/Red/texture_04" [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 384 -96 0 ) ( 384.25 -96 0 ) ( 384 -95.75 0 ) "Greybox Textures/PNG/Red/texture_04" [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 400 0 128 ) ( 400 0.25 128 ) ( 400.25 0 128 ) "Greybox Textures/PNG/Red/texture_04" [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 400 -48 64 ) ( 384 -48 192 ) ( 384 -48 64 ) "Greybox Textures/PNG/Red/texture_04" [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 400 0 128 ) ( 400 0 130 ) ( 400 0.25 128 ) "Greybox Textures/PNG/Red/texture_04" [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+// brush 1
+{
+( 384 -48 112 ) ( 384 -48 80 ) ( 384 -32 112 ) "Greybox Textures/PNG/Red/texture_04" [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 384 -48 112 ) ( 400 -48 112 ) ( 400 -48 80 ) "Greybox Textures/PNG/Red/texture_04" [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 384 -32 112 ) ( 400 -32 112 ) ( 400 -48 112 ) "Greybox Textures/PNG/Red/texture_04" [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 400 -48 80 ) ( 400 -32 112 ) ( 384 -32 112 ) "Greybox Textures/PNG/Red/texture_04" [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 400 -48 112 ) ( 400 -32 112 ) ( 400 -48 80 ) "Greybox Textures/PNG/Red/texture_04" [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+// brush 2
+{
+( 384 -16 128 ) ( 384 -48 128 ) ( 384 -48 112 ) "Greybox Textures/PNG/Red/texture_04" [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 384 -48 128 ) ( 400 -48 128 ) ( 400 -48 112 ) "Greybox Textures/PNG/Red/texture_04" [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 400 -48 112 ) ( 400 -32 112 ) ( 384 -32 112 ) "Greybox Textures/PNG/Red/texture_04" [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 384 -16 128 ) ( 400 -16 128 ) ( 400 -48 128 ) "Greybox Textures/PNG/Red/texture_04" [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 400 -32 112 ) ( 400 -16 128 ) ( 384 -16 128 ) "Greybox Textures/PNG/Red/texture_04" [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 400 -48 128 ) ( 400 -16 128 ) ( 400 -32 112 ) "Greybox Textures/PNG/Red/texture_04" [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+// brush 3
+{
+( 384 -96 128 ) ( 384 -94.9090909090909 128 ) ( 384 -96 129 ) "Greybox Textures/PNG/Red/texture_04" [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 384 -96 128 ) ( 384 -96 129 ) ( 384.5 -96 128 ) "Greybox Textures/PNG/Red/texture_04" [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 384 -96 128 ) ( 384.5 -96 128 ) ( 384 -94.9090909090909 128 ) "Greybox Textures/PNG/Red/texture_04" [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 400 96 160 ) ( 400 97.09090909090907 160 ) ( 400.5 96 160 ) "Greybox Textures/PNG/Red/texture_04" [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 400 96 160 ) ( 400.5 96 160 ) ( 400 96 161 ) "Greybox Textures/PNG/Red/texture_04" [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 400 96 160 ) ( 400 96 161 ) ( 400 97.09090909090907 160 ) "Greybox Textures/PNG/Red/texture_04" [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+// brush 4
+{
+( 384 16 128 ) ( 384 32 112 ) ( 384 48 112 ) "Greybox Textures/PNG/Red/texture_04" [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 400 16 128 ) ( 400 32 112 ) ( 384 32 112 ) "Greybox Textures/PNG/Red/texture_04" [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 400 32 112 ) ( 400 48 112 ) ( 384 48 112 ) "Greybox Textures/PNG/Red/texture_04" [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 384 48 128 ) ( 400 48 128 ) ( 400 16 128 ) "Greybox Textures/PNG/Red/texture_04" [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 400 48 112 ) ( 400 48 128 ) ( 384 48 128 ) "Greybox Textures/PNG/Red/texture_04" [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 400 16 128 ) ( 400 48 128 ) ( 400 48 112 ) "Greybox Textures/PNG/Red/texture_04" [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+// brush 5
+{
+( 384 0 0 ) ( 384 0.25 0 ) ( 384 0 2 ) "Greybox Textures/PNG/Red/texture_04" [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 400 48 64 ) ( 384 48 64 ) ( 384 48 192 ) "Greybox Textures/PNG/Red/texture_04" [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 384 0 0 ) ( 384.25 0 0 ) ( 384 0.25 0 ) "Greybox Textures/PNG/Red/texture_04" [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 400 96 128 ) ( 400 96.24999999999997 128 ) ( 400.25 96 128 ) "Greybox Textures/PNG/Red/texture_04" [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 400 96 128 ) ( 400.25 96 128 ) ( 400 96 130 ) "Greybox Textures/PNG/Red/texture_04" [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 400 96 128 ) ( 400 96 130 ) ( 400 96.24999999999997 128 ) "Greybox Textures/PNG/Red/texture_04" [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+// brush 6
+{
+( 384 48 80 ) ( 384 48 112 ) ( 384 32 112 ) "Greybox Textures/PNG/Red/texture_04" [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 400 32 112 ) ( 400 48 80 ) ( 384 48 80 ) "Greybox Textures/PNG/Red/texture_04" [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 384 48 112 ) ( 400 48 112 ) ( 400 32 112 ) "Greybox Textures/PNG/Red/texture_04" [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 400 48 80 ) ( 400 48 112 ) ( 384 48 112 ) "Greybox Textures/PNG/Red/texture_04" [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 400 32 112 ) ( 400 48 112 ) ( 400 48 80 ) "Greybox Textures/PNG/Red/texture_04" [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+}
+// entity 17
+{
+"classname" "func_group"
+"_tb_type" "_tb_group"
+"_tb_name" "BigSmallWall"
+"_tb_id" "17"
+"_tb_linked_group_id" "{c61039bd-e989-4a29-95e9-1f45cf8bf0a9}"
+"_tb_transformation" "1 0 0 576 0 0.4999999999999999 0 96 0 0 1 0 0 0 0 1"
+"_tb_layer" "22"
+// brush 0
+{
+( 384 96 0 ) ( 384 96.5 0 ) ( 384 96 10 ) "Greybox Textures/PNG/Red/texture_04" [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 384 96 0 ) ( 384 96 10 ) ( 385 96 0 ) "Greybox Textures/PNG/Red/texture_04" [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 384 96 0 ) ( 385 96 0 ) ( 384 96.5 0 ) "Greybox Textures/PNG/Red/texture_04" [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 400 192 160 ) ( 400 192.5 160 ) ( 401 192 160 ) "Greybox Textures/PNG/Red/texture_04" [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 400 192 160 ) ( 401 192 160 ) ( 400 192 170 ) "Greybox Textures/PNG/Red/texture_04" [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 400 192 160 ) ( 400 192 170 ) ( 400 192.5 160 ) "Greybox Textures/PNG/Red/texture_04" [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+}
+// entity 18
+{
+"classname" "func_group"
+"_tb_type" "_tb_group"
+"_tb_name" "BigSmallWall"
+"_tb_id" "28"
+"_tb_linked_group_id" "{d5f74268-8851-4874-8d39-140c95adbeb0}"
+"_tb_transformation" "1 0 0 576 0 0.4999999999999999 0 -192 0 0 1 0 0 0 0 1"
+"_tb_layer" "22"
+// brush 0
+{
+( 384 -192 0 ) ( 384 -191.5 0 ) ( 384 -192 10 ) "Greybox Textures/PNG/Red/texture_04" [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 384 -192 0 ) ( 384 -192 10 ) ( 385 -192 0 ) "Greybox Textures/PNG/Red/texture_04" [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 384 -192 0 ) ( 385 -192 0 ) ( 384 -191.5 0 ) "Greybox Textures/PNG/Red/texture_04" [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 400 -96 160 ) ( 400 -95.5 160 ) ( 401 -96 160 ) "Greybox Textures/PNG/Red/texture_04" [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 400 -96 160 ) ( 401 -96 160 ) ( 400 -96 170 ) "Greybox Textures/PNG/Red/texture_04" [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 400 -96 160 ) ( 400 -96 170 ) ( 400 -95.5 160 ) "Greybox Textures/PNG/Red/texture_04" [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+}
+// entity 19
+{
+"classname" "func_group"
+"_tb_type" "_tb_group"
+"_tb_name" "MiddleWall"
+"_tb_id" "34"
+"_tb_linked_group_id" "{5cd6ca37-2f03-40c0-aef8-0b0c5eb96f8e}"
+"_tb_transformation" "1 0 0 208 0 1.5 0 336 0 0 1 -16 0 0 0 1"
+"_tb_layer" "22"
+// brush 0
+{
+( 16 48 0 ) ( 16 49.5 0 ) ( 16 48 1 ) "Greybox Textures/PNG/Red/texture_04" [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 16 48 0 ) ( 16 48 1 ) ( 16.5 48 0 ) "Greybox Textures/PNG/Red/texture_04" [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 16 48 0 ) ( 16.5 48 0 ) ( 16 49.5 0 ) "Greybox Textures/PNG/Red/texture_04" [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 32 192 80 ) ( 32 193.5 80 ) ( 32.5 192 80 ) "Greybox Textures/PNG/Red/texture_04" [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 32 192 80 ) ( 32.5 192 80 ) ( 32 192 81 ) "Greybox Textures/PNG/Red/texture_04" [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 32 192 80 ) ( 32 192 81 ) ( 32 193.5 80 ) "Greybox Textures/PNG/Red/texture_04" [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+}
+// entity 20
+{
+"classname" "func_group"
+"_tb_type" "_tb_group"
+"_tb_name" "MiddleWall"
+"_tb_id" "35"
+"_tb_linked_group_id" "{ed4dac85-15e9-4e04-9931-5845afa74668}"
+"_tb_transformation" "1 0 0 208 0 1.5 0 96 0 0 1 0 0 0 0 1"
+"_tb_layer" "22"
+// brush 0
+{
+( 16 -192 0 ) ( 16 -190.50000000000003 0 ) ( 16 -192 1 ) "Greybox Textures/PNG/Red/texture_04" [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 16 -192 0 ) ( 16 -192 1 ) ( 16.5 -192 0 ) "Greybox Textures/PNG/Red/texture_04" [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 16 -192 0 ) ( 16.5 -192 0 ) ( 16 -190.50000000000003 0 ) "Greybox Textures/PNG/Red/texture_04" [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 32 -48 80 ) ( 32 -46.50000000000003 80 ) ( 32.5 -48 80 ) "Greybox Textures/PNG/Red/texture_04" [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 32 -48 80 ) ( 32.5 -48 80 ) ( 32 -48 81 ) "Greybox Textures/PNG/Red/texture_04" [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 32 -48 80 ) ( 32 -48 81 ) ( 32 -46.50000000000003 80 ) "Greybox Textures/PNG/Red/texture_04" [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+}
+// entity 21
+{
+"classname" "func_group"
+"_tb_type" "_tb_group"
+"_tb_name" "MiddleDoor"
+"_tb_id" "3"
+"_tb_linked_group_id" "{3299b74b-ab47-4dfd-b740-112675115d2b}"
+"_tb_transformation" "-1.8369701987210297e-16 1 0 256 -1 -1.8369701987210297e-16 0 367.99999999999994 0 0 1 0 0 0 0 1"
+"_tb_layer" "22"
+// brush 0
+{
+( 160 192 0 ) ( 160 192 1 ) ( 160 191 0 ) "Greybox Textures/PNG/Red/texture_04" [ 2.220446049250313e-16 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 176 176 64 ) ( 176 176 65 ) ( 176.09090909090907 176 64 ) "Greybox Textures/PNG/Red/texture_04" [ -1 2.220446049250313e-16 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 160 192 0 ) ( 160 191 0 ) ( 160.0909090909091 192 0 ) "Greybox Textures/PNG/Red/texture_04" [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 176 176 64 ) ( 176.09090909090907 176 64 ) ( 176 175 64 ) "Greybox Textures/PNG/Red/texture_04" [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 160 192 0 ) ( 160.0909090909091 192 0 ) ( 160 192 1 ) "Greybox Textures/PNG/Red/texture_04" [ 1 -2.220446049250313e-16 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 176 176 64 ) ( 176 175 64 ) ( 176 176 65 ) "Greybox Textures/PNG/Red/texture_04" [ -2.220446049250313e-16 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+// brush 1
+{
+( 160 192 64 ) ( 160 192 64.5 ) ( 160 191.49999999999997 64 ) "Greybox Textures/PNG/Red/texture_04" [ 2.220446049250313e-16 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 256 176 80 ) ( 256 176 80.5 ) ( 256.25 176 80 ) "Greybox Textures/PNG/Red/texture_04" [ -1 2.220446049250313e-16 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 160 192 64 ) ( 160 191.49999999999997 64 ) ( 160.24999999999997 192 64 ) "Greybox Textures/PNG/Red/texture_04" [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 256 176 80 ) ( 256.25 176 80 ) ( 256 175.49999999999994 80 ) "Greybox Textures/PNG/Red/texture_04" [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 160 192 64 ) ( 160.24999999999997 192 64 ) ( 160 192 64.5 ) "Greybox Textures/PNG/Red/texture_04" [ 1 -2.220446049250313e-16 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 256 176 80 ) ( 256 175.49999999999994 80 ) ( 256 176 80.5 ) "Greybox Textures/PNG/Red/texture_04" [ -2.220446049250313e-16 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+// brush 2
+{
+( 240 192 0 ) ( 240 192 2 ) ( 240 191 0 ) "Greybox Textures/PNG/Red/texture_04" [ 2.220446049250313e-16 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 256 176 64 ) ( 256 176 66 ) ( 256.1 176 64 ) "Greybox Textures/PNG/Red/texture_04" [ -1 2.220446049250313e-16 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 240 192 0 ) ( 240 191 0 ) ( 240.1 192 0 ) "Greybox Textures/PNG/Red/texture_04" [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 256 176 64 ) ( 256.1 176 64 ) ( 256 175 64 ) "Greybox Textures/PNG/Red/texture_04" [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 240 192 0 ) ( 240.1 192 0 ) ( 240 192 2 ) "Greybox Textures/PNG/Red/texture_04" [ 1 -2.220446049250313e-16 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 256 176 64 ) ( 256 175 64 ) ( 256 176 66 ) "Greybox Textures/PNG/Red/texture_04" [ -2.220446049250313e-16 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+}
+// entity 22
+{
+"classname" "func_group"
+"_tb_type" "_tb_group"
+"_tb_name" "BigDoorWall"
+"_tb_id" "22"
+"_tb_linked_group_id" "{0a8c1672-98d9-41b4-8302-08e35cc2aa43}"
+"_tb_transformation" "-1.8369701987210297e-16 0.75 0 255.99999999999994 -1 -1.3777276490407724e-16 0 0 0 0 1 0 0 0 0 1"
+"_tb_layer" "22"
+// brush 0
+{
+( 256 192 0 ) ( 256 192 10 ) ( 256 191 0 ) "Greybox Textures/PNG/Red/texture_04" [ 2.220446049250313e-16 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 400 176 160 ) ( 400 176 170 ) ( 400.75 176 160 ) "Greybox Textures/PNG/Red/texture_04" [ -1 2.220446049250313e-16 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 256 192 0 ) ( 256 191 0 ) ( 256.75 192 0 ) "Greybox Textures/PNG/Red/texture_04" [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 400 176 160 ) ( 400.75 176 160 ) ( 400 175 160 ) "Greybox Textures/PNG/Red/texture_04" [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 256 192 0 ) ( 256.75 192 0 ) ( 256 192 10 ) "Greybox Textures/PNG/Red/texture_04" [ 1 -2.220446049250313e-16 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 400 176 160 ) ( 400 175 160 ) ( 400 176 170 ) "Greybox Textures/PNG/Red/texture_04" [ -2.220446049250313e-16 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+}
+// entity 23
+{
+"classname" "func_group"
+"_tb_type" "_tb_group"
+"_tb_name" "BigDoorWall"
+"_tb_id" "38"
+"_tb_linked_group_id" "{4449457d-93a9-42cb-94c1-4d2fef2bf376}"
+"_tb_transformation" "-1.8369701987210297e-16 0.75 0 15.999999999999943 -1 -1.3777276490407724e-16 0 0 0 0 1 0 0 0 0 1"
+"_tb_layer" "22"
+// brush 0
+{
+( 16 192 0 ) ( 16 192 10 ) ( 16 191 0 ) "Greybox Textures/PNG/Red/texture_04" [ 2.220446049250313e-16 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 160 176 160 ) ( 160 176 170 ) ( 160.75 176 160 ) "Greybox Textures/PNG/Red/texture_04" [ -1 2.220446049250313e-16 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 16 192 0 ) ( 16 191 0 ) ( 16.75 192 0 ) "Greybox Textures/PNG/Red/texture_04" [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 160 176 160 ) ( 160.75 176 160 ) ( 160 175 160 ) "Greybox Textures/PNG/Red/texture_04" [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 16 192 0 ) ( 16.75 192 0 ) ( 16 192 10 ) "Greybox Textures/PNG/Red/texture_04" [ 1 -2.220446049250313e-16 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 160 176 160 ) ( 160 175 160 ) ( 160 176 170 ) "Greybox Textures/PNG/Red/texture_04" [ -2.220446049250313e-16 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+}
+// entity 24
+{
+"classname" "func_group"
+"_tb_type" "_tb_group"
+"_tb_name" "BigDoorWall"
+"_tb_id" "39"
+"_tb_linked_group_id" "{4b77fd67-fbff-438a-9b34-bdc27b560616}"
+"_tb_transformation" "-1.8369701987210297e-16 0.75 0 15.999999999999943 -1 -1.3777276490407724e-16 0 -368 0 0 1 0 0 0 0 1"
+"_tb_layer" "22"
+// brush 0
+{
+( 16 -176 0 ) ( 16 -176 10 ) ( 16 -177 0 ) "Greybox Textures/PNG/Red/texture_04" [ 2.220446049250313e-16 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 160 -192 160 ) ( 160 -192 170 ) ( 160.75 -192 160 ) "Greybox Textures/PNG/Red/texture_04" [ -1 2.220446049250313e-16 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 16 -176 0 ) ( 16 -177 0 ) ( 16.75 -176 0 ) "Greybox Textures/PNG/Red/texture_04" [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 160 -192 160 ) ( 160.75 -192 160 ) ( 160 -193 160 ) "Greybox Textures/PNG/Red/texture_04" [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 16 -176 0 ) ( 16.75 -176 0 ) ( 16 -176 10 ) "Greybox Textures/PNG/Red/texture_04" [ 1 -2.220446049250313e-16 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 160 -192 160 ) ( 160 -193 160 ) ( 160 -192 170 ) "Greybox Textures/PNG/Red/texture_04" [ -2.220446049250313e-16 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+}
+// entity 25
+{
+"classname" "func_group"
+"_tb_type" "_tb_group"
+"_tb_name" "BigDoorWall"
+"_tb_id" "40"
+"_tb_linked_group_id" "{c5d43f7d-5d09-4e15-9982-7c0d8ff8b820}"
+"_tb_transformation" "-1.8369701987210297e-16 0.75 0 255.99999999999994 -1 -1.3777276490407724e-16 0 -368 0 0 1 -16 0 0 0 1"
+"_tb_layer" "22"
+// brush 0
+{
+( 256 -176 0 ) ( 256 -176 10 ) ( 256 -177 0 ) "Greybox Textures/PNG/Red/texture_04" [ 2.220446049250313e-16 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 400 -192 160 ) ( 400 -192 170 ) ( 400.75 -192 160 ) "Greybox Textures/PNG/Red/texture_04" [ -1 2.220446049250313e-16 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 256 -176 0 ) ( 256 -177 0 ) ( 256.75 -176 0 ) "Greybox Textures/PNG/Red/texture_04" [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 400 -192 160 ) ( 400.75 -192 160 ) ( 400 -193 160 ) "Greybox Textures/PNG/Red/texture_04" [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 256 -176 0 ) ( 256.75 -176 0 ) ( 256 -176 10 ) "Greybox Textures/PNG/Red/texture_04" [ 1 -2.220446049250313e-16 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 400 -192 160 ) ( 400 -193 160 ) ( 400 -192 170 ) "Greybox Textures/PNG/Red/texture_04" [ -2.220446049250313e-16 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+}
+// entity 26
+{
+"classname" "func_group"
+"_tb_type" "_tb_group"
+"_tb_name" "SmallSmalllWall"
+"_tb_id" "16"
+"_tb_linked_group_id" "{6d172101-41dd-4907-b064-a13444598f38}"
+"_tb_transformation" "-1.8369701987210297e-16 1 0 351.99999999999994 -1 -1.8369701987210297e-16 0 -368 0 0 1 64 0 0 0 1"
+"_tb_layer" "22"
+// brush 0
+{
+( 160 -176 80 ) ( 160 -176 81 ) ( 160 -176.5 80 ) "Greybox Textures/PNG/Red/texture_04" [ 2.220446049250313e-16 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 256 -192 160 ) ( 256 -192 161 ) ( 257 -192 160 ) "Greybox Textures/PNG/Red/texture_04" [ -1 2.220446049250313e-16 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 160 -176 80 ) ( 160 -176.5 80 ) ( 161 -176 80 ) "Greybox Textures/PNG/Red/texture_04" [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 256 -192 160 ) ( 257 -192 160 ) ( 256 -192.5 160 ) "Greybox Textures/PNG/Red/texture_04" [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 160 -176 80 ) ( 161 -176 80 ) ( 160 -176 81 ) "Greybox Textures/PNG/Red/texture_04" [ 1 -2.220446049250313e-16 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 256 -192 160 ) ( 256 -192.5 160 ) ( 256 -192 161 ) "Greybox Textures/PNG/Red/texture_04" [ -2.220446049250313e-16 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+}
+// entity 27
+{
+"classname" "func_group"
+"_tb_type" "_tb_group"
+"_tb_name" "SmallSmalllWall"
+"_tb_id" "41"
+"_tb_linked_group_id" "{c6ec4deb-db3b-4b0a-b8c8-d2e598b013bf}"
+"_tb_transformation" "-1.8369701987210297e-16 1 0 351.99999999999994 -1 -1.8369701987210297e-16 0 0 0 0 1 80 0 0 0 1"
+"_tb_layer" "22"
+// brush 0
+{
+( 160 192 80 ) ( 160 192 81 ) ( 160 191.5 80 ) "Greybox Textures/PNG/Red/texture_04" [ 2.220446049250313e-16 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 256 176 160 ) ( 256 176 161 ) ( 257 176 160 ) "Greybox Textures/PNG/Red/texture_04" [ -1 2.220446049250313e-16 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 160 192 80 ) ( 160 191.5 80 ) ( 161 192 80 ) "Greybox Textures/PNG/Red/texture_04" [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 256 176 160 ) ( 257 176 160 ) ( 256 175.5 160 ) "Greybox Textures/PNG/Red/texture_04" [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 160 192 80 ) ( 161 192 80 ) ( 160 192 81 ) "Greybox Textures/PNG/Red/texture_04" [ 1 -2.220446049250313e-16 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 256 176 160 ) ( 256 175.5 160 ) ( 256 176 161 ) "Greybox Textures/PNG/Red/texture_04" [ -2.220446049250313e-16 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+}
+// entity 28
+{
+"classname" "func_group"
+"_tb_type" "_tb_layer"
+"_tb_name" "Ground"
+"_tb_id" "23"
+"_tb_layer_sort_index" "1"
+}
+// entity 29
+{
+"classname" "func_group"
+"_tb_type" "_tb_group"
+"_tb_name" "MiddleArena"
+"_tb_id" "32"
+"_tb_linked_group_id" "{7b00c11b-ea0b-48ed-8016-a40d86d28a74}"
+"_tb_transformation" "1 0 0 208 0 1 0 0 0 0 1 0 0 0 0 1"
+"_tb_layer" "23"
+// brush 0
+{
+( 16 -192 -16 ) ( 16 -191 -16 ) ( 16 -192 -15.997679814385144 ) "Greybox Textures/PNG/Orange/texture_02" [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 16 -192 -16 ) ( 16 -192 -15.997679814385144 ) ( 17 -192 -16 ) "Greybox Textures/PNG/Orange/texture_02" [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 16 -192 -16 ) ( 17 -192 -16 ) ( 16 -191 -16 ) "Greybox Textures/PNG/Orange/texture_02" [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 400 192 0 ) ( 400 193 0 ) ( 401 192 0 ) "Greybox Textures/PNG/Orange/texture_02" [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 400 192 0 ) ( 401 192 0 ) ( 400 192 0.0023201856148528793 ) "Greybox Textures/PNG/Orange/texture_02" [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 400 192 0 ) ( 400 192 0.0023201856148528793 ) ( 400 193 0 ) "Greybox Textures/PNG/Orange/texture_02" [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+}
+// entity 30
+{
+"classname" "func_group"
+"_tb_type" "_tb_group"
+"_tb_name" "Balcony"
+"_tb_id" "36"
+"_tb_linked_group_id" "{86ea0845-7c0a-4d45-8040-e17be3a478f1}"
+"_tb_layer" "23"
+// brush 0
+{
+( -16 -48 -16 ) ( -16 -47 -16 ) ( -16 -48 -15 ) "Greybox Textures/PNG/Orange/texture_02" [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -16 -48 -16 ) ( -16 -48 -15 ) ( -15 -48 -16 ) "Greybox Textures/PNG/Orange/texture_02" [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -16 -48 -16 ) ( -15 -48 -16 ) ( -16 -47 -16 ) "Greybox Textures/PNG/Orange/texture_02" [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 16 48 0 ) ( 16 49 0 ) ( 17 48 0 ) "Greybox Textures/PNG/Orange/texture_02" [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 16 48 0 ) ( 17 48 0 ) ( 16 48 1 ) "Greybox Textures/PNG/Orange/texture_02" [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 16 48 0 ) ( 16 48 1 ) ( 16 49 0 ) "Greybox Textures/PNG/Orange/texture_02" [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+}

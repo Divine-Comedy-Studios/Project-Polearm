@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://syb6fkpb1st4"
+path="res://.godot/imported/Museum.4.map-0c40eac7825c286decb66db3266fc80f.tres"
+
+[deps]
+
+source_file="res://Trenchbroom/maps/autosave/Museum.4.map"
+dest_files=["res://.godot/imported/Museum.4.map-0c40eac7825c286decb66db3266fc80f.tres"]
+
+[params]
+

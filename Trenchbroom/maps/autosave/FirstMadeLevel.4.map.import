@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://dqok1kadhs1lo"
+path="res://.godot/imported/FirstMadeLevel.4.map-6ad18ad781d59b6dd7a303e58372f911.tres"
+
+[deps]
+
+source_file="res://Trenchbroom/maps/autosave/FirstMadeLevel.4.map"
+dest_files=["res://.godot/imported/FirstMadeLevel.4.map-6ad18ad781d59b6dd7a303e58372f911.tres"]
+
+[params]
+
