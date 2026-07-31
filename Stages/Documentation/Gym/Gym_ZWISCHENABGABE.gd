@@ -24,6 +24,9 @@ func _unhandled_input(event: InputEvent) -> void:
 
 #endregion
 
+
+#region Override functions
+
 func _enter() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
@@ -36,3 +39,5 @@ func type() -> StringName:
 
 func nextState() -> StringName:
 	return _nextGameState
+
+#endregion

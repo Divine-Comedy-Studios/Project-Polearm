@@ -5,10 +5,10 @@
 [ext_resource type="Shader" uid="uid://exx180lp74b0" path="res://Assets/Shaders/Sky/StylizedSky.gdshader" id="2_wje10"]
 [ext_resource type="PackedScene" uid="uid://cyti0335fm7s0" path="res://Entities/Player/Player.tscn" id="3_cbpo0"]
 [ext_resource type="Material" uid="uid://cgj2lr4vp41pl" path="res://Assets/Materials/Prototype/FloorGray.tres" id="4_uc5kb"]
-[ext_resource type="PackedScene" uid="uid://dobb4o5ifw1e6" path="res://Stages/Documentation/Gym/ObstaclesOld/Ramps.tscn" id="5_8wv5c"]
-[ext_resource type="PackedScene" uid="uid://4721tk72gs1t" path="res://Stages/Documentation/Gym/ObstaclesOld/Steps.tscn" id="6_p27wj"]
-[ext_resource type="PackedScene" uid="uid://bduaf0ou244na" path="res://Stages/Documentation/Gym/ObstaclesOld/Bumps.tscn" id="7_37c1p"]
-[ext_resource type="PackedScene" uid="uid://duc76equt8iqk" path="res://Stages/Documentation/Gym/ObstaclesOld/Round.tscn" id="8_cwhqw"]
+[ext_resource type="PackedScene" uid="uid://dobb4o5ifw1e6" path="res://Stages/Documentation/Gym/Old/Obstacles/Ramps.tscn" id="5_8wv5c"]
+[ext_resource type="PackedScene" uid="uid://4721tk72gs1t" path="res://Stages/Documentation/Gym/Old/Obstacles/Steps.tscn" id="6_p27wj"]
+[ext_resource type="PackedScene" uid="uid://bduaf0ou244na" path="res://Stages/Documentation/Gym/Old/Obstacles/Bumps.tscn" id="7_37c1p"]
+[ext_resource type="PackedScene" uid="uid://duc76equt8iqk" path="res://Stages/Documentation/Gym/Old/Obstacles/Round.tscn" id="8_cwhqw"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jiqka"]
 shader = ExtResource("2_wje10")

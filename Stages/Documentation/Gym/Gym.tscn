@@ -15,6 +15,7 @@
 [ext_resource type="Material" uid="uid://rwe38pjq0qbw" path="res://Trenchbroom/textures/Greybox Textures/PNG/Orange/texture_01.tres" id="13_y445v"]
 [ext_resource type="PackedScene" uid="uid://cvva3f7g876am" path="res://Entities/Test/Bean.tscn" id="14_l1jfe"]
 [ext_resource type="PackedScene" uid="uid://lt1fsbh33mh4" path="res://Entities/DummyEnemy/DummyEnemy.tscn" id="14_viyit"]
+[ext_resource type="Script" uid="uid://dl4tnwxqtbept" path="res://Systems/EnemyManager/EnemyManager.gd" id="16_viyit"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gfyed"]
 shader = ExtResource("1_tsewk")
@@ -265,7 +266,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
 
 [node name="SceneCamera" parent="Visuals" unique_id=1015597522 instance=ExtResource("1_6ld1k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 3)
-top_level = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Visuals" unique_id=1491915083]
 environment = SubResource("Environment_ji2m5")
@@ -395,5 +395,12 @@ shape = SubResource("ConvexPolygonShape3D_2oa3e")
 [node name="Bean" parent="." unique_id=105737867 instance=ExtResource("14_l1jfe")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1426464, 1.1693774, -6.6367006)
 
+[node name="Bean2" parent="." unique_id=2107263814 instance=ExtResource("14_l1jfe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1426464, 1.1693774, -6.6367006)
+
 [node name="DummyEnemy" parent="." unique_id=1502792759 instance=ExtResource("14_viyit")]
 transform = Transform3D(-0.81915206, 0, -0.57357645, 0, 1, 0, 0.57357645, 0, -0.81915206, -0.90000004, 0, -6.6)
+
+[node name="EnemyManager" type="Node" parent="." unique_id=1983779925]
+script = ExtResource("16_viyit")
+metadata/_custom_type_script = "uid://dl4tnwxqtbept"
