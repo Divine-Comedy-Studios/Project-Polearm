@@ -51,6 +51,138 @@
       \verb https://devilmaycry.fandom.com/wiki/Input_Buffering
       \endverb
     \endentry
+    \entry{gdc_leveldesignaday2020}{misc}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=207e1e1750c4fca62419bd47a45b7e2f}{%
+           family={{Game Developers Conference}},
+           familyi={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{207e1e1750c4fca62419bd47a45b7e2f}
+      \strng{fullhash}{207e1e1750c4fca62419bd47a45b7e2f}
+      \strng{fullhashraw}{207e1e1750c4fca62419bd47a45b7e2f}
+      \strng{bibnamehash}{207e1e1750c4fca62419bd47a45b7e2f}
+      \strng{authorbibnamehash}{207e1e1750c4fca62419bd47a45b7e2f}
+      \strng{authornamehash}{207e1e1750c4fca62419bd47a45b7e2f}
+      \strng{authorfullhash}{207e1e1750c4fca62419bd47a45b7e2f}
+      \strng{authorfullhashraw}{207e1e1750c4fca62419bd47a45b7e2f}
+      \field{extraname}{1}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{Game Developers Conference (GDC) Talk}
+      \field{title}{Level Design in a Day: A Series of First Steps}
+      \field{urlday}{8}
+      \field{urlmonth}{7}
+      \field{urlyear}{2026}
+      \field{year}{2020}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.youtube.com/watch?v=OLXn6YYAk7M
+      \endverb
+      \verb{url}
+      \verb https://www.youtube.com/watch?v=OLXn6YYAk7M
+      \endverb
+    \endentry
+    \entry{gdc_horizonquests2018}{misc}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=207e1e1750c4fca62419bd47a45b7e2f}{%
+           family={{Game Developers Conference}},
+           familyi={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{207e1e1750c4fca62419bd47a45b7e2f}
+      \strng{fullhash}{207e1e1750c4fca62419bd47a45b7e2f}
+      \strng{fullhashraw}{207e1e1750c4fca62419bd47a45b7e2f}
+      \strng{bibnamehash}{207e1e1750c4fca62419bd47a45b7e2f}
+      \strng{authorbibnamehash}{207e1e1750c4fca62419bd47a45b7e2f}
+      \strng{authornamehash}{207e1e1750c4fca62419bd47a45b7e2f}
+      \strng{authorfullhash}{207e1e1750c4fca62419bd47a45b7e2f}
+      \strng{authorfullhashraw}{207e1e1750c4fca62419bd47a45b7e2f}
+      \field{extraname}{2}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{Game Developers Conference (GDC) Talk}
+      \field{title}{Level Design Workshop: Balancing Action and RPG in Horizon Zero Dawn Quests}
+      \field{urlday}{8}
+      \field{urlmonth}{7}
+      \field{urlyear}{2026}
+      \field{year}{2018}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.youtube.com/watch?v=b8WDPmwOHKg
+      \endverb
+      \verb{url}
+      \verb https://www.youtube.com/watch?v=b8WDPmwOHKg
+      \endverb
+    \endentry
+    \entry{gdc_movingmountains2020}{misc}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=207e1e1750c4fca62419bd47a45b7e2f}{%
+           family={{Game Developers Conference}},
+           familyi={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{207e1e1750c4fca62419bd47a45b7e2f}
+      \strng{fullhash}{207e1e1750c4fca62419bd47a45b7e2f}
+      \strng{fullhashraw}{207e1e1750c4fca62419bd47a45b7e2f}
+      \strng{bibnamehash}{207e1e1750c4fca62419bd47a45b7e2f}
+      \strng{authorbibnamehash}{207e1e1750c4fca62419bd47a45b7e2f}
+      \strng{authornamehash}{207e1e1750c4fca62419bd47a45b7e2f}
+      \strng{authorfullhash}{207e1e1750c4fca62419bd47a45b7e2f}
+      \strng{authorfullhashraw}{207e1e1750c4fca62419bd47a45b7e2f}
+      \field{extraname}{3}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{Game Developers Conference (GDC) Talk}
+      \field{title}{Moving Mountains: Speedy Level Creation as a Desperate Indie Dev}
+      \field{urlday}{8}
+      \field{urlmonth}{7}
+      \field{urlyear}{2026}
+      \field{year}{2020}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.youtube.com/watch?v=R75g3elj7y4
+      \endverb
+      \verb{url}
+      \verb https://www.youtube.com/watch?v=R75g3elj7y4
+      \endverb
+    \endentry
+    \entry{gdc_tenprinciples2010}{misc}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=207e1e1750c4fca62419bd47a45b7e2f}{%
+           family={{Game Developers Conference}},
+           familyi={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{207e1e1750c4fca62419bd47a45b7e2f}
+      \strng{fullhash}{207e1e1750c4fca62419bd47a45b7e2f}
+      \strng{fullhashraw}{207e1e1750c4fca62419bd47a45b7e2f}
+      \strng{bibnamehash}{207e1e1750c4fca62419bd47a45b7e2f}
+      \strng{authorbibnamehash}{207e1e1750c4fca62419bd47a45b7e2f}
+      \strng{authornamehash}{207e1e1750c4fca62419bd47a45b7e2f}
+      \strng{authorfullhash}{207e1e1750c4fca62419bd47a45b7e2f}
+      \strng{authorfullhashraw}{207e1e1750c4fca62419bd47a45b7e2f}
+      \field{extraname}{4}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{Game Developers Conference (GDC) Talk}
+      \field{title}{Ten Principles for Good Level Design}
+      \field{urlday}{8}
+      \field{urlmonth}{7}
+      \field{urlyear}{2026}
+      \field{year}{2010}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.youtube.com/watch?v=iNEe3KhMvXM
+      \endverb
+      \verb{url}
+      \verb https://www.youtube.com/watch?v=iNEe3KhMvXM
+      \endverb
+    \endentry
     \entry{hunicke2004mda}{article}{}{}
       \name{author}{3}{}{%
         {{un=0,uniquepart=base,hash=5eeee8f66d452006be5b86b51aed051d}{%
@@ -102,6 +234,48 @@
       \verb https://users.cs.northwestern.edu/~hunicke/MDA.pdf
       \endverb
     \endentry
+    \entry{jacobson2005postmortem}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=fe9a94ab88c595ff0618a5e853d3560b}{%
+           family={Jacobson},
+           familyi={J\bibinitperiod},
+           given={Brian},
+           giveni={B\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e8d3ec640ec5d087bcb83078efac3cc1}{%
+           family={Speyrer},
+           familyi={S\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{955cbc4b9108db91f887fabe8a4d29a5}
+      \strng{fullhash}{955cbc4b9108db91f887fabe8a4d29a5}
+      \strng{fullhashraw}{955cbc4b9108db91f887fabe8a4d29a5}
+      \strng{bibnamehash}{955cbc4b9108db91f887fabe8a4d29a5}
+      \strng{authorbibnamehash}{955cbc4b9108db91f887fabe8a4d29a5}
+      \strng{authornamehash}{955cbc4b9108db91f887fabe8a4d29a5}
+      \strng{authorfullhash}{955cbc4b9108db91f887fabe8a4d29a5}
+      \strng{authorfullhashraw}{955cbc4b9108db91f887fabe8a4d29a5}
+      \field{sortinit}{J}
+      \field{sortinithash}{b2f54a9081ace9966a7cb9413811edb4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Game Developer Magazine}
+      \field{note}{Wiederveröffentlicht auf gamedeveloper.com}
+      \field{title}{Postmortem: The Making of Valve's Half-Life 2}
+      \field{urlday}{17}
+      \field{urlmonth}{7}
+      \field{urlyear}{2026}
+      \field{year}{2005}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.gamedeveloper.com/design/classic-postmortem-the-making-of-i-half-life-2-i-
+      \endverb
+      \verb{url}
+      \verb https://www.gamedeveloper.com/design/classic-postmortem-the-making-of-i-half-life-2-i-
+      \endverb
+    \endentry
     \entry{lindgren2025striking}{article}{}{}
       \name{author}{3}{}{%
         {{un=0,uniquepart=base,hash=0ba001fce4779fd1b408da32609d9f94}{%
@@ -151,6 +325,35 @@
       \verb https://urn.kb.se/resolve?urn=urn:nbn:se:uu:diva-506132
       \endverb
     \endentry
+    \entry{rogers2014levelup}{book}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=bba811e2e2e1b288d9c19ae6ab57075f}{%
+           family={Rogers},
+           familyi={R\bibinitperiod},
+           given={Scott},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {John Wiley \& Sons}%
+      }
+      \strng{namehash}{bba811e2e2e1b288d9c19ae6ab57075f}
+      \strng{fullhash}{bba811e2e2e1b288d9c19ae6ab57075f}
+      \strng{fullhashraw}{bba811e2e2e1b288d9c19ae6ab57075f}
+      \strng{bibnamehash}{bba811e2e2e1b288d9c19ae6ab57075f}
+      \strng{authorbibnamehash}{bba811e2e2e1b288d9c19ae6ab57075f}
+      \strng{authornamehash}{bba811e2e2e1b288d9c19ae6ab57075f}
+      \strng{authorfullhash}{bba811e2e2e1b288d9c19ae6ab57075f}
+      \strng{authorfullhashraw}{bba811e2e2e1b288d9c19ae6ab57075f}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{2}
+      \field{isbn}{9781118877166}
+      \field{title}{Level Up! The Guide to Great Video Game Design}
+      \field{year}{2014}
+    \endentry
     \entry{swink2008gamefeel}{book}{}{}
       \name{author}{1}{}{%
         {{un=0,uniquepart=base,hash=f2deb65655f83a71ad7ee21ffdbe0329}{%
@@ -178,6 +381,34 @@
       \field{isbn}{9780123743282}
       \field{title}{Game Feel: A Game Designer's Guide to Virtual Sensation}
       \field{year}{2008}
+    \endentry
+    \entry{totten2014architectural}{book}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=c689f404bc9e2073d50098509a756874}{%
+           family={Totten},
+           familyi={T\bibinitperiod},
+           given={Christopher\bibnamedelima W.},
+           giveni={C\bibinitperiod\bibinitdelim W\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {CRC Press}%
+      }
+      \strng{namehash}{c689f404bc9e2073d50098509a756874}
+      \strng{fullhash}{c689f404bc9e2073d50098509a756874}
+      \strng{fullhashraw}{c689f404bc9e2073d50098509a756874}
+      \strng{bibnamehash}{c689f404bc9e2073d50098509a756874}
+      \strng{authorbibnamehash}{c689f404bc9e2073d50098509a756874}
+      \strng{authornamehash}{c689f404bc9e2073d50098509a756874}
+      \strng{authorfullhash}{c689f404bc9e2073d50098509a756874}
+      \strng{authorfullhashraw}{c689f404bc9e2073d50098509a756874}
+      \field{sortinit}{T}
+      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{9781466585416}
+      \field{title}{An Architectural Approach to Level Design}
+      \field{year}{2014}
     \endentry
     \entry{wikipedia_bayonetta}{misc}{}{}
       \name{author}{1}{}{%
@@ -275,7 +506,7 @@
       \verb https://en.wikipedia.org/wiki/Hack_and_slash
       \endverb
     \endentry
-    \entry{wikipedia_ninjagaiden_2026}{article}{}{}
+    \entry{wikipedia_nierautomata}{misc}{}{}
       \name{author}{1}{}{%
         {{un=0,uniquepart=base,hash=b6aea1a416c89509a7df1cbb69249cb6}{%
            family={{Wikipedia contributors}},
@@ -290,6 +521,38 @@
       \strng{authorfullhash}{b6aea1a416c89509a7df1cbb69249cb6}
       \strng{authorfullhashraw}{b6aea1a416c89509a7df1cbb69249cb6}
       \field{extraname}{4}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Nier: Automata}
+      \field{urlday}{18}
+      \field{urlmonth}{7}
+      \field{urlyear}{2026}
+      \field{year}{2026}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://en.wikipedia.org/wiki/Nier:_Automata
+      \endverb
+      \verb{url}
+      \verb https://en.wikipedia.org/wiki/Nier:_Automata
+      \endverb
+    \endentry
+    \entry{wikipedia_ninjagaiden_2026}{article}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=b6aea1a416c89509a7df1cbb69249cb6}{%
+           family={{Wikipedia contributors}},
+           familyi={W\bibinitperiod}}}%
+      }
+      \strng{namehash}{b6aea1a416c89509a7df1cbb69249cb6}
+      \strng{fullhash}{b6aea1a416c89509a7df1cbb69249cb6}
+      \strng{fullhashraw}{b6aea1a416c89509a7df1cbb69249cb6}
+      \strng{bibnamehash}{b6aea1a416c89509a7df1cbb69249cb6}
+      \strng{authorbibnamehash}{b6aea1a416c89509a7df1cbb69249cb6}
+      \strng{authornamehash}{b6aea1a416c89509a7df1cbb69249cb6}
+      \strng{authorfullhash}{b6aea1a416c89509a7df1cbb69249cb6}
+      \strng{authorfullhashraw}{b6aea1a416c89509a7df1cbb69249cb6}
+      \field{extraname}{5}
       \field{sortinit}{W}
       \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
       \field{labelnamesource}{author}

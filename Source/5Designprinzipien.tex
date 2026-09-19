@@ -1,0 +1,42 @@
+\documentclass[../Main.tex]{subfiles}
+
+
+\begin{document}
+
+\section{Designziele} \label{sec:Designziele}
+
+In diesem Kapitel werden Designziele für die beiden inhaltlichen Komponenten der Erkenntnisfrage (Abschnitt~\ref{sec:Erkenntnisfrage}) aufgestellt: Gegnerverhalten und Kampfgefühl einerseits, Gegnerplatzierung und Leveldesign andererseits. Sie zielen auf die drei dort genannten spielerischen Qualitäten ab, nämlich einen nachvollziehbaren Spielfluss, eine angemessene Schwierigkeit und ein befriedigendes Spielgefühl. Dazu werden die Erkenntnisse aus der Leveldesign-Recherche (Kapitel~\ref{sec:Leveldesign}) und der Referenzspielanalyse (Kapitel~\ref{sec:Referenzspielanalyse}) zu spezifischen Designzielen für unseren Kampfabschnitt verdichtet. Jedes Ziel folgt demselben Schema: das Ziel selbst, sein Nutzen, also welcher Aspekt der Erkenntnisfrage damit bedient wird, und die Herleitung aus Recherche und Spielanalysen. Die konkreten Massnahmen zur Umsetzung folgen in Kapitel~\ref{sec:Entwicklung}, ihre Überprüfung mittels Playtests in Kapitel~\ref{sec:Evaluation}. Die Ziele sind durchnummeriert, damit in den folgenden Kapiteln gezielt auf sie verwiesen werden kann.
+
+\subsection{Ziele zum Gegnerverhalten}
+
+\begin{description}[style=nextline, leftmargin=0pt, itemsep=0.8em]
+    \item[\textbf{Designziel 1: Überlegenheit als Grundzustand}]
+    Der Spieler soll sich seinen Gegnern grundsätzlich überlegen fühlen, wobei dieser Zustand gezielt durchbrochen werden kann. Der Nutzen liegt im Spielgefühl: Aggression soll sich sicher und belohnt anfühlen, während Spannung erst dort entsteht, wo die Kontrolle kurzzeitig bedroht wird. Hergeleitet ist das Ziel aus dem Kontrast der beiden Referenzspiele, der dauerhaften Überlegenheit in \game{NieR: Automata} (Abschnitt~\ref{sec:ReferenzspielanalyseNier}) gegenüber dem prekären Gleichgewicht in \game{Ninja Gaiden} (Abschnitt~\ref{sec:ReferenzspielanalyseNinja}), sowie aus dem Prinzip des emotionsgeleiteten Designs (Abschnitt~\ref{sec:Pacing}).
+
+    \item[\textbf{Designziel 2: Begrenzung gleichzeitiger Angreifer}]
+    Auch bei vielen Gegnern sollen nie alle gleichzeitig angreifen, sondern nur eine begrenzte Zahl. Der Nutzen betrifft Schwierigkeit und Spielfluss, da grosse Gruppen dadurch lesbar und fair bleiben, statt den Spieler zu überfordern. Beide Referenzspiele nutzen dieses Mittel, in \game{Ninja Gaiden} mit maximal etwa vier aktiven Gegnern, in \game{NieR: Automata} mit vermutlich höchstens zwei gleichzeitig angreifenden Nahkämpfern (Abschnitt~\ref{sec:Vergleich}), und es entspricht dem Pacing-Gedanken der Recherche (Abschnitt~\ref{sec:Pacing}).
+
+    \item[\textbf{Designziel 3: Ein taktisches Dilemma durch zwei Gegnerrollen}]
+    Der Kampfabschnitt soll Nah- und Fernkämpfer kombinieren, sodass der Spieler entscheiden muss, welche Bedrohung er zuerst ausschaltet. Der Nutzen liegt in der Schwierigkeit, die dadurch taktisch statt rein mechanisch (etwa durch mehr Lebenspunkte der Gegner) entsteht und schon kleine Gruppen anspruchsvoll macht. Grundlage ist, dass genau diese Kombination in beiden Referenzspielen den taktischen Druck trägt (Frage~D2 beider Analysen), sowie das Prinzip der Gegnerrollen im Encounter-Design (Abschnitt~\ref{sec:Encounter}).
+
+    \item[\textbf{Designziel 4: Klar telegrafierte Angriffe}]
+    Bevorstehende Gegnerangriffe sollen deutlich angekündigt werden, etwa durch sichtbare Vorzeichen. Der Nutzen betrifft Schwierigkeit und Spielgefühl, weil der Spieler auch im Gruppenkampf rechtzeitig reagieren kann und Treffer als eigene Fehler statt als Willkür erlebt. Vorbild ist das deutliche Telegrafieren in \game{NieR: Automata} (Frage~M2), theoretisch gestützt durch das Prinzip der Lesbarkeit (Abschnitt~\ref{sec:Encounter}).
+\end{description}
+
+\subsection{Ziele zur Gegnerplatzierung und zum Kampfraum}
+
+\begin{description}[style=nextline, leftmargin=0pt, itemsep=0.8em]
+    \item[\textbf{Designziel 5: Lesbare Platzierung, dynamisches Verhalten}]
+    Gegner sollen zu Beginn lesbar und teils symmetrisch platziert sein, sich danach aber dynamisch verhalten, etwa den Spieler umzingeln. Der Nutzen betrifft Spielfluss und Spielgefühl: Die Anfangsaufstellung gibt Überblick, das anschliessende Verhalten hält den Kampf unter Druck und unvorhersehbar. Das Ziel verbindet die durchdachte, manuelle Platzierung aus \game{NieR: Automata} (Frage~A3) mit dem dynamischen Verhalten aus \game{Ninja Gaiden} (Frage~D3, Abschnitt~\ref{sec:Vergleich}) und stützt sich auf die Prinzipien der Lesbarkeit und der Gegner als raumbildende Elemente (Abschnitt~\ref{sec:Encounter}).
+
+    \item[\textbf{Designziel 6: Der Raum als Druckmittel}]
+    Die Grösse des Kampfraums soll gezielt zwischen Enge und Weite wechseln. Der Nutzen liegt in der Schwierigkeit, da ein enger Raum den Spieler zu methodischerem Spiel zwingt, während ein weiter Raum ihm taktische Distanz erlaubt. Vorbild ist die gezielte Raumverengung in \game{Ninja Gaiden} (Frage~M3), theoretisch untermauert durch die räumlichen Typologien Narrow und Prospect Space (Abschnitt~\ref{sec:Raumtypologien}).
+
+    \item[\textbf{Designziel 7: Wellenstruktur mit Erholungsphasen}]
+    Der Kampfabschnitt soll in Wellen mit kontrollierter Eskalation und kurzen Erholungsphasen dazwischen aufgebaut sein. Der Nutzen betrifft den Spielfluss, indem sich Anspannung und Entlastung abwechseln und die Schwierigkeit planbar ansteigt. Beide Referenzspiele nutzen dieses Muster (Frage~D1 in \game{Ninja Gaiden}, Frage~A4 in \game{NieR: Automata}), das der Recherche als Rollercoaster-Pacing bekannt ist (Abschnitt~\ref{sec:Pacing}).
+
+    \item[\textbf{Designziel 8: Gestaffelte Einführung neuer Gegner}]
+    Jeder neue Gegnertyp soll zuerst isoliert auftreten und erst danach mit anderen kombiniert werden. Der Nutzen betrifft Spielfluss und Schwierigkeit, weil der Spieler einen Gegner in Ruhe verstehen kann, bevor die Kombination ihn fordert. Grundlage ist das Scaffolding-Prinzip (Abschnitt~\ref{sec:Scaffolding}) sowie die entsprechende Struktur in \game{NieR: Automata} (Frage~D1).
+\end{description}
+
+\end{document}
