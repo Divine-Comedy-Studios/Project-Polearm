@@ -1,8 +1,9 @@
 [gd_scene format=4 uid="uid://dwstnn3n587jg"]
 
-[ext_resource type="PackedScene" uid="uid://2twxnnq3mj7i" path="res://Common/Camera/SceneCamera/SceneCamera.tscn" id="1_6ld1k"]
-[ext_resource type="Shader" uid="uid://exx180lp74b0" path="res://Assets/Shaders/Sky/StylizedSky.gdshader" id="1_tsewk"]
-[ext_resource type="PackedScene" uid="uid://cyti0335fm7s0" path="res://Entities/Player/Player.tscn" id="2_d2u3u"]
+[ext_resource type="Script" uid="uid://bfqflhgefhtl1" path="res://Stages/Stage.gd" id="1_l1jfe"]
+[ext_resource type="Script" uid="uid://m3xnuvqxxrog" path="res://Systems/EnemyManager/Encounter/Encounter.gd" id="2_viyit"]
+[ext_resource type="Script" uid="uid://dgudxdqyw5eah" path="res://Systems/EnemyManager/Encounter/Wave.gd" id="3_l1jfe"]
+[ext_resource type="Script" uid="uid://ddnfnyl5gscdh" path="res://Stages/Data/StageData.gd" id="3_y445v"]
 [ext_resource type="Script" uid="uid://d1rene0g6t1ld" path="res://Trenchbroom/CustomScripts/funcGodotCustomBuild.gd" id="4_jiqka"]
 [ext_resource type="Material" uid="uid://bh5edhjdyq7w5" path="res://Trenchbroom/textures/Greybox Textures/PNG/Dark/texture_05.tres" id="6_jiqka"]
 [ext_resource type="Resource" uid="uid://cnygh8csloaqa" path="res://Trenchbroom/ProjectPolearmMapSettings.tres" id="6_pnhxc"]
@@ -13,51 +14,37 @@
 [ext_resource type="Material" path="res://Trenchbroom/textures/Greybox Textures/PNG/Green/texture_04.tres" id="10_uesqs"]
 [ext_resource type="Material" uid="uid://cosn5wkayhf52" path="res://Trenchbroom/textures/Greybox Textures/PNG/Red/texture_03.tres" id="11_viyit"]
 [ext_resource type="Material" uid="uid://rwe38pjq0qbw" path="res://Trenchbroom/textures/Greybox Textures/PNG/Orange/texture_01.tres" id="13_y445v"]
-[ext_resource type="PackedScene" uid="uid://cvva3f7g876am" path="res://Entities/Test/Bean.tscn" id="14_l1jfe"]
 [ext_resource type="PackedScene" uid="uid://lt1fsbh33mh4" path="res://Entities/DummyEnemy/DummyEnemy.tscn" id="14_viyit"]
-[ext_resource type="Script" uid="uid://dl4tnwxqtbept" path="res://Systems/EnemyManager/EnemyManager.gd" id="16_viyit"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_gfyed"]
-shader = ExtResource("1_tsewk")
-shader_parameter/day_top_color = Color(0.1, 0.6, 1, 1)
-shader_parameter/day_bottom_color = Color(0.4, 0.8, 1, 1)
-shader_parameter/sunset_top_color = Color(0.7, 0.75, 1, 1)
-shader_parameter/sunset_bottom_color = Color(1, 0.5, 0.7, 1)
-shader_parameter/night_top_color = Color(0.02, 0, 0.04, 1)
-shader_parameter/night_bottom_color = Color(0.1, 0, 0.2, 1)
-shader_parameter/horizon_color = Color(0, 0.7, 0.8, 1)
-shader_parameter/horizon_blur = 0.05
-shader_parameter/sun_color = Color(10, 8, 1, 1)
-shader_parameter/sun_sunset_color = Color(10, 0, 0, 1)
-shader_parameter/sun_size = 0.2
-shader_parameter/sun_blur = 10.0
-shader_parameter/moon_color = Color(1, 0.95, 0.7, 1)
-shader_parameter/moon_size = 0.06
-shader_parameter/moon_blur = 0.1
-shader_parameter/clouds_edge_color = Color(0.8, 0.8, 0.98, 1)
-shader_parameter/clouds_top_color = Color(1, 1, 1, 1)
-shader_parameter/clouds_middle_color = Color(0.92, 0.92, 0.98, 1)
-shader_parameter/clouds_bottom_color = Color(0.83, 0.83, 0.94, 1)
-shader_parameter/clouds_speed = 2.0
-shader_parameter/clouds_direction = 0.2
-shader_parameter/clouds_scale = 1.0
-shader_parameter/clouds_cutoff = 0.3
-shader_parameter/clouds_fuzziness = 0.5
-shader_parameter/clouds_weight = 0.0
-shader_parameter/clouds_blur = 0.25
-shader_parameter/stars_speed = 1.0
-shader_parameter/overwritten_time = 0.0
+[sub_resource type="SphereShape3D" id="SphereShape3D_l1jfe"]
+radius = 8.900001
 
-[sub_resource type="Sky" id="Sky_uesqs"]
-sky_material = SubResource("ShaderMaterial_gfyed")
+[sub_resource type="SphereShape3D" id="SphereShape3D_viyit"]
+radius = 5.25
 
-[sub_resource type="Environment" id="Environment_ji2m5"]
-background_mode = 2
-sky = SubResource("Sky_uesqs")
-ambient_light_source = 2
-ambient_light_color = Color(1, 1, 1, 1)
-ambient_light_sky_contribution = 0.67
-ambient_light_energy = 0.3
+[sub_resource type="Resource" id="Resource_4oxs2"]
+script = ExtResource("3_l1jfe")
+MAX_ENEMY_COUNT = 2
+ENEMIES = Array[int]([81, 81, 81, 81])
+metadata/_custom_type_script = "uid://dgudxdqyw5eah"
+
+[sub_resource type="Resource" id="Resource_viyit"]
+script = ExtResource("3_l1jfe")
+ENEMIES = Array[int]([81, 81, 81, 81])
+metadata/_custom_type_script = "uid://dgudxdqyw5eah"
+
+[sub_resource type="Resource" id="Resource_a20cb"]
+script = ExtResource("2_viyit")
+TRANSFORM = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.55, 0, 6.85)
+ENCOUNTER_REGION = SubResource("SphereShape3D_l1jfe")
+TRIGGER_REGION = SubResource("SphereShape3D_viyit")
+WAVES = Array[ExtResource("3_l1jfe")]([SubResource("Resource_4oxs2"), SubResource("Resource_viyit")])
+metadata/_custom_type_script = "uid://m3xnuvqxxrog"
+
+[sub_resource type="Resource" id="Resource_l1jfe"]
+script = ExtResource("3_y445v")
+PLAYER_SPAWN_LOCATION = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+ENCOUNTERS = Array[ExtResource("2_viyit")]([SubResource("Resource_a20cb")])
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_pnhxc"]
 _surfaces = [{
@@ -257,23 +244,15 @@ points = PackedVector3Array(70.3, 0.5, -26.9, 70.3, 0, -26.9, 65.3, 0.5, -26.9, 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_2oa3e"]
 points = PackedVector3Array(43.2, 0.5, -18.300001, 43.2, 0, -18.300001, 37.2, 0.5, -18.300001, 37.2, 0, -18.300001, 43.2, 0.5, -23.4, 43.2, 0, -23.4, 37.2, 0.5, -23.4, 37.2, 0, -23.4)
 
-[node name="Gym" type="Node" unique_id=470463708]
+[node name="Gym" type="Node" unique_id=1668630103]
+script = ExtResource("1_l1jfe")
+DATA = SubResource("Resource_l1jfe")
+metadata/_custom_type_script = "uid://bfqflhgefhtl1"
 
-[node name="Player" parent="." unique_id=1210477223 instance=ExtResource("2_d2u3u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
-
-[node name="Visuals" type="Node" parent="." unique_id=72582827]
-
-[node name="SceneCamera" parent="Visuals" unique_id=1015597522 instance=ExtResource("1_6ld1k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 3)
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="Visuals" unique_id=1491915083]
-environment = SubResource("Environment_ji2m5")
-
-[node name="SunAxis" type="Node3D" parent="Visuals" unique_id=1512155435]
+[node name="SunAxis" type="Node3D" parent="." unique_id=1512155435]
 transform = Transform3D(-4.371139e-08, 0.86602545, -0.49999997, 0, 0.49999997, 0.86602545, 1, 3.7855173e-08, -2.1855692e-08, 0, 0, 0)
 
-[node name="Sun" type="DirectionalLight3D" parent="Visuals/SunAxis" unique_id=1823816658]
+[node name="Sun" type="DirectionalLight3D" parent="SunAxis" unique_id=1823816658]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1000)
 shadow_enabled = true
 shadow_transmittance_bias = -0.02
@@ -392,15 +371,5 @@ shape = SubResource("ConvexPolygonShape3D_466e6")
 [node name="entity_0_brush_32_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=266949657]
 shape = SubResource("ConvexPolygonShape3D_2oa3e")
 
-[node name="Bean" parent="." unique_id=105737867 instance=ExtResource("14_l1jfe")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1426464, 1.1693774, -6.6367006)
-
-[node name="Bean2" parent="." unique_id=2107263814 instance=ExtResource("14_l1jfe")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1426464, 1.1693774, -6.6367006)
-
 [node name="DummyEnemy" parent="." unique_id=1502792759 instance=ExtResource("14_viyit")]
 transform = Transform3D(-0.81915206, 0, -0.57357645, 0, 1, 0, 0.57357645, 0, -0.81915206, -0.90000004, 0, -6.6)
-
-[node name="EnemyManager" type="Node" parent="." unique_id=1983779925]
-script = ExtResource("16_viyit")
-metadata/_custom_type_script = "uid://dl4tnwxqtbept"
