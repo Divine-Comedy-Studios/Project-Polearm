@@ -7,6 +7,7 @@ class_name PlayerActionManager
 @export_group("Scene members")
 @export var cameraManager : PlayerCameraManager = null
 @export var inputManager : PlayerInputManager = null
+@export var ledgeStopper : LedgeStopper = null
 
 @onready var physics : PlayerPhysics = $"PhysicsProcessor"
 
@@ -26,9 +27,10 @@ var _actionQueue : StringName = PlayerAction.Type.none
 #region Built-in functions
 
 func _ready() -> void:
-	assert(entity is Player, "PlayerActionManager._ready(): The entity must be a Player!")
+	assert(entity != null, "PlayerActionManager._ready(): Player simulation model not assigned!")
 	assert(cameraManager != null, "PlayerActionManager._ready(): Player camera manager not assigned!")
 	assert(inputManager != null, "PlayerActionManager._ready(): Player input manager not assigned!")
+	assert(ledgeStopper != null, "PlayerActionManager._ready(): Player ledge stopper not assigned!")
 	assert(physics != null, "PlayerActionManager._ready(): Player physics processor not assigned!")
 
 	init()
@@ -38,8 +40,6 @@ func _physics_process(delta: float) -> void:
 	_processInputs()
 
 	tick(delta)
-
-	entity.tick(delta)
 
 #endregion
 
@@ -129,7 +129,7 @@ func _processActionQueue() -> void:
 
 
 func _processAerialStates() -> void:
-	if (entity as Player).onGround():
+	if (entity as FloatingBody).onGround():
 		resources.jumpCount.value = 0
 		resources.airDashed = false
 

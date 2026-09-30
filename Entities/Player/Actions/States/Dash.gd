@@ -1,8 +1,8 @@
 extends PlayerBasicDash
 
 
-func _tick(delta : float) -> void:
-	super._tick(delta)
+func _implTick(delta : float) -> void:
+	super._implTick(delta)
 
 	if inputs().modifiers.has(Type.sprint):
 		context().pushActionQueue(Type.sprint)

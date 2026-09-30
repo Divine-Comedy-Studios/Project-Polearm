@@ -7,7 +7,6 @@ class_name BasicAerialMovement
 # Movement settings
 
 var _maxSpeed : float = 0.0
-var _maxSpeedSq : float = 0.0
 var _accel : float = 0.0
 var _friction : float = 0.0
 
@@ -18,7 +17,6 @@ var _friction : float = 0.0
 
 func _implInit() -> void:
 	_maxSpeed = physics().MAX_AERIAL_SPEED
-	_maxSpeedSq = _maxSpeed * _maxSpeed
 	_accel = physics().AERIAL_ACCELERATION
 	_friction = physics().AERIAL_FRICTION
 
@@ -33,23 +31,23 @@ func moveAerial(delta : float) -> void:
 	if not is_zero_approx(targetSpeed):
 		# Get the old velocity
 		var velocity : Vector3 = player().movement()
-		var currentVelocity : Vector2 = Vector2(velocity.x, velocity.z)
-		var currentVelocityLen := currentVelocity.length_squared()
+		var currentVelocity := PPUtil.Math.toFlatVec2(velocity)
+		var currentVelocityLen := currentVelocity.length()
 		
 		# Conditionlessly accelerate the current velocity towards the requested direction
-		currentVelocity += inputs().direction * inputs().inputMagnitude * _accel * delta
-		var newVelocityLen := currentVelocity.length_squared()
+		var newVelocity := currentVelocity.move_toward(inputs().direction * targetSpeed, delta * _accel)
+		var newVelocityLen := newVelocity.length()
 
-		# If the velocity is larger than the max speed and hasn't gotten smaller, we normalize it and multiply it by its old length
-		if newVelocityLen > currentVelocityLen:
-			if currentVelocityLen > _maxSpeedSq: 
-				currentVelocity = (currentVelocity / sqrt(newVelocityLen)) * sqrt(currentVelocityLen)
-			elif newVelocityLen > _maxSpeedSq:
-				currentVelocity = (currentVelocity / sqrt(newVelocityLen)) * _maxSpeed
+		# Preservation of momentum
+		# If the player is breaking to fast, we simply just apply
+		# the friction  Else we deaccelerate them as requested
+		if (newVelocityLen >= currentVelocityLen or
+			(newVelocityLen < currentVelocityLen and currentVelocityLen - newVelocityLen < _friction * delta)
+		):
+			player().setMovementFlat(newVelocity)
 
-		# Set the velocity
-		player().setMovementFlat(currentVelocity)
+			return
 
-	player().accelerateFlat(Vector3.ZERO, _friction * delta)
+	player().accelerateFlat(Vector2.ZERO, _friction * delta)
 
 #endregion

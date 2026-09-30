@@ -9,4 +9,9 @@ func _implEnter() -> void:
 func _implExit() -> void:
 	weapon().disable()
 
+
+func _implTick(delta : float) -> void:
+	if not player().onGround():
+		rootMotionEnabled = false
+
 #endregion

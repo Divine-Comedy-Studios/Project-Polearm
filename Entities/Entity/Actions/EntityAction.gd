@@ -37,6 +37,7 @@ var _context : EntityActionManager
 
 #region Member variables
 
+# Animation data
 @export var data : EntityActionData = null
 var frameDataScale : float = 1.0
 
@@ -51,6 +52,10 @@ var payload : Variant = null:
 
 var _progress : float
 
+# Root motion
+
+var rootMotionEnabled : bool = true
+
 #endregion
 
 
@@ -64,6 +69,8 @@ func enter() -> void:
 		_context.combatManager.resetActiveCombo()
 
 	_context.resources.pay(self) # The action is pretty much guaranteed to be payable at this point, if not, not a big deal
+
+	rootMotionEnabled = true # Always enable root motion when entering a state
 
 	_enter()
 
@@ -173,6 +180,8 @@ func _processDirection(delta : float) -> void:
 
 # If enabled, this will add root motion to the animation
 func _processRootMotion(delta : float) -> void:
+	if not rootMotionEnabled:
+		return
 	if not data.ROOT_MOTION:
 		return
 

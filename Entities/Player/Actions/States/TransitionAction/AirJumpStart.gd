@@ -18,7 +18,7 @@ func _implEnter() -> void:
 	_animationSetupBasic()
 
 
-func _tick(delta : float) -> void:
+func _implTick(delta : float) -> void:
 	player().accelerate(Vector3.ZERO, _aerialFriction * delta)
 
 	if finished():

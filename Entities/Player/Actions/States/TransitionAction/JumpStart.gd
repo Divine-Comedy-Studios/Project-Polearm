@@ -7,6 +7,9 @@ extends PlayerAction
 @export var JUMP_STILL_DATA : PlayerActionData = null
 @export var JUMP_RUN_DATA : PlayerActionData = null
 
+@export_group("Movement settings")
+@export var FRICTION_MULTIPLIER : float = 0.167
+
 #endregion
 
 
@@ -31,7 +34,7 @@ func _viable() -> bool:
 
 
 func _implInit() -> void:
-	_friction = physics().REDUCED_GROUNDED_FRICTION
+	_friction = physics().GROUNDED_FRICTION * FRICTION_MULTIPLIER
 
 	data = JUMP_STILL_DATA
 
@@ -48,7 +51,7 @@ func _implExit() -> void:
 	pass
 
 
-func _tick(delta : float) -> void:
+func _implTick(delta : float) -> void:
 	player().accelerate(Vector3.ZERO, _friction * delta)
 
 	if finished():
@@ -65,7 +68,7 @@ func _processAnimations() -> void:
 	var normRange := clampf(
 		PPUtil.Math.toRangeNormalized(
 			player().velocity.length(), 
-			physics().WALK_SPEED, 
+			physics().WALK_FELT_SPEED, 
 			physics().RUN_SPEED),
 		0.0, 1.0)
 	var duration := _jumpStillPeriod + normRange * (_jumpRunPeriod - _jumpStillPeriod)

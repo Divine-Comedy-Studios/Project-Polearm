@@ -3,12 +3,15 @@ extends PlayerAction
 
 #region Constants
 
-const MIN_PERIOD_MULTIPLIER := 0.7
+const MIN_PERIOD_MULTIPLIER : float = 0.7
 
 #endregion
 
 
 #region Exported variables
+
+@export_group("Input settings")
+@export var TURN_INPUT_MIN : float = 0.1
 
 @export_group("Animation settings")
 @export var IDLE_DATA : PlayerActionData = null
@@ -77,13 +80,13 @@ func _implEnter() -> void:
 	animator().transitionTo(&"AdvancedTransition", &"Move")
 
 
-func _tick(delta : float) -> void:
+func _implTick(delta : float) -> void:
 	# Movement
 	var targetSpeed := minf(inputs().inputMagnitude * _runSpeed, _runSpeed)
 	player().accelerateFlat(inputs().direction * targetSpeed, _accel * delta)
 
-	if not is_zero_approx(inputs().inputMagnitude):
-		_targetDirection = Vector3(inputs().direction.x, 0.0, inputs().direction.y)
+	if inputs().inputMagnitude > TURN_INPUT_MIN:
+		_targetDirection = PPUtil.Math.flatToVec3(inputs().direction)
 
 	# Animation
 	_processAnimations()

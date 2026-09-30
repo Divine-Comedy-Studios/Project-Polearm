@@ -126,13 +126,13 @@ metadata/_custom_type_script = "uid://cqy3drroysy4k"
 [sub_resource type="Resource" id="Resource_e0d0n"]
 script = ExtResource("5_8427c")
 ANIMATION_LIBRARY_NAME = &"Movement"
-ANIMATION_NAME = &"JumpIdleStop"
+ANIMATION_NAME = &"LandingIdle"
 metadata/_custom_type_script = "uid://cqy3drroysy4k"
 
 [sub_resource type="Resource" id="Resource_ququc"]
 script = ExtResource("5_8427c")
 ANIMATION_LIBRARY_NAME = &"Movement"
-ANIMATION_NAME = &"JumpRunStop"
+ANIMATION_NAME = &"LandingRun"
 metadata/_custom_type_script = "uid://cqy3drroysy4k"
 
 [sub_resource type="Resource" id="Resource_6evvv"]
@@ -224,7 +224,7 @@ metadata/_custom_type_script = "uid://jc1g0sv32qq1"
 process_mode = 4
 script = ExtResource("9_x5srs")
 IDLE_DATA = SubResource("Resource_re4dn")
-FRICTION_MULTIPLIER = 0.2
+FRICTION_MULTIPLIER = 0.35
 TYPE = &"moveStop"
 PRIORITY = 2
 data = SubResource("Resource_8gr7m")
@@ -290,7 +290,7 @@ metadata/_custom_type_script = "uid://jc1g0sv32qq1"
 [node name="SprintStop" type="Node" parent="." unique_id=33316294]
 process_mode = 4
 script = ExtResource("6_yl8et")
-FRICTION_MULTIPLIER = 0.7
+FRICTION_MULTIPLIER = 0.75
 TYPE = &"sprintStop"
 PRIORITY = 5
 data = SubResource("Resource_x5srs")
@@ -312,6 +312,7 @@ process_mode = 4
 script = ExtResource("14_fh6tg")
 LANDING_STILL_DATA = SubResource("Resource_e0d0n")
 LANDING_RUN_DATA = SubResource("Resource_ququc")
+FRICTION_MULTIPLIER = 0.7
 TYPE = &"landing"
 PRIORITY = 4
 metadata/_custom_type_script = "uid://jc1g0sv32qq1"

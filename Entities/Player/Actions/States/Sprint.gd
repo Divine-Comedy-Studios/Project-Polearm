@@ -66,7 +66,7 @@ func _implExit() -> void:
 	_turning = false
 
 
-func _tick(delta : float) -> void:
+func _implTick(delta : float) -> void:
 	# Switch to special turning state
 	_checkTurning()
 
@@ -109,7 +109,7 @@ func _checkTurning() -> void:
 
 	# Check if the player has turned
 
-	var direction = Vector3(inputs().direction.x, 0.0, inputs().direction.y)
+	var direction = PPUtil.Math.flatToVec3(inputs().direction)
 	if direction.dot(_direction) < TURN_COS_THRESHHOLD:
 		_turnTargetAngle = _direction.signed_angle_to(direction, Vector3.UP)
 

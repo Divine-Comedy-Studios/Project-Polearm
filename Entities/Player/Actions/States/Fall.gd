@@ -20,20 +20,20 @@ func _implExit() -> void:
 	player().setMovementVertical(0.0)
 
 
-func _tick(delta : float) -> void:
-	var terminalVel := 0.0
+func _implTick(delta : float) -> void:
+	var terminalVel := TERMINAL_VELOCITY
 
-	if inputs().modifiers.has(Type.jump): # Check if player is floating
-		terminalVel = FLOATING_TERMINAL_VELOCITY
-	else:
-		terminalVel = TERMINAL_VELOCITY
+	#if inputs().modifiers.has(Type.jump): # Check if player is floating
+	#	terminalVel = FLOATING_TERMINAL_VELOCITY
+	#else:
+	#	terminalVel = TERMINAL_VELOCITY
 
 	context().physics.sweepLedge()
 	if context().physics.ledgeData.collided:
 		context().pushActionQueue(Type.ledgeGrab)
 
-	player().accelerateVertical(-terminalVel, FALL_GRAVITY * delta)
 	moveAerial(delta)
+	player().accelerateVertical(-terminalVel, FALL_GRAVITY * delta)
 
 
 func _implNextAction(next : StringName) -> StringName:

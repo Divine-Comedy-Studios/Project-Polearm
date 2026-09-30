@@ -47,7 +47,7 @@ func _implExit() -> void:
 	_currentLedgeData = null
 
 
-func _tick(_delta : float) -> void:
+func _implTick(_delta : float) -> void:
 	if _checkDirection():
 		context().pushActionQueue(TYPE)
 
@@ -61,7 +61,7 @@ func _checkDirection() -> bool:
 	if dir == Vector2.ZERO:
 		return true
 
-	if Vector3(dir.x, 0.0, dir.y).dot(Vector3(_currentLedgeData.wallNormal.x, 0, _currentLedgeData.wallNormal.z)) < -0.2:
+	if PPUtil.Math.flatToVec3(dir).dot(PPUtil.Math.toFlatVec3(_currentLedgeData.wallNormal)) < -0.2:
 		return true
 	
 	return false

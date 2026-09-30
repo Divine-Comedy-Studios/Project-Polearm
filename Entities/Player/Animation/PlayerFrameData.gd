@@ -10,6 +10,9 @@ class_name PlayerFrameData
 @export var _comboPause : bool = false
 @export var _acceptsQueue : bool = false
 
+@export_group("Physics")
+@export var _stopAtLedge : bool = false
+
 #endregion
 
 
@@ -20,5 +23,8 @@ func comboPause(animationName : String, time : float) -> bool:
 
 func acceptsQueue(animationName : StringName, time : float) -> bool:
 	return _getValue(animationName, ^"FrameData:_acceptsQueue", time) as bool
+
+func stopAtLedge(animationName : StringName, time : float) -> bool:
+	return _getValue(animationName, ^"FrameData:_stopAtLedge", time) as bool
 
 #endregion

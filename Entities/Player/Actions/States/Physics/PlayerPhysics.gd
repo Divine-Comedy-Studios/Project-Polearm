@@ -25,11 +25,11 @@ class LedgeData:
 
 @export_group("Grounded movement settings")
 @export var WALK_SPEED : float = 2.0
+@export var WALK_FELT_SPEED : float = 2.3
 @export var RUN_SPEED : float = 5.5
 @export var SPRINT_SPEED : float = 12.0
 @export var GROUNDED_ACCELERATION : float = 30.0
 @export var GROUNDED_FRICTION : float = 30.0
-@export var REDUCED_GROUNDED_FRICTION : float = 5.0
 
 @export_group("Dash settings")
 @export var DASH_SPEED : float = 16.0
@@ -65,7 +65,7 @@ class LedgeData:
 @export_group("Scene members")
 @export var _context : PlayerActionManager = null
 
-var _player : Player = null
+var _player : FloatingBody = null
 
 #endregion
 
@@ -100,7 +100,7 @@ func _ready() -> void:
 	await _context.ready
 	await _context.entity.ready
 
-	_player = _context.entity as Player
+	_player = _context.entity as FloatingBody
 
 	LEDGE_SWEEP_DISTANCE = _player.BODY_COLLIDER_RADIUS + LEDGE_MAX_DISTANCE
 
@@ -119,7 +119,7 @@ func sweepLedge() -> void:
 
 	# Calculate the position to start the ledge sweep at
 	var forward : Vector3 = _player.forward()
-	var pos := Vector3(forward.x, 0, forward.z).rotated(Vector3.UP, -LEDGE_SWEEP_SIDE_ANGLE).normalized() * LEDGE_SWEEP_DISTANCE
+	var pos := PPUtil.Math.toFlatVec3(forward).rotated(Vector3.UP, -LEDGE_SWEEP_SIDE_ANGLE).normalized() * LEDGE_SWEEP_DISTANCE
 
 	var absCollidedAngle : float = INF
 	var currentAngle : float = -LEDGE_SWEEP_SIDE_ANGLE
@@ -172,7 +172,7 @@ func _processLedgeCollision(pos : Vector3, globalPos : Vector3) -> bool:
 	var lowerWallOffset := ledgeData.point.y - LEDGE_MIN_CEILING_HEIGHT
 
 	_setRayQuery(
-		Vector3(globalPos.x, lowerWallOffset, globalPos.z),
+		PPUtil.Math.toFlatVec3(globalPos, lowerWallOffset),
 		Vector3(globalPosX, lowerWallOffset, globalPosZ))
 
 	collision = get_world_3d().direct_space_state.intersect_ray(_rayQuery)

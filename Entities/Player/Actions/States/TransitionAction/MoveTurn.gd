@@ -30,7 +30,7 @@ func _implInit() -> void:
 
 func _implEnter() -> void:
 	var forward : Vector3 = player().forward()
-	_targetAngle = inputs().direction.angle_to(Vector2(forward.x, forward.z).normalized()) # The direction remains valid due to the only way to reach this state being interrupts
+	_targetAngle = inputs().direction.angle_to(PPUtil.Math.toFlatVec2(forward).normalized()) # The direction remains valid due to the only way to reach this state being interrupts
 
 	if _targetAngle > 0:
 		data = TURN_LEFT_DATA

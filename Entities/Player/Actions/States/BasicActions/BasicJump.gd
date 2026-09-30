@@ -36,7 +36,7 @@ func _implInit() -> void:
 
 
 func _implEnter() -> void:
-	var horizontalVel := Vector2(player().movement().x, player().movement().z)
+	var horizontalVel := PPUtil.Math.toFlatVec2(player().movement())
 
 	if not inputs().direction.is_zero_approx() and not horizontalVel.is_zero_approx(): # If the player is going in another direction, just snap him into the direction
 		var velLen := horizontalVel.length()
@@ -52,7 +52,7 @@ func _implExit() -> void:
 	_framesSinceStarted = 0.0
 
 
-func _tick(delta : float) -> void:
+func _implTick(delta : float) -> void:
 	moveAerial(delta)
 
 	# Additional jump velocity

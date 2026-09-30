@@ -169,14 +169,19 @@ func _preprocessActions() -> void:
 
 func _nextAction() -> StringName:
 	# If a transition can occur and the queue is set, push the queue as the next action, else just take the best action in the inputs
-	var queue := (_context as PlayerActionManager).popActionQueue()
+	var queue := context().popActionQueue()
 	return _implNextAction(queue
-		if queue != Type.none and actionViability(_context.action(queue)) == 1 else
+		if queue != Type.none and actionViability(context().action(queue)) == 1 else
 			_highestPriorityAction())
+
+func _tick(delta : float) -> void:
+	_processLedgeStopping()
+
+	_implTick(delta)
 
 
 func _processDirectionAngle() -> float:
-	var flatInput := Vector3(inputs().direction.x, 0, inputs().direction.y)
+	var flatInput := PPUtil.Math.flatToVec3(inputs().direction)
 	if flatInput.is_zero_approx():
 		return 0.0
 
@@ -190,32 +195,32 @@ func _processDirectionAngle() -> float:
 
 #region Public funcitons
 
-func player() -> Player:
-	return _context.entity as Player
+func player() -> FloatingBody:
+	return context().entity as FloatingBody
 
 func context() -> PlayerActionManager:
 	return _context as PlayerActionManager
 
 func physics() -> PlayerPhysics:
-	return _context.physics as PlayerPhysics
+	return context().physics as PlayerPhysics
 
 func inputs() -> PlayerInputManager.Data:
-	return _context.inputManager.inputs
+	return context().inputManager.inputs
 
 func frameData() -> PlayerFrameData:
-	return _context.frameData as PlayerFrameData
+	return context().frameData as PlayerFrameData
 
 func resources() -> PlayerResources:
-	return _context.resources as PlayerResources
+	return context().resources as PlayerResources
 
 func animator() -> PlayerAnimator:
-	return _context.animator as PlayerAnimator
+	return context().animator as PlayerAnimator
 
 func weapon() -> Weapon:
-	return _context.weapon as Weapon
+	return context().weapon as Weapon
 
 func combatManager() -> PlayerCombatManager:
-	return _context.combatManager as  PlayerCombatManager
+	return context().combatManager as  PlayerCombatManager
 
 #endregion
 
@@ -228,7 +233,7 @@ func _checkAndSetQueue() -> void:
 		return
 
 	for actionType : StringName in inputs().actions:
-		var action := _context.action(actionType) as PlayerAction
+		var action := context().action(actionType) as PlayerAction
 		if not action.QUEUEABLE or actionViability(action, false) != 1:
 			continue
 		
@@ -236,15 +241,15 @@ func _checkAndSetQueue() -> void:
 		_insertComboPause()
 
 	if _queue != null:
-		_context.pushActionQueue(_queue.TYPE)
+		context().pushActionQueue(_queue.TYPE)
 
 # Checks if a pause has been detected and a pause is part of the combo
 func _insertComboPause() -> void:
-	if not _context.frameData.comboPause(data.ANIMATION_NAME, _progress):
+	if not context().frameData.comboPause(data.ANIMATION_NAME, _progress):
 		return
 
-	if _context.combatManager.isNextComboAction(Type.idle):
-		_context.combatManager.registerComboAction(Type.idle) # Add the pause to the combo
+	if context().combatManager.isNextComboAction(Type.idle):
+		context().combatManager.registerComboAction(Type.idle) # Add the pause to the combo
 
 
 # Gets the highest priority action from the current input
@@ -253,7 +258,7 @@ func _highestPriorityAction() -> StringName:
 
 	# Go through all higher priority actions and immediately return them if possible as they can cancel the current action
 	for actionType : StringName in inputs().actions:
-		var action := _context.action(actionType) as PlayerAction
+		var action := context().action(actionType) as PlayerAction
 		var viability := actionViability(action) # 0 == unviable, -1 == same action, 1 == possibly viable
 
 		# These checks here occur due to a tiebreaker when there are multiple actions with the same priority
@@ -266,6 +271,14 @@ func _highestPriorityAction() -> StringName:
 			return Type.none
 
 	return Type.none
+
+
+func _processLedgeStopping() -> void:
+	if frameData().stopAtLedge(data.ANIMATION_NAME, _progress):
+		if not context().ledgeStopper.enabled():
+			context().ledgeStopper.enable()
+	elif context().ledgeStopper.enabled():
+		context().ledgeStopper.disable()
 
 
 # Convenient function to setup the animation for states which only use the basic animation
@@ -284,6 +297,10 @@ func _implEnter() -> void:
 	pass
 
 func _implExit() -> void:
+	pass
+
+@warning_ignore("unused_parameter")
+func _implTick(delta : float) -> void:
 	pass
 
 

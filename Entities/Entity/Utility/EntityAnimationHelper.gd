@@ -57,7 +57,9 @@ extends Node
 
 @warning_ignore("unused_private_class_variable")
 @export_tool_button("Save Frame Data") var _saveFDFunction = _save_frame_data_library
+@warning_ignore("unused_private_class_variable")
 @export_tool_button("Update Frame Data") var _updateFDFunction = _sync_frame_data_library
+@warning_ignore("unused_private_class_variable")
 @export_tool_button("Cleanup Frame Data") var _cleanupFDFunction = _clean_frame_data_library
 
 #endregion

@@ -15,7 +15,7 @@ func _implEnter() -> void:
 	_animationSetupBasic()
 
 
-func _tick(_delta : float) -> void:
+func _implTick(_delta : float) -> void:
 	if TARGET_TYPE != Type.none:
 		context().pushActionQueue(TARGET_TYPE)
 

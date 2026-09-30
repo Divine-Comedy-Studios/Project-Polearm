@@ -24,9 +24,9 @@ func _implEnter() -> void:
 	if inputDir.is_zero_approx():
 		_direction = player().forward()
 	else:
-		_direction = Vector3(inputDir.x, 0.0, inputDir.y)
+		_direction = PPUtil.Math.flatToVec3(inputDir)
 
-		var horizontalVel := Vector2(player().movement().x, player().movement().z)
+		var horizontalVel := PPUtil.Math.toFlatVec2(player().movement())
 		if not horizontalVel.is_zero_approx():
 			var velLen := horizontalVel.length()
 			var directionVelocityDot := inputDir.dot(horizontalVel / velLen)
@@ -35,7 +35,7 @@ func _implEnter() -> void:
 
 	_animationSetupBasic()
 
-func _tick(delta : float) -> void:
+func _implTick(delta : float) -> void:
 	player().accelerateFlat3(_direction * _speed, _accel * delta)
 
 #endregion

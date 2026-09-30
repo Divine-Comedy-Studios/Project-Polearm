@@ -31,8 +31,10 @@ using System.Data.Common;
 	[Export] public float MOUSE_SENSITIVITY = 0.01f;
 
 	[ExportGroup("AutoCam config")]
-	[Export] public float TIME_UNTIL_AUTO_CAM = 2.0f;
+	[Export] public float TIME_UNTIL_AUTO_CAM = 3.0f;
+	[Export] public float AUTO_CAM_SENSITIVITY = 0.1f;
 	[Export] public float AUTO_CAM_VERTICAL_ANGLE = -0.1f;
+	[Export] public float AUTO_CAM_SPEED = 2.0f;
 
 	#endregion
 
@@ -75,9 +77,9 @@ using System.Data.Common;
 	}
 
 	public override void _PhysicsProcess(double delta) {
-		m_timeUntilAutoCam -= (float) delta;
-
 		Direction = _processControllerInput(Input.GetVector("Camera left", "Camera right", "Camera down", "Camera up"));
+
+		// Manual camera rotation
 
 		if (Direction.LengthSquared() > 0.0) {
 			m_timeUntilAutoCam = TIME_UNTIL_AUTO_CAM;
@@ -90,14 +92,24 @@ using System.Data.Common;
 			));
 		} else m_controllerActive = false;
 
+
+		// Automatic camera rotation
+
 		if (m_timeUntilAutoCam <= 0.0f) {
-			/*
-			_rotateTarget(m_camera.FollowTarget, new Vector2(
-				AUTO_CAM_VERTICAL_ANGLE - m_camera.FollowTarget.Rotation.X,
-				
-			));
-			*/
-		}
+			Vector3 target = new Vector3(AUTO_CAM_VERTICAL_ANGLE, m_followTarget.GetRemoteParent().Rotation.Y, 0.0f);
+			float angleDiff = Mathf.Abs(Mathf.AngleDifference(m_camera.FollowTarget.Rotation.Y, target.Y));
+
+			if (angleDiff > AUTO_CAM_SENSITIVITY) {
+				float speed = AUTO_CAM_SPEED * (float) delta;
+
+				m_camera.FollowTarget.Rotation = new Vector3(
+					Mathf.RotateToward(m_camera.FollowTarget.Rotation.X, AUTO_CAM_VERTICAL_ANGLE, speed),
+					Mathf.RotateToward(m_camera.FollowTarget.Rotation.Y, target.Y, speed * Mathf.Sqrt(angleDiff / Mathf.Pi)), // The further away, the faster the speed
+					m_camera.FollowTarget.Rotation.Z
+				);
+			}
+		} else
+			m_timeUntilAutoCam -= (float) delta;
 
 		_cameraRotationLerpToTarget();
 	}

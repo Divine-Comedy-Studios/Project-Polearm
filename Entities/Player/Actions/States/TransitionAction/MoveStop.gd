@@ -14,8 +14,8 @@ func _implEnter() -> void:
 	# Calculate factors to blend the animations between their different states
 	var normRange := clampf(
 		PPUtil.Math.toRangeNormalized(
-			player().movement().length(), 
-			physics().WALK_SPEED,
+			PPUtil.Math.toFlatVec2(player().velocity).length(), 
+			physics().WALK_FELT_SPEED,
 			physics().RUN_SPEED),
 		0.0, 1.0)
 
