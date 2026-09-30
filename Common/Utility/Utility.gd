@@ -12,18 +12,7 @@ enum CollisionLayers {
 
 
 class Groups:
-	const agents := &"Agents"
-
-
-enum ObjectType {
-	none = 0,
-
-	entity = 1 << 0,
-	player = entity + (1 << 1),
-
-	enemies = entity + (1 << 4),
-	testEnemy = enemies + (1 << 5),
-}
+	const enemies := &"Enemies"
 
 
 class Math:
@@ -39,3 +28,13 @@ class Math:
 
 	static func toRangeNormalized(n: float, first: float, second: float) -> float:
 		return n / first - 1.0 if n < first else (n - first) / (second - first)
+
+
+	static func toFlatVec3(vec : Vector3, y : float = 0.0) -> Vector3:
+		return Vector3(vec.x, y, vec.z)
+	
+	static func toFlatVec2(vec : Vector3) -> Vector2:
+		return Vector2(vec.x, vec.z)
+	
+	static func flatToVec3(vec : Vector2, y : float = 0.0) -> Vector3:
+		return Vector3(vec.x, y, vec.y)

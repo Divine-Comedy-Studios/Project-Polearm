@@ -4,9 +4,10 @@ extends Area3D
 class_name EventTrigger
 
 
+
 #region Exported variables
 
-@export_flags_3d_physics var LAYERS : int:
+@export_flags_3d_physics var layers : int:
 	get:
 		return collision_mask
 	set(value):
@@ -15,14 +16,35 @@ class_name EventTrigger
 #endregion
 
 
+#region Member variables
+
+# Scene members
+
+var _collisionShape : CollisionShape3D = null
+
+# Properties
+
+var shape : Shape3D:
+	get:
+		return _collisionShape.shape
+	set(value):
+		_collisionShape.shape = value
+
+#endregion
+
+
 #region Built-in functions
 
-func _ready() -> void:
-	if Engine.is_editor_hint():
-		collision_layer = 0
+func _init() -> void:
+	_collisionShape = CollisionShape3D.new()
+	add_child(_collisionShape)
 
-		monitoring = false # true if a hitbox should be enabled on start
-		monitorable = false
+
+func _ready() -> void:
+	collision_layer = 0
+
+	monitoring = false # true if a hitbox should be enabled on start
+	monitorable = false
 
 	body_entered.connect(trigger)
 

@@ -8,7 +8,7 @@ func _implExit() -> void:
 	pass
 
 
-func _tick(_delta : float) -> void:
+func _implTick(_delta : float) -> void:
 	pass
 
 

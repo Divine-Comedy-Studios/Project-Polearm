@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://5b61hbp6j16i"]
+
+[ext_resource type="Script" uid="uid://dcvgh1acyk7k8" path="res://Components/LedgeStopper/LedgeStopperBlock.gd" id="1_thok7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a20cb"]
+
+[node name="LedgeStopperBlock" type="Node3D" unique_id=179960484 node_paths=PackedStringArray("_anchor", "_collider", "_collisionShape")]
+script = ExtResource("1_thok7")
+_anchor = NodePath("Anchor")
+_collider = NodePath("Anchor/StaticBody3D")
+_collisionShape = NodePath("Anchor/StaticBody3D/CollisionShape3D")
+
+[node name="Anchor" type="Node3D" parent="." unique_id=1290099558]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Anchor" unique_id=2102292255]
+process_mode = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Anchor/StaticBody3D" unique_id=370727978]
+shape = SubResource("BoxShape3D_a20cb")

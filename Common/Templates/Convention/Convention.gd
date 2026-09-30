@@ -107,6 +107,13 @@ const CONSTANTS_IN_SCREAMING_SNAKE_CASE : float = 0.0
 
 #region Scene members
 
+
+
+#endregion
+
+
+#region Member variables
+
 # Separate groups of scene members using comments
 # Variables without an underscore are public and may be accessed anywhere in the code
 
@@ -114,13 +121,6 @@ var foo : Vector3 = Vector3.ZERO
 
 # Use a underscore to signal that a variable is private. ALWAYS signal a private variable. Private variables should NEVER be accessed outside the class
 var _privateBar : Vector2 = Vector2.ZERO
-
-#endregion
-
-
-#region Member variables
-
-var _member
 
 #endregion
 
