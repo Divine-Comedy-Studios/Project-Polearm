@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://c3jf31enkc6q4" path="res://Core/Main/Loading/LoadingScreen.tscn" id="3_tx8yk"]
 [ext_resource type="Script" uid="uid://bicl85c04tdj7" path="res://Core/Main/States/GameState.gd" id="4_jgmb7"]
 [ext_resource type="PackedScene" uid="uid://dqfsomcbp0v3k" path="res://Core/Main/Boot/Boot.tscn" id="4_tx8yk"]
+[ext_resource type="PackedScene" uid="uid://cke1sl2cms1u7" path="res://Systems/Visuals/Visuals.tscn" id="6_tx8yk"]
 
 [node name="Main" type="Node" unique_id=1689907238]
 script = ExtResource("1_ycf5l")
@@ -24,3 +25,5 @@ process_mode = 4
 script = ExtResource("4_jgmb7")
 _mainMenuState = NodePath("../MainMenuState")
 SCENE_PATH = "res://Core/Game/Game.tscn"
+
+[node name="Visuals" parent="." unique_id=1659141589 instance=ExtResource("6_tx8yk")]

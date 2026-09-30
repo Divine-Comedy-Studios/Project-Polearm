@@ -1,9 +1,21 @@
 [gd_scene format=3 uid="uid://b8g2l2mls2k6"]
 
 [ext_resource type="Script" uid="uid://dimj2il0dk1u2" path="res://Core/Game/World/World.gd" id="1_wgjyf"]
-[ext_resource type="PackedScene" uid="uid://c05rl7pbuscth" path="res://Stages/Documentation/Gym/GymOld.tscn" id="2_lf88h"]
+[ext_resource type="Script" uid="uid://dl4tnwxqtbept" path="res://Systems/EnemyManager/EnemyManager.gd" id="2_lf88h"]
+[ext_resource type="Resource" uid="uid://j3hdtf4jxj65" path="res://Stages/Data/StageDataset.res" id="2_s3e02"]
+[ext_resource type="PackedScene" uid="uid://cyti0335fm7s0" path="res://Entities/Player/Player.tscn" id="3_qocwe"]
+[ext_resource type="Resource" uid="uid://tn6gku0bh4js" path="res://Systems/EnemyManager/Data/EnemyDataset.res" id="4_kerbn"]
 
-[node name="World" type="Node" unique_id=966975395]
+[node name="World" type="Node" unique_id=966975395 node_paths=PackedStringArray("_enemyManager", "_player")]
+process_mode = 4
 script = ExtResource("1_wgjyf")
+STAGE_DATASET = ExtResource("2_s3e02")
+_enemyManager = NodePath("EnemyManager")
+_player = NodePath("Player")
 
-[node name="Gym" parent="." unique_id=1076830952 instance=ExtResource("2_lf88h")]
+[node name="EnemyManager" type="Node" parent="." unique_id=503714007]
+script = ExtResource("2_lf88h")
+GAME_OBJECT_DATASET = ExtResource("4_kerbn")
+metadata/_custom_type_script = "uid://dl4tnwxqtbept"
+
+[node name="Player" parent="." unique_id=119990657 instance=ExtResource("3_qocwe")]

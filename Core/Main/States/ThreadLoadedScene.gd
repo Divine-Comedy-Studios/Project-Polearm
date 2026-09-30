@@ -60,12 +60,12 @@ func available() -> bool:
 func _loadScene() -> void:
 	var err := ResourceLoader.load_threaded_request(SCENE_PATH)
 
-	assert(err == OK, "MainThreadLoadedScene._ready(): Request to load the scene resource failed!")
+	assert(err == OK, "MainThreadLoadedScene._loadScene(): Request to load the scene resource failed!")
 
 func _createScene() -> Node:
 	assert( \
 		ResourceLoader.load_threaded_get_status(SCENE_PATH) == ResourceLoader.THREAD_LOAD_LOADED, \
-		"MainThreadLoadedScene._createSceneImpl(): Scene resource has not finished loading! Please use the MainMenuState.finishedLoading() function.")
+		"MainThreadLoadedScene._createScene(): Scene resource has not finished loading! Please use the MainMenuState.finishedLoading() function.")
 
 	_sceneResource = ResourceLoader.load_threaded_get(SCENE_PATH)
 	return _sceneResource.instantiate()

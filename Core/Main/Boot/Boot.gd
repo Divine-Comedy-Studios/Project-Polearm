@@ -11,6 +11,9 @@ extends AppState
 #region Built-in functions
 
 func _ready() -> void:
+	add_sibling.call_deferred(SettingsManager.new())
+	add_sibling.call_deferred(SaveUtility.new())
+
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	process_mode = Node.PROCESS_MODE_INHERIT
 

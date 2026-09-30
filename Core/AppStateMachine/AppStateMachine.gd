@@ -22,7 +22,7 @@ func _ready() -> void:
 	init()
 
 	assert(_states.has(AppState.Type.loading), "AppStateMachine._nextState(): All application level state machines need a loading screen!")
-	loadingScreen = state(AppState.Type.loading) as LoadingState
+	loadingScreen = state(AppState.Type.loading) as LoadingState # Not exporting this to guarantee consistency
 
 func _process(_delta : float) -> void:
 	update()

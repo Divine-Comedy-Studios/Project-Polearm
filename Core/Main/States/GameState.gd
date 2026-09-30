@@ -37,7 +37,8 @@ func _ready() -> void:
 
 func enter() -> void:
 	super.enter()
-	(scene as Game).enter(_saveSlot)
+	# (scene as Game).enter(_saveSlot)
+	(scene as Game).enter()
 
 func type() -> StringName:
 	return Type.game

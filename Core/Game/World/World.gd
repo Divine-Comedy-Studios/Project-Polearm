@@ -3,7 +3,17 @@ extends GameState
 
 #region Exported variables
 
-@export var STAGE_PATHS : Dictionary[Stage.Type, String] = { }
+@export_group("Stage config")
+@export var STAGE_DATASET : StageDataset = null
+
+#endregion
+
+
+#region Scene members
+
+@export_group("Scene members")
+@export var _enemyManager : EnemyManager = null
+@export var _player : Player = null
 
 #endregion
 
@@ -39,7 +49,7 @@ func _unhandled_input(event : InputEvent) -> void:
 #endregion
 
 
-#region Override functions	
+#region Override functions
 
 func _enter() -> void:
 	if _currentStage == null:
@@ -61,8 +71,8 @@ func available() -> bool:
 			_:
 				var payl : Variant = stateMachine.payload
 				if payl != null:
-					assert(payl is Stage.SaveData, "World._enter(): Payload must contain current level data!")
-					_requestLoadStage(payl as Stage.SaveData)
+					#assert(payl is Stage.SaveData, "World._enter(): Payload must contain current level data!")
+					_requestLoadStage(payl as Stage.Type)
 					return false
 
 	return true
@@ -79,30 +89,41 @@ func nextState() -> StringName:
 
 #region Public functions
 
-func changeStage(stageData : Stage.SaveData) -> void:
-	_clearStageData()
-	_payload = stageData
-	_nextGameState = Type.world # This should bring us to the loading screen and back
+# func changeStage(stageData : Stage.SaveData) -> void:
+#	_clearStageData()
+#	_payload = stageData
+#	_nextGameState = Type.world # This should bring us to the loading screen and back
 
 #endregion
 
 
 #region Private functions
 
-func _clearStageData() -> void:
-	_currentStage.queue_free()
-	_currentStage = null
-	_currentStageResource = null
-	_currentStagePath = String()
+# func _clearStageData() -> void:
+#	_currentStage.queue_free()
+#	_currentStage = null
+#	_currentStageResource = null
+#	_currentStagePath = String()
 
 
-func _requestLoadStage(stageData : Stage.SaveData) -> void:
-	pass
+func _requestLoadStage(stageType : Stage.Type) -> void:
+	_currentStagePath = STAGE_DATASET.DATASET[stageType]
+	var err := ResourceLoader.load_threaded_request(_currentStagePath)
+
+	assert(err == OK, "World._requestLoadStage(): Request to load the stage resource failed!")
 
 func _loadStage() -> void:
-	_currentStage = _currentStageResource.instantiate()
-	add_child(_currentStage)
+	assert( \
+		ResourceLoader.load_threaded_get_status(_currentStagePath) == ResourceLoader.THREAD_LOAD_LOADED, \
+		"World._loadStage(): Scene resource has not finished loading! Please use the World.available() function.")
 
-	# Do something
+	_currentStageResource = ResourceLoader.load_threaded_get(_currentStagePath)
+	_currentStage = _currentStageResource.instantiate()
+
+	# Initialize all world components
+	_enemyManager.init(_currentStage.DATA)
+	_player.spawn(_currentStage.DATA.PLAYER_SPAWN_LOCATION)
+
+	add_child(_currentStage)
 
 #endregion
