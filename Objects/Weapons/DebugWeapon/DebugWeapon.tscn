@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://cqkvrwqakickj"]
 
 [ext_resource type="Script" uid="uid://dfgsdaaqmi0tx" path="res://Objects/Weapons/Weapon.gd" id="1_g6l1u"]
-[ext_resource type="Script" uid="uid://beiorgsa2hjgm" path="res://Common/Collision/Hitbox.gd" id="2_p7km3"]
+[ext_resource type="Script" uid="uid://beiorgsa2hjgm" path="res://Components/Collision/Hitbox.gd" id="2_p7km3"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_be4l1"]
-radius = 0.3
-height = 1.3
+radius = 0.453125
+height = 1.4786133
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1nm4n"]
 
@@ -23,7 +23,7 @@ LAYERS = 67108864
 metadata/_custom_type_script = "uid://beiorgsa2hjgm"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" unique_id=1326221915]
-transform = Transform3D(1, -7.450562e-09, -5.960461e-08, 7.450576e-09, 1, 2.3841841e-07, 5.960461e-08, -2.3841841e-07, 1, 0.014271368, 0.8453922, 0.025232363)
+transform = Transform3D(1, -7.450562e-09, -5.960461e-08, 7.450576e-09, 1, 2.3841841e-07, 5.960461e-08, -2.3841841e-07, 1, 0.014271367, 0.9346989, 0.025232343)
 shape = SubResource("CapsuleShape3D_be4l1")
 debug_color = Color(0, 0.6515532, 0.017827053, 0.41960785)
 
