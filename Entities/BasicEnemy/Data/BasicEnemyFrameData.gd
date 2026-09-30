@@ -1,7 +1,7 @@
 @warning_ignore_start("unused_private_class_variable")
 
 extends EntityFrameData
-class_name AgentFrameData
+class_name BasicEnemyFrameData
 
 
 #region Exported action properties

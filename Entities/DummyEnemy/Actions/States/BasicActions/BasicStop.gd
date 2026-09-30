@@ -9,5 +9,5 @@ class_name DummyEnemyStopAction
 func _implInit() -> void:
 	FRICTION_MULTIPLIER *= GROUNDED_FRICTION
 
-func _tick(delta : float) -> void:
+func _implTick(delta : float) -> void:
 	entity().accelerate(Vector3.ZERO, FRICTION_MULTIPLIER * delta)

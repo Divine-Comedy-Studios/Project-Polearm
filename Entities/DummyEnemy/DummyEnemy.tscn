@@ -11,7 +11,7 @@
 [ext_resource type="Script" uid="uid://bd5gswp5ebsr5" path="res://Entities/DummyEnemy/Animation/Animator.gd" id="6_40644"]
 [ext_resource type="PackedScene" uid="uid://c6ck6empr4lu2" path="res://Assets/3D Models/Characters/YBot/Skeleton.scn" id="6_cha17"]
 [ext_resource type="Script" uid="uid://ccu23drw2muaa" path="res://Entities/DummyEnemy/Data/FrameData.gd" id="6_u50t6"]
-[ext_resource type="Script" uid="uid://c12nkcphob0hm" path="res://Common/Resources/ValueResource.gd" id="7_8uqyy"]
+[ext_resource type="Script" uid="uid://c12nkcphob0hm" path="res://Components/NumericResource/ValueResource.gd" id="7_8uqyy"]
 [ext_resource type="AnimationLibrary" uid="uid://bopwj7ojaqvmn" path="res://Assets/3D Models/Characters/YBot/Animations/Combat.res" id="7_u50t6"]
 [ext_resource type="AnimationLibrary" uid="uid://dfqr4nawpg2vu" path="res://Assets/3D Models/Characters/YBot/Animations/Movement.res" id="8_xf0a4"]
 [ext_resource type="AnimationLibrary" uid="uid://b3cu7qf5ygk0k" path="res://Assets/3D Models/Characters/YBot/Animations/TPose.glb" id="9_4r4fb"]

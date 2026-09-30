@@ -160,7 +160,7 @@ func _nextAction() -> StringName:
 
 
 func _processDirectionAngle() -> float:
-	var flatInput := Vector3(intents().direction.x, 0, intents().direction.y)
+	var flatInput := Vector3(intents().direction.x, 0.0, intents().direction.y)
 	if flatInput.is_zero_approx():
 		return 0.0
 

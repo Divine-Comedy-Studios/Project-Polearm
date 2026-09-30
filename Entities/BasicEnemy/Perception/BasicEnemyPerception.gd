@@ -1,5 +1,5 @@
 extends Node3D
-class_name AgentPerception
+class_name BasicEnemyPerception
 
 
 #region Exported variables
