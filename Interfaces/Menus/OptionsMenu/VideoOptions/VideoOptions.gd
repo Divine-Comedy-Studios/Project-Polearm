@@ -27,19 +27,19 @@ extends InterfaceState
 func _ready() -> void:
 
 	# Initialize Window Mode
-	windowMode.selected = SettingsManager.getInt("video", "window mode")
+	windowMode.selected = Globals.settingsManager.getInt("video", "window mode")
 	windowMode.item_selected.connect(_on_window_mode_selected)
 
 	# Initialize Resolution
-	resolution.selected = SettingsManager.getInt("video", "resolution")
+	resolution.selected = Globals.settingsManager.getInt("video", "resolution")
 	resolution.item_selected.connect(_on_resolution_selected)
 
 	# Initialize Vsync
-	vSynch.button_pressed = SettingsManager.getBool("video", "vsync")
+	vSynch.button_pressed = Globals.settingsManager.getBool("video", "vsync")
 	vSynch.toggled.connect(_on_vsync_toggled)
 
 	# Initialize Gamma Settings
-	gamma.value = SettingsManager.getFloat("video", "gamma")
+	gamma.value = Globals.settingsManager.getFloat("video", "gamma")
 	gamma.value_changed.connect(_on_gamma_value_changed)
 	gammaLabel.text = str(gamma.value)
 
@@ -62,30 +62,30 @@ func nextMenu(inputs : ISMInputManager.Data) -> Type:
 #region Signal functions
 
 func _on_window_mode_selected(index : int) -> void:
-	SettingsManager.setInt("video", "window mode", index)
+	Globals.settingsManager.setInt("video", "window mode", index)
 
 	resolution.disabled = (index == 1) # if Fullscreen then resolution disabled
 
-	SettingsManager.saveSettings()
-	SettingsManager.applyVideoSettings()
+	Globals.settingsManager.saveSettings()
+	Globals.settingsManager.applyVideoSettings()
 
 func _on_resolution_selected(index : int) -> void:
-	SettingsManager.setInt("video", "resolution", index)
+	Globals.settingsManager.setInt("video", "resolution", index)
 
-	SettingsManager.saveSettings()
-	SettingsManager.applyVideoSettings()
+	Globals.settingsManager.saveSettings()
+	Globals.settingsManager.applyVideoSettings()
 
 func _on_vsync_toggled(status : bool) -> void:
-	SettingsManager.setBool("video", "vsync", status)
+	Globals.settingsManager.setBool("video", "vsync", status)
 
-	SettingsManager.saveSettings()
-	SettingsManager.applyGameSettings()
+	Globals.settingsManager.saveSettings()
+	Globals.settingsManager.applyGameSettings()
 
 func _on_gamma_value_changed(value : float) -> void:
-	SettingsManager.setFloat("video", "gamma", value)
+	Globals.settingsManager.setFloat("video", "gamma", value)
 	gammaLabel.text = str(value)
 
-	SettingsManager.saveSettings()
-	SettingsManager.applyVideoSettings()
+	Globals.settingsManager.saveSettings()
+	Globals.settingsManager.applyVideoSettings()
 
 #endregion

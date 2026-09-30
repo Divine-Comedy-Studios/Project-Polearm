@@ -29,25 +29,25 @@ extends InterfaceState
 
 func _ready() -> void:
 	# Initialize Language Settings
-	langSetting.selected = SettingsManager.SUPPORTED_LANGUAGES.find(SettingsManager.getString("game", "language"))
+	langSetting.selected = Globals.settingsManager.SUPPORTED_LANGUAGES.find(Globals.settingsManager.getString("game", "language"))
 	langSetting.item_selected.connect(_on_language_selected)
 
 	# Initialize Camera Sensitivity Settins
-	camSensSetting.value = SettingsManager.getFloat("game", "camera sensitivity")
+	camSensSetting.value = Globals.settingsManager.getFloat("game", "camera sensitivity")
 	camSensSetting.value_changed.connect(_on_sensitivity_changed)
 	camSensLabel.text = str(camSensSetting.value)
 
 	# Initialize Inverse Y Settins
-	yInvSetting.button_pressed = SettingsManager.getBool("game", "invert y")
+	yInvSetting.button_pressed = Globals.settingsManager.getBool("game", "invert y")
 	yInvSetting.toggled.connect(_on_y_inverse_toggled)
 
 	# Initialize Camera Shake Settins
-	camShakeSetting.value = SettingsManager.getFloat("game", "camera shake")
+	camShakeSetting.value = Globals.settingsManager.getFloat("game", "camera shake")
 	camShakeSetting.value_changed.connect(_on_shake_changed)
 	camShakeLabel.text = str(camShakeSetting.value)
 
 	# Initialize Rumble Settins
-	rumSetting.value = SettingsManager.getFloat("game", "rumble")
+	rumSetting.value = Globals.settingsManager.getFloat("game", "rumble")
 	rumSetting.value_changed.connect(_on_rumble_changed)
 	rumLabel.text = str(rumSetting.value)
 
@@ -70,40 +70,40 @@ func nextMenu(inputs : ISMInputManager.Data) -> Type:
 #region Signal functions
 
 func _on_language_selected(index: int) -> void:
-	SettingsManager.setInt("game", "language", index)
+	Globals.settingsManager.setInt("game", "language", index)
 
-	SettingsManager.saveSettings()
-	SettingsManager.applyGameSettings()
+	Globals.settingsManager.saveSettings()
+	Globals.settingsManager.applyGameSettings()
 
 
 func _on_sensitivity_changed(value: float) -> void:
-	SettingsManager.setFloat("game", "camera sensitivity", value)
+	Globals.settingsManager.setFloat("game", "camera sensitivity", value)
 	camSensLabel.text = str(value)
 
-	SettingsManager.saveSettings()
-	SettingsManager.applyGameSettings()
+	Globals.settingsManager.saveSettings()
+	Globals.settingsManager.applyGameSettings()
 
 
 func _on_y_inverse_toggled(status: bool) -> void:
-	SettingsManager.setBool("game", "invert y", status)
+	Globals.settingsManager.setBool("game", "invert y", status)
 
-	SettingsManager.saveSettings()
-	SettingsManager.applyGameSettings()
+	Globals.settingsManager.saveSettings()
+	Globals.settingsManager.applyGameSettings()
 
 
 func _on_shake_changed(value: float) -> void:
-	SettingsManager.setFloat("game", "camera shake", value)
+	Globals.settingsManager.setFloat("game", "camera shake", value)
 	camShakeLabel.text = str(value)
 
-	SettingsManager.saveSettings()
-	SettingsManager.applyGameSettings()
+	Globals.settingsManager.saveSettings()
+	Globals.settingsManager.applyGameSettings()
 
 
 func _on_rumble_changed(value: float) -> void:
-	SettingsManager.setFloat("game", "rumble", value)
+	Globals.settingsManager.setFloat("game", "rumble", value)
 	rumLabel.text = str(value)
 
-	SettingsManager.saveSettings()
-	SettingsManager.applyGameSettings()
+	Globals.settingsManager.saveSettings()
+	Globals.settingsManager.applyGameSettings()
 
 #endregion

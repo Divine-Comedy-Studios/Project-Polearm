@@ -55,7 +55,7 @@ const DEFAULT_SETTINGS : Dictionary[String, Dictionary] = {
 		"rumble" : 1.0,
 	},
 	"video" : {
-		"window mode" : DisplayServer.WINDOW_MODE_FULLSCREEN, ### @todo why not use the godot enum directly?
+		"window mode" : DisplayServer.WINDOW_MODE_FULLSCREEN,
 		"resolution" : Resolution.p1080,
 		"vsync" : true,
 		"gamma" : 1.0,
@@ -193,7 +193,7 @@ const SUPPORTED_LANGUAGES : Array[String] = [
 
 #region Member variables
 
-static var _file : ConfigFile = ConfigFile.new()
+var _file : ConfigFile = ConfigFile.new()
 
 #endregion
 
@@ -201,62 +201,67 @@ static var _file : ConfigFile = ConfigFile.new()
 #region Built-in functions
 
 func _ready() -> void:
+	if Globals.settingsManager != null:
+		push_error("SettingsManager._ready(): SettingsManager has already been initialized once!")
+
+		return
+
+	Globals.settingsManager = self
+
 	var error := _file.load(SETTINGS_PATH)
 	_verifySettings()
-
-	return
 
 #endregion
 
 
 #region Public functions
 
-static func getSectionNames() -> PackedStringArray:
+func getSectionNames() -> PackedStringArray:
 	return _file.get_sections()
 
-static func getSettingNames(section : String) -> PackedStringArray:
+func getSettingNames(section : String) -> PackedStringArray:
 	return _file.get_section_keys(section)
 
 
 # Get setting values
 
-static func getBool(section : String, key : String) -> bool:
+func getBool(section : String, key : String) -> bool:
 	return _file.get_value(section, key) as bool
 
-static func getInt(section : String, key : String) -> int:
+func getInt(section : String, key : String) -> int:
 	return _file.get_value(section, key) as int
 
-static func getFloat(section : String, key : String) -> float:
+func getFloat(section : String, key : String) -> float:
 	return _file.get_value(section, key) as float
 
-static func getString(section : String, key : String) -> String:
+func getString(section : String, key : String) -> String:
 	return _file.get_value(section, key) as String
 
 
-static func setBool(section : String, key : String, value : bool) -> void:
+func setBool(section : String, key : String, value : bool) -> void:
 	_file.set_value(section, key, value)
 
-static func setInt(section : String, key : String, value : int) -> void:
+func setInt(section : String, key : String, value : int) -> void:
 	_file.set_value(section, key, value)
 
-static func setFloat(section : String, key : String, value : float) -> void:
+func setFloat(section : String, key : String, value : float) -> void:
 	_file.set_value(section, key, value)
 
-static func setString(section : String, key : String, value : String) -> void:
+func setString(section : String, key : String, value : String) -> void:
 	_file.set_value(section, key, value)
 
 
 ### @todo Remove configuring axis in the future
-static func getVariant(section : String, key : String) -> Variant:
+func getVariant(section : String, key : String) -> Variant:
 	return _file.get_value(section, key)
 
-static func setVariant(section : String, key : String, value : Variant) -> void:
+func setVariant(section : String, key : String, value : Variant) -> void:
 	_file.set_value(section, key, value)
 
 
 # Apply settings
 
-static func applyGameSettings() -> void:
+func applyGameSettings() -> void:
 	var langCode := getString("game", "language")
 
 	if SUPPORTED_LANGUAGES.find(langCode) != -1:
@@ -266,48 +271,46 @@ static func applyGameSettings() -> void:
 		setString("game", "language", "en")
 
 
-static func applyVideoSettings() -> void:
+func applyVideoSettings() -> void:
 	# Window Mode
 	var windowMode := getInt("video", "window mode")
 
-	if windowMode == DisplayServer.WINDOW_FLAG_BORDERLESS:
+	if windowMode == DisplayServer.WINDOW_FLAG_BORDERLESS: ### @todo this should not work
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 		DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, true)
 	else:
 		DisplayServer.window_set_mode(windowMode)
 		DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
 
+		# Window size
+		if windowMode == DisplayServer.WINDOW_MODE_WINDOWED:
+			match getInt("video", "resolution"):
+				Resolution.ultrawide:
+					get_window().size = Vector2i(2560, 1080)
+				Resolution.p1080:
+					get_window().size = Vector2i(1920, 1080)
+				Resolution.p900:
+					get_window().size = Vector2i(1600, 900)
+				Resolution.p720:
+					get_window().size = Vector2i(1280, 720)
+
+		get_window().move_to_center()
+
 	# VSync
 	DisplayServer.window_set_vsync_mode(
 		DisplayServer.VSYNC_ENABLED if getBool("video", "vsync") else DisplayServer.VSYNC_DISABLED)
 
-
-	### @todo Very unclean, needs urgent fixing
-
-	# Resolution
-	# if video["window mode"] == WindowMode.WINDOWED:
-	# 	var resIndex = video["resolution"]
-	#	var targetRes = Vector2i(1920, 1080)
-	#	match resIndex:
-	#		Resolution.ultrawide: targetRes = Vector2i(2560, 1080)
-	#		Resolution.p1080: targetRes = Vector2i(1920, 1080)
-	#		Resolution.p900: targetRes = Vector2i(1600, 900)
-	#		Resolution.p720: targetRes = Vector2i(1280, 720)
-	#		Resolution.p540: targetRes = Vector2i(960, 540)
-	#	get_window().size = targetRes
-	#	get_window().move_to_center()
-
 	# Gamma
-	# var worldEnv := get_tree().root.find_child("WorldEnvironment", true, false)
-	# worldEnv.environment.adjustment_enabled = true
-	# worldEnv.environment.adjustment_brightness = video["gamma"]
+	var worldEnv := Globals.visuals.environment
+	worldEnv.environment.adjustment_enabled = true
+	worldEnv.environment.adjustment_brightness = getFloat("video", "gamma")
 
 
-static func applyAudioSettings() -> void:
+func applyAudioSettings() -> void:
 	pass
 
 
-static func applyKeyboardSettings() -> void:
+func applyKeyboardSettings() -> void:
 	for actionName : String in _file.get_section_keys("keyboard"):
 		var action := getInt("keyboard", actionName)
 
@@ -326,7 +329,7 @@ static func applyKeyboardSettings() -> void:
 			InputMap.action_add_event(actionName, event)
 
 
-static func applyControllerSettings() -> void:
+func applyControllerSettings() -> void:
 	for actionName : String in _file.get_section_keys("controller"):
 		var actionData := getVariant("controller", actionName) as Dictionary
 
@@ -347,7 +350,7 @@ static func applyControllerSettings() -> void:
 
 
 # File saving
-static func saveSettings() -> void:
+func saveSettings() -> void:
 	_file.save(SETTINGS_PATH)
 
 #endregion
@@ -355,14 +358,14 @@ static func saveSettings() -> void:
 
 #region Private functions
 
-static func _saveDefaultSettings() -> void:
+func _saveDefaultSettings() -> void:
 	for sectionName : String in DEFAULT_SETTINGS.keys():
 		for settingName : String in DEFAULT_SETTINGS[sectionName].keys():
 			_file.set_value(sectionName, settingName, DEFAULT_SETTINGS[sectionName][settingName])
 
 	_file.save(SETTINGS_PATH)
 
-static func _verifySettings() -> void:
+func _verifySettings() -> void:
 	var needsSave := false
 	
 	for section in DEFAULT_SETTINGS.keys():
@@ -389,7 +392,7 @@ static func _verifySettings() -> void:
 		_file.save(SETTINGS_PATH)
 
 
-static func _processDeprecatedSettings(version : int) -> void:
+func _processDeprecatedSettings(version : int) -> void:
 	_saveDefaultSettings() ### @todo Implement a proper version of saving deprecated versions
 
 	_file.save(SETTINGS_PATH)

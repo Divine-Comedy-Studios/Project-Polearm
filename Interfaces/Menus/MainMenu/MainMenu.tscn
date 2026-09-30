@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://b8hqumrxhfvmn"]
 
 [ext_resource type="Script" uid="uid://bhr3tyrv8yy1s" path="res://Interfaces/Menus/MainMenu/MainMenu.gd" id="1_ayaka"]
-[ext_resource type="Script" uid="uid://covgehn0y4vp2" path="res://Core/Settings/SettingsManager.gd" id="2_4b45m"]
 [ext_resource type="PackedScene" uid="uid://c0atl8ffoeq5u" path="res://Interfaces/Menus/MainMenu/MainMenuScreen/MainMenuScreen.tscn" id="2_4mftg"]
 [ext_resource type="Script" uid="uid://7cjw5im7rxvp" path="res://Interfaces/InterfaceStateMachine/InputManager/InputManager.gd" id="2_4sgcv"]
 [ext_resource type="PackedScene" uid="uid://cwwqmgybgoy3v" path="res://Interfaces/Menus/MainMenu/QuitConfirmMenu/QuitConfirmMenu.tscn" id="3_3nt47"]
@@ -20,10 +19,6 @@ process_mode = 3
 script = ExtResource("1_ayaka")
 INITIAL_MENU_TYPE = 2
 metadata/_custom_type_script = "uid://cdmfn0vdjybja"
-
-[node name="SettingsManager" type="Node" parent="." unique_id=212032857]
-script = ExtResource("2_4b45m")
-metadata/_custom_type_script = "uid://covgehn0y4vp2"
 
 [node name="InputManager" type="Node" parent="." unique_id=1112738063]
 script = ExtResource("2_4sgcv")

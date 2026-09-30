@@ -195,7 +195,7 @@ func _updateTexture() -> void:
 		SettingsManager.InputType.controller:
 			section = "controller"
 
-	var inputData := SettingsManager.getVariant(section, ACTION_NAME) as Dictionary
+	var inputData := Globals.settingsManager.getVariant(section, ACTION_NAME) as Dictionary
 	match (inputData["type"] as SettingsManager.InputType):
 		SettingsManager.InputType.keyboard:
 			_icon.texture = KEY_ICONS[inputData["id"] as int]
@@ -234,24 +234,24 @@ func _remap(section : String, type : SettingsManager.InputType, iconTex : Dictio
 	}
 
 	# Swap keys with action assigned to the same input
-	var oldAction := SettingsManager.getVariant(section, ACTION_NAME) as Dictionary
-	for otherActionName in SettingsManager.getSettingNames(section):
+	var oldAction := Globals.settingsManager.getVariant(section, ACTION_NAME) as Dictionary
+	for otherActionName in Globals.settingsManager.getSettingNames(section):
 		if otherActionName == ACTION_NAME:
 			continue
 		
-		var rawInputData = SettingsManager.getVariant(section, otherActionName)
+		var rawInputData = Globals.settingsManager.getVariant(section, otherActionName)
 		if not rawInputData is Dictionary:
 			continue
 
 		var inputData := rawInputData as Dictionary
 		if (inputData["type"] as int) == data["type"] and (inputData["id"] as int) == data["id"]:
-			SettingsManager.setVariant(section, otherActionName, oldAction)
+			Globals.settingsManager.setVariant(section, otherActionName, oldAction)
 
 			break
 
 	# Set settings
-	SettingsManager.setVariant(section, ACTION_NAME, data)
-	SettingsManager.saveSettings()
+	Globals.settingsManager.setVariant(section, ACTION_NAME, data)
+	Globals.settingsManager.saveSettings()
 
 
 # Input mapping implementation

@@ -1,3 +1,4 @@
+extends Node
 class_name SaveUtility
 
 
@@ -33,13 +34,26 @@ const DEBUG_SAVE : Dictionary = {
 #endregion
 
 
+#region Built-in functions
+
+func _ready() -> void:
+	if Globals.saveUtility != null:
+		push_error("SaveUtility._ready(): SaveUtility has already been initialized once!")
+
+		return
+
+	Globals.saveUtility = self
+
+#endregion
+
+
 #region Public funcitons
 
-static func hasSave(slot : int) -> bool:
+func hasSave(slot : int) -> bool:
 	return _getAndVerifyPath(slot) != ""
 
 
-static func loadSave(slot : int) -> Dictionary:
+func loadSave(slot : int) -> Dictionary:
 	if slot == -1:
 		return DEBUG_SAVE.duplicate_deep()
 
@@ -64,7 +78,7 @@ static func loadSave(slot : int) -> Dictionary:
 	return content as Dictionary
 
 
-static func writeSave(data : Dictionary, slot : int) -> bool:
+func writeSave(data : Dictionary, slot : int) -> bool:
 	if not _verifyIntegrity(data):
 		return false
 		
@@ -77,7 +91,7 @@ static func writeSave(data : Dictionary, slot : int) -> bool:
 
 	return file.store_var(data)
 	
-static func clearSave(slot : int) -> void:
+func clearSave(slot : int) -> void:
 	var path := _getAndVerifyPath(slot) as String
 
 	if not path.is_empty():
@@ -88,7 +102,7 @@ static func clearSave(slot : int) -> void:
 
 #region Private functions
 
-static func _getAndVerifyPath(slot: int) -> String:
+func _getAndVerifyPath(slot: int) -> String:
 	var path := SAVE_FILE_BASE_PATH.format(str(slot))
 
 	if not FileAccess.file_exists(path):
@@ -97,7 +111,7 @@ static func _getAndVerifyPath(slot: int) -> String:
 	return path
 
 
-static func _verifyIntegrity(data: Dictionary) -> bool:
+func _verifyIntegrity(data: Dictionary) -> bool:
 	if (
 		not data.has("version") or 
 		data["version"] != SAVE_FILE_VERSION
