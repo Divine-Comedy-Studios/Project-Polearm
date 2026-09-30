@@ -1,6 +1,7 @@
-extends Hurtbox
+@tool extends Hurtbox
 
 @export var characterBody: CharacterBody3D
 
 func recieveHit(hitData: HitboxData) -> void:
-	characterBody.applyForce(hitData.directionalForce)
+	# Optional knockback before dying (useful if kill() plays a death animation)
+	characterBody.takeDamage(hitData.directionalForce)
