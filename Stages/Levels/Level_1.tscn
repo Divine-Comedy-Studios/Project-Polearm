@@ -70,15 +70,12 @@ grow_vertical = 2
 
 [node name="Door" parent="." unique_id=138777467 instance=ExtResource("15_7rmlr")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.221, 0, 0)
-startActive = false
 
 [node name="Door2" parent="." unique_id=1836976244 instance=ExtResource("15_7rmlr")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -51.624763, 0, 0)
-startActive = false
 
 [node name="Door3" parent="." unique_id=1521837106 instance=ExtResource("15_7rmlr")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -86.045, 0, 0)
-startActive = false
 
 [node name="Door4" parent="." unique_id=2105799929 instance=ExtResource("15_7rmlr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -185.58177, -25.585297, 1.9803883)
@@ -87,32 +84,26 @@ size = Vector2(5, 5)
 
 [node name="Door5" parent="." unique_id=591656380 instance=ExtResource("15_7rmlr")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -166.74635, -25.690615, 21.182186)
-startActive = false
 size = Vector2(5, 5)
 
 [node name="Door6" parent="." unique_id=522118361 instance=ExtResource("15_7rmlr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -89.51804, -34.59632, 30.75627)
-startActive = false
 size = Vector2(4, 5)
 
 [node name="Door7" parent="." unique_id=1473322618 instance=ExtResource("15_7rmlr")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -92.43421, -46.52287, 78.443184)
-startActive = false
 size = Vector2(5, 6)
 
 [node name="Door8" parent="." unique_id=26361830 instance=ExtResource("15_7rmlr")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -126.883675, -40.81183, 85.09138)
-startActive = false
 size = Vector2(5, 6)
 
 [node name="Door9" parent="." unique_id=352447820 instance=ExtResource("15_7rmlr")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -153.21762, -40.82873, 85.09138)
-startActive = false
 size = Vector2(5, 6)
 
 [node name="Door10" parent="." unique_id=687259275 instance=ExtResource("15_7rmlr")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -187.61371, -40.81183, 78.391815)
-startActive = false
 size = Vector2(5, 6)
 
 [node name="Door11" parent="." unique_id=1878055503 instance=ExtResource("15_7rmlr")]
