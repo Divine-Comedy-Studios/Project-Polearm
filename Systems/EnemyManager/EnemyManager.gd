@@ -5,27 +5,23 @@ class_name EnemyManager
 #region Enums
 
 enum Role {
-	inactive,
-	dummy,
-
-	fighter,
+	idle,
 	flanker,
-	circler,
+	fighter,
 	ranged,
-	any,
-
-	boss,
 }
 
 #endregion
 
 
-#region Helper classes
+#region Constants
 
-class EnemySpawnData:
-	var transform : Transform3D = Transform3D.IDENTITY
-
-	var role : Role = Role.dummy
+const ROLE_STRENGTH : Array[Role] = [
+	Role.fighter,
+	Role.ranged,
+	Role.flanker,
+	Role.idle,
+]
 
 #endregion
 
@@ -33,14 +29,14 @@ class EnemySpawnData:
 #region Exported variables
 
 @export_group("Combat config")
-@export var FIGHTER_WEIGHT : float = 3.0
+@export var IDLE_WEIGHT : float = 0.0
 @export var FLANKER_WEIGHT : float = 2.0
-@export var CIRCLER_WEIGHT : float = 1.0
-@export var RANGED_WEIGHT : float = 1.5
+@export var FIGHTER_WEIGHT : float = 3.0
+@export var RANGED_WEIGHT : float = 2.0
 @export var ANY_WEIGHT : float = 3.0
 
 @export_group("Enemy spawn config")
-@export var GAME_OBJECT_DATASET : GameObjectDataset = null
+@export var MINIMUM_EMPTY_RADIUS_SQUARED : float = 1.0
 
 #endregion
 
@@ -59,39 +55,63 @@ var _currentEnemyIdx : int = -1
 
 # Enemy management
 
-var _pools : Dictionary[GameObject.Type, GameObjectPool] = { }
+var _activeEnemies : Array[BasicEnemyHandle] = [ ]
 
+# Enemy perception
+
+@onready var _perceptionEngine := $EnemyPerception as EnemyPerception
 
 # Role assignment
 
-var _roleDifficulty : IntegerResource
-var _currentRoles : Dictionary[Role, bool]
+var _roleDifficulty : ValueResource = ValueResource.new()
+var _currentRoles : Dictionary[Role, int] = {
+	Role.idle : 0,
+	Role.flanker : 0,
+	Role.ranged : 0,
+	Role.fighter : 0,
+}
 
 #endregion
 
 
 #region Built-in functions
 
-func _ready() -> void:
-	if Globals.enemyManager != null:
-		push_error("EnemyManager._ready(): EnemyManager has already been initialized once!")
-
-		return
-
-	Globals.enemyManager = self
-
-
 func _physics_process(delta : float) -> void:
-	var enemyCount := 0
+	# Reset current state
 
-	for pool : GameObjectPool in _pools.values():
-		for enemy : GameObject in pool.active.values():
-			enemy.tick(delta) #, _perception.requestData())
+	for role in _currentRoles.keys():
+		_currentRoles[role] = 0 # Pretty sure godot wouldn't pass .values() here by reference, therefore this has to be done
 
-			enemyCount += 1
+	_roleDifficulty.value = 0
+
+	# Collect current information
+	for enemy : BasicEnemyHandle in _activeEnemies:
+		_roleDifficulty.value += _roleWeight(enemy.role())
+		_currentRoles[enemy.role()] += 1
+
+	# Update and spawn enemies
+
+	_perceptionEngine.tick()
 
 	if _currentEncounter:
-		_spawnWaveEnemies(enemyCount)
+		var currentWave := _currentEncounter.WAVES[_currentWaveIdx]
+		for enemy : BasicEnemyHandle in _activeEnemies:
+			enemy.tick(delta,
+				_perceptionEngine.request(
+					enemy.position(),
+					_assignEnemyRole(currentWave.REQUIRED_ROLES, enemy.role(), enemy.availableRoles(), enemy.requestRoleChange())
+				)
+			)
+
+		_spawnWaveEnemies(currentWave)
+	else:
+		for enemy : BasicEnemyHandle in _activeEnemies:
+			enemy.tick(delta,
+				_perceptionEngine.request(
+					enemy.position(),
+					_assignEnemyRole({ }, enemy.role(), enemy.availableRoles(), enemy.requestRoleChange())
+				)
+			)
 
 #endregion
 
@@ -103,6 +123,9 @@ func init(stageData : StageData) -> void:
 
 	var idx := 0
 	for encounter : Encounter in _encounters:
+		if not _validateEncounters(encounter):
+			continue
+
 		var trigger := EncounterTrigger.new(idx, encounter.TRIGGER_REGION)
 		trigger.transform = encounter.TRANSFORM
 
@@ -129,38 +152,27 @@ func beginEncounter(index : int) -> void:
 
 	_nextWave()
 
+
+func register(enemy : BasicEnemyHandle) -> void:
+	_activeEnemies.push_back(enemy)
+
+func unregister(enemy : BasicEnemyHandle) -> void:
+	_activeEnemies.erase(enemy)
+
 #endregion
 
 
 #region Private functions
 
-func _spawnEnemy(type : GameObject.Type, transform : Transform3D) -> void:
-	if not _pools.has(type):
-		var pool := GameObjectPool.new(type, GAME_OBJECT_DATASET)
-		_pools[type] = pool
-		add_child(pool)
-	
-	var spawnData := EnemySpawnData.new()
-	spawnData.role = _assignEnemyRole()
-	spawnData.transform = transform
+# Encounter functionality
 
-	_pools[type].spawn(spawnData)
+func _validateEncounters(encounter : Encounter) -> bool:
+	if encounter.SPAWN_POINTS.is_empty():
+		assert(false, "EnemyManager._findSpawnPosition(): Encounter has no spawn points!")
 
+		return false
 
-func _spawnWaveEnemies(currentEnemyCount : int) -> void:
-	var currentWave := _currentEncounter.WAVES[_currentWaveIdx]
-
-	while _currentEnemyIdx < currentWave.ENEMIES.size() and currentEnemyCount < currentWave.MAX_ENEMY_COUNT:
-		_spawnEnemy(
-			currentWave.ENEMIES[_currentEnemyIdx],
-			currentWave.ENEMY_POSITIONS.get(_currentEnemyIdx, Vector3.ZERO) if currentWave.ENEMY_POSITIONS.has(_currentEnemyIdx) else _findSpawnPosition()
-		)
-
-		_currentEnemyIdx += 1
-		currentEnemyCount += 1
-
-	if _currentEnemyIdx == currentWave.ENEMIES.size() and currentEnemyCount == 0:
-		_nextWave()
+	return true
 
 
 func _endEncounter() -> void:
@@ -187,14 +199,135 @@ func _nextWave() -> void:
 
 		return
 
+	_roleDifficulty.maxValue = _currentEncounter.WAVES[_currentWaveIdx].MAX_ROLE_DIFFICULTY
+
 	_currentEnemyIdx = 0
 
 
-func _findSpawnPosition() -> Transform3D:
-	return Transform3D.IDENTITY
+# Enemy spawning
+
+func _spawnWaveEnemies(currentWave : Wave) -> void:
+	# Only spawn one enemy per frame instead of multiple to avoid spawn point overlapping
+	if _currentEnemyIdx < currentWave.ENEMIES.size() and _activeEnemies.size() < currentWave.MAX_ENEMY_COUNT:
+		if currentWave.ENEMY_POSITIONS.has(_currentEnemyIdx):
+			var transform := Transform3D()
+			transform.origin = currentWave.ENEMY_POSITIONS.get(_currentEnemyIdx, Vector3.ZERO)
+
+			Globals.world.gameObjectManager.spawn(
+				currentWave.ENEMIES[_currentEnemyIdx],
+				transform
+			)
+		else:
+			var spawnPos := _findSpawnPosition()
+			if not spawnPos[0] as bool:
+				return # The last condition will not have changed from the last time the code was there, therefore we can return
+
+			Globals.world.gameObjectManager.spawn(
+				currentWave.ENEMIES[_currentEnemyIdx],
+				spawnPos[1] as Transform3D
+			)
+
+		_currentEnemyIdx += 1
+
+	if _currentEnemyIdx == currentWave.ENEMIES.size() and _activeEnemies.size() == 0:
+		_nextWave()
 
 
-func _assignEnemyRole() -> Role:
-	return Role.inactive
+func _findSpawnPosition() -> Array: # [bool, Transform3D]
+	var size := _currentEncounter.SPAWN_POINTS.size()
+
+	var entities := get_tree().get_nodes_in_group("Entities")
+
+	var startIdx := randi() % _currentEncounter.SPAWN_POINTS.size()
+
+	for i : int in size:
+		var pos := _currentEncounter.SPAWN_POINTS[(startIdx + i) % size]
+
+		var nearestSq := INF
+		for entity : Node3D in entities:
+			nearestSq = minf(nearestSq, pos.distance_squared_to(entity.global_position))
+
+		if nearestSq >= MINIMUM_EMPTY_RADIUS_SQUARED:
+			return [true, Transform3D(Basis.IDENTITY, pos)]
+
+	return [false, Transform3D.IDENTITY]
+
+
+# Role assignment
+
+func _assignEnemyRole(requiredRoles : Dictionary[EnemyManager.Role, int], currentRole : Role, availableRoles : Array[Role], requestsRoleChange : bool) -> Role:
+	# Pretend enemy is not currently registered
+
+	_roleDifficulty.value -= _roleWeight(currentRole)
+	_currentRoles[currentRole] -= 1
+
+	var newRole := _pickEnemyRole(
+		requiredRoles, 
+		currentRole,
+		availableRoles,
+		requestsRoleChange,
+		_roleDifficulty.maxValue - _roleDifficulty.value # Available role points if the enemy was not registered
+	)
+
+	_currentRoles[newRole] += 1
+	if newRole != currentRole:
+		_roleDifficulty.value += _roleWeight(newRole)
+
+	return newRole
+
+
+func _pickEnemyRole(requiredRoles : Dictionary[EnemyManager.Role, int], currentRole : Role, availableRoles : Array[Role], requestsRoleChange : bool, budget : float) -> Role:
+	if _activeEnemies.size() == 1: # The last enemy is always aggressive, so it takes the strongest role it can
+		for role : Role in ROLE_STRENGTH:
+			if availableRoles.has(role):
+				return role
+
+	if requestsRoleChange: # Code looks uglier this way but avoids checking this everywhere
+		for role : Role in ROLE_STRENGTH:
+			if (role != currentRole
+				and availableRoles.has(role)
+				and _currentRoles.get(role, 0) < requiredRoles.get(role, 0) # Fill required roles
+				and _roleWeight(role) <= budget
+			):
+				return role
+
+		for role : Role in ROLE_STRENGTH: # Take strongest role
+			if (role != currentRole
+				and availableRoles.has(role)
+				and _roleWeight(role) <= budget
+			):
+				return role
+	else:
+		if _currentRoles.get(currentRole, 0) < requiredRoles.get(currentRole, 0): # Stay in current role
+			return currentRole
+
+		for role : Role in ROLE_STRENGTH:
+			if (availableRoles.has(role)
+				and _currentRoles.get(role, 0) < requiredRoles.get(role, 0) # Fill required roles
+				and _roleWeight(role) <= budget
+			):
+				return role
+
+		for role : Role in ROLE_STRENGTH:
+			if availableRoles.has(role) and _roleWeight(role) <= budget: # Take strongest role
+				return role
+
+	return Role.idle
+
+
+func _roleWeight(role : Role) -> float:
+	match role:
+		Role.idle:
+			return IDLE_WEIGHT
+		Role.flanker:
+			return FLANKER_WEIGHT
+		Role.fighter: # Ranged has the same value
+			return FIGHTER_WEIGHT
+		Role.ranged:
+			return RANGED_WEIGHT
+		_:
+			assert(false, "EnemyManager._roleWeight(): Invalid role!")
+
+	return 0.0
 
 #endregion
