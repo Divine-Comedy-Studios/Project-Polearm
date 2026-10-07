@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://2v10i2wwq4q7"]
 
 [ext_resource type="PackedScene" uid="uid://2twxnnq3mj7i" path="res://Common/Camera/SceneCamera/SceneCamera.tscn" id="1_afw32"]
-[ext_resource type="Script" uid="uid://dp2bqemlqh7cw" path="res://Stages/Test/mesh_instance_3d.gd" id="2_1157w"]
-[ext_resource type="PackedScene" uid="uid://cw0odb4ptjf2p" path="res://Interfaces/ValueBar/ValueBarFloating/ValueBarFloating.tscn" id="3_f7i5q"]
+[ext_resource type="Script" path="res://Stages/Test/mesh_instance_3d.gd" id="2_1157w"]
+[ext_resource type="PackedScene" uid="uid://cw0odb4ptjf2p" path="res://Components/ValueBar/ValueBarFloating/ValueBarFloating.tscn" id="3_f7i5q"]
 [ext_resource type="Texture2D" uid="uid://ctdbykm11ffsx" path="res://icon.svg" id="5_w8bdg"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_6vbmq"]
