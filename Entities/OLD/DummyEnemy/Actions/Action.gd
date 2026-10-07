@@ -84,7 +84,7 @@ class Type:
 	const damage := EntityAction.Type.damage
 
 	# u ded lmao skill issue
-	const death := &"dead"
+	const death := &"death"
 
 	#endregion
 
@@ -156,7 +156,7 @@ func _exit() -> void:
 
 
 func _nextAction() -> StringName:
-	return _implNextAction(_highestPriorityAction())
+	return _implNextAction(_highestPriorityAction(intents().actions))
 
 
 func _processDirectionAngle() -> float:
@@ -200,27 +200,6 @@ func combatManager() -> EntityCombatManager:
 
 
 #region Private functions
-
-# Gets the highest priority action from the current input
-func _highestPriorityAction() -> StringName:
-	var candidate := Type.none
-
-	# Go through all higher priority actions and immediately return them if possible as they can cancel the current action
-	for actionType : StringName in intents().actions:
-		var action := _context.action(actionType) as DummyEnemyAction
-		var viability := actionViability(action) # 0 == unviable, -1 == same action, 1 == possibly viable
-
-		# These checks here occur due to a tiebreaker when there are multiple actions with the same priority
-		if viability == 1:
-			if action.PRIORITY != PRIORITY:
-				return actionType if candidate == Type.none else candidate
-
-			candidate = actionType
-		elif viability == -1: # If the same action has been found, then stay in this action. This is the purpose of the tiebreaker
-			return Type.none
-
-	return Type.none
-
 
 # Convenient function to setup the animation for states which only use the basic animation
 func _animationSetupBasic() -> void:

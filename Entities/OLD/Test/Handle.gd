@@ -9,6 +9,4 @@ func _initImpl() -> void:
 func spawn(payload : Variant) -> void:
 	assert(payload is EnemyManager.EnemySpawnData, "Handle.gd for CubeEnemy: Wrong spawn data type!")
 
-	var transform := Transform3D.IDENTITY
-	
-	(object as CubeEnemy).spawn(transform.translated(Vector3(0, 10, 0)))
+	(object as CubeEnemy).spawn((payload as EnemyManager.EnemySpawnData).transform)

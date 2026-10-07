@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://cnscflg223l5o"]
 
-[ext_resource type="Script" uid="uid://crfpxotq31403" path="res://Entities/DummyEnemy/Actions/ActionManager.gd" id="1_hb2yg"]
-[ext_resource type="Script" uid="uid://dvu1opg3lyceb" path="res://Entities/DummyEnemy/Actions/States/BasicActions/BasicStop.gd" id="2_cpe3l"]
+[ext_resource type="Script" uid="uid://crfpxotq31403" path="res://Entities/OLD/DummyEnemy/Actions/ActionManager.gd" id="1_hb2yg"]
+[ext_resource type="Script" uid="uid://dvu1opg3lyceb" path="res://Entities/OLD/DummyEnemy/Actions/States/BasicActions/BasicStop.gd" id="2_cpe3l"]
 [ext_resource type="Script" uid="uid://d1f6s1sq7da14" path="res://Entities/Entity/Data/EntityActionData.gd" id="3_caw1e"]
 [ext_resource type="Script" uid="uid://b3wwa50s76wq" path="res://Entities/Entity/Combat/EntityCombatManager.gd" id="4_giebb"]
-[ext_resource type="Script" uid="uid://w820yuh6j72j" path="res://Entities/DummyEnemy/Actions/States/Damage.gd" id="5_yu86k"]
+[ext_resource type="Script" uid="uid://w820yuh6j72j" path="res://Entities/OLD/DummyEnemy/Actions/States/Damage.gd" id="5_yu86k"]
 
 [sub_resource type="Resource" id="Resource_giebb"]
 script = ExtResource("3_caw1e")

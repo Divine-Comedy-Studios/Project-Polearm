@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://cvva3f7g876am"]
 
-[ext_resource type="Script" uid="uid://d2ls2lrq0bwfk" path="res://Entities/Test/CubeEnemy.gd" id="1_te3xu"]
-[ext_resource type="Script" uid="uid://cx8o3jdxc7uny" path="res://Entities/Test/Hurtbox.gd" id="2_0lttu"]
-[ext_resource type="Script" uid="uid://dc44eqb5ecp6j" path="res://Entities/Test/Body.gd" id="2_r8skx"]
+[ext_resource type="Script" uid="uid://d2ls2lrq0bwfk" path="res://Entities/OLD/Test/CubeEnemy.gd" id="1_te3xu"]
+[ext_resource type="Script" uid="uid://cx8o3jdxc7uny" path="res://Entities/OLD/Test/Hurtbox.gd" id="2_0lttu"]
+[ext_resource type="Script" uid="uid://dc44eqb5ecp6j" path="res://Entities/OLD/Test/Body.gd" id="2_r8skx"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_y445v"]
 
@@ -14,8 +14,8 @@
 script = ExtResource("1_te3xu")
 metadata/_custom_type_script = "uid://d2ls2lrq0bwfk"
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=1975234684 node_paths=PackedStringArray("enemy")]
-collision_mask = 32768
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=1975234684 node_paths=PackedStringArray("enemy") groups=["Entity"]]
+collision_mask = 32769
 script = ExtResource("2_r8skx")
 enemy = NodePath("..")
 
