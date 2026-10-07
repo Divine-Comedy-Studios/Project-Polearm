@@ -3,8 +3,8 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ch6p0eee6ak1e"
-path.s3tc="res://.godot/imported/texture_01.png-fc47d0c648a81980255ebd285918cee1.s3tc.ctex"
-path.etc2="res://.godot/imported/texture_01.png-fc47d0c648a81980255ebd285918cee1.etc2.ctex"
+path.s3tc="res://.godot/imported/texture_01.png-36bd2bbfd6ece2c9a8c7d0e3cc158d06.s3tc.ctex"
+path.etc2="res://.godot/imported/texture_01.png-36bd2bbfd6ece2c9a8c7d0e3cc158d06.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://Trenchbroom/textures/Greybox Textures/PNG/Light/texture_01.png"
-dest_files=["res://.godot/imported/texture_01.png-fc47d0c648a81980255ebd285918cee1.s3tc.ctex", "res://.godot/imported/texture_01.png-fc47d0c648a81980255ebd285918cee1.etc2.ctex"]
+source_file="res://Trenchbroom/Textures/Greybox Textures/PNG/Light/texture_01.png"
+dest_files=["res://.godot/imported/texture_01.png-36bd2bbfd6ece2c9a8c7d0e3cc158d06.s3tc.ctex", "res://.godot/imported/texture_01.png-36bd2bbfd6ece2c9a8c7d0e3cc158d06.etc2.ctex"]
 
 [params]
 

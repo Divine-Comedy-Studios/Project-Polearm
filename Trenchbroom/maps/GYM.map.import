@@ -3,12 +3,12 @@
 importer="func_godot.map"
 type="Resource"
 uid="uid://bxogaox4se41t"
-path="res://.godot/imported/GYM.map-0e3ffa4a894e857763c370f2d5046480.tres"
+path="res://.godot/imported/GYM.map-08f8c037881c89c467cca00846cf811d.tres"
 
 [deps]
 
-source_file="res://Trenchbroom/maps/GYM.map"
-dest_files=["res://.godot/imported/GYM.map-0e3ffa4a894e857763c370f2d5046480.tres"]
+source_file="res://Trenchbroom/Maps/GYM.map"
+dest_files=["res://.godot/imported/GYM.map-08f8c037881c89c467cca00846cf811d.tres"]
 
 [params]
 

@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://cuil4napnurd2"]
+
+[ext_resource type="Script" uid="uid://ba2rlvifwi81e" path="res://Objects/Door/Door.gd" id="1_do24k"]
+
+[node name="Door" type="StaticBody3D" unique_id=799439371]
+script = ExtResource("1_do24k")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=929216953]
+
+[node name="Field" type="MeshInstance3D" parent="." unique_id=380605363]
+cast_shadow = 0
+
+[node name="Light" type="OmniLight3D" parent="." unique_id=1288587588]
+light_color = Color(0.2, 0.7, 1, 1)
+omni_range = 6.0

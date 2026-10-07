@@ -3,12 +3,12 @@
 importer="func_godot.map"
 type="Resource"
 uid="uid://cg5jo3bkvdeh3"
-path="res://.godot/imported/Museum.5.map-628e4ba1c5802288f75629311746219e.tres"
+path="res://.godot/imported/Museum.5.map-749ed2c74a5cfcae11d845884a2f4b94.tres"
 
 [deps]
 
-source_file="res://Trenchbroom/maps/autosave/Museum.5.map"
-dest_files=["res://.godot/imported/Museum.5.map-628e4ba1c5802288f75629311746219e.tres"]
+source_file="res://Trenchbroom/Maps/autosave/Museum.5.map"
+dest_files=["res://.godot/imported/Museum.5.map-749ed2c74a5cfcae11d845884a2f4b94.tres"]
 
 [params]
 
