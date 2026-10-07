@@ -10,7 +10,7 @@ static var settingsManager : SettingsManager = null
 
 # Game state
 
-static var enemyManager : EnemyManager = null
+static var world : World = null
 
 # Visuals
 

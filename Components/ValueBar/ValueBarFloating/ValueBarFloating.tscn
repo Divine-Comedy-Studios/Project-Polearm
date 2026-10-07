@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://cw0odb4ptjf2p"]
+
+[ext_resource type="Texture2D" uid="uid://b0nj0qib5h30v" path="res://Assets/Textures/Healthbar/DefaultUnder.png" id="1_vxpqq"]
+[ext_resource type="Texture2D" uid="uid://civ4me10g6qei" path="res://Assets/Textures/Healthbar/DefaultProgress.png" id="2_08g3m"]
+[ext_resource type="Script" path="res://Common/ValueBar/ValueBarFloating/ValueBarFloating.gd" id="2_tj6tc"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_tj6tc"]
+viewport_path = NodePath("3D")
+
+[sub_resource type="Gradient" id="Gradient_v61y0"]
+offsets = PackedFloat32Array(0, 0.5769231, 1)
+colors = PackedColorArray(1, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v61y0"]
+
+[node name="ValueBarFloating" type="Sprite3D" unique_id=937509818]
+billboard = 1
+texture_filter = 0
+texture = SubResource("ViewportTexture_tj6tc")
+script = ExtResource("2_tj6tc")
+VALUE_TEXTURE = ExtResource("2_08g3m")
+CHANGE_TEXTURE = ExtResource("2_08g3m")
+BACKGROUND_TEXTURE = ExtResource("1_vxpqq")
+PROGRESS_GRADIENT = SubResource("Gradient_v61y0")
+
+[node name="3D" type="SubViewport" parent="." unique_id=219752742]
+transparent_bg = true
+size = Vector2i(200, 12)
+
+[node name="Panel" type="Panel" parent="3D" unique_id=267444009]
+texture_filter = 1
+offset_right = 200.0
+offset_bottom = 12.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxEmpty_v61y0")
+
+[node name="ChangeBar" type="TextureProgressBar" parent="3D/Panel" unique_id=224661606]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+value = 50.0
+nine_patch_stretch = true
+stretch_margin_left = 6
+stretch_margin_top = 6
+stretch_margin_right = 6
+stretch_margin_bottom = 6
+texture_under = ExtResource("1_vxpqq")
+texture_progress = ExtResource("2_08g3m")
+
+[node name="ValueBar" type="TextureProgressBar" parent="3D/Panel" unique_id=1285157533]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+nine_patch_stretch = true
+stretch_margin_left = 6
+stretch_margin_top = 6
+stretch_margin_right = 6
+stretch_margin_bottom = 6
+texture_progress = ExtResource("2_08g3m")
+
+[node name="Timer" type="Timer" parent="." unique_id=1692037549]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_onTimeout"]

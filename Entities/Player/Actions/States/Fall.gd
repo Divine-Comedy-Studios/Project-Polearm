@@ -3,15 +3,26 @@ extends BasicAerialMovement
 
 #region Exported variables
 
-@export_group("Gravity settings")
-@export var FALL_GRAVITY : float = 80.0
-@export var FLOATING_TERMINAL_VELOCITY : float = 2.0
-@export var TERMINAL_VELOCITY : float = 30.0
+# @export_group("Gravity settings")
+# @export var FLOATING_TERMINAL_VELOCITY : float = 2.0
+
+#endregion
+
+
+#region Member variables
+
+var _gravity : float = 0.0
+var _terminalVelocity : float = 0.0
 
 #endregion
 
 
 #region Override functions
+
+func _implInit() -> void:
+	_gravity = physics().GRAVITY
+	_terminalVelocity = physics().TERMINAL_VELOCITY
+
 
 func _implEnter() -> void:
 	_animationSetupBasic()
@@ -21,7 +32,7 @@ func _implExit() -> void:
 
 
 func _implTick(delta : float) -> void:
-	var terminalVel := TERMINAL_VELOCITY
+	# var terminalVel := _terminalVelocity
 
 	#if inputs().modifiers.has(Type.jump): # Check if player is floating
 	#	terminalVel = FLOATING_TERMINAL_VELOCITY
@@ -33,7 +44,7 @@ func _implTick(delta : float) -> void:
 		context().pushActionQueue(Type.ledgeGrab)
 
 	moveAerial(delta)
-	player().accelerateVertical(-terminalVel, FALL_GRAVITY * delta)
+	player().accelerateVertical(-_terminalVelocity, _gravity * delta)
 
 
 func _implNextAction(next : StringName) -> StringName:

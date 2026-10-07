@@ -22,6 +22,6 @@ func _init(index : int, region : Shape3D) -> void:
 func trigger(node : Node3D) -> void:
 	if node.is_in_group("Player"):
 		disable()
-		Globals.enemyManager.beginEncounter(_index)
+		Globals.world.enemyManager.beginEncounter(_index)
 
 #endregion

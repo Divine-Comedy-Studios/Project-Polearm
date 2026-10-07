@@ -1,0 +1,25 @@
+[gd_resource type="AnimationNodeBlendTree" format=3 uid="uid://dwhg68g5b8p6a"]
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_n4rct"]
+input_0/name = "state_0"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "state_1"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_n4rct"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_63qqa"]
+
+[resource]
+graph_offset = Vector2(-556.9922, 90.487976)
+nodes/BasicTransition/node = SubResource("AnimationNodeTransition_n4rct")
+nodes/BasicTransition/position = Vector2(57.471264, 126.43678)
+nodes/BasicTransitionAnim1/node = SubResource("AnimationNodeAnimation_n4rct")
+nodes/BasicTransitionAnim1/position = Vector2(-206.89655, 57.471264)
+nodes/BasicTransitionAnim2/node = SubResource("AnimationNodeAnimation_63qqa")
+nodes/BasicTransitionAnim2/position = Vector2(-206.89655, 241.3793)
+node_connections = [&"output", 0, &"BasicTransition", &"BasicTransition", 0, &"BasicTransitionAnim1", &"BasicTransition", 1, &"BasicTransitionAnim2"]

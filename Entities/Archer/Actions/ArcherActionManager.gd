@@ -1,0 +1,2 @@
+extends BasicEnemyActionManager
+class_name ArcherActionManager

@@ -21,11 +21,12 @@ var active : Dictionary[int, GameObject] = { }
 #region Built-in functions
 
 func _init(type : GameObject.Type, dataset : GameObjectDataset) -> void:
-	assert(dataset != null, "GameObjectPool._init(): GAME_OBJECT_DATASET not set!")
-	assert(dataset.DATASET.has(type), "GameObjectPool._init(): GAME_OBJECT_DATASET does not contain an entry for the given entity type!")
+	assert(dataset != null, "GameObjectPool._init(): Game object dataset not set!")
+	assert(dataset.DATASET.has(type), "GameObjectPool._init(): Game object dataset missing entry for requested entity type!")
+
+	HandleType = load(dataset.DATASET[type].HANDLE_SCRIPT_PATH)
 
 	TYPE = type
-	HandleType = load(dataset.DATASET[type].HANDLE_SCRIPT_PATH)
 	_scenePath = dataset.DATASET[TYPE].SCENE_PATH
 
 	_loadScene()
@@ -42,7 +43,7 @@ func spawn(payload : Variant) -> void:
 
 	if _pooled.is_empty():
 		object = HandleType.new(_scene.instantiate(), self)
-		assert(object is GameObject, "GameObjectPool.spawn(): Handle Type passed from GAME_OBJECT_DATASET does not inherit GameObject")
+		assert(object is GameObject, "GameObjectPool.spawn(): Scene mapped to type in Game object dataset does not inherit from GameObject!")
 
 		active[object.entityID()] = object
 	else:
@@ -50,9 +51,9 @@ func spawn(payload : Variant) -> void:
 		_pooled.pop_back()
 		active[object.entityID()] = object
 
-	object.spawn(payload)
-
 	add_child(object.object)
+
+	object.spawn(payload)
 
 
 func clear() -> void:

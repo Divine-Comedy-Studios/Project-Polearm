@@ -58,16 +58,28 @@ func takeDamage(hitData : HitboxData) -> void:
 	health.value -= hitData.DAMAGE
 
 	actionManager.interrupt(EntityAction.Type.damage)
-	_implTakeDamage(hitData)
+	actionManager.payload = hitData
+
+	_takeDamage(hitData)
 
 
 func payable(action : EntityAction) -> bool:
-	return action.ENERGY_COST <= energy.value and _implPayable(action)
+	return action.ENERGY_COST <= energy.value and _payable(action)
 
 func pay(action : EntityAction) -> void:
 	energy.value -= action.ENERGY_COST
 
-	_implPay(action)
+	_pay(action)
+
+
+func reset() -> void:
+	health.reset_state()
+	energy.reset_state()
+	superArmor.reset_state()
+
+	_superArmorWaitTime = 0.0
+
+	_reset()
 
 #endregion
 
@@ -75,16 +87,20 @@ func pay(action : EntityAction) -> void:
 #region Implementation functions
 
 @warning_ignore("unused_parameter")
-func _implTakeDamage(hitData : HitboxData) -> void:
+func _takeDamage(hitData : HitboxData) -> void:
 	pass
 
 
 @warning_ignore("unused_parameter")
-func _implPayable(action : EntityAction) -> bool:
+func _payable(action : EntityAction) -> bool:
 	return true
 
 @warning_ignore("unused_parameter")
-func _implPay(action : EntityAction) -> void:
+func _pay(action : EntityAction) -> void:
+	pass
+
+
+func _reset() -> void:
 	pass
 
 #endregion

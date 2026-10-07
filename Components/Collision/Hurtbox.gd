@@ -30,10 +30,10 @@ func _ready() -> void:
 #region Public functions
 
 func enable() -> void:
-	monitorable = true
+	set_deferred("monitorable", true)
 
 func disable() -> void:
-	monitorable = false
+	set_deferred("monitorable", false)
 
 func enabled() -> bool:
 	return monitorable

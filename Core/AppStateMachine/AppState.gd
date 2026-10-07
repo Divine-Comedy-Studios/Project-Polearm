@@ -16,7 +16,7 @@ class Type:
 
 	const stageSelect := &"select"
 	const world := &"world"
-	const death := &"death"
+	const gameOver := &"gameOver"
 	const paused := &"paused"
 
 #endregion

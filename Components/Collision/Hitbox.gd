@@ -17,7 +17,8 @@ class_name Hitbox
 
 #region Member variables
 
-var _data : HitboxData = null
+@export_group("DEBUG")
+@export var _data : HitboxData = null
 
 var _excluded : Array[Hurtbox] = [ ]
 

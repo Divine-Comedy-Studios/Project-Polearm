@@ -1,0 +1,2 @@
+extends EntityResources
+class_name BasicEnemyResources

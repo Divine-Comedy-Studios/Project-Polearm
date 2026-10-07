@@ -1,0 +1,129 @@
+[gd_resource type="AnimationNodeBlendTree" format=3 uid="uid://dlfjhuts13dnj"]
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_uw7o4"]
+input_0/name = "Move"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_samso"]
+input_0/name = "state_0"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "state_1"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_samso"]
+animation = &"Movement/Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hl213"]
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_pn1qb"]
+input_0/name = "state_0"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "state_1"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_hl213"]
+sync = true
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_e34i1"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5m37j"]
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_hl213"]
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_samso"]
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_v1w87"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pn1qb"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_v1w87"]
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_pn1qb"]
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_v1w87"]
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_gallu"]
+input_0/name = "BasicTransition"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "AdvancedTransition"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+input_2/name = "BlendTransition"
+input_2/auto_advance = false
+input_2/break_loop_at_end = false
+input_2/reset = true
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_uw7o4"]
+
+[sub_resource type="AnimationNodeBlend3" id="AnimationNodeBlend3_5m37j"]
+sync = true
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vcmon"]
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_uw7o4"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gallu"]
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_gallu"]
+
+[resource]
+graph_offset = Vector2(-253.21796, 82.40231)
+nodes/output/position = Vector2(1563.2184, 563.2184)
+nodes/Idle/node = SubResource("AnimationNodeAnimation_uw7o4")
+nodes/Idle/position = Vector2(-540.22986, 793.10345)
+nodes/CoreTransition/node = SubResource("AnimationNodeTransition_gallu")
+nodes/CoreTransition/position = Vector2(1264.3678, 839.08044)
+nodes/Walk/node = SubResource("AnimationNodeAnimation_gallu")
+nodes/Walk/position = Vector2(-712.6437, 977.0115)
+nodes/BasicTransitionAnim2/node = SubResource("AnimationNodeAnimation_hl213")
+nodes/BasicTransitionAnim2/position = Vector2(586.2069, 471.26437)
+nodes/BasicTransitionAnim1/node = SubResource("AnimationNodeAnimation_samso")
+nodes/BasicTransitionAnim1/position = Vector2(586.2069, 252.87357)
+nodes/Move/node = SubResource("AnimationNodeBlend3_5m37j")
+nodes/Move/position = Vector2(-310.34482, 908.04596)
+nodes/BlendTransitionDriver1Anim2/node = SubResource("AnimationNodeAnimation_5m37j")
+nodes/BlendTransitionDriver1Anim2/position = Vector2(137.93103, 1229.885)
+nodes/Run/node = SubResource("AnimationNodeAnimation_vcmon")
+nodes/Run/position = Vector2(-712.6437, 1183.9081)
+nodes/AdvancedTransition/node = SubResource("AnimationNodeTransition_uw7o4")
+nodes/AdvancedTransition/position = Vector2(-126.43678, 896.5517)
+nodes/BlendTransitionDriver1/node = SubResource("AnimationNodeBlend2_hl213")
+nodes/BlendTransitionDriver1/position = Vector2(758.62067, 1091.954)
+nodes/BlendTransitionDriver1Anim1/node = SubResource("AnimationNodeAnimation_e34i1")
+nodes/BlendTransitionDriver1Anim1/position = Vector2(137.93103, 1022.9885)
+nodes/BasicTransition/node = SubResource("AnimationNodeTransition_samso")
+nodes/BasicTransition/position = Vector2(873.56323, 321.83908)
+nodes/RunScale/node = SubResource("AnimationNodeTimeScale_uw7o4")
+nodes/RunScale/position = Vector2(-540.22986, 1183.9081)
+nodes/WalkScale/node = SubResource("AnimationNodeTimeScale_gallu")
+nodes/WalkScale/position = Vector2(-528.73566, 988.50574)
+nodes/BlendTransitionDriver1Scale1/node = SubResource("AnimationNodeTimeScale_hl213")
+nodes/BlendTransitionDriver1Scale1/position = Vector2(448.27585, 1022.9885)
+nodes/BlendTransitionDriver1Scale2/node = SubResource("AnimationNodeTimeScale_samso")
+nodes/BlendTransitionDriver1Scale2/position = Vector2(459.7701, 1229.885)
+nodes/BlendTransition/node = SubResource("AnimationNodeTransition_pn1qb")
+nodes/BlendTransition/position = Vector2(1080.4597, 1022.9885)
+nodes/BlendTransitionDriver2Scale1/node = SubResource("AnimationNodeTimeScale_pn1qb")
+nodes/BlendTransitionDriver2Scale1/position = Vector2(471.26437, 1436.7816)
+nodes/BlendTransitionDriver2/node = SubResource("AnimationNodeBlend2_v1w87")
+nodes/BlendTransitionDriver2/position = Vector2(770.1149, 1482.7587)
+nodes/BlendTransitionDriver2Scale2/node = SubResource("AnimationNodeTimeScale_v1w87")
+nodes/BlendTransitionDriver2Scale2/position = Vector2(471.26437, 1620.6897)
+nodes/BlendTransitionDriver2Anim1/node = SubResource("AnimationNodeAnimation_pn1qb")
+nodes/BlendTransitionDriver2Anim1/position = Vector2(137.93103, 1448.2759)
+nodes/BlendTransitionDriver2Anim2/node = SubResource("AnimationNodeAnimation_v1w87")
+nodes/BlendTransitionDriver2Anim2/position = Vector2(149.4253, 1632.184)
+node_connections = [&"output", 0, &"CoreTransition", &"CoreTransition", 0, &"BasicTransition", &"CoreTransition", 1, &"AdvancedTransition", &"CoreTransition", 2, &"BlendTransition", &"Move", 0, &"Idle", &"Move", 1, &"WalkScale", &"Move", 2, &"RunScale", &"AdvancedTransition", 0, &"Move", &"BlendTransitionDriver1", 0, &"BlendTransitionDriver1Scale1", &"BlendTransitionDriver1", 1, &"BlendTransitionDriver1Scale2", &"BasicTransition", 0, &"BasicTransitionAnim1", &"BasicTransition", 1, &"BasicTransitionAnim2", &"RunScale", 0, &"Run", &"WalkScale", 0, &"Walk", &"BlendTransitionDriver1Scale1", 0, &"BlendTransitionDriver1Anim1", &"BlendTransitionDriver1Scale2", 0, &"BlendTransitionDriver1Anim2", &"BlendTransition", 0, &"BlendTransitionDriver1", &"BlendTransition", 1, &"BlendTransitionDriver2", &"BlendTransitionDriver2Scale1", 0, &"BlendTransitionDriver2Anim1", &"BlendTransitionDriver2", 0, &"BlendTransitionDriver2Scale1", &"BlendTransitionDriver2", 1, &"BlendTransitionDriver2Scale2", &"BlendTransitionDriver2Scale2", 0, &"BlendTransitionDriver2Anim2"]

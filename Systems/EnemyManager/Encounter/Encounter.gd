@@ -4,8 +4,8 @@ class_name Encounter
 
 @export_group("Encounter region config")
 @export var TRANSFORM : Transform3D = Transform3D.IDENTITY
-@export var ENCOUNTER_REGION : Shape3D = null
 @export var TRIGGER_REGION : Shape3D = null
+@export var SPAWN_POINTS : Array[Vector3] = [ ]
 
 @export_group("Encounter config")
 @export var WAVES : Array[Wave]

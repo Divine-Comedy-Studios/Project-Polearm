@@ -22,6 +22,8 @@ var _friction : float = 0.0
 var _walkSpeedSquared : float = 0.0
 var _runSpeedSquared : float = 0.0
 
+var _runAnimLength : float = 0.0
+
 #endregion
 
 
@@ -35,6 +37,7 @@ func _implInit() -> void:
 
 	_runSpeedSquared = physics().MAX_AERIAL_SPEED + 0.1 # Add a bit of leniency
 	_runSpeedSquared *= _runSpeedSquared
+	_runAnimLength = animator().animation(LANDING_RUN_DATA.ANIMATION_FULL_NAME).length
 
 
 func _implEnter() -> void:
@@ -49,8 +52,11 @@ func _implTick(delta : float) -> void:
 
 		if !frameData().transitionable(data.ANIMATION_NAME, _progress):
 			return
-	
-	player().accelerate(Vector3.ZERO, (1.0 - inputs().inputMagnitude) * _friction * delta)
+
+		# Breaking during the roll animation stronger the further into the animation we are to prevent instant breaking at the start of the animation
+		player().accelerate(Vector3.ZERO, (_progress / _runAnimLength) * (1.0 - inputs().inputMagnitude) * _friction * delta)
+	else:
+		player().accelerate(Vector3.ZERO, (1.0 - inputs().inputMagnitude) * _friction * delta)
 
 func _implNextAction(next : StringName) -> StringName:
 	if player().flatVelocity().length_squared() > _runSpeedSquared:

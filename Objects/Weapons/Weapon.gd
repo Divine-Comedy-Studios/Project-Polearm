@@ -8,7 +8,10 @@ class_name Weapon
 
 class Type:
 	const debugWeapon := &"debug"
+
 	const spear := &"spear"
+	const arrow := &"arrow"
+	const scimitar := &"scimitar"
 
 #endregion
 

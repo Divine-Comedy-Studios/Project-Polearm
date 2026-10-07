@@ -4,14 +4,20 @@ class_name GameObject
 #region Enums
 
 enum Type {
-	none = 0,
+	none,
 
-	entity = 1 << 0,
-	player = entity + (1 << 1),
+	# Entities
 
-	enemy = entity + (1 << 4),
-	dummyEnemy = enemy + (1 << 5),
-	solider = enemy + (1 << 6)
+	player,
+	enemy,
+	dummyEnemy,
+	beanEnemy,
+	solider,
+	archer,
+
+	# Objects
+
+	arrow,
 }
 
 #endregion
@@ -63,7 +69,7 @@ func _initImpl() -> void:
 func spawn(payload : Variant) -> void:
 	pass
 
-func _killImpl() -> void: # May be left empty for most use cases
+func _killImpl() -> void:
 	pass
 
 

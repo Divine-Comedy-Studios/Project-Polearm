@@ -54,10 +54,10 @@ func _ready() -> void:
 #region Public functions
 
 func enable() -> void:
-	monitoring = true
+	set_deferred("monitoring", true)
 
 func disable() -> void:
-	monitoring = false
+	set_deferred("monitoring", false)
 
 
 # Can also be triggered manually
