@@ -1,4 +1,5 @@
 extends GameState
+class_name World
 
 
 #region Exported variables
@@ -12,7 +13,9 @@ extends GameState
 #region Scene members
 
 @export_group("Scene members")
-@export var _enemyManager : EnemyManager = null
+@export var gameObjectManager : GameObjectManager = null
+@export var enemyManager : EnemyManager = null
+
 @export var _player : Player = null
 
 #endregion
@@ -35,7 +38,16 @@ var _nextGameState : StringName = Type.none
 #region Built-in functions
 
 func _ready() -> void:
-	pass
+	if Globals.world != null:
+		push_error("World._ready(): World has already been initialized once!")
+		return
+
+	assert(gameObjectManager != null, "World._ready(): Please assign the game object manager!")
+	assert(enemyManager != null, "World._ready(): Please assign the enemy manager!")
+
+	assert(_player != null, "World._ready(): Please assign the player!")
+
+	Globals.world = self
 
 
 # Handle transitioning to the pause menu
@@ -89,6 +101,9 @@ func nextState() -> StringName:
 
 #region Public functions
 
+func gameOver() -> void:
+	_nextGameState = Type.gameOver
+
 # func changeStage(stageData : Stage.SaveData) -> void:
 #	_clearStageData()
 #	_payload = stageData
@@ -121,8 +136,8 @@ func _loadStage() -> void:
 	_currentStage = _currentStageResource.instantiate()
 
 	# Initialize all world components
-	_enemyManager.init(_currentStage.DATA)
-	_player.spawn(_currentStage.DATA.PLAYER_SPAWN_LOCATION)
+	enemyManager.init(_currentStage.DATA)
+	_player.spawn(_currentStage.DATA.PLAYER_SPAWN_LOCATION) ### @todo this could be done modularly through the game object manager
 
 	add_child(_currentStage)
 
