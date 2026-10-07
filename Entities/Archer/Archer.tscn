@@ -1,0 +1,367 @@
+[gd_scene format=3 uid="uid://72mdindbiwue"]
+
+[ext_resource type="Script" uid="uid://cbefei8134nw2" path="res://Entities/Archer/Archer.gd" id="1_hraxl"]
+[ext_resource type="Script" uid="uid://cyecr71fggv70" path="res://Entities/Entity/Collisions/EntityHurtbox.gd" id="2_2hrb1"]
+[ext_resource type="Script" uid="uid://del87rrtko1do" path="res://Entities/Entity/Utility/EntityAnimationHelper.gd" id="2_6p5ax"]
+[ext_resource type="PackedScene" uid="uid://c6ck6empr4lu2" path="res://Assets/3D Models/Characters/YBot/Skeleton.scn" id="2_k12pj"]
+[ext_resource type="PackedScene" uid="uid://cv715v6y4bx0r" path="res://Assets/3D Models/Characters/YBot/YellowBotMesh.scn" id="3_2hrb1"]
+[ext_resource type="Script" uid="uid://dymt4yoc21xx" path="res://Entities/Archer/Data/ArcherResources.gd" id="3_pbajo"]
+[ext_resource type="Script" uid="uid://dyset1m48keqp" path="res://Entities/Archer/Controller/ArcherController.gd" id="4_o7i30"]
+[ext_resource type="Script" uid="uid://c12nkcphob0hm" path="res://Components/NumericResource/ValueResource.gd" id="5_1j70g"]
+[ext_resource type="PackedScene" uid="uid://dvykeeeeon0qa" path="res://Components/ValueBar/ValueBarUI/ValueBarUI.tscn" id="5_m5jv2"]
+[ext_resource type="Script" uid="uid://bh8o0071kt7qg" path="res://Entities/Archer/Animation/ArcherAnimator.gd" id="6_rnhsn"]
+[ext_resource type="AnimationNodeBlendTree" uid="uid://dwhg68g5b8p6a" path="res://Entities/Archer/Resources/AnimationBlendTree.tres" id="6_sfw1s"]
+[ext_resource type="AnimationLibrary" uid="uid://bbevjk88lo1q" path="res://Entities/Archer/Resources/FrameData.res" id="7_7ysdf"]
+[ext_resource type="AnimationLibrary" uid="uid://bopwj7ojaqvmn" path="res://Assets/3D Models/Characters/YBot/Animations/Combat.res" id="7_tmf1t"]
+[ext_resource type="Script" uid="uid://dyfufs7xfl4rn" path="res://Entities/BasicEnemy/Data/BasicEnemyFrameData.gd" id="7_uk2q7"]
+[ext_resource type="AnimationLibrary" uid="uid://dfqr4nawpg2vu" path="res://Assets/3D Models/Characters/YBot/Animations/Movement.res" id="8_sfw1s"]
+[ext_resource type="AnimationLibrary" uid="uid://b3cu7qf5ygk0k" path="res://Assets/3D Models/Characters/YBot/Animations/TPose.glb" id="9_o7i30"]
+[ext_resource type="PackedScene" uid="uid://df43yn3t0drf1" path="res://Entities/Archer/Actions/ArcherActionManager.tscn" id="13_fkvdt"]
+
+[sub_resource type="Resource" id="Resource_1j70g"]
+resource_local_to_scene = true
+script = ExtResource("5_1j70g")
+maxValue = 60.0
+value = 60.0
+metadata/_custom_type_script = "uid://c12nkcphob0hm"
+
+[sub_resource type="Resource" id="Resource_rnhsn"]
+resource_local_to_scene = true
+script = ExtResource("5_1j70g")
+value = 100.0
+metadata/_custom_type_script = "uid://c12nkcphob0hm"
+
+[sub_resource type="Resource" id="Resource_qaoqx"]
+resource_local_to_scene = true
+script = ExtResource("5_1j70g")
+value = 100.0
+metadata/_custom_type_script = "uid://c12nkcphob0hm"
+
+[sub_resource type="Animation" id="Animation_7ysdf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FrameData:_perfectDodge")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FrameData:_transitionable")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FrameData:_nonLowerable")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FrameData:_rotationTracking")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("FrameData:_weaponActivate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("FrameData:_optional")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j78xj"]
+_data = {
+&"RESET": SubResource("Animation_7ysdf")
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uk2q7"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hraxl"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_m5jv2"]
+radius = 0.4
+height = 1.55
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_s5tgp"]
+viewport_path = NodePath("Model/HealthBar/SubViewport")
+
+[sub_resource type="Resource" id="Resource_fkvdt"]
+resource_local_to_scene = true
+script = ExtResource("5_1j70g")
+maxValue = 60.0
+value = 60.0
+metadata/_custom_type_script = "uid://c12nkcphob0hm"
+
+[sub_resource type="Gradient" id="Gradient_pbajo"]
+offsets = PackedFloat32Array(0.1325001, 0.4532238, 0.9943422)
+colors = PackedColorArray(0.82508445, 0.0032476706, 0.16931134, 1, 0.82407624, 0.6277912, 0.064864345, 1, 0.31102964, 0.61787194, 0.2871761, 1)
+
+[node name="Archer" type="Node3D" unique_id=611518248 node_paths=PackedStringArray("_controller", "_actionManager")]
+script = ExtResource("1_hraxl")
+_controller = NodePath("ArcherController")
+_actionManager = NodePath("ArcherActionManager")
+metadata/_custom_type_script = "uid://cbefei8134nw2"
+
+[node name="EntityAnimationHelper" type="Node" parent="." unique_id=63586577 node_paths=PackedStringArray("_animator", "_skeleton")]
+script = ExtResource("2_6p5ax")
+_animator = NodePath("../ArcherAnimator")
+_frameDataLibrary = ExtResource("7_7ysdf")
+_skeleton = NodePath("../Model/Skeleton")
+_rootBonePath = &"root"
+metadata/_custom_type_script = "uid://del87rrtko1do"
+
+[node name="ArcherController" type="Node" parent="." unique_id=1976576889 node_paths=PackedStringArray("entity")]
+script = ExtResource("4_o7i30")
+AVAILABLE_ROLES = Array[int]([0, 3])
+entity = NodePath("../Model")
+metadata/_custom_type_script = "uid://dyset1m48keqp"
+
+[node name="ArcherResources" type="Node" parent="." unique_id=1970353266 node_paths=PackedStringArray("actionManager")]
+script = ExtResource("3_pbajo")
+health = SubResource("Resource_1j70g")
+energy = SubResource("Resource_rnhsn")
+superArmor = SubResource("Resource_qaoqx")
+actionManager = NodePath("../ArcherActionManager")
+metadata/_custom_type_script = "uid://dymt4yoc21xx"
+
+[node name="FrameData" type="AnimationPlayer" parent="." unique_id=946138157]
+process_mode = 4
+libraries/ = SubResource("AnimationLibrary_j78xj")
+libraries/FrameData = ExtResource("7_7ysdf")
+script = ExtResource("7_uk2q7")
+_optional = true
+metadata/_custom_type_script = "uid://dyfufs7xfl4rn"
+
+[node name="ArcherAnimator" type="AnimationTree" parent="." unique_id=1017300114]
+root_node = NodePath("../Model")
+tree_root = ExtResource("6_sfw1s")
+anim_player = NodePath("AnimationPlayer")
+parameters/BasicTransition/current_state = "state_0"
+parameters/BasicTransition/transition_request = ""
+parameters/BasicTransition/current_index = 0
+script = ExtResource("6_rnhsn")
+DEFAULT_ANIMATION_NAME = &"Movement/Idle"
+rootOrientation = Quaternion(-0.70710677, 0, 0, 0.70710677)
+metadata/_custom_type_script = "uid://bh8o0071kt7qg"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ArcherAnimator" unique_id=1313269755]
+root_node = NodePath("../../Model")
+root_motion_track = NodePath("Skeleton:root")
+libraries/ = SubResource("AnimationLibrary_uk2q7")
+libraries/Combat = ExtResource("7_tmf1t")
+libraries/Movement = ExtResource("8_sfw1s")
+libraries/TPose = ExtResource("9_o7i30")
+
+[node name="ArcherActionManager" parent="." unique_id=1027342192 node_paths=PackedStringArray("controller", "entity", "frameData", "resources", "animator", "hurtbox") instance=ExtResource("13_fkvdt")]
+controller = NodePath("../ArcherController")
+entity = NodePath("../Model")
+frameData = NodePath("../FrameData")
+resources = NodePath("../ArcherResources")
+animator = NodePath("../ArcherAnimator")
+hurtbox = NodePath("../Model/HurtboxAttachment/Hurtbox")
+
+[node name="Model" type="CharacterBody3D" parent="." unique_id=1433000666 groups=["Enemies", "Entities"]]
+collision_mask = 32769
+
+[node name="BodyCollider" type="CollisionShape3D" parent="Model" unique_id=2079424842]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_hraxl")
+debug_fill = false
+
+[node name="HurtboxAttachment" type="BoneAttachment3D" parent="Model" unique_id=1335791146]
+transform = Transform3D(-0.99670887, -0.038155235, 0.07152319, -0.057060234, 0.95692474, -0.28467333, -0.057580538, -0.2878176, -0.9559526, -0.051569577, 0.88701993, 0.015819475)
+bone_name = "DEF-spine"
+bone_idx = 1
+use_external_skeleton = true
+external_skeleton = NodePath("../Skeleton")
+
+[node name="Hurtbox" type="Area3D" parent="Model/HurtboxAttachment" unique_id=707319775 node_paths=PackedStringArray("_resources")]
+transform = Transform3D(-0.63575435, 0.011931799, -0.7717989, 0.036647655, 0.99921954, -0.014740088, 0.77102077, -0.03765569, -0.6356954, -0.008637563, 0.026503623, -0.025778975)
+collision_layer = 0
+script = ExtResource("2_2hrb1")
+_resources = NodePath("../../../ArcherResources")
+LAYERS = 872415232
+metadata/_custom_type_script = "uid://cyecr71fggv70"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Model/HurtboxAttachment/Hurtbox" unique_id=314385503]
+shape = SubResource("CapsuleShape3D_m5jv2")
+debug_color = Color(0.95256823, 6.738305e-07, 0.56044906, 0.41960785)
+
+[node name="Skeleton" parent="Model" unique_id=941680751 instance=ExtResource("2_k12pj")]
+bones/1/position = Vector3(0.051569577, 0.015819479, 0.88701993)
+bones/1/rotation = Quaternion(0.80143625, -0.006059495, -0.04011029, 0.596703)
+bones/2/scale = Vector3(0.99999744, 1.0000054, 0.99999714)
+bones/3/rotation = Quaternion(0.006722807, -0.009609544, 0.017844379, 0.999772)
+bones/3/scale = Vector3(0.9999968, 1.0000051, 0.99999696)
+bones/4/rotation = Quaternion(-0.02526015, -0.00714044, -0.00058350293, 0.9996553)
+bones/4/scale = Vector3(1.0000042, 0.99999166, 1.0000037)
+bones/5/rotation = Quaternion(0.26337764, 0.025004592, 0.0036444885, 0.9643618)
+bones/5/scale = Vector3(0.999995, 1.0000081, 0.99999624)
+bones/6/rotation = Quaternion(-0.1973976, 0.024524983, -0.01068106, 0.9799585)
+bones/6/scale = Vector3(1.0000025, 0.9999951, 1.0000018)
+bones/7/rotation = Quaternion(-0.5411457, -0.44662267, 0.57572526, -0.41979766)
+bones/8/position = Vector3(0.02279624, 0.17254646, -0.01838756)
+bones/8/rotation = Quaternion(0.3956782, -0.5883606, -0.3153954, 0.6307111)
+bones/8/scale = Vector3(1.000001, 0.99999774, 1.0000005)
+bones/9/rotation = Quaternion(1.5605173e-07, 0.08789255, -1.4118223e-06, 0.99613)
+bones/9/scale = Vector3(0.9999981, 1.0000021, 0.9999987)
+bones/10/rotation = Quaternion(0.2155409, 0.08789328, -0.033459194, 0.9719554)
+bones/10/scale = Vector3(0.99999934, 1.0000025, 0.99999934)
+bones/11/rotation = Quaternion(-2.155403e-07, 0.001641236, 1.3983492e-06, 0.9999987)
+bones/12/rotation = Quaternion(0.0053944597, 0.0010950505, 0.06109622, 0.99811673)
+bones/12/scale = Vector3(1.0000005, 0.99999833, 1.0000006)
+bones/13/rotation = Quaternion(-0.24784802, -0.37896878, -0.24279177, 0.8579081)
+bones/13/scale = Vector3(0.9999999, 0.9999977, 0.9999998)
+bones/14/rotation = Quaternion(-0.068231, 0.032389726, -0.014935344, 0.99703187)
+bones/14/scale = Vector3(0.9999994, 0.99999887, 0.99999976)
+bones/15/rotation = Quaternion(-0.03867542, -0.0005383522, -0.00033142962, 0.99925166)
+bones/15/scale = Vector3(1.0000001, 1.0000135, 0.99999964)
+bones/16/rotation = Quaternion(0.111568704, 0.55280244, -0.4327011, 0.70337164)
+bones/17/rotation = Quaternion(0.10916586, -0.02524739, -0.08213695, 0.99030244)
+bones/17/scale = Vector3(1.0000001, 1.0000055, 1.0000001)
+bones/18/rotation = Quaternion(0.083087996, -0.0016409941, -0.092991725, 0.9921926)
+bones/18/scale = Vector3(0.99999964, 0.99999917, 0.9999999)
+bones/19/rotation = Quaternion(-0.3296162, -0.22670908, -0.32036415, 0.8586751)
+bones/19/scale = Vector3(1, 0.9999988, 1)
+bones/20/rotation = Quaternion(-0.17723423, -0.051850837, -0.2396781, 0.9531286)
+bones/20/scale = Vector3(1, 0.9999961, 0.99999994)
+bones/21/rotation = Quaternion(-0.14983308, -0.009886775, -0.16224715, 0.97525805)
+bones/21/scale = Vector3(1, 1.0000054, 0.99999946)
+bones/22/rotation = Quaternion(-0.45181623, -0.67800385, -0.14383787, 0.56167936)
+bones/22/scale = Vector3(1.0000001, 0.9999969, 1)
+bones/23/rotation = Quaternion(-0.10366369, -0.092993215, 0.07361138, 0.98751587)
+bones/23/scale = Vector3(0.9999998, 0.9999999, 0.99999994)
+bones/24/rotation = Quaternion(-0.12477939, -0.0020488985, 0.114965275, 0.9854993)
+bones/24/scale = Vector3(0.99999964, 0.9999997, 0.99999964)
+bones/25/rotation = Quaternion(0.08104978, -0.12270175, -0.36110798, 0.92085624)
+bones/26/rotation = Quaternion(-0.02904904, -0.0019430518, 0.08418989, 0.9960243)
+bones/26/scale = Vector3(0.9999998, 0.99999875, 0.9999998)
+bones/27/rotation = Quaternion(-0.060270917, 0.0009636198, -0.023049198, 0.9979155)
+bones/27/scale = Vector3(0.9999997, 1.000003, 1.0000002)
+bones/29/position = Vector3(-0.022811295, 0.17254123, -0.018409524)
+bones/29/rotation = Quaternion(0.21416785, 0.6271621, 0.4141555, 0.6239191)
+bones/29/scale = Vector3(0.99999946, 1.0000007, 0.999999)
+bones/30/rotation = Quaternion(4.935143e-07, -0.0056045945, 7.4857536e-07, 0.9999844)
+bones/31/rotation = Quaternion(0.25450248, -0.0056041298, 0.027300218, 0.96667045)
+bones/31/scale = Vector3(1.0000023, 0.99999666, 1.0000013)
+bones/32/rotation = Quaternion(2.3886858e-07, 0.29864904, 1.9949655e-07, 0.9543631)
+bones/33/rotation = Quaternion(-0.08684221, 0.29903623, 0.012726576, 0.95019674)
+bones/33/scale = Vector3(0.99999946, 1.0000002, 0.9999995)
+bones/34/rotation = Quaternion(-0.14801861, 0.39580095, 0.088917375, 0.9019567)
+bones/35/rotation = Quaternion(-0.20325595, 0.05221033, 0.046893872, 0.97660744)
+bones/35/scale = Vector3(0.9999999, 0.9999963, 1.0000001)
+bones/36/rotation = Quaternion(-0.43992653, 0.0031683242, 0.062230702, 0.89586943)
+bones/36/scale = Vector3(0.99999994, 0.99999255, 1.0000024)
+bones/37/rotation = Quaternion(0.10823586, -0.5392078, 0.47962928, 0.6837366)
+bones/38/rotation = Quaternion(0.2750559, 0.10216436, 0.1968297, 0.9355024)
+bones/38/scale = Vector3(0.99999946, 1.0000007, 0.9999999)
+bones/39/rotation = Quaternion(0.24968493, 0.0032252832, 0.25403947, 0.9344041)
+bones/39/scale = Vector3(0.99999946, 1.0000012, 0.9999993)
+bones/40/rotation = Quaternion(-0.40948862, 0.19936642, 0.4813019, 0.74894637)
+bones/40/scale = Vector3(1.0000001, 0.9999989, 1)
+bones/41/rotation = Quaternion(-0.21163729, 0.05301109, 0.2819111, 0.9343049)
+bones/41/scale = Vector3(1.0000002, 0.99999857, 0.9999998)
+bones/42/rotation = Quaternion(-0.12359768, 0.007988389, 0.13533382, 0.98302823)
+bones/42/scale = Vector3(1.0000001, 0.99999154, 1.0000001)
+bones/43/rotation = Quaternion(-0.5366756, 0.624971, 0.22878, 0.5187007)
+bones/44/rotation = Quaternion(-0.27448738, 0.14833109, -0.16231759, 0.936113)
+bones/44/scale = Vector3(0.9999997, 0.9999951, 1)
+bones/45/rotation = Quaternion(-0.13299592, -0.0005517653, -0.12517826, 0.9831797)
+bones/45/scale = Vector3(1.0000004, 1.0000001, 1.0000005)
+bones/46/rotation = Quaternion(-0.10283399, 0.051640715, 0.3526858, 0.9286395)
+bones/46/scale = Vector3(0.99999994, 0.99999785, 1)
+bones/47/rotation = Quaternion(0.033523344, -0.31379578, 0.041913137, 0.9479725)
+bones/47/scale = Vector3(0.9999999, 1.0000017, 1)
+bones/48/rotation = Quaternion(-0.12108831, -0.00021923718, -0.021241419, 0.9924144)
+bones/48/scale = Vector3(0.9999998, 1.0000017, 0.9999997)
+bones/52/rotation = Quaternion(0.9943105, -0.03323477, 0.05123021, 0.08727851)
+bones/52/scale = Vector3(0.99999857, 0.9999992, 1.0000001)
+bones/53/rotation = Quaternion(2.7350305e-07, -0.01539544, 6.5438066e-08, 0.9998815)
+bones/54/rotation = Quaternion(0.071921505, -0.015529769, 0.0045708367, 0.997279)
+bones/54/scale = Vector3(0.9999996, 1, 0.99999964)
+bones/55/rotation = Quaternion(4.15022e-07, 0.024318453, -3.8878835e-07, 0.99970436)
+bones/56/rotation = Quaternion(-0.6390196, -0.013545977, -0.11787823, 0.7599837)
+bones/56/scale = Vector3(0.99999857, 1.0000008, 0.9999994)
+bones/57/rotation = Quaternion(0.00018354342, 0.99174833, -0.12681107, 0.018819517)
+bones/57/scale = Vector3(1.0000006, 0.9999986, 1.0000007)
+bones/58/rotation = Quaternion(0.97475123, 0.019882396, -0.04915046, 0.21690807)
+bones/58/scale = Vector3(0.99999887, 0.9999995, 0.9999995)
+bones/59/rotation = Quaternion(3.2563793e-07, -0.014202708, -7.0878976e-08, 0.9998992)
+bones/60/rotation = Quaternion(0.27690783, -0.01407861, -0.01861059, 0.96061313)
+bones/60/scale = Vector3(0.9999997, 1.0000005, 0.99999917)
+bones/61/rotation = Quaternion(2.395674e-07, -0.00861928, 4.4494595e-08, 0.9999629)
+bones/62/rotation = Quaternion(-0.47077647, 0.031810574, 0.0691856, 0.8789602)
+bones/62/scale = Vector3(0.9999994, 1.0000001, 1.0000002)
+bones/63/rotation = Quaternion(0.027615184, 0.9912528, -0.1289933, -0.0040224893)
+bones/63/scale = Vector3(0.9999998, 0.9999982, 0.99999994)
+
+[node name="Mesh" parent="Model" unique_id=114163421 node_paths=PackedStringArray("_skeleton") instance=ExtResource("3_2hrb1")]
+_skeleton = NodePath("../Skeleton")
+
+[node name="HealthBar" type="Sprite3D" parent="Model" unique_id=2013180973]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+billboard = 1
+texture = SubResource("ViewportTexture_s5tgp")
+
+[node name="SubViewport" type="SubViewport" parent="Model/HealthBar" unique_id=951242445]
+transparent_bg = true
+size = Vector2i(256, 32)
+
+[node name="ValueBarUI" parent="Model/HealthBar/SubViewport" unique_id=2065143325 instance=ExtResource("5_m5jv2")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -7.5
+offset_right = 100.0
+offset_bottom = 7.5
+grow_horizontal = 2
+grow_vertical = 2
+valueResource = SubResource("Resource_fkvdt")
+PROGRESS_GRADIENT = SubResource("Gradient_pbajo")
+CHANGE_COLOR = Color(0.9729009, 0.8528588, 0.9309137, 1)

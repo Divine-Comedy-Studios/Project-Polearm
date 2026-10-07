@@ -1,0 +1,2 @@
+extends BasicEnemyResources
+class_name ArcherResources
