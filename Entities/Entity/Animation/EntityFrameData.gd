@@ -14,6 +14,9 @@ class_name EntityFrameData
 @export var _rotationTracking : float = 0.0 # Speed of rotation tracking
 @export var _weaponActivate : bool = false # Is the weapon active
 
+@export_group("Optional")
+@export var _optional : bool = false # Optional flag that any state may decide to set or not
+
 @export_group("Auto-Generated")
 @export var _finished : bool = false # Automatically generated at the end of each track
 
@@ -34,6 +37,9 @@ func weaponActivate(animationName : StringName, time : float) -> bool:
 func finished(animationName : StringName, time : float) -> float:
 	return _getValue(animationName, ^"FrameData:_finished", time) as bool
 
+func optional(animationName : StringName, time : float) -> bool:
+	return _getValue(animationName, ^"FrameData:_optional", time) as bool
+
 
 func rotationTracking(animationName : StringName, time : float) -> float:
 	return _getValue(animationName, ^"FrameData:_rotationTracking", time) as float
@@ -44,7 +50,7 @@ func rotationTracking(animationName : StringName, time : float) -> float:
 #region Private functions
 
 func _getValue(animationName : StringName, propertyName : NodePath, time : float) -> Variant:
-	assert(name == &"FrameData", "EntityFrameData._getValue(): The node needs to be called \"ActionData\" in the editor!")
+	assert(name == &"FrameData", "EntityFrameData._getValue(): The node needs to be called \"FrameData\" in the editor!")
 	assert(get_animation_library(&"FrameData") != null, "EntityFrameData._getValue(): Please make sure all animations are in the \"Data\" animation library!")
 
 	var anim = get_animation("FrameData/" + animationName)
