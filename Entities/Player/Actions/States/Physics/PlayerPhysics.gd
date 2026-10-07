@@ -35,6 +35,10 @@ class LedgeData:
 @export var DASH_SPEED : float = 16.0
 @export var DASH_ACCELERATION : float = 50.0
 
+@export_group("Gravity settings")
+@export var GRAVITY : float = 80.0
+@export var TERMINAL_VELOCITY : float = 30.0
+
 @export_group("Aerial movement settings")
 @export var MAX_AERIAL_SPEED : float = 6.0
 @export var AERIAL_ACCELERATION : float = 20.0
@@ -98,7 +102,6 @@ func _ready() -> void:
 	assert(_context != null, "PlayerPhysics._ready(): Player action manager not assigned!")
 
 	await _context.ready
-	await _context.entity.ready
 
 	_player = _context.entity as FloatingBody
 

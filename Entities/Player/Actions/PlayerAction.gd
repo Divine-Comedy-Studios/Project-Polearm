@@ -29,6 +29,9 @@ class Type:
 	const lightAttack := &"lightAttack"
 	const heavyAttack := &"heavyAttack"
 
+	# Death
+	const death := &"death" # u ded lmao skill issue
+
 	#endregion
 
 
@@ -51,6 +54,10 @@ class Type:
 	# Dashing
 	const dashStop := &"dashStop"
 
+	# Damage
+	const damageLanding := &"damageLanding"
+	const damageStandUp := &"damageStandUp"
+
 	#endregion
 
 
@@ -59,6 +66,9 @@ class Type:
 	# Falling
 	const fall := &"fall"
 	const ledgeGrab := &"ledgeGrab"
+
+	# Damage
+	const damageFall := &"damageFall"
 
 	#endregion
 
@@ -80,11 +90,7 @@ class Type:
 
 	#region Universal states
 
-	# Damage determines its behavior on the fly
 	const damage := EntityAction.Type.damage
-
-	# u ded lmao skill issue
-	const death := &"dead"
 
 	#endregion
 
@@ -109,7 +115,6 @@ class Type:
 		Type.dash : Type.airDash,
 
 		Type.damage : Type.damage,
-		Type.death : Type.death,
 	}
 
 	#endregion
@@ -156,6 +161,11 @@ var _queue : PlayerAction = null
 #region Override functions
 
 func _enter() -> void:
+	if _context.combatManager.isNextComboAction(TYPE):
+		data = _context.combatManager.registerComboAction(TYPE)
+	else:
+		_context.combatManager.resetActiveCombo()
+
 	_implEnter()
 
 func _exit() -> void:
@@ -172,7 +182,7 @@ func _nextAction() -> StringName:
 	var queue := context().popActionQueue()
 	return _implNextAction(queue
 		if queue != Type.none and actionViability(context().action(queue)) == 1 else
-			_highestPriorityAction())
+			_highestPriorityAction(inputs().actions))
 
 func _tick(delta : float) -> void:
 	_processLedgeStopping()
@@ -222,6 +232,9 @@ func weapon() -> Weapon:
 func combatManager() -> PlayerCombatManager:
 	return context().combatManager as  PlayerCombatManager
 
+func hurtbox() -> Hurtbox:
+	return context().hurtbox
+
 #endregion
 
 
@@ -250,27 +263,6 @@ func _insertComboPause() -> void:
 
 	if context().combatManager.isNextComboAction(Type.idle):
 		context().combatManager.registerComboAction(Type.idle) # Add the pause to the combo
-
-
-# Gets the highest priority action from the current input
-func _highestPriorityAction() -> StringName:
-	var candidate := Type.none
-
-	# Go through all higher priority actions and immediately return them if possible as they can cancel the current action
-	for actionType : StringName in inputs().actions:
-		var action := context().action(actionType) as PlayerAction
-		var viability := actionViability(action) # 0 == unviable, -1 == same action, 1 == possibly viable
-
-		# These checks here occur due to a tiebreaker when there are multiple actions with the same priority
-		if viability == 1:
-			if action.PRIORITY != PRIORITY:
-				return actionType if candidate == Type.none else candidate
-
-			candidate = actionType
-		elif viability == -1: # If the same action has been found, then stay in this action. This is the purpose of the tiebreaker
-			return Type.none
-
-	return Type.none
 
 
 func _processLedgeStopping() -> void:

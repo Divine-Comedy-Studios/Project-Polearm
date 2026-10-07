@@ -5,8 +5,7 @@ class_name PlayerAnimator
 #region Override functions
 
 func _initialize() -> void:
-	var driver := animationDriver(&"BasicTransitionAnim1")
-	driver.animation = DEFAULT_ANIMATION_NAME
+	animationDriver(&"BasicTransitionAnim1").animation = DEFAULT_ANIMATION_NAME
 
 	registerAutoTransition(&"BasicTransition", &"Anim")
 	registerAutoTransition(&"BlendTransition", &"Driver")

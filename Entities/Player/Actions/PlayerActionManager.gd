@@ -9,6 +9,7 @@ class_name PlayerActionManager
 @export var inputManager : PlayerInputManager = null
 @export var ledgeStopper : LedgeStopper = null
 
+@onready var combatManager := $"CombatManager" as EntityCombatManager
 @onready var physics : PlayerPhysics = $"PhysicsProcessor"
 
 #endregion
@@ -18,26 +19,23 @@ class_name PlayerActionManager
 
 var _bufferedInputs : Dictionary[StringName, int] = { }
 
-var _actionForced : StringName = PlayerAction.Type.none
-var _actionQueue : StringName = PlayerAction.Type.none
-
 #endregion
 
 
 #region Built-in functions
 
 func _ready() -> void:
-	assert(entity != null, "PlayerActionManager._ready(): Player simulation model not assigned!")
 	assert(cameraManager != null, "PlayerActionManager._ready(): Player camera manager not assigned!")
 	assert(inputManager != null, "PlayerActionManager._ready(): Player input manager not assigned!")
 	assert(ledgeStopper != null, "PlayerActionManager._ready(): Player ledge stopper not assigned!")
+
+	assert(combatManager != null, "EntityActionManager._ready(): Entity combat manager not assigned!")
 	assert(physics != null, "PlayerActionManager._ready(): Player physics processor not assigned!")
 
 	init()
 
-
 func _physics_process(delta: float) -> void:
-	_processInputs()
+	_processActions(inputManager.inputs.actions)
 
 	tick(delta)
 
@@ -53,56 +51,27 @@ func insertState(child : Node) -> void:
 		_addState(asAction)
 
 func _initialState() -> StringName:
-	return PlayerAction.Type.move
-
-#endregion
+	return PlayerAction.Type.idle
 
 
-#region Public functions
 
-func pushActionQueue(queue : StringName) -> void:
-	_actionQueue = queue
-
-func popActionQueue() -> StringName:
-	var queue := _actionQueue
-	_actionQueue = PlayerAction.Type.none
-	return queue
-
-
-func pushActionForced(queue : StringName) -> void:
-	_actionForced = queue
-
-func popActionForced() -> StringName:
-	var queue := _actionForced
-	_actionForced = PlayerAction.Type.none
-	return queue
+# Input processing by sorting them by priority
+func _implProcessActions(actions : Array[StringName]) -> void:
+	_processInputBuffer(actions)
+	_processAerialStates(actions)
 
 #endregion
 
 
 #region Private functions
 
-# Input processing by sorting them by priority
-func _processInputs():
-	if _actionForced != PlayerAction.Type.none:
-		inputManager.inputs.actions = [ popActionForced() ]
-		
-	else:
-		_processActionQueue()
-		_processInputBuffer()
-		_processAerialStates()
-
-		# Sort current inputs
-		inputManager.inputs.actions.sort_custom(hasHigherPriority)
-
-
-func _processInputBuffer() -> void:
+func _processInputBuffer(actions : Array[StringName]) -> void:
 	# Input buffers may never be repeated no matter what, only the input queue can
 	if _bufferedInputs.has(currentState.TYPE):
 		_bufferedInputs.erase(currentState.TYPE)
 
 	# Insert inputs from the current batch
-	for inputType : StringName in inputManager.inputs.actions:
+	for inputType : StringName in actions:
 		var currentAction := action(inputType) as PlayerAction
 		if currentAction.INPUT_BUFFER_FRAMES > 0:
 			_bufferedInputs[currentAction.TYPE] = currentAction.INPUT_BUFFER_FRAMES
@@ -113,22 +82,15 @@ func _processInputBuffer() -> void:
 		_bufferedInputs[inputType] -= 1
 		if _bufferedInputs[inputType] < 0:
 			inputsToRemove.push_back(inputType)
-		elif not inputManager.inputs.actions.has(inputType):
-			inputManager.inputs.actions.push_back(inputType)
+		elif not actions.has(inputType):
+			actions.push_back(inputType)
 
 	# Remove inputs whose frame buffering ran out
 	for inputType : StringName in inputsToRemove:
 		_bufferedInputs.erase(inputType)
 
 
-func _processActionQueue() -> void:
-	if (_actionQueue != PlayerAction.Type.none and
-		not inputManager.inputs.actions.has(_actionQueue)):
-		inputManager.inputs.actions.push_back(_actionQueue)
-		_actionQueue = PlayerAction.Type.none
-
-
-func _processAerialStates() -> void:
+func _processAerialStates(actions : Array[StringName]) -> void:
 	if (entity as FloatingBody).onGround():
 		resources.jumpCount.value = 0
 		resources.airDashed = false
@@ -136,7 +98,7 @@ func _processAerialStates() -> void:
 		return
 	
 	var aerialInputs : Array[StringName] = []
-	for input : StringName in inputManager.inputs.actions:
+	for input : StringName in actions:
 		var aerial := PlayerAction.Type.TO_AIR.get(input, PlayerAction.Type.none) as StringName
 		if aerial == PlayerAction.Type.none:
 			continue
@@ -145,6 +107,6 @@ func _processAerialStates() -> void:
 		
 		aerialInputs.push_back(aerial)
 
-	inputManager.inputs.actions = aerialInputs
+	actions.assign(aerialInputs)
 
 #endregion
