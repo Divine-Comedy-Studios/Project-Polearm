@@ -703,6 +703,51 @@
 // entity 35
 {
 "classname" "func_group"
+"_tb_type" "_tb_group"
+"_tb_name" "Passage"
+"_tb_id" "118"
+"_tb_linked_group_id" "{925e37af-4500-4ea6-b707-50f52b817e9d}"
+"_tb_transformation" "1 0 0 0 0 1 0 544 0 0 1 0 0 0 0 1"
+// brush 0
+{
+( 64 416 0 ) ( 64 416.9375 0 ) ( 64 416 7 ) "Greybox Textures/PNG/Red/texture_02" [ 0 -1 0 768 ] [ 0 0 -1 0 ] 180 0.0125 0.0125
+( 64 416 0 ) ( 64 416 7 ) ( 64.5 416 0 ) "Greybox Textures/PNG/Red/texture_02" [ 1 0 0 -256 ] [ 0 0 -1 0 ] 180 0.0125 0.0125
+( 64 416 0 ) ( 64.5 416 0 ) ( 64 416.9375 0 ) "Greybox Textures/PNG/Red/texture_02" [ -1 0 0 256 ] [ 0 -1 0 768 ] 180 0.0125 0.0125
+( 80 656 112 ) ( 80 656.9375 112 ) ( 80.5 656 112 ) "Greybox Textures/PNG/Red/texture_02" [ 1 0 0 -256 ] [ 0 -1 0 768 ] 180 0.0125 0.0125
+( 80 656 112 ) ( 80.5 656 112 ) ( 80 656 119 ) "Greybox Textures/PNG/Red/texture_02" [ -1 0 0 256 ] [ 0 0 -1 0 ] 180 0.0125 0.0125
+( 80 656 112 ) ( 80 656 119 ) ( 80 656.9375 112 ) "Greybox Textures/PNG/Red/texture_02" [ 0 1 0 -768 ] [ 0 0 -1 0 ] 180 0.0125 0.0125
+}
+// brush 1
+{
+( -64 416 -16 ) ( -64 417 -16 ) ( -64 416 -15 ) "Greybox Textures/PNG/Orange/texture_02" [ 0 -1.0000000000000002 1.1102230246251565e-16 768 ] [ 0 -1.1102230246251565e-16 -1.0000000000000002 0 ] 180 0.0125 0.0125
+( -64 416 -16 ) ( -64 416 -15 ) ( -63.5 416 -16 ) "Greybox Textures/PNG/Orange/texture_02" [ 1.0000000000000002 0 1.1102230246251565e-16 -256 ] [ 1.1102230246251565e-16 0 -1.0000000000000002 0 ] 180 0.0125 0.0125
+( -64 416 -16 ) ( -63.5 416 -16 ) ( -64 417 -16 ) "Greybox Textures/PNG/Orange/texture_02" [ -1.0000000000000002 1.1102230246251565e-16 0 256 ] [ -1.1102230246251565e-16 -1.0000000000000002 0 768 ] 180 0.0125 0.0125
+( 64 672 0 ) ( 64 673 0 ) ( 64.5 672 0 ) "Greybox Textures/PNG/Orange/texture_02" [ 1.0000000000000002 1.1102230246251565e-16 0 -256 ] [ 1.1102230246251565e-16 -1.0000000000000002 0 768 ] 180 0.0125 0.0125
+( 64 672 0 ) ( 64.5 672 0 ) ( 64 672 1 ) "Greybox Textures/PNG/Orange/texture_02" [ -1.0000000000000002 0 1.1102230246251565e-16 256 ] [ -1.1102230246251565e-16 0 -1.0000000000000002 0 ] 180 0.0125 0.0125
+( 64 672 0 ) ( 64 672 1 ) ( 64 673 0 ) "Greybox Textures/PNG/Orange/texture_02" [ 0 1.0000000000000002 1.1102230246251565e-16 -768 ] [ 0 1.1102230246251565e-16 -1.0000000000000002 0 ] 180 0.0125 0.0125
+}
+// brush 2
+{
+( -64 416 112 ) ( -64 417 112 ) ( -64 416 113 ) "Greybox Textures/PNG/Orange/texture_02" [ 0 -1.0000000000000002 1.1102230246251565e-16 768 ] [ 0 -1.1102230246251565e-16 -1.0000000000000002 0 ] 180 0.0125 0.0125
+( -64 416 112 ) ( -64 416 113 ) ( -63.5 416 112 ) "Greybox Textures/PNG/Orange/texture_02" [ 1.0000000000000002 0 1.1102230246251565e-16 -256 ] [ 1.1102230246251565e-16 0 -1.0000000000000002 0 ] 180 0.0125 0.0125
+( -64 416 112 ) ( -63.5 416 112 ) ( -64 417 112 ) "Greybox Textures/PNG/Orange/texture_02" [ -1.0000000000000002 1.1102230246251565e-16 0 256 ] [ -1.1102230246251565e-16 -1.0000000000000002 0 768 ] 180 0.0125 0.0125
+( 64 672 128 ) ( 64 673 128 ) ( 64.5 672 128 ) "Greybox Textures/PNG/Orange/texture_02" [ 1.0000000000000002 1.1102230246251565e-16 0 -256 ] [ 1.1102230246251565e-16 -1.0000000000000002 0 768 ] 180 0.0125 0.0125
+( 64 672 128 ) ( 64.5 672 128 ) ( 64 672 129 ) "Greybox Textures/PNG/Orange/texture_02" [ -1.0000000000000002 0 1.1102230246251565e-16 256 ] [ -1.1102230246251565e-16 0 -1.0000000000000002 0 ] 180 0.0125 0.0125
+( 64 672 128 ) ( 64 672 129 ) ( 64 673 128 ) "Greybox Textures/PNG/Orange/texture_02" [ 0 1.0000000000000002 1.1102230246251565e-16 -768 ] [ 0 1.1102230246251565e-16 -1.0000000000000002 0 ] 180 0.0125 0.0125
+}
+// brush 3
+{
+( -80 416 0 ) ( -80 417 0 ) ( -80 416 7 ) "Greybox Textures/PNG/Red/texture_02" [ 0 -1 0 768 ] [ 0 0 -1 0 ] 180 0.0125 0.0125
+( -80 416 0 ) ( -80 416 7 ) ( -79.5 416 0 ) "Greybox Textures/PNG/Red/texture_02" [ 1 0 0 -256 ] [ 0 0 -1 0 ] 180 0.0125 0.0125
+( -80 416 0 ) ( -79.5 416 0 ) ( -80 417 0 ) "Greybox Textures/PNG/Red/texture_02" [ -1 0 0 256 ] [ 0 -1 0 768 ] 180 0.0125 0.0125
+( -64 672 112 ) ( -64 673 112 ) ( -63.5 672 112 ) "Greybox Textures/PNG/Red/texture_02" [ 1 0 0 -256 ] [ 0 -1 0 768 ] 180 0.0125 0.0125
+( -64 672 112 ) ( -63.5 672 112 ) ( -64 672 119 ) "Greybox Textures/PNG/Red/texture_02" [ -1 0 0 256 ] [ 0 0 -1 0 ] 180 0.0125 0.0125
+( -64 672 112 ) ( -64 672 119 ) ( -64 673 112 ) "Greybox Textures/PNG/Red/texture_02" [ 0 1 0 -768 ] [ 0 0 -1 0 ] 180 0.0125 0.0125
+}
+}
+// entity 36
+{
+"classname" "func_group"
 "_tb_type" "_tb_layer"
 "_tb_name" "LevelOne"
 "_tb_id" "104"
@@ -790,7 +835,7 @@
 ( 1616 -432 -48 ) ( 1616 -336 0 ) ( 1616 -336 -16 ) "Greybox Textures/PNG/Orange/texture_02" [ -2.7755575615628914e-16 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 36
+// entity 37
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -827,7 +872,7 @@
 ( 1632 -816 -200 ) ( 1632 -816 -198.75 ) ( 1632 -815.8 -200 ) "Greybox Textures/PNG/Red/texture_04" [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 37
+// entity 38
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -846,7 +891,7 @@
 ( 1872 -480 -160 ) ( 1872 -480 -159 ) ( 1872 -478 -160 ) "Greybox Textures/PNG/Red/texture_04" [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 38
+// entity 39
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -865,7 +910,7 @@
 ( 1744 -288 -160 ) ( 1744 -288 -150 ) ( 1744 -287 -160 ) "Greybox Textures/PNG/Red/texture_04" [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 39
+// entity 40
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -884,7 +929,7 @@
 ( 1888 -288 -160 ) ( 1888 -288 -150 ) ( 1888 -287 -160 ) "Greybox Textures/PNG/Red/texture_04" [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 40
+// entity 41
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -903,7 +948,7 @@
 ( 1872 -288 -320 ) ( 1872 -289.33333333333337 -320 ) ( 1872 -288 -319 ) "Greybox Textures/PNG/Orange/texture_07" [ -2.220446049250313e-16 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 41
+// entity 42
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -922,7 +967,7 @@
 ( 1744 -144 -160 ) ( 1744 -144 -150 ) ( 1744 -143.25 -160 ) "Greybox Textures/PNG/Red/texture_04" [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 42
+// entity 43
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -941,7 +986,7 @@
 ( 1872 -160 -320 ) ( 1872 -160 -310 ) ( 1872 -159 -320 ) "Greybox Textures/PNG/Red/texture_04" [ 2.220446049250313e-16 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 43
+// entity 44
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -960,7 +1005,7 @@
 ( 2192 -288 -384 ) ( 2192 -160 -384 ) ( 2192 -160 -448 ) "Greybox Textures/PNG/Orange/texture_07" [ -4.440892098500626e-16 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 44
+// entity 45
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -979,7 +1024,7 @@
 ( 2384 -288 -448 ) ( 2384 -160 -448 ) ( 2384 -160 -512 ) "Greybox Textures/PNG/Orange/texture_07" [ -1.1102230246251565e-15 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 45
+// entity 46
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -998,7 +1043,7 @@
 ( 2512 -288 -448 ) ( 2512 -289.33333333333337 -448 ) ( 2512 -288 -447 ) "Greybox Textures/PNG/Orange/texture_07" [ -2.220446049250313e-16 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 46
+// entity 47
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -1017,7 +1062,7 @@
 ( 2576 -480 -448 ) ( 2576 -480 -447.99767981438515 ) ( 2576 -479 -448 ) "Greybox Textures/PNG/Orange/texture_07" [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 47
+// entity 48
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -1036,7 +1081,7 @@
 ( 2496 -288 -448 ) ( 2496 -288 -447.8571428571429 ) ( 2496 -287.0769230769231 -448 ) "Greybox Textures/PNG/Orange/texture_07" [ -2.7755575615628914e-16 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 48
+// entity 49
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -1055,7 +1100,7 @@
 ( 2496 -864 -448 ) ( 2496 -864 -447.8571428571429 ) ( 2496 -863.0769230769231 -448 ) "Greybox Textures/PNG/Orange/texture_07" [ -2.7755575615628914e-16 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 49
+// entity 50
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -1074,7 +1119,7 @@
 ( 2576 -1056 -448 ) ( 2576 -1056 -447.99767981438515 ) ( 2576 -1055 -448 ) "Greybox Textures/PNG/Orange/texture_07" [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 50
+// entity 51
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -1093,7 +1138,7 @@
 ( 1872 -288 -336 ) ( 1872 -288.923076923077 -336 ) ( 1872 -288 -335.8571428571429 ) "Greybox Textures/PNG/Orange/texture_07" [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 51
+// entity 52
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -1112,7 +1157,7 @@
 ( 1888 -496 -240 ) ( 1888 -496.5 -240 ) ( 1888 -496 -239 ) "Greybox Textures/PNG/Red/texture_04" [ -2.220446049250313e-16 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 52
+// entity 53
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -1131,7 +1176,7 @@
 ( 2000 -288 -320 ) ( 2000 -289.33333333333337 -320 ) ( 2000 -288 -319 ) "Greybox Textures/PNG/Orange/texture_07" [ -2.220446049250313e-16 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 53
+// entity 54
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -1168,7 +1213,7 @@
 ( 2496 -480 -384 ) ( 2496 -481 -384 ) ( 2496 -480 -382 ) "Greybox Textures/PNG/Red/texture_04" [ -2.220446049250313e-16 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 54
+// entity 55
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -1205,7 +1250,7 @@
 ( 2496 -1056 -384 ) ( 2496 -1057 -384 ) ( 2496 -1056 -382 ) "Greybox Textures/PNG/Red/texture_04" [ -2.220446049250313e-16 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 55
+// entity 56
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -1242,7 +1287,7 @@
 ( 2496 -880 -384 ) ( 2496 -881 -384 ) ( 2496 -880 -382 ) "Greybox Textures/PNG/Red/texture_04" [ -2.220446049250313e-16 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 56
+// entity 57
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -1279,7 +1324,7 @@
 ( 2320 -1344 -320.4 ) ( 2320 -1344 -318.35 ) ( 2320 -1343.9 -320.4 ) "Greybox Textures/PNG/Red/texture_04" [ -2.7755575615628914e-16 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 57
+// entity 58
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -1298,7 +1343,7 @@
 ( 2320 -1455.3599999999997 -440 ) ( 2320 -1455.3599999999997 -439 ) ( 2320 -1451.5200000000002 -440 ) "Greybox Textures/PNG/Orange/texture_03" [ 0 1 0 -360 ] [ 0 0 -1 0 ] 270 0.015625 0.015625
 }
 }
-// entity 58
+// entity 59
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -1317,7 +1362,7 @@
 ( 1632 -1440 -96 ) ( 1632 -1441 -96 ) ( 1632 -1440 -95 ) "Greybox Textures/PNG/Orange/texture_07" [ -2.220446049250313e-16 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 59
+// entity 60
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -1336,7 +1381,7 @@
 ( 1632 -1344 -96 ) ( 1632 -960 32 ) ( 1632 -960 -32 ) "Greybox Textures/PNG/Orange/texture_07" [ -3.3861802251067274e-15 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 60
+// entity 61
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -1355,7 +1400,7 @@
 ( 1632 -1152 -32 ) ( 1632 -1153 -32 ) ( 1632 -1152 -31 ) "Greybox Textures/PNG/Orange/texture_07" [ -2.220446049250313e-16 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 61
+// entity 62
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -1374,7 +1419,7 @@
 ( 2304 -1440 -384 ) ( 2304 -1441 -384 ) ( 2304 -1440 -383 ) "Greybox Textures/PNG/Orange/texture_07" [ -2.220446049250313e-16 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 62
+// entity 63
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -1393,7 +1438,7 @@
 ( 2208 -1440 -384 ) ( 2208 -1344 -384 ) ( 2208 -1344 -448 ) "Greybox Textures/PNG/Orange/texture_07" [ -4.440892098500626e-16 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 63
+// entity 64
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -1412,7 +1457,7 @@
 ( 2016 -1440 -288 ) ( 2016 -1344 -288 ) ( 2016 -1344 -352 ) "Greybox Textures/PNG/Orange/texture_07" [ -4.440892098500626e-16 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 64
+// entity 65
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -1431,7 +1476,7 @@
 ( 1824 -1440 -192 ) ( 1824 -1344 -192 ) ( 1824 -1344 -256 ) "Greybox Textures/PNG/Orange/texture_07" [ -4.440892098500626e-16 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 65
+// entity 66
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -1549,7 +1594,7 @@
 ( 1752 -848.994845223857 32 ) ( 1752 -879.005154776143 16 ) ( 1752 -879.005154776143 32 ) "Greybox Textures/PNG/Orange/texture_02" [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 66
+// entity 67
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -1568,7 +1613,7 @@
 ( 1824 -1104 112 ) ( 1824 -1104 -160 ) ( 1824 -1200 -160 ) "Greybox Textures/PNG/Orange/texture_07" [ -4.496403249731884e-15 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 67
+// entity 68
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -1587,7 +1632,7 @@
 ( 1920 -1152 32 ) ( 1920 -1153 32 ) ( 1920 -1152 33 ) "Greybox Textures/PNG/Orange/texture_07" [ -2.220446049250313e-16 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 68
+// entity 69
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -1606,7 +1651,7 @@
 ( 2000 -928 32 ) ( 2000 -929.3333333333335 32 ) ( 2000 -928 33 ) "Greybox Textures/PNG/Orange/texture_07" [ -2.220446049250313e-16 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 69
+// entity 70
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -1625,7 +1670,7 @@
 ( 2000 -800 32 ) ( 2000 -801.3333333333335 32 ) ( 2000 -800 33 ) "Greybox Textures/PNG/Orange/texture_07" [ -2.220446049250313e-16 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 70
+// entity 71
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -1644,7 +1689,7 @@
 ( 1872 -800 32 ) ( 1872 -801.3333333333335 32 ) ( 1872 -800 33 ) "Greybox Textures/PNG/Orange/texture_07" [ -2.220446049250313e-16 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 71
+// entity 72
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -1663,7 +1708,7 @@
 ( 1744 -800 32 ) ( 1744 -801.3333333333335 32 ) ( 1744 -800 33 ) "Greybox Textures/PNG/Orange/texture_07" [ -2.220446049250313e-16 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 72
+// entity 73
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -1682,7 +1727,7 @@
 ( 1744 -928 32 ) ( 1744 -929.3333333333335 32 ) ( 1744 -928 33 ) "Greybox Textures/PNG/Orange/texture_07" [ -2.220446049250313e-16 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 73
+// entity 74
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -1701,7 +1746,7 @@
 ( 1744 -1056 32 ) ( 1744 -1057.3333333333335 32 ) ( 1744 -1056 33 ) "Greybox Textures/PNG/Orange/texture_07" [ -2.220446049250313e-16 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 74
+// entity 75
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -1720,7 +1765,7 @@
 ( 1872 -1056 32 ) ( 1872 -1057.3333333333335 32 ) ( 1872 -1056 33 ) "Greybox Textures/PNG/Orange/texture_07" [ -2.220446049250313e-16 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 75
+// entity 76
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -1739,7 +1784,7 @@
 ( 2000 -1056 32 ) ( 2000 -1057.3333333333335 32 ) ( 2000 -1056 33 ) "Greybox Textures/PNG/Orange/texture_07" [ -2.220446049250313e-16 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 76
+// entity 77
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -1758,7 +1803,7 @@
 ( 1856 -1056 -80 ) ( 1856 -1056.5 -80 ) ( 1856 -1056 -79 ) "Greybox Textures/PNG/Red/texture_04" [ -2.220446049250313e-16 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 77
+// entity 78
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -1777,7 +1822,7 @@
 ( 1632 -672 16 ) ( 1632 -672 17.200000000000045 ) ( 1632 -668 16 ) "Greybox Textures/PNG/Red/texture_04" [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 78
+// entity 79
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -1796,7 +1841,7 @@
 ( 2000 -672 16 ) ( 2000 -672 17.200000000000045 ) ( 2000 -668 16 ) "Greybox Textures/PNG/Red/texture_04" [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 79
+// entity 80
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -1815,7 +1860,7 @@
 ( 2000 -688 -80 ) ( 2000 -688 -78.79999999999998 ) ( 2000 -687.5 -80 ) "Greybox Textures/PNG/Red/texture_04" [ 2.220446049250313e-16 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 80
+// entity 81
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -1834,7 +1879,7 @@
 ( 2000 -1056 -80 ) ( 2000 -1056 -78.79999999999998 ) ( 2000 -1055.5 -80 ) "Greybox Textures/PNG/Red/texture_04" [ 2.220446049250313e-16 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 81
+// entity 82
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -1871,7 +1916,7 @@
 ( 1920 -1056 96 ) ( 1920 -1057 96 ) ( 1920 -1056 98 ) "Greybox Textures/PNG/Red/texture_04" [ -2.220446049250313e-16 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 82
+// entity 83
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -1962,7 +2007,7 @@
 ( 2073.4922678357852 -948 295.1249999999999 ) ( 2073.492267835788 -948 -240 ) ( 2070.276877526631 -960 -240 ) "Greybox Textures/PNG/Orange/texture_02" [ 0.2588190451025293 0.9659258262890661 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 83
+// entity 84
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -1981,7 +2026,7 @@
 ( 1616 -240 0 ) ( 1616 -240 1 ) ( 1616 -239 0 ) "Greybox Textures/PNG/Orange/texture_02" [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 84
+// entity 85
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -2000,7 +2045,7 @@
 ( 1616 -144 0 ) ( 1616 -144 1 ) ( 1616 -143 0 ) "Greybox Textures/PNG/Orange/texture_02" [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 85
+// entity 86
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -2019,7 +2064,7 @@
 ( 1616 -48 0 ) ( 1616 -48 1 ) ( 1616 -47 0 ) "Greybox Textures/PNG/Orange/texture_02" [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 86
+// entity 87
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -2038,7 +2083,7 @@
 ( 1648 -48 0 ) ( 1648 -49 0 ) ( 1648 -48 1 ) "Greybox Textures/PNG/Orange/texture_07" [ -2.220446049250313e-16 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 87
+// entity 88
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -2057,7 +2102,7 @@
 ( 1632 -672 -80 ) ( 1632 -672 -79 ) ( 1632 -668 -80 ) "Greybox Textures/PNG/Red/texture_04" [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 88
+// entity 89
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -2128,7 +2173,7 @@
 ( 2000 -832 -128 ) ( 2000 -816 -128 ) ( 2000 -816 -160 ) "Greybox Textures/PNG/Red/texture_04" [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 89
+// entity 90
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -2147,7 +2192,7 @@
 ( 2000 -672 -80 ) ( 2000 -672 -70 ) ( 2000 -671.5 -80 ) "Greybox Textures/PNG/Red/texture_04" [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 90
+// entity 91
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -2166,7 +2211,7 @@
 ( 2000 -960 -80 ) ( 2000 -960 -70 ) ( 2000 -959.5 -80 ) "Greybox Textures/PNG/Red/texture_04" [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 91
+// entity 92
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -2185,7 +2230,7 @@
 ( 1632 -672 -160 ) ( 1632 -672 -159 ) ( 1632 -670.5 -160 ) "Greybox Textures/PNG/Red/texture_04" [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 92
+// entity 93
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -2204,7 +2249,7 @@
 ( 1632 -912 -160 ) ( 1632 -912 -159 ) ( 1632 -910.5 -160 ) "Greybox Textures/PNG/Red/texture_04" [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 93
+// entity 94
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -2241,7 +2286,7 @@
 ( 1856 -688 -176 ) ( 1856 -689 -176 ) ( 1856 -688 -174 ) "Greybox Textures/PNG/Red/texture_04" [ -2.220446049250313e-16 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 94
+// entity 95
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -2260,7 +2305,7 @@
 ( 2000 -688 -80 ) ( 2000 -689 -80 ) ( 2000 -688 -70 ) "Greybox Textures/PNG/Red/texture_04" [ -2.220446049250313e-16 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 95
+// entity 96
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -2279,7 +2324,7 @@
 ( 1760 -688 -80 ) ( 1760 -689 -80 ) ( 1760 -688 -70 ) "Greybox Textures/PNG/Red/texture_04" [ -2.220446049250313e-16 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 96
+// entity 97
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -2298,7 +2343,7 @@
 ( 1760 -1056 -80 ) ( 1760 -1057 -80 ) ( 1760 -1056 -70 ) "Greybox Textures/PNG/Red/texture_04" [ -2.220446049250313e-16 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 97
+// entity 98
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -2317,7 +2362,7 @@
 ( 2000 -1056 -80 ) ( 2000 -1057 -80 ) ( 2000 -1056 -70 ) "Greybox Textures/PNG/Red/texture_04" [ -2.220446049250313e-16 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 98
+// entity 99
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -2336,7 +2381,7 @@
 ( 1856 -1056 -160 ) ( 1856 -1056.5 -160 ) ( 1856 -1056 -159 ) "Greybox Textures/PNG/Red/texture_04" [ -2.220446049250313e-16 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 99
+// entity 100
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -2355,7 +2400,7 @@
 ( 1856 -688 -80 ) ( 1856 -688.5 -80 ) ( 1856 -688 -79 ) "Greybox Textures/PNG/Red/texture_04" [ -2.220446049250313e-16 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 100
+// entity 101
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -2374,7 +2419,7 @@
 ( 2192 -672 -240 ) ( 2192 -672 -239.99767981438515 ) ( 2192 -671 -240 ) "Greybox Textures/PNG/Orange/texture_02" [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 101
+// entity 102
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -2393,7 +2438,7 @@
 ( 1616 -816 -240 ) ( 1616 -816 -239 ) ( 1616 -815 -240 ) "Greybox Textures/PNG/Orange/texture_02" [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 102
+// entity 103
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -2412,7 +2457,7 @@
 ( 1760 -480 -160 ) ( 1760 -480 -159 ) ( 1760 -478 -160 ) "Greybox Textures/PNG/Red/texture_04" [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 103
+// entity 104
 {
 "classname" "func_group"
 "_tb_type" "_tb_layer"
@@ -2741,7 +2786,7 @@
 ( 240 -1429.12 -121.60000000000002 ) ( 240 -1429.12 -120.8 ) ( 240 -1427.8399999999997 -121.60000000000002 ) "Greybox Textures/PNG/Green/texture_02" [ -1.2132347921604771e-23 4.371139006309477e-08 0.999999999999999 767.9961 ] [ 2.775557561562889e-16 -0.999999999999999 4.371139006309477e-08 -512 ] 90 0.0125 0.0125
 }
 }
-// entity 104
+// entity 105
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -2895,7 +2940,7 @@
 ( 246.19117453689432 -1152 -128 ) ( 220.73039151229818 -1024 -144 ) ( 246.19117453689432 -1152 -144 ) "Greybox Textures/PNG/Orange/texture_02" [ -0.19509032201612767 0.9807852804032307 0 579.51556 ] [ 0 0 -0.5 -48 ] 180 1 1
 }
 }
-// entity 105
+// entity 106
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -2968,7 +3013,7 @@
 ( 208 -776 -64 ) ( 208 -777 -64 ) ( 208 -776 -63.2291666666666 ) "Greybox Textures/PNG/Red/texture_02" [ -2.220446049250313e-16 -1 0 0 ] [ 0 0 -1 0 ] 0 0.0125 0.0125
 }
 }
-// entity 106
+// entity 107
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -3014,7 +3059,7 @@
 ( 144 -496 -144 ) ( 144 -496 -137 ) ( 144 -495 -144 ) "Greybox Textures/PNG/Red/texture_02" [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 0.0125 0.0125
 }
 }
-// entity 107
+// entity 108
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -3060,7 +3105,7 @@
 ( 304 -480 -128 ) ( 304 -480 -127.88888888888891 ) ( 304 -479 -128 ) "Greybox Textures/PNG/Orange/texture_02" [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 0.0125 0.0125
 }
 }
-// entity 108
+// entity 109
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -3106,7 +3151,7 @@
 ( 112 -160 -144 ) ( 112 -160 -128 ) ( 112 -159 -144 ) "Greybox Textures/PNG/Red/texture_02" [ 0 1 0 -256 ] [ 0 0 -1 -256 ] 270 0.0125 0.0125
 }
 }
-// entity 109
+// entity 110
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -3152,7 +3197,7 @@
 ( 304 32 -152 ) ( 304 32 -151 ) ( 304 32.59999999999923 -152 ) "Greybox Textures/PNG/Orange/texture_02" [ 0 1 0 0 ] [ 0 0 -1 -256 ] 270 0.0125 0.0125
 }
 }
-// entity 110
+// entity 111
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -3234,7 +3279,7 @@
 ( 320 -176 -288 ) ( 320 -176 -287 ) ( 320 -174.83333321412374 -288 ) "Greybox Textures/PNG/Orange/texture_02" [ -1.4901159999507538e-08 1 0 -511.9995 ] [ 0 0 -1 -256 ] 180 0.0125 0.0125
 }
 }
-// entity 111
+// entity 112
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -3280,7 +3325,7 @@
 ( 960 -40 -312 ) ( 960 -40 -302.5 ) ( 960 -39 -312 ) "Greybox Textures/PNG/Red/texture_02" [ 0 1 0 -640 ] [ 0 0 -1 -256 ] 0 0.0125 0.0125
 }
 }
-// entity 112
+// entity 113
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -3326,7 +3371,7 @@
 ( 784 -376 -296 ) ( 784 -376 -289 ) ( 784 -375 -296 ) "Greybox Textures/PNG/Red/texture_02" [ 0 1 0 -896 ] [ 0 0 -1 -896 ] 180 0.0125 0.0125
 }
 }
-// entity 113
+// entity 114
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -3399,7 +3444,7 @@
 ( 960 -24 -336 ) ( 960 -24 -335 ) ( 960 -23 -336 ) "Greybox Textures/PNG/Orange/texture_02" [ 0 1 0 -128 ] [ 0 0 -1 -256 ] 180 0.0125 0.0125
 }
 }
-// entity 114
+// entity 115
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -3445,7 +3490,7 @@
 ( 960 -648 -312 ) ( 960 -648 -302.5 ) ( 960 -647 -312 ) "Greybox Textures/PNG/Red/texture_02" [ 0 1 0 -128 ] [ 0 0 -1 -256 ] 180 0.0125 0.0125
 }
 }
-// entity 115
+// entity 116
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -3527,7 +3572,7 @@
 ( 960 -968 -352 ) ( 960 -969 -352 ) ( 960 -968 -351 ) "Greybox Textures/PNG/Orange/texture_02" [ 1.2246467991473532e-16 1 0 -128 ] [ 0 0 -1 -256 ] 180 0.0125 0.0125
 }
 }
-// entity 116
+// entity 117
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -3609,7 +3654,7 @@
 ( 960 -632 -336 ) ( 960 -632 -335 ) ( 960 -631 -336 ) "Greybox Textures/PNG/Orange/texture_02" [ 0 1 0 -640 ] [ 0 0 -1 -256 ] 180 0.0125 0.0125
 }
 }
-// entity 117
+// entity 118
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -3691,7 +3736,7 @@
 ( 960 -360 -352 ) ( 960 -361 -352 ) ( 960 -360 -351 ) "Greybox Textures/PNG/Orange/texture_02" [ 1.2246467991473532e-16 1 0 -640 ] [ 0 0 -1 -256 ] 270 0.0125 0.0125
 }
 }
-// entity 118
+// entity 119
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -3764,7 +3809,7 @@
 ( 288 -752 -272 ) ( 288 -753 -272 ) ( 288 -752 -271 ) "Greybox Textures/PNG/Orange/texture_02" [ 1.2246467991473532e-16 1 0 -512 ] [ 0 0 -1 0 ] 270 0.0125 0.0125
 }
 }
-// entity 119
+// entity 120
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -3828,7 +3873,7 @@
 ( 24 -960 -64 ) ( 24 -960 -63.2291666666666 ) ( 24 -958.3333333333342 -64 ) "Greybox Textures/PNG/Red/texture_02" [ -2.7755575615628914e-16 -1 0 0 ] [ 0 0 -1 0 ] 0 0.0125 0.0125
 }
 }
-// entity 120
+// entity 121
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -3892,7 +3937,7 @@
 ( 246.19117453689432 -1152 -256 ) ( 244.5998755978569 -1144 -64 ) ( 244.5998755978569 -1144 -256 ) "Greybox Textures/PNG/Red/texture_02" [ 0.19509032201614596 -0.9807852804032271 0 295.14062 ] [ 0 0 -1 0 ] 0 0.0125 0.0125
 }
 }
-// entity 121
+// entity 122
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -3947,7 +3992,7 @@
 ( 400 -998.191177014613 64 ) ( 400 -921.8088279408244 -128 ) ( 400 -998.191177014613 -128 ) "Greybox Textures/PNG/Red/texture_02" [ -5.053215498074303e-16 -1 0 512.0078 ] [ 0 0 -1 0 ] 180 0.0125 0.0125
 }
 }
-// entity 122
+// entity 123
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -4020,7 +4065,7 @@
 ( 400 -940 -212 ) ( 400 -941.6666666666663 -212 ) ( 400 -940 -211.22916666666663 ) "Greybox Textures/PNG/Red/texture_02" [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 0.0125 0.0125
 }
 }
-// entity 123
+// entity 124
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -4084,7 +4129,7 @@
 ( 24 -923.4001225476816 64 ) ( 24 -996.5998737433954 -128 ) ( 24 -996.5998737433954 64 ) "Greybox Textures/PNG/Red/texture_02" [ -2.1073424683389215e-08 -0.9999999999999998 0 0.0078125 ] [ 0 0 -1 0 ] 90 0.0125 0.0125
 }
 }
-// entity 124
+// entity 125
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -4148,7 +4193,7 @@
 ( 228 -1152 -84 ) ( 228 -1152 -83.22916666666663 ) ( 228 -1151 -84 ) "Greybox Textures/PNG/Red/texture_02" [ -5.608327010386881e-16 -1 0 512 ] [ 0 0 -1 0 ] 180 0.0125 0.0125
 }
 }
-// entity 125
+// entity 126
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
@@ -4203,7 +4248,7 @@
 ( 24 -996.5998778690991 64 ) ( 24 -923.4001266733853 64 ) ( 24 -923.4001266733853 -128 ) "Greybox Textures/PNG/Red/texture_02" [ -5.053215498074303e-16 1 0 -511.9922 ] [ 0 0 -1 0 ] 90 0.0125 0.0125
 }
 }
-// entity 126
+// entity 127
 {
 "classname" "func_group"
 "_tb_type" "_tb_group"
