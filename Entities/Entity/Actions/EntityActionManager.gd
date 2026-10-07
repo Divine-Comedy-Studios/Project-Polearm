@@ -12,12 +12,18 @@ class_name EntityActionManager
 @export var hurtbox : Hurtbox = null
 @export var weapon : Weapon = null
 
-@onready var combatManager := $"CombatManager" as EntityCombatManager
-
 #endregion
 
 
 #region Member variables
+
+# Action modification
+
+var _actionForced : StringName = EntityAction.Type.none
+var _actionQueue : StringName = EntityAction.Type.none
+
+
+# Next action payload
 
 var payload : Variant = null:
 	get:
@@ -59,22 +65,76 @@ func _nextState() -> StringName:
 #region Public functions
 
 func init() -> void:
-	assert(entity != null, "EntityActionManager._ready(): Entity physics body not assigned!")
+	assert(entity != null, "EntityActionManager._ready(): Entity entity not assigned!")
 
 	assert(resources != null, "EntityActionManager._ready(): Entity resources not assigned!")
 	assert(frameData != null, "EntityActionManager._ready(): Entity frame data not assigned!")
-
-	assert(combatManager != null, "EntityActionManager._ready(): Entity combat manager not assigned!")
 
 	assert(animator != null, "EntityActionManager._ready(): Entity animator not assigned!")
 
 	super.init()
 
-func vulnerable() -> bool:
-	return true
 
+# Action queue & forced lookup
+
+func pushActionQueue(queue : StringName) -> void:
+	_actionQueue = queue
+
+func popActionQueue() -> StringName:
+	var queue := _actionQueue
+	_actionQueue = EntityAction.Type.none
+	return queue
+
+
+func pushActionForced(queue : StringName) -> void:
+	_actionForced = queue
+
+func popActionForced() -> StringName:
+	var queue := _actionForced
+	_actionForced = EntityAction.Type.none
+	return queue
+
+
+# Entity state
+
+func vulnerable() -> bool:
+	return hurtbox.enabled()
+
+# Utility
 
 func hasHigherPriority(a : StringName, b : StringName) -> bool:
 	return EntityAction.hasHigherPriority(action(a) as EntityAction, action(b) as EntityAction)
+
+#endregion
+
+
+#region Private functions
+
+func _processActions(actions : Array[StringName]):
+	if _actionForced != PlayerAction.Type.none:
+		actions = [ popActionForced() ]
+		
+	else:
+		_processActionQueue(actions)
+		_implProcessActions(actions)
+
+		# Sort current inputs
+		actions.sort_custom(hasHigherPriority)
+
+
+func _processActionQueue(actions : Array[StringName]) -> void:
+	if (_actionQueue != EntityAction.Type.none and
+		not actions.has(_actionQueue)):
+		actions.push_back(_actionQueue)
+		_actionQueue = EntityAction.Type.none
+
+#endregion
+
+
+#region Override functions
+
+@warning_ignore("unused_parameter")
+func _implProcessActions(actions : Array[StringName]) -> void:
+	pass
 
 #endregion

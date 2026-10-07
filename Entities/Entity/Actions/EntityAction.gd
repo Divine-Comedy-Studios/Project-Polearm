@@ -63,16 +63,12 @@ var rootMotionEnabled : bool = true
 
 # This is executed on action enter
 func enter() -> void:
-	if _context.combatManager.isNextComboAction(TYPE):
-		data = _context.combatManager.registerComboAction(TYPE)
-	else:
-		_context.combatManager.resetActiveCombo()
-
-	_context.resources.pay(self) # The action is pretty much guaranteed to be payable at this point, if not, not a big deal
-
 	rootMotionEnabled = true # Always enable root motion when entering a state
 
 	_enter()
+
+	_context.resources.pay(self) # The action is pretty much guaranteed to be payable at this point, if not, not a big deal
+
 
 # This is executed on action exit and resets the action to prepare it for the next time it's activated
 func exit() -> void:
@@ -163,6 +159,27 @@ func hasHigherPriorityThan(second : StringName) -> bool:
 
 
 #region Private functions
+
+# Gets the highest priority action from the current input
+func _highestPriorityAction(actions : Array[StringName]) -> StringName:
+	var candidate := Type.none
+
+	# Go through all higher priority actions and immediately return them if possible as they can cancel the current action
+	for actionType : StringName in actions:
+		var action := _context.action(actionType) as EntityAction
+		var viability := actionViability(action) # 0 == unviable, -1 == same action, 1 == possibly viable
+
+		# These checks here occur due to a tiebreaker when there are multiple actions with the same priority
+		if viability == 1:
+			if action.PRIORITY != PRIORITY:
+				return actionType if candidate == Type.none else candidate
+
+			candidate = actionType
+		elif viability == -1: # If the same action has been found, then stay in this action. This is the purpose of the tiebreaker
+			return Type.none
+
+	return Type.none
+
 
 func _processWeapon() -> void:
 	if _context.weapon != null:
