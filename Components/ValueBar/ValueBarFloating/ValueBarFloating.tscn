@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://b0nj0qib5h30v" path="res://Assets/Textures/Healthbar/DefaultUnder.png" id="1_vxpqq"]
 [ext_resource type="Texture2D" uid="uid://civ4me10g6qei" path="res://Assets/Textures/Healthbar/DefaultProgress.png" id="2_08g3m"]
-[ext_resource type="Script" uid="uid://c1ixtncric4ag" path="res://Common/ValueBar/ValueBarFloating/ValueBarFloating.gd" id="2_tj6tc"]
+[ext_resource type="Script" path="res://Common/ValueBar/ValueBarFloating/ValueBarFloating.gd" id="2_tj6tc"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_tj6tc"]
 viewport_path = NodePath("3D")

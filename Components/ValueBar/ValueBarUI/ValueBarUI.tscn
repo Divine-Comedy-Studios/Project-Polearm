@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dvykeeeeon0qa"]
 
-[ext_resource type="Script" uid="uid://5q0dxq2wk20s" path="res://Interfaces/ValueBar/ValueBarUI/ValueBarUI.gd" id="1_narf7"]
+[ext_resource type="Script" uid="uid://5q0dxq2wk20s" path="res://Components/ValueBar/ValueBarUI/ValueBarUI.gd" id="1_narf7"]
 [ext_resource type="Texture2D" uid="uid://civ4me10g6qei" path="res://Assets/Textures/Healthbar/DefaultProgress.png" id="2_6pvtr"]
 [ext_resource type="Texture2D" uid="uid://b0nj0qib5h30v" path="res://Assets/Textures/Healthbar/DefaultUnder.png" id="3_t8rqo"]
 
@@ -22,6 +22,7 @@ CHANGE_COLOR = Color(1, 1, 1, 1)
 VALUE_TEXTURE = ExtResource("2_6pvtr")
 CHANGE_TEXTURE = ExtResource("2_6pvtr")
 BACKGROUND_TEXTURE = ExtResource("3_t8rqo")
+CHANGE_WAIT_TIME = 0.5
 
 [node name="ChangeBar" type="TextureProgressBar" parent="." unique_id=1440632380]
 layout_mode = 1
