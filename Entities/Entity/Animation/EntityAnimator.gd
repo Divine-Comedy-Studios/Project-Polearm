@@ -65,6 +65,7 @@ const PARAMETER_CURRENT_STATE := &"current_state"
 #region Exported variables
 
 @export var DEFAULT_ANIMATION_NAME : StringName = &""
+@export var COPY_ANIMATION_TREE_ON_INSTANTIATON : bool = false
 
 #endregion
 
@@ -93,6 +94,9 @@ var _autoBlendDrivers : Dictionary[StringName, AutoBlendDriver] = { }
 
 func _ready() -> void:
 	assert(_defaultAnimation != null, "EntityAnimator._ready(): Default animation not found!")
+
+	if COPY_ANIMATION_TREE_ON_INSTANTIATON:
+		tree_root = tree_root.duplicate_deep()
 
 	_initialize()
 
@@ -243,6 +247,9 @@ func _getDriver(driverName : StringName) -> AnimationNode:
 #region Implementation functions
 
 func _initialize() -> void:
+	pass
+
+func reset() -> void:
 	pass
 
 #endregion
