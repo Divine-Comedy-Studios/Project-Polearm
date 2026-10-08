@@ -14,52 +14,11 @@
 [ext_resource type="Material" path="res://Trenchbroom/textures/Greybox Textures/PNG/Green/texture_04.tres" id="10_uesqs"]
 [ext_resource type="Material" uid="uid://cosn5wkayhf52" path="res://Trenchbroom/textures/Greybox Textures/PNG/Red/texture_03.tres" id="11_viyit"]
 [ext_resource type="Material" uid="uid://rwe38pjq0qbw" path="res://Trenchbroom/textures/Greybox Textures/PNG/Orange/texture_01.tres" id="13_y445v"]
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_viyit"]
-radius = 5.25
-
-[sub_resource type="Resource" id="Resource_4oxs2"]
-script = ExtResource("3_l1jfe")
-MAX_ENEMY_COUNT = 2
-ENEMIES = Array[int]([5, 5, 6, 5, 5, 6])
-ENEMY_POSITIONS = Dictionary[int, Vector3]({
-2: Vector3(7.75, 6.1, -8.55),
-5: Vector3(7.75, 6.1, -6.0499997)
-})
-REQUIRED_ROLES = Dictionary[int, int]({
-2: 1,
-3: 1,
-4: 1
-})
-metadata/_custom_type_script = "uid://dgudxdqyw5eah"
-
-[sub_resource type="Resource" id="Resource_viyit"]
-script = ExtResource("3_l1jfe")
-ENEMIES = Array[int]([5, 5, 5, 6, 5, 5, 6, 6])
-ENEMY_POSITIONS = Dictionary[int, Vector3]({
-3: Vector3(7.75, 6.1, -6.0499997),
-6: Vector3(15.150001, 8.4, -8.849999),
-7: Vector3(22.400002, 11.2, -8.849999)
-})
-REQUIRED_ROLES = Dictionary[int, int]({
-2: 2,
-3: 1,
-4: 1
-})
-metadata/_custom_type_script = "uid://dgudxdqyw5eah"
-
-[sub_resource type="Resource" id="Resource_a20cb"]
-script = ExtResource("2_viyit")
-TRANSFORM = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.55, 0, 6.85)
-TRIGGER_REGION = SubResource("SphereShape3D_viyit")
-SPAWN_POINTS = Array[Vector3]([Vector3(-11.5, 2.55, 1.0500001), Vector3(-16.1, 2.55, 9.150001), Vector3(-6.55, 2.55, 9.150001)])
-WAVES = Array[ExtResource("3_l1jfe")]([SubResource("Resource_4oxs2"), SubResource("Resource_viyit")])
-metadata/_custom_type_script = "uid://m3xnuvqxxrog"
+[ext_resource type="Script" uid="uid://03vkcknbw2k" path="res://Systems/EnemyManager/Encounter/EncounterTrigger.gd" id="15_l1jfe"]
 
 [sub_resource type="Resource" id="Resource_l1jfe"]
 script = ExtResource("3_y445v")
 PLAYER_SPAWN_LOCATION = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
-ENCOUNTERS = Array[ExtResource("2_viyit")]([SubResource("Resource_a20cb")])
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_pnhxc"]
 _surfaces = [{
@@ -259,8 +218,45 @@ points = PackedVector3Array(70.3, 0.5, -26.9, 70.3, 0, -26.9, 65.3, 0.5, -26.9, 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_2oa3e"]
 points = PackedVector3Array(43.2, 0.5, -18.300001, 43.2, 0, -18.300001, 37.2, 0.5, -18.300001, 37.2, 0, -18.300001, 43.2, 0.5, -23.4, 43.2, 0, -23.4, 37.2, 0.5, -23.4, 37.2, 0, -23.4)
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_5o5jh"]
-radius = 5.25
+[sub_resource type="Resource" id="Resource_y445v"]
+script = ExtResource("3_l1jfe")
+MAX_ENEMY_COUNT = 6
+ENEMIES = Array[int]([31, 30, 30, 30, 30, 30])
+ENEMY_POSITIONS = Dictionary[int, Vector3]({
+2: Vector3(7.75, 6.1, -8.55),
+5: Vector3(7.75, 6.1, -6.0499997)
+})
+MAX_ROLE_DIFFICULTY = 13.0
+REQUIRED_ROLES = Dictionary[int, int]({
+2: 1,
+3: 1,
+4: 1
+})
+metadata/_custom_type_script = "uid://dgudxdqyw5eah"
+
+[sub_resource type="Resource" id="Resource_dgdp0"]
+script = ExtResource("3_l1jfe")
+ENEMIES = Array[int]([30, 30, 30, 52, 30, 30, 50, 51])
+ENEMY_POSITIONS = Dictionary[int, Vector3]({
+3: Vector3(7.75, 6.1, -6.0499997),
+6: Vector3(15.150001, 8.4, -8.849999),
+7: Vector3(22.400002, 11.2, -8.849999)
+})
+REQUIRED_ROLES = Dictionary[int, int]({
+2: 2,
+3: 1,
+4: 1
+})
+metadata/_custom_type_script = "uid://dgudxdqyw5eah"
+
+[sub_resource type="Resource" id="Resource_1niwp"]
+script = ExtResource("2_viyit")
+WAVES = Array[ExtResource("3_l1jfe")]([SubResource("Resource_y445v"), SubResource("Resource_dgdp0")])
+SPAWN_POINTS = Array[Vector3]([Vector3(-3.0500002, 1.4, -10.300001), Vector3(-3.8000002, 1.4, -6.500001), Vector3(2.25, 0.7, -4.8500004), Vector3(4.5, 1.4, -9.700001)])
+metadata/_custom_type_script = "uid://m3xnuvqxxrog"
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_7mb0h"]
+radius = 2.75
 
 [node name="Gym" type="Node" unique_id=1668630103]
 script = ExtResource("1_l1jfe")
@@ -389,12 +385,29 @@ shape = SubResource("ConvexPolygonShape3D_466e6")
 [node name="entity_0_brush_32_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=266949657]
 shape = SubResource("ConvexPolygonShape3D_2oa3e")
 
-[node name="Helper" type="Node" parent="." unique_id=1442946991]
-process_mode = 4
+[node name="EncounterTrigger" type="Area3D" parent="." unique_id=506413150]
+collision_layer = 0
+monitoring = false
+monitorable = false
+script = ExtResource("15_l1jfe")
+ENCOUNTER = SubResource("Resource_1niwp")
+layers = 1
+metadata/_custom_type_script = "uid://03vkcknbw2k"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Helper" unique_id=1993559500]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.55, 0, 6.85)
-shape = SubResource("SphereShape3D_5o5jh")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EncounterTrigger" unique_id=749945779]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.3)
+shape = SubResource("SphereShape3D_7mb0h")
 
-[node name="Node3D" type="Node3D" parent="Helper" unique_id=1016123017]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.400002, 11.2, -8.849999)
+[node name="SpawnPoints" type="Node3D" parent="EncounterTrigger" unique_id=291643322]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 1.4, -9.700001)
+
+[node name="Node3D4" type="Node3D" parent="EncounterTrigger/SpawnPoints" unique_id=1483986804]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.55, 0, -0.6000004)
+
+[node name="Node3D3" type="Node3D" parent="EncounterTrigger/SpawnPoints" unique_id=1419525343]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.3, 0, 3.1999998)
+
+[node name="Node3D" type="Node3D" parent="EncounterTrigger/SpawnPoints" unique_id=473651212]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, -0.7, 4.8500004)
+
+[node name="Node3D2" type="Node3D" parent="EncounterTrigger/SpawnPoints" unique_id=1038665494]
