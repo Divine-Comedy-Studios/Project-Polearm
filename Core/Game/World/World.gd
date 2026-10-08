@@ -10,16 +10,6 @@ class_name World
 #endregion
 
 
-#region Scene members
-
-@export_group("Scene members")
-@export var gameObjectManager : GameObjectManager = null
-@export var enemyManager : EnemyManager = null
-@export var vfxManager : VFXManager = null
-
-#endregion
-
-
 #region Member variables
 
 var currentStageType : Stage.Type = Stage.Type.NULL
@@ -42,10 +32,6 @@ func _ready() -> void:
 	if Globals.world != null:
 		push_error("World._ready(): World has already been initialized once!")
 		return
-
-	assert(gameObjectManager != null, "World._ready(): Please assign the game object manager!")
-	assert(enemyManager != null, "World._ready(): Please assign the enemy manager!")
-	assert(vfxManager != null, "World._ready(): Please assign the VFX manager!")
 
 	Globals.world = self
 
@@ -111,8 +97,8 @@ func reset() -> void:
 	_currentStageResource = null
 	_currentStagePath = String()
 
-	enemyManager.reset()
-	gameObjectManager.reset()
+	Globals.enemyManager.reset()
+	Globals.gameObjectManager.reset()
 
 # func changeStage(stageData : Stage.SaveData) -> void:
 #	_clearStageData()
@@ -141,7 +127,7 @@ func _loadStage() -> void:
 	_currentStage = _currentStageResource.instantiate()
 
 	# Initialize all world components
-	gameObjectManager.spawn(GameObject.Type.player, _currentStage.DATA.PLAYER_SPAWN_LOCATION)
+	Globals.gameObjectManager.spawn(GameObject.Type.player, _currentStage.DATA.PLAYER_SPAWN_LOCATION)
 
 	add_child(_currentStage)
 

@@ -10,9 +10,8 @@ const MIN_PERIOD_MULTIPLIER : float = 0.7
 
 #region Exported variables
 
+# The speeds to move at come from the controller, this only decides how fast it gets there
 @export_group("Movement settings")
-@export var WALK_SPEED : float = 2.0
-@export var RUN_SPEED : float = 5.5
 @export var ACCELERATION : float = 25.0
 
 @export_group("Animation settings")
@@ -59,21 +58,27 @@ func _implEnter() -> void:
 
 
 func _implTick(delta : float) -> void:
-	var targetSpeed : float = intents().magnitude * intents().speedMultiplier * RUN_SPEED
-	entity().accelerateFlat(intents().direction * targetSpeed, ACCELERATION * delta)
+	var intentData := intents()
 
-	_processAnimations()
+	entity().accelerateFlat(intentData.direction * intentData.speed, ACCELERATION * delta)
+
+	_processAnimations(intentData)
 
 #endregion
 
 
 #region Private functions
 
-func _processAnimations() -> void:
-	_blendScale = lerpf(_blendScale, maxf(
-		clampf(PPUtil.Math.toRangeNormalized(entity().velocity.length(), WALK_SPEED, RUN_SPEED), -1.0, 1.0),
-		-MIN_PERIOD_MULTIPLIER
-	), BLEND_LERP)
+func _processAnimations(intentData : SoliderController.Data) -> void:
+	# Walking is the slowest speed the controller picks, running the fastest one
+	var speedFactor := 0.0
+	if intentData.maxSpeed > intentData.minSpeed:
+		speedFactor = clampf(
+			PPUtil.Math.toRangeNormalized(entity().velocity.length(), intentData.minSpeed, intentData.maxSpeed),
+			-1.0, 1.0
+		)
+
+	_blendScale = lerpf(_blendScale, maxf(speedFactor, -MIN_PERIOD_MULTIPLIER), BLEND_LERP)
 	var period := maxf(
 		_walkPeriod + _blendScale * (_runPeriod - _walkPeriod),
 		_walkPeriod * MIN_PERIOD_MULTIPLIER

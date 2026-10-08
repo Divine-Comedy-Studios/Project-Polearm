@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="ValueResource" format=3 uid="uid://b23lgtsbk1qbb"]
-
-[ext_resource type="Script" uid="uid://c12nkcphob0hm" path="res://Components/NumericResource/ValueResource.gd" id="1_80128"]
-
-[resource]
-resource_local_to_scene = true
-script = ExtResource("1_80128")
-value = 100.0
-metadata/_custom_type_script = "uid://c12nkcphob0hm"

@@ -1,0 +1,122 @@
+[gd_scene format=3 uid="uid://r2ui5wwcawss"]
+
+[ext_resource type="Script" uid="uid://draue1diguu41" path="res://Entities/Solider/Actions/HeavySoliderActionManager.gd" id="1_254bm"]
+[ext_resource type="Script" uid="uid://b3wwa50s76wq" path="res://Entities/Entity/Combat/EntityCombatManager.gd" id="2_1205a"]
+[ext_resource type="Script" uid="uid://dpeutce5d1mpm" path="res://Entities/Solider/Actions/States/IdleOrStop.gd" id="3_sjktn"]
+[ext_resource type="Script" uid="uid://d1f6s1sq7da14" path="res://Entities/Entity/Data/EntityActionData.gd" id="4_jdxdh"]
+[ext_resource type="Script" uid="uid://dyaspgghcnndn" path="res://Entities/Solider/Actions/States/Move.gd" id="5_lti7l"]
+[ext_resource type="Script" uid="uid://bmm5j01gtreak" path="res://Entities/Solider/Actions/States/Fall.gd" id="6_r5tep"]
+[ext_resource type="Script" uid="uid://3ty61fxl7ayk" path="res://Entities/Solider/Actions/States/LightAttack.gd" id="7_3ca1p"]
+[ext_resource type="Script" uid="uid://413tgy3jmvma" path="res://Components/Collision/HitboxData.gd" id="8_qh3us"]
+[ext_resource type="Script" uid="uid://c3xyj27vjum4s" path="res://Entities/Solider/Actions/States/Damage.gd" id="9_dlio7"]
+[ext_resource type="Script" uid="uid://cfwvwypcd1v21" path="res://Entities/Solider/Actions/States/Death.gd" id="10_5as2k"]
+
+[sub_resource type="Resource" id="Resource_4scgt"]
+script = ExtResource("4_jdxdh")
+ANIMATION_LIBRARY_NAME = &"Movement"
+ANIMATION_NAME = &"Idle"
+metadata/_custom_type_script = "uid://d1f6s1sq7da14"
+
+[sub_resource type="Resource" id="Resource_5ueap"]
+script = ExtResource("4_jdxdh")
+ANIMATION_LIBRARY_NAME = &"Movement"
+ANIMATION_NAME = &"WalkLoop"
+ANIMATION_FADE_TIME = 0.2
+metadata/_custom_type_script = "uid://d1f6s1sq7da14"
+
+[sub_resource type="Resource" id="Resource_387nu"]
+script = ExtResource("4_jdxdh")
+ANIMATION_LIBRARY_NAME = &"Movement"
+ANIMATION_NAME = &"RunLoop"
+ANIMATION_FADE_TIME = 0.2
+metadata/_custom_type_script = "uid://d1f6s1sq7da14"
+
+[sub_resource type="Resource" id="Resource_j3ir3"]
+script = ExtResource("4_jdxdh")
+ANIMATION_LIBRARY_NAME = &"Movement"
+ANIMATION_NAME = &"FallLoop"
+metadata/_custom_type_script = "uid://d1f6s1sq7da14"
+
+[sub_resource type="Resource" id="Resource_s5tgp"]
+script = ExtResource("8_qh3us")
+DAMAGE = 30.0
+metadata/_custom_type_script = "uid://413tgy3jmvma"
+
+[sub_resource type="Resource" id="Resource_tntpx"]
+script = ExtResource("4_jdxdh")
+ANIMATION_LIBRARY_NAME = &"Combat"
+ANIMATION_NAME = &"Combo1_4"
+ROOT_MOTION = true
+HIT_DATA = SubResource("Resource_s5tgp")
+metadata/_custom_type_script = "uid://d1f6s1sq7da14"
+
+[sub_resource type="Resource" id="Resource_b1urq"]
+script = ExtResource("4_jdxdh")
+ANIMATION_LIBRARY_NAME = &"Combat"
+ANIMATION_NAME = &"Hit"
+metadata/_custom_type_script = "uid://d1f6s1sq7da14"
+
+[sub_resource type="Resource" id="Resource_4psjp"]
+script = ExtResource("4_jdxdh")
+ANIMATION_LIBRARY_NAME = &"Combat"
+ANIMATION_NAME = &"HitLargeFall"
+metadata/_custom_type_script = "uid://d1f6s1sq7da14"
+
+[node name="SoliderActionManager" type="Node" unique_id=1867174996]
+script = ExtResource("1_254bm")
+metadata/_custom_type_script = "uid://dcey6hygahs6w"
+
+[node name="CombatManager" type="Node" parent="." unique_id=809191700]
+process_mode = 4
+script = ExtResource("2_1205a")
+metadata/_custom_type_script = "uid://b3wwa50s76wq"
+
+[node name="IdleOrStop" type="Node" parent="." unique_id=770084018]
+process_mode = 4
+script = ExtResource("3_sjktn")
+TYPE = &"idle"
+data = SubResource("Resource_4scgt")
+metadata/_custom_type_script = "uid://byfh785ck3vcb"
+
+[node name="Move" type="Node" parent="." unique_id=599440476]
+process_mode = 4
+script = ExtResource("5_lti7l")
+IDLE_DATA = SubResource("Resource_4scgt")
+WALK_DATA = SubResource("Resource_5ueap")
+RUN_DATA = SubResource("Resource_387nu")
+TYPE = &"move"
+PRIORITY = 3
+metadata/_custom_type_script = "uid://byfh785ck3vcb"
+
+[node name="Fall" type="Node" parent="." unique_id=1069891697]
+process_mode = 4
+script = ExtResource("6_r5tep")
+TYPE = &"fall"
+PRIORITY = 20
+data = SubResource("Resource_j3ir3")
+metadata/_custom_type_script = "uid://byfh785ck3vcb"
+
+[node name="LightAttack" type="Node" parent="." unique_id=1204075413]
+process_mode = 4
+script = ExtResource("7_3ca1p")
+TYPE = &"lightAttack"
+PRIORITY = 41
+REPEATABLE = true
+data = SubResource("Resource_tntpx")
+metadata/_custom_type_script = "uid://byfh785ck3vcb"
+
+[node name="Damage" type="Node" parent="." unique_id=854519062]
+process_mode = 4
+script = ExtResource("9_dlio7")
+TYPE = &"damage"
+PRIORITY = 60
+data = SubResource("Resource_b1urq")
+metadata/_custom_type_script = "uid://byfh785ck3vcb"
+
+[node name="Death" type="Node" parent="." unique_id=31485782]
+process_mode = 4
+script = ExtResource("10_5as2k")
+TYPE = &"death"
+PRIORITY = 100
+data = SubResource("Resource_4psjp")
+metadata/_custom_type_script = "uid://byfh785ck3vcb"

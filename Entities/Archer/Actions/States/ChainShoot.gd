@@ -71,7 +71,6 @@ func _shoot(idx : int) -> void:
 
 	var dir := (intents().targetPosition + physics.OFFSET) - physics.position
 
-	# Add some variation to the shot, the first is always accurate
 	dir.x += randf_range(-HORIZONTAL_VARIATION, HORIZONTAL_VARIATION) * _shotIdx
 	dir.z += randf_range(-HORIZONTAL_VARIATION, HORIZONTAL_VARIATION) * _shotIdx
 
@@ -79,6 +78,6 @@ func _shoot(idx : int) -> void:
 	physics.distance = dir.length()
 	physics.normDirection = dir / physics.distance
 
-	Globals.world.gameObjectManager.spawn(PROJECTILE_TYPE, physics)
+	Globals.gameObjectManager.spawn(PROJECTILE_TYPE, physics)
 
 #endregion

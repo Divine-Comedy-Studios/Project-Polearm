@@ -22,13 +22,16 @@ func _ready() -> void:
 	super._ready()
 
 	if not Engine.is_editor_hint():
+		if ENCOUNTER.SPAWN_POINTS.is_empty():
+			assert(false, "EnemyManager._findSpawnPosition(): Encounter has no spawn points!")
+
 		enable()
 
 func trigger(node : Node3D) -> void:
 	if node.is_in_group("Player"):
 		disable()
 
-		Globals.world.enemyManager.beginEncounter(ENCOUNTER)
+		Globals.enemyManager.beginEncounter(ENCOUNTER)
 
 #endregion
 

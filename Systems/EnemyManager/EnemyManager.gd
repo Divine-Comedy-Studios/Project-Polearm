@@ -74,6 +74,14 @@ var _currentRoles : Dictionary[Role, int] = {
 
 #region Built-in functions
 
+func _ready() -> void:
+	if Globals.enemyManager != null:
+		push_error("EnemyManager._ready(): Enemy manager has already been initialized once!")
+		return
+
+	Globals.enemyManager = self
+
+
 func _physics_process(delta : float) -> void:
 	# Reset current state
 
@@ -177,7 +185,7 @@ func _endEncounter() -> void:
 	_currentEncounterScript = null
 	_currentEncounter = null
 	_currentWaveIdx = -1
-	_currentEnemyIdx = 0
+	_currentEnemyIdx = -1
 
 
 func _nextWave() -> void:
@@ -208,7 +216,7 @@ func _spawnWaveEnemies(currentWave : Wave) -> void:
 			var transform := Transform3D()
 			transform.origin = currentWave.ENEMY_POSITIONS.get(_currentEnemyIdx, Vector3.ZERO)
 
-			Globals.world.gameObjectManager.spawn(
+			Globals.gameObjectManager.spawn(
 				currentWave.ENEMIES[_currentEnemyIdx],
 				transform
 			)
@@ -217,7 +225,7 @@ func _spawnWaveEnemies(currentWave : Wave) -> void:
 			if not spawnPos[0] as bool:
 				return # The last condition will not have changed from the last time the code was there, therefore we can return
 
-			Globals.world.gameObjectManager.spawn(
+			Globals.gameObjectManager.spawn(
 				currentWave.ENEMIES[_currentEnemyIdx],
 				spawnPos[1] as Transform3D
 			)
@@ -250,23 +258,29 @@ func _findSpawnPosition() -> Array: # [bool, Transform3D]
 
 # Role assignment
 
-func _assignEnemyRole(requiredRoles : Dictionary[EnemyManager.Role, int], currentRole : Role, availableRoles : Array[Role], requestsRoleChange : bool) -> Role:
-	# Pretend enemy is not currently registered
+func _assignEnemyRole(
+	requiredRoles : Dictionary[EnemyManager.Role, int],
+	currentRole : Role,
+	availableRoles : Array[Role],
+	requestsRoleChange : bool
+) -> Role:
+	# Pretend enemy is not currently registered.
 
 	_roleDifficulty.value -= _roleWeight(currentRole)
 	_currentRoles[currentRole] -= 1
 
 	var newRole := _pickEnemyRole(
-		requiredRoles, 
+		requiredRoles,
 		currentRole,
 		availableRoles,
 		requestsRoleChange,
-		_roleDifficulty.maxValue - _roleDifficulty.value # Available role points if the enemy was not registered
+		_roleDifficulty.maxValue - _roleDifficulty.value
 	)
 
 	_currentRoles[newRole] += 1
-	if newRole != currentRole:
-		_roleDifficulty.value += _roleWeight(newRole)
+
+	# Always restore the newly assigned role's weight.
+	_roleDifficulty.value += _roleWeight(newRole)
 
 	return newRole
 

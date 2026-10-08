@@ -16,14 +16,14 @@ func spawn(payload : Variant) -> void:
 	var transform := payload as Transform3D
 	var enemy := object as BasicEnemy
 
-	Globals.world.enemyManager.register(self)
+	Globals.enemyManager.register(self)
 
 	enemy.spawn(transform)
 
 func _kill() -> void:
 	(object as BasicEnemy).kill()
 
-	Globals.world.enemyManager.unregister(self)
+	Globals.enemyManager.unregister(self)
 
 
 func tick(delta : float, payload : Variant = null) -> void:

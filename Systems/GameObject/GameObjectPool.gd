@@ -11,8 +11,7 @@ var HandleType : Script = null
 var _scene : PackedScene = null
 var _scenePath : String = String()
 
-var _pooled : Array[GameObject] = []
-
+var pooled : Array[GameObject] = []
 var active : Dictionary[int, GameObject] = { }
 
 #endregion
@@ -36,19 +35,27 @@ func _init(type : GameObject.Type, dataset : GameObjectDataset) -> void:
 
 #region Public functions
 
+func prepare(count : int) -> void:
+	_checkScene()
+
+	for i : int in range(count):
+		var object : GameObject = HandleType.new(_scene.instantiate(), self)
+		pooled.push_back(object)
+
+
 func spawn(payload : Variant) -> void:
 	_checkScene()
 
 	var object : GameObject = null
 
-	if _pooled.is_empty():
+	if pooled.is_empty():
 		object = HandleType.new(_scene.instantiate(), self)
 		assert(object is GameObject, "GameObjectPool.spawn(): Scene mapped to type in Game object dataset does not inherit from GameObject!")
 
 		active[object.entityID()] = object
 	else:
-		object = _pooled.back()
-		_pooled.pop_back()
+		object = pooled.back()
+		pooled.pop_back()
 		active[object.entityID()] = object
 
 	add_child(object.object)
@@ -63,7 +70,7 @@ func reset(deepClear : bool = false) -> void:
 	active.clear()
 
 	if deepClear:
-		_pooled.clear()
+		pooled.clear()
 
 #endregion
 

@@ -2,8 +2,6 @@ extends BasicEnemyAction
 class_name SoliderAction
 
 
-#region Enums
-
 class Type:
 	const none := EntityAction.Type.none
 
@@ -12,7 +10,7 @@ class Type:
 
 	# Idle
 	const idle := EntityAction.Type.idle
-	
+
 
 	# Ground movement actions
 	const move := &"move"
@@ -118,7 +116,9 @@ class Type:
 enum Priority {
 	idle = 0,
 	groundedMovementTypes = 1,
+	jumpingTypes = 30,
 	combatTypes = 40,
+	evasionTypes = 50,
 	damageTypes = 60,
 	overwrite = 999,
 }

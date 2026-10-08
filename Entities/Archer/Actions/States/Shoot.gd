@@ -58,6 +58,6 @@ func _shoot() -> void:
 	physics.distance = dir.length()
 	physics.normDirection = dir / physics.distance
 
-	Globals.world.gameObjectManager.spawn(PROJECTILE_TYPE, physics)
+	Globals.gameObjectManager.spawn(PROJECTILE_TYPE, physics)
 
 #endregion

@@ -1,30 +1,21 @@
 [gd_scene format=3 uid="uid://b8g2l2mls2k6"]
 
-[ext_resource type="Script" uid="uid://dimj2il0dk1u2" path="res://Core/Game/World/World.gd" id="1_wgjyf"]
+[ext_resource type="Script" uid="uid://dt3uef8ivy35o" path="res://Core/Game/World/World.gd" id="1_wgjyf"]
 [ext_resource type="Script" uid="uid://dl4tnwxqtbept" path="res://Systems/EnemyManager/EnemyManager.gd" id="2_lf88h"]
 [ext_resource type="Resource" uid="uid://j3hdtf4jxj65" path="res://Stages/Data/StageDataset.res" id="2_s3e02"]
 [ext_resource type="Script" uid="uid://ck12n7apm8und" path="res://Systems/GameObject/GameObjectManager.gd" id="3_fkrut"]
 [ext_resource type="Resource" uid="uid://tn6gku0bh4js" path="res://Systems/GameObject/Resources/GameObjectDataset.res" id="4_kerbn"]
 [ext_resource type="Script" uid="uid://ci6h3a7jfhous" path="res://Systems/EnemyManager/Perception/EnemyPerception.gd" id="5_m1rfh"]
-[ext_resource type="Script" path="res://Systems/VFX/VFXManager.gd" id="6_vfxmgr"]
-[ext_resource type="Resource" path="res://Systems/VFX/Resources/VFXDataset.tres" id="7_vfxds"]
 
-[node name="World" type="Node" unique_id=966975395 node_paths=PackedStringArray("gameObjectManager", "enemyManager", "vfxManager", "_player")]
+[node name="World" type="Node" unique_id=966975395]
 process_mode = 4
 script = ExtResource("1_wgjyf")
 STAGE_DATASET = ExtResource("2_s3e02")
-gameObjectManager = NodePath("GameObjectManager")
-enemyManager = NodePath("EnemyManager")
-vfxManager = NodePath("VFXManager")
 
 [node name="GameObjectManager" type="Node" parent="." unique_id=778732757]
 script = ExtResource("3_fkrut")
 GAME_OBJECT_DATASET = ExtResource("4_kerbn")
 metadata/_custom_type_script = "uid://ck12n7apm8und"
-
-[node name="VFXManager" type="Node" parent="." unique_id=1847362951]
-script = ExtResource("6_vfxmgr")
-VFX_DATASET = ExtResource("7_vfxds")
 
 [node name="EnemyManager" type="Node" parent="." unique_id=503714007]
 script = ExtResource("2_lf88h")
