@@ -5,7 +5,7 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_be4l1"]
 radius = 0.453125
-height = 1.4786133
+height = 2.0393066
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1nm4n"]
 
@@ -15,15 +15,15 @@ metadata/_custom_type_script = "uid://dfgsdaaqmi0tx"
 
 [node name="Hitbox" type="Area3D" parent="." unique_id=1705073012]
 collision_layer = 0
-collision_mask = 67108864
+collision_mask = 4
 monitoring = false
 monitorable = false
 script = ExtResource("2_p7km3")
-LAYERS = 67108864
+LAYERS = 4
 metadata/_custom_type_script = "uid://beiorgsa2hjgm"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" unique_id=1326221915]
-transform = Transform3D(1, -7.450562e-09, -5.960461e-08, 7.450576e-09, 1, 2.3841841e-07, 5.960461e-08, -2.3841841e-07, 1, 0.014271367, 0.9346989, 0.025232343)
+transform = Transform3D(1, -7.450562e-09, -5.960461e-08, 7.450576e-09, 1, 2.3841841e-07, 5.960461e-08, -2.3841841e-07, 1, 0.014271369, 0.6543522, 0.02523241)
 shape = SubResource("CapsuleShape3D_be4l1")
 debug_color = Color(0, 0.6515532, 0.017827053, 0.41960785)
 

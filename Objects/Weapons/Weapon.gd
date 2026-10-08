@@ -11,6 +11,7 @@ class Type:
 
 	const spear := &"spear"
 	const arrow := &"arrow"
+	const homing := &"homing"
 	const scimitar := &"scimitar"
 
 #endregion
