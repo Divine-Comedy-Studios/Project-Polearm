@@ -15,6 +15,7 @@ class_name World
 @export_group("Scene members")
 @export var gameObjectManager : GameObjectManager = null
 @export var enemyManager : EnemyManager = null
+@export var vfxManager : VFXManager = null
 
 #endregion
 
@@ -44,6 +45,7 @@ func _ready() -> void:
 
 	assert(gameObjectManager != null, "World._ready(): Please assign the game object manager!")
 	assert(enemyManager != null, "World._ready(): Please assign the enemy manager!")
+	assert(vfxManager != null, "World._ready(): Please assign the VFX manager!")
 
 	Globals.world = self
 

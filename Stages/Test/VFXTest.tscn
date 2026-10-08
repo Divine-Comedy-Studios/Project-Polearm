@@ -1,0 +1,50 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Stages/Test/VFXTest.gd" id="1_test"]
+[ext_resource type="Script" path="res://Systems/VFX/VFXManager.gd" id="2_mgr"]
+[ext_resource type="Resource" path="res://Systems/VFX/Resources/VFXDataset.tres" id="3_ds"]
+
+[sub_resource type="Environment" id="Environment_test"]
+background_mode = 1
+background_color = Color(0.04, 0.05, 0.07, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.4, 0.45, 0.55, 1)
+glow_enabled = true
+glow_intensity = 0.8
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_floor"]
+size = Vector2(30, 30)
+
+[sub_resource type="StandardMaterial3D" id="Material_floor"]
+albedo_color = Color(0.18, 0.19, 0.22, 1)
+
+[node name="VFXTest" type="Node3D" node_paths=PackedStringArray("_vfx", "_camera")]
+script = ExtResource("1_test")
+_vfx = NodePath("VFXManager")
+_camera = NodePath("Camera3D")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_test")
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_floor")
+surface_material_override/0 = SubResource("Material_floor")
+
+[node name="Light" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.7, 0.7, 0, -0.7, 0.7, 0, 5, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 6)
+
+[node name="VFXManager" type="Node" parent="."]
+script = ExtResource("2_mgr")
+VFX_DATASET = ExtResource("3_ds")
+
+[node name="Help" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="Help"]
+offset_left = 16.0
+offset_top = 12.0
+offset_right = 700.0
+offset_bottom = 40.0
+text = "1 hit spark   2 death burst   3 land dust   4 dash dust   5 spawn portal   Space: all"

@@ -3,12 +3,12 @@
 importer="func_godot.map"
 type="Resource"
 uid="uid://bvbk435qi3bsj"
-path="res://.godot/imported/1_Level.2.map-a92e2f505d425df25695e4887bf5a03d.tres"
+path="res://.godot/imported/1_Level.2.map-66ea552b7d2ec12196a22d2271b48703.tres"
 
 [deps]
 
-source_file="res://Trenchbroom/Maps/autosave/1_Level.2.map"
-dest_files=["res://.godot/imported/1_Level.2.map-a92e2f505d425df25695e4887bf5a03d.tres"]
+source_file="res://Trenchbroom/maps/autosave/1_Level.2.map"
+dest_files=["res://.godot/imported/1_Level.2.map-66ea552b7d2ec12196a22d2271b48703.tres"]
 
 [params]
 

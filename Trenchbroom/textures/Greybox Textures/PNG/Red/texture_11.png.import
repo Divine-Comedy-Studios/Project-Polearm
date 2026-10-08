@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bns2g7kuooqof"
-path="res://.godot/imported/texture_11.png-a36cb63e4203c0761d9ca0abc2640253.ctex"
+path="res://.godot/imported/texture_11.png-a289366cbdc72b23b4d5154754cd79b9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Trenchbroom/Textures/Greybox Textures/PNG/Red/texture_11.png"
-dest_files=["res://.godot/imported/texture_11.png-a36cb63e4203c0761d9ca0abc2640253.ctex"]
+source_file="res://Trenchbroom/textures/Greybox Textures/PNG/Red/texture_11.png"
+dest_files=["res://.godot/imported/texture_11.png-a289366cbdc72b23b4d5154754cd79b9.ctex"]
 
 [params]
 
