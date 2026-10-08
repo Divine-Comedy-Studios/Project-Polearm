@@ -45,8 +45,6 @@ const ROLE_STRENGTH : Array[Role] = [
 
 # Level data
 
-@export_group("DEBUG")
-@export var _encounters : Array[Encounter] = [ ]
 var _currentEncounter : Encounter = null
 var _currentEncounterScript : Object = null
 var _currentWaveIdx : int = -1
@@ -118,29 +116,13 @@ func _physics_process(delta : float) -> void:
 
 #region Public functions
 
-func init(stageData : StageData) -> void:
-	_encounters = stageData.ENCOUNTERS
-
-	var idx := 0
-	for encounter : Encounter in _encounters:
-		if not _validateEncounters(encounter):
-			continue
-
-		var trigger := EncounterTrigger.new(idx, encounter.TRIGGER_REGION)
-		trigger.transform = encounter.TRANSFORM
-
-		add_child(trigger)
-		trigger.enable()
-
-		idx += 1
-
-func beginEncounter(index : int) -> void:
+func beginEncounter(encounter : Encounter) -> void:
 	if _currentEncounter != null:
 		push_error("EnemyManager.beginEncounter(): An encounter was started whilst another one was active! Check for incorrect behavior.")
 
 		return
-
-	_currentEncounter = _encounters[index]
+	
+	_currentEncounter = encounter
 
 	if not _currentEncounter.SCRIPT.is_empty():
 		_currentEncounterScript = (load(_currentEncounter.SCRIPT) as GDScript).new()
@@ -158,6 +140,19 @@ func register(enemy : BasicEnemyHandle) -> void:
 
 func unregister(enemy : BasicEnemyHandle) -> void:
 	_activeEnemies.erase(enemy)
+
+
+func reset() -> void:
+	_currentEncounter = null
+	_currentEncounterScript = null
+	_currentWaveIdx = -1
+	_currentEnemyIdx = -1
+
+	for role in _currentRoles.keys():
+		_currentRoles[role] = 0
+	_roleDifficulty.value = 0.0
+
+	_perceptionEngine.reset()
 
 #endregion
 

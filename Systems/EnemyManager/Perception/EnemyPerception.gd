@@ -9,7 +9,8 @@ class Data extends RefCounted:
 
 	var detected : bool = false
 	var hasTarget : bool = false
-	var target : Vector3 = Vector3.ZERO
+	var targetPos : Vector3 = Vector3.ZERO
+	var target : Node3D = null
 
 #endregion
 
@@ -55,7 +56,9 @@ func request(pos : Vector3, role : EnemyManager.Role) -> Data:
 			_hasLastKnownPosition = true
 
 	data.hasTarget = _hasLastKnownPosition
-	data.target = _lastKnownPosition
+	data.targetPos = _lastKnownPosition
+
+	data.target = _target
 
 	data.role = role
 

@@ -4,24 +4,50 @@ extends EventTrigger
 class_name EncounterTrigger
 
 
-#region Member variables
+#region Exported variables
 
-var _index : int = 0
+@export var ENCOUNTER : Encounter = null
+
+@export var SPAWN_POINT_PARENT : Node3D:
+	set(value):
+		if Engine.is_editor_hint():
+			_updateSpawnPoints(value)
 
 #endregion
 
 
 #region Built-in functions
 
-func _init(index : int, region : Shape3D) -> void:
-	super._init()
+func _ready() -> void:
+	super._ready()
 
-	_index = index
-	shape = region
+	if not Engine.is_editor_hint():
+		enable()
 
 func trigger(node : Node3D) -> void:
 	if node.is_in_group("Player"):
 		disable()
-		Globals.world.enemyManager.beginEncounter(_index)
+
+		Globals.world.enemyManager.beginEncounter(ENCOUNTER)
+
+#endregion
+
+
+#region Private functions
+
+func _updateSpawnPoints(spawnPointParent : Node3D) -> void:
+	if ENCOUNTER == null or spawnPointParent == null:
+		return
+
+	var spawn_points: Array[Vector3] = []
+
+	for child in spawnPointParent.get_children():
+		if child is Node3D:
+			spawn_points.append(child.global_position)
+
+	ENCOUNTER.SPAWN_POINTS = spawn_points
+
+	if not ENCOUNTER.resource_path.is_empty():
+		ResourceSaver.save(ENCOUNTER, ENCOUNTER.resource_path)
 
 #endregion
