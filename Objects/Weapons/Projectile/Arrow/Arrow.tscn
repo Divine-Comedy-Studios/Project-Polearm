@@ -1,53 +1,50 @@
 [gd_scene format=3 uid="uid://cykjkqe6xbdar"]
 
-[ext_resource type="Script" uid="uid://tjyl3cw5luri" path="res://Objects/Weapons/Arrow/Arrow.gd" id="1_x07a2"]
+[ext_resource type="Script" uid="uid://tjyl3cw5luri" path="res://Objects/Weapons/Projectile/Arrow/Arrow.gd" id="1_x07a2"]
 [ext_resource type="Script" uid="uid://beiorgsa2hjgm" path="res://Components/Collision/Hitbox.gd" id="2_bp8jn"]
 [ext_resource type="Script" uid="uid://413tgy3jmvma" path="res://Components/Collision/HitboxData.gd" id="2_exs1m"]
-[ext_resource type="Script" uid="uid://wkn1pfa4kcmk" path="res://Components/Collision/Hurtbox.gd" id="3_8h5s8"]
 
 [sub_resource type="Resource" id="Resource_8h5s8"]
 script = ExtResource("2_exs1m")
 DAMAGE = 10.0
 metadata/_custom_type_script = "uid://413tgy3jmvma"
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_7mb0h"]
-radius = 0.28315014
-
 [sub_resource type="SphereShape3D" id="SphereShape3D_5o5jh"]
 radius = 0.14183411
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_7mb0h"]
+radius = 0.28315014
 
 [node name="Arrow" type="Node3D" unique_id=36479960 node_paths=PackedStringArray("_hurtbox")]
 script = ExtResource("1_x07a2")
 _hurtbox = NodePath("Hurtbox")
+TYPE = &"arrow"
 DEFAULT_HIT_DATA = SubResource("Resource_8h5s8")
 metadata/_custom_type_script = "uid://tjyl3cw5luri"
 
 [node name="Hitbox" type="Area3D" parent="." unique_id=655840396]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.0475758)
 collision_layer = 0
-collision_mask = 134217728
+collision_mask = 2
 monitoring = false
 monitorable = false
 script = ExtResource("2_bp8jn")
-LAYERS = 134217728
+LAYERS = 2
 metadata/_custom_type_script = "uid://beiorgsa2hjgm"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" unique_id=1440100987]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.1272906)
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Hitbox" unique_id=1760470937]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.052424073)
+shape = SubResource("SphereShape3D_5o5jh")
+
+[node name="Hurtbox" type="Area3D" parent="." unique_id=617450268]
+collision_layer = 0
+collision_mask = 134250498
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" unique_id=1440100987]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.7202852)
 shape = SubResource("SphereShape3D_7mb0h")
 debug_color = Color(0.035616323, 0.6357186, 0.40680492, 0.41960785)
-
-[node name="Hurtbox" type="Area3D" parent="." unique_id=1113025165]
-collision_layer = 32769
-collision_mask = 0
-monitoring = false
-script = ExtResource("3_8h5s8")
-LAYERS = 32769
-metadata/_custom_type_script = "uid://wkn1pfa4kcmk"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" unique_id=1760470937]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.05)
-shape = SubResource("SphereShape3D_5o5jh")
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="." unique_id=1738397856]
 transform = Transform3D(0.99999994, 0, 0, 0, -4.3711385e-08, 1, 0, -0.99999994, -4.371139e-08, 0, 0, 0)
@@ -58,5 +55,5 @@ radius = 0.05
 height = 1.4355469
 
 [node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D" unique_id=126611467]
-transform = Transform3D(0.70710677, -0.70710677, 0, 0.70710677, 0.70710677, 0, 0, 0, 1, 0.002589494, 1.0608649, -0.0026245117)
+transform = Transform3D(0.7071015, -0.7071015, 0, 0.7071015, 0.7071015, 0, -2.309264e-13, -2.309264e-13, 1, 0.0025894935, 1.0608647, -0.0026245117)
 size = Vector3(0.2, 0.1926758, 0.19470215)
