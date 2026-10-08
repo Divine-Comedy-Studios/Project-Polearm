@@ -9,15 +9,24 @@ enum Type {
 	# Entities
 
 	player,
-	enemy,
-	dummyEnemy,
+
+	enemy = 10,
+
+	dummyEnemy = 20,
 	beanEnemy,
-	solider,
-	archer,
+
+	solider = 30,
+	heavySolider,
+	ninja,
+
+	archer = 50,
+	heavyArcher,
+	chainArcher,
 
 	# Objects
 
-	arrow,
+	arrow = 100,
+	homingMissile,
 }
 
 #endregion
@@ -50,7 +59,7 @@ func kill() -> void:
 	_pool.remove_child(object)
 	_pool.active.erase(object.get_instance_id())
 
-	_killImpl()
+	_kill()
 
 
 func entityID() -> int:
@@ -69,7 +78,7 @@ func _initImpl() -> void:
 func spawn(payload : Variant) -> void:
 	pass
 
-func _killImpl() -> void:
+func _kill() -> void:
 	pass
 
 

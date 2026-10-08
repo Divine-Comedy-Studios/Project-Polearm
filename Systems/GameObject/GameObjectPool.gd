@@ -56,12 +56,14 @@ func spawn(payload : Variant) -> void:
 	object.spawn(payload)
 
 
-func clear() -> void:
+func reset(deepClear : bool = false) -> void:
 	for entity : GameObject in active.values():
 		entity.kill()
 	
 	active.clear()
-	_pooled.clear()
+
+	if deepClear:
+		_pooled.clear()
 
 #endregion
 

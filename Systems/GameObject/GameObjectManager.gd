@@ -27,4 +27,9 @@ func spawn(type : GameObject.Type, payload : Variant) -> void:
 
 	_pools[type].spawn(payload)
 
+
+func reset() -> void:
+	for pool : GameObjectPool in _pools.values():
+		pool.reset()
+
 #endregion
