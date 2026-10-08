@@ -16,12 +16,12 @@ class_name World
 @export var gameObjectManager : GameObjectManager = null
 @export var enemyManager : EnemyManager = null
 
-@export var _player : Player = null
-
 #endregion
 
 
 #region Member variables
+
+var currentStageType : Stage.Type = Stage.Type.NULL
 
 var _currentStagePath : String = String()
 var _currentStageResource : PackedScene = null
@@ -44,8 +44,6 @@ func _ready() -> void:
 
 	assert(gameObjectManager != null, "World._ready(): Please assign the game object manager!")
 	assert(enemyManager != null, "World._ready(): Please assign the enemy manager!")
-
-	assert(_player != null, "World._ready(): Please assign the player!")
 
 	Globals.world = self
 
@@ -104,6 +102,16 @@ func nextState() -> StringName:
 func gameOver() -> void:
 	_nextGameState = Type.gameOver
 
+
+func reset() -> void:
+	_currentStage.queue_free()
+	_currentStage = null
+	_currentStageResource = null
+	_currentStagePath = String()
+
+	enemyManager.reset()
+	gameObjectManager.reset()
+
 # func changeStage(stageData : Stage.SaveData) -> void:
 #	_clearStageData()
 #	_payload = stageData
@@ -114,15 +122,10 @@ func gameOver() -> void:
 
 #region Private functions
 
-# func _clearStageData() -> void:
-#	_currentStage.queue_free()
-#	_currentStage = null
-#	_currentStageResource = null
-#	_currentStagePath = String()
-
-
 func _requestLoadStage(stageType : Stage.Type) -> void:
-	_currentStagePath = STAGE_DATASET.DATASET[stageType]
+	currentStageType = stageType
+
+	_currentStagePath = STAGE_DATASET.DATASET[currentStageType]
 	var err := ResourceLoader.load_threaded_request(_currentStagePath)
 
 	assert(err == OK, "World._requestLoadStage(): Request to load the stage resource failed!")
@@ -136,8 +139,7 @@ func _loadStage() -> void:
 	_currentStage = _currentStageResource.instantiate()
 
 	# Initialize all world components
-	enemyManager.init(_currentStage.DATA)
-	_player.spawn(_currentStage.DATA.PLAYER_SPAWN_LOCATION) ### @todo this could be done modularly through the game object manager
+	gameObjectManager.spawn(GameObject.Type.player, _currentStage.DATA.PLAYER_SPAWN_LOCATION)
 
 	add_child(_currentStage)
 

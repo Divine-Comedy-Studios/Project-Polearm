@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://vpibhqydcc46"]
+
+[ext_resource type="Script" uid="uid://cfdlgc8aalbtr" path="res://Interfaces/UIElements/GameMenuButton.gd" id="1_2kcie"]
+[ext_resource type="Script" uid="uid://da0ene7m0g0bi" path="res://Interfaces/Menus/DeathMenu/DeathScreen/DeathScreen.gd" id="1_7gc0m"]
+
+[node name="DeathScreen" type="Control" unique_id=371828079 node_paths=PackedStringArray("_fadeInTimer", "_fadeOutTimer", "_fadeRect")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+script = ExtResource("1_7gc0m")
+_fadeInTimer = NodePath("FadeInTimer")
+_fadeOutTimer = NodePath("FadeOutTimer")
+_fadeRect = NodePath("Fade")
+
+[node name="Tint" type="ColorRect" parent="." unique_id=473429045]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.28833508, 0, 0, 1)
+
+[node name="Center" type="CenterContainer" parent="." unique_id=1341230799]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="Center" unique_id=12819607]
+custom_minimum_size = Vector2(280, 0)
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Title" type="Label" parent="Center/VBox" unique_id=457466803]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.1, 0.1, 1)
+theme_override_font_sizes/font_size = 72
+text = "YOU DIED"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="Center/VBox" unique_id=273170444]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+
+[node name="RespawnButton" type="Button" parent="Center/VBox" unique_id=672115130]
+layout_mode = 2
+text = "Respawn"
+script = ExtResource("1_2kcie")
+
+[node name="MainMenuButton" type="Button" parent="Center/VBox" unique_id=1272533495]
+layout_mode = 2
+text = "Main Menu"
+script = ExtResource("1_2kcie")
+
+[node name="FadeInTimer" type="Timer" parent="." unique_id=1517426481]
+one_shot = true
+
+[node name="FadeOutTimer" type="Timer" parent="." unique_id=697591259]
+one_shot = true
+
+[node name="Fade" type="ColorRect" parent="." unique_id=1847644726]
+visible = false
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 0)
+
+[connection signal="pressed" from="Center/VBox/RespawnButton" to="." method="_on_respawn_pressed"]
+[connection signal="pressed" from="Center/VBox/MainMenuButton" to="." method="_on_main_menu_pressed"]

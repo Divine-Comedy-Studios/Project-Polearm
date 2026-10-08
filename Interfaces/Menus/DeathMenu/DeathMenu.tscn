@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bh6y5scr0xf4j"]
+
+[ext_resource type="PackedScene" uid="uid://vpibhqydcc46" path="res://Interfaces/Menus/DeathMenu/DeathScreen/DeathScreen.tscn" id="1_f71wm"]
+[ext_resource type="Script" uid="uid://k1fonnwk17s1" path="res://Interfaces/Menus/DeathMenu/DeathMenu.gd" id="1_qh7c4"]
+[ext_resource type="Script" uid="uid://7cjw5im7rxvp" path="res://Interfaces/InterfaceStateMachine/InputManager/InputManager.gd" id="3_p5txf"]
+
+[node name="DeathMenu" type="CanvasLayer" unique_id=475905331]
+layer = 10
+script = ExtResource("1_qh7c4")
+INITIAL_MENU_TYPE = 11
+
+[node name="InputManager" type="Node" parent="." unique_id=1239421868]
+script = ExtResource("3_p5txf")
+metadata/_custom_type_script = "uid://7cjw5im7rxvp"
+
+[node name="DeathScreen" parent="." unique_id=371828079 instance=ExtResource("1_f71wm")]

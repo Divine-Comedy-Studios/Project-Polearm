@@ -17,6 +17,7 @@ enum Type {
 	audioOptions,
 	controllerOptions,
 	keyboardOptions,
+	death,
 }
 
 #endregion
