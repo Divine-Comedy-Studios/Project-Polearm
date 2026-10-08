@@ -5,7 +5,6 @@ class_name Encounter
 @export var WAVES : Array[Wave]
 # @export var REPEATABLE : bool = false ### @todo Will not be implemented
 # @export var PRESPAWN_FIRST_WAVE : bool = false ### @todo Will not be implemented
-@export var SCRIPT : String = String()
 
 
 @export_group("IGNORE")

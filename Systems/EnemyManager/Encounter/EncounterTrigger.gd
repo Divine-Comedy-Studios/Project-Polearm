@@ -7,6 +7,7 @@ class_name EncounterTrigger
 #region Exported variables
 
 @export var ENCOUNTER : Encounter = null
+@export var SCRIPT : EncounterScript = null
 
 @export var SPAWN_POINT_PARENT : Node3D:
 	set(value):
@@ -31,7 +32,7 @@ func trigger(node : Node3D) -> void:
 	if node.is_in_group("Player"):
 		disable()
 
-		Globals.enemyManager.beginEncounter(ENCOUNTER)
+		Globals.enemyManager.beginEncounter(ENCOUNTER, SCRIPT)
 
 #endregion
 

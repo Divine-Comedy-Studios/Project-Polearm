@@ -46,7 +46,7 @@ const ROLE_STRENGTH : Array[Role] = [
 # Level data
 
 var _currentEncounter : Encounter = null
-var _currentEncounterScript : Object = null
+var _currentEncounterScript : EncounterScript = null
 var _currentWaveIdx : int = -1
 var _currentEnemyIdx : int = -1
 
@@ -124,7 +124,7 @@ func _physics_process(delta : float) -> void:
 
 #region Public functions
 
-func beginEncounter(encounter : Encounter) -> void:
+func beginEncounter(encounter : Encounter, script : EncounterScript) -> void:
 	if _currentEncounter != null:
 		push_error("EnemyManager.beginEncounter(): An encounter was started whilst another one was active! Check for incorrect behavior.")
 
@@ -132,13 +132,9 @@ func beginEncounter(encounter : Encounter) -> void:
 	
 	_currentEncounter = encounter
 
-	if not _currentEncounter.SCRIPT.is_empty():
-		_currentEncounterScript = (load(_currentEncounter.SCRIPT) as GDScript).new()
-
-		assert(_currentEncounterScript != null, "Invalid encounter script!")
-		assert(_currentEncounterScript.has_method("begin") && _currentEncounterScript.has_method("end"),
-			"EnemyManager.beginEncounter(): Encounter script needs to have begin() and end() function!")
-		_currentEncounterScript.call("begin")
+	if script:
+		_currentEncounterScript = script
+		_currentEncounterScript.begin()
 
 	_nextWave()
 
@@ -180,7 +176,7 @@ func _validateEncounters(encounter : Encounter) -> bool:
 
 func _endEncounter() -> void:
 	if _currentEncounterScript:
-		_currentEncounterScript.call("end")
+		_currentEncounterScript.end()
 
 	_currentEncounterScript = null
 	_currentEncounter = null
