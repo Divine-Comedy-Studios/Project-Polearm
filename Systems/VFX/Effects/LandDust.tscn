@@ -1,0 +1,106 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Systems/VFX/VFXEffect.gd" id="1_fx"]
+[ext_resource type="Material" path="res://Systems/VFX/Resources/MatDust.tres" id="m_dust"]
+
+[sub_resource type="Gradient" id="Gradient_Puffs"]
+offsets = PackedFloat32Array(0, 0.1, 1)
+colors = PackedColorArray(0.62, 0.58, 0.52, 0, 0.62, 0.58, 0.52, 0.55, 0.62, 0.58, 0.52, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_Puffs"]
+gradient = SubResource("Gradient_Puffs")
+use_hdr = true
+
+[sub_resource type="Curve" id="Curve_Puffs"]
+_data = [Vector2(0, 0.4), 0.0, 0.0, 1, 1, Vector2(1, 1), 0.0, 0.0, 1, 1]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_Puffs"]
+curve = SubResource("Curve_Puffs")
+
+[sub_resource type="ParticleProcessMaterial" id="PPM_Puffs"]
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 0.05
+emission_ring_radius = 0.45
+emission_ring_inner_radius = 0.25
+direction = Vector3(0, 1, 0)
+spread = 20
+initial_velocity_min = 0
+initial_velocity_max = 0.3
+radial_velocity_min = 1.5
+radial_velocity_max = 3
+gravity = Vector3(0, 0.3, 0)
+damping_min = 3
+damping_max = 5
+angle_min = 0
+angle_max = 360
+scale_min = 0.7
+scale_max = 1.1
+scale_curve = SubResource("CurveTexture_Puffs")
+color_ramp = SubResource("GradientTexture1D_Puffs")
+
+[sub_resource type="QuadMesh" id="Quad_Puffs"]
+material = ExtResource("m_dust")
+size = Vector2(0.6, 0.6)
+
+[sub_resource type="Gradient" id="Gradient_Chunks"]
+offsets = PackedFloat32Array(0, 0.7, 1)
+colors = PackedColorArray(0.5, 0.45, 0.4, 1, 0.5, 0.45, 0.4, 1, 0.5, 0.45, 0.4, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_Chunks"]
+gradient = SubResource("Gradient_Chunks")
+use_hdr = true
+
+[sub_resource type="Curve" id="Curve_Chunks"]
+_data = [Vector2(0, 1), 0.0, 0.0, 1, 1, Vector2(1, 0.6), 0.0, 0.0, 1, 1]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_Chunks"]
+curve = SubResource("Curve_Chunks")
+
+[sub_resource type="ParticleProcessMaterial" id="PPM_Chunks"]
+emission_shape = 1
+emission_sphere_radius = 0.2
+direction = Vector3(0, 1, 0)
+spread = 50
+initial_velocity_min = 2
+initial_velocity_max = 4
+gravity = Vector3(0, -12, 0)
+scale_min = 0.6
+scale_max = 1.4
+scale_curve = SubResource("CurveTexture_Chunks")
+color_ramp = SubResource("GradientTexture1D_Chunks")
+
+[sub_resource type="QuadMesh" id="Quad_Chunks"]
+material = ExtResource("m_dust")
+size = Vector2(0.05, 0.05)
+
+[node name="LandDust" type="Node3D"]
+script = ExtResource("1_fx")
+FLASH_ENERGY = 0
+FLASH_TIME = 0.15
+
+[node name="Puffs" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 10
+lifetime = 0.7
+one_shot = true
+explosiveness = 1
+fixed_fps = 60
+visibility_aabb = AABB(-4, -4, -4, 8, 8, 8)
+process_material = SubResource("PPM_Puffs")
+draw_pass_1 = SubResource("Quad_Puffs")
+cast_shadow = 0
+
+[node name="Chunks" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 6
+lifetime = 0.5
+one_shot = true
+explosiveness = 1
+fixed_fps = 60
+visibility_aabb = AABB(-4, -4, -4, 8, 8, 8)
+process_material = SubResource("PPM_Chunks")
+draw_pass_1 = SubResource("Quad_Chunks")
+cast_shadow = 0

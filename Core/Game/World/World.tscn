@@ -7,19 +7,26 @@
 [ext_resource type="PackedScene" uid="uid://cyti0335fm7s0" path="res://Entities/Player/Player.tscn" id="3_qocwe"]
 [ext_resource type="Resource" uid="uid://tn6gku0bh4js" path="res://Systems/GameObject/Resources/GameObjectDataset.res" id="4_kerbn"]
 [ext_resource type="Script" uid="uid://ci6h3a7jfhous" path="res://Systems/EnemyManager/Perception/EnemyPerception.gd" id="5_m1rfh"]
+[ext_resource type="Script" path="res://Systems/VFX/VFXManager.gd" id="6_vfxmgr"]
+[ext_resource type="Resource" path="res://Systems/VFX/Resources/VFXDataset.tres" id="7_vfxds"]
 
-[node name="World" type="Node" unique_id=966975395 node_paths=PackedStringArray("gameObjectManager", "enemyManager", "_player")]
+[node name="World" type="Node" unique_id=966975395 node_paths=PackedStringArray("gameObjectManager", "enemyManager", "vfxManager", "_player")]
 process_mode = 4
 script = ExtResource("1_wgjyf")
 STAGE_DATASET = ExtResource("2_s3e02")
 gameObjectManager = NodePath("GameObjectManager")
 enemyManager = NodePath("EnemyManager")
+vfxManager = NodePath("VFXManager")
 _player = NodePath("Player")
 
 [node name="GameObjectManager" type="Node" parent="." unique_id=778732757]
 script = ExtResource("3_fkrut")
 GAME_OBJECT_DATASET = ExtResource("4_kerbn")
 metadata/_custom_type_script = "uid://ck12n7apm8und"
+
+[node name="VFXManager" type="Node" parent="." unique_id=1847362951]
+script = ExtResource("6_vfxmgr")
+VFX_DATASET = ExtResource("7_vfxds")
 
 [node name="EnemyManager" type="Node" parent="." unique_id=503714007]
 script = ExtResource("2_lf88h")
