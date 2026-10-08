@@ -28,3 +28,16 @@ signal maxValueChanged(newMax : float)
 			valueChanged.emit(newVal)
 
 #endregion
+
+
+#region Public functions
+
+func reset(fullHeal : bool = true) -> void:
+	locked = false
+
+	if fullHeal:
+		value = maxValue
+	else:
+		reset_state()
+
+#endregion
