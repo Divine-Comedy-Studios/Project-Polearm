@@ -50,22 +50,4 @@ func _initialState() -> StringName:
 func kill() -> void:
 	killed.emit()
 
-func reset() -> void:
-	currentState.exit()
-
-	resources.reset()
-	controller.reset()
-	animator.reset()
-	_reset()
-
-	_enterState(_initialState())
-
-#endregion
-
-
-#region Virtual functions
-
-func _reset() -> void:
-	pass
-
 #endregion

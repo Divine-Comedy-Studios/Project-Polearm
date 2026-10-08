@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="EntityCombo" format=3 uid="uid://dhog02ioefmo4"]
+
+[ext_resource type="Script" uid="uid://d1f6s1sq7da14" path="res://Entities/Entity/Data/EntityActionData.gd" id="1_pxxe1"]
+[ext_resource type="Script" uid="uid://cqy3drroysy4k" path="res://Entities/Player/Data/PlayerActionData.gd" id="2_17sjw"]
+[ext_resource type="Script" uid="uid://c8b6ivlyaw41v" path="res://Entities/Entity/Combat/Combo/EntityCombo.gd" id="2_xuipi"]
+
+[sub_resource type="Resource" id="Resource_pxxe1"]
+script = ExtResource("2_17sjw")
+ANIMATION_LIBRARY_NAME = &"Combat"
+ANIMATION_NAME = &"Combo3_1"
+metadata/_custom_type_script = "uid://cqy3drroysy4k"
+
+[sub_resource type="Resource" id="Resource_xuipi"]
+script = ExtResource("2_17sjw")
+metadata/_custom_type_script = "uid://cqy3drroysy4k"
+
+[sub_resource type="Resource" id="Resource_17sjw"]
+script = ExtResource("2_17sjw")
+metadata/_custom_type_script = "uid://cqy3drroysy4k"
+
+[sub_resource type="Resource" id="Resource_1lf8k"]
+script = ExtResource("2_17sjw")
+metadata/_custom_type_script = "uid://cqy3drroysy4k"
+
+[resource]
+script = ExtResource("2_xuipi")
+TYPE = &"combo3"
+ACTION_TYPES = Array[StringName]([&"heavyAttack", &"lightAttack", &"lightAttack", &"lightAttack"])
+ACTIONS = Array[ExtResource("1_pxxe1")]([SubResource("Resource_pxxe1"), SubResource("Resource_xuipi"), SubResource("Resource_17sjw"), SubResource("Resource_1lf8k")])
+metadata/_custom_type_script = "uid://c8b6ivlyaw41v"

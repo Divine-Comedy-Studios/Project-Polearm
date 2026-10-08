@@ -1,3 +1,5 @@
+@tool
+
 extends Hurtbox
 class_name EntityHurtbox
 

@@ -7,6 +7,8 @@ class_name BasicEnemyController
 class Data extends RefCounted:
 	var magnitude : float
 	var direction : Vector2
+
+	var target : Node3D
 	var targetPosition : Vector3
 
 	var actions : Array[StringName]
@@ -15,6 +17,8 @@ class Data extends RefCounted:
 	func reset() -> void:
 		magnitude = 0.0
 		direction = Vector2.ZERO
+
+		target = null
 		targetPosition = Vector3.ZERO
 
 		actions.clear()
@@ -79,7 +83,9 @@ func tick(delta, perceptionData : EnemyPerception.Data) -> void:
 	if not perceptionData.hasTarget:
 		return
 
-	var offset := PPUtil.Math.toFlatVec2(perceptionData.target - entity.global_position)
+	intents.target = perceptionData.target
+
+	var offset := PPUtil.Math.toFlatVec2(perceptionData.targetPos - entity.global_position)
 	var distance := offset.length()
 	var toTarget := offset / distance
 

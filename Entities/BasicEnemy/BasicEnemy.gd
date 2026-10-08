@@ -26,7 +26,7 @@ func _ready() -> void:
 	assert(_controller != null, "BasicEnemy._ready(): Controller not assigned!")
 	assert(_actionManager != null, "BasicEnemy._ready(): Action manager not assigned!")
 
-	_actionManager.killed.connect(kill)
+	_actionManager.killed.connect(handle.kill)
 
 #endregion
 
@@ -41,9 +41,7 @@ func kill() -> void:
 	process_mode = Node.PROCESS_MODE_DISABLED
 	_needsReset = true
 
-	if handle != null:
-		handle.kill()
-	else:
+	if handle == null:
 		queue_free()
 
 

@@ -43,6 +43,15 @@ func _physics_process(delta: float) -> void:
 #endregion
 
 
+#region Override functions
+
+func _reset() -> void:
+	jumpCount.reset(false)
+	flow.reset()
+
+#endregion
+
+
 #region Public functions
 
 func flowToState() -> PlayerCombatManager.FlowState:

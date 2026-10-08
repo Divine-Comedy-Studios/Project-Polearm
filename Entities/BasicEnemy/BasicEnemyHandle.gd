@@ -20,7 +20,9 @@ func spawn(payload : Variant) -> void:
 
 	enemy.spawn(transform)
 
-func _killImpl() -> void:
+func _kill() -> void:
+	(object as BasicEnemy).kill()
+
 	Globals.world.enemyManager.unregister(self)
 
 

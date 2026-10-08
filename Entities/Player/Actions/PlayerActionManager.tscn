@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://btagysn7t8n05" path="res://Entities/Player/Actions/States/Move.gd" id="6_rq852"]
 [ext_resource type="Script" uid="uid://bf7rav2dglxc4" path="res://Entities/Player/Actions/States/TransitionAction/JumpStart.gd" id="6_urjga"]
 [ext_resource type="Script" uid="uid://l7akydniqjk2" path="res://Entities/Player/Actions/States/IdleOrStop.gd" id="6_yl8et"]
+[ext_resource type="Resource" uid="uid://dhog02ioefmo4" path="res://Entities/Player/Resources/Combos/GroundCombo2.tres" id="7_8gr7m"]
 [ext_resource type="Resource" uid="uid://beb43700umvba" path="res://Entities/Player/Resources/Combos/AirTestCombo.res" id="7_e0d0n"]
 [ext_resource type="Script" uid="uid://c55k4ruofg4jc" path="res://Entities/Player/Actions/States/Jump.gd" id="7_jverr"]
 [ext_resource type="Script" uid="uid://vahqysuxajcw" path="res://Entities/Player/Actions/States/LightAttack.gd" id="8_6evvv"]
@@ -242,7 +243,7 @@ metadata/_custom_type_script = "uid://jth8cpsjn3vy"
 process_mode = 4
 script = ExtResource("2_rq852")
 MAX_PREVIOUS_COMBO_COUNT = 3
-unlockedCombos = Array[ExtResource("3_7bymk")]([ExtResource("5_dvgj7"), ExtResource("7_e0d0n")])
+unlockedCombos = Array[ExtResource("3_7bymk")]([ExtResource("5_dvgj7"), ExtResource("7_e0d0n"), ExtResource("7_8gr7m")])
 metadata/_custom_type_script = "uid://620any2k6qha"
 
 [node name="Idle" type="Node" parent="." unique_id=1482978748]

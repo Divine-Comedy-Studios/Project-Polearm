@@ -54,11 +54,14 @@ func _initialState() -> StringName:
 	return PlayerAction.Type.idle
 
 
-
 # Input processing by sorting them by priority
 func _implProcessActions(actions : Array[StringName]) -> void:
 	_processInputBuffer(actions)
 	_processAerialStates(actions)
+
+
+func _reset() -> void:
+	(entity as FloatingBody).setMovement(Vector3(0, 0, 0))
 
 #endregion
 

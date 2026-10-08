@@ -59,15 +59,15 @@ func _physics_process(_delta : float) -> void:
 	inputs.actions.append(PlayerAction.Type.idle)
 
 	# Input processing
-	processMovementDirection()
-	processMovementActions()
+	_processMovementDirection()
+	_processMovementActions()
 
 #endregion
 
 
 #region Private functions
 
-func processMovementDirection() -> void:
+func _processMovementDirection() -> void:
 	inputs.cameraDirection = cameraManager.cameraPlaneDirection()
 	inputs.inputDirection = Input.get_vector("Move left", "Move right", "Move forwards", "Move backwards")
 
@@ -94,7 +94,7 @@ func processMovementDirection() -> void:
 		 + Vector2(inputs.inputDirection.y, -inputs.inputDirection.x) * inputs.cameraDirection.x \
 	).normalized()
 
-func processMovementActions():
+func _processMovementActions():
 	if Input.is_action_just_pressed("Jump"):
 		inputs.actions.append(PlayerAction.Type.jumpStart)
 	if Input.is_action_pressed("Jump"):

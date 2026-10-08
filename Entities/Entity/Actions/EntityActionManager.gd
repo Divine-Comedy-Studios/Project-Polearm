@@ -75,6 +75,16 @@ func init() -> void:
 	super.init()
 
 
+func reset() -> void:
+	currentState.exit()
+
+	resources.reset()
+	animator.reset()
+	_reset()
+
+	_enterState(_initialState())
+
+
 # Action queue & forced lookup
 
 func pushActionQueue(queue : StringName) -> void:
@@ -135,6 +145,9 @@ func _processActionQueue(actions : Array[StringName]) -> void:
 
 @warning_ignore("unused_parameter")
 func _implProcessActions(actions : Array[StringName]) -> void:
+	pass
+
+func _reset() -> void:
 	pass
 
 #endregion

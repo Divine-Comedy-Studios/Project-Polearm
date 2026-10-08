@@ -36,6 +36,8 @@ var _superArmorWaitTime : float = 0.0
 func _ready() -> void:
 	assert(actionManager != null, "EntityResources._ready(): Entity action manager not assigned!")
 
+	reset()
+
 
 func _physics_process(delta : float) -> void:
 	if _superArmorWaitTime > 0.0:
@@ -73,9 +75,9 @@ func pay(action : EntityAction) -> void:
 
 
 func reset() -> void:
-	health.reset_state()
-	energy.reset_state()
-	superArmor.reset_state()
+	health.reset()
+	energy.reset()
+	superArmor.reset()
 
 	_superArmorWaitTime = 0.0
 
