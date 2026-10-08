@@ -5,9 +5,8 @@
 [ext_resource type="Script" uid="uid://d1f6s1sq7da14" path="res://Entities/Entity/Data/EntityActionData.gd" id="3_0ofeo"]
 [ext_resource type="Script" uid="uid://d3rvyp0hwdb80" path="res://Entities/Archer/Actions/States/Shoot.gd" id="3_qvhwa"]
 [ext_resource type="Script" uid="uid://cbtdlxgrk1x5y" path="res://Entities/Archer/Actions/States/Aim.gd" id="4_sqsq7"]
-[ext_resource type="PackedScene" uid="uid://cykjkqe6xbdar" path="res://Objects/Weapons/Arrow/Arrow.tscn" id="5_1cl7h"]
 [ext_resource type="Script" uid="uid://413tgy3jmvma" path="res://Components/Collision/HitboxData.gd" id="5_a2r2k"]
-[ext_resource type="Script" uid="uid://byl5j7t5v4nsf" path="res://Objects/Weapons/Arrow/ArrowPhysics.gd" id="6_sqsq7"]
+[ext_resource type="Script" uid="uid://byl5j7t5v4nsf" path="res://Objects/Weapons/Projectile/ProjectilePhysics.gd" id="6_sqsq7"]
 [ext_resource type="Script" uid="uid://cgjhallwuu3ju" path="res://Entities/Archer/Actions/States/Damage.gd" id="6_ur5as"]
 [ext_resource type="Script" uid="uid://b1fityxveh0gh" path="res://Entities/Archer/Actions/States/Death.gd" id="7_dikf5"]
 
@@ -26,7 +25,9 @@ metadata/_custom_type_script = "uid://d1f6s1sq7da14"
 
 [sub_resource type="Resource" id="Resource_fcm6e"]
 script = ExtResource("6_sqsq7")
-FLAT_SPEED = 70.0
+FLAT_SPEED = 50.0
+LIFETIME = 10.0
+OFFSET = Vector3(0, 2, 0)
 metadata/_custom_type_script = "uid://byl5j7t5v4nsf"
 
 [sub_resource type="Resource" id="Resource_j1byk"]
@@ -73,10 +74,9 @@ metadata/_custom_type_script = "uid://be45dp21e2v4i"
 [node name="Shoot" type="Node" parent="." unique_id=1116581754]
 process_mode = 4
 script = ExtResource("3_qvhwa")
-SCENE = ExtResource("5_1cl7h")
+PROJECTILE_TYPE = 100
 physics = SubResource("Resource_fcm6e")
 SHOOT_OFFSET = Vector3(0.1, 1.8000001, -0.65)
-TARGET_OFFEST = Vector3(0, 1, 0)
 TYPE = &"shoot"
 PRIORITY = 20
 data = SubResource("Resource_a2r2k")

@@ -4,12 +4,11 @@ extends ArcherAction
 #region Exported variables
 
 @export_group("Arrow settings")
-@export var SCENE : PackedScene = null
-@export var physics : ArrowPhysics = null
+@export var PROJECTILE_TYPE : GameObject.Type = GameObject.Type.none
+@export var physics : ProjectilePhysics = null
 
 @export_group("Shoot settings")
 @export var SHOOT_OFFSET : Vector3 = Vector3.ZERO
-@export var TARGET_OFFEST : Vector3 = Vector3.ZERO
 
 #endregion
 
@@ -24,8 +23,7 @@ var _shot : bool = false
 #region Override functions
 
 func _implInit() -> void:
-	assert(SCENE != null, "Shooter Shoot._implInit(): Arrow scene not assigned!")
-	assert(physics != null, "Shooter Shoot._implInit(): Arrow physics not assigned!")
+	assert(physics != null, "Shoot._implInit(): Projectile physics not assigned!")
 
 
 func _implEnter() -> void:
@@ -55,10 +53,11 @@ func _implTick(delta : float) -> void:
 func _shoot() -> void:
 	physics.position = entity().to_global(SHOOT_OFFSET)
 
-	var dir := (intents().targetPosition + TARGET_OFFEST) - physics.position
+	var dir := (intents().targetPosition + physics.OFFSET) - physics.position
+	physics.target = intents().target
 	physics.distance = dir.length()
 	physics.normDirection = dir / physics.distance
 
-	Globals.world.gameObjectManager.spawn(GameObject.Type.arrow, physics)
+	Globals.world.gameObjectManager.spawn(PROJECTILE_TYPE, physics)
 
 #endregion

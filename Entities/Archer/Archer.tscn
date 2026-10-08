@@ -128,13 +128,6 @@ height = 1.55
 [sub_resource type="ViewportTexture" id="ViewportTexture_s5tgp"]
 viewport_path = NodePath("Model/HealthBar/SubViewport")
 
-[sub_resource type="Resource" id="Resource_fkvdt"]
-resource_local_to_scene = true
-script = ExtResource("5_1j70g")
-maxValue = 60.0
-value = 60.0
-metadata/_custom_type_script = "uid://c12nkcphob0hm"
-
 [sub_resource type="Gradient" id="Gradient_pbajo"]
 offsets = PackedFloat32Array(0.1325001, 0.4532238, 0.9943422)
 colors = PackedColorArray(0.82508445, 0.0032476706, 0.16931134, 1, 0.82407624, 0.6277912, 0.064864345, 1, 0.31102964, 0.61787194, 0.2871761, 1)
@@ -159,8 +152,9 @@ AVAILABLE_ROLES = Array[int]([0, 3])
 entity = NodePath("../Model")
 metadata/_custom_type_script = "uid://dyset1m48keqp"
 
-[node name="ArcherResources" type="Node" parent="." unique_id=1970353266 node_paths=PackedStringArray("actionManager")]
+[node name="ArcherResources" type="Node" parent="." unique_id=1970353266 node_paths=PackedStringArray("_healthBar", "actionManager")]
 script = ExtResource("3_pbajo")
+_healthBar = NodePath("../Model/HealthBar/SubViewport/ValueBarUI")
 health = SubResource("Resource_1j70g")
 energy = SubResource("Resource_rnhsn")
 superArmor = SubResource("Resource_qaoqx")
@@ -177,6 +171,8 @@ metadata/_custom_type_script = "uid://dyfufs7xfl4rn"
 
 [node name="ArcherAnimator" type="AnimationTree" parent="." unique_id=1017300114]
 root_node = NodePath("../Model")
+root_motion_track = NodePath("Skeleton:root")
+root_motion_local = true
 tree_root = ExtResource("6_sfw1s")
 anim_player = NodePath("AnimationPlayer")
 parameters/BasicTransition/current_state = "state_0"
@@ -184,6 +180,7 @@ parameters/BasicTransition/transition_request = ""
 parameters/BasicTransition/current_index = 0
 script = ExtResource("6_rnhsn")
 DEFAULT_ANIMATION_NAME = &"Movement/Idle"
+COPY_ANIMATION_TREE_ON_INSTANTIATON = true
 rootOrientation = Quaternion(-0.70710677, 0, 0, 0.70710677)
 metadata/_custom_type_script = "uid://bh8o0071kt7qg"
 
@@ -220,10 +217,12 @@ external_skeleton = NodePath("../Skeleton")
 
 [node name="Hurtbox" type="Area3D" parent="Model/HurtboxAttachment" unique_id=707319775 node_paths=PackedStringArray("_resources")]
 transform = Transform3D(-0.63575435, 0.011931799, -0.7717989, 0.036647655, 0.99921954, -0.014740088, 0.77102077, -0.03765569, -0.6356954, -0.008637563, 0.026503623, -0.025778975)
-collision_layer = 0
+collision_layer = 5
+collision_mask = 0
+monitoring = false
 script = ExtResource("2_2hrb1")
 _resources = NodePath("../../../ArcherResources")
-LAYERS = 872415232
+LAYERS = 5
 metadata/_custom_type_script = "uid://cyecr71fggv70"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Model/HurtboxAttachment/Hurtbox" unique_id=314385503]
@@ -362,6 +361,5 @@ offset_right = 100.0
 offset_bottom = 7.5
 grow_horizontal = 2
 grow_vertical = 2
-valueResource = SubResource("Resource_fkvdt")
 PROGRESS_GRADIENT = SubResource("Gradient_pbajo")
 CHANGE_COLOR = Color(0.9729009, 0.8528588, 0.9309137, 1)

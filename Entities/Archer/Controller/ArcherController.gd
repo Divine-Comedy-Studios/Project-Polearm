@@ -28,18 +28,18 @@ var _cooldownTimer : float = -1.0
 func _tickAndTarget(delta : float, distance : float, toTarget : Vector2, perceptionData : EnemyPerception.Data) -> Vector3:
 	if currentRole == EnemyManager.Role.ranged:
 		if _cooldownTimer == INF:
-			return perceptionData.target 
+			return perceptionData.targetPos 
 
 		if _cooldownTimer > 0.0:
 			_cooldownTimer -= delta
 			requestRoleChange = true
 
-			return perceptionData.target
+			return perceptionData.targetPos
 
 		if (not perceptionData.detected and 
 			not _canAttack(distance, ATTACK_RANGE, toTarget, -(entity as Node3D).global_basis.z)
 		):
-			return perceptionData.target
+			return perceptionData.targetPos
 
 		if _aimTimer < 0.0:
 			_aimTimer = randf_range(AIM_TIME.x, AIM_TIME.y)
@@ -48,16 +48,16 @@ func _tickAndTarget(delta : float, distance : float, toTarget : Vector2, percept
 
 		_aimTimer -= delta
 		if _aimTimer > 0.0:
-			return perceptionData.target
+			return perceptionData.targetPos
 
 		if randf() < HOLD_FIRE_PROBABILITY:
 			_aimTimer = -1.0
 
-			return perceptionData.target
+			return perceptionData.targetPos
 
 		intents.actions.append(ArcherAction.Type.shoot)
 
-	return perceptionData.target
+	return perceptionData.targetPos
 
 
 func _implReset() -> void:

@@ -1,0 +1,100 @@
+[gd_scene format=3 uid="uid://y1kj2iwcrifs"]
+
+[ext_resource type="Script" uid="uid://c74w8xpp6aiv6" path="res://Entities/Archer/Actions/ArcherActionManager.gd" id="1_wxyg3"]
+[ext_resource type="Script" uid="uid://vgqrsxet2dey" path="res://Entities/Archer/Actions/States/Idle.gd" id="2_fifew"]
+[ext_resource type="Script" uid="uid://d1f6s1sq7da14" path="res://Entities/Entity/Data/EntityActionData.gd" id="3_ggsgy"]
+[ext_resource type="Script" uid="uid://cbtdlxgrk1x5y" path="res://Entities/Archer/Actions/States/Aim.gd" id="4_k7gff"]
+[ext_resource type="Script" uid="uid://d3rvyp0hwdb80" path="res://Entities/Archer/Actions/States/Shoot.gd" id="5_nv3k6"]
+[ext_resource type="Script" uid="uid://byl5j7t5v4nsf" path="res://Objects/Weapons/Projectile/ProjectilePhysics.gd" id="6_v1vkk"]
+[ext_resource type="Script" uid="uid://413tgy3jmvma" path="res://Components/Collision/HitboxData.gd" id="7_a17g6"]
+[ext_resource type="Script" uid="uid://cgjhallwuu3ju" path="res://Entities/Archer/Actions/States/Damage.gd" id="8_k1g77"]
+[ext_resource type="Script" uid="uid://b1fityxveh0gh" path="res://Entities/Archer/Actions/States/Death.gd" id="9_g136p"]
+
+[sub_resource type="Resource" id="Resource_0ofeo"]
+script = ExtResource("3_ggsgy")
+ANIMATION_LIBRARY_NAME = &"Movement"
+ANIMATION_NAME = &"Idle"
+ANIMATION_FADE_TIME = 0.2
+metadata/_custom_type_script = "uid://d1f6s1sq7da14"
+
+[sub_resource type="Resource" id="Resource_sqsq7"]
+script = ExtResource("3_ggsgy")
+ANIMATION_LIBRARY_NAME = &"Movement"
+ANIMATION_NAME = &"WalkLoop"
+metadata/_custom_type_script = "uid://d1f6s1sq7da14"
+
+[sub_resource type="Resource" id="Resource_fcm6e"]
+script = ExtResource("6_v1vkk")
+FLAT_SPEED = 7.0
+LIFETIME = 7.0
+GRAVITY = 0.0
+OFFSET = Vector3(0, 1, 0)
+metadata/_custom_type_script = "uid://byl5j7t5v4nsf"
+
+[sub_resource type="Resource" id="Resource_j1byk"]
+script = ExtResource("7_a17g6")
+metadata/_custom_type_script = "uid://413tgy3jmvma"
+
+[sub_resource type="Resource" id="Resource_a2r2k"]
+script = ExtResource("3_ggsgy")
+ANIMATION_LIBRARY_NAME = &"Combat"
+ANIMATION_NAME = &"Launcher"
+HIT_DATA = SubResource("Resource_j1byk")
+metadata/_custom_type_script = "uid://d1f6s1sq7da14"
+
+[sub_resource type="Resource" id="Resource_ur5as"]
+script = ExtResource("3_ggsgy")
+ANIMATION_LIBRARY_NAME = &"Combat"
+ANIMATION_NAME = &"Hit"
+metadata/_custom_type_script = "uid://d1f6s1sq7da14"
+
+[sub_resource type="Resource" id="Resource_dikf5"]
+script = ExtResource("3_ggsgy")
+ANIMATION_LIBRARY_NAME = &"Combat"
+ANIMATION_NAME = &"HitLargeFall"
+metadata/_custom_type_script = "uid://d1f6s1sq7da14"
+
+[node name="ArcherActionManager" type="Node" unique_id=1027342192]
+script = ExtResource("1_wxyg3")
+
+[node name="Idle" type="Node" parent="." unique_id=94988213]
+process_mode = 4
+script = ExtResource("2_fifew")
+TYPE = &"idle"
+data = SubResource("Resource_0ofeo")
+metadata/_custom_type_script = "uid://be45dp21e2v4i"
+
+[node name="Aim" type="Node" parent="." unique_id=341364567]
+process_mode = 4
+script = ExtResource("4_k7gff")
+TYPE = &"aim"
+PRIORITY = 10
+data = SubResource("Resource_sqsq7")
+metadata/_custom_type_script = "uid://be45dp21e2v4i"
+
+[node name="Shoot" type="Node" parent="." unique_id=1116581754]
+process_mode = 4
+script = ExtResource("5_nv3k6")
+PROJECTILE_TYPE = 101
+physics = SubResource("Resource_fcm6e")
+SHOOT_OFFSET = Vector3(0.1, 1.8000001, -0.65)
+TYPE = &"shoot"
+PRIORITY = 20
+data = SubResource("Resource_a2r2k")
+metadata/_custom_type_script = "uid://be45dp21e2v4i"
+
+[node name="Damage" type="Node" parent="." unique_id=68469008]
+process_mode = 4
+script = ExtResource("8_k1g77")
+TYPE = &"damage"
+PRIORITY = 60
+data = SubResource("Resource_ur5as")
+metadata/_custom_type_script = "uid://be45dp21e2v4i"
+
+[node name="Death" type="Node" parent="." unique_id=793563093]
+process_mode = 4
+script = ExtResource("9_g136p")
+TYPE = &"death"
+PRIORITY = 100
+data = SubResource("Resource_dikf5")
+metadata/_custom_type_script = "uid://be45dp21e2v4i"
