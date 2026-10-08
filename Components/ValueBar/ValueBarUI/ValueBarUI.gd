@@ -109,7 +109,7 @@ func updateColors() -> void:
 #region Private functions
 
 func _onValueChanged(newValue: float) -> void:
-	if newValue < valueBar.value:
+	if is_inside_tree() and newValue < valueBar.value:
 		timer.start()
 	changeBar.value = valueBar.value
 	valueBar.value = clamp(newValue, 0, valueBar.max_value)
@@ -128,7 +128,7 @@ func _onMaxValueChanged(newMax: float) -> void:
 #region Signal functions
 
 func _onTimeout() -> void:
-	var tween = create_tween()
+	var tween := create_tween()
 	tween.tween_property(changeBar, "value", valueBar.value, 0.5).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 
 #endregion
