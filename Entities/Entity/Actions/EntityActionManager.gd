@@ -78,6 +78,7 @@ func init() -> void:
 func reset() -> void:
 	currentState.exit()
 
+	hurtbox.enable()
 	resources.reset()
 	animator.reset()
 	_reset()

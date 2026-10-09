@@ -77,6 +77,9 @@ func exit() -> void:
 	_progress = 0
 	frameDataScale = 1.0
 
+	if _context.weapon:
+		_context.weapon.disable()
+
 
 func type() -> StringName:
 	return TYPE
