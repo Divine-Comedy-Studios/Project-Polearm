@@ -58,7 +58,7 @@ func _init(obj : Node, pool : GameObjectPool) -> void:
 func kill() -> void:
 	_pool.remove_child(object)
 	_pool.active.erase(object.get_instance_id())
-	_pool.pooled.push_back(object)
+	_pool.pooled.push_back(self)
 
 	_kill()
 
