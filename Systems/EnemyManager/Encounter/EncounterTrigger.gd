@@ -12,6 +12,7 @@ class_name EncounterTrigger
 @export var SPAWN_POINT_PARENT : Node3D:
 	set(value):
 		if Engine.is_editor_hint():
+			SPAWN_POINT_PARENT = value
 			_updateSpawnPoints(value)
 
 #endregion
