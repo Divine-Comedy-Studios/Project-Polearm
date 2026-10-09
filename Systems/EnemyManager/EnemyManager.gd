@@ -37,7 +37,6 @@ const ROLE_STRENGTH : Array[Role] = [
 	Role.fighter,
 	Role.ranged,
 	Role.flanker,
-	Role.idle,
 ]
 
 #endregion
@@ -82,6 +81,9 @@ var _activeEnemyStates : Dictionary[BasicEnemyHandle, RoleState] = { }
 
 var _roleDifficulty : ValueResource = ValueResource.new()
 
+var _maxRoleDifficulty : float = 0.0
+var _roleDifficultyRandom : float = 0.0
+
 #endregion
 
 
@@ -97,6 +99,8 @@ func _ready() -> void:
 
 func _physics_process(delta : float) -> void:
 	_perceptionEngine.tick()
+
+	_roleDifficulty.maxValue = _maxRoleDifficulty + randf_range(-_roleDifficultyRandom, _roleDifficultyRandom)
 
 	if _currentEncounter:
 		var currentWave := _currentEncounter.WAVES[_currentWaveIdx]
@@ -182,8 +186,12 @@ func _nextWave() -> void:
 		_endEncounter()
 
 		return
+	
+	var currentWave := _currentEncounter.WAVES[_currentWaveIdx]
 
-	_roleDifficulty.maxValue = _currentEncounter.WAVES[_currentWaveIdx].MAX_ROLE_DIFFICULTY
+	_maxRoleDifficulty = currentWave.MAX_ROLE_DIFFICULTY
+	_roleDifficulty.maxValue = _maxRoleDifficulty
+	_roleDifficultyRandom = currentWave.ROLE_DIFFICULTY_RANDOMIZATION
 
 	_currentEnemyIdx = 0
 
@@ -239,7 +247,27 @@ func _findSpawnPosition() -> Array: # [bool, Transform3D]
 # Role assignment
 
 func _planRoles(delta : float, requiredRoles : Dictionary[EnemyManager.Role, int]) -> void:
-	# First, we query all valid role change requests and calculate current difficulty
+	# The last enemy should always be aggressive, so it takes the strongest role it can
+	# Technically, the role difficulty could limit the last enemy to a low raking role,
+	# but what is a weapon in the hands of one who shall not use it
+	if _activeEnemyStates.size() ==	1:
+		for role : Role in ROLE_STRENGTH:
+			var enemy : BasicEnemyHandle = _activeEnemyStates.keys()[0]
+			if enemy.availableRoles().has(role):
+				_activeEnemyStates[enemy].role = role
+
+				return
+
+	_updateRoleState(delta)
+
+	var randomizedKeys :=_activeEnemyStates.keys().duplicate()
+	randomizedKeys.shuffle()
+
+	_fillRequiredRoles(randomizedKeys, requiredRoles)
+	_promoteEnemies(randomizedKeys)
+
+
+func _updateRoleState(delta : float) -> void:
 	_roleDifficulty.value = 0
 	for enemy : BasicEnemyHandle in _activeEnemyStates.keys():
 		var roleState := _activeEnemyStates[enemy]
@@ -249,21 +277,7 @@ func _planRoles(delta : float, requiredRoles : Dictionary[EnemyManager.Role, int
 
 		_roleDifficulty.value += _roleWeight(roleState.role)
 
-	# The last enemy should always be aggressive, so it takes the strongest role it can
-	# Technically, the role difficulty could limit the last enemy to a low raking role,
-	# but what is a weapon in the hands of one who shall not use it
-	if _activeEnemyStates.size() ==	 1:
-		for role : Role in ROLE_STRENGTH:
-			var enemy : BasicEnemyHandle = _activeEnemyStates.keys()[0]
-			if enemy.availableRoles().has(role):
-				_activeEnemyStates[enemy].role = role
-
-				return
-	
-	# Next, we get the count of all required roles to prepare for role assignment 
-
-	var randomizedKeys :=_activeEnemyStates.keys().duplicate()
-	randomizedKeys.shuffle()
+func _fillRequiredRoles(randomizedKeys : Array[BasicEnemyHandle], requiredRoles : Dictionary[EnemyManager.Role, int]) -> void:
 	for role : Role in ROLE_STRENGTH:
 		var requestedCount : int = requiredRoles.get(role, 0.0)
 		var weight := _roleWeight(role)
@@ -286,16 +300,27 @@ func _planRoles(delta : float, requiredRoles : Dictionary[EnemyManager.Role, int
 			elif roleState.requestsChange and enemy.availableRoles().has(role):
 				enterCandidates.push_back(enemy)
 
-		# We swap roles with whoever needs it
-		_swapEnemyRoles(enterCandidates, exitCandidates, role)
-		_swapEnemyRoles(enterCandidates, stayCandidates, role)
+		# We swap roles with whoever needs or can take it
+		requestedCount -= _swapEnemyRoles(enterCandidates, exitCandidates, role)
+		requestedCount -= _swapEnemyRoles(enterCandidates, stayCandidates, role)
 
-		# Then all remaining enemies in stayCandidates are registered
+		# Then all remaining enemies are registered
 		for enemy : BasicEnemyHandle in stayCandidates:
 			requestedCount -= 1
+		
+		# All remaining candidates get demoted
+		for enemy : BasicEnemyHandle in exitCandidates:
+			var roleState := _activeEnemyStates[enemy]
+			var currentWeight := _roleWeight(roleState.role)
+
+			for exitRole : Role in ROLE_STRENGTH:
+				var exitWeight := _roleWeight(exitRole)
+
+				if _fitsRoleDifficulty(exitWeight, currentWeight):
+					_assignEnemyRole(roleState, exitRole, currentWeight, exitWeight)
 
 		# If we have surplus roles left over, we see which enemy we can get
-		while requestedCount > 0 and _roleDifficulty.value + weight <= _roleDifficulty.maxValue:
+		while requestedCount > 0:
 			var candidate := _roleCandidate(randomizedKeys, role, weight)
 			if candidate[0] == null:
 				break
@@ -303,7 +328,8 @@ func _planRoles(delta : float, requiredRoles : Dictionary[EnemyManager.Role, int
 			# If we find a candidate, assign the role
 			_assignEnemyRole(candidate[0], role, candidate[1], weight)
 			requestedCount -= 1
-	
+
+func _promoteEnemies(randomizedKeys : Array[BasicEnemyHandle]) -> void:
 	# We loop trhough all enemies by the inverse of the role strength to promote any enemies left
 	for i in range(ROLE_STRENGTH.size()):
 		var role := ROLE_STRENGTH[-i - 1]
@@ -316,28 +342,35 @@ func _planRoles(delta : float, requiredRoles : Dictionary[EnemyManager.Role, int
 			if (enemy.availableRoles().has(role) and
 				roleState.canChangeRoles(role) and # Enemy can change to current role
 				currentWeight < weight and # Enemy has a worse role than the current one
-				_roleDifficulty.value - currentWeight + weight <= _roleDifficulty.maxValue
+				_fitsRoleDifficulty(weight, currentWeight)
 			):
 				_assignEnemyRole(roleState, role, currentWeight, weight)
 
 
-func _swapEnemyRoles(enterCandidates : Array[BasicEnemyHandle], exitCandidates : Array[BasicEnemyHandle], role : Role) -> void:
+func _swapEnemyRoles(enterCandidates : Array[BasicEnemyHandle], exitCandidates : Array[BasicEnemyHandle], role : Role) -> int:
+	var count := 0
 	while enterCandidates.size() > 0:
 		if exitCandidates.size() == 0:
-			return
+			break
 
 		var enterCandidateState := _activeEnemyStates[enterCandidates[enterCandidates.size() - 1]]
 		var enterCandidateRole := enterCandidateState.role
 
 		var exitCandidate := exitCandidates[exitCandidates.size() - 1]
-		if exitCandidate.availableRoles().has(enterCandidateRole):
+		if not exitCandidate.availableRoles().has(enterCandidateRole):
 			exitCandidates.pop_back()
+
+			continue
 
 		_assignEnemyRole(_activeEnemyStates[exitCandidate], enterCandidateRole, 0.0, 0.0) # Hack to avoid role weight calculation as roles are only swapped
 		_assignEnemyRole(enterCandidateState, role, 0.0, 0.0)
 
 		enterCandidates.pop_back()
 		exitCandidates.pop_back()
+
+		count += 1
+
+	return count
 
 func _assignEnemyRole(roleState : RoleState, role : Role, currentWeight : float, newWeight : float) -> void:
 	roleState.role = role
@@ -356,13 +389,16 @@ func _roleCandidate(randomizedKeys : Array[BasicEnemyHandle], role : Role, weigh
 		if (roleState.canChangeRoles(role) and # Enemy wants can change roles
 			enemy.availableRoles().has(role) and # Enemy can take the current role
 			(best == null or bestWeight > currentWeight) and # Enemy is a better candidate than the current, i.e. has a worse role
-			(_roleDifficulty.value + weight - currentWeight <= _roleDifficulty.maxValue)
+			_fitsRoleDifficulty(weight, currentWeight)
 		):
 			best = roleState
 			bestWeight = currentWeight
 
 	return [best, bestWeight]
 
+
+func _fitsRoleDifficulty(targetWeight : float, currentWeight : float) -> bool:
+	return _roleDifficulty.value + targetWeight - currentWeight <= _roleDifficulty.maxValue
 
 func _roleWeight(role : Role) -> float:
 	match role:

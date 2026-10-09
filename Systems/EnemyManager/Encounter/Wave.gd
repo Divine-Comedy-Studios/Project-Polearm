@@ -10,4 +10,5 @@ class_name Wave
 @export_group("Wave behavior conig")
 @export var BREAK_TIME_SEC : float = 0.5
 @export var MAX_ROLE_DIFFICULTY : float = 10.0
+@export var ROLE_DIFFICULTY_RANDOMIZATION : float = 2
 @export var REQUIRED_ROLES : Dictionary[EnemyManager.Role, int] = { }
