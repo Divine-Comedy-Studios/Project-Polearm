@@ -57,7 +57,7 @@ func _init(obj : Node, pool : GameObjectPool) -> void:
 # Called from the entity the handle references
 func kill() -> void:
 	_pool.remove_child(object)
-	_pool.active.erase(object.get_instance_id())
+	_pool.active.erase(entityID())
 	_pool.pooled.push_back(self)
 
 	_kill()

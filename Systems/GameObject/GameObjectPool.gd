@@ -51,26 +51,19 @@ func spawn(payload : Variant) -> void:
 	if pooled.is_empty():
 		object = HandleType.new(_scene.instantiate(), self)
 		assert(object is GameObject, "GameObjectPool.spawn(): Scene mapped to type in Game object dataset does not inherit from GameObject!")
-
-		active[object.entityID()] = object
 	else:
 		object = pooled.back()
 		pooled.pop_back()
-		active[object.entityID()] = object
-
+	
+	active[object.entityID()] = object
 	add_child(object.object)
 
 	object.spawn(payload)
 
 
-func reset(deepClear : bool = false) -> void:
-	for entity : GameObject in active.values():
+func reset() -> void:
+	for entity : GameObject in active.values().duplicate():
 		entity.kill()
-	
-	active.clear()
-
-	if deepClear:
-		pooled.clear()
 
 #endregion
 
