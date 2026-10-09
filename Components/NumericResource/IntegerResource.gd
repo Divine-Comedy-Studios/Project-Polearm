@@ -33,6 +33,8 @@ signal maxValueChanged(newMax : float)
 #region Public functions
 
 func reset(fullHeal : bool = true) -> void:
+	locked = false
+
 	if fullHeal:
 		value = maxValue
 	else:
