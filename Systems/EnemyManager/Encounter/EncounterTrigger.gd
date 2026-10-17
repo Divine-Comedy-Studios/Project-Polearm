@@ -14,6 +14,11 @@ class_name EncounterTrigger
 		if Engine.is_editor_hint():
 			SPAWN_POINT_PARENT = value
 			_updateSpawnPoints(value)
+@export var FIXED_SPAWN_POINT_PARENT : Node3D:
+	set(value):
+		if Engine.is_editor_hint():
+			FIXED_SPAWN_POINT_PARENT = value
+			_updateFixedSpawnPoints(value)
 
 #endregion
 
@@ -44,15 +49,43 @@ func _updateSpawnPoints(spawnPointParent : Node3D) -> void:
 	if ENCOUNTER == null or spawnPointParent == null:
 		return
 
-	var spawn_points: Array[Vector3] = []
+	var spawnPoints : Array[Vector3] = []
 
 	for child in spawnPointParent.get_children():
 		if child is Node3D:
-			spawn_points.append(child.global_position)
+			spawnPoints.append(child.global_position)
 
-	ENCOUNTER.SPAWN_POINTS = spawn_points
+	ENCOUNTER.SPAWN_POINTS = spawnPoints
 
 	if not ENCOUNTER.resource_path.is_empty():
 		ResourceSaver.save(ENCOUNTER, ENCOUNTER.resource_path)
+	
+
+func _updateFixedSpawnPoints(spawnPointParent : Node3D) -> void:
+	if ENCOUNTER == null or spawnPointParent == null:
+		return
+	
+	for wavePoints : Node in spawnPointParent.get_children():
+		if not wavePoints is Node3D or not wavePoints.name.is_valid_int():
+			continue
+
+		var idx := wavePoints.name.to_int()
+		if idx < 0 or idx >= ENCOUNTER.WAVES.size():
+			continue
+
+		var spawnPoints : Dictionary[int, Vector3] = { }
+		var wave := ENCOUNTER.WAVES[idx]
+
+		for child : Node in wavePoints:
+			if not child is Node3D or not child.name.is_valid_int():
+				continue
+			
+			var enemyIdx := wavePoints.name.to_int()
+			if idx < 0 or enemyIdx >= wave.ENEMIES.size():
+				continue
+
+			spawnPoints[enemyIdx] = (child as Node3D).global_position
+
+		wave.ENEMY_POSITIONS = spawnPoints
 
 #endregion
