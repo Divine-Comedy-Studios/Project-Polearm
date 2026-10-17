@@ -1,4 +1,3 @@
-
 @tool
 extends Node3D
 class_name LevelMesh
@@ -25,10 +24,28 @@ const META_STYLED := &"level_mesh_styled"
 ## values of the style resource, even if the scene was not re-saved after tweaking it.
 @export var apply_on_game_start: bool = true
 
-## Use this if a change does not show up by itself.
-@export_tool_button("Refresh styles", "Reload") var _refresh_button: Callable = _refresh_all_deferred
+## "Buttons": tick one of these in the inspector, it runs once and unticks itself.
+## (Plain checkboxes on purpose, they are more robust than tool buttons when the script gets reloaded.)
 
-var _processing := false
+## Use this if a style change does not show up by itself.
+@export var refresh_styles_now: bool = false:
+	set(value):
+		if value and is_inside_tree():
+			_refresh_all_deferred()
+
+## Builds the collision for everything below this node. Nothing is created automatically.
+## Ticking it again rebuilds the collision from scratch (old generated bodies are removed first).
+@export var create_collision_now: bool = false:
+	set(value):
+		if value and is_inside_tree():
+			create_collision()
+
+## Removes all collision that this node generated.
+@export var remove_collision_now: bool = false:
+	set(value):
+		if value and is_inside_tree():
+			remove_collision()
+
 var _refresh_queued := false
 
 
@@ -41,74 +58,64 @@ func _ready() -> void:
 			call_deferred("_refresh_all_deferred")
 		return
 
+	# New children get the style automatically. Collision is only created with the button.
 	if not child_entered_tree.is_connected(_on_child_entered_tree):
 		child_entered_tree.connect(_on_child_entered_tree)
 
-	call_deferred("_process_existing_children")
-
-func _process(_delta: float) -> void:
-	pass
+	call_deferred("_refresh_all")
 
 
-func _process_existing_children() -> void:
+func _on_child_entered_tree(_node: Node) -> void:
+	_refresh_all()
+
+
+# --- collision (only when the button is pressed) ----------------------------------------
+
+func create_collision() -> void:
+	remove_collision()
+
+	var scene_root := get_tree().edited_scene_root if Engine.is_editor_hint() else owner
+	var created_bodies := 0
+	var created_shapes := 0
+
 	for child in get_children():
-		_process_child(child)
+		if not child is Node3D or child.get_meta("level_mesh_collision", false):
+			continue
 
-	_refresh_all()
+		var meshes: Array[MeshInstance3D] = []
+		_find_meshes(child, meshes)
+		if meshes.is_empty():
+			continue
+
+		var static_body := StaticBody3D.new()
+		static_body.name = "WorldCollision_" + String(child.name)
+		static_body.collision_layer = WORLD_LAYER
+		static_body.collision_mask = 0
+		static_body.set_meta("level_mesh_collision", true)
+
+		add_child(static_body)
+		static_body.owner = scene_root
+		static_body.global_transform = (child as Node3D).global_transform
+		created_bodies += 1
+
+		for mesh_instance in meshes:
+			if _create_collision(mesh_instance, static_body, scene_root):
+				created_shapes += 1
+
+	print("LevelMesh: created %d collision shapes in %d bodies. Save the scene to keep them." % [created_shapes, created_bodies])
 
 
-func _on_child_entered_tree(node: Node) -> void:
-	_process_child(node)
+func remove_collision() -> void:
+	var removed := 0
 
-
-func _process_child(node: Node) -> void:
-	if _processing or not is_instance_valid(node):
-		return
-
-	if not node is Node3D:
-		return
-
-	if node.get_meta("level_mesh_collision", false):
-		return
-
-	call_deferred("_generate_collision", node)
-
-
-func _generate_collision(node: Node) -> void:
-	if _processing or not is_instance_valid(node):
-		return
-
-	_processing = true
-
-	var meshes: Array[MeshInstance3D] = []
-	_find_meshes(node, meshes)
-
-	if meshes.is_empty():
-		_processing = false
-		return
-
-	# Avoid creating duplicate collision bodies.
-	for child in node.get_children():
+	for child in get_children():
 		if child is StaticBody3D and child.get_meta("level_mesh_collision", false):
-			_processing = false
-			_refresh_all()
-			return
+			remove_child(child)
+			child.queue_free()
+			removed += 1
 
-	var static_body := StaticBody3D.new()
-	static_body.name = "WorldCollision"
-	static_body.collision_layer = WORLD_LAYER
-	static_body.collision_mask = 0
-	static_body.set_meta("level_mesh_collision", true)
-
-	add_child(static_body)
-	static_body.owner = get_tree().edited_scene_root
-	static_body.global_transform = node.global_transform
-
-	for mesh_instance in meshes:
-		_create_collision(mesh_instance, static_body)
-
-	_processing = false
-	_refresh_all()
+	if removed > 0:
+		print("LevelMesh: removed %d old collision bodies." % removed)
 
 
 func _find_meshes(node: Node, meshes: Array[MeshInstance3D]) -> void:
@@ -121,26 +128,27 @@ func _find_meshes(node: Node, meshes: Array[MeshInstance3D]) -> void:
 
 func _create_collision(
 	mesh_instance: MeshInstance3D,
-	static_body: StaticBody3D
-) -> void:
+	static_body: StaticBody3D,
+	scene_root: Node
+) -> bool:
 	if mesh_instance.mesh == null:
-		return
+		return false
 
 	var shape := mesh_instance.mesh.create_trimesh_shape()
 	if shape == null:
-		return
+		return false
 
 	var collision := CollisionShape3D.new()
-	collision.name = mesh_instance.name + "_Collision"
+	collision.name = String(mesh_instance.name) + "_Collision"
 	collision.shape = shape
-	collision.transform = (
-		static_body.global_transform.affine_inverse()
-		* mesh_instance.global_transform
-	)
 
 	static_body.add_child(collision)
-	collision.owner = get_tree().edited_scene_root
+	collision.owner = scene_root
+	collision.global_transform = mesh_instance.global_transform
+	return true
 
+
+# --- style -----------------------------------------------------------------------------
 
 func _on_style_changed() -> void:
 	_refresh_all()

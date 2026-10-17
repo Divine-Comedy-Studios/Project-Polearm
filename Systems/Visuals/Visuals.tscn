@@ -42,9 +42,14 @@ sky_material = SubResource("ShaderMaterial_jdc7p")
 background_mode = 2
 sky = SubResource("Sky_uesqs")
 ambient_light_source = 2
-ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_color = Color(0.8980392, 1, 1, 1)
 ambient_light_sky_contribution = 0.67
 ambient_light_energy = 0.3
+fog_mode = 1
+fog_density = 1.0
+fog_depth_curve = 1.5
+fog_depth_begin = 0.0
+fog_depth_end = 0.2
 
 [node name="Visuals" type="Node" unique_id=1659141589 node_paths=PackedStringArray("camera", "environment")]
 script = ExtResource("1_sy3id")
