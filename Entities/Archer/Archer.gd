@@ -19,7 +19,7 @@ func _spawn() -> void:
 		PhysicsRayQueryParameters3D.create(
 			pos,
 			pos + Vector3.DOWN * GROUND_RAY_LENGTH,
-			(_actionManager.entity as CharacterBody3D).collision_mask
+			PPUtil.CollisionLayers.world
 		)
 	)
 

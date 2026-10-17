@@ -5,9 +5,9 @@ const DEBUG_BUILD : bool = true
 
 
 enum CollisionLayers {
-	entities = 0,
-	player = 1,
-	world = 15,
+	entities = 1 << 0,
+	player = 1 << 1,
+	world = 1 << 15,
 }
 
 
