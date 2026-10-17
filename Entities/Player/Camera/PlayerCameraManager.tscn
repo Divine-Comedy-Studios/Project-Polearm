@@ -32,7 +32,6 @@ tween_resource = SubResource("Resource_i8oxm")
 tween_on_load = false
 camera_3d_resource = SubResource("Resource_xvv6x")
 follow_offset = Vector3(0, 1.5, 0)
-follow_damping = true
 follow_distance = 3.0
 spring_length = 3.0
 collision_mask = 32768

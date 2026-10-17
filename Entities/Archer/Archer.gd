@@ -14,7 +14,7 @@ const GROUND_RAY_LENGTH : float = 100.0 # Arbitrary constant
 func _spawn() -> void:
 	super._spawn()
 
-	var pos := _actionManager.entity.global_position
+	var pos := actionManager.entity.global_position
 	var result := PhysicsServer3D.space_get_direct_state(get_world_3d().space).intersect_ray(
 		PhysicsRayQueryParameters3D.create(
 			pos,

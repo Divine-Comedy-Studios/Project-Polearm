@@ -10,10 +10,26 @@ class SpawnData extends Resource:
 #endregion
 
 
+#region Scene members
+
+@export_group("Scene members")
+@export var actionManager : EntityActionManager = null
+
+#endregion
+
+
+#region Built-in functions
+
+func _ready() -> void:
+	assert(actionManager != null, "Entity._ready(): Action manager not assigned!")
+
+#endregion
+
+
 #region Public functions
 
 func spawn(spawnTransform : Transform3D) -> void:
-	transform = spawnTransform
+	actionManager.entity.global_transform = spawnTransform
 
 	_spawn()
 
