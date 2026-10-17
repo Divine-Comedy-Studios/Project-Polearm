@@ -76,7 +76,7 @@ func _updateFixedSpawnPoints(spawnPointParent : Node3D) -> void:
 		var spawnPoints : Dictionary[int, Vector3] = { }
 		var wave := ENCOUNTER.WAVES[idx]
 
-		for child : Node in wavePoints:
+		for child : Node in wavePoints.get_children():
 			if not child is Node3D or not child.name.is_valid_int():
 				continue
 			
