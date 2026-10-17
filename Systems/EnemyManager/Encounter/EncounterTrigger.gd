@@ -80,7 +80,7 @@ func _updateFixedSpawnPoints(spawnPointParent : Node3D) -> void:
 			if not child is Node3D or not child.name.is_valid_int():
 				continue
 			
-			var enemyIdx := wavePoints.name.to_int()
+			var enemyIdx := child.name.to_int()
 			if idx < 0 or enemyIdx >= wave.ENEMIES.size():
 				continue
 
