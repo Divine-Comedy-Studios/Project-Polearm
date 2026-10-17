@@ -19,6 +19,12 @@ func _ready() -> void:
 	assert(_cameraManager != null,  "Player._ready(): Camera manager not assigned!")
 	assert(_actionManager != null,  "Player._ready(): Action manager not assigned!")
 
+#endregion
+
+
+#region Override functions
+
+func _spawn() -> void:
 	_cameraManager.setFollowTarget(_model)
 
 func kill() -> void:

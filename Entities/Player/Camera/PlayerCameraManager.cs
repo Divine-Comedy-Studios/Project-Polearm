@@ -42,18 +42,18 @@ using System.Data.Common;
 	#region Scene members
 
 	// Targets
-
 	private RemoteChild m_followTarget = null;
 
-
 	// Camera
-
 	private PhantomCamera3D m_camera = null;
 
 	#endregion
 
 
 	#region Member variables
+
+	// Initial camera state
+	public Transform3D m_initialTransform = Transform3D.Identity;
 
 	// Input state
 
@@ -73,6 +73,8 @@ using System.Data.Common;
 
 	public override void _Ready() {
 		m_camera = GetNode<Node3D>("Camera").AsPhantomCamera3D();
+		m_initialTransform = m_camera.Node3D.Transform;
+
 		m_followTarget = GetNode<RemoteChild>("FollowTarget");
 	}
 
@@ -149,6 +151,13 @@ using System.Data.Common;
 	public Vector2 CameraPlaneDirection() {
 		Vector3 direction = m_camera.FollowTarget.GlobalTransform.Basis.Z;
 		return new Vector2(direction.X, direction.Z).Normalized();
+	}
+
+
+	public void reset() => Reset();
+	public void Reset() {
+		m_followTarget.Reset();
+		m_camera.Node3D.Transform = m_initialTransform;
 	}
 
 	#endregion

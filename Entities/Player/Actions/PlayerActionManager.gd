@@ -62,6 +62,7 @@ func _implProcessActions(actions : Array[StringName]) -> void:
 
 func _reset() -> void:
 	(entity as FloatingBody).setMovement(Vector3(0, 0, 0))
+	cameraManager.reset()
 
 #endregion
 
