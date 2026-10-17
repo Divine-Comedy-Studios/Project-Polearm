@@ -29,9 +29,9 @@ func _ready() -> void:
 #region Public functions
 
 func spawn(spawnTransform : Transform3D) -> void:
-	actionManager.entity.global_transform = spawnTransform
-
 	_spawn()
+
+	actionManager.entity.global_transform = spawnTransform
 
 #endregion
 
