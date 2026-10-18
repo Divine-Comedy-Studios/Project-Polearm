@@ -13,12 +13,12 @@ const FLANK_STEP_ANGLE : float = 0.1
 #region Exported variables
 
 @export_group("Combat")
-@export var STOP_DISTANCE : float = 1.4
+@export var STOP_DISTANCE : float = 0.8
 @export var ATTACK_COOLDOWN : Vector2 = Vector2(1.0, 3.0)
 
 @export_group("Flanking")
 @export var FLANK_DISTANCE : float = 8.0
-@export var FLANK_RETARGET_COOLDOWN : Vector2 = Vector2(0.0, 3.0)
+@export var FLANK_RETARGET_COOLDOWN : Vector2 = Vector2(0.0, 2.0)
 @export var FLANK_TARGET_CANDIDATE_COUNT : int = 12
 @export_range(0.0, 0.9) var FLANK_DISTANCE_RANDOMESS : float = 0.2
 
@@ -58,19 +58,15 @@ func _tick(
 	var flatPosition := PPUtil.Math.toFlatVec2(entity.global_position)
 	var flatTarget := PPUtil.Math.toFlatVec2(perceptionData.targetPos)
 
-	if _cooldownTimer > 0.0:
-		if currentRole == EnemyManager.Role.flanker:
-			_tickFlank(delta, flatPosition, flatTarget)
+	if _cooldownTimer != INF:
+		_cooldownTimer -= delta
 
-		if _cooldownTimer != INF:
-			_cooldownTimer -= delta
+	if currentRole == EnemyManager.Role.flanker:
+		_tickFlank(delta, flatPosition, flatTarget)
 	else:
-		if currentRole == EnemyManager.Role.flanker:
-			_tickFlank(delta, flatPosition, flatTarget)
-		else:
-			_flankTimer = 0.0 # Reset flank timer as _tickFlank expects a reset timer upon state change
+		_flankTimer = 0.0 # Reset flank timer as _tickFlank expects a reset timer upon state change
 
-			_tickAttack(flatPosition, flatTarget, perceptionData)
+		_tickAttack(flatPosition, flatTarget, perceptionData)
 
 	_lastRole = currentRole
 
