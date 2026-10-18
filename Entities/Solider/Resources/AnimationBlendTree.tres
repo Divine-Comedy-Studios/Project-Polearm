@@ -80,7 +80,6 @@ sync = true
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_gallu"]
 
 [resource]
-graph_offset = Vector2(-253.21796, 82.40231)
 nodes/output/position = Vector2(1563.2184, 563.2184)
 nodes/Idle/node = SubResource("AnimationNodeAnimation_uw7o4")
 nodes/Idle/position = Vector2(-540.22986, 793.10345)

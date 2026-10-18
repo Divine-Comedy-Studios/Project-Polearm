@@ -9,20 +9,16 @@ class Data extends RefCounted:
 	var direction : Vector2
 
 	var target : Node3D
-	var targetPosition : Vector3
 
 	var actions : Array[StringName]
-	var modifiers : Array[StringName]
 
 	func reset() -> void:
 		magnitude = 0.0
 		direction = Vector2.ZERO
 
 		target = null
-		targetPosition = Vector3.ZERO
 
 		actions.clear()
-		modifiers.clear()
 
 #endregion
 
@@ -31,6 +27,7 @@ class Data extends RefCounted:
 
 @export_group("Combat")
 @export var AVAILABLE_ROLES : Array[EnemyManager.Role] = [ EnemyManager.Role.idle ]
+@export var ATTACK_RANGE : float = 2
 @export_range(0.0, 180.0) var ATTACK_FACING_ANGLE_DEGREES : float = 25.0
 
 #endregion
@@ -49,14 +46,7 @@ class Data extends RefCounted:
 var intents : Data = Data.new()
 
 var currentRole : EnemyManager.Role = EnemyManager.Role.idle
-
-var requestRoleChange : bool = false:
-	set(value):
-		requestRoleChange = value
-	get:
-		var tmp := requestRoleChange
-		requestRoleChange = false
-		return tmp
+var requestRoleChange : bool = false
 
 #endregion
 
@@ -75,6 +65,9 @@ func _ready() -> void:
 #region Public functions
 
 func tick(delta, perceptionData : EnemyPerception.Data) -> void:
+	if requestRoleChange:
+		requestRoleChange = (currentRole == perceptionData.role)
+
 	currentRole = perceptionData.role
 
 	intents.reset()
@@ -84,13 +77,8 @@ func tick(delta, perceptionData : EnemyPerception.Data) -> void:
 		return
 
 	intents.target = perceptionData.target
-
-	var offset := PPUtil.Math.toFlatVec2(perceptionData.targetPos - entity.global_position)
-	var distance := offset.length()
-	var toTarget := offset / distance
-
-	intents.direction = toTarget
-	intents.targetPosition = _tickAndTarget(delta, distance, toTarget, perceptionData)
+	
+	_tick(delta, perceptionData)
 
 
 func reset() -> void:
@@ -105,8 +93,8 @@ func reset() -> void:
 
 #region Private functions
 
-func _canAttack(distance : float, attackRange : float, toTarget : Vector2, forward : Vector3) -> bool:
-	if distance > attackRange:
+func _canAttack(distance : float, toTarget : Vector2, forward : Vector3) -> bool:
+	if distance > ATTACK_RANGE:
 		return false
 
 	var flatForward := Vector2(forward.x, forward.z)
@@ -121,8 +109,8 @@ func _canAttack(distance : float, attackRange : float, toTarget : Vector2, forwa
 #region Implementation functions
 
 @warning_ignore("unused_parameter")
-func _tickAndTarget(delta : float, distance : float, toTarget : Vector2, perceptionData : EnemyPerception.Data) -> Vector3:
-	return Vector3.ZERO
+func _tick(delta : float, perceptionData : EnemyPerception.Data) -> void:
+	pass
 
 
 func _implReset() -> void:
