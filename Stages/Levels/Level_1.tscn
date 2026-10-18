@@ -12,11 +12,14 @@
 [ext_resource type="Script" uid="uid://d0cpw8dp6pm66" path="res://Stages/Levels/Encounter.gd" id="15_ddqw5"]
 [ext_resource type="Texture2D" uid="uid://csbt823wewl2y" path="res://Assets/Shaders/WaterShader/textures/aerial_beach_01_nor_gl_1k.jpg" id="15_rtorc"]
 [ext_resource type="Texture2D" uid="uid://cfjgqwav8hhqk" path="res://Assets/Shaders/WaterShader/textures/aerial_beach_01_rough_1k.jpg" id="16_ddqw5"]
+[ext_resource type="Script" uid="uid://fch0au0c1272" path="res://Objects/KillZone/KillZone.gd" id="16_qlb00"]
 [ext_resource type="Script" uid="uid://03vkcknbw2k" path="res://Systems/EnemyManager/Encounter/EncounterTrigger.gd" id="17_pr0du"]
 [ext_resource type="Script" uid="uid://dgudxdqyw5eah" path="res://Systems/EnemyManager/Encounter/Wave.gd" id="18_ukbfx"]
 
 [sub_resource type="Resource" id="Resource_a20cb"]
 script = ExtResource("3_qlb00")
+PLAYER_SPAWN_ROTATION = Vector3(0, 3.14, 0)
+PLAYER_SPAWN_TRANSFORM = Transform3D(-0.99999875, 0, 0.001592548, 0, 1, 0, -0.001592548, 0, -0.99999875, 0, 0, 0)
 metadata/_custom_type_script = "uid://ddnfnyl5gscdh"
 
 [sub_resource type="QuadMesh" id="QuadMesh_rtorc"]
@@ -128,16 +131,36 @@ material = SubResource("StandardMaterial3D_th0g8")
 size = Vector2(3000, 3000)
 orientation = 1
 
-[sub_resource type="Resource" id="Resource_l2kmc"]
+[sub_resource type="Resource" id="Resource_7rmlr"]
 script = ExtResource("18_ukbfx")
 MAX_ENEMY_COUNT = 1
-ENEMIES = Array[int]([50])
+ENEMIES = Array[int]([30])
+ENEMY_POSITIONS = Dictionary[int, Vector3]({
+0: Vector3(0, 0, 0)
+})
 metadata/_custom_type_script = "uid://dgudxdqyw5eah"
 
-[sub_resource type="Resource" id="Resource_7rmlr"]
+[sub_resource type="Resource" id="Resource_l8hqm"]
+script = ExtResource("18_ukbfx")
+MAX_ENEMY_COUNT = 2
+ENEMIES = Array[int]([30, 30])
+ENEMY_POSITIONS = Dictionary[int, Vector3]({
+0: Vector3(0, 0, 0),
+1: Vector3(0, 0, 0)
+})
+metadata/_custom_type_script = "uid://dgudxdqyw5eah"
+
+[sub_resource type="Resource" id="Resource_m5nev"]
+script = ExtResource("18_ukbfx")
+MAX_ENEMY_COUNT = 2
+ENEMIES = Array[int]([30, 30, 30, 30, 30])
+BREAK_TIME_SEC = 1.0
+metadata/_custom_type_script = "uid://dgudxdqyw5eah"
+
+[sub_resource type="Resource" id="Resource_oqkbv"]
 script = ExtResource("2_7rmlr")
-WAVES = Array[ExtResource("18_ukbfx")]([SubResource("Resource_l2kmc")])
-SPAWN_POINTS = Array[Vector3]([Vector3(0, 0.84770393, 23.696037), Vector3(0, 0.84770393, 33.696037), Vector3(-2.6933212, 0.84770393, 31.476742), Vector3(2.693, 0.8480283, 31.477), Vector3(0, 0.84770393, 39.3173)])
+WAVES = Array[ExtResource("18_ukbfx")]([SubResource("Resource_7rmlr"), SubResource("Resource_l8hqm"), SubResource("Resource_m5nev")])
+SPAWN_POINTS = Array[Vector3]([Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0)])
 metadata/_custom_type_script = "uid://m3xnuvqxxrog"
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_umo8v"]
@@ -145,60 +168,423 @@ radius = 0.49803513
 
 [sub_resource type="SphereMesh" id="SphereMesh_7rmlr"]
 
-[sub_resource type="Resource" id="Resource_ddqw5"]
+[sub_resource type="Resource" id="Resource_rnll3"]
 script = ExtResource("18_ukbfx")
 MAX_ENEMY_COUNT = 1
 ENEMIES = Array[int]([50])
+ENEMY_POSITIONS = Dictionary[int, Vector3]({
+0: Vector3(0, 0, 0)
+})
+metadata/_custom_type_script = "uid://dgudxdqyw5eah"
+
+[sub_resource type="Resource" id="Resource_ythyi"]
+script = ExtResource("18_ukbfx")
+MAX_ENEMY_COUNT = 2
+ENEMIES = Array[int]([50, 50])
+ENEMY_POSITIONS = Dictionary[int, Vector3]({
+0: Vector3(0, 0, 0),
+1: Vector3(0, 0, 0)
+})
+metadata/_custom_type_script = "uid://dgudxdqyw5eah"
+
+[sub_resource type="Resource" id="Resource_q1t8d"]
+script = ExtResource("18_ukbfx")
+MAX_ENEMY_COUNT = 2
+ENEMIES = Array[int]([50, 50, 50, 50, 50])
 metadata/_custom_type_script = "uid://dgudxdqyw5eah"
 
 [sub_resource type="Resource" id="Resource_qlb00"]
 script = ExtResource("2_7rmlr")
-WAVES = Array[ExtResource("18_ukbfx")]([SubResource("Resource_ddqw5")])
-SPAWN_POINTS = Array[Vector3]([Vector3(0, 1.8832262, 69.65155), Vector3(0, 1.8832262, 77.65155), Vector3(-5, 1.8832262, 76.03055), Vector3(5, 1.8832262, 76.03055), Vector3(5, 1.8832262, 62.44055), Vector3(-5, 1.8832262, 62.44055)])
+WAVES = Array[ExtResource("18_ukbfx")]([SubResource("Resource_rnll3"), SubResource("Resource_ythyi"), SubResource("Resource_q1t8d")])
+SPAWN_POINTS = Array[Vector3]([Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0)])
 metadata/_custom_type_script = "uid://m3xnuvqxxrog"
+
+[sub_resource type="Resource" id="Resource_c2aq1"]
+script = ExtResource("18_ukbfx")
+MAX_ENEMY_COUNT = 5
+ENEMIES = Array[int]([50, 50, 30, 30, 30, 50, 50, 30, 30, 30])
+ENEMY_POSITIONS = Dictionary[int, Vector3]({
+0: Vector3(0, 0, 0),
+1: Vector3(0, 0, 0),
+2: Vector3(0, 0, 0),
+3: Vector3(0, 0, 0),
+4: Vector3(0, 0, 0),
+5: Vector3(0, 0, 0),
+6: Vector3(0, 0, 0)
+})
+metadata/_custom_type_script = "uid://dgudxdqyw5eah"
+
+[sub_resource type="Resource" id="Resource_8x06d"]
+script = ExtResource("18_ukbfx")
+MAX_ENEMY_COUNT = 6
+ENEMIES = Array[int]([50, 50, 30, 30, 30, 30, 50, 50, 30, 30, 30, 30])
+ENEMY_POSITIONS = Dictionary[int, Vector3]({
+0: Vector3(0, 0, 0),
+1: Vector3(0, 0, 0),
+2: Vector3(0, 0, 0),
+3: Vector3(0, 0, 0),
+6: Vector3(0, 0, 0),
+7: Vector3(0, 0, 0)
+})
+metadata/_custom_type_script = "uid://dgudxdqyw5eah"
+
+[sub_resource type="Resource" id="Resource_pjdqi"]
+script = ExtResource("18_ukbfx")
+MAX_ENEMY_COUNT = 6
+ENEMIES = Array[int]([50, 50, 50, 50, 30, 30, 30, 30, 30, 50, 50, 30])
+ENEMY_POSITIONS = Dictionary[int, Vector3]({
+0: Vector3(0, 0, 0),
+1: Vector3(0, 0, 0),
+2: Vector3(0, 0, 0),
+3: Vector3(0, 0, 0)
+})
+metadata/_custom_type_script = "uid://dgudxdqyw5eah"
+
+[sub_resource type="Resource" id="Resource_t1ny7"]
+script = ExtResource("18_ukbfx")
+metadata/_custom_type_script = "uid://dgudxdqyw5eah"
 
 [sub_resource type="Resource" id="Resource_rtorc"]
 script = ExtResource("2_7rmlr")
-WAVES = Array[ExtResource("18_ukbfx")]([SubResource("Resource_ddqw5")])
-SPAWN_POINTS = Array[Vector3]([Vector3(20.641768, -25.049665, 170.06133), Vector3(20.641768, -25.049665, 170.06133), Vector3(20.641768, -25.049665, 201.06133), Vector3(26.641768, -25.049665, 199.06133), Vector3(26.641768, -25.049665, 172.06133), Vector3(31.64177, -25.049665, 176.06133), Vector3(31.64177, -25.049665, 195.06133), Vector3(34.64177, -25.049665, 190.06133), Vector3(34.64177, -25.049665, 181.06133), Vector3(35.641373, -25.049305, 185.56169), Vector3(31.641373, -25.049305, 185.56169), Vector3(26.641373, -25.049305, 185.56169), Vector3(20.641373, -25.049305, 185.56169), Vector3(13.641373, -25.049305, 181.56169), Vector3(13.641373, -25.049305, 189.56169), Vector3(15.641373, -25.049305, 196.56169), Vector3(15.641373, -25.049305, 174.56169)])
+WAVES = Array[ExtResource("18_ukbfx")]([SubResource("Resource_c2aq1"), SubResource("Resource_8x06d"), SubResource("Resource_pjdqi"), SubResource("Resource_t1ny7")])
+SPAWN_POINTS = Array[Vector3]([Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0)])
 metadata/_custom_type_script = "uid://m3xnuvqxxrog"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_umo8v"]
 size = Vector3(1, 10.3, 23.18)
 
+[sub_resource type="Resource" id="Resource_0dnub"]
+script = ExtResource("18_ukbfx")
+MAX_ENEMY_COUNT = 1
+ENEMIES = Array[int]([30])
+ENEMY_POSITIONS = Dictionary[int, Vector3]({
+0: Vector3(0, 0, 0)
+})
+metadata/_custom_type_script = "uid://dgudxdqyw5eah"
+
+[sub_resource type="Resource" id="Resource_pt6on"]
+script = ExtResource("18_ukbfx")
+MAX_ENEMY_COUNT = 1
+ENEMIES = Array[int]([31])
+ENEMY_POSITIONS = Dictionary[int, Vector3]({
+0: Vector3(0, 0, 0)
+})
+metadata/_custom_type_script = "uid://dgudxdqyw5eah"
+
+[sub_resource type="Resource" id="Resource_l2gve"]
+script = ExtResource("18_ukbfx")
+MAX_ENEMY_COUNT = 3
+ENEMIES = Array[int]([50, 50, 30, 30, 30, 50])
+ENEMY_POSITIONS = Dictionary[int, Vector3]({
+0: Vector3(0, 0, 0),
+1: Vector3(0, 0, 0),
+5: Vector3(0, 0, 0)
+})
+metadata/_custom_type_script = "uid://dgudxdqyw5eah"
+
+[sub_resource type="Resource" id="Resource_1x5d4"]
+script = ExtResource("2_7rmlr")
+WAVES = Array[ExtResource("18_ukbfx")]([SubResource("Resource_0dnub"), SubResource("Resource_pt6on"), SubResource("Resource_l2gve")])
+SPAWN_POINTS = Array[Vector3]([Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0)])
+metadata/_custom_type_script = "uid://m3xnuvqxxrog"
+
+[sub_resource type="Resource" id="Resource_7iwke"]
+script = ExtResource("18_ukbfx")
+MAX_ENEMY_COUNT = 5
+ENEMIES = Array[int]([31, 50, 50, 50, 50, 0, 0, 0, 0, 0, 0, 50, 31, 50])
+ENEMY_POSITIONS = Dictionary[int, Vector3]({
+0: Vector3(0, 0, 0),
+1: Vector3(0, 0, 0),
+2: Vector3(0, 0, 0),
+3: Vector3(0, 0, 0),
+4: Vector3(0, 0, 0),
+11: Vector3(0, 0, 0),
+12: Vector3(0, 0, 0),
+13: Vector3(0, 0, 0)
+})
+metadata/_custom_type_script = "uid://dgudxdqyw5eah"
+
+[sub_resource type="Resource" id="Resource_4l0mt"]
+script = ExtResource("18_ukbfx")
+MAX_ENEMY_COUNT = 5
+ENEMIES = Array[int]([30, 31, 30, 50, 50, 30, 30, 30, 50, 0, 50, 30, 30])
+ENEMY_POSITIONS = Dictionary[int, Vector3]({
+0: Vector3(0, 0, 0),
+1: Vector3(0, 0, 0),
+2: Vector3(0, 0, 0),
+3: Vector3(0, 0, 0),
+4: Vector3(0, 0, 0),
+8: Vector3(0, 0, 0),
+10: Vector3(0, 0, 0)
+})
+metadata/_custom_type_script = "uid://dgudxdqyw5eah"
+
+[sub_resource type="Resource" id="Resource_naf6u"]
+script = ExtResource("18_ukbfx")
+MAX_ENEMY_COUNT = 3
+ENEMIES = Array[int]([50, 50, 50, 30, 30, 30, 50, 50, 50, 30, 30])
+ENEMY_POSITIONS = Dictionary[int, Vector3]({
+0: Vector3(0, 0, 0),
+1: Vector3(0, 0, 0),
+2: Vector3(0, 0, 0),
+3: Vector3(0, 0, 0),
+4: Vector3(0, 0, 0),
+5: Vector3(0, 0, 0),
+6: Vector3(0, 0, 0),
+7: Vector3(0, 0, 0),
+8: Vector3(0, 0, 0),
+9: Vector3(0, 0, 0),
+10: Vector3(0, 0, 0)
+})
+metadata/_custom_type_script = "uid://dgudxdqyw5eah"
+
 [sub_resource type="Resource" id="Resource_pr0du"]
 script = ExtResource("2_7rmlr")
-WAVES = Array[ExtResource("18_ukbfx")]([SubResource("Resource_ddqw5")])
-SPAWN_POINTS = Array[Vector3]([Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0)])
+WAVES = Array[ExtResource("18_ukbfx")]([SubResource("Resource_7iwke"), SubResource("Resource_4l0mt"), SubResource("Resource_naf6u")])
+SPAWN_POINTS = Array[Vector3]([Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0)])
 metadata/_custom_type_script = "uid://m3xnuvqxxrog"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7iwke"]
+size = Vector3(1.655, 2.035, 0.77)
+
+[sub_resource type="Resource" id="Resource_2odtr"]
+script = ExtResource("18_ukbfx")
+MAX_ENEMY_COUNT = 1
+ENEMIES = Array[int]([51])
+ENEMY_POSITIONS = Dictionary[int, Vector3]({
+0: Vector3(0, 0, 0)
+})
+metadata/_custom_type_script = "uid://dgudxdqyw5eah"
+
+[sub_resource type="Resource" id="Resource_r5kj5"]
+script = ExtResource("18_ukbfx")
+ENEMIES = Array[int]([51, 51, 30, 30, 30, 30, 51, 51, 30, 30, 51, 51])
+ENEMY_POSITIONS = Dictionary[int, Vector3]({
+0: Vector3(0, 0, 0),
+1: Vector3(0, 0, 0),
+6: Vector3(0, 0, 0),
+7: Vector3(0, 0, 0),
+10: Vector3(0, 0, 0),
+11: Vector3(0, 0, 0)
+})
+metadata/_custom_type_script = "uid://dgudxdqyw5eah"
+
+[sub_resource type="Resource" id="Resource_5nhxh"]
+script = ExtResource("18_ukbfx")
+MAX_ENEMY_COUNT = 5
+ENEMIES = Array[int]([31, 31, 51, 51, 51, 30, 50, 30, 50, 30])
+ENEMY_POSITIONS = Dictionary[int, Vector3]({
+0: Vector3(0, 0, 0),
+1: Vector3(0, 0, 0),
+2: Vector3(0, 0, 0),
+3: Vector3(0, 0, 0),
+4: Vector3(0, 0, 0)
+})
+metadata/_custom_type_script = "uid://dgudxdqyw5eah"
+
+[sub_resource type="Resource" id="Resource_q5bt3"]
+script = ExtResource("18_ukbfx")
+MAX_ENEMY_COUNT = 3
+ENEMIES = Array[int]([30, 30, 51, 51, 30, 30, 50, 50, 30, 31, 51, 51, 51, 31, 30, 30])
+ENEMY_POSITIONS = Dictionary[int, Vector3]({
+10: Vector3(0, 0, 0),
+11: Vector3(0, 0, 0),
+12: Vector3(0, 0, 0)
+})
+metadata/_custom_type_script = "uid://dgudxdqyw5eah"
+
+[sub_resource type="Resource" id="Resource_cajmo"]
+script = ExtResource("2_7rmlr")
+WAVES = Array[ExtResource("18_ukbfx")]([SubResource("Resource_2odtr"), SubResource("Resource_r5kj5"), SubResource("Resource_5nhxh"), SubResource("Resource_q5bt3")])
+SPAWN_POINTS = Array[Vector3]([Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0)])
+metadata/_custom_type_script = "uid://m3xnuvqxxrog"
+
+[sub_resource type="Resource" id="Resource_avbqi"]
+script = ExtResource("18_ukbfx")
+MAX_ENEMY_COUNT = 5
+ENEMIES = Array[int]([51, 50, 30, 30, 31, 30, 30, 50, 50])
+ENEMY_POSITIONS = Dictionary[int, Vector3]({
+0: Vector3(0, 0, 0),
+1: Vector3(0, 0, 0),
+2: Vector3(0, 0, 0),
+3: Vector3(0, 0, 0),
+4: Vector3(0, 0, 0)
+})
+metadata/_custom_type_script = "uid://dgudxdqyw5eah"
+
+[sub_resource type="Resource" id="Resource_88ti3"]
+script = ExtResource("18_ukbfx")
+MAX_ENEMY_COUNT = 6
+ENEMIES = Array[int]([51, 50, 50, 30, 31, 31])
+ENEMY_POSITIONS = Dictionary[int, Vector3]({
+0: Vector3(0, 0, 0),
+1: Vector3(0, 0, 0),
+2: Vector3(0, 0, 0),
+3: Vector3(0, 0, 0),
+4: Vector3(0, 0, 0),
+5: Vector3(0, 0, 0)
+})
+metadata/_custom_type_script = "uid://dgudxdqyw5eah"
+
+[sub_resource type="Resource" id="Resource_oxgiw"]
+script = ExtResource("18_ukbfx")
+MAX_ENEMY_COUNT = 6
+ENEMIES = Array[int]([50, 50, 51, 50, 50, 51])
+ENEMY_POSITIONS = Dictionary[int, Vector3]({
+0: Vector3(0, 0, 0),
+1: Vector3(0, 0, 0),
+2: Vector3(0, 0, 0),
+3: Vector3(0, 0, 0),
+4: Vector3(0, 0, 0),
+5: Vector3(0, 0, 0)
+})
+metadata/_custom_type_script = "uid://dgudxdqyw5eah"
+
+[sub_resource type="Resource" id="Resource_rrxfw"]
+script = ExtResource("18_ukbfx")
+MAX_ENEMY_COUNT = 1
+ENEMIES = Array[int]([52])
+ENEMY_POSITIONS = Dictionary[int, Vector3]({
+0: Vector3(0, 0, 0)
+})
+metadata/_custom_type_script = "uid://dgudxdqyw5eah"
+
+[sub_resource type="Resource" id="Resource_w7ct2"]
+script = ExtResource("18_ukbfx")
+ENEMIES = Array[int]([52, 52, 30, 30, 52, 52, 30, 30])
+ENEMY_POSITIONS = Dictionary[int, Vector3]({
+0: Vector3(0, 0, 0),
+1: Vector3(0, 0, 0),
+4: Vector3(0, 0, 0),
+5: Vector3(0, 0, 0)
+})
+metadata/_custom_type_script = "uid://dgudxdqyw5eah"
+
+[sub_resource type="Resource" id="Resource_1b0t0"]
+script = ExtResource("18_ukbfx")
+MAX_ENEMY_COUNT = 3
+ENEMIES = Array[int]([31, 52, 52, 30, 30, 30, 31, 52, 52])
+ENEMY_POSITIONS = Dictionary[int, Vector3]({
+0: Vector3(0, 0, 0),
+1: Vector3(0, 0, 0),
+2: Vector3(0, 0, 0),
+6: Vector3(0, 0, 0),
+7: Vector3(0, 0, 0),
+8: Vector3(0, 0, 0)
+})
+metadata/_custom_type_script = "uid://dgudxdqyw5eah"
 
 [sub_resource type="Resource" id="Resource_ukbfx"]
 script = ExtResource("2_7rmlr")
-WAVES = Array[ExtResource("18_ukbfx")]([SubResource("Resource_ddqw5")])
+WAVES = Array[ExtResource("18_ukbfx")]([SubResource("Resource_avbqi"), SubResource("Resource_88ti3"), SubResource("Resource_oxgiw"), SubResource("Resource_rrxfw"), SubResource("Resource_w7ct2"), SubResource("Resource_1b0t0")])
 SPAWN_POINTS = Array[Vector3]([Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0)])
 metadata/_custom_type_script = "uid://m3xnuvqxxrog"
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_7rmlr"]
 radius = 6.323
 
+[sub_resource type="Resource" id="Resource_a16ej"]
+script = ExtResource("18_ukbfx")
+MAX_ENEMY_COUNT = 3
+ENEMIES = Array[int]([31, 52, 0])
+ENEMY_POSITIONS = Dictionary[int, Vector3]({
+0: Vector3(0, 0, 0),
+1: Vector3(0, 0, 0),
+2: Vector3(0, 0, 0)
+})
+metadata/_custom_type_script = "uid://dgudxdqyw5eah"
+
+[sub_resource type="Resource" id="Resource_8klkh"]
+script = ExtResource("18_ukbfx")
+MAX_ENEMY_COUNT = 3
+ENEMIES = Array[int]([30, 30, 30, 50, 51, 52])
+ENEMY_POSITIONS = Dictionary[int, Vector3]({
+0: Vector3(0, 0, 0),
+1: Vector3(0, 0, 0),
+2: Vector3(0, 0, 0),
+3: Vector3(0, 0, 0),
+4: Vector3(0, 0, 0),
+5: Vector3(0, 0, 0)
+})
+metadata/_custom_type_script = "uid://dgudxdqyw5eah"
+
+[sub_resource type="Resource" id="Resource_my8w6"]
+script = ExtResource("18_ukbfx")
+MAX_ENEMY_COUNT = 2
+ENEMIES = Array[int]([30, 50, 30, 51, 31, 52])
+metadata/_custom_type_script = "uid://dgudxdqyw5eah"
+
 [sub_resource type="Resource" id="Resource_v5u86"]
 script = ExtResource("2_7rmlr")
-WAVES = Array[ExtResource("18_ukbfx")]([SubResource("Resource_ddqw5")])
+WAVES = Array[ExtResource("18_ukbfx")]([SubResource("Resource_a16ej"), SubResource("Resource_8klkh"), SubResource("Resource_my8w6")])
 SPAWN_POINTS = Array[Vector3]([Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0)])
 metadata/_custom_type_script = "uid://m3xnuvqxxrog"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7rmlr"]
 size = Vector3(1.5222168, 1, 0.114)
 
-[sub_resource type="Resource" id="Resource_cajmo"]
+[sub_resource type="Resource" id="Resource_ynla2"]
+script = ExtResource("18_ukbfx")
+MAX_ENEMY_COUNT = 6
+ENEMIES = Array[int]([31, 31, 52, 52, 51, 51, 30, 30, 30, 30])
+ENEMY_POSITIONS = Dictionary[int, Vector3]({
+0: Vector3(78.96132, -45.886787, 161.9604)
+})
+metadata/_custom_type_script = "uid://dgudxdqyw5eah"
+
+[sub_resource type="Resource" id="Resource_2daar"]
+script = ExtResource("18_ukbfx")
+MAX_ENEMY_COUNT = 6
+ENEMIES = Array[int]([51, 51, 52, 52, 30, 30, 30, 30, 50, 50])
+metadata/_custom_type_script = "uid://dgudxdqyw5eah"
+
+[sub_resource type="Resource" id="Resource_vjrm8"]
+script = ExtResource("18_ukbfx")
+MAX_ENEMY_COUNT = 3
+ENEMIES = Array[int]([51, 31, 30, 52, 30, 31, 52, 31, 51, 30, 52, 30, 51])
+metadata/_custom_type_script = "uid://dgudxdqyw5eah"
+
+[sub_resource type="Resource" id="Resource_qdhcv"]
+script = ExtResource("18_ukbfx")
+MAX_ENEMY_COUNT = 3
+ENEMIES = Array[int]([31, 50, 52, 31, 31, 52, 52, 51, 51])
+metadata/_custom_type_script = "uid://dgudxdqyw5eah"
+
+[sub_resource type="Resource" id="Resource_4m2l7"]
+script = ExtResource("2_7rmlr")
+WAVES = Array[ExtResource("18_ukbfx")]([SubResource("Resource_ynla2"), SubResource("Resource_2daar"), SubResource("Resource_vjrm8"), SubResource("Resource_qdhcv")])
+SPAWN_POINTS = Array[Vector3]([Vector3(90.96132, -40.23583, 164.9604), Vector3(90.96132, -40.23583, 169.9604), Vector3(90.96132, -40.23583, 174.9604), Vector3(92.96132, -40.23583, 172.9604), Vector3(92.96132, -40.23583, 166.9604), Vector3(78.96132, -40.23583, 164.9604), Vector3(78.96132, -40.23583, 174.9604), Vector3(78.96132, -40.23583, 171.9604), Vector3(78.96132, -40.23583, 167.9604), Vector3(76.96132, -40.23583, 169.9604), Vector3(76.96132, -40.23583, 164.9604), Vector3(76.96132, -40.23583, 174.9604), Vector3(84.96132, -45.886787, 174.9604), Vector3(84.96132, -45.886787, 169.9604), Vector3(84.96132, -45.886787, 164.9604), Vector3(87.96132, -45.886787, 163.9604), Vector3(81.96132, -45.886787, 163.9604), Vector3(78.96132, -45.886787, 161.9604), Vector3(90.96132, -45.886787, 161.9604), Vector3(84.96132, -45.886787, 162.9604), Vector3(82.96132, -45.886787, 167.9604), Vector3(86.96132, -45.886787, 167.9604), Vector3(86.96132, -45.886787, 171.9604), Vector3(82.96132, -45.886787, 171.9604), Vector3(84.96132, -45.886787, 181.9604), Vector3(88.96132, -45.886787, 183.9604), Vector3(80.96132, -45.886787, 183.9604), Vector3(84.96132, -45.886787, 185.9604), Vector3(91.96132, -45.886787, 181.9604), Vector3(77.96132, -45.886787, 181.9604)])
+metadata/_custom_type_script = "uid://m3xnuvqxxrog"
+
+[sub_resource type="Resource" id="Resource_ddqw5"]
+script = ExtResource("18_ukbfx")
+MAX_ENEMY_COUNT = 1
+ENEMIES = Array[int]([50])
+ENEMY_POSITIONS = Dictionary[int, Vector3]({
+0: Vector3(78.96132, -45.886787, 161.9604)
+})
+metadata/_custom_type_script = "uid://dgudxdqyw5eah"
+
+[sub_resource type="Resource" id="Resource_u1fkx"]
 script = ExtResource("2_7rmlr")
 WAVES = Array[ExtResource("18_ukbfx")]([SubResource("Resource_ddqw5")])
-SPAWN_POINTS = Array[Vector3]([Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0)])
+SPAWN_POINTS = Array[Vector3]([Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0)])
 metadata/_custom_type_script = "uid://m3xnuvqxxrog"
+
+[sub_resource type="Resource" id="Resource_b0jtc"]
+script = ExtResource("18_ukbfx")
+MAX_ENEMY_COUNT = 1
+ENEMIES = Array[int]([51, 31, 51])
+ENEMY_POSITIONS = Dictionary[int, Vector3]({
+0: Vector3(0, 0, 0),
+1: Vector3(0, 0, 0),
+2: Vector3(0, 0, 0)
+})
+metadata/_custom_type_script = "uid://dgudxdqyw5eah"
 
 [sub_resource type="Resource" id="Resource_q17dg"]
 script = ExtResource("2_7rmlr")
-WAVES = Array[ExtResource("18_ukbfx")]([SubResource("Resource_ddqw5")])
+WAVES = Array[ExtResource("18_ukbfx")]([SubResource("Resource_b0jtc")])
 SPAWN_POINTS = Array[Vector3]([Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0)])
 metadata/_custom_type_script = "uid://m3xnuvqxxrog"
 
@@ -210,6 +596,9 @@ metadata/_custom_type_script = "uid://m3xnuvqxxrog"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_x2sjg"]
 size = Vector3(24.47, 0.07, 24.02)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qlb00"]
+size = Vector3(650.9337, 1, 1000)
 
 [node name="Level_1" type="Node" unique_id=1251288287]
 script = ExtResource("1_qlb00")
@@ -243,6 +632,11 @@ size = Vector2(5, 5)
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -166.74635, -25.690615, 21.182186)
 startActive = false
 size = Vector2(5, 5)
+
+[node name="Door5_1" parent="Doors" unique_id=799439371 instance=ExtResource("15_7rmlr")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -138.0177, -23.613554, 21.182188)
+startActive = false
+size = Vector2(15, 15)
 
 [node name="Door6" parent="Doors" unique_id=522118361 instance=ExtResource("15_7rmlr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -89.51804, -34.59632, 30.75627)
@@ -278,12 +672,12 @@ size = Vector2(5, 6)
 transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 1.9106855e-15, -192.7046, -12.841618, 20.59533)
 size = Vector2(15, 15)
 
-[node name="Door13" parent="Doors" unique_id=799439371 instance=ExtResource("15_7rmlr")]
+[node name="Door13" parent="Doors" unique_id=716476280 instance=ExtResource("15_7rmlr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -185.58177, -25.585297, 40.09223)
 size = Vector2(5, 5)
 
 [node name="WaterFoam" type="MeshInstance3D" parent="." unique_id=755410227]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -1361.8447, -73.86324, -25.737274)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -1361.8447, -73.86324, -25.737274)
 mesh = SubResource("QuadMesh_rtorc")
 surface_material_override/0 = SubResource("ShaderMaterial_ddqw5")
 
@@ -292,19 +686,21 @@ transform = Transform3D(1.0000004, 0, 0, 0, 1.0000002, 0, 0, 0, 1, -1358.8561, -
 mesh = SubResource("QuadMesh_pr0du")
 
 [node name="MainLight" type="DirectionalLight3D" parent="." unique_id=1560308945]
-transform = Transform3D(1, 0, 0, 0, 0.50000024, 0.8660253, 0, -0.8660253, 0.50000024, -98, -33.05339, 0)
+transform = Transform3D(1, 0, 0, 0, 0.5000002, 0.8660253, 0, -0.8660253, 0.5000002, -98, -33.05339, 0)
 shadow_enabled = true
 shadow_opacity = 0.55
 
-[node name="Room 1" type="Area3D" parent="." unique_id=1942028485 node_paths=PackedStringArray("SCRIPT", "SPAWN_POINT_PARENT") groups=["Doors"]]
+[node name="Room 1" type="Area3D" parent="." unique_id=1942028485 node_paths=PackedStringArray("SCRIPT", "SPAWN_POINT_PARENT", "FIXED_SPAWN_POINT_PARENT") groups=["Doors"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 13)
+visible = false
 collision_layer = 0
 monitoring = false
 monitorable = false
 script = ExtResource("17_pr0du")
-ENCOUNTER = SubResource("Resource_7rmlr")
+ENCOUNTER = SubResource("Resource_oqkbv")
 SCRIPT = NodePath("EncounterScript")
 SPAWN_POINT_PARENT = NodePath("Spawnpoints")
+FIXED_SPAWN_POINT_PARENT = NodePath("FixedSpawnPoints")
 layers = 1
 metadata/_custom_type_script = "uid://03vkcknbw2k"
 
@@ -313,7 +709,7 @@ transform = Transform3D(10.75, 0, 0, 0, 10.75, 0, 0, 0, 10.75, 0, 0, -1.5873833)
 shape = SubResource("SphereShape3D_umo8v")
 
 [node name="Spawnpoints" type="Node3D" parent="Room 1" unique_id=1554911391]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.6339717, -13)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5499592, -13)
 
 [node name="Node3D" type="Node3D" parent="Room 1/Spawnpoints" unique_id=1042271511]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4816756, 23.696037)
@@ -322,13 +718,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4816756, 23.696037)
 mesh = SubResource("SphereMesh_7rmlr")
 
 [node name="Node3D5" type="Node3D" parent="Room 1/Spawnpoints" unique_id=904829321]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4816756, 33.696037)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4816756, 29.207867)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Room 1/Spawnpoints/Node3D5" unique_id=1422524099]
 mesh = SubResource("SphereMesh_7rmlr")
 
 [node name="Node3D2" type="Node3D" parent="Room 1/Spawnpoints" unique_id=1353103530]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6933212, 1.4816756, 31.476742)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.693, 1.482, 31.477)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Room 1/Spawnpoints/Node3D2" unique_id=2108477328]
 mesh = SubResource("SphereMesh_7rmlr")
@@ -345,14 +741,35 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4816756, 39.3173)
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Room 1/Spawnpoints/Node3D4" unique_id=543973324]
 mesh = SubResource("SphereMesh_7rmlr")
 
+[node name="FixedSpawnPoints" type="Node3D" parent="Room 1" unique_id=1185359411]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5499592, -13)
+
+[node name="0" type="Node3D" parent="Room 1/FixedSpawnPoints" unique_id=24616961]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4816756, 23.696037)
+
+[node name="0" type="MeshInstance3D" parent="Room 1/FixedSpawnPoints/0" unique_id=1080074018]
+mesh = SubResource("SphereMesh_7rmlr")
+
+[node name="1" type="Node3D" parent="Room 1/FixedSpawnPoints" unique_id=541499267]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4816756, 23.696037)
+
+[node name="0" type="MeshInstance3D" parent="Room 1/FixedSpawnPoints/1" unique_id=954013050]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6740289, 0, 7.724451)
+mesh = SubResource("SphereMesh_7rmlr")
+
+[node name="1" type="MeshInstance3D" parent="Room 1/FixedSpawnPoints/1" unique_id=823446079]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6571188, 0, 7.7701035)
+mesh = SubResource("SphereMesh_7rmlr")
+
 [node name="EncounterScript" type="Node3D" parent="Room 1" unique_id=1286867832 node_paths=PackedStringArray("_door1", "_door2")]
 script = ExtResource("15_ddqw5")
 _door1 = NodePath("../../Doors/Door")
 _door2 = NodePath("../../Doors/Door2")
 metadata/_custom_type_script = "uid://syam14lxvqpe"
 
-[node name="Room 2" type="Area3D" parent="." unique_id=1047839784 node_paths=PackedStringArray("SCRIPT", "SPAWN_POINT_PARENT") groups=["Doors"]]
+[node name="Room 2" type="Area3D" parent="." unique_id=1047839784 node_paths=PackedStringArray("SCRIPT", "SPAWN_POINT_PARENT", "FIXED_SPAWN_POINT_PARENT") groups=["Doors"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 61.724434)
+visible = false
 collision_layer = 0
 monitoring = false
 monitorable = false
@@ -360,6 +777,7 @@ script = ExtResource("17_pr0du")
 ENCOUNTER = SubResource("Resource_qlb00")
 SCRIPT = NodePath("EncounterScript")
 SPAWN_POINT_PARENT = NodePath("Spawnpoints")
+FIXED_SPAWN_POINT_PARENT = NodePath("FixedSpawnPoints")
 layers = 1
 metadata/_custom_type_script = "uid://03vkcknbw2k"
 
@@ -368,7 +786,7 @@ transform = Transform3D(18.86, 0, 0, 0, 18.86, 0, 0, 0, 18.86, 0, 0, -0.35967255
 shape = SubResource("SphereShape3D_umo8v")
 
 [node name="Spawnpoints" type="Node3D" parent="Room 2" unique_id=667919766]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.118774, 1.195118)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.4048972, 1.195118)
 
 [node name="Node3D" type="Node3D" parent="Room 2/Spawnpoints" unique_id=1512586126]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.002, 6.732)
@@ -406,14 +824,40 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 3.002, -0.4790001)
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Room 2/Spawnpoints/Node3D5" unique_id=1886917803]
 mesh = SubResource("SphereMesh_7rmlr")
 
+[node name="FixedSpawnPoints" type="Node3D" parent="Room 2" unique_id=1135040801]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.4048972, 1.195118)
+
+[node name="0" type="Node3D" parent="Room 2/FixedSpawnPoints" unique_id=1388629491]
+
+[node name="0" type="Node3D" parent="Room 2/FixedSpawnPoints/0" unique_id=419372588]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.002, 6.732)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 2/FixedSpawnPoints/0/0" unique_id=432364773]
+mesh = SubResource("SphereMesh_7rmlr")
+
+[node name="1" type="Node3D" parent="Room 2/FixedSpawnPoints" unique_id=2076544010]
+
+[node name="0" type="Node3D" parent="Room 2/FixedSpawnPoints/1" unique_id=401869960]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 3.002, 13.110996)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 2/FixedSpawnPoints/1/0" unique_id=1900664585]
+mesh = SubResource("SphereMesh_7rmlr")
+
+[node name="1" type="Node3D" parent="Room 2/FixedSpawnPoints/1" unique_id=1163777797]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 3.002, 13.111)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 2/FixedSpawnPoints/1/1" unique_id=245537986]
+mesh = SubResource("SphereMesh_7rmlr")
+
 [node name="EncounterScript" type="Node3D" parent="Room 2" unique_id=389955519 node_paths=PackedStringArray("_door1", "_door2")]
 script = ExtResource("15_ddqw5")
 _door1 = NodePath("../../Doors/Door2")
 _door2 = NodePath("../../Doors/Door3")
 metadata/_custom_type_script = "uid://syam14lxvqpe"
 
-[node name="Room 3" type="Area3D" parent="." unique_id=669376519 node_paths=PackedStringArray("SCRIPT", "SPAWN_POINT_PARENT") groups=["Doors"]]
+[node name="Room 3" type="Area3D" parent="." unique_id=669376519 node_paths=PackedStringArray("SCRIPT", "SPAWN_POINT_PARENT", "FIXED_SPAWN_POINT_PARENT") groups=["Doors"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.58037, -19.016697, 172.29257)
+visible = false
 collision_layer = 0
 monitoring = false
 monitorable = false
@@ -421,6 +865,7 @@ script = ExtResource("17_pr0du")
 ENCOUNTER = SubResource("Resource_rtorc")
 SCRIPT = NodePath("EncounterScript")
 SPAWN_POINT_PARENT = NodePath("Spawnpoints")
+FIXED_SPAWN_POINT_PARENT = NodePath("FixedSpawnpoints")
 layers = 1
 metadata/_custom_type_script = "uid://03vkcknbw2k"
 
@@ -430,6 +875,7 @@ shape = SubResource("BoxShape3D_umo8v")
 
 [node name="Spawnpoints" type="Node3D" parent="Room 3" unique_id=1008738358]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 1.195118)
+visible = false
 
 [node name="Node3D" type="Node3D" parent="Room 3/Spawnpoints" unique_id=392892693]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.0613976, -4.0329685, -3.426361)
@@ -533,21 +979,136 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0610027, -4.032608, 1.07400
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Room 3/Spawnpoints/Node3D17" unique_id=651799977]
 mesh = SubResource("SphereMesh_7rmlr")
 
+[node name="FixedSpawnpoints" type="Node3D" parent="Room 3" unique_id=1004097741]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 1.195118)
+
+[node name="0" type="Node3D" parent="Room 3/FixedSpawnpoints" unique_id=297447635]
+
+[node name="0" type="Node3D" parent="Room 3/FixedSpawnpoints/0" unique_id=1492181715]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.0614, -4.0329685, 16.573639)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 3/FixedSpawnpoints/0/0" unique_id=153801137]
+mesh = SubResource("SphereMesh_7rmlr")
+
+[node name="1" type="Node3D" parent="Room 3/FixedSpawnpoints/0" unique_id=2083915744]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.0614, -4.0329685, 7.573639)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 3/FixedSpawnpoints/0/1" unique_id=1016402711]
+mesh = SubResource("SphereMesh_7rmlr")
+
+[node name="5" type="Node3D" parent="Room 3/FixedSpawnpoints/0" unique_id=1728159201]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.061398, -4.0329685, -1.4263611)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 3/FixedSpawnpoints/0/5" unique_id=2120552484]
+mesh = SubResource("SphereMesh_7rmlr")
+
+[node name="6" type="Node3D" parent="Room 3/FixedSpawnpoints/0" unique_id=609508698]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.061398, -4.0329685, 25.573639)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 3/FixedSpawnpoints/0/6" unique_id=1457283763]
+mesh = SubResource("SphereMesh_7rmlr")
+
+[node name="2" type="Node3D" parent="Room 3/FixedSpawnpoints/0" unique_id=864027141]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.0610027, -4.032608, 12.074005)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 3/FixedSpawnpoints/0/2" unique_id=1611728136]
+mesh = SubResource("SphereMesh_7rmlr")
+
+[node name="3" type="Node3D" parent="Room 3/FixedSpawnpoints/0" unique_id=431709527]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0610027, -4.032608, 23.074005)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 3/FixedSpawnpoints/0/3" unique_id=1531351806]
+mesh = SubResource("SphereMesh_7rmlr")
+
+[node name="4" type="Node3D" parent="Room 3/FixedSpawnpoints/0" unique_id=314664897]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0610027, -4.032608, 1.0740051)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 3/FixedSpawnpoints/0/4" unique_id=823062746]
+mesh = SubResource("SphereMesh_7rmlr")
+
+[node name="1" type="Node3D" parent="Room 3/FixedSpawnpoints" unique_id=1100549479]
+
+[node name="2" type="Node3D" parent="Room 3/FixedSpawnpoints/1" unique_id=1983618963]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.0613976, -4.0329685, -3.426361)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 3/FixedSpawnpoints/1/2" unique_id=955877412]
+mesh = SubResource("SphereMesh_7rmlr")
+
+[node name="3" type="Node3D" parent="Room 3/FixedSpawnpoints/1" unique_id=651276715]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.0613976, -4.0329685, 27.573639)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 3/FixedSpawnpoints/1/3" unique_id=159798082]
+mesh = SubResource("SphereMesh_7rmlr")
+
+[node name="0" type="Node3D" parent="Room 3/FixedSpawnpoints/1" unique_id=164682308]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.061003, -4.032608, 12.074005)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 3/FixedSpawnpoints/1/0" unique_id=1088365279]
+mesh = SubResource("SphereMesh_7rmlr")
+
+[node name="1" type="Node3D" parent="Room 3/FixedSpawnpoints/1" unique_id=478222840]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.0610027, -4.032608, 12.074005)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 3/FixedSpawnpoints/1/1" unique_id=1717996810]
+mesh = SubResource("SphereMesh_7rmlr")
+
+[node name="6" type="Node3D" parent="Room 3/FixedSpawnpoints/1" unique_id=1914637963]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.061003, -4.032608, 12.074005)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 3/FixedSpawnpoints/1/6" unique_id=1817983171]
+mesh = SubResource("SphereMesh_7rmlr")
+
+[node name="7" type="Node3D" parent="Room 3/FixedSpawnpoints/1" unique_id=1555788430]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.061003, -4.032608, 12.074005)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 3/FixedSpawnpoints/1/7" unique_id=119012318]
+mesh = SubResource("SphereMesh_7rmlr")
+
+[node name="2" type="Node3D" parent="Room 3/FixedSpawnpoints" unique_id=1608084294]
+
+[node name="0" type="Node3D" parent="Room 3/FixedSpawnpoints/2" unique_id=671951480]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.0614, -4.0329685, 16.573639)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 3/FixedSpawnpoints/2/0" unique_id=349316675]
+mesh = SubResource("SphereMesh_7rmlr")
+
+[node name="1" type="Node3D" parent="Room 3/FixedSpawnpoints/2" unique_id=423247361]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.0614, -4.0329685, 7.573639)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 3/FixedSpawnpoints/2/1" unique_id=615106706]
+mesh = SubResource("SphereMesh_7rmlr")
+
+[node name="2" type="Node3D" parent="Room 3/FixedSpawnpoints/2" unique_id=150452008]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06100273, -4.032608, 8.074005)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 3/FixedSpawnpoints/2/2" unique_id=934321575]
+mesh = SubResource("SphereMesh_7rmlr")
+
+[node name="3" type="Node3D" parent="Room 3/FixedSpawnpoints/2" unique_id=1682058951]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06100273, -4.032608, 16.074005)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 3/FixedSpawnpoints/2/3" unique_id=456937894]
+mesh = SubResource("SphereMesh_7rmlr")
+
+[node name="3" type="Node3D" parent="Room 3/FixedSpawnpoints" unique_id=846372508]
+
 [node name="EncounterScript" type="Node3D" parent="Room 3" unique_id=422012128 node_paths=PackedStringArray("_door1", "_door2")]
 script = ExtResource("15_ddqw5")
 _door1 = NodePath("../../Doors/Door4")
 _door2 = NodePath("../../Doors/Door5")
 metadata/_custom_type_script = "uid://syam14lxvqpe"
 
-[node name="Room 4" type="Area3D" parent="." unique_id=1694285154 node_paths=PackedStringArray("SCRIPT", "SPAWN_POINT_PARENT") groups=["Doors"]]
+[node name="Room 4" type="Area3D" parent="." unique_id=1694285154 node_paths=PackedStringArray("SCRIPT", "SPAWN_POINT_PARENT", "FIXED_SPAWN_POINT_PARENT") groups=["Doors"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.727179, -22.71797, 153.22919)
+visible = false
 collision_layer = 0
 monitoring = false
 monitorable = false
 script = ExtResource("17_pr0du")
-ENCOUNTER = SubResource("Resource_pr0du")
+ENCOUNTER = SubResource("Resource_1x5d4")
 SCRIPT = NodePath("EncounterScript")
 SPAWN_POINT_PARENT = NodePath("Spawnpoints")
+FIXED_SPAWN_POINT_PARENT = NodePath("FixedSpawnPoints")
 layers = 1
 metadata/_custom_type_script = "uid://03vkcknbw2k"
 
@@ -600,199 +1161,47 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.207464, -0.31554413, -10.17
 mesh = SubResource("SphereMesh_7rmlr")
 skeleton = NodePath("")
 
-[node name="Node3D7" type="Node3D" parent="Room 4/Spawnpoints" unique_id=887464855]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.792536, -14.702627, -18.179993)
+[node name="FixedSpawnPoints" type="Node3D" parent="Room 4" unique_id=1848407458]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 1.195118)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4/Spawnpoints/Node3D7" unique_id=783737648]
+[node name="0" type="Node3D" parent="Room 4/FixedSpawnPoints" unique_id=659994881]
+
+[node name="0" type="Node3D" parent="Room 4/FixedSpawnPoints/0" unique_id=1810090963]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20746422, -0.31554413, 4.230652)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4/FixedSpawnPoints/0/0" unique_id=1474546806]
 mesh = SubResource("SphereMesh_7rmlr")
 skeleton = NodePath("")
 
-[node name="Node3D8" type="Node3D" parent="Room 4/Spawnpoints" unique_id=77413911]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.207464, -14.702627, -18.179993)
+[node name="1" type="Node3D" parent="Room 4/FixedSpawnPoints" unique_id=1310486121]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4/Spawnpoints/Node3D8" unique_id=1023606041]
+[node name="0" type="Node3D" parent="Room 4/FixedSpawnPoints/1" unique_id=187952733]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20746422, -0.31554413, -9.179993)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4/FixedSpawnPoints/1/0" unique_id=909254170]
 mesh = SubResource("SphereMesh_7rmlr")
 skeleton = NodePath("")
 
-[node name="Node3D9" type="Node3D" parent="Room 4/Spawnpoints" unique_id=1633671815]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20746422, -14.702627, -18.179993)
+[node name="2" type="Node3D" parent="Room 4/FixedSpawnPoints" unique_id=384114837]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4/Spawnpoints/Node3D9" unique_id=1518037629]
+[node name="0" type="Node3D" parent="Room 4/FixedSpawnPoints/2" unique_id=380117318]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.7925358, 2.0759296, -14.179993)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4/FixedSpawnPoints/2/0" unique_id=774988913]
 mesh = SubResource("SphereMesh_7rmlr")
 skeleton = NodePath("")
 
-[node name="Node3D10" type="Node3D" parent="Room 4/Spawnpoints" unique_id=1838732721]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20746422, -14.702627, -42.179993)
+[node name="1" type="Node3D" parent="Room 4/FixedSpawnPoints/2" unique_id=1001063224]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.207464, 2.0759296, -14.179993)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4/Spawnpoints/Node3D10" unique_id=121746750]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4/FixedSpawnPoints/2/1" unique_id=1781124866]
 mesh = SubResource("SphereMesh_7rmlr")
 skeleton = NodePath("")
 
-[node name="Node3D11" type="Node3D" parent="Room 4/Spawnpoints" unique_id=593819413]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.207464, -14.702627, -40.179993)
+[node name="5" type="Node3D" parent="Room 4/FixedSpawnPoints/2" unique_id=110444763]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20746422, 2.0759296, -15.179993)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4/Spawnpoints/Node3D11" unique_id=1912930336]
-mesh = SubResource("SphereMesh_7rmlr")
-skeleton = NodePath("")
-
-[node name="Node3D33" type="Node3D" parent="Room 4/Spawnpoints" unique_id=1729225802]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20746422, -14.702627, -38.179993)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4/Spawnpoints/Node3D33" unique_id=1020203982]
-mesh = SubResource("SphereMesh_7rmlr")
-skeleton = NodePath("")
-
-[node name="Node3D34" type="Node3D" parent="Room 4/Spawnpoints" unique_id=181868300]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20746422, -14.702627, -35.179993)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4/Spawnpoints/Node3D34" unique_id=1711251926]
-mesh = SubResource("SphereMesh_7rmlr")
-skeleton = NodePath("")
-
-[node name="Node3D12" type="Node3D" parent="Room 4/Spawnpoints" unique_id=117969235]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.792536, -14.702627, -40.179993)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4/Spawnpoints/Node3D12" unique_id=1580055614]
-mesh = SubResource("SphereMesh_7rmlr")
-skeleton = NodePath("")
-
-[node name="Node3D13" type="Node3D" parent="Room 4/Spawnpoints" unique_id=1823689514]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20746422, -14.702627, -47.179993)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4/Spawnpoints/Node3D13" unique_id=1142876027]
-mesh = SubResource("SphereMesh_7rmlr")
-skeleton = NodePath("")
-
-[node name="Node3D14" type="Node3D" parent="Room 4/Spawnpoints" unique_id=927308868]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20746422, -14.702627, -51.179993)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4/Spawnpoints/Node3D14" unique_id=114605741]
-mesh = SubResource("SphereMesh_7rmlr")
-skeleton = NodePath("")
-
-[node name="Node3D15" type="Node3D" parent="Room 4/Spawnpoints" unique_id=808658515]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20746422, -14.702627, -56.179993)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4/Spawnpoints/Node3D15" unique_id=260385636]
-mesh = SubResource("SphereMesh_7rmlr")
-skeleton = NodePath("")
-
-[node name="Node3D16" type="Node3D" parent="Room 4/Spawnpoints" unique_id=762893541]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20746422, -14.702627, -61.179993)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4/Spawnpoints/Node3D16" unique_id=1281646724]
-mesh = SubResource("SphereMesh_7rmlr")
-skeleton = NodePath("")
-
-[node name="Node3D17" type="Node3D" parent="Room 4/Spawnpoints" unique_id=1437541825]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.792536, -14.702627, -33.179993)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4/Spawnpoints/Node3D17" unique_id=471890944]
-mesh = SubResource("SphereMesh_7rmlr")
-skeleton = NodePath("")
-
-[node name="Node3D18" type="Node3D" parent="Room 4/Spawnpoints" unique_id=635767945]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.207464, -14.702627, -33.179993)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4/Spawnpoints/Node3D18" unique_id=1631438827]
-mesh = SubResource("SphereMesh_7rmlr")
-skeleton = NodePath("")
-
-[node name="Node3D19" type="Node3D" parent="Room 4/Spawnpoints" unique_id=1756822513]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.792536, -12.319822, -53.179993)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4/Spawnpoints/Node3D19" unique_id=77123518]
-mesh = SubResource("SphereMesh_7rmlr")
-skeleton = NodePath("")
-
-[node name="Node3D20" type="Node3D" parent="Room 4/Spawnpoints" unique_id=1844305963]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.792536, -12.319822, -60.179993)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4/Spawnpoints/Node3D20" unique_id=706121943]
-mesh = SubResource("SphereMesh_7rmlr")
-skeleton = NodePath("")
-
-[node name="Node3D22" type="Node3D" parent="Room 4/Spawnpoints" unique_id=404023152]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.792536, -12.319822, -60.179993)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4/Spawnpoints/Node3D22" unique_id=967476661]
-mesh = SubResource("SphereMesh_7rmlr")
-skeleton = NodePath("")
-
-[node name="Node3D23" type="Node3D" parent="Room 4/Spawnpoints" unique_id=2003544993]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.792536, -12.319822, -53.179993)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4/Spawnpoints/Node3D23" unique_id=477646925]
-mesh = SubResource("SphereMesh_7rmlr")
-skeleton = NodePath("")
-
-[node name="Node3D24" type="Node3D" parent="Room 4/Spawnpoints" unique_id=502241045]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.792536, -12.319822, -67.17999)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4/Spawnpoints/Node3D24" unique_id=2137419393]
-mesh = SubResource("SphereMesh_7rmlr")
-skeleton = NodePath("")
-
-[node name="Node3D25" type="Node3D" parent="Room 4/Spawnpoints" unique_id=1133513600]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.207464, -9.319822, -66.17999)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4/Spawnpoints/Node3D25" unique_id=1107641822]
-mesh = SubResource("SphereMesh_7rmlr")
-skeleton = NodePath("")
-
-[node name="Node3D26" type="Node3D" parent="Room 4/Spawnpoints" unique_id=564170293]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.207464, -9.319822, -61.179993)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4/Spawnpoints/Node3D26" unique_id=559375724]
-mesh = SubResource("SphereMesh_7rmlr")
-skeleton = NodePath("")
-
-[node name="Node3D27" type="Node3D" parent="Room 4/Spawnpoints" unique_id=1745565554]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.207464, -9.319822, -56.179993)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4/Spawnpoints/Node3D27" unique_id=1674782725]
-mesh = SubResource("SphereMesh_7rmlr")
-skeleton = NodePath("")
-
-[node name="Node3D28" type="Node3D" parent="Room 4/Spawnpoints" unique_id=1605306468]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.207464, -9.319822, -51.179993)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4/Spawnpoints/Node3D28" unique_id=1894838126]
-mesh = SubResource("SphereMesh_7rmlr")
-skeleton = NodePath("")
-
-[node name="Node3D29" type="Node3D" parent="Room 4/Spawnpoints" unique_id=1614017924]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.207464, -9.319822, -51.179993)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4/Spawnpoints/Node3D29" unique_id=1824228389]
-mesh = SubResource("SphereMesh_7rmlr")
-skeleton = NodePath("")
-
-[node name="Node3D30" type="Node3D" parent="Room 4/Spawnpoints" unique_id=1021059851]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.207464, -9.319822, -56.179993)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4/Spawnpoints/Node3D30" unique_id=803332090]
-mesh = SubResource("SphereMesh_7rmlr")
-skeleton = NodePath("")
-
-[node name="Node3D31" type="Node3D" parent="Room 4/Spawnpoints" unique_id=1376212848]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.207464, -9.319822, -61.179993)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4/Spawnpoints/Node3D31" unique_id=593868819]
-mesh = SubResource("SphereMesh_7rmlr")
-skeleton = NodePath("")
-
-[node name="Node3D32" type="Node3D" parent="Room 4/Spawnpoints" unique_id=184303879]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.207464, -9.319822, -66.17999)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4/Spawnpoints/Node3D32" unique_id=1591396845]
-mesh = SubResource("SphereMesh_7rmlr")
-skeleton = NodePath("")
-
-[node name="Node3D21" type="Node3D" parent="Room 4/Spawnpoints" unique_id=1042069405]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.792536, -12.319822, -67.17999)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4/Spawnpoints/Node3D21" unique_id=358584406]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4/FixedSpawnPoints/2/5" unique_id=140994582]
 mesh = SubResource("SphereMesh_7rmlr")
 skeleton = NodePath("")
 
@@ -800,11 +1209,965 @@ skeleton = NodePath("")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, -13)
 script = ExtResource("15_ddqw5")
 _door1 = NodePath("../../Doors/Door5")
+_door2 = NodePath("../../Doors/Door5_1")
+metadata/_custom_type_script = "uid://syam14lxvqpe"
+
+[node name="Room 4_1" type="Area3D" parent="." unique_id=1023843927 node_paths=PackedStringArray("SCRIPT", "SPAWN_POINT_PARENT", "FIXED_SPAWN_POINT_PARENT") groups=["Doors"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.727179, -22.71797, 153.22919)
+visible = false
+collision_layer = 0
+monitoring = false
+monitorable = false
+script = ExtResource("17_pr0du")
+ENCOUNTER = SubResource("Resource_pr0du")
+SCRIPT = NodePath("EncounterScript")
+SPAWN_POINT_PARENT = NodePath("Spawnpoints")
+FIXED_SPAWN_POINT_PARENT = NodePath("FixedSpawnPoints")
+layers = 1
+metadata/_custom_type_script = "uid://03vkcknbw2k"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room 4_1" unique_id=291160438]
+transform = Transform3D(18.86, 0, 0, 0, 18.86, 0, 0, 0, 18.86, 0, 0, -24.77774)
+shape = SubResource("BoxShape3D_7iwke")
+
+[node name="Spawnpoints" type="Node3D" parent="Room 4_1" unique_id=1471675004]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 1.195118)
+
+[node name="Node3D7" type="Node3D" parent="Room 4_1/Spawnpoints" unique_id=1460217024]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.792536, -14.702627, -18.179993)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_1/Spawnpoints/Node3D7" unique_id=1005526028]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D8" type="Node3D" parent="Room 4_1/Spawnpoints" unique_id=28492392]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.207464, -14.702627, -18.179993)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_1/Spawnpoints/Node3D8" unique_id=1284075186]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D9" type="Node3D" parent="Room 4_1/Spawnpoints" unique_id=1240196405]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20746422, -14.702627, -18.179993)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_1/Spawnpoints/Node3D9" unique_id=42991402]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D10" type="Node3D" parent="Room 4_1/Spawnpoints" unique_id=366552418]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20746422, -14.702627, -42.179993)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_1/Spawnpoints/Node3D10" unique_id=848887014]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D11" type="Node3D" parent="Room 4_1/Spawnpoints" unique_id=1669925988]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.207464, -14.702627, -40.179993)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_1/Spawnpoints/Node3D11" unique_id=674483021]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D33" type="Node3D" parent="Room 4_1/Spawnpoints" unique_id=1616816337]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20746422, -14.702627, -38.179993)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_1/Spawnpoints/Node3D33" unique_id=493473]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D34" type="Node3D" parent="Room 4_1/Spawnpoints" unique_id=1232040809]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20746422, -14.702627, -35.179993)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_1/Spawnpoints/Node3D34" unique_id=82554665]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D12" type="Node3D" parent="Room 4_1/Spawnpoints" unique_id=1760539885]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.792536, -14.702627, -40.179993)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_1/Spawnpoints/Node3D12" unique_id=1249166597]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D13" type="Node3D" parent="Room 4_1/Spawnpoints" unique_id=1365096041]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20746422, -14.702627, -47.179993)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_1/Spawnpoints/Node3D13" unique_id=608888295]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D14" type="Node3D" parent="Room 4_1/Spawnpoints" unique_id=954508390]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20746422, -14.702627, -51.179993)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_1/Spawnpoints/Node3D14" unique_id=939400550]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D15" type="Node3D" parent="Room 4_1/Spawnpoints" unique_id=678689372]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20746422, -14.702627, -56.179993)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_1/Spawnpoints/Node3D15" unique_id=1843952267]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D16" type="Node3D" parent="Room 4_1/Spawnpoints" unique_id=1586860604]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20746422, -14.702627, -61.179993)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_1/Spawnpoints/Node3D16" unique_id=2109604824]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D17" type="Node3D" parent="Room 4_1/Spawnpoints" unique_id=397285702]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.792536, -14.702627, -33.179993)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_1/Spawnpoints/Node3D17" unique_id=134829268]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D18" type="Node3D" parent="Room 4_1/Spawnpoints" unique_id=1005529448]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.207464, -14.702627, -33.179993)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_1/Spawnpoints/Node3D18" unique_id=1921594706]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D19" type="Node3D" parent="Room 4_1/Spawnpoints" unique_id=946235977]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.792536, -12.319822, -53.179993)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_1/Spawnpoints/Node3D19" unique_id=1701340772]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D20" type="Node3D" parent="Room 4_1/Spawnpoints" unique_id=579732601]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.792536, -12.319822, -60.179993)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_1/Spawnpoints/Node3D20" unique_id=1723541745]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D22" type="Node3D" parent="Room 4_1/Spawnpoints" unique_id=2123756477]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.792536, -12.319822, -60.179993)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_1/Spawnpoints/Node3D22" unique_id=1655703245]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D23" type="Node3D" parent="Room 4_1/Spawnpoints" unique_id=956849001]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.792536, -12.319822, -53.179993)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_1/Spawnpoints/Node3D23" unique_id=1326411837]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D24" type="Node3D" parent="Room 4_1/Spawnpoints" unique_id=126676628]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.792536, -12.319822, -67.17999)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_1/Spawnpoints/Node3D24" unique_id=202446524]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D25" type="Node3D" parent="Room 4_1/Spawnpoints" unique_id=592643693]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.207464, -9.319822, -66.17999)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_1/Spawnpoints/Node3D25" unique_id=1131153968]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D26" type="Node3D" parent="Room 4_1/Spawnpoints" unique_id=833428751]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.207464, -9.319822, -61.179993)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_1/Spawnpoints/Node3D26" unique_id=825185939]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D27" type="Node3D" parent="Room 4_1/Spawnpoints" unique_id=5136849]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.207464, -9.319822, -56.179993)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_1/Spawnpoints/Node3D27" unique_id=1545254658]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D28" type="Node3D" parent="Room 4_1/Spawnpoints" unique_id=871161790]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.207464, -9.319822, -51.179993)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_1/Spawnpoints/Node3D28" unique_id=947368420]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D29" type="Node3D" parent="Room 4_1/Spawnpoints" unique_id=1148524182]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.207464, -9.319822, -51.179993)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_1/Spawnpoints/Node3D29" unique_id=1834441962]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D30" type="Node3D" parent="Room 4_1/Spawnpoints" unique_id=1633112165]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.207464, -9.319822, -56.179993)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_1/Spawnpoints/Node3D30" unique_id=1942064336]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D31" type="Node3D" parent="Room 4_1/Spawnpoints" unique_id=897307296]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.207464, -9.319822, -61.179993)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_1/Spawnpoints/Node3D31" unique_id=1652888227]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D32" type="Node3D" parent="Room 4_1/Spawnpoints" unique_id=1599311721]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.207464, -9.319822, -66.17999)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_1/Spawnpoints/Node3D32" unique_id=89947112]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D21" type="Node3D" parent="Room 4_1/Spawnpoints" unique_id=132945553]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.792536, -12.319822, -67.17999)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_1/Spawnpoints/Node3D21" unique_id=326870576]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="FixedSpawnPoints" type="Node3D" parent="Room 4_1" unique_id=1129137388]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 1.195118)
+
+[node name="0" type="Node3D" parent="Room 4_1/FixedSpawnPoints" unique_id=2004711555]
+
+[node name="0" type="Node3D" parent="Room 4_1/FixedSpawnPoints/0" unique_id=946528552]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20746422, -14.702627, -61.179993)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_1/FixedSpawnPoints/0/0" unique_id=1099135174]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="1" type="Node3D" parent="Room 4_1/FixedSpawnPoints/0" unique_id=1882256454]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.792536, -12.319822, -60.179993)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_1/FixedSpawnPoints/0/1" unique_id=977370833]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="2" type="Node3D" parent="Room 4_1/FixedSpawnPoints/0" unique_id=1821154753]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.792536, -12.319822, -53.179993)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_1/FixedSpawnPoints/0/2" unique_id=918954508]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="3" type="Node3D" parent="Room 4_1/FixedSpawnPoints/0" unique_id=1770210235]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.207464, -9.319822, -56.179993)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_1/FixedSpawnPoints/0/3" unique_id=715307262]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="4" type="Node3D" parent="Room 4_1/FixedSpawnPoints/0" unique_id=2013717088]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.207464, -9.319822, -51.179993)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_1/FixedSpawnPoints/0/4" unique_id=413229128]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="11" type="Node3D" parent="Room 4_1/FixedSpawnPoints/0" unique_id=2015775051]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.792536, -14.702627, -18.179993)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_1/FixedSpawnPoints/0/11" unique_id=1381685155]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="13" type="Node3D" parent="Room 4_1/FixedSpawnPoints/0" unique_id=444498960]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.207464, -14.702627, -18.179993)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_1/FixedSpawnPoints/0/13" unique_id=1713881693]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="12" type="Node3D" parent="Room 4_1/FixedSpawnPoints/0" unique_id=379438361]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20746422, -14.702627, -18.179993)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_1/FixedSpawnPoints/0/12" unique_id=1242481700]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="1" type="Node3D" parent="Room 4_1/FixedSpawnPoints" unique_id=268100923]
+
+[node name="1" type="Node3D" parent="Room 4_1/FixedSpawnPoints/1" unique_id=1481591002]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20746422, -14.702627, -35.179993)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_1/FixedSpawnPoints/1/1" unique_id=1490988910]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="0" type="Node3D" parent="Room 4_1/FixedSpawnPoints/1" unique_id=335625210]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.792536, -14.702627, -33.179993)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_1/FixedSpawnPoints/1/0" unique_id=37112867]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="2" type="Node3D" parent="Room 4_1/FixedSpawnPoints/1" unique_id=2042735308]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.207464, -14.702627, -33.179993)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_1/FixedSpawnPoints/1/2" unique_id=966358606]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="3" type="Node3D" parent="Room 4_1/FixedSpawnPoints/1" unique_id=289821989]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.792536, -12.319822, -53.179993)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_1/FixedSpawnPoints/1/3" unique_id=1547219046]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="4" type="Node3D" parent="Room 4_1/FixedSpawnPoints/1" unique_id=1100372994]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.207464, -9.319822, -51.179993)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_1/FixedSpawnPoints/1/4" unique_id=1593515354]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="10" type="Node3D" parent="Room 4_1/FixedSpawnPoints/1" unique_id=1987505605]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.792536, -12.319822, -60.179993)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_1/FixedSpawnPoints/1/10" unique_id=151914407]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="8" type="Node3D" parent="Room 4_1/FixedSpawnPoints/1" unique_id=538019856]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.207464, -9.319822, -61.179993)
+
+[node name="8" type="MeshInstance3D" parent="Room 4_1/FixedSpawnPoints/1/8" unique_id=574220424]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="2" type="Node3D" parent="Room 4_1/FixedSpawnPoints" unique_id=1411215615]
+
+[node name="0" type="Node3D" parent="Room 4_1/FixedSpawnPoints/2" unique_id=448564252]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.792536, -12.319822, -53.179993)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_1/FixedSpawnPoints/2/0" unique_id=1282361925]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="1" type="Node3D" parent="Room 4_1/FixedSpawnPoints/2" unique_id=148331641]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.792536, -12.319822, -60.179993)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_1/FixedSpawnPoints/2/1" unique_id=1336777217]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="2" type="Node3D" parent="Room 4_1/FixedSpawnPoints/2" unique_id=124379728]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.792536, -12.319822, -67.17999)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_1/FixedSpawnPoints/2/2" unique_id=728872167]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="3" type="Node3D" parent="Room 4_1/FixedSpawnPoints/2" unique_id=223382641]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.792536, -12.319822, -60.179993)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_1/FixedSpawnPoints/2/3" unique_id=1047817514]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="4" type="Node3D" parent="Room 4_1/FixedSpawnPoints/2" unique_id=897969102]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.792536, -12.319822, -53.179993)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_1/FixedSpawnPoints/2/4" unique_id=2135925681]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="5" type="Node3D" parent="Room 4_1/FixedSpawnPoints/2" unique_id=213665092]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.792536, -12.319822, -67.17999)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_1/FixedSpawnPoints/2/5" unique_id=1473968241]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="6" type="Node3D" parent="Room 4_1/FixedSpawnPoints/2" unique_id=235768232]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.207464, -9.319822, -66.17999)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_1/FixedSpawnPoints/2/6" unique_id=1537416380]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="7" type="Node3D" parent="Room 4_1/FixedSpawnPoints/2" unique_id=982441764]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.207464, -9.319822, -56.179993)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_1/FixedSpawnPoints/2/7" unique_id=1105174271]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="8" type="Node3D" parent="Room 4_1/FixedSpawnPoints/2" unique_id=1547241404]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.207464, -9.319822, -51.179993)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_1/FixedSpawnPoints/2/8" unique_id=81341693]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="9" type="Node3D" parent="Room 4_1/FixedSpawnPoints/2" unique_id=1343115318]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.207464, -9.319822, -61.179993)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_1/FixedSpawnPoints/2/9" unique_id=1146239246]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="10" type="Node3D" parent="Room 4_1/FixedSpawnPoints/2" unique_id=545367249]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.207464, -9.319822, -66.17999)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_1/FixedSpawnPoints/2/10" unique_id=1785033457]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="EncounterScript" type="Node3D" parent="Room 4_1" unique_id=527098747 node_paths=PackedStringArray("_door1", "_door2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, -13)
+script = ExtResource("15_ddqw5")
+_door1 = NodePath("../../Doors/Door5_1")
 _door2 = NodePath("../../Doors/Door6")
 metadata/_custom_type_script = "uid://syam14lxvqpe"
 
-[node name="Room 5" type="Area3D" parent="." unique_id=1563355554 node_paths=PackedStringArray("SCRIPT", "SPAWN_POINT_PARENT") groups=["Doors"]]
+[node name="Room 4_5" type="Area3D" parent="." unique_id=1978925781 node_paths=PackedStringArray("SCRIPT", "SPAWN_POINT_PARENT", "FIXED_SPAWN_POINT_PARENT") groups=["Doors"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.15004, -22.71797, 84.71182)
+visible = false
+collision_layer = 0
+monitoring = false
+monitorable = false
+script = ExtResource("17_pr0du")
+ENCOUNTER = SubResource("Resource_cajmo")
+SCRIPT = NodePath("EncounterScript")
+SPAWN_POINT_PARENT = NodePath("Spawnpoints")
+FIXED_SPAWN_POINT_PARENT = NodePath("FixedSpawnpoints")
+layers = 1
+metadata/_custom_type_script = "uid://03vkcknbw2k"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room 4_5" unique_id=1533700211]
+transform = Transform3D(18.86, 0, 0, 0, 18.86, 0, 0, 0, 18.86, 0.45344162, -11.6326275, 4.9078903)
+shape = SubResource("SphereShape3D_umo8v")
+
+[node name="Spawnpoints" type="Node3D" parent="Room 4_5" unique_id=471423656]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 1.195118)
+
+[node name="Node3D" type="Node3D" parent="Room 4_5/Spawnpoints" unique_id=1237478904]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.792534, -24.444181, -7.604576)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_5/Spawnpoints/Node3D" unique_id=14814518]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D2" type="Node3D" parent="Room 4_5/Spawnpoints" unique_id=2032703406]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20746613, -24.444181, -7.604576)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_5/Spawnpoints/Node3D2" unique_id=2122820342]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D3" type="Node3D" parent="Room 4_5/Spawnpoints" unique_id=2143418745]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.207466, -24.444181, -7.604576)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_5/Spawnpoints/Node3D3" unique_id=403399964]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D4" type="Node3D" parent="Room 4_5/Spawnpoints" unique_id=1876635606]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.207466, -24.444181, -7.604576)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_5/Spawnpoints/Node3D4" unique_id=1085257833]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D5" type="Node3D" parent="Room 4_5/Spawnpoints" unique_id=374250067]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.207466, -24.444181, -7.604576)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_5/Spawnpoints/Node3D5" unique_id=464000824]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D6" type="Node3D" parent="Room 4_5/Spawnpoints" unique_id=12916137]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.207466, -24.444181, -7.604576)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_5/Spawnpoints/Node3D6" unique_id=27922144]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D7" type="Node3D" parent="Room 4_5/Spawnpoints" unique_id=1440146491]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.207466, -24.444181, -7.604576)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_5/Spawnpoints/Node3D7" unique_id=1020030032]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D8" type="Node3D" parent="Room 4_5/Spawnpoints" unique_id=1269132036]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.207466, -24.444181, -7.604576)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_5/Spawnpoints/Node3D8" unique_id=70206122]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D9" type="Node3D" parent="Room 4_5/Spawnpoints" unique_id=665025073]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.207466, -24.444181, -7.604576)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_5/Spawnpoints/Node3D9" unique_id=1242716801]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D10" type="Node3D" parent="Room 4_5/Spawnpoints" unique_id=841663143]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.207466, -24.444181, -11.604576)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_5/Spawnpoints/Node3D10" unique_id=691667320]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D11" type="Node3D" parent="Room 4_5/Spawnpoints" unique_id=1805180456]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.207466, -24.444181, -11.604576)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_5/Spawnpoints/Node3D11" unique_id=1091794752]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D12" type="Node3D" parent="Room 4_5/Spawnpoints" unique_id=760876959]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.207466, -24.444181, -11.604576)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_5/Spawnpoints/Node3D12" unique_id=1713249865]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D13" type="Node3D" parent="Room 4_5/Spawnpoints" unique_id=219145281]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.207466, -24.444181, -11.604576)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_5/Spawnpoints/Node3D13" unique_id=563743376]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D14" type="Node3D" parent="Room 4_5/Spawnpoints" unique_id=936357936]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.207466, -24.444181, -11.604576)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_5/Spawnpoints/Node3D14" unique_id=1435102438]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D15" type="Node3D" parent="Room 4_5/Spawnpoints" unique_id=743789571]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.207466, -24.444181, -11.604576)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_5/Spawnpoints/Node3D15" unique_id=278233558]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D16" type="Node3D" parent="Room 4_5/Spawnpoints" unique_id=561175145]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.207466, -24.444181, -11.604576)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_5/Spawnpoints/Node3D16" unique_id=2039780864]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D17" type="Node3D" parent="Room 4_5/Spawnpoints" unique_id=334848142]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20746613, -24.444181, -11.604576)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_5/Spawnpoints/Node3D17" unique_id=1408930890]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D18" type="Node3D" parent="Room 4_5/Spawnpoints" unique_id=1004783481]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.792534, -24.444181, -11.604576)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_5/Spawnpoints/Node3D18" unique_id=1361334241]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D19" type="Node3D" parent="Room 4_5/Spawnpoints" unique_id=345687933]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.792534, -24.444181, 19.395424)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_5/Spawnpoints/Node3D19" unique_id=1031091966]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D20" type="Node3D" parent="Room 4_5/Spawnpoints" unique_id=1628035654]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20746613, -24.444181, 19.395424)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_5/Spawnpoints/Node3D20" unique_id=1382609993]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D21" type="Node3D" parent="Room 4_5/Spawnpoints" unique_id=1993883079]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.207466, -24.444181, 19.395424)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_5/Spawnpoints/Node3D21" unique_id=106423825]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D22" type="Node3D" parent="Room 4_5/Spawnpoints" unique_id=2142982604]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.207466, -24.444181, 19.395424)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_5/Spawnpoints/Node3D22" unique_id=255642176]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D23" type="Node3D" parent="Room 4_5/Spawnpoints" unique_id=611694947]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.207466, -24.444181, 19.395424)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_5/Spawnpoints/Node3D23" unique_id=438697580]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D24" type="Node3D" parent="Room 4_5/Spawnpoints" unique_id=889658965]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.207466, -24.444181, 19.395424)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_5/Spawnpoints/Node3D24" unique_id=2116009762]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D25" type="Node3D" parent="Room 4_5/Spawnpoints" unique_id=551724965]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.207466, -24.444181, 19.395424)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_5/Spawnpoints/Node3D25" unique_id=1526017580]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D30" type="Node3D" parent="Room 4_5/Spawnpoints" unique_id=1242917838]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.207466, -24.444181, 15.395424)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_5/Spawnpoints/Node3D30" unique_id=121379066]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D31" type="Node3D" parent="Room 4_5/Spawnpoints" unique_id=69820754]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.207466, -24.444181, 15.395424)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_5/Spawnpoints/Node3D31" unique_id=1047271614]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D32" type="Node3D" parent="Room 4_5/Spawnpoints" unique_id=280648084]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.207466, -24.444181, 15.395424)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_5/Spawnpoints/Node3D32" unique_id=1833732222]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D33" type="Node3D" parent="Room 4_5/Spawnpoints" unique_id=341280984]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.207466, -24.444181, 15.395424)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_5/Spawnpoints/Node3D33" unique_id=1167282409]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D34" type="Node3D" parent="Room 4_5/Spawnpoints" unique_id=264133059]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.207466, -24.444181, 15.395424)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_5/Spawnpoints/Node3D34" unique_id=302453665]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D35" type="Node3D" parent="Room 4_5/Spawnpoints" unique_id=421746483]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20746613, -24.444181, 15.395424)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_5/Spawnpoints/Node3D35" unique_id=250616886]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D36" type="Node3D" parent="Room 4_5/Spawnpoints" unique_id=866762938]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.792534, -24.444181, 15.395424)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_5/Spawnpoints/Node3D36" unique_id=399267264]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D37" type="Node3D" parent="Room 4_5/Spawnpoints" unique_id=1915914875]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.207466, -31.444181, 10.395424)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_5/Spawnpoints/Node3D37" unique_id=544621049]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D38" type="Node3D" parent="Room 4_5/Spawnpoints" unique_id=657755433]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.207466, -31.444181, 10.395424)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_5/Spawnpoints/Node3D38" unique_id=1689133766]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D39" type="Node3D" parent="Room 4_5/Spawnpoints" unique_id=2030393081]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.207466, -31.444181, 10.395424)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_5/Spawnpoints/Node3D39" unique_id=1267406274]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D40" type="Node3D" parent="Room 4_5/Spawnpoints" unique_id=119984264]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.207466, -31.444181, 10.395424)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_5/Spawnpoints/Node3D40" unique_id=960020682]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D41" type="Node3D" parent="Room 4_5/Spawnpoints" unique_id=1710826040]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.207466, -31.444181, 10.395424)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_5/Spawnpoints/Node3D41" unique_id=2007231831]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D42" type="Node3D" parent="Room 4_5/Spawnpoints" unique_id=235792169]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20746613, -31.444181, 10.395424)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_5/Spawnpoints/Node3D42" unique_id=352581314]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D43" type="Node3D" parent="Room 4_5/Spawnpoints" unique_id=1319653004]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.792534, -31.444181, 10.395424)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_5/Spawnpoints/Node3D43" unique_id=1009258514]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D44" type="Node3D" parent="Room 4_5/Spawnpoints" unique_id=1455747824]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.207466, -31.444181, -1.6045761)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_5/Spawnpoints/Node3D44" unique_id=1839248127]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D51" type="Node3D" parent="Room 4_5/Spawnpoints" unique_id=1019713333]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.207466, -31.444181, -1.6045761)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_5/Spawnpoints/Node3D51" unique_id=1068841002]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D52" type="Node3D" parent="Room 4_5/Spawnpoints" unique_id=1493407006]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.207466, -31.444181, -1.6045761)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_5/Spawnpoints/Node3D52" unique_id=1924405035]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D45" type="Node3D" parent="Room 4_5/Spawnpoints" unique_id=625303424]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.207466, -31.444181, -1.6045761)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_5/Spawnpoints/Node3D45" unique_id=125714734]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D46" type="Node3D" parent="Room 4_5/Spawnpoints" unique_id=857767433]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.207466, -31.444181, -1.6045761)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_5/Spawnpoints/Node3D46" unique_id=1323682373]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D47" type="Node3D" parent="Room 4_5/Spawnpoints" unique_id=308514568]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.207466, -31.444181, -1.6045761)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_5/Spawnpoints/Node3D47" unique_id=1714369423]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D48" type="Node3D" parent="Room 4_5/Spawnpoints" unique_id=823510857]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.207466, -31.444181, -1.6045761)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_5/Spawnpoints/Node3D48" unique_id=1658789992]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D49" type="Node3D" parent="Room 4_5/Spawnpoints" unique_id=723899110]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20746613, -31.444181, -1.6045761)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_5/Spawnpoints/Node3D49" unique_id=775299744]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D50" type="Node3D" parent="Room 4_5/Spawnpoints" unique_id=1595575553]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.792534, -31.444181, -1.6045761)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_5/Spawnpoints/Node3D50" unique_id=801433237]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D53" type="Node3D" parent="Room 4_5/Spawnpoints" unique_id=126160282]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.207466, -21.444181, 3.395424)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_5/Spawnpoints/Node3D53" unique_id=1462968379]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D54" type="Node3D" parent="Room 4_5/Spawnpoints" unique_id=1399299305]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.207466, -21.444181, 3.395424)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_5/Spawnpoints/Node3D54" unique_id=149356982]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D55" type="Node3D" parent="Room 4_5/Spawnpoints" unique_id=15372289]
+transform = Transform3D(0.9542769, 0.29892424, 0, -0.29892424, 0.9542769, 0, 0, 0, 1, 28.072311, -20.60354, 3.395424)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_5/Spawnpoints/Node3D55" unique_id=1356039478]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D56" type="Node3D" parent="Room 4_5/Spawnpoints" unique_id=1978537528]
+transform = Transform3D(0.9542769, 0.29892424, 0, -0.29892424, 0.9542769, 0, 0, 0, 1, 22.34665, -18.809996, 3.395424)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_5/Spawnpoints/Node3D56" unique_id=1639209656]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D57" type="Node3D" parent="Room 4_5/Spawnpoints" unique_id=2018687355]
+transform = Transform3D(0.9542769, 0.29892424, 0, -0.29892424, 0.9542769, 0, 0, 0, 1, 16.620987, -17.016443, 3.395424)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_5/Spawnpoints/Node3D57" unique_id=1287568978]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D58" type="Node3D" parent="Room 4_5/Spawnpoints" unique_id=1389773082]
+transform = Transform3D(0.9542769, 0.29892424, 0, -0.29892424, 0.9542769, 0, 0, 0, 1, 10.895325, -15.222902, 3.395424)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_5/Spawnpoints/Node3D58" unique_id=1999545350]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D59" type="Node3D" parent="Room 4_5/Spawnpoints" unique_id=2132132467]
+transform = Transform3D(0.9542769, 0.29892424, 0, -0.29892424, 0.9542769, 0, 0, 0, 1, 5.1696625, -13.429358, 3.395424)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_5/Spawnpoints/Node3D59" unique_id=1803215433]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D60" type="Node3D" parent="Room 4_5/Spawnpoints" unique_id=2049635718]
+transform = Transform3D(0.9542769, 0.29892424, 0, -0.29892424, 0.9542769, 0, 0, 0, 1, -0.55599976, -11.635813, 3.395424)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_5/Spawnpoints/Node3D60" unique_id=162162172]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="FixedSpawnpoints" type="Node3D" parent="Room 4_5" unique_id=26671784]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 1.195118)
+
+[node name="0" type="Node3D" parent="Room 4_5/FixedSpawnpoints" unique_id=1716450796]
+
+[node name="0" type="Node3D" parent="Room 4_5/FixedSpawnpoints/0" unique_id=1592214486]
+
+[node name="Node3D57" type="Node3D" parent="Room 4_5/FixedSpawnpoints/0/0" unique_id=1535606792]
+transform = Transform3D(0.9542769, 0.29892424, 0, -0.29892424, 0.9542769, 0, 0, 0, 1, 16.620987, -17.016443, 3.395424)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_5/FixedSpawnpoints/0/0/Node3D57" unique_id=1881130120]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="1" type="Node3D" parent="Room 4_5/FixedSpawnpoints" unique_id=1382685906]
+
+[node name="0" type="Node3D" parent="Room 4_5/FixedSpawnpoints/1" unique_id=108811744]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.207466, -24.444181, -7.604576)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_5/FixedSpawnpoints/1/0" unique_id=1472747189]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="1" type="Node3D" parent="Room 4_5/FixedSpawnpoints/1" unique_id=4401772]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.207466, -24.444181, 15.395424)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_5/FixedSpawnpoints/1/1" unique_id=1216939015]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="6" type="Node3D" parent="Room 4_5/FixedSpawnpoints/1" unique_id=1589547469]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20746613, -24.444181, -7.604576)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_5/FixedSpawnpoints/1/6" unique_id=470565164]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="7" type="Node3D" parent="Room 4_5/FixedSpawnpoints/1" unique_id=2034288252]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20746613, -24.444181, 15.395424)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_5/FixedSpawnpoints/1/7" unique_id=1651332483]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="10" type="Node3D" parent="Room 4_5/FixedSpawnpoints/1" unique_id=1390600644]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.207466, -24.444181, -7.604576)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_5/FixedSpawnpoints/1/10" unique_id=1417761301]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="11" type="Node3D" parent="Room 4_5/FixedSpawnpoints/1" unique_id=947314758]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.207466, -24.444181, 15.395424)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_5/FixedSpawnpoints/1/11" unique_id=1335612442]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="2" type="Node3D" parent="Room 4_5/FixedSpawnpoints" unique_id=804771762]
+
+[node name="0" type="Node3D" parent="Room 4_5/FixedSpawnpoints/2" unique_id=615911548]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.207466, -24.444181, -11.604576)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_5/FixedSpawnpoints/2/0" unique_id=1140993412]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="1" type="Node3D" parent="Room 4_5/FixedSpawnpoints/2" unique_id=436505819]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.207466, -24.444181, 19.395424)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_5/FixedSpawnpoints/2/1" unique_id=1445362751]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="2" type="Node3D" parent="Room 4_5/FixedSpawnpoints/2" unique_id=2130697218]
+transform = Transform3D(0.9542769, 0.29892424, 0, -0.29892424, 0.9542769, 0, 0, 0, 1, 28.072311, -20.60354, 3.395424)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_5/FixedSpawnpoints/2/2" unique_id=1131547335]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="3" type="Node3D" parent="Room 4_5/FixedSpawnpoints/2" unique_id=1547941313]
+transform = Transform3D(0.9542769, 0.29892424, 0, -0.29892424, 0.9542769, 0, 0, 0, 1, 16.620987, -17.016443, 3.395424)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_5/FixedSpawnpoints/2/3" unique_id=500817161]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="4" type="Node3D" parent="Room 4_5/FixedSpawnpoints/2" unique_id=1889714151]
+transform = Transform3D(0.9542769, 0.29892424, 0, -0.29892424, 0.9542769, 0, 0, 0, 1, 5.1696625, -13.429358, 3.395424)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_5/FixedSpawnpoints/2/4" unique_id=489226175]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="3" type="Node3D" parent="Room 4_5/FixedSpawnpoints" unique_id=1315102056]
+
+[node name="10" type="Node3D" parent="Room 4_5/FixedSpawnpoints/3" unique_id=1709726843]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.207466, -24.444181, -11.604576)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_5/FixedSpawnpoints/3/10" unique_id=584021969]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="11" type="Node3D" parent="Room 4_5/FixedSpawnpoints/3" unique_id=1066664610]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.207466, -24.444181, 19.395424)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_5/FixedSpawnpoints/3/11" unique_id=1613429154]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="12" type="Node3D" parent="Room 4_5/FixedSpawnpoints/3" unique_id=414249730]
+transform = Transform3D(0.9542769, 0.29892424, 0, -0.29892424, 0.9542769, 0, 0, 0, 1, 22.34665, -18.809996, 3.395424)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 4_5/FixedSpawnpoints/3/12" unique_id=1776090526]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="EncounterScript" type="Node3D" parent="Room 4_5" unique_id=824203814 node_paths=PackedStringArray("_door1", "_door2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, -13)
+script = ExtResource("15_ddqw5")
+_door1 = NodePath("../../Doors/Door6")
+_door2 = NodePath("../../Doors/Door7")
+metadata/_custom_type_script = "uid://syam14lxvqpe"
+
+[node name="Room 5" type="Area3D" parent="." unique_id=1563355554 node_paths=PackedStringArray("SCRIPT", "SPAWN_POINT_PARENT", "FIXED_SPAWN_POINT_PARENT") groups=["Doors"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 83.49511, -42.636635, 105.97193)
+visible = false
 collision_layer = 0
 monitoring = false
 monitorable = false
@@ -812,6 +2175,7 @@ script = ExtResource("17_pr0du")
 ENCOUNTER = SubResource("Resource_ukbfx")
 SCRIPT = NodePath("EncounterScript")
 SPAWN_POINT_PARENT = NodePath("Spawnpoints")
+FIXED_SPAWN_POINT_PARENT = NodePath("FixedSpawnpoints")
 layers = 1
 metadata/_custom_type_script = "uid://03vkcknbw2k"
 
@@ -990,6 +2354,217 @@ transform = Transform3D(0.9659258, 0, -0.25881904, 0, 1, 0, 0.25881904, 0, 0.965
 mesh = SubResource("SphereMesh_7rmlr")
 skeleton = NodePath("")
 
+[node name="FixedSpawnpoints" type="Node3D" parent="Room 5" unique_id=1680270348]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 1.195118)
+
+[node name="0" type="Node3D" parent="Room 5/FixedSpawnpoints" unique_id=410639040]
+
+[node name="0" type="Node3D" parent="Room 5/FixedSpawnpoints/0" unique_id=1208156618]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.216423, 7.1437263, 0.060310364)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 5/FixedSpawnpoints/0/0" unique_id=417305829]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="1" type="Node3D" parent="Room 5/FixedSpawnpoints/0" unique_id=1275651528]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.783577, 1.1437263, -10.93969)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 5/FixedSpawnpoints/0/1" unique_id=364428313]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="2" type="Node3D" parent="Room 5/FixedSpawnpoints/0" unique_id=331335737]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.783577, -1.1603165, -6.9396896)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 5/FixedSpawnpoints/0/2" unique_id=331584676]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="3" type="Node3D" parent="Room 5/FixedSpawnpoints/0" unique_id=222463105]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.216423, -1.1603165, -0.93968964)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 5/FixedSpawnpoints/0/3" unique_id=120742927]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="4" type="Node3D" parent="Room 5/FixedSpawnpoints/0" unique_id=1951885235]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.783577, -1.1603165, -2.9396896)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 5/FixedSpawnpoints/0/4" unique_id=1450268603]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="1" type="Node3D" parent="Room 5/FixedSpawnpoints" unique_id=1896453540]
+
+[node name="0" type="Node3D" parent="Room 5/FixedSpawnpoints/1" unique_id=1394286496]
+transform = Transform3D(0.9659258, 0, -0.25881904, 0, 1, 0, 0.25881904, 0, 0.9659258, 8.059631, -1.1603165, 9.416382)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 5/FixedSpawnpoints/1/0" unique_id=2078281942]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="1" type="Node3D" parent="Room 5/FixedSpawnpoints/1" unique_id=241589736]
+transform = Transform3D(0.9659258, 0, -0.25881904, 0, 1, 0, 0.25881904, 0, 0.9659258, 8.83609, -1.1603165, 6.5186005)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 5/FixedSpawnpoints/1/1" unique_id=676489789]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="2" type="Node3D" parent="Room 5/FixedSpawnpoints/1" unique_id=954244956]
+transform = Transform3D(0.9659258, 0, -0.25881904, 0, 1, 0, 0.25881904, 0, 0.9659258, 5.16185, -1.1603165, 8.639923)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 5/FixedSpawnpoints/1/2" unique_id=1848214557]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="3" type="Node3D" parent="Room 5/FixedSpawnpoints/1" unique_id=84800147]
+transform = Transform3D(0.9659258, 0, -0.25881904, 0, 1, 0, 0.25881904, 0, 0.9659258, 5.9383087, -1.1603165, 5.7421494)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 5/FixedSpawnpoints/1/3" unique_id=825180637]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="4" type="Node3D" parent="Room 5/FixedSpawnpoints/1" unique_id=1233283333]
+transform = Transform3D(0.9659258, 0, -0.25881904, 0, 1, 0, 0.25881904, 0, 0.9659258, 2.2640762, -1.1603165, 7.8634644)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 5/FixedSpawnpoints/1/4" unique_id=2064897906]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="5" type="Node3D" parent="Room 5/FixedSpawnpoints/1" unique_id=309319158]
+transform = Transform3D(0.9659258, 0, -0.25881904, 0, 1, 0, 0.25881904, 0, 0.9659258, 9.612541, -1.1603165, 3.6208267)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 5/FixedSpawnpoints/1/5" unique_id=773788594]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="2" type="Node3D" parent="Room 5/FixedSpawnpoints" unique_id=453752120]
+
+[node name="2" type="Node3D" parent="Room 5/FixedSpawnpoints/2" unique_id=1755494321]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.783577, 1.1437263, -10.93969)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 5/FixedSpawnpoints/2/2" unique_id=674702103]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="0" type="Node3D" parent="Room 5/FixedSpawnpoints/2" unique_id=855436392]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.783577, 1.1437263, -10.93969)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 5/FixedSpawnpoints/2/0" unique_id=281371725]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="1" type="Node3D" parent="Room 5/FixedSpawnpoints/2" unique_id=1006102912]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.783577, 1.1437263, -10.93969)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 5/FixedSpawnpoints/2/1" unique_id=1094539003]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="5" type="Node3D" parent="Room 5/FixedSpawnpoints/2" unique_id=1349159667]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.216423, 7.1437263, 0.060310364)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 5/FixedSpawnpoints/2/5" unique_id=38512989]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="4" type="Node3D" parent="Room 5/FixedSpawnpoints/2" unique_id=1967008997]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.216423, 7.1437263, 3.0603104)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 5/FixedSpawnpoints/2/4" unique_id=1886336315]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="3" type="Node3D" parent="Room 5/FixedSpawnpoints/2" unique_id=605387903]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.216423, 7.1437263, 6.0603104)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 5/FixedSpawnpoints/2/3" unique_id=239060772]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="3" type="Node3D" parent="Room 5/FixedSpawnpoints" unique_id=283868942]
+
+[node name="0" type="Node3D" parent="Room 5/FixedSpawnpoints/3" unique_id=1178678300]
+transform = Transform3D(0.9659258, 0, -0.25881904, 0, 1, 0, 0.25881904, 0, 0.9659258, 8.059631, -1.1603165, 9.416382)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 5/FixedSpawnpoints/3/0" unique_id=432130297]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="4" type="Node3D" parent="Room 5/FixedSpawnpoints" unique_id=1621634487]
+
+[node name="0" type="Node3D" parent="Room 5/FixedSpawnpoints/4" unique_id=445639749]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.783577, 1.1437263, -10.93969)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 5/FixedSpawnpoints/4/0" unique_id=1014794230]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="1" type="Node3D" parent="Room 5/FixedSpawnpoints/4" unique_id=852082230]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.216423, 7.1437263, 0.060310364)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 5/FixedSpawnpoints/4/1" unique_id=107575815]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="5" type="Node3D" parent="Room 5/FixedSpawnpoints/4" unique_id=1392136237]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.783577, 1.1437263, -10.93969)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 5/FixedSpawnpoints/4/5" unique_id=1710882410]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="4" type="Node3D" parent="Room 5/FixedSpawnpoints/4" unique_id=1517471886]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.216423, 7.1437263, 3.0603104)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 5/FixedSpawnpoints/4/4" unique_id=543993460]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="5" type="Node3D" parent="Room 5/FixedSpawnpoints" unique_id=760147396]
+
+[node name="0" type="Node3D" parent="Room 5/FixedSpawnpoints/5" unique_id=613060572]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.783577, -1.1603165, -2.9396896)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 5/FixedSpawnpoints/5/0" unique_id=1282295493]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="1" type="Node3D" parent="Room 5/FixedSpawnpoints/5" unique_id=683211374]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.783577, 1.1437263, -10.93969)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 5/FixedSpawnpoints/5/1" unique_id=1078487418]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="2" type="Node3D" parent="Room 5/FixedSpawnpoints/5" unique_id=830942553]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.216423, 7.1437263, 6.0603104)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 5/FixedSpawnpoints/5/2" unique_id=70787621]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="6" type="Node3D" parent="Room 5/FixedSpawnpoints/5" unique_id=917461513]
+transform = Transform3D(0.9659258, 0, -0.25881904, 0, 1, 0, 0.25881904, 0, 0.9659258, 5.9383087, -1.1603165, 5.7421494)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 5/FixedSpawnpoints/5/6" unique_id=824675471]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="7" type="Node3D" parent="Room 5/FixedSpawnpoints/5" unique_id=502638946]
+transform = Transform3D(0.9659258, 0, -0.25881904, 0, 1, 0, 0.25881904, 0, 0.9659258, 8.83609, -1.1603165, 6.5186005)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 5/FixedSpawnpoints/5/7" unique_id=1639767657]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="8" type="Node3D" parent="Room 5/FixedSpawnpoints/5" unique_id=1969494430]
+transform = Transform3D(0.9659258, 0, -0.25881904, 0, 1, 0, 0.25881904, 0, 0.9659258, 5.16185, -1.1603165, 8.639923)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 5/FixedSpawnpoints/5/8" unique_id=1603559189]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
 [node name="EncounterScript" type="Node3D" parent="Room 5" unique_id=1906302165 node_paths=PackedStringArray("_door1", "_door2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, -13)
 script = ExtResource("15_ddqw5")
@@ -997,8 +2572,9 @@ _door1 = NodePath("../../Doors/Door7")
 _door2 = NodePath("../../Doors/Door8")
 metadata/_custom_type_script = "uid://syam14lxvqpe"
 
-[node name="Room 6" type="Area3D" parent="." unique_id=1891148537 node_paths=PackedStringArray("SCRIPT", "SPAWN_POINT_PARENT") groups=["Doors"]]
+[node name="Room 6" type="Area3D" parent="." unique_id=1891148537 node_paths=PackedStringArray("SCRIPT", "SPAWN_POINT_PARENT", "FIXED_SPAWN_POINT_PARENT") groups=["Doors"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 83.49511, -39.247227, 133.7016)
+visible = false
 collision_layer = 0
 monitoring = false
 monitorable = false
@@ -1006,6 +2582,7 @@ script = ExtResource("17_pr0du")
 ENCOUNTER = SubResource("Resource_v5u86")
 SCRIPT = NodePath("EncounterScript")
 SPAWN_POINT_PARENT = NodePath("Spawnpoints")
+FIXED_SPAWN_POINT_PARENT = NodePath("FixedSpawnpoints")
 layers = 1
 metadata/_custom_type_script = "uid://03vkcknbw2k"
 
@@ -1065,6 +2642,76 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4662094, 1.0513725, 10.6129
 mesh = SubResource("SphereMesh_7rmlr")
 skeleton = NodePath("")
 
+[node name="FixedSpawnpoints" type="Node3D" parent="Room 6" unique_id=859347965]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, -10.804886)
+
+[node name="0" type="Node3D" parent="Room 6/FixedSpawnpoints" unique_id=1837864971]
+
+[node name="0" type="Node3D" parent="Room 6/FixedSpawnpoints/0" unique_id=1145191262]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4662094, 1.0513725, 14.612961)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 6/FixedSpawnpoints/0/0" unique_id=819306600]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="1" type="Node3D" parent="Room 6/FixedSpawnpoints/0" unique_id=129903136]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5337906, 1.0513725, 8.612961)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 6/FixedSpawnpoints/0/1" unique_id=773718579]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="2" type="Node3D" parent="Room 6/FixedSpawnpoints/0" unique_id=1162246623]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.4662094, 1.0513725, 8.612961)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 6/FixedSpawnpoints/0/2" unique_id=1076231711]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="1" type="Node3D" parent="Room 6/FixedSpawnpoints" unique_id=1560254380]
+
+[node name="0" type="Node3D" parent="Room 6/FixedSpawnpoints/1" unique_id=1025480238]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.4662094, 1.0513725, 12.612961)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 6/FixedSpawnpoints/1/0" unique_id=380625120]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="1" type="Node3D" parent="Room 6/FixedSpawnpoints/1" unique_id=1655082241]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5337906, 1.0513725, 12.612961)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 6/FixedSpawnpoints/1/1" unique_id=816849986]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="2" type="Node3D" parent="Room 6/FixedSpawnpoints/1" unique_id=2010095470]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4662094, 1.0513725, 6.612961)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 6/FixedSpawnpoints/1/2" unique_id=1722689564]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="3" type="Node3D" parent="Room 6/FixedSpawnpoints/1" unique_id=1082050709]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.4662094, 1.0513725, 12.612961)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 6/FixedSpawnpoints/1/3" unique_id=198470738]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="4" type="Node3D" parent="Room 6/FixedSpawnpoints/1" unique_id=1673908428]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5337906, 1.0513725, 12.612961)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 6/FixedSpawnpoints/1/4" unique_id=548585725]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="5" type="Node3D" parent="Room 6/FixedSpawnpoints/1" unique_id=674088467]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4662094, 1.0513725, 6.612961)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 6/FixedSpawnpoints/1/5" unique_id=840412508]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
 [node name="EncounterScript" type="Node3D" parent="Room 6" unique_id=571550820 node_paths=PackedStringArray("_door1", "_door2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, -13)
 script = ExtResource("15_ddqw5")
@@ -1072,15 +2719,17 @@ _door1 = NodePath("../../Doors/Door8")
 _door2 = NodePath("../../Doors/Door9")
 metadata/_custom_type_script = "uid://syam14lxvqpe"
 
-[node name="Room 7" type="Area3D" parent="." unique_id=808292927 node_paths=PackedStringArray("SCRIPT", "SPAWN_POINT_PARENT") groups=["Doors"]]
+[node name="Room 7" type="Area3D" parent="." unique_id=808292927 node_paths=PackedStringArray("SCRIPT", "SPAWN_POINT_PARENT", "FIXED_SPAWN_POINT_PARENT") groups=["Doors"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 83.49511, -39.247227, 155.84131)
+visible = false
 collision_layer = 0
 monitoring = false
 monitorable = false
 script = ExtResource("17_pr0du")
-ENCOUNTER = SubResource("Resource_cajmo")
+ENCOUNTER = SubResource("Resource_4m2l7")
 SCRIPT = NodePath("EncounterScript")
 SPAWN_POINT_PARENT = NodePath("Spawnpoints")
+FIXED_SPAWN_POINT_PARENT = NodePath("FixedSpawnpoints")
 layers = 1
 metadata/_custom_type_script = "uid://03vkcknbw2k"
 
@@ -1172,13 +2821,6 @@ skeleton = NodePath("")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5337906, 1.0113983, 1.4941864)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Room 7/Spawnpoints/Node3D12" unique_id=245902977]
-mesh = SubResource("SphereMesh_7rmlr")
-skeleton = NodePath("")
-
-[node name="Node3D13" type="Node3D" parent="Room 7/Spawnpoints" unique_id=2136777363]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4662094, 1.0113983, 1.4941864)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 7/Spawnpoints/Node3D13" unique_id=1115862290]
 mesh = SubResource("SphereMesh_7rmlr")
 skeleton = NodePath("")
 
@@ -1308,6 +2950,129 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5337906, -4.6395607, 8.494
 mesh = SubResource("SphereMesh_7rmlr")
 skeleton = NodePath("")
 
+[node name="FixedSpawnpoints" type="Node3D" parent="Room 7" unique_id=1542502877]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 17.624908)
+
+[node name="0" type="Node3D" parent="Room 7/FixedSpawnpoints" unique_id=727857771]
+
+[node name="0" type="Node3D" parent="Room 7/FixedSpawnpoints/0" unique_id=1083455674]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5337906, -4.6395607, -11.505814)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 7/FixedSpawnpoints/0/0" unique_id=2084476263]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="1" type="Node3D" parent="Room 7/FixedSpawnpoints/0" unique_id=1551754961]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.4662094, -4.6395607, -11.505814)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 7/FixedSpawnpoints/0/1" unique_id=1301684670]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="2" type="Node3D" parent="Room 7/FixedSpawnpoints/0" unique_id=776862421]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.4662094, 1.0113983, -8.505814)
+
+[node name="2" type="MeshInstance3D" parent="Room 7/FixedSpawnpoints/0/2" unique_id=2102819703]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="3" type="Node3D" parent="Room 7/FixedSpawnpoints/0" unique_id=607307242]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5337906, 1.0113983, -8.505814)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 7/FixedSpawnpoints/0/3" unique_id=784523801]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="4" type="Node3D" parent="Room 7/FixedSpawnpoints/0" unique_id=924477784]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.466209, -4.6395607, 8.494186)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 7/FixedSpawnpoints/0/4" unique_id=181279464]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="5" type="Node3D" parent="Room 7/FixedSpawnpoints/0" unique_id=129435522]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5337906, -4.6395607, 8.494186)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 7/FixedSpawnpoints/0/5" unique_id=1882317194]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="1" type="Node3D" parent="Room 7/FixedSpawnpoints" unique_id=440391804]
+
+[node name="0" type="Node3D" parent="Room 7/FixedSpawnpoints/1" unique_id=2009336368]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.4662094, 1.0113983, -8.505814)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 7/FixedSpawnpoints/1/0" unique_id=1747750515]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="1" type="Node3D" parent="Room 7/FixedSpawnpoints/1" unique_id=354712808]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.4662094, 1.0113983, 1.4941864)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 7/FixedSpawnpoints/1/1" unique_id=1472862771]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="2" type="Node3D" parent="Room 7/FixedSpawnpoints/1" unique_id=1700479244]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5337906, 1.0113983, -8.505814)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 7/FixedSpawnpoints/1/2" unique_id=1635223379]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="3" type="Node3D" parent="Room 7/FixedSpawnpoints/1" unique_id=180634886]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5337906, 1.0113983, 1.4941864)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 7/FixedSpawnpoints/1/3" unique_id=1744434999]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="2" type="Node3D" parent="Room 7/FixedSpawnpoints" unique_id=1032509964]
+
+[node name="0" type="Node3D" parent="Room 7/FixedSpawnpoints/2" unique_id=506061162]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.4662094, 1.0113983, -3.5058136)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 7/FixedSpawnpoints/2/0" unique_id=978823202]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="6" type="Node3D" parent="Room 7/FixedSpawnpoints/2" unique_id=498695158]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.466209, 1.0113983, -0.5058136)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 7/FixedSpawnpoints/2/6" unique_id=1555168375]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="8" type="Node3D" parent="Room 7/FixedSpawnpoints/2" unique_id=1290781500]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.466209, 1.0113983, -6.5058136)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 7/FixedSpawnpoints/2/8" unique_id=627732506]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="3" type="Node3D" parent="Room 7/FixedSpawnpoints/2" unique_id=1435161388]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5337906, 1.0113983, -1.5058136)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 7/FixedSpawnpoints/2/3" unique_id=116517142]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="10" type="Node3D" parent="Room 7/FixedSpawnpoints/2" unique_id=1132698185]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5337906, 1.0113983, -5.5058136)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 7/FixedSpawnpoints/2/10" unique_id=25596077]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="12" type="Node3D" parent="Room 7/FixedSpawnpoints/2" unique_id=1360196969]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5337906, 1.0113983, -3.5058136)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 7/FixedSpawnpoints/2/12" unique_id=982099548]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="3" type="Node3D" parent="Room 7/FixedSpawnpoints" unique_id=206231036]
+
 [node name="EncounterScript" type="Node3D" parent="Room 7" unique_id=38898168 node_paths=PackedStringArray("_door1", "_door2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, -13)
 script = ExtResource("15_ddqw5")
@@ -1315,8 +3080,176 @@ _door1 = NodePath("../../Doors/Door9")
 _door2 = NodePath("../../Doors/Door10")
 metadata/_custom_type_script = "uid://syam14lxvqpe"
 
-[node name="Room 8" type="Area3D" parent="." unique_id=858234900 node_paths=PackedStringArray("SCRIPT", "SPAWN_POINT_PARENT") groups=["Doors"]]
+[node name="Room 7_5" type="Area3D" parent="." unique_id=1881628951 node_paths=PackedStringArray("SCRIPT", "SPAWN_POINT_PARENT") groups=["Doors"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 83.49511, -39.247227, 196.30269)
+visible = false
+collision_layer = 0
+monitoring = false
+monitorable = false
+script = ExtResource("17_pr0du")
+ENCOUNTER = SubResource("Resource_u1fkx")
+SCRIPT = NodePath("EncounterScript")
+SPAWN_POINT_PARENT = NodePath("Spawnpoints")
+layers = 1
+metadata/_custom_type_script = "uid://03vkcknbw2k"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room 7_5" unique_id=934896458]
+transform = Transform3D(15.02, 0, 0, 0, 15.02, 0, 0, 0, 15.02, 1.8360748, 1.6502533, -5.9194183)
+shape = SubResource("BoxShape3D_7rmlr")
+
+[node name="Spawnpoints" type="Node3D" parent="Room 7_5" unique_id=866095165]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 17.624908)
+
+[node name="Node3D" type="Node3D" parent="Room 7_5/Spawnpoints" unique_id=2143043149]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.074524, -2.7799873, -24.655975)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 7_5/Spawnpoints/Node3D" unique_id=2060101759]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D2" type="Node3D" parent="Room 7_5/Spawnpoints" unique_id=1193983725]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.074524, -2.7799873, -19.523026)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 7_5/Spawnpoints/Node3D2" unique_id=1171552390]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D3" type="Node3D" parent="Room 7_5/Spawnpoints" unique_id=1588124847]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.074524, -0.5051575, -13.69014)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 7_5/Spawnpoints/Node3D3" unique_id=1772555123]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D4" type="Node3D" parent="Room 7_5/Spawnpoints" unique_id=1989345467]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.074524, 1.7696762, -7.623932)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 7_5/Spawnpoints/Node3D4" unique_id=949588160]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D5" type="Node3D" parent="Room 7_5/Spawnpoints" unique_id=1074899293]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.074524, 4.2778244, -0.9161072)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 7_5/Spawnpoints/Node3D5" unique_id=1010976744]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D6" type="Node3D" parent="Room 7_5/Spawnpoints" unique_id=1148912514]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8748398, 6.6693153, 9.174835)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 7_5/Spawnpoints/Node3D6" unique_id=2060097143]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D7" type="Node3D" parent="Room 7_5/Spawnpoints" unique_id=444635645]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7998886, 6.6693153, 8.174835)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 7_5/Spawnpoints/Node3D7" unique_id=2070118751]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D8" type="Node3D" parent="Room 7_5/Spawnpoints" unique_id=116501823]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7998886, 6.6693153, 10.174835)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 7_5/Spawnpoints/Node3D8" unique_id=331611278]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D9" type="Node3D" parent="Room 7_5/Spawnpoints" unique_id=1173964481]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.200111, 9.669315, 9.174835)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 7_5/Spawnpoints/Node3D9" unique_id=890271190]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D10" type="Node3D" parent="Room 7_5/Spawnpoints" unique_id=1143196343]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.200111, 12.669315, 9.174835)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 7_5/Spawnpoints/Node3D10" unique_id=1691570519]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D11" type="Node3D" parent="Room 7_5/Spawnpoints" unique_id=1499797233]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.200111, 15.669315, 9.174835)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 7_5/Spawnpoints/Node3D11" unique_id=2060710681]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D12" type="Node3D" parent="Room 7_5/Spawnpoints" unique_id=822952527]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.20011, 18.669315, 9.174835)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 7_5/Spawnpoints/Node3D12" unique_id=1573030614]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D13" type="Node3D" parent="Room 7_5/Spawnpoints" unique_id=1093081040]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.20011, 21.669315, 9.174835)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 7_5/Spawnpoints/Node3D13" unique_id=670487935]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D14" type="Node3D" parent="Room 7_5/Spawnpoints" unique_id=552529822]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.20011, 24.669315, 9.174835)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 7_5/Spawnpoints/Node3D14" unique_id=826037603]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D15" type="Node3D" parent="Room 7_5/Spawnpoints" unique_id=678405654]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55.20011, 27.669315, 9.174835)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 7_5/Spawnpoints/Node3D15" unique_id=1883213270]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D16" type="Node3D" parent="Room 7_5/Spawnpoints" unique_id=987130712]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -62.72507, 29.669315, 9.174835)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 7_5/Spawnpoints/Node3D16" unique_id=1545529057]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D20" type="Node3D" parent="Room 7_5/Spawnpoints" unique_id=1673687061]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -62.72507, 31.447693, 16.900208)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 7_5/Spawnpoints/Node3D20" unique_id=1584118359]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D17" type="Node3D" parent="Room 7_5/Spawnpoints" unique_id=1545863153]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -61.20011, 29.669315, 19.174835)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 7_5/Spawnpoints/Node3D17" unique_id=1190781980]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D18" type="Node3D" parent="Room 7_5/Spawnpoints" unique_id=98092583]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -64.20011, 29.669315, 19.174835)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 7_5/Spawnpoints/Node3D18" unique_id=2080886402]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="Node3D19" type="Node3D" parent="Room 7_5/Spawnpoints" unique_id=1378522031]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -62.616825, 29.669315, -7.825165)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 7_5/Spawnpoints/Node3D19" unique_id=5751214]
+mesh = SubResource("SphereMesh_7rmlr")
+skeleton = NodePath("")
+
+[node name="EncounterScript" type="Node3D" parent="Room 7_5" unique_id=680679637 node_paths=PackedStringArray("_door1", "_door2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, -13)
+script = ExtResource("15_ddqw5")
+_door1 = NodePath("../../Doors/Door10")
+_door2 = NodePath("../../Doors/Door11")
+metadata/_custom_type_script = "uid://syam14lxvqpe"
+
+[node name="Room 8" type="Area3D" parent="." unique_id=858234900 node_paths=PackedStringArray("SCRIPT", "SPAWN_POINT_PARENT", "FIXED_SPAWN_POINT_PARENT") groups=["Doors"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.765038, -6.7857656, 179.58842)
+visible = false
 collision_layer = 0
 monitoring = false
 monitorable = false
@@ -1324,6 +3257,7 @@ script = ExtResource("17_pr0du")
 ENCOUNTER = SubResource("Resource_q17dg")
 SCRIPT = NodePath("EncounterScript")
 SPAWN_POINT_PARENT = NodePath("Spawnpoints")
+FIXED_SPAWN_POINT_PARENT = NodePath("FixedSpawnpoints")
 layers = 1
 metadata/_custom_type_script = "uid://03vkcknbw2k"
 
@@ -1460,6 +3394,155 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.0837364, -3.4666357, -16.87
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Room 8/Spawnpoints/Node3D21" unique_id=435538056]
 mesh = SubResource("SphereMesh_7rmlr")
 
+[node name="FixedSpawnpoints" type="Node3D" parent="Room 8" unique_id=676694261]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 17.624908)
+
+[node name="0" type="Node3D" parent="Room 8/FixedSpawnpoints" unique_id=603173614]
+
+[node name="0" type="Node3D" parent="Room 8/FixedSpawnpoints/0" unique_id=312928185]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.9162636, -3.4666357, -26.876083)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 8/FixedSpawnpoints/0/0" unique_id=1067341674]
+mesh = SubResource("SphereMesh_7rmlr")
+
+[node name="1" type="Node3D" parent="Room 8/FixedSpawnpoints/0" unique_id=79362960]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.083736, -3.4666357, -12.876083)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 8/FixedSpawnpoints/0/1" unique_id=1956042875]
+mesh = SubResource("SphereMesh_7rmlr")
+
+[node name="2" type="Node3D" parent="Room 8/FixedSpawnpoints/0" unique_id=2130207595]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.916264, -3.4666357, -12.876083)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 8/FixedSpawnpoints/0/2" unique_id=1728740565]
+mesh = SubResource("SphereMesh_7rmlr")
+
+[node name="Node3D" type="Node3D" parent="Room 8/FixedSpawnpoints" unique_id=428675095]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.9162636, -3.4666357, -18.876083)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 8/FixedSpawnpoints/Node3D" unique_id=604655528]
+mesh = SubResource("SphereMesh_7rmlr")
+
+[node name="Node3D2" type="Node3D" parent="Room 8/FixedSpawnpoints" unique_id=289797345]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.08373642, -3.4666357, -16.876083)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 8/FixedSpawnpoints/Node3D2" unique_id=1872162710]
+mesh = SubResource("SphereMesh_7rmlr")
+
+[node name="Node3D3" type="Node3D" parent="Room 8/FixedSpawnpoints" unique_id=863898778]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.916264, -3.4666357, -16.876083)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 8/FixedSpawnpoints/Node3D3" unique_id=144663434]
+mesh = SubResource("SphereMesh_7rmlr")
+
+[node name="Node3D4" type="Node3D" parent="Room 8/FixedSpawnpoints" unique_id=1914508911]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.916264, -3.4666357, -12.876083)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 8/FixedSpawnpoints/Node3D4" unique_id=865429582]
+mesh = SubResource("SphereMesh_7rmlr")
+
+[node name="Node3D5" type="Node3D" parent="Room 8/FixedSpawnpoints" unique_id=1852579466]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0837364, -3.4666357, -12.876083)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 8/FixedSpawnpoints/Node3D5" unique_id=66805170]
+mesh = SubResource("SphereMesh_7rmlr")
+
+[node name="Node3D6" type="Node3D" parent="Room 8/FixedSpawnpoints" unique_id=1139664243]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.0837364, -3.4666357, -12.876083)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 8/FixedSpawnpoints/Node3D6" unique_id=1955977137]
+mesh = SubResource("SphereMesh_7rmlr")
+
+[node name="Node3D7" type="Node3D" parent="Room 8/FixedSpawnpoints" unique_id=699579138]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.083736, -3.4666357, -12.876083)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 8/FixedSpawnpoints/Node3D7" unique_id=1395399034]
+mesh = SubResource("SphereMesh_7rmlr")
+
+[node name="Node3D8" type="Node3D" parent="Room 8/FixedSpawnpoints" unique_id=341503739]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.916264, -3.4666357, -12.876083)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 8/FixedSpawnpoints/Node3D8" unique_id=723983544]
+mesh = SubResource("SphereMesh_7rmlr")
+
+[node name="Node3D9" type="Node3D" parent="Room 8/FixedSpawnpoints" unique_id=237592973]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.916264, -3.4666357, -12.876083)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 8/FixedSpawnpoints/Node3D9" unique_id=394487467]
+mesh = SubResource("SphereMesh_7rmlr")
+
+[node name="Node3D10" type="Node3D" parent="Room 8/FixedSpawnpoints" unique_id=1652089728]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.9162636, -3.4666357, -22.876083)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 8/FixedSpawnpoints/Node3D10" unique_id=194210317]
+mesh = SubResource("SphereMesh_7rmlr")
+
+[node name="Node3D11" type="Node3D" parent="Room 8/FixedSpawnpoints" unique_id=766925376]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.9162636, -3.4666357, -26.876083)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 8/FixedSpawnpoints/Node3D11" unique_id=1434813868]
+mesh = SubResource("SphereMesh_7rmlr")
+
+[node name="Node3D12" type="Node3D" parent="Room 8/FixedSpawnpoints" unique_id=813213746]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0837364, -3.4666357, -7.8760834)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 8/FixedSpawnpoints/Node3D12" unique_id=628638433]
+mesh = SubResource("SphereMesh_7rmlr")
+
+[node name="Node3D13" type="Node3D" parent="Room 8/FixedSpawnpoints" unique_id=815140749]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.916264, -3.4666357, -7.8760834)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 8/FixedSpawnpoints/Node3D13" unique_id=168892828]
+mesh = SubResource("SphereMesh_7rmlr")
+
+[node name="Node3D14" type="Node3D" parent="Room 8/FixedSpawnpoints" unique_id=1300701901]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.916264, -3.4666357, -22.876083)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 8/FixedSpawnpoints/Node3D14" unique_id=1501561029]
+mesh = SubResource("SphereMesh_7rmlr")
+
+[node name="Node3D15" type="Node3D" parent="Room 8/FixedSpawnpoints" unique_id=1417412477]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.916264, -3.4666357, -19.876083)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 8/FixedSpawnpoints/Node3D15" unique_id=1565350517]
+mesh = SubResource("SphereMesh_7rmlr")
+
+[node name="Node3D16" type="Node3D" parent="Room 8/FixedSpawnpoints" unique_id=2127688368]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0837364, -3.4666357, -19.876083)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 8/FixedSpawnpoints/Node3D16" unique_id=626347901]
+mesh = SubResource("SphereMesh_7rmlr")
+
+[node name="Node3D17" type="Node3D" parent="Room 8/FixedSpawnpoints" unique_id=2013089656]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.0837364, -3.4666357, -22.876083)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 8/FixedSpawnpoints/Node3D17" unique_id=1055388149]
+mesh = SubResource("SphereMesh_7rmlr")
+
+[node name="Node3D18" type="Node3D" parent="Room 8/FixedSpawnpoints" unique_id=187794162]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.08373642, -3.4666357, -22.876083)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 8/FixedSpawnpoints/Node3D18" unique_id=1782830628]
+mesh = SubResource("SphereMesh_7rmlr")
+
+[node name="Node3D19" type="Node3D" parent="Room 8/FixedSpawnpoints" unique_id=223183808]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.916264, -3.4666357, -22.876083)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 8/FixedSpawnpoints/Node3D19" unique_id=1366016370]
+mesh = SubResource("SphereMesh_7rmlr")
+
+[node name="Node3D20" type="Node3D" parent="Room 8/FixedSpawnpoints" unique_id=52312557]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.916264, -3.4666357, -16.876083)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 8/FixedSpawnpoints/Node3D20" unique_id=1630323596]
+mesh = SubResource("SphereMesh_7rmlr")
+
+[node name="Node3D21" type="Node3D" parent="Room 8/FixedSpawnpoints" unique_id=659589598]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.0837364, -3.4666357, -16.876083)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room 8/FixedSpawnpoints/Node3D21" unique_id=190905142]
+mesh = SubResource("SphereMesh_7rmlr")
+
 [node name="EncounterScript" type="Node3D" parent="Room 8" unique_id=1590585409 node_paths=PackedStringArray("_door1", "_door2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, -13)
 script = ExtResource("15_ddqw5")
@@ -1469,6 +3552,7 @@ metadata/_custom_type_script = "uid://syam14lxvqpe"
 
 [node name="Room 9" type="Area3D" parent="." unique_id=1078344960 node_paths=PackedStringArray("SCRIPT", "SPAWN_POINT_PARENT") groups=["Doors"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.580368, -19.016697, 172.29257)
+visible = false
 collision_layer = 0
 monitoring = false
 monitorable = false
@@ -1743,3 +3827,12 @@ script = ExtResource("15_ddqw5")
 _door1 = NodePath("../../Doors/Door12")
 _door2 = NodePath("../../Doors/Door13")
 metadata/_custom_type_script = "uid://syam14lxvqpe"
+
+[node name="KillZone" type="Area3D" parent="." unique_id=1175481062]
+script = ExtResource("16_qlb00")
+metadata/_custom_type_script = "uid://fch0au0c1272"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="KillZone" unique_id=1194407447]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -174.53314, -76.850586, -5.4555035)
+shape = SubResource("BoxShape3D_qlb00")
+debug_color = Color(0, 0.6, 0.69803923, 1)
