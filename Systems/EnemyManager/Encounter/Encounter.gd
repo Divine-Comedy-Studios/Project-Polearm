@@ -7,5 +7,5 @@ class_name Encounter
 # @export var PRESPAWN_FIRST_WAVE : bool = false ### @todo Will not be implemented
 
 
-@export_group("IGNORE")
+@export_group("DEBUG")
 @export var SPAWN_POINTS : Array[Vector3] = [ ]

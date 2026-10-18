@@ -127,7 +127,7 @@ func _loadStage() -> void:
 	_currentStage = _currentStageResource.instantiate()
 
 	# Initialize all world components
-	Globals.gameObjectManager.spawn(GameObject.Type.player, _currentStage.DATA.PLAYER_SPAWN_LOCATION)
+	Globals.gameObjectManager.spawn(GameObject.Type.player, _currentStage.DATA.PLAYER_SPAWN_TRANSFORM)
 
 	add_child(_currentStage)
 

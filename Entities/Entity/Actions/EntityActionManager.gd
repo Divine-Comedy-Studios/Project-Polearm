@@ -78,6 +78,7 @@ func init() -> void:
 func reset() -> void:
 	currentState.exit()
 
+	entity.global_transform = Transform3D.IDENTITY
 	hurtbox.enable()
 	resources.reset()
 	animator.reset()

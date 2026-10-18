@@ -6,7 +6,6 @@ class_name BasicEnemy
 
 @export_group("Scene members")
 @export var _controller : BasicEnemyController = null
-@export var _actionManager : BasicEnemyActionManager = null
 
 #endregion
 
@@ -23,10 +22,11 @@ var _needsReset : bool = false
 #region Built-in functions
 
 func _ready() -> void:
-	assert(_controller != null, "BasicEnemy._ready(): Controller not assigned!")
-	assert(_actionManager != null, "BasicEnemy._ready(): Action manager not assigned!")
+	super._ready()
 
-	_actionManager.killed.connect(handle.kill)
+	assert(_controller != null, "BasicEnemy._ready(): Controller not assigned!")
+
+	actionManager.killed.connect(handle.kill)
 
 #endregion
 
@@ -55,7 +55,7 @@ func requestRoleChange() -> bool:
 	return _controller.requestRoleChange
 
 func position() -> Vector3:
-	return _actionManager.entity.global_position
+	return actionManager.entity.global_position
 
 #endregion
 
@@ -74,6 +74,6 @@ func _spawn() -> void:
 #region Private functions
 
 func _reset() -> void:
-	_actionManager.reset()
+	actionManager.reset()
 
 #endregion

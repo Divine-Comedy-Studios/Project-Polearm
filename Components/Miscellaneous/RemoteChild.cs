@@ -15,4 +15,9 @@ using Godot;
 	public Node3D GetRemoteParent() {
 		return m_remoteParent;
 	}
+
+	public void Reset() {
+		m_remoteParent = null;
+		GlobalPosition = Vector3.Zero;
+	}
 }

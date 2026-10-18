@@ -132,10 +132,10 @@ viewport_path = NodePath("Model/HealthBar/SubViewport")
 offsets = PackedFloat32Array(0.1325001, 0.4532238, 0.9943422)
 colors = PackedColorArray(0.82508445, 0.0032476706, 0.16931134, 1, 0.82407624, 0.6277912, 0.064864345, 1, 0.31102964, 0.61787194, 0.2871761, 1)
 
-[node name="Archer" type="Node3D" unique_id=611518248 node_paths=PackedStringArray("_controller", "_actionManager")]
+[node name="Archer" type="Node3D" unique_id=611518248 node_paths=PackedStringArray("_controller", "actionManager")]
 script = ExtResource("1_hraxl")
 _controller = NodePath("ArcherController")
-_actionManager = NodePath("ArcherActionManager")
+actionManager = NodePath("ArcherActionManager")
 metadata/_custom_type_script = "uid://cbefei8134nw2"
 
 [node name="EntityAnimationHelper" type="Node" parent="." unique_id=63586577 node_paths=PackedStringArray("_animator", "_skeleton")]
