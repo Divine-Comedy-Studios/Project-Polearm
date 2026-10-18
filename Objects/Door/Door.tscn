@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://ba2rlvifwi81e" path="res://Objects/Door/Door.gd" id="1_do24k"]
 
 [node name="Door" type="StaticBody3D" unique_id=799439371]
+collision_layer = 32768
+collision_mask = 0
 script = ExtResource("1_do24k")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=929216953]
