@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://dmm6hc5f7l4s2" path="res://Interfaces/Menus/OptionsMenu/AudioOptions/AudioOptions.gd" id="1_uk8p5"]
 
 [node name="AudioOptions" type="Control" unique_id=2031472548]
+texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -22,7 +23,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="CenterContainer" unique_id=520806444]
+[node name="MarginContainer" type="PanelContainer" parent="CenterContainer" unique_id=520806444]
 custom_minimum_size = Vector2(800, 0)
 layout_mode = 2
 

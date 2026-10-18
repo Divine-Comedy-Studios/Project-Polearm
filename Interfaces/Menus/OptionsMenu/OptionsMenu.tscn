@@ -5,6 +5,7 @@
 [ext_resource type="Theme" uid="uid://eptqqy8sm6gl" path="res://Interfaces/Themes/MenuTheme.tres" id="1_6cgsf"]
 
 [node name="OptionsMenu" type="Control" unique_id=865326453]
+texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -25,12 +26,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=1791295312]
+[node name="Panel" type="PanelContainer" parent="CenterContainer" unique_id=423946139]
 layout_mode = 2
-theme_override_constants/separation = 40
 
-[node name="Game" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1782292192]
-custom_minimum_size = Vector2(200, 0)
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/Panel" unique_id=1791295312]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Game" type="Button" parent="CenterContainer/Panel/VBoxContainer" unique_id=1782292192]
+custom_minimum_size = Vector2(380, 72)
 layout_mode = 2
 size_flags_vertical = 3
 focus_neighbor_top = NodePath("../Keyboard")
@@ -38,8 +42,8 @@ focus_neighbor_bottom = NodePath("../Video")
 text = "UI_OPTIONS_GAMEPLAY"
 script = ExtResource("1_4i0wx")
 
-[node name="Video" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1311041032]
-custom_minimum_size = Vector2(200, 0)
+[node name="Video" type="Button" parent="CenterContainer/Panel/VBoxContainer" unique_id=1311041032]
+custom_minimum_size = Vector2(380, 72)
 layout_mode = 2
 size_flags_vertical = 3
 focus_neighbor_top = NodePath("../Game")
@@ -47,8 +51,8 @@ focus_neighbor_bottom = NodePath("../Audio")
 text = "UI_OPTIONS_VIDEO"
 script = ExtResource("1_4i0wx")
 
-[node name="Audio" type="Button" parent="CenterContainer/VBoxContainer" unique_id=39059709]
-custom_minimum_size = Vector2(200, 0)
+[node name="Audio" type="Button" parent="CenterContainer/Panel/VBoxContainer" unique_id=39059709]
+custom_minimum_size = Vector2(380, 72)
 layout_mode = 2
 size_flags_vertical = 3
 focus_neighbor_top = NodePath("../Video")
@@ -56,8 +60,8 @@ focus_neighbor_bottom = NodePath("../Controller")
 text = "UI_OPTIONS_AUDIO"
 script = ExtResource("1_4i0wx")
 
-[node name="Controller" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1959844565]
-custom_minimum_size = Vector2(200, 0)
+[node name="Controller" type="Button" parent="CenterContainer/Panel/VBoxContainer" unique_id=1959844565]
+custom_minimum_size = Vector2(380, 72)
 layout_mode = 2
 size_flags_vertical = 3
 focus_neighbor_top = NodePath("../Audio")
@@ -65,8 +69,8 @@ focus_neighbor_bottom = NodePath("../Keyboard")
 text = "UI_OPTIONS_CONTROLLER"
 script = ExtResource("1_4i0wx")
 
-[node name="Keyboard" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1797674113]
-custom_minimum_size = Vector2(200, 0)
+[node name="Keyboard" type="Button" parent="CenterContainer/Panel/VBoxContainer" unique_id=1797674113]
+custom_minimum_size = Vector2(380, 72)
 layout_mode = 2
 size_flags_vertical = 3
 focus_neighbor_top = NodePath("../Controller")
@@ -74,8 +78,8 @@ focus_neighbor_bottom = NodePath("../Game")
 text = "UI_OPTIONS_KEYBOARD"
 script = ExtResource("1_4i0wx")
 
-[connection signal="pressed" from="CenterContainer/VBoxContainer/Game" to="." method="_on_game_pressed"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/Video" to="." method="_on_video_pressed"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/Audio" to="." method="_on_audio_pressed"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/Controller" to="." method="_on_controller_pressed"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/Keyboard" to="." method="_on_keyboard_pressed"]
+[connection signal="pressed" from="CenterContainer/Panel/VBoxContainer/Game" to="." method="_on_game_pressed"]
+[connection signal="pressed" from="CenterContainer/Panel/VBoxContainer/Video" to="." method="_on_video_pressed"]
+[connection signal="pressed" from="CenterContainer/Panel/VBoxContainer/Audio" to="." method="_on_audio_pressed"]
+[connection signal="pressed" from="CenterContainer/Panel/VBoxContainer/Controller" to="." method="_on_controller_pressed"]
+[connection signal="pressed" from="CenterContainer/Panel/VBoxContainer/Keyboard" to="." method="_on_keyboard_pressed"]
