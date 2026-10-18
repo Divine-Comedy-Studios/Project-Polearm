@@ -64,17 +64,17 @@ func _implTick(delta : float) -> void:
 #region Private functions
 
 func _shoot(idx : int) -> void:
-
 	physics.position = entity().to_global(SHOOT_OFFSETS[idx])
 
 	physics.FLAT_SPEED = SHOOT_SPEEDS[idx]
 
-	var dir := (intents().targetPosition + physics.OFFSET) - physics.position
+	var target := intents().target
 
+	var dir := (target.global_position + physics.OFFSET) - physics.position
 	dir.x += randf_range(-HORIZONTAL_VARIATION, HORIZONTAL_VARIATION) * _shotIdx
 	dir.z += randf_range(-HORIZONTAL_VARIATION, HORIZONTAL_VARIATION) * _shotIdx
 
-	physics.target = intents().target
+	physics.target = target
 	physics.distance = dir.length()
 	physics.normDirection = dir / physics.distance
 

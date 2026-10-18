@@ -53,8 +53,10 @@ func _implTick(delta : float) -> void:
 func _shoot() -> void:
 	physics.position = entity().to_global(SHOOT_OFFSET)
 
-	var dir := (intents().targetPosition + physics.OFFSET) - physics.position
-	physics.target = intents().target
+	var target := intents().target
+	var dir := (target.global_position + physics.OFFSET) - physics.position
+
+	physics.target = target
 	physics.distance = dir.length()
 	physics.normDirection = dir / physics.distance
 

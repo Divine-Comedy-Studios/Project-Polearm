@@ -10,8 +10,10 @@ const MIN_PERIOD_MULTIPLIER : float = 0.7
 
 #region Exported variables
 
-# The speeds to move at come from the controller, this only decides how fast it gets there
 @export_group("Movement settings")
+@export var MIN_SPEED : float = 2.0
+@export var MAX_SPEED : float = 5.5
+@export_range(0.0, 0.9) var SPEED_RANDOMNESS : float = 0.25
 @export var ACCELERATION : float = 25.0
 
 @export_group("Animation settings")
@@ -51,6 +53,10 @@ func _implInit() -> void:
 
 	data = WALK_DATA
 
+	var randomness := 1.0 + randf_range(-SPEED_RANDOMNESS, SPEED_RANDOMNESS)
+	MIN_SPEED *= randomness
+	MAX_SPEED *= randomness
+
 
 func _implEnter() -> void:
 	animator().setCoreTransition(&"AdvancedTransition", data.ANIMATION_FADE_TIME)
@@ -60,21 +66,20 @@ func _implEnter() -> void:
 func _implTick(delta : float) -> void:
 	var intentData := intents()
 
-	entity().accelerateFlat(intentData.direction * intentData.speed, ACCELERATION * delta)
+	entity().accelerateFlat(intentData.direction * lerpf(MIN_SPEED, MAX_SPEED, intentData.magnitude), ACCELERATION * delta)
 
-	_processAnimations(intentData)
+	_processAnimations()
 
 #endregion
 
 
 #region Private functions
 
-func _processAnimations(intentData : SoliderController.Data) -> void:
-	# Walking is the slowest speed the controller picks, running the fastest one
+func _processAnimations() -> void:
 	var speedFactor := 0.0
-	if intentData.maxSpeed > intentData.minSpeed:
+	if MAX_SPEED > MIN_SPEED:
 		speedFactor = clampf(
-			PPUtil.Math.toRangeNormalized(entity().velocity.length(), intentData.minSpeed, intentData.maxSpeed),
+			PPUtil.Math.toRangeNormalized(entity().velocity.length(), MIN_SPEED, MAX_SPEED),
 			-1.0, 1.0
 		)
 
