@@ -6,6 +6,9 @@ extends PlayerBasicJump
 func _implEnter() -> void:
 	player().detachGround()
 	player().disableCollisionProcessing()
+
+	resources().airDashed = false
+	resources().airComboed = false
 	
 	super._implEnter()
 

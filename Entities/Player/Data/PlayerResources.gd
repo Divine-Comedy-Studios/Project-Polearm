@@ -14,6 +14,7 @@ class_name PlayerResources
 
 @export var jumpCount : IntegerResource = null
 @export var airDashed : bool = false
+@export var airComboed : bool = false
 
 @export var flow : ValueResource = null
 

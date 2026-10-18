@@ -1,14 +1,6 @@
 extends BasicAerialMovement
 
 
-#region Exported variables
-
-# @export_group("Gravity settings")
-# @export var FLOATING_TERMINAL_VELOCITY : float = 2.0
-
-#endregion
-
-
 #region Member variables
 
 var _gravity : float = 0.0
@@ -34,9 +26,9 @@ func _implExit() -> void:
 func _implTick(delta : float) -> void:
 	# var terminalVel := _terminalVelocity
 
-	#if inputs().modifiers.has(Type.jump): # Check if player is floating
+	# if inputs().modifiers.has(Type.jump): # Check if player is floating
 	#	terminalVel = FLOATING_TERMINAL_VELOCITY
-	#else:
+	# else:
 	#	terminalVel = TERMINAL_VELOCITY
 
 	context().physics.sweepLedge()

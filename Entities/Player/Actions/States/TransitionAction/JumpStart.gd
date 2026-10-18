@@ -43,8 +43,6 @@ func _implInit() -> void:
 
 
 func _implEnter() -> void:
-	resources().airDashed = false
-
 	_processAnimations()
 
 func _implExit() -> void:
