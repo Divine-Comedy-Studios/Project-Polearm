@@ -13,7 +13,7 @@
 [ext_resource type="Resource" uid="uid://dhog02ioefmo4" path="res://Entities/Player/Resources/Combos/GroundCombo2.tres" id="7_8gr7m"]
 [ext_resource type="Resource" uid="uid://beb43700umvba" path="res://Entities/Player/Resources/Combos/AirTestCombo.res" id="7_e0d0n"]
 [ext_resource type="Script" uid="uid://c55k4ruofg4jc" path="res://Entities/Player/Actions/States/Jump.gd" id="7_jverr"]
-[ext_resource type="Script" uid="uid://vahqysuxajcw" path="res://Entities/Player/Actions/States/LightAttack.gd" id="8_6evvv"]
+[ext_resource type="Script" uid="uid://vahqysuxajcw" path="res://Entities/Player/Actions/States/Attack.gd" id="8_6evvv"]
 [ext_resource type="Script" uid="uid://bsb2b7yi270tu" path="res://Entities/Player/Actions/States/TransitionAction/MoveStop.gd" id="9_x5srs"]
 [ext_resource type="Script" uid="uid://bb1weubijn6l2" path="res://Entities/Player/Actions/States/TransitionAction/AirJumpStart.gd" id="11_6ns0w"]
 [ext_resource type="Script" uid="uid://oyhtbomcato" path="res://Entities/Player/Actions/States/BasicActions/BasicDash.gd" id="12_1ws56"]
@@ -25,6 +25,7 @@
 [ext_resource type="Script" uid="uid://3fen78mrevq4" path="res://Entities/Player/Actions/States/TransitionAction/DashStart.gd" id="17_fh6tg"]
 [ext_resource type="Script" uid="uid://b7l2j8josovnk" path="res://Entities/Player/Actions/States/AirJump.gd" id="18_wu1xb"]
 [ext_resource type="Script" uid="uid://beoods6p8kv38" path="res://Entities/Player/Actions/States/Damage.gd" id="24_re4dn"]
+[ext_resource type="Script" uid="uid://begevo510bmnd" path="res://Entities/Player/Actions/States/AirAttack.gd" id="25_b8qbd"]
 [ext_resource type="Script" uid="uid://bpq80ha7b21w4" path="res://Entities/Player/Actions/States/TransitionAction/DamageFall.gd" id="25_djij5"]
 [ext_resource type="Script" uid="uid://016p4e8ow2ol" path="res://Entities/Player/Actions/States/TransitionAction/DamageLanding.gd" id="26_6awf7"]
 [ext_resource type="Script" uid="uid://b2p4ofdbk8l3t" path="res://Entities/Player/Actions/States/TransitionAction/DamageStandUp.gd" id="27_djij5"]
@@ -412,9 +413,18 @@ PRIORITY = 41
 REPEATABLE = true
 metadata/_custom_type_script = "uid://jc1g0sv32qq1"
 
-[node name="AirLightAttack" type="Node" parent="." unique_id=994612286]
+[node name="HeavyAttack" type="Node" parent="." unique_id=871433416]
 process_mode = 4
 script = ExtResource("8_6evvv")
+QUEUEABLE = true
+TYPE = &"heavyAttack"
+PRIORITY = 41
+REPEATABLE = true
+metadata/_custom_type_script = "uid://jc1g0sv32qq1"
+
+[node name="AirLightAttack" type="Node" parent="." unique_id=994612286]
+process_mode = 4
+script = ExtResource("25_b8qbd")
 QUEUEABLE = true
 TYPE = &"airLightAttack"
 PRIORITY = 40

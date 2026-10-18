@@ -104,8 +104,10 @@ func _processMovementActions():
 		inputs.actions.append(PlayerAction.Type.dashStart)
 	if Input.is_action_pressed("Dash"):
 		inputs.modifiers.append(PlayerAction.Type.sprint)
-	
+
 	if Input.is_action_just_pressed("Light attack"):
 		inputs.actions.append(PlayerAction.Type.lightAttack)
+	if Input.is_action_just_pressed("Heavy attack"):
+		inputs.actions.append(PlayerAction.Type.heavyAttack)
 
 #endregion

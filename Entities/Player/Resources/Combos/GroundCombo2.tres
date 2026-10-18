@@ -8,23 +8,33 @@
 script = ExtResource("2_17sjw")
 ANIMATION_LIBRARY_NAME = &"Combat"
 ANIMATION_NAME = &"Combo3_1"
+ROOT_MOTION = true
 metadata/_custom_type_script = "uid://cqy3drroysy4k"
 
 [sub_resource type="Resource" id="Resource_xuipi"]
 script = ExtResource("2_17sjw")
+ANIMATION_LIBRARY_NAME = &"Combat"
+ANIMATION_NAME = &"Combo3_2"
+ROOT_MOTION = true
 metadata/_custom_type_script = "uid://cqy3drroysy4k"
 
 [sub_resource type="Resource" id="Resource_17sjw"]
 script = ExtResource("2_17sjw")
+ANIMATION_LIBRARY_NAME = &"Combat"
+ANIMATION_NAME = &"Combo3_3"
+ROOT_MOTION = true
 metadata/_custom_type_script = "uid://cqy3drroysy4k"
 
 [sub_resource type="Resource" id="Resource_1lf8k"]
 script = ExtResource("2_17sjw")
+ANIMATION_LIBRARY_NAME = &"Combat"
+ANIMATION_NAME = &"Combo3_4"
+ROOT_MOTION = true
 metadata/_custom_type_script = "uid://cqy3drroysy4k"
 
 [resource]
 script = ExtResource("2_xuipi")
 TYPE = &"combo3"
-ACTION_TYPES = Array[StringName]([&"heavyAttack", &"lightAttack", &"lightAttack", &"lightAttack"])
+ACTION_TYPES = Array[StringName]([&"heavyAttack", &"heavyAttack", &"heavyAttack", &"heavyAttack"])
 ACTIONS = Array[ExtResource("1_pxxe1")]([SubResource("Resource_pxxe1"), SubResource("Resource_xuipi"), SubResource("Resource_17sjw"), SubResource("Resource_1lf8k")])
 metadata/_custom_type_script = "uid://c8b6ivlyaw41v"

@@ -103,7 +103,7 @@ class Type:
 		Type.jumpStart : Type.airJumpStart,
 		Type.dashStart : Type.airDashStart,
 		Type.lightAttack : Type.airLightAttack,
-		Type.heavyAttack : Type.airHeavyAttack,
+		Type.heavyAttack : Type.airLightAttack, # Should be airHeavyAttack in final product
 
 		Type.fall : Type.fall,
 		Type.ledgeGrab : Type.ledgeGrab,
@@ -161,10 +161,11 @@ var _queue : PlayerAction = null
 #region Override functions
 
 func _enter() -> void:
+	if not _context.combatManager.isNextComboAction(TYPE):
+		_context.combatManager.resetActiveCombo()
+
 	if _context.combatManager.isNextComboAction(TYPE):
 		data = _context.combatManager.registerComboAction(TYPE)
-	else:
-		_context.combatManager.resetActiveCombo()
 
 	_implEnter()
 

@@ -1,4 +1,5 @@
 extends PlayerAction
+class_name PlayerAttack
 
 
 #region Override functions
@@ -8,10 +9,5 @@ func _implEnter() -> void:
 
 func _implExit() -> void:
 	weapon().disable()
-
-
-func _implTick(delta : float) -> void:
-	if not player().onGround():
-		rootMotionEnabled = false
 
 #endregion
