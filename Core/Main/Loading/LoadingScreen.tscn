@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d1l8xkhljshuj" path="res://Core/AppStateMachine/Loading/LoadingState.gd" id="1_pcbyd"]
 [ext_resource type="Script" uid="uid://bp3eomjdc0pxy" path="res://Core/Main/Loading/LoadingScreen.gd" id="2_isj5o"]
-[ext_resource type="Texture2D" uid="uid://ctdbykm11ffsx" path="res://icon.svg" id="3_ju82w"]
+[ext_resource type="Texture2D" uid="uid://ceidsf8ux60iq" path="res://Assets/Interfaces/ThemeTextures/Logo.png" id="3_5fl82"]
 
 [node name="LoadingScreen" type="Node" unique_id=148079785]
 script = ExtResource("1_pcbyd")
@@ -27,8 +27,11 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TextureRect" type="TextureRect" parent="LoadingScreen/CenterContainer" unique_id=713393299]
+custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
-texture = ExtResource("3_ju82w")
+texture = ExtResource("3_5fl82")
+expand_mode = 1
+stretch_mode = 4
 
 [node name="Timer" type="Timer" parent="LoadingScreen" unique_id=1450081625]
 wait_time = 0.3
