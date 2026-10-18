@@ -1,15 +1,18 @@
 [gd_scene format=3 uid="uid://dqfsomcbp0v3k"]
 
 [ext_resource type="Script" uid="uid://56qy2l42kqa8" path="res://Core/Main/Boot/Boot.gd" id="1_4bay4"]
-[ext_resource type="Texture2D" uid="uid://ctdbykm11ffsx" path="res://icon.svg" id="3_8kl8t"]
 
 [node name="Boot" type="Node" unique_id=1863929709]
 process_mode = 4
 script = ExtResource("1_4bay4")
 metadata/_custom_type_script = "uid://56qy2l42kqa8"
 
-[node name="Boot" type="Node2D" parent="." unique_id=1893134298]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1632851874]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.92941177, 0.91764706, 0.88235295, 1)
 
-[node name="Icon" type="Sprite2D" parent="Boot" unique_id=1949159219]
-position = Vector2(551, 191)
-texture = ExtResource("3_8kl8t")
+[node name="Boot" type="Node2D" parent="." unique_id=1893134298]
