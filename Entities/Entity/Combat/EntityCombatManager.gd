@@ -27,10 +27,13 @@ func unlockCombo(combo : EntityCombo) -> void:
 
 
 func resetActiveCombo() -> void:
+	if _currentComboAction.COMBO_TYPE != StringName(): # Only true if this was last action in combo
+		_resetFinishedCombo(_currentComboAction)
+
 	_currentComboAction = _comboTree
 
 func hasActiveCombo() -> bool:
-	return _currentComboAction.data != null
+	return _currentComboAction.DATA != null
 
 func isNextComboAction(action : StringName) -> bool:
 	return _currentComboAction.tree.has(action)
@@ -44,16 +47,9 @@ func registerComboAction(action : StringName) -> EntityActionData:
 	if !isNextComboAction(action):
 		return null
 	
-	var current := _currentComboAction.tree[action]
+	_currentComboAction = _currentComboAction.tree[action]
 	
-	if current.COMBO_TYPE != StringName():
-		_resetFinishedCombo(current)
-		
-		resetActiveCombo()
-	else:
-		_currentComboAction = current
-	
-	return current.DATA
+	return _currentComboAction.DATA
 
 #endregion
 
