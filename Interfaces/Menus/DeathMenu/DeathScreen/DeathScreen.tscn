@@ -5,9 +5,11 @@
 
 [node name="DeathScreen" type="Control" unique_id=371828079 node_paths=PackedStringArray("_fadeInTimer", "_fadeOutTimer", "_fadeRect")]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 1920.0
-offset_bottom = 1080.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_7gc0m")
 _fadeInTimer = NodePath("FadeInTimer")
 _fadeOutTimer = NodePath("FadeOutTimer")
