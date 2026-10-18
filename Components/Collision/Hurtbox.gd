@@ -47,4 +47,9 @@ func enabled() -> bool:
 func recieveHit(hitData : HitboxData) -> void:
 	pass
 
+# Instant death that ignores invulnerability, e.g. for kill zones
+func kill() -> void:
+	pass
+
+
 #endregion

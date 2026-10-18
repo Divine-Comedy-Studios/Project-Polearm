@@ -49,6 +49,12 @@ func _reset() -> void:
 	jumpCount.reset(false)
 	flow.reset()
 
+
+func _kill() -> void:
+	var before : StringName = actionManager.currentState.type() # DEBUG
+	actionManager.interrupt(PlayerAction.Type.death)
+	print("[KILL] 4/4 PlayerResources._kill(): action ", before, " -> ", actionManager.currentState.type(), " (expected: death)") # DEBUG
+
 #endregion
 
 
