@@ -9,6 +9,7 @@ func enter() -> void:
 	
 	get_tree().quit()
 
+
 func type() -> StringName:
 	return Type.quit
 
