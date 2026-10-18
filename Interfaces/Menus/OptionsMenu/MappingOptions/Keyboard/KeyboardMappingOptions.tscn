@@ -2,8 +2,11 @@
 
 [ext_resource type="Script" uid="uid://pgyhhnbdkno5" path="res://Interfaces/Menus/OptionsMenu/MappingOptions/MappingOptions.gd" id="1_poxib"]
 [ext_resource type="PackedScene" uid="uid://cebbhco3k6a5n" path="res://Interfaces/UIElements/ActionMappingButton.tscn" id="2_7kj8o"]
+[ext_resource type="Theme" uid="uid://eptqqy8sm6gl" path="res://Interfaces/Themes/MenuTheme.tres" id="kui_theme"]
 
 [node name="KeyboardMapping" type="Control" unique_id=601317194]
+theme = ExtResource("kui_theme")
+texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,95 +26,98 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer" unique_id=1837179978]
+[node name="Panel" type="PanelContainer" parent="CenterContainer" unique_id=947876999]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/Panel" unique_id=1837179978]
 custom_minimum_size = Vector2(800, 0)
 layout_mode = 2
 theme_override_constants/separation = 100
 
-[node name="Left Colon" type="VBoxContainer" parent="CenterContainer/HBoxContainer" unique_id=610459360]
+[node name="Left Colon" type="VBoxContainer" parent="CenterContainer/Panel/HBoxContainer" unique_id=610459360]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Forward" parent="CenterContainer/HBoxContainer/Left Colon" unique_id=1216139286 instance=ExtResource("2_7kj8o")]
+[node name="Forward" parent="CenterContainer/Panel/HBoxContainer/Left Colon" unique_id=1216139286 instance=ExtResource("2_7kj8o")]
 layout_mode = 2
 text = "UI_KEYBOARDMAPPING_FORWARD"
 ACTION_NAME = &"Move forwards"
 
-[node name="Backward" parent="CenterContainer/HBoxContainer/Left Colon" unique_id=656282874 instance=ExtResource("2_7kj8o")]
+[node name="Backward" parent="CenterContainer/Panel/HBoxContainer/Left Colon" unique_id=656282874 instance=ExtResource("2_7kj8o")]
 layout_mode = 2
 text = "UI_KEYBOARDMAPPING_BACKWARD"
 ACTION_NAME = &"Move backwards"
 
-[node name="Jump" parent="CenterContainer/HBoxContainer/Left Colon" unique_id=145371861 instance=ExtResource("2_7kj8o")]
+[node name="Jump" parent="CenterContainer/Panel/HBoxContainer/Left Colon" unique_id=145371861 instance=ExtResource("2_7kj8o")]
 layout_mode = 2
 text = "UI_KEYBOARDMAPPING_JUMP"
 ACTION_NAME = &"Jump"
 
-[node name="SwitchWeapon" parent="CenterContainer/HBoxContainer/Left Colon" unique_id=263474164 instance=ExtResource("2_7kj8o")]
+[node name="SwitchWeapon" parent="CenterContainer/Panel/HBoxContainer/Left Colon" unique_id=263474164 instance=ExtResource("2_7kj8o")]
 layout_mode = 2
 text = "UI_KEYBOARDMAPPING_SWITCHWEAPON"
 ACTION_NAME = &"Switch weapon"
 
-[node name="TargetLeft" parent="CenterContainer/HBoxContainer/Left Colon" unique_id=695666736 instance=ExtResource("2_7kj8o")]
+[node name="TargetLeft" parent="CenterContainer/Panel/HBoxContainer/Left Colon" unique_id=695666736 instance=ExtResource("2_7kj8o")]
 layout_mode = 2
 text = "UI_KEYBOARDMAPPING_TARGETLEFT"
 ACTION_NAME = &"Target left"
 
-[node name="TargetRight" parent="CenterContainer/HBoxContainer/Left Colon" unique_id=556712619 instance=ExtResource("2_7kj8o")]
+[node name="TargetRight" parent="CenterContainer/Panel/HBoxContainer/Left Colon" unique_id=556712619 instance=ExtResource("2_7kj8o")]
 layout_mode = 2
 text = "UI_KEYBOARDMAPPING_TARGETRIGHT"
 ACTION_NAME = &"Target right"
 
-[node name="LightAttack" parent="CenterContainer/HBoxContainer/Left Colon" unique_id=1837073152 instance=ExtResource("2_7kj8o")]
+[node name="LightAttack" parent="CenterContainer/Panel/HBoxContainer/Left Colon" unique_id=1837073152 instance=ExtResource("2_7kj8o")]
 layout_mode = 2
 text = "UI_KEYBOARDMAPPING_LIGHTATTACK"
 ACTION_NAME = &"Light attack"
 
-[node name="HeavyAttack" parent="CenterContainer/HBoxContainer/Left Colon" unique_id=1336830619 instance=ExtResource("2_7kj8o")]
+[node name="HeavyAttack" parent="CenterContainer/Panel/HBoxContainer/Left Colon" unique_id=1336830619 instance=ExtResource("2_7kj8o")]
 layout_mode = 2
 text = "UI_KEYBOARDMAPPING_HEAVYATTACK"
 ACTION_NAME = &"Heavy attack"
 
-[node name="Right Colon" type="VBoxContainer" parent="CenterContainer/HBoxContainer" unique_id=204551368]
+[node name="Right Colon" type="VBoxContainer" parent="CenterContainer/Panel/HBoxContainer" unique_id=204551368]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Left" parent="CenterContainer/HBoxContainer/Right Colon" unique_id=1384317894 instance=ExtResource("2_7kj8o")]
+[node name="Left" parent="CenterContainer/Panel/HBoxContainer/Right Colon" unique_id=1384317894 instance=ExtResource("2_7kj8o")]
 layout_mode = 2
 text = "UI_KEYBOARDMAPPING_LEFT"
 ACTION_NAME = &"Move left"
 
-[node name="Right" parent="CenterContainer/HBoxContainer/Right Colon" unique_id=1634248380 instance=ExtResource("2_7kj8o")]
+[node name="Right" parent="CenterContainer/Panel/HBoxContainer/Right Colon" unique_id=1634248380 instance=ExtResource("2_7kj8o")]
 layout_mode = 2
 text = "UI_KEYBOARDMAPPING_RIGHT"
 ACTION_NAME = &"Move right"
 
-[node name="Dodge" parent="CenterContainer/HBoxContainer/Right Colon" unique_id=515172439 instance=ExtResource("2_7kj8o")]
+[node name="Dodge" parent="CenterContainer/Panel/HBoxContainer/Right Colon" unique_id=515172439 instance=ExtResource("2_7kj8o")]
 layout_mode = 2
 text = "UI_KEYBOARDMAPPING_DODGE"
 ACTION_NAME = &"Dodge"
 
-[node name="Dash" parent="CenterContainer/HBoxContainer/Right Colon" unique_id=2010923946 instance=ExtResource("2_7kj8o")]
+[node name="Dash" parent="CenterContainer/Panel/HBoxContainer/Right Colon" unique_id=2010923946 instance=ExtResource("2_7kj8o")]
 layout_mode = 2
 text = "UI_KEYBOARDMAPPING_DASH"
 ACTION_NAME = &"Dash"
 
-[node name="Shoot" parent="CenterContainer/HBoxContainer/Right Colon" unique_id=373602084 instance=ExtResource("2_7kj8o")]
+[node name="Shoot" parent="CenterContainer/Panel/HBoxContainer/Right Colon" unique_id=373602084 instance=ExtResource("2_7kj8o")]
 layout_mode = 2
 text = "UI_KEYBOARDMAPPING_SHOOT"
 ACTION_NAME = &"Shoot"
 
-[node name="Launcher" parent="CenterContainer/HBoxContainer/Right Colon" unique_id=1682102111 instance=ExtResource("2_7kj8o")]
+[node name="Launcher" parent="CenterContainer/Panel/HBoxContainer/Right Colon" unique_id=1682102111 instance=ExtResource("2_7kj8o")]
 layout_mode = 2
 text = "UI_KEYBOARDMAPPING_LAUNCHER"
 ACTION_NAME = &"Launcher"
 
-[node name="Target" parent="CenterContainer/HBoxContainer/Right Colon" unique_id=748315492 instance=ExtResource("2_7kj8o")]
+[node name="Target" parent="CenterContainer/Panel/HBoxContainer/Right Colon" unique_id=748315492 instance=ExtResource("2_7kj8o")]
 layout_mode = 2
 text = "UI_KEYBOARDMAPPING_TARGET"
 ACTION_NAME = &"Held target toggle"
 
-[node name="Taunt" parent="CenterContainer/HBoxContainer/Right Colon" unique_id=227402805 instance=ExtResource("2_7kj8o")]
+[node name="Taunt" parent="CenterContainer/Panel/HBoxContainer/Right Colon" unique_id=227402805 instance=ExtResource("2_7kj8o")]
 layout_mode = 2
 text = "UI_KEYBOARDMAPPING_TAUNT"
 ACTION_NAME = &"Taunt"
