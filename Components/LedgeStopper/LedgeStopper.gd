@@ -36,15 +36,7 @@ const LedgeStopperBlockPrefab := preload("res://Components/LedgeStopper/LedgeSto
 
 #region Member variables
 
-# Collider blocks
-
 var _colliders : Array[LedgeStopperBlock] = []
-
-# State
-
-var _currentIdx : int = 0
-
-# Raycasting utilities
 
 var _downCastQuery : PhysicsRayQueryParameters3D
 
@@ -68,14 +60,11 @@ func _ready() -> void:
 
 
 func _physics_process(_delta : float) -> void:
-	_colliders[_currentIdx].checkCollision(_downCastQuery, 4, 0.6, RAY_LENGTH)
-
-	_currentIdx += 1
-	_currentIdx %= COLLIDER_COUNT
-
-	# Avoid inheriting rotation
 	if _remoteParent != null:
 		position = _remoteParent.global_position
+
+	for block : LedgeStopperBlock in _colliders:
+		block.checkCollision(_downCastQuery, 4, 0.6, RAY_LENGTH)
 
 #endregion
 
@@ -94,12 +83,5 @@ func disable() -> void:
 
 func enabled() -> bool:
 	return process_mode == Node.PROCESS_MODE_INHERIT
-
-#endregion
-
-
-#region Private functions
-
-
 
 #endregion

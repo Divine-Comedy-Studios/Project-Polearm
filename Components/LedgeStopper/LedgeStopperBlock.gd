@@ -40,8 +40,6 @@ func checkCollision(query : PhysicsRayQueryParameters3D, count : int, scanPercen
 		query.to = query.from
 		query.to.y -= downwardsLength
 
-		DebugDraw3D.draw_arrow(query.from, query.to)
-
 		var queryResult := get_world_3d().direct_space_state.intersect_ray(query)
 		if queryResult.is_empty():
 			if !enabled():
