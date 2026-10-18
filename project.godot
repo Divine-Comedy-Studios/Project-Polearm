@@ -52,6 +52,8 @@ enabled=PackedStringArray("res://addons/anim_player_refactor/plugin.cfg", "res:/
 [global_group]
 
 Player=""
+Entities=""
+Enemies=""
 
 [gui]
 
@@ -116,6 +118,7 @@ ui_down={
 "Heavy attack"={
 "deadzone": 0.2,
 "events": [Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":3,"pressure":0.0,"pressed":true,"script":null)
+, Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":0,"position":Vector2(0, 0),"global_position":Vector2(0, 0),"factor":1.0,"button_index":2,"canceled":false,"pressed":false,"double_click":false,"script":null)
 ]
 }
 Jump={
@@ -229,6 +232,7 @@ locale/translations=PackedStringArray("res://Interfaces/Language/ProjectPolearmL
 
 3d_physics/layer_1="Entities"
 3d_physics/layer_2="Player"
+3d_physics/layer_3="Enemies"
 3d_physics/layer_14="PlayerLedgeStopper"
 3d_physics/layer_15="EnemyLedgeStopper"
 3d_physics/layer_16="World"
