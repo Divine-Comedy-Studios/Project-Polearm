@@ -41,8 +41,9 @@ func _ready() -> void:
 
 #region Public functions
 
-func enable(hitData : HitboxData) -> void:
-	_data = hitData
+func enable(hitData : HitboxData = null) -> void:
+	if hitData != null:
+		_data = hitData
 	monitoring = true
 
 func disable() -> void:

@@ -26,8 +26,4 @@ func _ready() -> void:
 func recieveHit(data : HitboxData) -> void:
 	_resources.takeDamage(data)
 
-func kill() -> void:
-	print("[KILL] 2/4 EntityHurtbox.kill() reached, resources = ", _resources) # DEBUG
-	_resources.kill()
-
 #endregion

@@ -65,17 +65,6 @@ func takeDamage(hitData : HitboxData) -> void:
 	_takeDamage(hitData)
 
 
-# Kills the entity no matter if it is currently vulnerable. Ignored if it is already dying.
-func kill() -> void:
-	print("[KILL] 3/4 EntityResources.kill(): health.locked = ", health.locked, ", health = ", health.value) # DEBUG
-	if health.locked:
-		return
-
-	health.value = 0.0
-
-	_kill()
-
-
 func payable(action : EntityAction) -> bool:
 	return action.ENERGY_COST <= energy.value and _payable(action)
 
