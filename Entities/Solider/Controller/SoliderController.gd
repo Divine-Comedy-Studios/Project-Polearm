@@ -50,14 +50,6 @@ func _tick(
 	delta : float,
 	perceptionData : EnemyPerception.Data
 ) -> void:
-	var label := $"../Model/Label3D" as Label3D
-	if currentRole == EnemyManager.Role.idle:
-		label.text = "idle"
-	elif currentRole == EnemyManager.Role.fighter:
-		label.text = "fighter"
-	else:
-		label.text = "flanker"
-
 	var flatPosition := PPUtil.Math.toFlatVec2(entity.global_position)
 	var flatTarget := PPUtil.Math.toFlatVec2(perceptionData.targetPos)
 
