@@ -14,6 +14,7 @@ const FLANK_STEP_ANGLE : float = 0.1
 
 @export_group("Combat")
 @export var STOP_DISTANCE : float = 0.8
+@export var ATTACK_DELAY : Vector2 = Vector2(0.1, 0.4)
 @export var ATTACK_COOLDOWN : Vector2 = Vector2(1.0, 3.0)
 
 @export_group("Flanking")
@@ -29,7 +30,9 @@ const FLANK_STEP_ANGLE : float = 0.1
 
 var _lastRole : EnemyManager.Role = EnemyManager.Role.idle
 
-var _cooldownTimer : float = 0.0
+var _cooldownTimer : float = INF
+
+var _attackDelayTimer : float = 0.0
 
 var _flankTarget : Vector2 = Vector2.ZERO
 var _flankTargetAngle : float = 0.0
@@ -62,11 +65,13 @@ func _tick(
 		_cooldownTimer -= delta
 
 	if currentRole == EnemyManager.Role.flanker:
+		_attackDelayTimer = INF
+
 		_tickFlank(delta, flatPosition, flatTarget)
 	else:
 		_flankTimer = 0.0 # Reset flank timer as _tickFlank expects a reset timer upon state change
 
-		_tickAttack(flatPosition, flatTarget, perceptionData)
+		_tickAttack(delta, flatPosition, flatTarget, perceptionData)
 
 	_lastRole = currentRole
 
@@ -130,7 +135,7 @@ func _tickFlank(delta : float, flatPosition : Vector2, flatTarget : Vector2) -> 
 	intents.actions.append(SoliderAction.Type.move)
 
 
-func _tickAttack(flatPosition : Vector2, flatTarget : Vector2, perceptionData : EnemyPerception.Data) -> void:
+func _tickAttack(delta : float, flatPosition : Vector2, flatTarget : Vector2, perceptionData : EnemyPerception.Data) -> void:
 	if _cooldownTimer > 0.0:
 		requestRoleChange = true
 
@@ -141,9 +146,16 @@ func _tickAttack(flatPosition : Vector2, flatTarget : Vector2, perceptionData : 
 	intents.direction /= distance
 
 	if distance > STOP_DISTANCE:
+		_attackDelayTimer = INF
+
 		intents.actions.append(SoliderAction.Type.move)
+	elif _attackDelayTimer == INF:
+		_attackDelayTimer = randf_range(ATTACK_DELAY.x, ATTACK_DELAY.y)
+	else:
+		_attackDelayTimer -= delta
 
 	if (_cooldownTimer <= 0.0
+		and _attackDelayTimer <= 0.0
 		and perceptionData.detected
 		and _canAttack(distance, intents.direction, -entity.global_basis.z)
 	):
