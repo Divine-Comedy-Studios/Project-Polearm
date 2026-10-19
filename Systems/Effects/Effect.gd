@@ -1,13 +1,24 @@
 extends Node3D
-class_name VFXEffect
-
-# Root script of every effect scene. It only knows how to play, restart and park itself.
-# The manager owns the pooling.
+class_name Effect
 
 
 #region Signals
 
 signal finished(effect : VFXEffect)
+
+#endregion
+
+
+#region Enums
+
+enum Type {
+	none,
+	hitSpark,
+	deathBurst,
+	landDust,
+	dashDust,
+	spawnPortal,
+}
 
 #endregion
 

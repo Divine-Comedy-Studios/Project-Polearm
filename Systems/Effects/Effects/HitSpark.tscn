@@ -1,7 +1,7 @@
 [gd_scene format=3]
 
-[ext_resource type="Script" path="res://Systems/VFX/VFXEffect.gd" id="1_fx"]
-[ext_resource type="Material" path="res://Systems/VFX/Resources/MatGlow.tres" id="m_glow"]
+[ext_resource type="Script" uid="uid://cq52eaukdo1jt" path="res://Systems/Effects/Effect.gd" id="1_fx"]
+[ext_resource type="Material" uid="uid://bt4nmn1moev3d" path="res://Systems/Effects/Resources/MatGlow.tres" id="m_glow"]
 
 [sub_resource type="Gradient" id="Gradient_Sparks"]
 offsets = PackedFloat32Array(0, 0.3, 1)

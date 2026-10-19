@@ -1,5 +1,5 @@
 extends Node
-class_name VFXManager
+class_name EffectManager
 
 # Plays one-shot effects at a point in the world:
 #	Globals.world.vfxManager.play(VFX.Type.hitSpark, position, normal)
@@ -19,15 +19,15 @@ class_name VFXManager
 class PoolData extends RefCounted:
 	var scene : PackedScene = null
 	var maxSize : int = 0
-	var free : Array[VFXEffect] = []
-	var active : Array[VFXEffect] = [] # Oldest first
+	var free : Array[Effect] = []
+	var active : Array[Effect] = [] # Oldest first
 
 #endregion
 
 
 #region Member variables
 
-var _pools : Dictionary[VFX.Type, PoolData] = {}
+var _pools : Dictionary[Effect.Type, PoolData] = {}
 
 #endregion
 

@@ -54,7 +54,7 @@ const ROLE_STRENGTH : Array[Role] = [
 @export var ROLE_HOLD_TIME : float = 2.0
 
 @export_group("Enemy spawn config")
-@export var MINIMUM_EMPTY_RADIUS_SQUARED : float = 1.0
+@export var MINIMUM_EMPTY_RADIUS_SQUARED : float = 2
 
 #endregion
 
@@ -236,7 +236,7 @@ func _findSpawnPosition() -> Array: # [bool, Transform3D]
 
 		var nearestSq := INF
 		for entity : Node3D in entities:
-			nearestSq = minf(nearestSq, pos.distance_squared_to(entity.global_position))
+			nearestSq = minf(nearestSq, PPUtil.Math.toFlatVec2(pos).distance_squared_to(PPUtil.Math.toFlatVec2(entity.global_position)))
 
 		if nearestSq >= MINIMUM_EMPTY_RADIUS_SQUARED:
 			return [true, Transform3D(Basis.IDENTITY, pos)]

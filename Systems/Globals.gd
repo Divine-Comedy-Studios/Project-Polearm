@@ -8,6 +8,10 @@ class_name Globals
 static var saveUtility : SaveUtility = null
 static var settingsManager : SettingsManager = null
 
+# Audio
+static var sfxManager : SFXManager = null
+static var audioManager : AudioManager = null
+
 # Game state
 
 static var world : World = null

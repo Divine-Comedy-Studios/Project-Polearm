@@ -1,0 +1,94 @@
+[gd_resource type="Resource" script_class="SfxDataset" format=3 uid="uid://h8m6r668aewh"]
+
+[ext_resource type="Script" uid="uid://7co3b8bctukh" path="res://Systems/Audio/Data/SfxDataset.gd" id="1_ds"]
+[ext_resource type="Script" uid="uid://dx1xhevw0sjrh" path="res://Systems/Audio/Data/SoundData.gd" id="2_sd"]
+[ext_resource type="AudioStream" uid="uid://jeas0dwykrl8" path="res://Systems/Audio/Placeholder/sfx_death.wav" id="s_death"]
+[ext_resource type="AudioStream" uid="uid://t2a3inno7lks" path="res://Systems/Audio/Placeholder/sfx_door_off.wav" id="s_doorOff"]
+[ext_resource type="AudioStream" uid="uid://dsrhq8col3el3" path="res://Systems/Audio/Placeholder/sfx_door_on.wav" id="s_doorOn"]
+[ext_resource type="AudioStream" uid="uid://d23gy1ttf7pxx" path="res://Systems/Audio/Placeholder/sfx_footstep.wav" id="s_footstep"]
+[ext_resource type="AudioStream" uid="uid://dhp5xn0x6nibt" path="res://Systems/Audio/Placeholder/sfx_hit.wav" id="s_hit"]
+[ext_resource type="AudioStream" uid="uid://c3bmj2ys5y752" path="res://Systems/Audio/Placeholder/sfx_land.wav" id="s_land"]
+[ext_resource type="AudioStream" uid="uid://bt210pd7ulp21" path="res://Systems/Audio/Placeholder/sfx_swing.wav" id="s_swing"]
+[ext_resource type="AudioStream" uid="uid://dvru6nugr4dhv" path="res://Systems/Audio/Placeholder/sfx_back.wav" id="s_uiBack"]
+[ext_resource type="AudioStream" uid="uid://cd7aenk3flm1d" path="res://Systems/Audio/Placeholder/sfx_click.wav" id="s_uiClick"]
+
+[sub_resource type="Resource" id="Resource_uiClick"]
+script = ExtResource("2_sd")
+STREAMS = Array[AudioStream]([ExtResource("s_uiClick")])
+VOLUME_DB = -6
+PITCH_MIN = 0.97
+PITCH_MAX = 1.03
+
+[sub_resource type="Resource" id="Resource_uiBack"]
+script = ExtResource("2_sd")
+STREAMS = Array[AudioStream]([ExtResource("s_uiBack")])
+VOLUME_DB = -6
+
+[sub_resource type="Resource" id="Resource_hit"]
+script = ExtResource("2_sd")
+STREAMS = Array[AudioStream]([ExtResource("s_hit")])
+VOLUME_DB = -3
+PITCH_MIN = 0.9
+PITCH_MAX = 1.1
+COOLDOWN = 0.04
+MAX_INSTANCES = 6
+
+[sub_resource type="Resource" id="Resource_swing"]
+script = ExtResource("2_sd")
+STREAMS = Array[AudioStream]([ExtResource("s_swing")])
+VOLUME_DB = -6
+PITCH_MIN = 0.9
+PITCH_MAX = 1.1
+MAX_INSTANCES = 3
+
+[sub_resource type="Resource" id="Resource_footstep"]
+script = ExtResource("2_sd")
+STREAMS = Array[AudioStream]([ExtResource("s_footstep")])
+VOLUME_DB = -9
+PITCH_MIN = 0.85
+PITCH_MAX = 1.15
+COOLDOWN = 0.1
+
+[sub_resource type="Resource" id="Resource_land"]
+script = ExtResource("2_sd")
+STREAMS = Array[AudioStream]([ExtResource("s_land")])
+VOLUME_DB = -3
+COOLDOWN = 0.1
+MAX_INSTANCES = 2
+
+[sub_resource type="Resource" id="Resource_death"]
+script = ExtResource("2_sd")
+STREAMS = Array[AudioStream]([ExtResource("s_death")])
+PITCH_MIN = 1
+PITCH_MAX = 1
+MAX_INSTANCES = 2
+
+[sub_resource type="Resource" id="Resource_doorOn"]
+script = ExtResource("2_sd")
+STREAMS = Array[AudioStream]([ExtResource("s_doorOn")])
+VOLUME_DB = -3
+PITCH_MIN = 1
+PITCH_MAX = 1
+MAX_INSTANCES = 2
+
+[sub_resource type="Resource" id="Resource_doorOff"]
+script = ExtResource("2_sd")
+STREAMS = Array[AudioStream]([ExtResource("s_doorOff")])
+VOLUME_DB = -3
+PITCH_MIN = 1
+PITCH_MAX = 1
+MAX_INSTANCES = 2
+
+[resource]
+script = ExtResource("1_ds")
+DATASET = Dictionary[int, ExtResource("2_sd")]({
+1: SubResource("Resource_uiClick"),
+2: SubResource("Resource_uiBack"),
+3: SubResource("Resource_hit"),
+4: SubResource("Resource_swing"),
+5: SubResource("Resource_footstep"),
+6: SubResource("Resource_land"),
+7: SubResource("Resource_death"),
+8: SubResource("Resource_doorOn"),
+9: SubResource("Resource_doorOff")
+})

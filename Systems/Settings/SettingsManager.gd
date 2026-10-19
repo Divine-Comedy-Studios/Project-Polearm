@@ -307,7 +307,8 @@ func applyVideoSettings() -> void:
 
 
 func applyAudioSettings() -> void:
-	pass
+	if Globals.audioManager != null:
+		Globals.audioManager.applyVolumes()
 
 
 func applyKeyboardSettings() -> void:

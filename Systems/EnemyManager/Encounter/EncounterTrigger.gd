@@ -11,12 +11,12 @@ class_name EncounterTrigger
 
 @export var SPAWN_POINT_PARENT : Node3D:
 	set(value):
-		if Engine.is_editor_hint():
+		if Engine.is_editor_hint() and value != null:
 			SPAWN_POINT_PARENT = value
 			_updateSpawnPoints(value)
 @export var FIXED_SPAWN_POINT_PARENT : Node3D:
 	set(value):
-		if Engine.is_editor_hint():
+		if Engine.is_editor_hint() and value != null:
 			FIXED_SPAWN_POINT_PARENT = value
 			_updateFixedSpawnPoints(value)
 
