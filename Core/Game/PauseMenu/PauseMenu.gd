@@ -26,11 +26,13 @@ func _ready() -> void:
 #region Override functions
 
 func enter() -> void:
+	Globals.audioManager.enterPause()
 	process_mode = Node.PROCESS_MODE_INHERIT
 	pauseMenu.show()
 	pauseMenu.enter()
 
 func exit() -> void:
+	Globals.audioManager.exitPause()
 	pauseMenu.hide()
 	process_mode = Node.PROCESS_MODE_DISABLED
 

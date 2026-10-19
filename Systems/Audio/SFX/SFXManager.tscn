@@ -1,0 +1,8 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Systems/Audio/SFX/SFXManager.gd" id="1_sfx"]
+[ext_resource type="Resource" path="res://Systems/Audio/Resources/SfxDataset.tres" id="2_ds"]
+
+[node name="SFXManager" type="Node"]
+script = ExtResource("1_sfx")
+SFX_DATASET = ExtResource("2_ds")

@@ -12,7 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://3vnyxp2i1ac0" path="res://Interfaces/Menus/OptionsMenu/AudioOptions/AudioOptions.tscn" id="8_6nkw5"]
 [ext_resource type="PackedScene" uid="uid://dewxnxvy14tjr" path="res://Interfaces/Menus/OptionsMenu/GameOptions/GameOptions.tscn" id="11_3nt47"]
 [ext_resource type="PackedScene" uid="uid://b8ng1m4gseuer" path="res://Interfaces/Menus/OptionsMenu/VideoOptions/VideoOptions.tscn" id="13_0ye7o"]
-[ext_resource type="Theme" uid="uid://eptqqy8sm6gl" path="res://Interfaces/Themes/MenuTheme.tres" id="13_kuglm"]
 
 [node name="MainMenu" type="CanvasLayer" unique_id=2044156185]
 process_mode = 3
@@ -35,7 +34,6 @@ metadata/_custom_type_script = "uid://7cjw5im7rxvp"
 [node name="QuitConfirmMenu" parent="." unique_id=1621337902 instance=ExtResource("3_3nt47")]
 process_mode = 4
 visible = false
-theme = ExtResource("13_kuglm")
 BACK_MENU = 2
 
 [node name="MainMenuScreen" parent="." unique_id=2089339401 instance=ExtResource("2_4mftg")]
@@ -70,9 +68,7 @@ BACK_MENU = 4
 [node name="ControllerMapping" parent="." unique_id=984357258 instance=ExtResource("4_0vu78")]
 process_mode = 4
 visible = false
-theme = ExtResource("13_kuglm")
 
 [node name="KeyboardMapping" parent="." unique_id=601317194 instance=ExtResource("7_smu38")]
 process_mode = 4
 visible = false
-theme = ExtResource("13_kuglm")
