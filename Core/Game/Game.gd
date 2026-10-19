@@ -87,7 +87,7 @@ func _nextState() -> StringName:
 
 func enter() -> void:
 	Globals.audioManager.playMusic(Audio.MusicType.game)
-	payload = Stage.Type.Level_1
+	payload = Stage.Type.GYM
 	loadingScreen.requestLoad(loadingScreen, _world as AppState)
 
 

@@ -8,7 +8,7 @@ enum Type {
 	NULL = 0,
 
 	GYM = 1,
-	Level_1 = 2,
+	LEVEL_1 = 2,
 }
 
 #endregion
