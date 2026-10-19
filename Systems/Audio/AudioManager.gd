@@ -38,7 +38,7 @@ const MUSIC_EXTENSIONS : PackedStringArray = ["ogg", "mp3", "wav"]
 
 @export_group("Music")
 ## Folder that contains one subfolder per MusicType (Menu, Game, Pause)
-@export_dir var MUSIC_ROOT : String = "res://Systems/Audio/Music"
+@export_dir var MUSIC_ROOT : String = "res://Assets/Music"
 ## Crossfade when the game state changes (menu -> game ...)
 @export var CROSSFADE_TIME : float = 1.0
 ## Crossfade from one track into the next one of the same folder. It starts this many seconds before the track ends.
