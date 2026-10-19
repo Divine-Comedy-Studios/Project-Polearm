@@ -38,7 +38,6 @@ class_name ValueBarUI
 
 
 @export_group("Color")
-
 @export var PROGRESS_GRADIENT : Gradient = null
 
 @export var CHANGE_COLOR : Color:
@@ -81,6 +80,11 @@ class_name ValueBarUI
 	get:
 		return timer.wait_time
 
+
+@export_group("Tweening")
+@export var VALUE_TWEEN_DURATION : float = 0.5
+@export var CHANGE_TWEEN_DURATION : float = 0.5
+
 #endregion
 
 
@@ -109,12 +113,16 @@ func updateColors() -> void:
 #region Private functions
 
 func _onValueChanged(newValue: float) -> void:
+	if timer.is_stopped():
+		changeBar.value = valueBar.value
+
 	if is_inside_tree() and newValue < valueBar.value:
 		timer.start()
-	changeBar.value = valueBar.value
-	valueBar.value = clamp(newValue, 0, valueBar.max_value)
+
+	create_tween().tween_property(valueBar, "value", newValue, VALUE_TWEEN_DURATION).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 
 	updateColors()
+
 
 func _onMaxValueChanged(newMax: float) -> void:
 	valueBar.max_value = newMax
@@ -128,7 +136,6 @@ func _onMaxValueChanged(newMax: float) -> void:
 #region Signal functions
 
 func _onTimeout() -> void:
-	var tween := create_tween()
-	tween.tween_property(changeBar, "value", valueBar.value, 0.5).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	create_tween().tween_property(changeBar, "value", valueResource.value, CHANGE_TWEEN_DURATION).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 
 #endregion

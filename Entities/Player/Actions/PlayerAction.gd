@@ -58,6 +58,9 @@ class Type:
 	const damageLanding := &"damageLanding"
 	const damageStandUp := &"damageStandUp"
 
+	# Healing
+	const heal := &"heal"
+
 	#endregion
 
 
