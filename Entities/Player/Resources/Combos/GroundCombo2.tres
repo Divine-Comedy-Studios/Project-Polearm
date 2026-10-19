@@ -33,7 +33,7 @@ metadata/_custom_type_script = "uid://cqy3drroysy4k"
 
 [sub_resource type="Resource" id="Resource_8q6ni"]
 script = ExtResource("2_1lf8k")
-DAMAGE = 40.0
+DAMAGE = 30.0
 metadata/_custom_type_script = "uid://413tgy3jmvma"
 
 [sub_resource type="Resource" id="Resource_17sjw"]
@@ -46,7 +46,7 @@ metadata/_custom_type_script = "uid://cqy3drroysy4k"
 
 [sub_resource type="Resource" id="Resource_ndcaw"]
 script = ExtResource("2_1lf8k")
-DAMAGE = 30.0
+DAMAGE = 40.0
 metadata/_custom_type_script = "uid://413tgy3jmvma"
 
 [sub_resource type="Resource" id="Resource_1lf8k"]
