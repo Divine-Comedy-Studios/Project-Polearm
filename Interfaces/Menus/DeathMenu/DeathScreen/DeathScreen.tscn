@@ -2,11 +2,10 @@
 
 [ext_resource type="Script" uid="uid://cfdlgc8aalbtr" path="res://Interfaces/UIElements/GameMenuButton.gd" id="1_2kcie"]
 [ext_resource type="Script" uid="uid://da0ene7m0g0bi" path="res://Interfaces/Menus/DeathMenu/DeathScreen/DeathScreen.gd" id="1_7gc0m"]
+[ext_resource type="Texture2D" uid="uid://r1c2gke6bvc" path="res://Interfaces/Kenney/Derived/divider_center.png" id="kui_divider"]
 [ext_resource type="Theme" uid="uid://eptqqy8sm6gl" path="res://Interfaces/Themes/MenuTheme.tres" id="kui_theme"]
-[ext_resource type="Texture2D" path="res://Interfaces/Kenney/Derived/divider_center.png" id="kui_divider"]
 
 [node name="DeathScreen" type="Control" unique_id=371828079 node_paths=PackedStringArray("_fadeInTimer", "_fadeOutTimer", "_fadeRect")]
-theme = ExtResource("kui_theme")
 texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
@@ -14,6 +13,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("kui_theme")
 script = ExtResource("1_7gc0m")
 _fadeInTimer = NodePath("FadeInTimer")
 _fadeOutTimer = NodePath("FadeOutTimer")
@@ -26,7 +26,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.203922, 0.219608, 0.196078, 1.0)
+color = Color(0.203922, 0.219608, 0.196078, 1)
 
 [node name="Center" type="CenterContainer" parent="." unique_id=1341230799]
 layout_mode = 1
@@ -43,7 +43,7 @@ theme_override_constants/separation = 16
 
 [node name="Title" type="Label" parent="Center/VBox" unique_id=457466803]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.717647, 0.427451, 0.313725, 1.0)
+theme_override_colors/font_color = Color(0.717647, 0.427451, 0.313725, 1)
 theme_override_font_sizes/font_size = 72
 text = "YOU DIED"
 horizontal_alignment = 1

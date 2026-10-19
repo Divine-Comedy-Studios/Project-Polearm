@@ -3,6 +3,9 @@ class_name AudioManager
 
 # Lives in Main, so it survives every scene change.
 #	Music:	Globals.audioManager.playMusic(Audio.MusicType.game)
+#			Every MusicType has a folder: res://Systems/Audio/Music/<Type>/ (Menu, Game, Pause).
+#			Drop any number of .ogg / .mp3 / .wav files in there. The tracks play in random order
+#			(every track once before any repeats) and each one crossfades into the next before it ends.
 #	UI:		Globals.audioManager.playSfx2D(Audio.SfxType.uiClick)
 # Sounds in the world (3D, directional) go through the SFXManager inside the World.
 
@@ -26,14 +29,22 @@ const SFX_BUS := &"SFX"
 const SILENT_DB := -80.0
 const UI_POOL_SIZE := 8
 
+const MUSIC_EXTENSIONS : PackedStringArray = ["ogg", "mp3", "wav"]
+
 #endregion
 
 
 #region Exported variables
 
 @export_group("Music")
-@export var MUSIC_DATASET : MusicDataset = null
+## Folder that contains one subfolder per MusicType (Menu, Game, Pause)
+@export_dir var MUSIC_ROOT : String = "res://Assets/Music"
+## Crossfade when the game state changes (menu -> game ...)
 @export var CROSSFADE_TIME : float = 1.0
+## Crossfade from one track into the next one of the same folder. It starts this many seconds before the track ends.
+@export var TRACK_CROSSFADE_TIME : float = 4.0
+## Volume of all music tracks, on top of the music slider in the settings
+@export_range(-40.0, 6.0) var MUSIC_VOLUME_DB : float = -6.0
 @export var PAUSE_BEHAVIOR : PauseBehavior = PauseBehavior.silence
 @export var PAUSE_FADE_TIME : float = 0.4
 
@@ -49,9 +60,12 @@ const UI_POOL_SIZE := 8
 var _musicPlayers : Array[AudioStreamPlayer] = []
 var _activePlayer : int = 0
 var _currentType : Audio.MusicType = Audio.MusicType.none
-var _currentData : MusicData = null
-var _positions : Dictionary = {} # MusicType -> last playback position, used to resume a track
+var _resume : Dictionary = {}    # MusicType -> { "path": String, "position": float }, used to resume a track
 var _tweens : Dictionary = {}    # AudioStreamPlayer -> running fade
+var _currentPath : String = ""   # Track that plays right now
+var _bags : Dictionary = {}      # MusicType -> Array[String], tracks that have not been played in this round
+var _lastPath : Dictionary = {}  # MusicType -> last picked track, so a new round never starts with it
+var _advancing : bool = false    # The next track has already been started
 
 var _inPause : bool = false
 var _pausedType : Audio.MusicType = Audio.MusicType.none
@@ -72,8 +86,6 @@ var _focusLost : bool = false
 #region Built-in functions
 
 func _ready() -> void:
-	assert(MUSIC_DATASET != null, "AudioManager._ready(): Music dataset not assigned!")
-
 	if Globals.audioManager != null:
 		push_error("AudioManager._ready(): AudioManager has already been initialized once!")
 		return
@@ -96,6 +108,10 @@ func _ready() -> void:
 		_uiPlayers.push_back(player)
 
 
+func _process(_delta : float) -> void:
+	_watchTrackEnd()
+
+
 func _exit_tree() -> void:
 	if Globals.audioManager == self:
 		Globals.audioManager = null
@@ -115,7 +131,7 @@ func _notification(what : int) -> void:
 
 #region Public functions: music
 
-# resume = continue the track where it was left the last time instead of starting from the beginning
+# resume = continue the track where it was left the last time instead of starting a new one
 func playMusic(type : Audio.MusicType, resume : bool = false) -> void:
 	_applyVolumesOnce()
 
@@ -126,18 +142,32 @@ func playMusic(type : Audio.MusicType, resume : bool = false) -> void:
 		stopMusic()
 		return
 
-	var data := _musicData(type)
-	if data == null:
-		push_warning("AudioManager.playMusic(): No music with a stream registered for '%s'." % Audio.MusicType.keys()[type])
-		return
-
 	var current := _musicPlayers[_activePlayer]
 	if type == _currentType and _alive(current):
-		if current.stream_paused: # Same track was paused: just continue it
-			_unpause(current, data)
+		if current.stream_paused: # Same state was paused: just continue it
+			_unpause(current)
 		return
 
-	_crossfadeTo(type, data, resume)
+	var path := ""
+	var start := 0.0
+	if resume and _resume.has(type):
+		var saved : Dictionary = _resume[type]
+		path = saved["path"]
+		start = saved["position"]
+
+	if path.is_empty():
+		path = _pickTrack(type)
+		start = 0.0
+
+	var stream := _loadTrack(path)
+	if stream == null:
+		push_warning("AudioManager.playMusic(): No music found for '%s' in '%s'." % [Audio.MusicType.keys()[type], _folder(type)])
+		return
+
+	if start >= stream.get_length() - 0.5:
+		start = 0.0
+
+	_crossfadeTo(type, path, stream, start, CROSSFADE_TIME)
 
 
 func stopMusic(fadeTime : float = -1.0) -> void:
@@ -146,7 +176,7 @@ func stopMusic(fadeTime : float = -1.0) -> void:
 
 	_retire(_musicPlayers[_activePlayer], _currentType, CROSSFADE_TIME if fadeTime < 0.0 else fadeTime)
 	_currentType = Audio.MusicType.none
-	_currentData = null
+	_currentPath = ""
 
 
 # Call when the game gets paused / unpaused. What happens depends on PAUSE_BEHAVIOR.
@@ -157,16 +187,16 @@ func enterPause() -> void:
 	_inPause = true
 	_pausedType = _currentType
 
-	if PAUSE_BEHAVIOR == PauseBehavior.track:
-		var pauseData := _musicData(Audio.MusicType.pause)
-		if pauseData != null:
-			_crossfadeTo(Audio.MusicType.pause, pauseData, false)
+	if PAUSE_BEHAVIOR == PauseBehavior.track and _currentType != Audio.MusicType.pause:
+		var path := _pickTrack(Audio.MusicType.pause)
+		var stream := _loadTrack(path)
+		if stream != null:
+			_crossfadeTo(Audio.MusicType.pause, path, stream, 0.0, CROSSFADE_TIME)
 			return
 
 	# Silence (also the fallback when there is no pause track)
 	var current := _musicPlayers[_activePlayer]
 	if current.playing and not current.stream_paused:
-		_positions[_currentType] = current.get_playback_position()
 		_fadeTo(current, SILENT_DB, PAUSE_FADE_TIME, func() -> void: current.stream_paused = true)
 
 
@@ -187,12 +217,17 @@ func exitPause() -> void:
 		return
 
 	var current := _musicPlayers[_activePlayer]
-	if _alive(current) and _currentData != null:
-		_unpause(current, _currentData)
+	if _alive(current):
+		_unpause(current)
 
 
 func currentMusic() -> Audio.MusicType:
 	return _currentType
+
+
+# File name of the track that plays right now (for debugging or a "now playing" display)
+func currentTrack() -> String:
+	return _currentPath.get_file()
 
 #endregion
 
@@ -248,16 +283,67 @@ func applyVolumes() -> void:
 
 #region Private functions: music
 
-func _musicData(type : Audio.MusicType) -> MusicData:
-	var data := MUSIC_DATASET.DATASET.get(type) as MusicData
-	if data == null or data.STREAM == null:
+func _folder(type : Audio.MusicType) -> String:
+	return MUSIC_ROOT.path_join(String(Audio.MusicType.keys()[type]).capitalize())
+
+
+# All tracks in the folder of a type. Works in the editor and in exported games
+# (there the files are listed with an extra ".import" / ".remap" ending that has to be removed).
+func _scan(type : Audio.MusicType) -> Array[String]:
+	var folder := _folder(type)
+	var found : Dictionary = {}
+
+	for file in DirAccess.get_files_at(folder):
+		var fileName := file
+		if fileName.ends_with(".import"):
+			fileName = fileName.trim_suffix(".import")
+		elif fileName.ends_with(".remap"):
+			fileName = fileName.trim_suffix(".remap")
+
+		if fileName.get_extension().to_lower() in MUSIC_EXTENSIONS:
+			found[folder.path_join(fileName)] = true
+
+	var result : Array[String] = []
+	result.assign(found.keys())
+	result.sort()
+	return result
+
+
+# Random order, every track once before any track is repeated. The first track of a new round is never the last one of the old round.
+func _pickTrack(type : Audio.MusicType) -> String:
+	var bag : Array[String] = _bags.get(type, [] as Array[String])
+
+	if bag.is_empty():
+		bag = _scan(type)
+		if bag.is_empty():
+			return ""
+
+		bag.shuffle()
+		var last : String = _lastPath.get(type, "")
+		if bag.size() > 1 and bag[0] == last:
+			bag.push_back(bag.pop_front())
+
+	var path : String = bag.pop_front()
+	_bags[type] = bag
+	_lastPath[type] = path
+	return path
+
+
+func _loadTrack(path : String) -> AudioStream:
+	if path.is_empty() or not ResourceLoader.exists(path):
 		return null
 
-	return data
+	var stream := load(path) as AudioStream
+	if stream == null:
+		push_warning("AudioManager: '%s' is not an audio file." % path)
+		return null
+
+	_disableLoop(stream) # A looping track would never end, so it could never go over to the next one
+	return stream
 
 
-func _crossfadeTo(type : Audio.MusicType, data : MusicData, resume : bool) -> void:
-	var fade := data.FADE_TIME if data.FADE_TIME >= 0.0 else CROSSFADE_TIME
+func _crossfadeTo(type : Audio.MusicType, path : String, stream : AudioStream, start : float, time : float) -> void:
+	var fade := minf(time, stream.get_length() * 0.5)
 
 	var oldPlayer := _musicPlayers[_activePlayer]
 	var oldType := _currentType
@@ -266,25 +352,46 @@ func _crossfadeTo(type : Audio.MusicType, data : MusicData, resume : bool) -> vo
 	var newPlayer := _musicPlayers[_activePlayer]
 
 	_retire(oldPlayer, oldType, fade)
-	_enableLoop(data)
 
 	_killTween(newPlayer)
-	newPlayer.stream = data.STREAM
+	newPlayer.stream = stream
 	newPlayer.stream_paused = false
-	newPlayer.volume_db = SILENT_DB if fade > 0.0 else data.VOLUME_DB
-
-	var start := 0.0
-	if resume:
-		start = _positions.get(type, 0.0)
-		if start >= data.STREAM.get_length():
-			start = 0.0
+	newPlayer.volume_db = SILENT_DB if fade > 0.0 else MUSIC_VOLUME_DB
 	newPlayer.play(start)
 
 	if fade > 0.0:
-		_fadeTo(newPlayer, data.VOLUME_DB, fade)
+		_fadeTo(newPlayer, MUSIC_VOLUME_DB, fade)
 
 	_currentType = type
-	_currentData = data
+	_currentPath = path
+	_advancing = false
+
+
+# Starts the next track of the same folder while the current one is still playing its last seconds
+func _watchTrackEnd() -> void:
+	if _advancing or _currentType == Audio.MusicType.none:
+		return
+
+	var player := _musicPlayers[_activePlayer]
+	if not player.playing or player.stream_paused or player.stream == null:
+		return
+
+	var position := player.get_playback_position() + AudioServer.get_time_since_last_mix()
+	var remaining := player.stream.get_length() - position
+	if remaining <= minf(TRACK_CROSSFADE_TIME, player.stream.get_length() * 0.5):
+		_advance()
+
+
+func _advance() -> void:
+	_advancing = true # Reset by _crossfadeTo(), prevents that the next track is started twice
+
+	var type := _currentType
+	var path := _pickTrack(type)
+	var stream := _loadTrack(path)
+	if stream == null:
+		return # Nothing to play, the current track just ends
+
+	_crossfadeTo(type, path, stream, 0.0, TRACK_CROSSFADE_TIME)
 
 
 # Fades a player out and stops it. Remembers where the track was, so it can be resumed.
@@ -292,8 +399,8 @@ func _retire(player : AudioStreamPlayer, type : Audio.MusicType, fade : float) -
 	if not _alive(player):
 		return
 
-	if type != Audio.MusicType.none and not player.stream_paused:
-		_positions[type] = player.get_playback_position()
+	if type != Audio.MusicType.none and not _currentPath.is_empty() and not player.stream_paused:
+		_resume[type] = { "path": _currentPath, "position": player.get_playback_position() }
 
 	if player.stream_paused or fade <= 0.0:
 		_killTween(player)
@@ -309,20 +416,30 @@ func _alive(player : AudioStreamPlayer) -> bool:
 	return player.playing or player.stream_paused
 
 
-func _unpause(player : AudioStreamPlayer, data : MusicData) -> void:
+func _unpause(player : AudioStreamPlayer) -> void:
 	player.stream_paused = false
-	_fadeTo(player, data.VOLUME_DB, PAUSE_FADE_TIME)
+	_fadeTo(player, MUSIC_VOLUME_DB, PAUSE_FADE_TIME)
 
 
+# Equal power fade: two tracks that fade at the same time keep the same loudness the whole time
 func _fadeTo(player : AudioStreamPlayer, volumeDb : float, time : float, done : Callable = Callable()) -> void:
 	_killTween(player)
 
+	var fromAmp := db_to_linear(player.volume_db) if player.volume_db > SILENT_DB else 0.0
+	var toAmp := db_to_linear(volumeDb) if volumeDb > SILENT_DB else 0.0
+
 	var tween := create_tween()
-	tween.tween_property(player, "volume_db", volumeDb, maxf(time, 0.001)).set_trans(Tween.TRANS_SINE)
+	tween.tween_method(_applyFade.bind(player, fromAmp, toAmp), 0.0, 1.0, maxf(time, 0.001))
 	if done.is_valid():
 		tween.tween_callback(done)
 
 	_tweens[player] = tween
+
+
+func _applyFade(t : float, player : AudioStreamPlayer, fromAmp : float, toAmp : float) -> void:
+	var shape := sin(t * PI * 0.5) if toAmp > fromAmp else 1.0 - cos(t * PI * 0.5)
+	var amplitude := lerpf(fromAmp, toAmp, shape)
+	player.volume_db = linear_to_db(amplitude) if amplitude > 0.0001 else SILENT_DB
 
 
 func _killTween(player : AudioStreamPlayer) -> void:
@@ -332,28 +449,19 @@ func _killTween(player : AudioStreamPlayer) -> void:
 	_tweens.erase(player)
 
 
-# Makes the stream loop (ogg, mp3 and wav). If the import settings already loop it, nothing changes.
-func _enableLoop(data : MusicData) -> void:
-	if not data.LOOP:
-		return
-
-	var stream := data.STREAM
+func _disableLoop(stream : AudioStream) -> void:
 	if stream is AudioStreamOggVorbis:
-		(stream as AudioStreamOggVorbis).loop = true
+		(stream as AudioStreamOggVorbis).loop = false
 	elif stream is AudioStreamMP3:
-		(stream as AudioStreamMP3).loop = true
+		(stream as AudioStreamMP3).loop = false
 	elif stream is AudioStreamWAV:
-		var wav := stream as AudioStreamWAV
-		if wav.loop_mode == AudioStreamWAV.LOOP_DISABLED:
-			wav.loop_mode = AudioStreamWAV.LOOP_FORWARD
-			wav.loop_begin = 0
-			wav.loop_end = int(wav.get_length() * wav.mix_rate)
+		(stream as AudioStreamWAV).loop_mode = AudioStreamWAV.LOOP_DISABLED
 
 
-# Fallback for streams that could not be set to loop: start them again (a tiny gap is possible)
+# Safety net: if a track ended before the crossfade could start (very short track, lag spike), continue right away
 func _onMusicFinished(player : AudioStreamPlayer) -> void:
-	if player == _musicPlayers[_activePlayer] and _currentData != null and _currentData.LOOP:
-		player.play()
+	if player == _musicPlayers[_activePlayer] and _currentType != Audio.MusicType.none and not _advancing and not player.stream_paused:
+		_advance()
 
 #endregion
 
