@@ -28,9 +28,10 @@ script = ExtResource("4_jgmb7")
 _mainMenuState = NodePath("../MainMenuState")
 SCENE_PATH = "res://Core/Game/Game.tscn"
 
-[node name="Visuals" parent="." unique_id=1659141589 instance=ExtResource("6_tx8yk")]
-
 [node name="Quit" type="Node" parent="." unique_id=1313505066]
+process_mode = 4
 script = ExtResource("7_mmu35")
+
+[node name="Visuals" parent="." unique_id=1659141589 instance=ExtResource("6_tx8yk")]
 
 [node name="AudioManager" parent="." unique_id=2044236791 instance=ExtResource("8_ghk8d")]
