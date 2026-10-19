@@ -13,7 +13,7 @@ metadata/_custom_type_script = "uid://413tgy3jmvma"
 radius = 0.14183411
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_7mb0h"]
-radius = 0.28315014
+radius = 0.2
 
 [node name="Arrow" type="Node3D" unique_id=36479960 node_paths=PackedStringArray("_hurtbox")]
 script = ExtResource("1_x07a2")
@@ -42,7 +42,7 @@ collision_mask = 134250498
 monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" unique_id=1440100987]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.7202852)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.42028517)
 shape = SubResource("SphereShape3D_7mb0h")
 debug_color = Color(0.035616323, 0.6357186, 0.40680492, 0.41960785)
 

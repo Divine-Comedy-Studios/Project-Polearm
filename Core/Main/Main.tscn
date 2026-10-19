@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dqfsomcbp0v3k" path="res://Core/Main/Boot/Boot.tscn" id="4_tx8yk"]
 [ext_resource type="PackedScene" uid="uid://cke1sl2cms1u7" path="res://Systems/Visuals/Visuals.tscn" id="6_tx8yk"]
 [ext_resource type="Script" uid="uid://b8wqthbcl02eb" path="res://Core/Main/States/Quit.gd" id="7_mmu35"]
+[ext_resource type="PackedScene" path="res://Systems/Audio/AudioManager.tscn" id="8_ghk8d"]
 
 [node name="Main" type="Node" unique_id=1689907238]
 script = ExtResource("1_ycf5l")
@@ -31,3 +32,5 @@ SCENE_PATH = "res://Core/Game/Game.tscn"
 
 [node name="Quit" type="Node" parent="." unique_id=1313505066]
 script = ExtResource("7_mmu35")
+
+[node name="AudioManager" parent="." unique_id=2044236791 instance=ExtResource("8_ghk8d")]

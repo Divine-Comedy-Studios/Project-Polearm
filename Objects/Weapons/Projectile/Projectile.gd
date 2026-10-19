@@ -65,6 +65,7 @@ func spawn(physics : ProjectilePhysics):
 
 
 func kill() -> void:
+	disable()	
 	process_mode = Node.PROCESS_MODE_DISABLED
 
 	if handle == null:
