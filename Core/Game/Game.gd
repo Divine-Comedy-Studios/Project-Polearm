@@ -86,7 +86,7 @@ func _nextState() -> StringName:
 	# else:
 
 func enter() -> void:
-	payload = Stage.Type.Level_1
+	payload = Stage.Type.GYM
 	loadingScreen.requestLoad(loadingScreen, _world as AppState)
 
 
