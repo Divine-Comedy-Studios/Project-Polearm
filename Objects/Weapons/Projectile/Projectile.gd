@@ -44,7 +44,7 @@ func _physics_process(delta : float) -> void:
 
 	_remainingLifetime -= delta
 	if _remainingLifetime <= 0.0:
-		handle.kill()
+		_killWrapper(null)
 
 #endregion
 
@@ -87,6 +87,9 @@ func _faceDirection(direction : Vector3) -> void:
 
 
 func _killWrapper(_param : Variant) -> void:
+	if process_mode == Node.PROCESS_MODE_DISABLED: # The projectile is probably already dead, could add a _dead flag
+		return
+
 	if is_inside_tree():
 		await get_tree().process_frame
 

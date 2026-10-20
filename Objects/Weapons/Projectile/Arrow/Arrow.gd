@@ -23,6 +23,9 @@ func _spawn(physics : ProjectilePhysics) -> void:
 		_velocity = physics.normDirection * physics.FLAT_SPEED
 
 		return
+	
+	var directionLength := direction.length()
+	direction /= directionLength
 
 	# Derivation of the formula:
 	#
@@ -36,7 +39,7 @@ func _spawn(physics : ProjectilePhysics) -> void:
 	# verticalDist = verticalVel * horizontalDist / horizontalVel - 1/2 * g (horizontalDist / horizontalVel)^2
 	# (verticalDist + 1/2 * g (horizontalDist / horizontalVel)^2) / (horizontalDist / horizontalVel) = verticalVel
 
-	var horizontalDist := physics.distance * direction.length()
+	var horizontalDist := physics.distance * directionLength
 	var verticalDist := physics.distance * physics.normDirection.y
 
 	var time := horizontalDist / physics.FLAT_SPEED
