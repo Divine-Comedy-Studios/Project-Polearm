@@ -8,12 +8,14 @@ class_name PlayerHealing
 @export var HEAL_VALUE : float = 10.0
 @export var ENERGY_PER_HEAL : float = 5.0
 @export var ENERGY_CONSUMPTION_RATE : float = 10.0
+@export var HEAL_PAUSE_TIME : float = 0.5
 
 #endregion
 
 
 #region Member variables
 
+var _pauseTimer : float = 0.0
 var _energyConsumed : float = 0.0
 
 #endregion
@@ -23,10 +25,16 @@ var _energyConsumed : float = 0.0
 
 func _implExit() -> void:
 	_energyConsumed = 0.0 # Evil punishment
+	_pauseTimer = 0.0
 
 
 func _implTick(delta : float) -> void:
 	super._implTick(delta)
+
+	if _pauseTimer >= 0.0: # Wait a bit between heals
+		_pauseTimer -= delta
+
+		return
 
 	var health := resources().health
 	var energy := resources().energy
@@ -44,9 +52,10 @@ func _implTick(delta : float) -> void:
 	_energyConsumed += currentEnergy - energy.value
 
 	if _energyConsumed >= ENERGY_PER_HEAL:
+		_energyConsumed -= ENERGY_PER_HEAL # Could set this to 0, but this is a bit more forgiving
 		health.value += HEAL_VALUE
 
-		_energyConsumed -= ENERGY_PER_HEAL
+		_pauseTimer = HEAL_PAUSE_TIME
 
 
 func _implNextAction(next : StringName) -> StringName:
