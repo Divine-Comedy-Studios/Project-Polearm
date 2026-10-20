@@ -20,7 +20,6 @@ metadata/_custom_type_script = "uid://ck12n7apm8und"
 [node name="EnemyManager" type="Node" parent="." unique_id=503714007]
 script = ExtResource("2_lf88h")
 FLANKER_WEIGHT = 0.0
-ROLE_HOLD_TIME = 4.0
 MINIMUM_EMPTY_RADIUS_SQUARED = 4.0
 metadata/_custom_type_script = "uid://dl4tnwxqtbept"
 
