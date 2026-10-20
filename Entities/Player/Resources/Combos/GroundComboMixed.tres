@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="EntityCombo" format=3 uid="uid://btqaram70xmar"]
+
+[ext_resource type="Script" uid="uid://d1f6s1sq7da14" path="res://Entities/Entity/Data/EntityActionData.gd" id="1_t5ifd"]
+[ext_resource type="Script" uid="uid://c8b6ivlyaw41v" path="res://Entities/Entity/Combat/Combo/EntityCombo.gd" id="2_rvoc5"]
+
+[resource]
+script = ExtResource("2_rvoc5")
+TYPE = &"mixed"
+metadata/_custom_type_script = "uid://c8b6ivlyaw41v"
