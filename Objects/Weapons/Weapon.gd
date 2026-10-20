@@ -27,7 +27,7 @@ class Type:
 
 #region Scene members
 
-@onready var _hitbox : Hitbox = $Hitbox
+@onready var hitbox : Hitbox = $Hitbox
 
 #endregion
 
@@ -37,7 +37,7 @@ class Type:
 func _ready() -> void:
 	assert(DEFAULT_HIT_DATA != null, "Weapon._ready(): Default hit data not set!")
 
-	_hitbox.disable()
+	hitbox.disable()
 
 #endregion
 
@@ -45,12 +45,12 @@ func _ready() -> void:
 #region Public functions
 
 func enable(data : HitboxData = null) -> void:
-	_hitbox.enable(data if data != null else DEFAULT_HIT_DATA)
+	hitbox.enable(data if data != null else DEFAULT_HIT_DATA)
 
 func disable() -> void:
-	_hitbox.disable()
+	hitbox.disable()
 
 func enabled() -> bool:
-	return _hitbox.enabled()
+	return hitbox.enabled()
 
 #endregion

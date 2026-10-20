@@ -17,6 +17,13 @@ class_name Hitbox
 
 #region Member variables
 
+# Public variables
+
+var hitCount : int = 0
+
+
+# Private variables
+
 @export_group("DEBUG")
 @export var _data : HitboxData = null
 
@@ -50,6 +57,7 @@ func enable(hitData : HitboxData = null) -> void:
 	monitoring = true
 
 func disable() -> void:
+	hitCount = 0
 	monitoring = false
 
 	clear()
@@ -80,10 +88,21 @@ func _onHit(area : Area3D) -> void:
 	var box := area as Hurtbox
 	if _excluded.has(box):
 		return
-	
+
+	hitCount += 1
 	_data.directionalForce = global_transform.basis * Basis(Vector3.RIGHT, -PI / 2) * _data.FORCE
 
 	_excluded.push_back(box)
 	box.recieveHit(_data)
+
+	_implOnHit()
+
+#endregion
+
+
+#region Private functions
+
+func _implOnHit() -> void:
+	pass
 
 #endregion
