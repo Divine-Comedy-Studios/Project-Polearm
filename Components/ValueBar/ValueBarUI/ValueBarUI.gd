@@ -111,7 +111,7 @@ func _onValueChanged(newValue: float) -> void:
 	if is_inside_tree() and newValue < valueBar.value:
 		timer.start()
 
-	create_tween().tween_property(valueBar, "value", newValue, VALUE_TWEEN_DURATION).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_OUT)
+	valueBar.value = newValue
 
 
 func _onMaxValueChanged(newMax: float) -> void:
