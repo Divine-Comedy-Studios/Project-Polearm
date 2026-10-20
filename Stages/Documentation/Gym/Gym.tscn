@@ -221,8 +221,8 @@ points = PackedVector3Array(43.2, 0.5, -18.300001, 43.2, 0, -18.300001, 37.2, 0.
 
 [sub_resource type="Resource" id="Resource_y445v"]
 script = ExtResource("3_l1jfe")
-MAX_ENEMY_COUNT = 6
-ENEMIES = Array[int]([51, 51, 51, 51, 51, 51])
+MAX_ENEMY_COUNT = 3
+ENEMIES = Array[int]([30, 30, 50, 31, 30, 51])
 MAX_ROLE_DIFFICULTY = 8.0
 REQUIRED_ROLES = Dictionary[int, int]({
 1: 2,
@@ -252,8 +252,8 @@ metadata/_custom_type_script = "uid://dgudxdqyw5eah"
 
 [sub_resource type="Resource" id="Resource_1niwp"]
 script = ExtResource("2_viyit")
-WAVES = Array[ExtResource("3_l1jfe")]([SubResource("Resource_y445v"), SubResource("Resource_dgdp0")])
-SPAWN_POINTS = Array[Vector3]([Vector3(-3.0500002, 2.7, -10.300001), Vector3(-3.8000002, 2.7, -6.500001), Vector3(2.25, 2, -4.8500004), Vector3(4.5, 2.7, -9.700001)])
+WAVES = Array[ExtResource("3_l1jfe")]([SubResource("Resource_y445v"), SubResource("Resource_dgdp0"), null, null, null, null])
+SPAWN_POINTS = Array[Vector3]([Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0)])
 metadata/_custom_type_script = "uid://m3xnuvqxxrog"
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_7mb0h"]
@@ -408,17 +408,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 2.7, -9.700001)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.55, 0, -0.6000004)
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="EncounterTrigger/SpawnPoints/Node3D4" unique_id=5103084]
+visible = false
 
 [node name="Node3D3" type="Node3D" parent="EncounterTrigger/SpawnPoints" unique_id=1419525343]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.3, 0, 3.1999998)
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="EncounterTrigger/SpawnPoints/Node3D3" unique_id=2127540575]
+visible = false
 
 [node name="Node3D" type="Node3D" parent="EncounterTrigger/SpawnPoints" unique_id=473651212]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, -0.7, 4.8500004)
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="EncounterTrigger/SpawnPoints/Node3D" unique_id=1495185994]
+visible = false
 
 [node name="Node3D2" type="Node3D" parent="EncounterTrigger/SpawnPoints" unique_id=1038665494]
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="EncounterTrigger/SpawnPoints/Node3D2" unique_id=305582124]
+visible = false

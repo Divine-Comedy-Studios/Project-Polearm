@@ -11,7 +11,7 @@ metadata/_custom_type_script = "uid://413tgy3jmvma"
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_be4l1"]
 radius = 0.1
-height = 1.0793533
+height = 1.0896766
 
 [node name="Scimitar" type="Node3D" unique_id=762137938]
 script = ExtResource("1_7qlvt")
@@ -28,7 +28,7 @@ LAYERS = 2
 metadata/_custom_type_script = "uid://beiorgsa2hjgm"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" unique_id=1326221915]
-transform = Transform3D(1, -7.450562e-09, -5.960461e-08, 7.450576e-09, 1, 2.3841841e-07, 5.960461e-08, -2.3841841e-07, 1, 0.014, 0.641, 0)
+transform = Transform3D(1, -7.450562e-09, -5.960461e-08, 7.450576e-09, 1, 2.3841841e-07, 5.960461e-08, -2.3841841e-07, 1, 0.014, 0.6461616, -1.2306307e-09)
 shape = SubResource("CapsuleShape3D_be4l1")
 debug_color = Color(0, 0.6515532, 0.017827053, 0.41960785)
 
