@@ -24,6 +24,5 @@ mono_crash.*.json
 
 # VSCode-specific ignores
 .vscode/
-
-# MacOS-specific ignores
 .DS_Store
+./Assets/3D Models/Environment
