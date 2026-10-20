@@ -18,6 +18,8 @@ class_name PlayerHealing
 var _pauseTimer : float = 0.0
 var _energyConsumed : float = 0.0
 
+var _stopHealing : bool = false
+
 #endregion
 
 
@@ -29,6 +31,8 @@ func _implEnter() -> void:
 func _implExit() -> void:
 	_energyConsumed = 0.0 # Evil punishment
 	_pauseTimer = 0.0
+
+	_stopHealing = false
 
 
 func _implTick(delta : float) -> void:
@@ -47,6 +51,8 @@ func _implTick(delta : float) -> void:
 		or health.value >= health.maxValue
 		or energy.value <= 0.0
 	):
+		_stopHealing = true
+
 		return
 
 	var currentEnergy := energy.value
@@ -63,7 +69,7 @@ func _implTick(delta : float) -> void:
 
 func _implNextAction(next : StringName) -> StringName:
 	if next != Type.none: # Anything should interrupt healing if we're not pressing anymore
-		if not inputs().modifiers.has(PlayerAction.Type.heal) and _pauseTimer > 0.0 and hasHigherPriorityThan(next):
+		if not inputs().modifiers.has(PlayerAction.Type.heal) and _pauseTimer > 0.0 and hasHigherPriorityThan(next) or _stopHealing:
 			return next
 
 	return Type.none
