@@ -119,7 +119,7 @@ func _onValueChanged(newValue: float) -> void:
 	if is_inside_tree() and newValue < valueBar.value:
 		timer.start()
 
-	create_tween().tween_property(valueBar, "value", newValue, VALUE_TWEEN_DURATION).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	create_tween().tween_property(valueBar, "value", newValue, VALUE_TWEEN_DURATION).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
 
 	updateColors()
 
