@@ -34,8 +34,6 @@ class_name ValueBarUI
 			valueBar.max_value = valueResource.maxValue
 			valueBar.value = valueResource.value
 
-			updateColors()
-
 
 @export_group("Color")
 @export var PROGRESS_GRADIENT : Gradient = null
@@ -82,7 +80,7 @@ class_name ValueBarUI
 
 
 @export_group("Tweening")
-@export var VALUE_TWEEN_DURATION : float = 0.5
+@export var VALUE_TWEEN_DURATION : float = 0.2
 @export var CHANGE_TWEEN_DURATION : float = 0.5
 
 #endregion
@@ -94,14 +92,8 @@ func _ready() -> void:
 	if not Engine.is_editor_hint():
 		assert(valueResource != null, "ValueBar._ready(): Resource not set!")
 
-		updateColors()
 
-#endregion
-
-
-#region Public funcitons
-
-func updateColors() -> void:
+func _physics_process(_delta: float) -> void:
 	var valueRatio = valueBar.value / valueBar.max_value
 
 	if PROGRESS_GRADIENT:
@@ -119,16 +111,12 @@ func _onValueChanged(newValue: float) -> void:
 	if is_inside_tree() and newValue < valueBar.value:
 		timer.start()
 
-	create_tween().tween_property(valueBar, "value", newValue, VALUE_TWEEN_DURATION).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
-
-	updateColors()
+	create_tween().tween_property(valueBar, "value", newValue, VALUE_TWEEN_DURATION).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_OUT)
 
 
 func _onMaxValueChanged(newMax: float) -> void:
 	valueBar.max_value = newMax
 	valueBar.value = clamp(valueBar.value, 0, valueBar.max_value)
-
-	updateColors()
 
 #endregion
 
