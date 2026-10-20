@@ -97,6 +97,8 @@ class Type:
 
 	#endregion
 
+	const comboPause := &"comboPause"
+
 
 	#region Constants
 
@@ -265,8 +267,8 @@ func _insertComboPause() -> void:
 	if not context().frameData.comboPause(data.ANIMATION_NAME, _progress):
 		return
 
-	if context().combatManager.isNextComboAction(Type.idle):
-		context().combatManager.registerComboAction(Type.idle) # Add the pause to the combo
+	if context().combatManager.isNextComboAction(Type.comboPause):
+		context().combatManager.registerComboAction(Type.comboPause) # Add the pause to the combo
 
 
 func _processLedgeStopping() -> void:
