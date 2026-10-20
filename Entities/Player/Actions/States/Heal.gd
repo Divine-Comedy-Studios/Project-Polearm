@@ -8,7 +8,7 @@ class_name PlayerHealing
 @export var HEAL_VALUE : float = 10.0
 @export var ENERGY_PER_HEAL : float = 5.0
 @export var ENERGY_CONSUMPTION_RATE : float = 10.0
-@export var HEAL_PAUSE_TIME : float = 0.5
+@export var HEAL_PAUSE_TIME : float = 1.0
 
 #endregion
 
@@ -22,6 +22,9 @@ var _energyConsumed : float = 0.0
 
 
 #region Override functions
+
+func _implEnter() -> void:
+	_animationSetupBasic()
 
 func _implExit() -> void:
 	_energyConsumed = 0.0 # Evil punishment
@@ -59,8 +62,9 @@ func _implTick(delta : float) -> void:
 
 
 func _implNextAction(next : StringName) -> StringName:
-	if not inputs().modifiers.has(PlayerAction.Type.heal) and next != Type.none: # Anything should interrupt healing if we're not pressing anymore
-		return next
+	if next != Type.none: # Anything should interrupt healing if we're not pressing anymore
+		if not inputs().modifiers.has(PlayerAction.Type.heal) and _pauseTimer > 0.0 and hasHigherPriorityThan(next):
+			return next
 
 	return Type.none
 

@@ -97,6 +97,8 @@ func _processMovementDirection() -> void:
 func _processMovementActions():
 	if Input.is_action_just_pressed("Jump"):
 		inputs.actions.append(PlayerAction.Type.jumpStart)
+	if Input.is_action_pressed("Jump"):
+		inputs.modifiers.append(PlayerAction.Type.jump)
 
 	if Input.is_action_just_pressed("Dash"):
 		inputs.actions.append(PlayerAction.Type.dashStart)
