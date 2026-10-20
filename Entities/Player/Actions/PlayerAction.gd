@@ -97,7 +97,12 @@ class Type:
 
 	#endregion
 
+	
+	#region Special states
+
 	const comboPause := &"comboPause"
+
+	#endregion
 
 
 	#region Constants
