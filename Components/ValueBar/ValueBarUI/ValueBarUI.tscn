@@ -23,6 +23,8 @@ VALUE_TEXTURE = ExtResource("2_6pvtr")
 CHANGE_TEXTURE = ExtResource("2_6pvtr")
 BACKGROUND_TEXTURE = ExtResource("3_t8rqo")
 CHANGE_WAIT_TIME = 0.5
+VALUE_TWEEN_DURATION = null
+CHANGE_TWEEN_DURATION = null
 
 [node name="ChangeBar" type="TextureProgressBar" parent="." unique_id=1440632380]
 layout_mode = 1
