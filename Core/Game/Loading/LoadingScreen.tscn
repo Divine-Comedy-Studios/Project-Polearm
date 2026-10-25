@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d1l8xkhljshuj" path="res://Core/AppStateMachine/Loading/LoadingState.gd" id="1_yaaln"]
 [ext_resource type="Script" uid="uid://bpxisduqy04en" path="res://Core/Game/Loading/LoadingScreen.gd" id="2_ft3ok"]
-[ext_resource type="Texture2D" uid="uid://ceidsf8ux60iq" path="res://Assets/Interfaces/ThemeTextures/Logo.png" id="3_ksk0h"]
+[ext_resource type="Texture2D" uid="uid://ceidsf8ux60iq" path="res://Assets/Interfaces/Logo.png" id="3_ksk0h"]
 
 [node name="LoadingScreen" type="Node" unique_id=148079785]
 script = ExtResource("1_yaaln")
