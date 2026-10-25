@@ -151,6 +151,7 @@ metadata/_custom_type_script = "uid://del87rrtko1do"
 script = ExtResource("4_h8mvu")
 STOP_DISTANCE = 1.0
 ATTACK_DELAY = Vector2(0, 0.2)
+FLANK_DISTANCE = 2.5
 FLANK_RETARGET_COOLDOWN = Vector2(0, 0.1)
 AVAILABLE_ROLES = Array[int]([0, 1, 2])
 entity = NodePath("../Model")
