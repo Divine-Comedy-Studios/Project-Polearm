@@ -54,10 +54,10 @@ func enable(hitData : HitboxData = null) -> void:
 
 	assert(_data != null, "Hitbox.enable(): Hitbox enabled without valid hit data!")
 
+	hitCount = 0
 	monitoring = true
 
 func disable() -> void:
-	hitCount = 0
 	monitoring = false
 
 	clear()

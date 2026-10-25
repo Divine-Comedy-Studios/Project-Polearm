@@ -20,7 +20,7 @@ var _framesSinceStarted : float = 0.0
 var _baseJumpVel : float = 0.0
 var _jumpAccel : float = 0.0
 
-var _gravity : float = 0.0 ### @todo Not a todo, but marker for when we want to change the jump gravity to be universal, remove otherwise
+var _gravity : float = 0.0
 
 #endregion
 

@@ -211,6 +211,12 @@ func _ready() -> void:
 	var error := _file.load(SETTINGS_PATH)
 	_verifySettings()
 
+	applyGameSettings()
+	applyVideoSettings()
+	applyAudioSettings()
+	# applyKeyboardSettings()
+	# applyControllerSettings()
+
 #endregion
 
 

@@ -5,7 +5,6 @@ extends SoliderBasicStopAction
 
 func _implEnter() -> void:
 	entity().detachGround()
-	hurtbox().disable()
 	resources().health.locked = true
 
 	_animationSetupBasic()

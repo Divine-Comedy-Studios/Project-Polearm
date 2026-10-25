@@ -79,7 +79,7 @@ func _on_vsync_toggled(status : bool) -> void:
 	Globals.settingsManager.setBool("video", "vsync", status)
 
 	Globals.settingsManager.saveSettings()
-	Globals.settingsManager.applyGameSettings()
+	Globals.settingsManager.applyVideoSettings()
 
 func _on_gamma_value_changed(value : float) -> void:
 	Globals.settingsManager.setFloat("video", "gamma", value)

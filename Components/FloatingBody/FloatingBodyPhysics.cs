@@ -6,6 +6,7 @@ public partial class FloatingBody : CharacterBody3D {
 	// Initialization functions
 
 	private void _configureHitboxes() {
+		m_rayQuery = PhysicsRayQueryParameters3D.Create(Vector3.Zero, Vector3.Zero, 0);
 		m_rayQuery.CollisionMask = groundCast.CollisionMask;
 
 		groundCast.MaxResults = MAX_GROUND_COLLISIONS;
@@ -13,15 +14,18 @@ public partial class FloatingBody : CharacterBody3D {
 		m_bodyColliderShape.Radius = BODY_COLLIDER_RADIUS;
 		_floatingCollider();
 
+		m_collisionProbeShape = PhysicsServer3D.CapsuleShapeCreate();
 		PhysicsServer3D.ShapeSetData(m_collisionProbeShape, new Godot.Collections.Dictionary<string, float> {
 			{ "height", BODY_COLLIDER_HEIGHT },
 			{ "radius", BODY_COLLIDER_RADIUS }
 		});
+
+		m_collisionProbeBody = PhysicsServer3D.BodyCreate();
+		PhysicsServer3D.BodySetMode(m_collisionProbeBody, PhysicsServer3D.BodyMode.Static);
 		PhysicsServer3D.BodySetCollisionMask(m_collisionProbeBody, CollisionMask);
 		PhysicsServer3D.BodySetSpace(m_collisionProbeBody, GetWorld3D().Space);
-		PhysicsServer3D.BodyAddShape(m_collisionProbeBody, m_collisionProbeShape);
 
-		m_motionParameters.From = Transform3D.Identity;
+		m_motionParameters = new PhysicsTestMotionParameters3D();
 	}
 
 	private void _floatingCollider() {
@@ -291,8 +295,12 @@ public partial class FloatingBody : CharacterBody3D {
 			) - m_lastNonZeroDir * BODY_COLLIDER_RADIUS
 		);
 		m_motionParameters.Motion = m_lastNonZeroDir * STEP_MIN_DEPTH;
-		
-		if (PhysicsServer3D.BodyTestMotion(m_collisionProbeBody, m_motionParameters))
+
+		PhysicsServer3D.BodyAddShape(m_collisionProbeBody, m_collisionProbeShape);
+		bool testMotion = PhysicsServer3D.BodyTestMotion(m_collisionProbeBody, m_motionParameters);
+		PhysicsServer3D.BodyRemoveShape(m_collisionProbeBody, 0);
+
+		if (testMotion)
 			return;
 
 		m_groundedData = m_groundData;

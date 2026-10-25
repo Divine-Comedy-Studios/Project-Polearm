@@ -1,5 +1,6 @@
 using Godot;
 using System.Diagnostics;
+using System.Linq;
 
 
 public partial class FloatingBody : CharacterBody3D {
@@ -24,17 +25,7 @@ public partial class FloatingBody : CharacterBody3D {
 		m_bodyColliderShape = (CapsuleShape3D)bodyCollider.Shape;
 		m_groundCastShape = (SphereShape3D)groundCast.Shape;
 
-
-		// State and caching
-
 		m_groundedData = m_groundData; // Reference to the current ground data which is grounded
-
-		m_rayQuery = PhysicsRayQueryParameters3D.Create(Vector3.Zero, Vector3.Zero, 0);
-		m_motionParameters = new PhysicsTestMotionParameters3D();
-	
-		m_collisionProbeBody = PhysicsServer3D.BodyCreate();
-		m_collisionProbeShape = PhysicsServer3D.CapsuleShapeCreate();
-
 
 		// Init hitboxes
 		_configureHitboxes();
@@ -250,5 +241,12 @@ public partial class FloatingBody : CharacterBody3D {
 
 	public override void _PhysicsProcess(double delta) {
 		Tick((float)delta);
+	}
+
+	public override void _ExitTree() {
+		base._ExitTree();
+
+		PhysicsServer3D.FreeRid(m_collisionProbeBody);
+		PhysicsServer3D.FreeRid(m_collisionProbeShape);
 	}
 }

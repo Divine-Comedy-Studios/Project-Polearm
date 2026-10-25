@@ -36,7 +36,6 @@ func _implEnter() -> void:
 
 	context().controller.beforeShot()
 
-
 func _implExit() -> void:
 	_shotIdx = 0
 	_shot = false
@@ -45,7 +44,6 @@ func _implExit() -> void:
 
 
 func _implTick(delta : float) -> void:
-
 	super._implTick(delta) # Friction
 
 	var canShoot := frameData().optional(data.ANIMATION_NAME, _progress)
@@ -54,6 +52,7 @@ func _implTick(delta : float) -> void:
 		_shoot(_shotIdx)
 
 		_shotIdx += 1
+		_shot = true
 
 	if not canShoot: # Reset shot when the shot frame data is set to false
 		_shot = canShoot

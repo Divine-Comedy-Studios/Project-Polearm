@@ -18,6 +18,8 @@ var handle : ProjectileHandle = null
 var _remainingLifetime : float = 0.0
 var _velocity : Vector3 = Vector3.ZERO
 
+var _alive : bool = false
+
 #endregion
 
 
@@ -58,6 +60,7 @@ func spawn(physics : ProjectilePhysics):
 	position = physics.position
 
 	_remainingLifetime = physics.LIFETIME
+	_alive = true
 
 	_spawn(physics)
 
@@ -65,8 +68,9 @@ func spawn(physics : ProjectilePhysics):
 
 
 func kill() -> void:
-	disable()	
 	process_mode = Node.PROCESS_MODE_DISABLED
+
+	disable()
 
 	if handle == null:
 		queue_free()
@@ -82,13 +86,15 @@ func _faceDirection(direction : Vector3) -> void:
 
 	look_at(
 		global_position + direction,
-		Vector3.UP if absf(direction.normalized().dot(Vector3.UP)) > 0.999 else Vector3.FORWARD
+		Vector3.UP if absf(direction.normalized().dot(Vector3.UP)) < 0.999 else Vector3.FORWARD
 	)
 
 
 func _killWrapper(_param : Variant) -> void:
-	if process_mode == Node.PROCESS_MODE_DISABLED: # The projectile is probably already dead, could add a _dead flag
+	if not _alive:
 		return
+	
+	_alive = false
 
 	if is_inside_tree():
 		await get_tree().process_frame
