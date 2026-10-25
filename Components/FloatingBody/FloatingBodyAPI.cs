@@ -242,11 +242,4 @@ public partial class FloatingBody : CharacterBody3D {
 	public override void _PhysicsProcess(double delta) {
 		Tick((float)delta);
 	}
-
-	public override void _ExitTree() {
-		base._ExitTree();
-
-		PhysicsServer3D.FreeRid(m_collisionProbeBody);
-		PhysicsServer3D.FreeRid(m_collisionProbeShape);
-	}
 }

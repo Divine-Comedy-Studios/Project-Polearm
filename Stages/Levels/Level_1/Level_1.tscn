@@ -21,7 +21,7 @@
 [sub_resource type="Resource" id="Resource_a20cb"]
 script = ExtResource("2_qumhc")
 PLAYER_SPAWN_ROTATION = Vector3(0, 3.14, 0)
-PLAYER_SPAWN_TRANSFORM = Transform3D(-1, 0, 0.002, 0, 1, 0, -0.002, 0, -1, 0, 0, 0)
+PLAYER_SPAWN_TRANSFORM = Transform3D(-0.99999875, 0, 0.001592548, 0, 1, 0, -0.001592548, 0, -0.99999875, 0, 0, 0)
 metadata/_custom_type_script = "uid://ddnfnyl5gscdh"
 
 [sub_resource type="QuadMesh" id="QuadMesh_rtorc"]
@@ -145,7 +145,7 @@ REQUIRED_ROLES = Dictionary[int, int]({
 2: 3
 })
 ENEMY_POSITIONS = Dictionary[int, Vector3]({
-0: Vector3(0, 0, 0)
+0: Vector3(0, 1.9317164, 23.696037)
 })
 metadata/_custom_type_script = "uid://dgudxdqyw5eah"
 
@@ -158,15 +158,15 @@ REQUIRED_ROLES = Dictionary[int, int]({
 2: 3
 })
 ENEMY_POSITIONS = Dictionary[int, Vector3]({
-0: Vector3(0, 0, 0),
-1: Vector3(0, 0, 0)
+0: Vector3(2.6740289, 1.9317164, 31.420488),
+1: Vector3(-2.6571188, 1.9317164, 31.46614)
 })
 metadata/_custom_type_script = "uid://dgudxdqyw5eah"
 
 [sub_resource type="Resource" id="Resource_oqkbv"]
 script = ExtResource("13_mmsc6")
 WAVES = Array[ExtResource("12_s5404")]([SubResource("Resource_7rmlr"), SubResource("Resource_l8hqm")])
-SPAWN_POINTS = Array[Vector3]([Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0)])
+SPAWN_POINTS = Array[Vector3]([Vector3(0, 1.9317164, 23.696037), Vector3(0, 1.9317164, 29.207867), Vector3(-2.693, 1.9320408, 31.477), Vector3(2.693, 1.9320408, 31.477), Vector3(0, 1.9317164, 39.3173)])
 metadata/_custom_type_script = "uid://m3xnuvqxxrog"
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_umo8v"]
@@ -180,7 +180,7 @@ MAX_ENEMY_COUNT = 1
 ENEMIES = Array[int]([50])
 MAX_ROLE_DIFFICULTY = 20.0
 ENEMY_POSITIONS = Dictionary[int, Vector3]({
-0: Vector3(0, 0, 0)
+0: Vector3(0, 2.5971029, 69.65155)
 })
 metadata/_custom_type_script = "uid://dgudxdqyw5eah"
 
@@ -193,15 +193,15 @@ REQUIRED_ROLES = Dictionary[int, int]({
 3: 2
 })
 ENEMY_POSITIONS = Dictionary[int, Vector3]({
-0: Vector3(0, 0, 0),
-1: Vector3(0, 0, 0)
+0: Vector3(-5, 2.5971029, 76.03055),
+1: Vector3(5, 2.5971029, 76.03055)
 })
 metadata/_custom_type_script = "uid://dgudxdqyw5eah"
 
 [sub_resource type="Resource" id="Resource_qlb00"]
 script = ExtResource("13_mmsc6")
 WAVES = Array[ExtResource("12_s5404")]([SubResource("Resource_rnll3"), SubResource("Resource_ythyi")])
-SPAWN_POINTS = Array[Vector3]([Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0)])
+SPAWN_POINTS = Array[Vector3]([Vector3(0, 2.5971029, 69.65155), Vector3(0, 2.5971029, 77.65155), Vector3(-5, 2.5971029, 76.03055), Vector3(5, 2.5971029, 76.03055), Vector3(5, 2.5971029, 62.44055), Vector3(-5, 2.5971029, 62.44055)])
 metadata/_custom_type_script = "uid://m3xnuvqxxrog"
 
 [sub_resource type="Resource" id="Resource_c2aq1"]
@@ -213,13 +213,13 @@ REQUIRED_ROLES = Dictionary[int, int]({
 2: 5
 })
 ENEMY_POSITIONS = Dictionary[int, Vector3]({
-0: Vector3(0, 0, 0),
-1: Vector3(0, 0, 0),
-2: Vector3(0, 0, 0),
-3: Vector3(0, 0, 0),
-4: Vector3(0, 0, 0),
-5: Vector3(0, 0, 0),
-6: Vector3(0, 0, 0)
+0: Vector3(34.64177, -25.049665, 190.06133),
+1: Vector3(34.64177, -25.049665, 181.06133),
+2: Vector3(20.641373, -25.049305, 185.56169),
+3: Vector3(15.641373, -25.049305, 196.56169),
+4: Vector3(15.641373, -25.049305, 174.56169),
+5: Vector3(26.641768, -25.049665, 172.06133),
+6: Vector3(26.641768, -25.049665, 199.06133)
 })
 metadata/_custom_type_script = "uid://dgudxdqyw5eah"
 
@@ -232,12 +232,12 @@ REQUIRED_ROLES = Dictionary[int, int]({
 2: 5
 })
 ENEMY_POSITIONS = Dictionary[int, Vector3]({
-0: Vector3(0, 0, 0),
-1: Vector3(0, 0, 0),
-2: Vector3(0, 0, 0),
-3: Vector3(0, 0, 0),
-6: Vector3(0, 0, 0),
-7: Vector3(0, 0, 0)
+0: Vector3(31.641373, -25.049305, 185.56169),
+1: Vector3(20.641373, -25.049305, 185.56169),
+2: Vector3(20.641768, -25.049665, 170.06133),
+3: Vector3(20.641768, -25.049665, 201.06133),
+6: Vector3(35.641373, -25.049305, 185.56169),
+7: Vector3(26.641373, -25.049305, 185.56169)
 })
 metadata/_custom_type_script = "uid://dgudxdqyw5eah"
 
@@ -250,17 +250,17 @@ REQUIRED_ROLES = Dictionary[int, int]({
 2: 3
 })
 ENEMY_POSITIONS = Dictionary[int, Vector3]({
-0: Vector3(0, 0, 0),
-1: Vector3(0, 0, 0),
-2: Vector3(0, 0, 0),
-3: Vector3(0, 0, 0)
+0: Vector3(34.64177, -25.049665, 190.06133),
+1: Vector3(34.64177, -25.049665, 181.06133),
+2: Vector3(13.641373, -25.049305, 181.56169),
+3: Vector3(13.641373, -25.049305, 189.56169)
 })
 metadata/_custom_type_script = "uid://dgudxdqyw5eah"
 
 [sub_resource type="Resource" id="Resource_rtorc"]
 script = ExtResource("13_mmsc6")
 WAVES = Array[ExtResource("12_s5404")]([SubResource("Resource_c2aq1"), SubResource("Resource_8x06d"), SubResource("Resource_pjdqi")])
-SPAWN_POINTS = Array[Vector3]([Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0)])
+SPAWN_POINTS = Array[Vector3]([Vector3(20.641768, -25.049665, 170.06133), Vector3(20.641768, -25.049665, 170.06133), Vector3(20.641768, -25.049665, 201.06133), Vector3(26.641768, -25.049665, 199.06133), Vector3(26.641768, -25.049665, 172.06133), Vector3(31.64177, -25.049665, 176.06133), Vector3(31.64177, -25.049665, 195.06133), Vector3(34.64177, -25.049665, 190.06133), Vector3(34.64177, -25.049665, 181.06133), Vector3(35.641373, -25.049305, 185.56169), Vector3(31.641373, -25.049305, 185.56169), Vector3(26.641373, -25.049305, 185.56169), Vector3(20.641373, -25.049305, 185.56169), Vector3(13.641373, -25.049305, 181.56169), Vector3(13.641373, -25.049305, 189.56169), Vector3(15.641373, -25.049305, 196.56169), Vector3(15.641373, -25.049305, 174.56169)])
 metadata/_custom_type_script = "uid://m3xnuvqxxrog"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_umo8v"]
@@ -274,7 +274,7 @@ REQUIRED_ROLES = Dictionary[int, int]({
 2: 1
 })
 ENEMY_POSITIONS = Dictionary[int, Vector3]({
-0: Vector3(0, 0, 0)
+0: Vector3(20.934643, -25.033514, 158.65495)
 })
 metadata/_custom_type_script = "uid://dgudxdqyw5eah"
 
@@ -286,7 +286,7 @@ REQUIRED_ROLES = Dictionary[int, int]({
 2: 1
 })
 ENEMY_POSITIONS = Dictionary[int, Vector3]({
-0: Vector3(0, 0, 0)
+0: Vector3(20.934643, -25.033514, 145.24431)
 })
 metadata/_custom_type_script = "uid://dgudxdqyw5eah"
 
@@ -300,16 +300,16 @@ REQUIRED_ROLES = Dictionary[int, int]({
 3: 2
 })
 ENEMY_POSITIONS = Dictionary[int, Vector3]({
-0: Vector3(0, 0, 0),
-1: Vector3(0, 0, 0),
-3: Vector3(0, 0, 0)
+0: Vector3(16.934643, -22.64204, 140.24431),
+1: Vector3(24.934643, -22.64204, 140.24431),
+3: Vector3(20.934643, -22.64204, 139.24431)
 })
 metadata/_custom_type_script = "uid://dgudxdqyw5eah"
 
 [sub_resource type="Resource" id="Resource_1x5d4"]
 script = ExtResource("13_mmsc6")
 WAVES = Array[ExtResource("12_s5404")]([SubResource("Resource_0dnub"), SubResource("Resource_pt6on"), SubResource("Resource_l2gve")])
-SPAWN_POINTS = Array[Vector3]([Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0)])
+SPAWN_POINTS = Array[Vector3]([Vector3(16.934643, -22.64204, 140.24431), Vector3(24.934643, -22.64204, 140.24431), Vector3(20.934643, -22.64204, 139.24431), Vector3(20.934643, -25.033514, 145.24431), Vector3(16.934643, -25.033514, 144.24431), Vector3(24.934643, -25.033514, 144.24431)])
 metadata/_custom_type_script = "uid://m3xnuvqxxrog"
 
 [sub_resource type="Resource" id="Resource_7iwke"]
@@ -321,14 +321,14 @@ REQUIRED_ROLES = Dictionary[int, int]({
 2: 4
 })
 ENEMY_POSITIONS = Dictionary[int, Vector3]({
-0: Vector3(0, 0, 0),
-1: Vector3(0, 0, 0),
-2: Vector3(0, 0, 0),
-3: Vector3(0, 0, 0),
-4: Vector3(0, 0, 0),
-11: Vector3(0, 0, 0),
-12: Vector3(0, 0, 0),
-13: Vector3(0, 0, 0)
+0: Vector3(20.934643, -39.420597, 93.24431),
+1: Vector3(15.934643, -37.037792, 94.24431),
+2: Vector3(15.934643, -37.037792, 101.24431),
+3: Vector3(25.934643, -34.037792, 98.24431),
+4: Vector3(25.934643, -34.037792, 103.24431),
+11: Vector3(12.934643, -39.420597, 136.24431),
+12: Vector3(20.934643, -39.420597, 136.24431),
+13: Vector3(28.934643, -39.420597, 136.24431)
 })
 metadata/_custom_type_script = "uid://dgudxdqyw5eah"
 
@@ -341,20 +341,20 @@ REQUIRED_ROLES = Dictionary[int, int]({
 2: 3
 })
 ENEMY_POSITIONS = Dictionary[int, Vector3]({
-0: Vector3(0, 0, 0),
-1: Vector3(0, 0, 0),
-2: Vector3(0, 0, 0),
-3: Vector3(0, 0, 0),
-4: Vector3(0, 0, 0),
-8: Vector3(0, 0, 0),
-10: Vector3(0, 0, 0)
+0: Vector3(14.934643, -39.420597, 121.24431),
+1: Vector3(20.934643, -39.420597, 119.24431),
+2: Vector3(26.934643, -39.420597, 121.24431),
+3: Vector3(15.934643, -37.037792, 101.24431),
+4: Vector3(25.934643, -34.037792, 103.24431),
+8: Vector3(25.934643, -34.037792, 93.24431),
+10: Vector3(12.934643, -37.037792, 94.24431)
 })
 metadata/_custom_type_script = "uid://dgudxdqyw5eah"
 
 [sub_resource type="Resource" id="Resource_pr0du"]
 script = ExtResource("13_mmsc6")
 WAVES = Array[ExtResource("12_s5404")]([SubResource("Resource_7iwke"), SubResource("Resource_naf6u")])
-SPAWN_POINTS = Array[Vector3]([Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0)])
+SPAWN_POINTS = Array[Vector3]([Vector3(12.934643, -39.420597, 136.24431), Vector3(28.934643, -39.420597, 136.24431), Vector3(20.934643, -39.420597, 136.24431), Vector3(20.934643, -39.420597, 112.24431), Vector3(26.934643, -39.420597, 114.24431), Vector3(20.934643, -39.420597, 116.24431), Vector3(20.934643, -39.420597, 119.24431), Vector3(14.934643, -39.420597, 114.24431), Vector3(20.934643, -39.420597, 107.24431), Vector3(20.934643, -39.420597, 103.24431), Vector3(20.934643, -39.420597, 98.24431), Vector3(20.934643, -39.420597, 93.24431), Vector3(14.934643, -39.420597, 121.24431), Vector3(26.934643, -39.420597, 121.24431), Vector3(12.934643, -37.037792, 101.24431), Vector3(12.934643, -37.037792, 94.24431), Vector3(15.934643, -37.037792, 94.24431), Vector3(15.934643, -37.037792, 101.24431), Vector3(15.934643, -37.037792, 87.24431), Vector3(25.934643, -34.037792, 88.24431), Vector3(25.934643, -34.037792, 93.24431), Vector3(25.934643, -34.037792, 98.24431), Vector3(25.934643, -34.037792, 103.24431), Vector3(28.934643, -34.037792, 103.24431), Vector3(28.934643, -34.037792, 98.24431), Vector3(28.934643, -34.037792, 93.24431), Vector3(28.934643, -34.037792, 88.24431), Vector3(12.934643, -37.037792, 87.24431)])
 metadata/_custom_type_script = "uid://m3xnuvqxxrog"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7iwke"]
@@ -365,7 +365,7 @@ script = ExtResource("12_s5404")
 MAX_ENEMY_COUNT = 1
 ENEMIES = Array[int]([51])
 ENEMY_POSITIONS = Dictionary[int, Vector3]({
-0: Vector3(0, 0, 0)
+0: Vector3(56.771027, -41.734413, 89.30236)
 })
 metadata/_custom_type_script = "uid://dgudxdqyw5eah"
 
@@ -377,12 +377,12 @@ REQUIRED_ROLES = Dictionary[int, int]({
 2: 4
 })
 ENEMY_POSITIONS = Dictionary[int, Vector3]({
-0: Vector3(0, 0, 0),
-1: Vector3(0, 0, 0),
-6: Vector3(0, 0, 0),
-7: Vector3(0, 0, 0),
-10: Vector3(0, 0, 0),
-11: Vector3(0, 0, 0)
+0: Vector3(70.357506, -49.16215, 78.30236),
+1: Vector3(70.357506, -49.16215, 101.30236),
+6: Vector3(40.357506, -49.16215, 78.30236),
+7: Vector3(40.357506, -49.16215, 101.30236),
+10: Vector3(58.357506, -49.16215, 78.30236),
+11: Vector3(58.357506, -49.16215, 101.30236)
 })
 metadata/_custom_type_script = "uid://dgudxdqyw5eah"
 
@@ -395,18 +395,18 @@ REQUIRED_ROLES = Dictionary[int, int]({
 2: 3
 })
 ENEMY_POSITIONS = Dictionary[int, Vector3]({
-0: Vector3(0, 0, 0),
-1: Vector3(0, 0, 0),
-2: Vector3(0, 0, 0),
-3: Vector3(0, 0, 0),
-4: Vector3(0, 0, 0)
+0: Vector3(64.357506, -49.16215, 74.30236),
+1: Vector3(64.357506, -49.16215, 105.30236),
+2: Vector3(68.22235, -45.32151, 89.30236),
+3: Vector3(56.771027, -41.734413, 89.30236),
+4: Vector3(45.319702, -38.147327, 89.30236)
 })
 metadata/_custom_type_script = "uid://dgudxdqyw5eah"
 
 [sub_resource type="Resource" id="Resource_cajmo"]
 script = ExtResource("13_mmsc6")
 WAVES = Array[ExtResource("12_s5404")]([SubResource("Resource_2odtr"), SubResource("Resource_r5kj5"), SubResource("Resource_5nhxh")])
-SPAWN_POINTS = Array[Vector3]([Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0)])
+SPAWN_POINTS = Array[Vector3]([Vector3(34.357506, -49.16215, 78.30236), Vector3(40.357506, -49.16215, 78.30236), Vector3(46.357506, -49.16215, 78.30236), Vector3(52.357506, -49.16215, 78.30236), Vector3(58.357506, -49.16215, 78.30236), Vector3(64.357506, -49.16215, 78.30236), Vector3(70.357506, -49.16215, 78.30236), Vector3(76.357506, -49.16215, 78.30236), Vector3(82.357506, -49.16215, 78.30236), Vector3(82.357506, -49.16215, 74.30236), Vector3(76.357506, -49.16215, 74.30236), Vector3(70.357506, -49.16215, 74.30236), Vector3(64.357506, -49.16215, 74.30236), Vector3(58.357506, -49.16215, 74.30236), Vector3(52.357506, -49.16215, 74.30236), Vector3(46.357506, -49.16215, 74.30236), Vector3(40.357506, -49.16215, 74.30236), Vector3(34.357506, -49.16215, 74.30236), Vector3(34.357506, -49.16215, 105.30236), Vector3(40.357506, -49.16215, 105.30236), Vector3(46.357506, -49.16215, 105.30236), Vector3(52.357506, -49.16215, 105.30236), Vector3(58.357506, -49.16215, 105.30236), Vector3(64.357506, -49.16215, 105.30236), Vector3(70.357506, -49.16215, 105.30236), Vector3(70.357506, -49.16215, 101.30236), Vector3(64.357506, -49.16215, 101.30236), Vector3(58.357506, -49.16215, 101.30236), Vector3(52.357506, -49.16215, 101.30236), Vector3(46.357506, -49.16215, 101.30236), Vector3(40.357506, -49.16215, 101.30236), Vector3(34.357506, -49.16215, 101.30236), Vector3(70.357506, -56.16215, 96.30236), Vector3(64.357506, -56.16215, 96.30236), Vector3(58.357506, -56.16215, 96.30236), Vector3(52.357506, -56.16215, 96.30236), Vector3(46.357506, -56.16215, 96.30236), Vector3(40.357506, -56.16215, 96.30236), Vector3(34.357506, -56.16215, 96.30236), Vector3(70.357506, -56.16215, 84.30236), Vector3(76.357506, -56.16215, 84.30236), Vector3(82.357506, -56.16215, 84.30236), Vector3(64.357506, -56.16215, 84.30236), Vector3(58.357506, -56.16215, 84.30236), Vector3(52.357506, -56.16215, 84.30236), Vector3(46.357506, -56.16215, 84.30236), Vector3(40.357506, -56.16215, 84.30236), Vector3(34.357506, -56.16215, 84.30236), Vector3(76.357506, -46.16215, 89.30236), Vector3(82.357506, -46.16215, 89.30236), Vector3(68.22235, -45.32151, 89.30236), Vector3(62.49669, -43.527966, 89.30236), Vector3(56.771027, -41.734413, 89.30236), Vector3(51.045364, -39.940872, 89.30236), Vector3(45.319702, -38.147327, 89.30236), Vector3(39.59404, -36.353783, 89.30236)])
 metadata/_custom_type_script = "uid://m3xnuvqxxrog"
 
 [sub_resource type="Resource" id="Resource_oxgiw"]
@@ -418,11 +418,11 @@ REQUIRED_ROLES = Dictionary[int, int]({
 2: 4
 })
 ENEMY_POSITIONS = Dictionary[int, Vector3]({
-0: Vector3(0, 0, 0),
-1: Vector3(0, 0, 0),
-2: Vector3(0, 0, 0),
-3: Vector3(0, 0, 0),
-4: Vector3(0, 0, 0)
+0: Vector3(78.27869, -37.49291, 107.22736),
+1: Vector3(86.27869, -43.49291, 96.22736),
+2: Vector3(88.27869, -45.79695, 100.22736),
+3: Vector3(82.27869, -45.79695, 106.22736),
+4: Vector3(86.27869, -45.79695, 104.22736)
 })
 metadata/_custom_type_script = "uid://dgudxdqyw5eah"
 
@@ -435,7 +435,7 @@ REQUIRED_ROLES = Dictionary[int, int]({
 2: 4
 })
 ENEMY_POSITIONS = Dictionary[int, Vector3]({
-0: Vector3(0, 0, 0)
+0: Vector3(91.55474, -45.79695, 116.583435)
 })
 metadata/_custom_type_script = "uid://dgudxdqyw5eah"
 
@@ -444,19 +444,19 @@ script = ExtResource("12_s5404")
 ENEMIES = Array[int]([52, 52, 30, 30, 52, 52, 30, 30])
 MAX_ROLE_DIFFICULTY = 20.0
 ENEMY_POSITIONS = Dictionary[int, Vector3]({
-0: Vector3(0, 0, 0),
-1: Vector3(0, 0, 0),
-2: Vector3(0, 0, 0),
-3: Vector3(0, 0, 0),
-4: Vector3(0, 0, 0),
-5: Vector3(0, 0, 0)
+0: Vector3(92.27869, -43.49291, 96.22736),
+1: Vector3(89.27869, -43.49291, 96.22736),
+2: Vector3(86.27869, -43.49291, 96.22736),
+3: Vector3(78.27869, -37.49291, 113.22736),
+4: Vector3(78.27869, -37.49291, 110.22736),
+5: Vector3(78.27869, -37.49291, 107.22736)
 })
 metadata/_custom_type_script = "uid://dgudxdqyw5eah"
 
 [sub_resource type="Resource" id="Resource_ukbfx"]
 script = ExtResource("13_mmsc6")
 WAVES = Array[ExtResource("12_s5404")]([SubResource("Resource_oxgiw"), SubResource("Resource_rrxfw"), SubResource("Resource_w7ct2")])
-SPAWN_POINTS = Array[Vector3]([Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0)])
+SPAWN_POINTS = Array[Vector3]([Vector3(86.27869, -43.49291, 96.22736), Vector3(92.27869, -43.49291, 96.22736), Vector3(89.27869, -43.49291, 96.22736), Vector3(86.27869, -43.49291, 94.22736), Vector3(89.27869, -43.49291, 94.22736), Vector3(92.27869, -43.49291, 94.22736), Vector3(78.27869, -37.49291, 107.22736), Vector3(78.27869, -37.49291, 110.22736), Vector3(78.27869, -37.49291, 113.22736), Vector3(88.27869, -45.79695, 100.22736), Vector3(82.27869, -45.79695, 106.22736), Vector3(86.27869, -45.79695, 104.22736), Vector3(90.27869, -45.79695, 103.22736), Vector3(85.27869, -45.79695, 108.22736), Vector3(89.27869, -45.79695, 107.22736), Vector3(92.27869, -45.79695, 100.22736), Vector3(82.27869, -45.79695, 110.22736), Vector3(91.55474, -45.79695, 116.583435), Vector3(92.3312, -45.79695, 113.68565), Vector3(89.43342, -45.79695, 112.9092), Vector3(88.65696, -45.79695, 115.80698), Vector3(85.759186, -45.79695, 115.03052), Vector3(93.10765, -45.79695, 110.78788), Vector3(93.10765, -45.79695, 110.78788)])
 metadata/_custom_type_script = "uid://m3xnuvqxxrog"
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_7rmlr"]
@@ -471,9 +471,9 @@ REQUIRED_ROLES = Dictionary[int, int]({
 2: 5
 })
 ENEMY_POSITIONS = Dictionary[int, Vector3]({
-0: Vector3(0, 0, 0),
-1: Vector3(0, 0, 0),
-2: Vector3(0, 0, 0)
+0: Vector3(84.96132, -40.195854, 137.50967),
+1: Vector3(80.96132, -40.195854, 131.50967),
+2: Vector3(88.96132, -40.195854, 131.50967)
 })
 metadata/_custom_type_script = "uid://dgudxdqyw5eah"
 
@@ -486,12 +486,12 @@ REQUIRED_ROLES = Dictionary[int, int]({
 2: 5
 })
 ENEMY_POSITIONS = Dictionary[int, Vector3]({
-0: Vector3(0, 0, 0),
-1: Vector3(0, 0, 0),
-2: Vector3(0, 0, 0),
-3: Vector3(0, 0, 0),
-4: Vector3(0, 0, 0),
-5: Vector3(0, 0, 0)
+0: Vector3(88.96132, -40.195854, 135.50967),
+1: Vector3(80.96132, -40.195854, 135.50967),
+2: Vector3(84.96132, -40.195854, 129.50967),
+3: Vector3(88.96132, -40.195854, 135.50967),
+4: Vector3(80.96132, -40.195854, 135.50967),
+5: Vector3(84.96132, -40.195854, 129.50967)
 })
 metadata/_custom_type_script = "uid://dgudxdqyw5eah"
 
@@ -508,7 +508,7 @@ metadata/_custom_type_script = "uid://dgudxdqyw5eah"
 [sub_resource type="Resource" id="Resource_v5u86"]
 script = ExtResource("13_mmsc6")
 WAVES = Array[ExtResource("12_s5404")]([SubResource("Resource_a16ej"), SubResource("Resource_8klkh"), SubResource("Resource_my8w6")])
-SPAWN_POINTS = Array[Vector3]([Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0)])
+SPAWN_POINTS = Array[Vector3]([Vector3(84.96132, -40.195854, 137.50967), Vector3(88.96132, -40.195854, 135.50967), Vector3(80.96132, -40.195854, 135.50967), Vector3(80.96132, -40.195854, 131.50967), Vector3(88.96132, -40.195854, 131.50967), Vector3(84.96132, -40.195854, 129.50967), Vector3(84.96132, -40.195854, 133.50967)])
 metadata/_custom_type_script = "uid://m3xnuvqxxrog"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7rmlr"]
@@ -523,12 +523,12 @@ REQUIRED_ROLES = Dictionary[int, int]({
 2: 4
 })
 ENEMY_POSITIONS = Dictionary[int, Vector3]({
-0: Vector3(0, 0, 0),
-1: Vector3(0, 0, 0),
-2: Vector3(0, 0, 0),
-3: Vector3(0, 0, 0),
-4: Vector3(0, 0, 0),
-5: Vector3(0, 0, 0)
+0: Vector3(78.96132, -45.886787, 161.9604),
+1: Vector3(90.96132, -45.886787, 161.9604),
+2: Vector3(90.96132, -40.23583, 164.9604),
+3: Vector3(78.96132, -40.23583, 164.9604),
+4: Vector3(91.96132, -45.886787, 181.9604),
+5: Vector3(77.96132, -45.886787, 181.9604)
 })
 metadata/_custom_type_script = "uid://dgudxdqyw5eah"
 
@@ -545,7 +545,7 @@ metadata/_custom_type_script = "uid://dgudxdqyw5eah"
 [sub_resource type="Resource" id="Resource_4m2l7"]
 script = ExtResource("13_mmsc6")
 WAVES = Array[ExtResource("12_s5404")]([SubResource("Resource_ynla2"), SubResource("Resource_qdhcv")])
-SPAWN_POINTS = Array[Vector3]([Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0)])
+SPAWN_POINTS = Array[Vector3]([Vector3(90.96132, -40.23583, 164.9604), Vector3(90.96132, -40.23583, 169.9604), Vector3(90.96132, -40.23583, 174.9604), Vector3(92.96132, -40.23583, 172.9604), Vector3(92.96132, -40.23583, 166.9604), Vector3(78.96132, -40.23583, 164.9604), Vector3(78.96132, -40.23583, 174.9604), Vector3(78.96132, -40.23583, 171.9604), Vector3(78.96132, -40.23583, 167.9604), Vector3(76.96132, -40.23583, 169.9604), Vector3(76.96132, -40.23583, 164.9604), Vector3(76.96132, -40.23583, 174.9604), Vector3(84.96132, -45.886787, 174.9604), Vector3(84.96132, -45.886787, 169.9604), Vector3(84.96132, -45.886787, 164.9604), Vector3(87.96132, -45.886787, 163.9604), Vector3(81.96132, -45.886787, 163.9604), Vector3(78.96132, -45.886787, 161.9604), Vector3(90.96132, -45.886787, 161.9604), Vector3(84.96132, -45.886787, 162.9604), Vector3(82.96132, -45.886787, 167.9604), Vector3(86.96132, -45.886787, 167.9604), Vector3(86.96132, -45.886787, 171.9604), Vector3(82.96132, -45.886787, 171.9604), Vector3(84.96132, -45.886787, 181.9604), Vector3(88.96132, -45.886787, 183.9604), Vector3(80.96132, -45.886787, 183.9604), Vector3(84.96132, -45.886787, 185.9604), Vector3(91.96132, -45.886787, 181.9604), Vector3(77.96132, -45.886787, 181.9604)])
 metadata/_custom_type_script = "uid://m3xnuvqxxrog"
 
 [sub_resource type="Resource" id="Resource_qumhc"]
@@ -557,8 +557,8 @@ REQUIRED_ROLES = Dictionary[int, int]({
 2: 4
 })
 ENEMY_POSITIONS = Dictionary[int, Vector3]({
-0: Vector3(0, 0, 0),
-1: Vector3(0, 0, 0)
+0: Vector3(78.420586, -44.027214, 189.27162),
+1: Vector3(78.420586, -36.969402, 213.01149)
 })
 metadata/_custom_type_script = "uid://dgudxdqyw5eah"
 
@@ -571,9 +571,9 @@ REQUIRED_ROLES = Dictionary[int, int]({
 2: 4
 })
 ENEMY_POSITIONS = Dictionary[int, Vector3]({
-0: Vector3(0, 0, 0),
-1: Vector3(0, 0, 0),
-2: Vector3(0, 0, 0)
+0: Vector3(82.62027, -34.57791, 223.10243),
+1: Vector3(86.295, -34.57791, 222.10243),
+2: Vector3(86.295, -34.57791, 224.10243)
 })
 metadata/_custom_type_script = "uid://dgudxdqyw5eah"
 
@@ -586,14 +586,14 @@ REQUIRED_ROLES = Dictionary[int, int]({
 2: 5
 })
 ENEMY_POSITIONS = Dictionary[int, Vector3]({
-6: Vector3(0, 0, 0)
+6: Vector3(20.770039, -9.799534, 230.8278)
 })
 metadata/_custom_type_script = "uid://dgudxdqyw5eah"
 
 [sub_resource type="Resource" id="Resource_u1fkx"]
 script = ExtResource("13_mmsc6")
 WAVES = Array[ExtResource("12_s5404")]([SubResource("Resource_qumhc"), SubResource("Resource_74r3e"), SubResource("Resource_xh2ei")])
-SPAWN_POINTS = Array[Vector3]([Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0)])
+SPAWN_POINTS = Array[Vector3]([Vector3(78.420586, -44.027214, 189.27162), Vector3(78.420586, -44.027214, 194.40457), Vector3(78.420586, -41.752384, 200.23746), Vector3(78.420586, -39.47755, 206.30367), Vector3(78.420586, -36.969402, 213.01149), Vector3(82.62027, -34.57791, 223.10243), Vector3(86.295, -34.57791, 222.10243), Vector3(86.295, -34.57791, 224.10243), Vector3(69.295, -31.577911, 223.10243), Vector3(61.295, -28.577911, 223.10243), Vector3(55.295, -25.577911, 223.10243), Vector3(48.295, -22.577911, 223.10243), Vector3(41.295, -19.577911, 223.10243), Vector3(34.295, -16.577911, 223.10243), Vector3(28.294998, -13.577911, 223.10243), Vector3(20.770039, -11.577911, 223.10243), Vector3(20.770039, -9.799534, 230.8278), Vector3(20.878284, -11.577911, 206.10243)])
 metadata/_custom_type_script = "uid://m3xnuvqxxrog"
 
 [sub_resource type="Resource" id="Resource_b0jtc"]
@@ -606,16 +606,16 @@ REQUIRED_ROLES = Dictionary[int, int]({
 3: 1
 })
 ENEMY_POSITIONS = Dictionary[int, Vector3]({
-0: Vector3(0, 0, 0),
-1: Vector3(0, 0, 0),
-2: Vector3(0, 0, 0)
+0: Vector3(20.848774, -12.252401, 170.33725),
+1: Vector3(35.848774, -12.252401, 184.33725),
+2: Vector3(5.848774, -12.252401, 184.33725)
 })
 metadata/_custom_type_script = "uid://dgudxdqyw5eah"
 
 [sub_resource type="Resource" id="Resource_q17dg"]
 script = ExtResource("13_mmsc6")
 WAVES = Array[ExtResource("12_s5404")]([SubResource("Resource_b0jtc")])
-SPAWN_POINTS = Array[Vector3]([Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0)])
+SPAWN_POINTS = Array[Vector3]([Vector3(20.848774, -12.252401, 178.33725), Vector3(25.848774, -12.252401, 180.33725), Vector3(15.848774, -12.252401, 180.33725), Vector3(13.848774, -12.252401, 184.33725), Vector3(27.848774, -12.252401, 184.33725), Vector3(31.848774, -12.252401, 184.33725), Vector3(35.848774, -12.252401, 184.33725), Vector3(9.848774, -12.252401, 184.33725), Vector3(5.848774, -12.252401, 184.33725), Vector3(20.848774, -12.252401, 174.33725), Vector3(20.848774, -12.252401, 170.33725), Vector3(26.848774, -12.252401, 189.33725), Vector3(14.848774, -12.252401, 189.33725), Vector3(9.848774, -12.252401, 174.33725), Vector3(12.848774, -12.252401, 177.33725), Vector3(29.848774, -12.252401, 177.33725), Vector3(32.848774, -12.252401, 174.33725), Vector3(25.848774, -12.252401, 174.33725), Vector3(15.848774, -12.252401, 174.33725), Vector3(9.848774, -12.252401, 180.33725), Vector3(31.848774, -12.252401, 180.33725)])
 metadata/_custom_type_script = "uid://m3xnuvqxxrog"
 
 [sub_resource type="Resource" id="Resource_ddqw5"]
@@ -623,7 +623,7 @@ script = ExtResource("12_s5404")
 MAX_ENEMY_COUNT = 1
 ENEMIES = Array[int]([50])
 ENEMY_POSITIONS = Dictionary[int, Vector3]({
-0: Vector3(0, 0, 0)
+0: Vector3(20.78246, -25.06762, 185.574)
 })
 metadata/_custom_type_script = "uid://dgudxdqyw5eah"
 
@@ -636,19 +636,19 @@ REQUIRED_ROLES = Dictionary[int, int]({
 2: 5
 })
 ENEMY_POSITIONS = Dictionary[int, Vector3]({
-0: Vector3(0, 0, 0),
-1: Vector3(0, 0, 0),
-2: Vector3(0, 0, 0),
-3: Vector3(0, 0, 0),
-8: Vector3(0, 0, 0),
-9: Vector3(0, 0, 0)
+0: Vector3(20.78246, -25.06762, 170.574),
+1: Vector3(35.78246, -25.06762, 188.574),
+2: Vector3(5.7824593, -25.06762, 188.574),
+3: Vector3(20.78246, -25.06762, 201.574),
+8: Vector3(35.78246, -25.06762, 184.574),
+9: Vector3(35.78246, -25.06762, 188.574)
 })
 metadata/_custom_type_script = "uid://dgudxdqyw5eah"
 
 [sub_resource type="Resource" id="Resource_etrlu"]
 script = ExtResource("13_mmsc6")
 WAVES = Array[ExtResource("12_s5404")]([SubResource("Resource_ddqw5"), SubResource("Resource_8y80p")])
-SPAWN_POINTS = Array[Vector3]([Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0)])
+SPAWN_POINTS = Array[Vector3]([Vector3(20.78246, -25.06762, 178.574), Vector3(25.78246, -25.06762, 180.574), Vector3(15.782459, -25.06762, 180.574), Vector3(13.782459, -25.06762, 184.574), Vector3(27.78246, -25.06762, 184.574), Vector3(31.78246, -25.06762, 184.574), Vector3(35.78246, -25.06762, 184.574), Vector3(9.782459, -25.06762, 184.574), Vector3(5.7824593, -25.06762, 184.574), Vector3(20.78246, -25.06762, 174.574), Vector3(20.78246, -25.06762, 170.574), Vector3(26.78246, -25.06762, 189.574), Vector3(14.782459, -25.06762, 189.574), Vector3(9.782459, -25.06762, 174.574), Vector3(12.782459, -25.06762, 177.574), Vector3(29.78246, -25.06762, 177.574), Vector3(32.78246, -25.06762, 174.574), Vector3(25.78246, -25.06762, 174.574), Vector3(15.782459, -25.06762, 174.574), Vector3(9.782459, -25.06762, 180.574), Vector3(31.78246, -25.06762, 180.574), Vector3(22.78246, -25.06762, 192.574), Vector3(18.78246, -25.06762, 192.574), Vector3(10.782459, -25.06762, 192.574), Vector3(29.78246, -25.06762, 192.574), Vector3(32.78246, -25.06762, 195.574), Vector3(7.7824593, -25.06762, 195.574), Vector3(16.78246, -25.06762, 195.574), Vector3(13.782459, -25.06762, 199.574), Vector3(28.78246, -25.06762, 199.574), Vector3(24.78246, -25.06762, 195.574), Vector3(9.782459, -25.06762, 188.574), Vector3(31.78246, -25.06762, 188.574), Vector3(35.78246, -25.06762, 188.574), Vector3(5.7824593, -25.06762, 188.574), Vector3(20.78246, -25.06762, 185.574), Vector3(20.78246, -25.06762, 182.574), Vector3(20.78246, -25.06762, 188.574), Vector3(17.78246, -25.06762, 185.574), Vector3(23.78246, -25.06762, 185.574), Vector3(20.78246, -25.06762, 201.574), Vector3(20.78246, -25.06762, 197.574)])
 metadata/_custom_type_script = "uid://m3xnuvqxxrog"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_x2sjg"]

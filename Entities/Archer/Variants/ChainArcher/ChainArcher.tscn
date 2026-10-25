@@ -129,8 +129,8 @@ height = 1.55
 viewport_path = NodePath("Model/HealthBar/SubViewport")
 
 [sub_resource type="Gradient" id="Gradient_pbajo"]
-offsets = PackedFloat32Array(0.1325001, 0.4532238, 0.9943422)
-colors = PackedColorArray(0.82508445, 0.0032476706, 0.16931134, 1, 0.82407624, 0.6277912, 0.064864345, 1, 0.31102964, 0.61787194, 0.2871761, 1)
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0.82508445, 0.0032476706, 0.16931134, 1)
 
 [node name="Archer" type="Node3D" unique_id=611518248 node_paths=PackedStringArray("_controller", "actionManager")]
 script = ExtResource("1_xq74f")
@@ -210,7 +210,7 @@ shape = SubResource("CapsuleShape3D_hraxl")
 debug_fill = false
 
 [node name="HurtboxAttachment" type="BoneAttachment3D" parent="Model" unique_id=1335791146]
-transform = Transform3D(-0.035907056, 0.9923264, -0.118317164, 0.95210886, 0.06994155, 0.29765224, 0.30364344, -0.101962954, -0.94731426, -0.31796718, 1.4244711, 0.016196126)
+transform = Transform3D(-0.028725661, 0.7938611, -0.09465369, 0.7616871, 0.055953242, 0.2381218, 0.24291475, -0.08157032, -0.7578514, -0.25437376, 1.1395769, 0.012956886)
 bone_name = "DEF-spine"
 bone_idx = 1
 use_external_skeleton = true

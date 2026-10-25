@@ -128,9 +128,9 @@ height = 1.55
 [sub_resource type="ViewportTexture" id="ViewportTexture_s5tgp"]
 viewport_path = NodePath("Model/HealthBar/SubViewport")
 
-[sub_resource type="Gradient" id="Gradient_pbajo"]
-offsets = PackedFloat32Array(0.1325001, 0.4532238, 0.9943422)
-colors = PackedColorArray(0.82508445, 0.0032476706, 0.16931134, 1, 0.82407624, 0.6277912, 0.064864345, 1, 0.31102964, 0.61787194, 0.2871761, 1)
+[sub_resource type="Gradient" id="Gradient_vykof"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0.82508445, 0.0032476706, 0.16931134, 1)
 
 [node name="Archer" type="Node3D" unique_id=611518248 node_paths=PackedStringArray("_controller", "actionManager")]
 script = ExtResource("1_7go7y")
@@ -368,7 +368,7 @@ offset_right = 100.0
 offset_bottom = 7.5
 grow_horizontal = 2
 grow_vertical = 2
-PROGRESS_GRADIENT = SubResource("Gradient_pbajo")
+PROGRESS_GRADIENT = SubResource("Gradient_vykof")
 CHANGE_COLOR = Color(0.9729009, 0.8528588, 0.9309137, 1)
 VALUE_TWEEN_DURATION = 0.2
 CHANGE_TWEEN_DURATION = 0.5

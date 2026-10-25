@@ -17,7 +17,7 @@ radius = 0.19902699
 
 [node name="HomingMissile" type="Node3D" unique_id=791150937 node_paths=PackedStringArray("_hurtbox")]
 script = ExtResource("1_sjpgl")
-TURN_SPEED = 4.0
+TURN_SPEED = 2.5
 _hurtbox = NodePath("Hurtbox")
 TYPE = &"homing"
 DEFAULT_HIT_DATA = SubResource("Resource_fyhvn")

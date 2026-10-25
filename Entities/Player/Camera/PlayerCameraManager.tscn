@@ -13,6 +13,9 @@ script = ExtResource("3_ij7sd")
 script = ExtResource("5_i8oxm")
 metadata/_custom_type_script = "uid://b8hhnqsugykly"
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_ndcaw"]
+radius = 0.3
+
 [node name="PlayerCameraManager" type="Node" unique_id=448851904]
 script = ExtResource("1_ye1s6")
 STICK_RELATIVE_DEADZONE = 0.5
@@ -35,6 +38,7 @@ follow_offset = Vector3(0, 1.5, 0)
 follow_distance = 3.0
 spring_length = 3.0
 collision_mask = 32768
+shape = SubResource("SphereShape3D_ndcaw")
 align_transform_with_view = Callable()
 align_position_with_view = Callable()
 align_rotation_with_view = Callable()

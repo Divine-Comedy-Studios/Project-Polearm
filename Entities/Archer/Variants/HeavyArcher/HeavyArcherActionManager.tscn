@@ -26,7 +26,7 @@ metadata/_custom_type_script = "uid://d1f6s1sq7da14"
 [sub_resource type="Resource" id="Resource_fcm6e"]
 script = ExtResource("6_v1vkk")
 FLAT_SPEED = 7.0
-LIFETIME = 7.0
+LIFETIME = 3.5
 GRAVITY = 0.0
 OFFSET = Vector3(0, 1, 0)
 metadata/_custom_type_script = "uid://byl5j7t5v4nsf"
