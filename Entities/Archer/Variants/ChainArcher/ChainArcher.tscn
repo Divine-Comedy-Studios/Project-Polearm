@@ -148,6 +148,7 @@ metadata/_custom_type_script = "uid://del87rrtko1do"
 
 [node name="ArcherController" type="Node" parent="." unique_id=1976576889 node_paths=PackedStringArray("entity")]
 script = ExtResource("4_ub38h")
+HOLD_FIRE_PROBABILITY = 0.0
 AVAILABLE_ROLES = Array[int]([0, 3])
 entity = NodePath("../Model")
 metadata/_custom_type_script = "uid://dyset1m48keqp"
@@ -369,3 +370,5 @@ grow_horizontal = 2
 grow_vertical = 2
 PROGRESS_GRADIENT = SubResource("Gradient_pbajo")
 CHANGE_COLOR = Color(0.9729009, 0.8528588, 0.9309137, 1)
+VALUE_TWEEN_DURATION = 0.2
+CHANGE_TWEEN_DURATION = 0.5

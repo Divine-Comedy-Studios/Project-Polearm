@@ -160,6 +160,7 @@ metadata/_custom_type_script = "uid://del87rrtko1do"
 
 [node name="ArcherController" type="Node" parent="." unique_id=1976576889 node_paths=PackedStringArray("entity")]
 script = ExtResource("4_o7i30")
+HOLD_FIRE_PROBABILITY = 0.0
 AVAILABLE_ROLES = Array[int]([0, 3])
 entity = NodePath("../Model")
 metadata/_custom_type_script = "uid://dyset1m48keqp"

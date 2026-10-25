@@ -27,7 +27,7 @@
 [ext_resource type="Script" uid="uid://c53u6shanxeug" path="res://Entities/Player/Actions/States/TransitionAction/AirDashStart.gd" id="16_yl8et"]
 [ext_resource type="Script" uid="uid://tpcj3x2f82ym" path="res://Entities/Player/Actions/States/Sprint.gd" id="17_6ns0w"]
 [ext_resource type="Script" uid="uid://3fen78mrevq4" path="res://Entities/Player/Actions/States/TransitionAction/DashStart.gd" id="17_fh6tg"]
-[ext_resource type="Script" uid="uid://b7l2j8josovnk" path="res://Entities/Player/Actions/States/AirJump.gd" id="18_wu1xb"]
+[ext_resource type="Script" path="res://Entities/Player/Actions/States/AirJump.gd" id="18_wu1xb"]
 [ext_resource type="Script" uid="uid://beoods6p8kv38" path="res://Entities/Player/Actions/States/Damage.gd" id="24_re4dn"]
 [ext_resource type="Script" uid="uid://begevo510bmnd" path="res://Entities/Player/Actions/States/AirAttack.gd" id="25_b8qbd"]
 [ext_resource type="Script" uid="uid://bpq80ha7b21w4" path="res://Entities/Player/Actions/States/TransitionAction/DamageFall.gd" id="25_djij5"]
@@ -268,8 +268,10 @@ metadata/_custom_type_script = "uid://jc1g0sv32qq1"
 [node name="Heal" type="Node" parent="." unique_id=349652514]
 process_mode = 4
 script = ExtResource("10_q6hpk")
-HEAL_VALUE = 30.0
-ENERGY_PER_HEAL = 20.0
+HEAL_VALUE = 50.0
+ENERGY_PER_HEAL = 25.0
+ENERGY_CONSUMPTION_RATE = 50.0
+HEAL_PAUSE_TIME = 0.5
 TYPE = &"heal"
 PRIORITY = 4
 data = SubResource("Resource_tk2if")
