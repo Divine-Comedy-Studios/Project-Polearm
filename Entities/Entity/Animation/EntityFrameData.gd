@@ -13,6 +13,7 @@ class_name EntityFrameData
 @export_group("Behavior")
 @export var _rotationTracking : float = 0.0 # Speed of rotation tracking
 @export var _weaponActivate : bool = false # Is the weapon active
+@export var _sfx : SFXData.Type = SFXData.Type.none # Type of the SFX to play
 
 @export_group("Optional")
 @export var _optional : bool = false # Optional flag that any state may decide to set or not
@@ -37,12 +38,16 @@ func weaponActivate(animationName : StringName, time : float) -> bool:
 func finished(animationName : StringName, time : float) -> float:
 	return _getValue(animationName, ^"FrameData:_finished", time) as bool
 
+
 func optional(animationName : StringName, time : float) -> bool:
 	return _getValue(animationName, ^"FrameData:_optional", time) as bool
 
 
 func rotationTracking(animationName : StringName, time : float) -> float:
 	return _getValue(animationName, ^"FrameData:_rotationTracking", time) as float
+
+func sfx(animationName : StringName, time : float) -> SFXData.Type:
+	return _getValue(animationName, ^"FrameData:_sfx", time) as SFXData.Type
 
 #endregion
 

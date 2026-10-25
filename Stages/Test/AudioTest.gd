@@ -28,8 +28,8 @@ func _unhandled_input(event : InputEvent) -> void:
 		return
 
 	match key:
-		KEY_M: _audio.playMusic(Audio.MusicType.menu)
-		KEY_G: _audio.playMusic(Audio.MusicType.game)
+		KEY_M: _audio.playMusic(MusicData.Type.mainMenu)
+		KEY_G: _audio.playMusic(MusicData.Type.game)
 		KEY_S: _audio.stopMusic()
 		KEY_P:
 			_paused = not _paused
@@ -37,14 +37,14 @@ func _unhandled_input(event : InputEvent) -> void:
 			else: _audio.exitPause()
 		KEY_B:
 			_audio.PAUSE_BEHAVIOR = AudioManager.PauseBehavior.track if _audio.PAUSE_BEHAVIOR == AudioManager.PauseBehavior.silence else AudioManager.PauseBehavior.silence
-		KEY_1: _audio.playSfx2D(Audio.SfxType.uiClick)
-		KEY_2: _sfx.play(Audio.SfxType.hit, _spot)
-		KEY_3: _sfx.play(Audio.SfxType.swing, _spot)
-		KEY_4: _sfx.play(Audio.SfxType.footstep, _spot)
-		KEY_5: _sfx.play(Audio.SfxType.land, _spot)
-		KEY_6: _sfx.play(Audio.SfxType.doorOn, _spot)
-		KEY_7: _sfx.play(Audio.SfxType.doorOff, _spot)
-		KEY_8: _sfx.play(Audio.SfxType.death, _spot)
+		KEY_1: _audio.playSfx2D(SFXData.Type.uiClick)
+		KEY_2: _sfx.play(SFXData.Type.hit, _spot)
+		KEY_3: _sfx.play(SFXData.Type.swing, _spot)
+		KEY_4: _sfx.play(SFXData.Type.footstep, _spot)
+		KEY_5: _sfx.play(SFXData.Type.land, _spot)
+		KEY_6: _sfx.play(SFXData.Type.doorOn, _spot)
+		KEY_7: _sfx.play(SFXData.Type.doorOff, _spot)
+		KEY_8: _sfx.play(SFXData.Type.death, _spot)
 
 	_refresh()
 
@@ -59,4 +59,4 @@ func _refresh() -> void:
 		"paused" if _paused else "running",
 		AudioManager.PauseBehavior.keys()[_audio.PAUSE_BEHAVIOR],
 		_spot.x,
-		Audio.MusicType.keys()[_audio.currentMusic()]]
+		MusicData.Type.keys()[_audio.currentMusic()]]

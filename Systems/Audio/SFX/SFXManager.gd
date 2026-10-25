@@ -2,7 +2,7 @@ extends Node
 class_name SFXManager
 
 # Plays sounds at a position in the world. Goes into World.tscn (one node, like the other managers).
-#	Globals.sfxManager.play(Audio.SfxType.hit, hitPosition)
+#	Globals.sfxManager.play(SFXData.Type.hit, hitPosition)
 # Sounds are pooled, directional (AudioStreamPlayer3D) and freeze together with the world: Godot pauses
 # 3D players by itself when their parent is disabled (as the World is while the game is paused).
 
@@ -17,14 +17,14 @@ const SFX_BUS := &"SFX"
 #region Exported variables
 
 @export_group("SFX config")
-@export var SFX_DATASET : SfxDataset = null
-## Maximum number of sounds playing at the same time. When it is full the oldest one gets replaced.
 @export var POOL_SIZE : int = 24
 
 #endregion
 
 
 #region Member variables
+
+var SFX_DATASET : SFXDataset = null
 
 var _free : Array[AudioStreamPlayer3D] = []
 var _active : Array[AudioStreamPlayer3D] = [] # Oldest first
@@ -40,11 +40,14 @@ var _listener : AudioListener3D = null
 #region Built-in functions
 
 func _ready() -> void:
-	assert(SFX_DATASET != null, "SFXManager._ready(): SFX dataset not assigned!")
+	assert(Globals.audioManager != null, "SFXManager._ready(): SFXManager requires global audio manager!")
 
 	if Globals.sfxManager != null:
 		push_error("SFXManager._ready(): SFXManager has already been initialized once!")
+
 		return
+
+	SFX_DATASET = Globals.audioManager.SFX_DATASET
 
 	Globals.sfxManager = self
 
@@ -55,22 +58,20 @@ func _ready() -> void:
 		add_child(player)
 		_free.push_back(player)
 
-
-func _exit_tree() -> void:
-	if Globals.sfxManager == self:
-		Globals.sfxManager = null
-
-
 #endregion
 
 
 #region Public functions
 
 # volumeScale 0..1 makes a single play quieter, e.g. weak hits
-func play(type : Audio.SfxType, position : Vector3, volumeScale : float = 1.0) -> void:
-	var data := SFX_DATASET.DATASET.get(type) as SoundData
-	if data == null or data.STREAMS.is_empty():
-		push_warning("SFXManager.play(): No sound registered for '%s'." % Audio.SfxType.keys()[type])
+func play(type : SFXData.Type, position : Vector3, volumeScale : float = 1.0) -> void:
+	if type == SFXData.Type.none:
+		return
+
+	var data := SFX_DATASET.DATASET.get(type) as SFXData
+	if data == null:
+		push_error("SFXManager.play(): Missing SFX entry in dataset!")
+
 		return
 
 	var now := Time.get_ticks_msec()
@@ -137,7 +138,7 @@ func _release(player : AudioStreamPlayer3D) -> void:
 
 
 func _countDown(player : AudioStreamPlayer3D) -> void:
-	var type : Audio.SfxType = _typeOf.get(player, Audio.SfxType.none)
+	var type : SFXData.Type = _typeOf.get(player, SFXData.Type.none)
 	_typeCount[type] = maxi(_typeCount.get(type, 1) - 1, 0)
 	_typeOf.erase(player)
 

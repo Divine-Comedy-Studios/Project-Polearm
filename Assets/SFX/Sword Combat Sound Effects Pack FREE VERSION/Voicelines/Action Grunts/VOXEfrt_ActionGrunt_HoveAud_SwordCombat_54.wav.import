@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://0mfmqs6a281p"
+path="res://.godot/imported/VOXEfrt_ActionGrunt_HoveAud_SwordCombat_54.wav-207aef498b61d834d2d860535935c79e.sample"
+
+[deps]
+
+source_file="res://Assets/SFX/Sword Combat Sound Effects Pack FREE VERSION/Voicelines/Action Grunts/VOXEfrt_ActionGrunt_HoveAud_SwordCombat_54.wav"
+dest_files=["res://.godot/imported/VOXEfrt_ActionGrunt_HoveAud_SwordCombat_54.wav-207aef498b61d834d2d860535935c79e.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

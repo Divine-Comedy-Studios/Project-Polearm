@@ -2,8 +2,21 @@ extends Resource
 class_name MusicData
 
 
-@export var STREAM : AudioStream = null
+enum Type {
+	none,
+	mainMenu,
+	game,
+	pause,
+	death,
+}
+
+
+@export var STREAMS : Array[AudioStream] = [ ]
 @export_range(-40.0, 6.0) var VOLUME_DB : float = 0.0
-@export var LOOP : bool = true
-## Fade time when this track starts. -1 = use the manager's default crossfade time.
-@export var FADE_TIME : float = -1.0
+
+
+func pick() -> AudioStream:
+	if STREAMS.is_empty():
+		return null
+
+	return STREAMS[randi_range(0, STREAMS.size() - 1)]

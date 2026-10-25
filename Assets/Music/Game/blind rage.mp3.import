@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/blind rage.mp3-9fb9c021ed0a2aaf085306904dca66
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0

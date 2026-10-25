@@ -301,14 +301,26 @@ func applyVideoSettings() -> void:
 		DisplayServer.VSYNC_ENABLED if getBool("video", "vsync") else DisplayServer.VSYNC_DISABLED)
 
 	# Gamma
+
+	if Globals.visuals == null:
+		push_error("SettingsManager.applyVideoSettings(): Global visuals not assigned!")
+
+		return
+
 	var worldEnv := Globals.visuals.environment
 	worldEnv.environment.adjustment_enabled = true
 	worldEnv.environment.adjustment_brightness = getFloat("video", "gamma")
 
 
 func applyAudioSettings() -> void:
-	if Globals.audioManager != null:
-		Globals.audioManager.applyVolumes()
+	if Globals.audioManager == null:
+		push_error("SettingsManager.applyAudioSettings(): Global audio manager not assigned!")
+
+	Globals.audioManager.setBusVolume(AudioManager.MASTER_BUS, getFloat("audio", "master"))
+	Globals.audioManager.setBusVolume(AudioManager.MUSIC_BUS, getFloat("audio", "music"))
+	Globals.audioManager.setBusVolume(AudioManager.SFX_BUS, getFloat("audio", "sfx"))
+
+	Globals.audioManager.muteOnFocusLost = getBool("audio", "mute on focus loss")
 
 
 func applyKeyboardSettings() -> void:

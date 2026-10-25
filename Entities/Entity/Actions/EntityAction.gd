@@ -24,6 +24,7 @@ class Type:
 @export_group("Gameplay")
 @export var REPEATABLE : bool = false # A repeatable state can get triggered multiple times in succession
 @export var ENERGY_COST : float = 0
+@export var PLAY_SFX : bool = false
 
 #endregion
 
@@ -56,6 +57,11 @@ var _progress : float
 
 var rootMotionEnabled : bool = true
 
+
+# Sound effects
+
+var _lastSFX : SFXData.Type = SFXData.Type.none
+
 #endregion
 
 
@@ -74,8 +80,9 @@ func enter() -> void:
 func exit() -> void:
 	_exit()
 	
-	_progress = 0
 	frameDataScale = 1.0
+	_progress = 0
+	_lastSFX = SFXData.Type.none
 
 	if _context.weapon:
 		_context.weapon.disable()
@@ -100,6 +107,7 @@ func tick(delta : float) -> void:
 	_processDirection(delta)
 	_tick(delta)
 	_processRootMotion(delta)
+	_processSFX()
 
 	_progress += delta * frameDataScale
 
@@ -214,6 +222,19 @@ func _processRootMotion(delta : float) -> void:
 		entityQuaternion.inverse() 
 	) * _context.animator.get_root_motion_position() / delta)
 
+
+func _processSFX() -> void:
+	if not PLAY_SFX:
+		return
+
+	var currentSFX := _context.frameData.sfx(data.ANIMATION_NAME, _progress)
+
+	if currentSFX == _lastSFX:
+		return
+
+	Globals.sfxManager.play(currentSFX, _processSFXPosition(), 1.0)
+	_lastSFX = currentSFX
+
 #endregion
 
 
@@ -252,5 +273,9 @@ func _nextAction() -> StringName:
 
 func _processDirectionAngle() -> float:
 	return 0.0
+
+
+func _processSFXPosition() -> Vector3:
+	return _context.entity.global_position
 
 #endregion

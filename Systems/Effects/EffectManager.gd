@@ -1,33 +1,42 @@
 extends Node
-class_name EffectManager
+class_name VFXManager
 
 # Plays one-shot effects at a point in the world:
-#	Globals.world.vfxManager.play(VFX.Type.hitSpark, position, normal)
-# Effects are pooled per type, nothing is instantiated while playing once the pool is warm.
+#	Globals.vfxManager.play(VFX.Type.hitSpark, position, normal)
+#
+# This is a layer above the GameObjectManager. The effects are game objects, which the GameObjectManager pools and spawns,
+# so this has no pools of its own. All it adds is the API for effects, and a limit for how many effects of a type play at once.
+#
+# Setup: every VFX.Type needs an entry in the GameObjectDataset, with the effect scene (its root uses VFXEffect.gd),
+# VFXHandle.gd as the handle script and PREINITIALIZE as the amount to create up front.
+
+
+#region Helper classes
+
+# Spawn data of the VFXHandle
+class Payload extends RefCounted:
+	var manager : VFXManager = null
+	var type : VFX.Type = VFX.Type.none
+	var transform : Transform3D = Transform3D.IDENTITY
+	var intensity : float = 1.0
+
+#endregion
 
 
 #region Exported variables
 
 @export_group("VFX config")
-@export var VFX_DATASET : VFXDataset = null
-
-#endregion
-
-
-#region Types
-
-class PoolData extends RefCounted:
-	var scene : PackedScene = null
-	var maxSize : int = 0
-	var free : Array[Effect] = []
-	var active : Array[Effect] = [] # Oldest first
+## How many effects of one type may play at the same time. If it is exceeded, the oldest one is cut off. 0 = no limit.
+@export var MAX_INSTANCES : int = 8
+## Limits for single types, instead of MAX_INSTANCES.
+@export var MAX_INSTANCES_OVERRIDES : Dictionary[VFX.Type, int] = { }
 
 #endregion
 
 
 #region Member variables
 
-var _pools : Dictionary[Effect.Type, PoolData] = {}
+var _active : Array[VFXHandle] = [ ] # Oldest first
 
 #endregion
 
@@ -35,10 +44,11 @@ var _pools : Dictionary[Effect.Type, PoolData] = {}
 #region Built-in functions
 
 func _ready() -> void:
-	assert(VFX_DATASET != null, "VFXManager._ready(): VFX dataset not assigned!")
+	if Globals.vfxManager != null:
+		push_error("VFXManager._ready(): VFX manager has already been initialized once!")
+		return
 
-	for type in VFX_DATASET.DATASET:
-		_createPool(type, VFX_DATASET.DATASET[type])
+	Globals.vfxManager = self
 
 #endregion
 
@@ -48,64 +58,55 @@ func _ready() -> void:
 # normal is the direction the effect points to (+Y of the effect scene), e.g. the surface normal at a hit.
 # intensity 0..1 scales amount and brightness.
 func play(type : VFX.Type, position : Vector3, normal : Vector3 = Vector3.UP, intensity : float = 1.0) -> void:
-	var pool := _pools.get(type) as PoolData
-	if pool == null:
-		push_error("VFXManager.play(): No effect registered for type %s!" % VFX.Type.keys()[type])
-		return
+	assert(type != VFX.Type.none, "VFXManager.play(): Can't play an effect of type none!")
 
-	var effect := _acquire(pool)
-	effect.play(Transform3D(_basisFromNormal(normal), position), intensity)
+	_makeRoom(type)
+
+	var payload := Payload.new()
+	payload.manager = self
+	payload.type = type
+	payload.transform = Transform3D(_basisFromNormal(normal), position)
+	payload.intensity = intensity
+
+	Globals.gameObjectManager.spawn(type as GameObject.Type, payload)
 
 
-# Stops everything immediately, e.g. when a stage is reset
+# Stops all effects immediately, e.g. when a stage is reset. Resetting the GameObjectManager does this as well.
 func clear() -> void:
-	for pool : PoolData in _pools.values():
-		for effect in pool.active:
-			effect.park()
-			pool.free.push_back(effect)
-		pool.active.clear()
+	for handle : VFXHandle in _active.duplicate():
+		handle.stop()
+
+
+# Called by the handles
+func register(handle : VFXHandle) -> void:
+	_active.push_back(handle)
+
+func unregister(handle : VFXHandle) -> void:
+	_active.erase(handle)
 
 #endregion
 
 
 #region Private functions
 
-func _createPool(type : VFX.Type, data : VFXData) -> void:
-	assert(data != null, "VFXManager._createPool(): Data for %s is null!" % VFX.Type.keys()[type])
+# If the limit of the type is reached, the oldest effect of the type is cut off so that its object can be used again
+func _makeRoom(type : VFX.Type) -> void:
+	var limit : int = MAX_INSTANCES_OVERRIDES.get(type, MAX_INSTANCES)
+	if limit <= 0:
+		return
 
-	var pool := PoolData.new()
-	pool.scene = load(data.SCENE_PATH) as PackedScene
-	assert(pool.scene != null, "VFXManager._createPool(): Could not load '%s'!" % data.SCENE_PATH)
-	pool.maxSize = data.MAX_INSTANCES
+	var count := 0
+	var oldest : VFXHandle = null
+	for handle : VFXHandle in _active:
+		if handle.type != type:
+			continue
 
-	for i in mini(data.PREWARM, data.MAX_INSTANCES):
-		pool.free.push_back(_instantiate(pool))
+		count += 1
+		if oldest == null:
+			oldest = handle
 
-	_pools[type] = pool
-
-
-func _instantiate(pool : PoolData) -> VFXEffect:
-	var effect := pool.scene.instantiate() as VFXEffect
-	assert(effect != null, "VFXManager._instantiate(): Effect root must use VFXEffect.gd!")
-
-	add_child(effect)
-	effect.finished.connect(_onEffectFinished.bind(pool))
-	return effect
-
-
-func _acquire(pool : PoolData) -> VFXEffect:
-	var effect : VFXEffect = null
-
-	if not pool.free.is_empty():
-		effect = pool.free.pop_back()
-	elif pool.active.size() < pool.maxSize:
-		effect = _instantiate(pool)
-	else:
-		effect = pool.active.pop_front() # Reuse the oldest one
-		effect.park()
-
-	pool.active.push_back(effect)
-	return effect
+	if count >= limit:
+		oldest.stop()
 
 
 func _basisFromNormal(normal : Vector3) -> Basis:
@@ -117,14 +118,5 @@ func _basisFromNormal(normal : Vector3) -> Basis:
 		return Basis(Vector3.RIGHT, PI)
 
 	return Basis(Quaternion(Vector3.UP, direction))
-
-#endregion
-
-
-#region Signal functions
-
-func _onEffectFinished(effect : VFXEffect, pool : PoolData) -> void:
-	pool.active.erase(effect)
-	pool.free.push_back(effect)
 
 #endregion

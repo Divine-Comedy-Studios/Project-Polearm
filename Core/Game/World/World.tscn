@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://ck12n7apm8und" path="res://Systems/GameObject/GameObjectManager.gd" id="3_fkrut"]
 [ext_resource type="Resource" uid="uid://tn6gku0bh4js" path="res://Systems/GameObject/Resources/GameObjectDataset.res" id="4_kerbn"]
 [ext_resource type="Script" uid="uid://ci6h3a7jfhous" path="res://Systems/EnemyManager/Perception/EnemyPerception.gd" id="5_m1rfh"]
+[ext_resource type="Script" uid="uid://bn5o5xqsvn5ol" path="res://Systems/Audio/SFX/SFXManager.gd" id="7_m1rfh"]
 
 [node name="World" type="Node" unique_id=966975395]
 process_mode = 4
@@ -20,7 +21,6 @@ metadata/_custom_type_script = "uid://ck12n7apm8und"
 [node name="EnemyManager" type="Node" parent="." unique_id=503714007]
 script = ExtResource("2_lf88h")
 FLANKER_WEIGHT = 0.0
-ROLE_HOLD_TIME = 4.0
 MINIMUM_EMPTY_RADIUS_SQUARED = 4.0
 metadata/_custom_type_script = "uid://dl4tnwxqtbept"
 
@@ -28,3 +28,7 @@ metadata/_custom_type_script = "uid://dl4tnwxqtbept"
 process_mode = 4
 script = ExtResource("5_m1rfh")
 metadata/_custom_type_script = "uid://ci6h3a7jfhous"
+
+[node name="SFXManager" type="Node" parent="." unique_id=1890538405]
+script = ExtResource("7_m1rfh")
+metadata/_custom_type_script = "uid://bn5o5xqsvn5ol"

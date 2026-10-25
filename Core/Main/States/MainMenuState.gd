@@ -21,7 +21,7 @@ func enter() -> void:
 	super.enter()
 	(scene as MainMenu).injectSaveSlotSignal(saveSlotSelected)
 	
-	Globals.audioManager.playMusic(Audio.MusicType.menu)
+	Globals.audioManager.playMusic(MusicData.Type.mainMenu)
 
 
 func type() -> StringName:

@@ -16,6 +16,7 @@ const FLANK_STEP_ANGLE : float = 0.1
 @export var STOP_DISTANCE : float = 0.8
 @export var ATTACK_DELAY : Vector2 = Vector2(0.1, 0.4)
 @export var ATTACK_COOLDOWN : Vector2 = Vector2(1.0, 3.0)
+@export var MINIMUM_FLANK_RETARGET_DISTANCE_SQUARED : float = 9.0
 
 @export_group("Flanking")
 @export var FLANK_DISTANCE : float = 8.0
@@ -46,10 +47,7 @@ var _flankSpeed : float = 0.0
 
 #region Override functions
 
-func _tick(
-	delta : float,
-	perceptionData : EnemyPerception.Data
-) -> void:
+func _tick(delta : float, perceptionData : EnemyPerception.Data) -> void:
 	var flatPosition := PPUtil.Math.toFlatVec2(entity.global_position)
 	var flatTarget := PPUtil.Math.toFlatVec2(perceptionData.targetPos)
 
@@ -168,6 +166,9 @@ func _pickFlankTarget(center : Vector2, currentTarget : Vector2) -> Vector2:
 		# Random point on the circle of radius FLANK_DISTANCE around
 		var pos := Vector2.from_angle(randf() * TAU) * FLANK_DISTANCE * (1 + randf_range(-FLANK_DISTANCE_RANDOMESS, FLANK_DISTANCE_RANDOMESS))
 		var globalPos := pos + center
+
+		if globalPos.distance_squared_to(PPUtil.Math.toFlatVec2(entity.global_position)) < MINIMUM_FLANK_RETARGET_DISTANCE_SQUARED:
+			continue
 
 		var score := INF
 		for enemy : Vector2 in enemies:

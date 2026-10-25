@@ -19,6 +19,10 @@ const MIN_PERIOD_MULTIPLIER : float = 0.7
 @export var RUN_DATA : PlayerActionData = null
 @export var BLEND_LERP : float = 0.2
 
+@export_group("Footstep settings")
+@export var WALK_FOOTSTEP_TIME : float = 0.6
+@export var RUN_FOOTSTEP_TIME : float = 0.35
+
 #endregion
 
 
@@ -42,8 +46,11 @@ var _blendScale : float = 0.0
 
 
 # Turning state
-
 var _targetDirection : Vector3
+
+
+# Footsteps
+var _footstepTimer : float = 0.0
 
 #endregion
 
@@ -75,21 +82,23 @@ func _implInit() -> void:
 
 func _implEnter() -> void:
 	_targetDirection = player().forward()
+	_footstepTimer = 0.0
 
 	animator().setCoreTransition(&"AdvancedTransition", data.ANIMATION_FADE_TIME)
 	animator().transitionTo(&"AdvancedTransition", &"Move")
 
 
 func _implTick(delta : float) -> void:
-	# Movement
 	var targetSpeed := minf(inputs().inputMagnitude * _runSpeed, _runSpeed)
 	player().accelerateFlat(inputs().direction * targetSpeed, _accel * delta)
 
 	if inputs().inputMagnitude > TURN_INPUT_MIN:
 		_targetDirection = PPUtil.Math.flatToVec3(inputs().direction)
 
-	# Animation
+
 	_processAnimations()
+
+	_processFootsteps(delta)
 
 
 func _processDirectionAngle() -> float:
@@ -130,5 +139,16 @@ func _processAnimations() -> void:
 	animator().setScale(&"WalkScale", frameDataScale)
 	animator().setScale(&"RunScale", _runPeriod / period)
 	animator().setBlendAmount(&"Move", _blendScale)
+
+
+func _processFootsteps(delta : float) -> void:
+	_footstepTimer -= delta
+	if _footstepTimer > 0.0:
+		return
+
+	var runAmount := clampf(inverse_lerp(_walkSpeed, _runSpeed, player().velocity.length()), 0.0, 1.0)
+	_footstepTimer = lerpf(WALK_FOOTSTEP_TIME, RUN_FOOTSTEP_TIME, runAmount)
+
+	Globals.sfxManager.play(SFXData.Type.footstep, player().global_position)
 
 #endregion

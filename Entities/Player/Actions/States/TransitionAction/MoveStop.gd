@@ -34,4 +34,6 @@ func _implEnter() -> void:
 	animator().transitionToUnused(&"BlendTransition", 
 		animator().setCoreTransition(&"BlendTransition", data.ANIMATION_FADE_TIME))
 
+	Globals.sfxManager.play(SFXData.Type.stop, player().global_position)
+
 #endregion
