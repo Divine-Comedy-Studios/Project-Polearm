@@ -22,7 +22,7 @@ mono_crash.*.json
 *.lscache
 *.old
 
-# VSCode-specific ignores
+# Project-specific ignores
 .vscode/
 .DS_Store
 Assets/3D Models/Environment
