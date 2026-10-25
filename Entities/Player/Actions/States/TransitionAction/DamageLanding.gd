@@ -13,9 +13,9 @@ var _dead : bool = false
 func _implEnter() -> void:
 	if resources().health.value <= 0.0:
 		_dead = true
-		context().interrupt(Type.death)
 
-		return
+		player().detachGround()
+		resources().health.locked = true
 
 	_animationSetupBasic()
 
@@ -26,7 +26,7 @@ func _implExit() -> void:
 func _implTick(delta : float) -> void:
 	super._implTick(delta)
 
-	if finished():
+	if finished() and _dead:
 		Globals.world.gameOver()
 
 

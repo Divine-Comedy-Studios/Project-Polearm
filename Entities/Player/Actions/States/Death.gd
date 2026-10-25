@@ -5,7 +5,6 @@ extends PlayerBasicStopAction
 
 func _implEnter() -> void:
 	player().detachGround()
-	hurtbox().disable()
 	resources().health.locked = true
 
 	_animationSetupBasic()

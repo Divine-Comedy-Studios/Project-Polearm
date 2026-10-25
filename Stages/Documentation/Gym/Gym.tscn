@@ -15,6 +15,11 @@
 [ext_resource type="Material" uid="uid://cosn5wkayhf52" path="res://Trenchbroom/textures/Greybox Textures/PNG/Red/texture_03.tres" id="11_viyit"]
 [ext_resource type="Material" uid="uid://rwe38pjq0qbw" path="res://Trenchbroom/textures/Greybox Textures/PNG/Orange/texture_01.tres" id="13_y445v"]
 [ext_resource type="Script" uid="uid://03vkcknbw2k" path="res://Systems/EnemyManager/Encounter/EncounterTrigger.gd" id="15_l1jfe"]
+[ext_resource type="PackedScene" uid="uid://dobb4o5ifw1e6" path="res://Stages/Documentation/Gym/Old/Obstacles/Ramps.tscn" id="16_2a03v"]
+[ext_resource type="PackedScene" uid="uid://4721tk72gs1t" path="res://Stages/Documentation/Gym/Old/Obstacles/Steps.tscn" id="17_vhbbt"]
+[ext_resource type="PackedScene" uid="uid://bduaf0ou244na" path="res://Stages/Documentation/Gym/Old/Obstacles/Bumps.tscn" id="18_1ju63"]
+[ext_resource type="PackedScene" uid="uid://duc76equt8iqk" path="res://Stages/Documentation/Gym/Old/Obstacles/Round.tscn" id="19_fplkt"]
+[ext_resource type="PackedScene" uid="uid://dhsuh2ufuvwdp" path="res://Stages/Documentation/Gym/Old/Obstacles/Stairs.tscn" id="20_5njd6"]
 
 [sub_resource type="Resource" id="Resource_l1jfe"]
 script = ExtResource("3_y445v")
@@ -221,9 +226,9 @@ points = PackedVector3Array(43.2, 0.5, -18.300001, 43.2, 0, -18.300001, 37.2, 0.
 
 [sub_resource type="Resource" id="Resource_y445v"]
 script = ExtResource("3_l1jfe")
-MAX_ENEMY_COUNT = 3
-ENEMIES = Array[int]([30, 30, 50, 31, 30, 51])
-MAX_ROLE_DIFFICULTY = 8.0
+MAX_ENEMY_COUNT = 1
+ENEMIES = Array[int]([52, 30, 50, 31, 30, 51])
+MAX_ROLE_DIFFICULTY = 9.0
 REQUIRED_ROLES = Dictionary[int, int]({
 1: 2,
 2: 1,
@@ -252,8 +257,8 @@ metadata/_custom_type_script = "uid://dgudxdqyw5eah"
 
 [sub_resource type="Resource" id="Resource_1niwp"]
 script = ExtResource("2_viyit")
-WAVES = Array[ExtResource("3_l1jfe")]([SubResource("Resource_y445v"), SubResource("Resource_dgdp0"), null, null, null, null])
-SPAWN_POINTS = Array[Vector3]([Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0)])
+WAVES = Array[ExtResource("3_l1jfe")]([SubResource("Resource_y445v"), SubResource("Resource_dgdp0")])
+SPAWN_POINTS = Array[Vector3]([Vector3(-3.0500002, 2.7, -10.300001), Vector3(-3.8000002, 2.7, -6.500001), Vector3(2.25, 2, -4.8500004), Vector3(4.5, 2.7, -9.700001)])
 metadata/_custom_type_script = "uid://m3xnuvqxxrog"
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_7mb0h"]
@@ -279,6 +284,27 @@ script = ExtResource("4_jiqka")
 local_map_file = "uid://bxogaox4se41t"
 map_settings = ExtResource("6_pnhxc")
 metadata/_custom_type_script = "uid://cwu5cf7a0awcd"
+
+[node name="Geometry" type="Node3D" parent="FuncGodotMap" unique_id=7083641]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 1.5, -0.5, 14.8)
+
+[node name="JumpHeight" type="Node3D" parent="FuncGodotMap/Geometry" unique_id=451358211]
+
+[node name="JumpDistance" type="Node3D" parent="FuncGodotMap/Geometry" unique_id=232073787]
+
+[node name="Ramps" parent="FuncGodotMap/Geometry" unique_id=187119212 instance=ExtResource("16_2a03v")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4.5, 0, 12.3280945)
+
+[node name="Steps" parent="FuncGodotMap/Geometry" unique_id=793798539 instance=ExtResource("17_vhbbt")]
+
+[node name="Bumps" parent="FuncGodotMap/Geometry" unique_id=1776097978 instance=ExtResource("18_1ju63")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, -6.9500003)
+
+[node name="Round" parent="FuncGodotMap/Geometry" unique_id=830021453 instance=ExtResource("19_fplkt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -19.100002)
+
+[node name="Stairs" parent="FuncGodotMap/Geometry" unique_id=1187381614 instance=ExtResource("20_5njd6")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 18.090061, 0, -8.6)
 
 [node name="entity_0_worldspawn" type="StaticBody3D" parent="FuncGodotMap" unique_id=1162199191]
 collision_layer = 32768

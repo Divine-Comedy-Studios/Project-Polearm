@@ -11,8 +11,6 @@ func _implEnter() -> void:
 func _implExit() -> void:
 	context().controller.afterAttack()
 
-	weapon().disable()
-
 
 func _implTick(_delta : float) -> void:
 	if not entity().onGround():

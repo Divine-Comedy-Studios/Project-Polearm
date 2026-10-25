@@ -70,8 +70,12 @@ func _implTick(delta : float) -> void:
 
 
 func _implNextAction(next : StringName) -> StringName:
-	if next != Type.none: # Anything should interrupt healing if we're not pressing anymore
-		if not inputs().modifiers.has(PlayerAction.Type.heal) and _pauseTimer > 0.0 and hasHigherPriorityThan(next) or _stopHealing:
+	if next != Type.none: # Healing should only be interrupted when it realllly needs to be, for some punishing aspects
+		if ((not inputs().modifiers.has(PlayerAction.Type.heal)
+			and _pauseTimer > 0.0	
+			and hasHigherPriorityThan(next))
+			or _stopHealing # This flag forces healing to stop
+		):
 			return next
 
 	return Type.none

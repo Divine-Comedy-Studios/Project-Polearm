@@ -48,8 +48,6 @@ func _implEnter() -> void:
 func _implExit() -> void:
 	controller().afterComboHit(_chained, _completed)
 
-	weapon().disable()
-
 
 func _implTick(_delta : float) -> void:
 	if not entity().onGround():

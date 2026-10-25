@@ -186,8 +186,8 @@ func _highestPriorityAction(actions : Array[StringName]) -> StringName:
 				return actionType if candidate == Type.none else candidate
 
 			candidate = actionType
-		elif viability == -1: # If the same action has been found, then stay in this action. This is the purpose of the tiebreaker
-			return Type.none
+		elif viability == -1: # If the same action has been found, return the last candidate
+			return candidate
 
 	return Type.none
 
@@ -195,7 +195,8 @@ func _highestPriorityAction(actions : Array[StringName]) -> StringName:
 func _processWeapon() -> void:
 	if _context.weapon != null:
 		if _context.frameData.weaponActivate(data.ANIMATION_NAME, _progress):
-			_context.weapon.enable(data.HIT_DATA)
+			if not _context.weapon.enabled():
+				_context.weapon.enable(data.HIT_DATA)
 		elif _context.weapon.enabled():
 			_context.weapon.disable()
 
