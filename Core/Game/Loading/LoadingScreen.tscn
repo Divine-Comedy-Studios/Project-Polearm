@@ -15,7 +15,17 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
 script = ExtResource("2_ft3ok")
+
+[node name="ColorRect" type="ColorRect" parent="LoadingScreen" unique_id=208861056]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.92941177, 0.91764706, 0.88235295, 1)
 
 [node name="CenterContainer" type="CenterContainer" parent="LoadingScreen" unique_id=1177366338]
 layout_mode = 1
@@ -24,15 +34,20 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
 
-[node name="ColorRect" type="ColorRect" parent="LoadingScreen/CenterContainer" unique_id=208861056]
-custom_minimum_size = Vector2(10000, 10000)
+[node name="Control" type="Control" parent="LoadingScreen/CenterContainer" unique_id=666828105]
 layout_mode = 2
-color = Color(0.92941177, 0.91764706, 0.88235295, 1)
 
-[node name="TextureRect" type="TextureRect" parent="LoadingScreen/CenterContainer" unique_id=713393299]
-custom_minimum_size = Vector2(128, 128)
-layout_mode = 2
+[node name="TextureRect" type="TextureRect" parent="LoadingScreen/CenterContainer/Control" unique_id=713393299]
+custom_minimum_size = Vector2(512, 512)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
 texture = ExtResource("3_ksk0h")
 expand_mode = 1
 stretch_mode = 4
