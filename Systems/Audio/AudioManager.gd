@@ -154,12 +154,12 @@ func _startMusic() -> void:
 
 	var data : Variant = MUSIC_DATASET.DATASET.get(_currentType)
 	if data == null:
-		push_warning("AudioManager._startMusic(): Missing music entry in datasheet!")
+		push_error("AudioManager._startMusic(): Missing music entry in datasheet!")
 		return
 	
 	var stream = (data as MusicData).pick()
 	if stream == null:
-		push_warning("AudioManager._startMusic(): Music entry in datasheet does not contain valid music!")
+		push_error("AudioManager._startMusic(): Music entry in datasheet does not contain valid music!")
 		return
 
 	_musicPlayer.stream = stream

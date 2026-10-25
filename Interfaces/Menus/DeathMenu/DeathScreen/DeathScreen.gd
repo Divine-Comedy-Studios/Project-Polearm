@@ -43,6 +43,8 @@ func activate() -> void:
 	modulate.a = 0.0
 	_fadeInTimer.start()
 
+	Globals.audioManager.playMusic(MusicData.Type.death)
+
 
 func _deactivateImpl() -> void:
 	_respawnPressed = false

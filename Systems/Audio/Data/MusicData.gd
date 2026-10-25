@@ -7,6 +7,7 @@ enum Type {
 	mainMenu,
 	game,
 	pause,
+	death,
 }
 
 
