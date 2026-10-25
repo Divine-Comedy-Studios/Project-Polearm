@@ -159,14 +159,14 @@ func _sync_frame_data_library() -> void:
 		
 		# Appended: bit naive behavior to always add the correct finished marker at the end for each animation
 		var animFinishedTrack := frameDataAnim.find_track("FrameData:_finished", Animation.TYPE_VALUE)
-		if animFinishedTrack != -1:
-			frameDataAnim.remove_track(animFinishedTrack)
+		if animFinishedTrack == -1:
+			# frameDataAnim.remove_track(animFinishedTrack)
 
-		animFinishedTrack = frameDataAnim.add_track(Animation.TYPE_VALUE)
-		frameDataAnim.track_set_path(animFinishedTrack, "FrameData:_finished")
-		frameDataAnim.value_track_set_update_mode(animFinishedTrack, Animation.UPDATE_DISCRETE)
-		frameDataAnim.track_insert_key(animFinishedTrack, 0.0, false)
-		frameDataAnim.track_insert_key(animFinishedTrack, frameDataAnim.length, true)
+			animFinishedTrack = frameDataAnim.add_track(Animation.TYPE_VALUE)
+			frameDataAnim.track_set_path(animFinishedTrack, "FrameData:_finished")
+			frameDataAnim.value_track_set_update_mode(animFinishedTrack, Animation.UPDATE_DISCRETE)
+			frameDataAnim.track_insert_key(animFinishedTrack, 0.0, false)
+			frameDataAnim.track_insert_key(animFinishedTrack, frameDataAnim.length, true)
 
 	if not _frameDataLibrary.resource_path.is_empty():
 		ResourceSaver.save(_frameDataLibrary)

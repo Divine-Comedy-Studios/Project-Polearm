@@ -4,7 +4,6 @@
 [ext_resource type="Script" uid="uid://cyecr71fggv70" path="res://Entities/Entity/Collisions/EntityHurtbox.gd" id="2_2hrb1"]
 [ext_resource type="Script" uid="uid://del87rrtko1do" path="res://Entities/Entity/Utility/EntityAnimationHelper.gd" id="2_6p5ax"]
 [ext_resource type="PackedScene" uid="uid://c6ck6empr4lu2" path="res://Assets/3D Models/Characters/YBot/Skeleton.scn" id="2_k12pj"]
-[ext_resource type="PackedScene" uid="uid://cv715v6y4bx0r" path="res://Assets/3D Models/Characters/YBot/YellowBotMesh.scn" id="3_2hrb1"]
 [ext_resource type="Script" uid="uid://dymt4yoc21xx" path="res://Entities/Archer/Data/ArcherResources.gd" id="3_pbajo"]
 [ext_resource type="Script" uid="uid://dyset1m48keqp" path="res://Entities/Archer/Controller/ArcherController.gd" id="4_o7i30"]
 [ext_resource type="Script" uid="uid://c12nkcphob0hm" path="res://Components/NumericResource/ValueResource.gd" id="5_1j70g"]
@@ -17,6 +16,7 @@
 [ext_resource type="AnimationLibrary" uid="uid://dfqr4nawpg2vu" path="res://Assets/3D Models/Characters/YBot/Animations/Movement.res" id="8_sfw1s"]
 [ext_resource type="AnimationLibrary" uid="uid://b3cu7qf5ygk0k" path="res://Assets/3D Models/Characters/YBot/Animations/TPose.glb" id="9_o7i30"]
 [ext_resource type="PackedScene" uid="uid://df43yn3t0drf1" path="res://Entities/Archer/Actions/ArcherActionManager.tscn" id="13_fkvdt"]
+[ext_resource type="PackedScene" uid="uid://cewo3qcxoamrr" path="res://Assets/3D Models/Characters/YBot/Variants/Yellow.scn" id="16_fkvdt"]
 
 [sub_resource type="Resource" id="Resource_1j70g"]
 resource_local_to_scene = true
@@ -223,7 +223,7 @@ shape = SubResource("CapsuleShape3D_hraxl")
 debug_fill = false
 
 [node name="HurtboxAttachment" type="BoneAttachment3D" parent="Model" unique_id=1335791146]
-transform = Transform3D(-0.99670887, -0.038155235, 0.07152319, -0.057060234, 0.95692474, -0.28467333, -0.057580538, -0.2878176, -0.9559526, -0.051569577, 0.88701993, 0.015819475)
+transform = Transform3D(-0.897038, -0.034339696, 0.06437092, -0.05135421, 0.8612322, -0.256206, -0.05182254, -0.25903583, -0.8603573, -0.04641262, 0.7983179, 0.014237523)
 bone_name = "DEF-spine"
 bone_idx = 1
 use_external_skeleton = true
@@ -244,6 +244,7 @@ shape = SubResource("CapsuleShape3D_m5jv2")
 debug_color = Color(0.95256823, 6.738305e-07, 0.56044906, 0.41960785)
 
 [node name="Skeleton" parent="Model" unique_id=941680751 instance=ExtResource("2_k12pj")]
+transform = Transform3D(-0.9, 0, 1.3589622e-07, 0, 0.9, 0, -1.3589622e-07, 0, -0.9, 0, 0, 0)
 bones/1/position = Vector3(0.051569577, 0.015819479, 0.88701993)
 bones/1/rotation = Quaternion(0.80143625, -0.006059495, -0.04011029, 0.596703)
 bones/2/scale = Vector3(0.99999744, 1.0000054, 0.99999714)
@@ -351,7 +352,8 @@ bones/62/scale = Vector3(0.9999994, 1.0000001, 1.0000002)
 bones/63/rotation = Quaternion(0.027615184, 0.9912528, -0.1289933, -0.0040224893)
 bones/63/scale = Vector3(0.9999998, 0.9999982, 0.99999994)
 
-[node name="Mesh" parent="Model" unique_id=114163421 node_paths=PackedStringArray("_skeleton") instance=ExtResource("3_2hrb1")]
+[node name="Mesh" parent="Model" unique_id=114163421 node_paths=PackedStringArray("_skeleton") instance=ExtResource("16_fkvdt")]
+transform = Transform3D(-0.9, 0, -1.3589622e-07, 0, 0.9, 0, 1.3589622e-07, 0, -0.9, 0, 0, 0)
 _skeleton = NodePath("../Skeleton")
 
 [node name="HealthBar" type="Sprite3D" parent="Model" unique_id=2013180973]

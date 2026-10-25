@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://y1kj2iwcrifs" path="res://Entities/Archer/Variants/HeavyArcher/HeavyArcherActionManager.tscn" id="13_fyhvn"]
 [ext_resource type="Script" uid="uid://cyecr71fggv70" path="res://Entities/Entity/Collisions/EntityHurtbox.gd" id="14_72mph"]
 [ext_resource type="PackedScene" uid="uid://c6ck6empr4lu2" path="res://Assets/3D Models/Characters/YBot/Skeleton.scn" id="15_wp30c"]
-[ext_resource type="PackedScene" uid="uid://cv715v6y4bx0r" path="res://Assets/3D Models/Characters/YBot/YellowBotMesh.scn" id="16_ljuuy"]
+[ext_resource type="PackedScene" uid="uid://dqfno0blmowo7" path="res://Assets/3D Models/Characters/YBot/Variants/Brown.scn" id="16_vykof"]
 [ext_resource type="PackedScene" uid="uid://dvykeeeeon0qa" path="res://Components/ValueBar/ValueBarUI/ValueBarUI.tscn" id="17_twxif"]
 
 [sub_resource type="Resource" id="Resource_1j70g"]
@@ -344,7 +344,7 @@ bones/62/scale = Vector3(1, 1, 1)
 bones/63/rotation = Quaternion(0.02763881, 0.9912853, -0.12873635, -0.004056949)
 bones/63/scale = Vector3(1, 0.99999964, 0.99999994)
 
-[node name="Mesh" parent="Model" unique_id=114163421 node_paths=PackedStringArray("_skeleton") instance=ExtResource("16_ljuuy")]
+[node name="Mesh" parent="Model" unique_id=114163421 node_paths=PackedStringArray("_skeleton") instance=ExtResource("16_vykof")]
 _skeleton = NodePath("../Skeleton")
 
 [node name="HealthBar" type="Sprite3D" parent="Model" unique_id=2013180973]
