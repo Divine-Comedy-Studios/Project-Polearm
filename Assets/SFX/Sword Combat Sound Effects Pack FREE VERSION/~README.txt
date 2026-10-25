@@ -1,1 +1,0 @@
-Use code “SWORD” for 20% off https://hoveaudio.gumroad.com/l/rrhyj
