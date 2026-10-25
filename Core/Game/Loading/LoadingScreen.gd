@@ -13,7 +13,7 @@ enum LoadingState {
 
 #region Scene members
 
-@onready var _godotIcon := $"CenterContainer/TextureRect" as TextureRect
+@onready var _Icon := $"CenterContainer/Control/TextureRect" as TextureRect
 @onready var _timer := $"Timer" as Timer
 
 #endregion
@@ -32,7 +32,7 @@ func _ready() -> void:
 	modulate.a8 = 255
 
 func _physics_process(delta : float) -> void:
-	_godotIcon.rotation += delta
+	_Icon.rotation += delta
 
 	if _timer.is_stopped():
 		modulate.a8 = 255 if _loadingState == LoadingState.notLoaded else 0
