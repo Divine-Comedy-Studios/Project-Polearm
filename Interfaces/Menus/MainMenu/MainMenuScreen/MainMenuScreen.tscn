@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://da7enr8axqhyb" path="res://Interfaces/Menus/MainMenu/MainMenuScreen/MainMenuScreen.gd" id="1_006fw"]
 [ext_resource type="Theme" uid="uid://eptqqy8sm6gl" path="res://Interfaces/Themes/MenuTheme.tres" id="1_ijn5t"]
 [ext_resource type="Script" uid="uid://cfdlgc8aalbtr" path="res://Interfaces/UIElements/GameMenuButton.gd" id="2_1kon5"]
-[ext_resource type="Texture2D" uid="uid://ceidsf8ux60iq" path="res://Assets/Interfaces/ThemeTextures/Logo.png" id="3_jco50"]
-[ext_resource type="Texture2D" uid="uid://r1c2gke6bvc" path="res://Interfaces/Kenney/Derived/divider_center.png" id="kui_divider"]
+[ext_resource type="Texture2D" uid="uid://ceidsf8ux60iq" path="res://Assets/Interfaces/Logo.png" id="3_jco50"]
+[ext_resource type="Texture2D" uid="uid://r1c2gke6bvc" path="res://Assets/Interfaces/Kenney/Derived/divider_center.png" id="kui_divider"]
 
 [node name="MainMenuScreen" type="Control" unique_id=1875216693]
 physics_interpolation_mode = 0

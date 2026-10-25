@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://deox82o8lxoni"]
 
-[ext_resource type="Texture2D" path="res://Interfaces/Kenney/Panel/panel-001.png" id="1_02rbj"]
+[ext_resource type="Texture2D" uid="uid://ck3vn2p2pctaq" path="res://Assets/Interfaces/Kenney/Panel/panel-001.png" id="1_02rbj"]
 [ext_resource type="Texture2D" uid="uid://dy54inyu22qsa" path="res://Assets/Interfaces/ButtonSymbols/PlayStation Series/Vector/playstation_button_cross.svg" id="2_ofn52"]
 
 [node name="SaveStateButton" type="HBoxContainer" unique_id=624016925]

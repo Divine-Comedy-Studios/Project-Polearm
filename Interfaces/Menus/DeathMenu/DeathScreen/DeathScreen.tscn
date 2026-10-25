@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cfdlgc8aalbtr" path="res://Interfaces/UIElements/GameMenuButton.gd" id="1_2kcie"]
 [ext_resource type="Script" uid="uid://da0ene7m0g0bi" path="res://Interfaces/Menus/DeathMenu/DeathScreen/DeathScreen.gd" id="1_7gc0m"]
-[ext_resource type="Texture2D" uid="uid://r1c2gke6bvc" path="res://Interfaces/Kenney/Derived/divider_center.png" id="kui_divider"]
+[ext_resource type="Texture2D" uid="uid://r1c2gke6bvc" path="res://Assets/Interfaces/Kenney/Derived/divider_center.png" id="kui_divider"]
 [ext_resource type="Theme" uid="uid://eptqqy8sm6gl" path="res://Interfaces/Themes/MenuTheme.tres" id="kui_theme"]
 
 [node name="DeathScreen" type="Control" unique_id=371828079 node_paths=PackedStringArray("_fadeInTimer", "_fadeOutTimer", "_fadeRect")]
