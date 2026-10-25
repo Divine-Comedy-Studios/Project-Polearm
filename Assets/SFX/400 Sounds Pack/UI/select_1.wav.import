@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dmhpc3vh2aq2i"
+path="res://.godot/imported/select_1.wav-1cda9833d7e7b02d4bc238f6ba616ddd.sample"
+
+[deps]
+
+source_file="res://Assets/SFX/400 Sounds Pack/UI/select_1.wav"
+dest_files=["res://.godot/imported/select_1.wav-1cda9833d7e7b02d4bc238f6ba616ddd.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

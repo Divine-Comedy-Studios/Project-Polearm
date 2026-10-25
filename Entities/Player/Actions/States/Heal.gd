@@ -26,7 +26,7 @@ var _stopHealing : bool = false
 #region Override functions
 
 func _implEnter() -> void:
-	_animationSetupBasic()
+	Globals.sfxManager.play(SFXData.Type.heal, player().global_position)
 
 func _implExit() -> void:
 	_energyConsumed = 0.0 # Evil punishment
@@ -61,6 +61,8 @@ func _implTick(delta : float) -> void:
 	_energyConsumed += currentEnergy - energy.value
 
 	if _energyConsumed >= ENERGY_PER_HEAL:
+		Globals.sfxManager.play(SFXData.Type.heal, player().global_position)
+
 		_energyConsumed -= ENERGY_PER_HEAL # Could set this to 0, but this is a bit more forgiving
 		health.value += HEAL_VALUE
 

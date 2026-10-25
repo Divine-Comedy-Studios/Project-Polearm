@@ -304,6 +304,7 @@ INPUT_BUFFER_FRAMES = 6
 QUEUEABLE = true
 TYPE = &"dashStart"
 PRIORITY = 51
+PLAY_SFX = true
 data = SubResource("Resource_wu1xb")
 metadata/_custom_type_script = "uid://jc1g0sv32qq1"
 
@@ -320,6 +321,7 @@ process_mode = 4
 script = ExtResource("6_yl8et")
 TYPE = &"dashStop"
 PRIORITY = 4
+PLAY_SFX = true
 data = SubResource("Resource_1ws56")
 metadata/_custom_type_script = "uid://jc1g0sv32qq1"
 
@@ -331,6 +333,7 @@ INPUT_BUFFER_FRAMES = 4
 QUEUEABLE = true
 TYPE = &"airDashStart"
 PRIORITY = 51
+PLAY_SFX = true
 data = SubResource("Resource_6ns0w")
 metadata/_custom_type_script = "uid://jc1g0sv32qq1"
 
@@ -350,6 +353,7 @@ TURN_LEFT_DATA = SubResource("Resource_ay6x1")
 TURN_RIGHT_DATA = SubResource("Resource_nyvoi")
 TYPE = &"sprint"
 PRIORITY = 6
+PLAY_SFX = true
 metadata/_custom_type_script = "uid://jc1g0sv32qq1"
 
 [node name="SprintStop" type="Node" parent="." unique_id=33316294]
@@ -358,6 +362,7 @@ script = ExtResource("6_yl8et")
 FRICTION_MULTIPLIER = 0.75
 TYPE = &"sprintStop"
 PRIORITY = 5
+PLAY_SFX = true
 data = SubResource("Resource_x5srs")
 metadata/_custom_type_script = "uid://jc1g0sv32qq1"
 
@@ -377,6 +382,7 @@ LANDING_RUN_DATA = SubResource("Resource_ququc")
 FRICTION_MULTIPLIER = 0.7
 TYPE = &"landing"
 PRIORITY = 4
+PLAY_SFX = true
 metadata/_custom_type_script = "uid://jc1g0sv32qq1"
 
 [node name="JumpStart" type="Node" parent="." unique_id=1364787152]
@@ -388,6 +394,7 @@ INPUT_BUFFER_FRAMES = 6
 QUEUEABLE = true
 TYPE = &"jumpStart"
 PRIORITY = 30
+PLAY_SFX = true
 metadata/_custom_type_script = "uid://jc1g0sv32qq1"
 
 [node name="Jump" type="Node" parent="." unique_id=80986144]
@@ -406,6 +413,7 @@ INPUT_BUFFER_FRAMES = 6
 QUEUEABLE = true
 TYPE = &"airJumpStart"
 PRIORITY = 32
+PLAY_SFX = true
 data = SubResource("Resource_7bymk")
 metadata/_custom_type_script = "uid://jc1g0sv32qq1"
 
@@ -422,6 +430,7 @@ metadata/_custom_type_script = "uid://jc1g0sv32qq1"
 script = ExtResource("13_71nor")
 TYPE = &"ledgeGrab"
 PRIORITY = 29
+PLAY_SFX = true
 data = SubResource("Resource_71nor")
 metadata/_custom_type_script = "uid://jc1g0sv32qq1"
 
@@ -432,6 +441,7 @@ QUEUEABLE = true
 TYPE = &"lightAttack"
 PRIORITY = 41
 REPEATABLE = true
+PLAY_SFX = true
 metadata/_custom_type_script = "uid://jc1g0sv32qq1"
 
 [node name="HeavyAttack" type="Node" parent="." unique_id=871433416]
@@ -441,6 +451,7 @@ QUEUEABLE = true
 TYPE = &"heavyAttack"
 PRIORITY = 41
 REPEATABLE = true
+PLAY_SFX = true
 metadata/_custom_type_script = "uid://jc1g0sv32qq1"
 
 [node name="AirLightAttack" type="Node" parent="." unique_id=994612286]
@@ -450,6 +461,7 @@ QUEUEABLE = true
 TYPE = &"airLightAttack"
 PRIORITY = 40
 REPEATABLE = true
+PLAY_SFX = true
 metadata/_custom_type_script = "uid://jc1g0sv32qq1"
 
 [node name="Damage" type="Node" parent="." unique_id=847949177]
@@ -459,6 +471,7 @@ AERIAL_DAMAGE_DATA = SubResource("Resource_8q6ni")
 GROUND_DAMAGE_DATA = SubResource("Resource_jwg3n")
 TYPE = &"damage"
 PRIORITY = 61
+PLAY_SFX = true
 metadata/_custom_type_script = "uid://jc1g0sv32qq1"
 
 [node name="DamageFall" type="Node" parent="." unique_id=1417465101]
@@ -474,6 +487,7 @@ process_mode = 4
 script = ExtResource("26_6awf7")
 TYPE = &"damageLanding"
 PRIORITY = 60
+PLAY_SFX = true
 data = SubResource("Resource_ne5dw")
 metadata/_custom_type_script = "uid://jc1g0sv32qq1"
 
@@ -482,6 +496,7 @@ process_mode = 4
 script = ExtResource("27_djij5")
 TYPE = &"damageStandUp"
 PRIORITY = 60
+PLAY_SFX = true
 data = SubResource("Resource_0rp38")
 metadata/_custom_type_script = "uid://jc1g0sv32qq1"
 
@@ -490,5 +505,6 @@ process_mode = 4
 script = ExtResource("28_6awf7")
 TYPE = &"death"
 PRIORITY = 70
+PLAY_SFX = true
 data = SubResource("Resource_ml4cg")
 metadata/_custom_type_script = "uid://jc1g0sv32qq1"

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://coyq7o8lktpdk"
+path="res://.godot/imported/cork_stabbed.wav-9f76267ec8d6b370c9f18b29290f1436.sample"
+
+[deps]
+
+source_file="res://Assets/SFX/400 Sounds Pack/Materials/cork_stabbed.wav"
+dest_files=["res://.godot/imported/cork_stabbed.wav-9f76267ec8d6b370c9f18b29290f1436.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

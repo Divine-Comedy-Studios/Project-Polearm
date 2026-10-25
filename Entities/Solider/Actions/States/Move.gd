@@ -22,6 +22,10 @@ const MIN_PERIOD_MULTIPLIER : float = 0.7
 @export var RUN_DATA : EntityActionData = null
 @export var BLEND_LERP : float = 0.2
 
+@export_group("Footstep settings")
+@export var WALK_FOOTSTEP_INTERVAL : float = 0.6
+@export var RUN_FOOTSTEP_INTERVAL : float = 0.35
+
 #endregion
 
 
@@ -33,6 +37,10 @@ var _walkPeriod : float = 0.0
 var _runPeriod : float = 0.0
 
 var _blendScale : float = 0.0
+
+
+# Footsteps
+var _footstepTimer : float = 0.0
 
 #endregion
 
@@ -59,6 +67,8 @@ func _implInit() -> void:
 
 
 func _implEnter() -> void:
+	_footstepTimer = 0.0
+
 	animator().setCoreTransition(&"AdvancedTransition", data.ANIMATION_FADE_TIME)
 	animator().transitionTo(&"AdvancedTransition", &"Move")
 
@@ -69,6 +79,7 @@ func _implTick(delta : float) -> void:
 	entity().accelerateFlat(intentData.direction * lerpf(MIN_SPEED, MAX_SPEED, intentData.magnitude), ACCELERATION * delta)
 
 	_processAnimations()
+	_processFootsteps(delta)
 
 #endregion
 
@@ -93,5 +104,16 @@ func _processAnimations() -> void:
 	animator().setScale(&"WalkScale", frameDataScale)
 	animator().setScale(&"RunScale", _runPeriod / period)
 	animator().setBlendAmount(&"Move", _blendScale)
+
+
+func _processFootsteps(delta : float) -> void:
+	_footstepTimer -= delta
+	if _footstepTimer > 0.0:
+		return
+
+	var runAmount := clampf(inverse_lerp(MIN_SPEED, MAX_SPEED, entity().velocity.length()), 0.0, 1.0)
+	_footstepTimer = lerpf(WALK_FOOTSTEP_INTERVAL, RUN_FOOTSTEP_INTERVAL, runAmount)
+
+	Globals.sfxManager.play(SFXData.Type.footstep, entity().global_position)
 
 #endregion

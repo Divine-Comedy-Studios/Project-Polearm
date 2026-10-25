@@ -11,6 +11,9 @@ extends PlayerAction
 @export_group("Movement settings")
 @export var TURN_COS_THRESHHOLD : float = 0.5
 
+@export_group("Footstep settings")
+@export var FOOTSTEP_TIME : float = 0.25
+
 #endregion
 
 
@@ -31,6 +34,10 @@ var _turnDuration : float = 0.0
 var _turnTargetAngle : float = 0.0
 
 var _targetAnimation : PlayerActionData = null
+
+
+# Footsteps
+var _footstepTimer : float = 0.0
 
 #endregion
 
@@ -76,6 +83,9 @@ func _implTick(delta : float) -> void:
 		context().pushActionQueue(Type.sprint)
 	else:
 		context().pushActionQueue(Type.sprintStop)
+	
+	if not _turning:
+		_processFootsteps(delta)
 
 func _processDirection(delta : float) -> void:
 	if _turning:
@@ -124,5 +134,15 @@ func _checkTurning() -> void:
 			_targetAnimation = TURN_RIGHT_DATA
 
 		enter()
+
+
+func _processFootsteps(delta : float) -> void:
+	_footstepTimer -= delta
+	if _footstepTimer > 0.0:
+		return
+
+	_footstepTimer = FOOTSTEP_TIME
+
+	Globals.sfxManager.play(SFXData.Type.footstep, player().global_position)
 
 #endregion

@@ -79,6 +79,7 @@ SHOOT_SPEEDS = Array[float]([30.0, 40.0, 50.0])
 HORIZONTAL_VARIATION = 1.0
 TYPE = &"shoot"
 PRIORITY = 20
+PLAY_SFX = true
 data = SubResource("Resource_a2r2k")
 metadata/_custom_type_script = "uid://be45dp21e2v4i"
 
@@ -87,6 +88,7 @@ process_mode = 4
 script = ExtResource("8_wnmdu")
 TYPE = &"damage"
 PRIORITY = 60
+PLAY_SFX = true
 data = SubResource("Resource_ur5as")
 metadata/_custom_type_script = "uid://be45dp21e2v4i"
 
@@ -95,5 +97,6 @@ process_mode = 4
 script = ExtResource("9_3qfem")
 TYPE = &"death"
 PRIORITY = 100
+PLAY_SFX = true
 data = SubResource("Resource_dikf5")
 metadata/_custom_type_script = "uid://be45dp21e2v4i"

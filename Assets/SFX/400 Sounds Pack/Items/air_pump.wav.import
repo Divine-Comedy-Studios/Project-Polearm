@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bj4ejteuoigt4"
+path="res://.godot/imported/air_pump.wav-f349b5bc5fdd12439b384c7dcda2846e.sample"
+
+[deps]
+
+source_file="res://Assets/SFX/400 Sounds Pack/Items/air_pump.wav"
+dest_files=["res://.godot/imported/air_pump.wav-f349b5bc5fdd12439b384c7dcda2846e.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

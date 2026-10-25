@@ -102,6 +102,7 @@ script = ExtResource("4_4scgt")
 TYPE = &"lightAttack"
 PRIORITY = 41
 REPEATABLE = true
+PLAY_SFX = true
 data = SubResource("Resource_tntpx")
 metadata/_custom_type_script = "uid://byfh785ck3vcb"
 
@@ -110,6 +111,7 @@ process_mode = 4
 script = ExtResource("5_b1urq")
 TYPE = &"damage"
 PRIORITY = 60
+PLAY_SFX = true
 data = SubResource("Resource_b1urq")
 metadata/_custom_type_script = "uid://byfh785ck3vcb"
 
@@ -118,5 +120,6 @@ process_mode = 4
 script = ExtResource("8_387nu")
 TYPE = &"death"
 PRIORITY = 100
+PLAY_SFX = true
 data = SubResource("Resource_4psjp")
 metadata/_custom_type_script = "uid://byfh785ck3vcb"

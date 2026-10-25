@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dvn7c215d645c"
+path="res://.godot/imported/metal_clang.wav-dd9ae1b3ffef7d0e1362b22c29b6704a.sample"
+
+[deps]
+
+source_file="res://Assets/SFX/400 Sounds Pack/Materials/metal_clang.wav"
+dest_files=["res://.godot/imported/metal_clang.wav-dd9ae1b3ffef7d0e1362b22c29b6704a.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

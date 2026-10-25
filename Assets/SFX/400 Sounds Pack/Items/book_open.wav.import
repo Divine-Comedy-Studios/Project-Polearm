@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://be22f7lhpigbf"
+path="res://.godot/imported/book_open.wav-ce553adcf0305be7212fbbcb8811e0fe.sample"
+
+[deps]
+
+source_file="res://Assets/SFX/400 Sounds Pack/Items/book_open.wav"
+dest_files=["res://.godot/imported/book_open.wav-ce553adcf0305be7212fbbcb8811e0fe.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
