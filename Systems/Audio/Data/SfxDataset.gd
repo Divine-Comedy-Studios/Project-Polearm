@@ -1,5 +1,5 @@
 extends Resource
-class_name SfxDataset
+class_name SFXDataset
 
 
-@export var DATASET : Dictionary[Audio.SfxType, SoundData] = {}
+@export var DATASET : Dictionary[SFXData.Type, SFXData] = {}

@@ -55,6 +55,8 @@ func _enter() -> void:
 
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
+	Globals.audioManager.playMusic(MusicData.Type.game)
+
 func _exit() -> void:
 	_nextGameState = Type.none
 

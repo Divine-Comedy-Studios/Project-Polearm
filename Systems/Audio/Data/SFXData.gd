@@ -1,5 +1,64 @@
 extends Resource
-class_name SoundData
+class_name SFXData
+
+
+enum Type {
+	none,
+
+	# UI Effects
+
+	uiClick = 1,
+	uiBack,
+
+	# Environmental effects
+
+	footstep = 40,
+	stop,
+	jump,
+	airJump,
+	ledgeGrab,
+	land,
+	landHard,
+	dash,
+	dashStop,
+
+	doorOn = 70,
+	doorOff,
+
+	# Weapon effects
+
+	sword1 = 100,
+	sword2,
+	sword3,
+	sword4,
+
+	grunt1 = 110,
+	grunt2,
+	
+	grunt3,
+	grunt4,
+
+	hammer = 120,
+
+	arrow = 130,
+	arrowHit,
+
+	rocket = 140,
+	explosion,
+
+
+	# Character effects
+
+	hitGore = 200,
+	hitGrunt1,
+	hitGrunt2,
+
+	deathGore = 210,
+	deathGrunt1,
+	deathGrunt2,
+
+	heal = 220,
+}
 
 
 ## Several streams = variations. One is picked at random each time (never the same twice in a row).

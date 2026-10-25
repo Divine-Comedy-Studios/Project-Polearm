@@ -1,25 +1,28 @@
 [gd_resource type="Resource" script_class="MusicDataset" format=3 uid="uid://b6jjhbfl02sfs"]
 
-[ext_resource type="Script" uid="uid://d1p7cwo2k3flj" path="res://Systems/Audio/Data/MusicDataset.gd" id="1_ds"]
-[ext_resource type="Script" uid="uid://no3emlmqrw8r" path="res://Systems/Audio/Data/MusicData.gd" id="2_md"]
-[ext_resource type="AudioStream" uid="uid://q8opm27hbml2" path="res://Systems/Audio/Placeholder/music_game.wav" id="s_game"]
-[ext_resource type="AudioStream" uid="uid://cyt4jmit37mb" path="res://Systems/Audio/Placeholder/music_menu.wav" id="s_menu"]
-[ext_resource type="AudioStream" uid="uid://mt8nhd22l4il" path="res://Systems/Audio/Placeholder/music_pause.wav" id="s_pause"]
+[ext_resource type="Script" uid="uid://ckrmd64looadf" path="res://Systems/Audio/Data/MusicDataset.gd" id="1_ds"]
+[ext_resource type="Script" uid="uid://cwj15obtj5njm" path="res://Systems/Audio/Data/MusicData.gd" id="2_md"]
+
+[sub_resource type="Resource" id="Resource_w7vmp"]
+metadata/__load_path__ = "res://Systems/Audio/Placeholder/music_menu.wav"
 
 [sub_resource type="Resource" id="Resource_menu"]
 script = ExtResource("2_md")
-STREAM = ExtResource("s_menu")
-VOLUME_DB = -4
+STREAM = SubResource("Resource_w7vmp")
+
+[sub_resource type="Resource" id="Resource_vdqpg"]
+metadata/__load_path__ = "res://Systems/Audio/Placeholder/music_game.wav"
 
 [sub_resource type="Resource" id="Resource_game"]
 script = ExtResource("2_md")
-STREAM = ExtResource("s_game")
-VOLUME_DB = -6
+STREAM = SubResource("Resource_vdqpg")
+
+[sub_resource type="Resource" id="Resource_bnh07"]
+metadata/__load_path__ = "res://Systems/Audio/Placeholder/music_pause.wav"
 
 [sub_resource type="Resource" id="Resource_pause"]
 script = ExtResource("2_md")
-STREAM = ExtResource("s_pause")
-VOLUME_DB = -6
+STREAM = SubResource("Resource_bnh07")
 
 [resource]
 script = ExtResource("1_ds")
