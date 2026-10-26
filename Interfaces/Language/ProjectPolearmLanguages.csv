@@ -1,63 +1,54 @@
-id,en,zh_CN,es,fr,de,it,ja,,,,,,,,
-UI_STARTMENU_PLAY,Play,开始,Jugar,Jouer,Start,Gioca,プレイ,,,,,,,,
-UI_STARTMENU_SAVES,Saves,存档,Partidas,Sauvegardes,Spielstände,Salvataggi,セーブ数据,,,,,,,,
-UI_STARTMENU_OPTIONS,Options,选项,Opciones,Options,Einstellungen,Opzioni,オプション,,,,,,,,
-UI_STARTMENU_QUIT,Quit,退出,Salir,Quitter,Beenden,Esci,終了,,,,,,,,
-UI_OPTIONS_GAMEPLAY,Gameplay,游戏玩法,Jugabilidad,Jouabilité,Gameplay,Azione,ゲームプレイ,,,,,,,,
-UI_OPTIONS_VIDEO,Video,画面,Vídeo,Vidéo,Video,Video,ビデオ,,,,,,,,
-UI_OPTIONS_AUDIO,Audio,音频,Audio,Audio,Audio,Audio,オーディオ,,,,,,,,
-UI_OPTIONS_CONTROLLER,Controller,手柄,Mando,Manette,Controller,Controller,コントローラー,,,,,,,,
-UI_OPTIONS_KEYBOARD,Keyboard & Mouse,键盘与鼠标,Teclado y Ratón,Clavier/Souris,Tastatur & Maus,Tastiera e mouse,キーボード&マウス,,,,,,,,
-UI_GAMEOPTIONS_LANGUAGE,Language,语言,Idioma,Langue,Sprache,Lingua,言語,,,,,,,,
-UI_GAMEOPTIONS_CAMERASENSITIVITY,Camera Sensitivity,镜头灵敏度,Sens. cámara,Sensibilité cam,Kamerasens.,Sensibilité cam,カメラ感度,,,,,,,,
-UI_GAMEOPTIONS_INVERTY,Invert Y,反转Y轴,Invertir Y,Inverser Y,Y-Achse inv.,Inverti Y,Y轴反転,,,,,,,,
-UI_GAMEOPTIONS_CAMERASHAKE,Camera Shake,镜头抖动,Vibración cám.,Secousses cam,Kamerawackeln,Scuotimento cam,画面揺れ,,,,,,,,
-UI_GAMEOPTIONS_RUMBLE,Rumble,手柄震动,Vibración,Vibrations,Vibration,Vibrazione,振動,,,,,,,,
-UI_VIDEOOPTIONS_WINDOWMODE,Window Mode,窗口模式,Modo de ventana,Mode fenêtre,Fenstermodus,Modalità finestra,画面モード,,,,,,,,
-UI_VIDEOOPTIONS_WINDOWED,Windowed,窗口化,En ventana,Fenêtré,Fenster,Finestra,ウィンドウ,,,,,,,,
-UI_VIDEOOPTIONS_FULLSCREEN,Fullscreen,全屏,Pantalla completa,Plein écran,Vollbild,Schermo intero,フルスクリーン,,,,,,,,
-UI_VIDEOOPTIONS_BORDERLESS,Borderless,无边框,Sin bordes,Sans bordure,Rahmenlos,Senza bordi,ボーダーレス,,,,,,,,
-UI_VIDEOOPTIONS_RESOLUTION,Resolution,分辨率,Resolución,Résolution,Auflösung,Risoluzione,解像度,,,,,,,,
-UI_VIDEOOPTIONS_ULTRAWIDE,Ultrawide,超宽屏,Ultrapanorámico,Ultra-large,Ultrawide,Ultrawide,ウルトラワイド,,,,,,,,
-UI_VIDEOOPTIONS_RES_1080P,1920 x 1080,1920 x 1080,1920 x 1080,1920 x 1080,1920 x 1080,1920 x 1080,1920 x 1080,,,,,,,,
-UI_VIDEOOPTIONS_RES_900P,1600 x 900,1600 x 900,1600 x 900,1600 x 900,1600 x 900,1600 x 900,1600 x 900,,,,,,,,
-UI_VIDEOOPTIONS_RES_720P,1280 x 720,1280 x 720,1280 x 720,1280 x 720,1280 x 720,1280 x 720,1280 x 720,,,,,,,,
-UI_VIDEOOPTIONS_VSYNC,V-Sync,垂直同步,Sincronización vertical,Synchronisation verticale,V-Sync,Sincronizzazione verticale,垂直同期,,,,,,,,
-UI_VIDEOOPTIONS_GAMMA,Gamma,伽马值,Gamma,Gamma,Gamma,Gamma,ガンマ,,,,,,,,
-UI_AUDIOOPTIONS_MASTER,Master,主音量,Maestro,Principal,Gesamt,Principale,主音量,,,,,,,,
-UI_AUDIOOPTIONS_MUSIC,Music,音乐,Música,Musique,Musik,Musica,BGM,,,,,,,,
-UI_AUDIOOPTIONS_SFX,SFX,音效,Efectos,Bruitages,Effekte,Effetti,SE,,,,,,,,
-UI_CONTROLLERMAPPING_JUMP,Jump,跳跃,Saltar,Sauter,Springen,Salta,ジャンプ,,,,,,,,
-UI_CONTROLLERMAPPING_SWITCHWEAPON,Switch Weapon,切换武器,Cambiar arma,Changer d'arme,Waffe wechseln,Cambia arma,武器切り替え,,,,,,,,
-UI_CONTROLLERMAPPING_TARGETLEFT,Target Left,锁定左侧,Blanco izq.,Cible gauche,Ziel links,Bersaglio sx,ターゲット左,,,,,,,,
-UI_CONTROLLERMAPPING_TARGETRIGHT,Target Right,锁定右侧,Blanco der.,Cible droite,Ziel rechts,Bersaglio dx,ターゲット右,,,,,,,,
-UI_CONTROLLERMAPPING_LIGHTATTACK,Light Attack,轻攻击,Ataque ligero,Attaque légère,Leichter Angriff,Attacco leggero,弱攻撃,,,,,,,,
-UI_CONTROLLERMAPPING_HEAVYATTACK,Heavy Attack,重攻击,Ataque pesado,Attaque lourde,Schwerer Angriff,Attacco pesante,强攻撃,,,,,,,,
-UI_CONTROLLERMAPPING_DODGE,Dodge,闪避,Esquivar,Esquive,Ausweichen,Schivata,回避,,,,,,,,
-UI_CONTROLLERMAPPING_DASH,Dash,冲刺,Esprintar,Tiret,Sprint,Scatto,ダッシュ,,,,,,,,
-UI_CONTROLLERMAPPING_SHOOT,Shoot,射击,Disparar,Tirer,Schießen,Spara,射撃,,,,,,,,
-UI_CONTROLLERMAPPING_HEAL,Launcher,挑空技能,Lanzador,Lanceur,Werfer,Lancia,ランチャー,,,,,,,,
-UI_CONTROLLERMAPPING_TARGET,Target,锁定目标,Fijar blanco,Cibler,Ziel,Mira,ターゲット,,,,,,,,
-UI_CONTROLLERMAPPING_TAUNT,Taunt,嘲讽,Provocación,Provocation,Provokation,Provocazione,挑発,,,,,,,,
-UI_KEYBOARDMAPPING_FORWARD,Forward,前进,Adelante,Avancer,Vorwärts,Avanti,前,,,,,,,,
-UI_KEYBOARDMAPPING_BACKWARD,Backward,后退,Atrás,Reculer,Rückwärts,Indietro,後,,,,,,,,
-UI_KEYBOARDMAPPING_JUMP,Jump,跳跃,Saltar,Sauter,Springen,Salta,ジャンプ,,,,,,,,
-UI_KEYBOARDMAPPING_SWITCHWEAPON,Switch Weapon,切换武器,Cambiar arma,Changer d'arme,Waffe wechseln,Cambia arma,武器切り替え,,,,,,,,
-UI_KEYBOARDMAPPING_TARGETLEFT,Target Left,锁定左侧,Blanco izq.,Cible gauche,Ziel links,Bersaglio sx,ターゲット左,,,,,,,,
-UI_KEYBOARDMAPPING_TARGETRIGHT,Target Right,锁定右侧,Blanco der.,Cible droite,Ziel rechts,Bersaglio dx,ターゲット右,,,,,,,,
-UI_KEYBOARDMAPPING_LIGHTATTACK,Light Attack,轻攻击,Ataque ligero,Attaque légère,Leichter Angriff,Attacco leggero,弱攻撃,,,,,,,,
-UI_KEYBOARDMAPPING_HEAVYATTACK,Heavy Attack,重攻击,Ataque pesado,Attaque lourde,Schwerer Angriff,Attacco pesante,强攻撃,,,,,,,,
-UI_KEYBOARDMAPPING_LEFT,Left,向左,Izquierda,Gauche,Links,Sinistra,左,,,,,,,,
-UI_KEYBOARDMAPPING_RIGHT,Right,向右,Derecha,Droite,Rechts,Destra,右,,,,,,,,
-UI_KEYBOARDMAPPING_DODGE,Dodge,闪避,Esquivar,Esquive,Ausweichen,Schivata,回避,,,,,,,,
-UI_KEYBOARDMAPPING_DASH,Dash,冲刺,Esprintar,Tiret,Sprint,Scatto,ダッシュ,,,,,,,,
-UI_KEYBOARDMAPPING_SHOOT,Shoot,射击,Disparar,Tirer,Schießen,Spara,射撃,,,,,,,,
-UI_KEYBOARDMAPPING_HEAL,Launcher,挑空技能,Lanzador,Lanceur,Werfer,Lancia,ランチャー,,,,,,,,
-UI_KEYBOARDMAPPING_TARGET,Target,锁定目标,Fijar blanco,Cibler,Ziel,Mira,ターゲット,,,,,,,,
-UI_KEYBOARDMAPPING_TAUNT,Taunt,嘲讽,Provocación,Provocation,Provokation,Provocazione,挑発,,,,,,,,
-UI_QUITCONFIRMMENU_CONFIRM,Do You Really Want To Quit?,确定要退出吗？,¿Realmente quieres salir?,Voulez-vous vraiment quitter?,Möchten Sie wirklich beenden?,Vuoi davvero uscire?,本当に終了しますか？,,,,,,,,
-UI_QUITCONFIRMMENU_YES,Yes,是,Sí,Oui,Ja,Sì,はい,,,,,,,,
-UI_QUITCONFIRMMENU_NO,No,否,No,Non,Nein,No,いいえ,,,,,,,,
-UI_PAUSEOPTIONS_CONTINUE,Continue,继续,Continuar,Continuer,Fortsetzen,Continua,続ける,,,,,,,,
-UI_PAUSEOPTIONS_OPTIONS,Options,选项,Opciones,Options,Optionen,Opzioni,オプション,,,,,,,,
-UI_PAUSEOPTIONS_EXIT,Exit,退出,Salir,Quitter,Beenden,Esci,終了,,,,,,,,
+id,en,zh_CN,es,fr,de,it,ja
+UI_STARTMENU_PLAY,Play,开始游戏,Jugar,Jouer,Spielen,Gioca,プレイ
+UI_STARTMENU_SAVES,Saves,存档,Partidas,Sauvegardes,Spielstände,Salvataggi,セーブデータ
+UI_STARTMENU_OPTIONS,Options,选项,Opciones,Options,Einstellungen,Opzioni,オプション
+UI_STARTMENU_QUIT,Quit,退出,Salir,Quitter,Beenden,Esci,終了
+UI_OPTIONS_GAMEPLAY,Gameplay,游戏玩法,Jugabilidad,Jouabilité,Gameplay,Gameplay,ゲームプレイ
+UI_OPTIONS_VIDEO,Video,画面,Vídeo,Vidéo,Video,Video,ビデオ
+UI_OPTIONS_AUDIO,Audio,音频,Audio,Audio,Audio,Audio,オーディオ
+UI_OPTIONS_CONTROLLER,Controller,手柄,Mando,Manette,Controller,Controller,コントローラー
+UI_OPTIONS_KEYBOARD,Keyboard & Mouse,键盘与鼠标,Teclado y Ratón,Clavier/Souris,Tastatur & Maus,Tastiera e mouse,キーボード&マウス
+UI_GAMEOPTIONS_LANGUAGE,Language,语言,Idioma,Langue,Sprache,Lingua,言語
+UI_GAMEOPTIONS_CAMERASENSITIVITY,Camera Sensitivity,镜头灵敏度,Sens. cámara,Sensibilité caméra,Kamerasens.,Sensibilità cam.,カメラ感度
+UI_GAMEOPTIONS_INVERTY,Invert Y,反转Y轴,Invertir Y,Inverser Y,Y-Achse inv.,Inverti Y,Y軸反転
+UI_GAMEOPTIONS_CAMERASHAKE,Camera Shake,镜头抖动,Vibración cám.,Secousses cam.,Kamerawackeln,Scuotimento cam.,画面揺れ
+UI_GAMEOPTIONS_RUMBLE,Rumble,手柄震动,Vibración,Vibrations,Vibration,Vibrazione,振動
+UI_VIDEOOPTIONS_WINDOWMODE,Window Mode,窗口模式,Modo de ventana,Mode fenêtre,Fenstermodus,Modalità finestra,ウィンドウモード
+UI_VIDEOOPTIONS_WINDOWED,Windowed,窗口化,En ventana,Fenêtré,Fenster,Finestra,ウィンドウ
+UI_VIDEOOPTIONS_FULLSCREEN,Fullscreen,全屏,Pantalla completa,Plein écran,Vollbild,Schermo intero,フルスクリーン
+UI_VIDEOOPTIONS_BORDERLESS,Borderless,无边框,Sin bordes,Sans bordure,Rahmenlos,Senza bordi,ボーダーレス
+UI_VIDEOOPTIONS_RESOLUTION,Resolution,分辨率,Resolución,Résolution,Auflösung,Risoluzione,解像度
+UI_VIDEOOPTIONS_ULTRAWIDE,Ultrawide,超宽屏,Ultrapanorámico,Ultra-large,Ultrawide,Ultrawide,ウルトラワイド
+UI_VIDEOOPTIONS_RES_1080P,1920 x 1080,1920 x 1080,1920 x 1080,1920 x 1080,1920 x 1080,1920 x 1080,1920 x 1080
+UI_VIDEOOPTIONS_RES_900P,1600 x 900,1600 x 900,1600 x 900,1600 x 900,1600 x 900,1600 x 900,1600 x 900
+UI_VIDEOOPTIONS_RES_720P,1280 x 720,1280 x 720,1280 x 720,1280 x 720,1280 x 720,1280 x 720,1280 x 720
+UI_VIDEOOPTIONS_VSYNC,V-Sync,垂直同步,Sincronización vertical,Synchronisation verticale,V-Sync,Sincronizzazione verticale,垂直同期
+UI_VIDEOOPTIONS_GAMMA,Gamma,伽马值,Gamma,Gamma,Gamma,Gamma,ガンマ
+UI_AUDIOOPTIONS_MASTER,Master,主音量,General,Principal,Gesamt,Principale,マスター
+UI_AUDIOOPTIONS_MUSIC,Music,音乐,Música,Musique,Musik,Musica,BGM
+UI_AUDIOOPTIONS_SFX,SFX,音效,Efectos,Bruitages,Effekte,Effetti,SE
+UI_CONTROLLERMAPPING_JUMP,Jump,跳跃,Saltar,Sauter,Springen,Salta,ジャンプ
+UI_CONTROLLERMAPPING_SWITCHWEAPON,Switch Weapon,切换武器,Cambiar arma,Changer d'arme,Waffe wechseln,Cambia arma,武器切り替え
+UI_CONTROLLERMAPPING_LIGHTATTACK,Light Attack,轻攻击,Ataque ligero,Attaque légère,Leichter Angriff,Attacco leggero,弱攻撃
+UI_CONTROLLERMAPPING_HEAVYATTACK,Heavy Attack,重攻击,Ataque pesado,Attaque lourde,Schwerer Angriff,Attacco pesante,強攻撃
+UI_CONTROLLERMAPPING_DASH,Dash,冲刺,Esprintar,Dash,Sprint,Scatto,ダッシュ
+UI_CONTROLLERMAPPING_SHOOT,Shoot,射击,Disparar,Tirer,Schießen,Spara,射撃
+UI_CONTROLLERMAPPING_HEAL,Launcher,挑空技能,Lanzador,Lanceur,Werfer,Lancia,ランチャー
+UI_KEYBOARDMAPPING_FORWARD,Forward,前进,Adelante,Avancer,Vorwärts,Avanti,前
+UI_KEYBOARDMAPPING_BACKWARD,Backward,后退,Atrás,Reculer,Rückwärts,Indietro,後
+UI_KEYBOARDMAPPING_JUMP,Jump,跳跃,Saltar,Sauter,Springen,Salta,ジャンプ
+UI_KEYBOARDMAPPING_SWITCHWEAPON,Switch Weapon,切换武器,Cambiar arma,Changer d'arme,Waffe wechseln,Cambia arma,武器切り替え
+UI_KEYBOARDMAPPING_LIGHTATTACK,Light Attack,轻攻击,Ataque ligero,Attaque légère,Leichter Angriff,Attacco leggero,弱攻撃
+UI_KEYBOARDMAPPING_HEAVYATTACK,Heavy Attack,重攻击,Ataque pesado,Attaque lourde,Schwerer Angriff,Attacco pesante,強攻撃
+UI_KEYBOARDMAPPING_LEFT,Left,向左,Izquierda,Gauche,Links,Sinistra,左
+UI_KEYBOARDMAPPING_RIGHT,Right,向右,Derecha,Droite,Rechts,Destra,右
+UI_KEYBOARDMAPPING_DASH,Dash,冲刺,Esprintar,Dash,Sprint,Scatto,ダッシュ
+UI_KEYBOARDMAPPING_SHOOT,Shoot,射击,Disparar,Tirer,Schießen,Spara,射撃
+UI_KEYBOARDMAPPING_HEAL,Launcher,挑空技能,Lanzador,Lanceur,Werfer,Lancia,ランチャー
+UI_RESET,Reset,重置,Restablecer,Réinitialiser,Zurücksetzen,Ripristina,リセット
+UI_QUITCONFIRMMENU_CONFIRM,Do You Really Want To Quit?,确定要退出吗？,¿Realmente quieres salir?,Voulez-vous vraiment quitter?,Möchten Sie wirklich beenden?,Vuoi davvero uscire?,本当に終了しますか？
+UI_QUITCONFIRMMENU_YES,Yes,是,Sí,Oui,Ja,Sì,はい
+UI_QUITCONFIRMMENU_NO,No,否,No,Non,Nein,No,いいえ
+UI_PAUSEOPTIONS_CONTINUE,Continue,继续,Continuar,Continuer,Fortsetzen,Continua,続ける
+UI_PAUSEOPTIONS_OPTIONS,Options,选项,Opciones,Options,Einstellungen,Opzioni,オプション
+UI_PAUSEOPTIONS_EXIT,Exit,退出,Salir,Quitter,Beenden,Esci,終了
