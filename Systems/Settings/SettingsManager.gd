@@ -87,10 +87,6 @@ const DEFAULT_SETTINGS : Dictionary[String, Dictionary] = {
 			"type" : InputType.controllerButton,
 			"id" : JoyButton.JOY_BUTTON_A
 		},
-		"Dodge" : {
-			"type" : InputType.controllerButton,
-			"id" : JoyButton.JOY_BUTTON_LEFT_SHOULDER
-		},
 		"Dash" : {
 			"type" : InputType.controllerButton,
 			"id" : JoyButton.JOY_BUTTON_RIGHT_SHOULDER
@@ -115,59 +111,55 @@ const DEFAULT_SETTINGS : Dictionary[String, Dictionary] = {
 	"keyboard" : {
 		"Light attack" : {
 			"type" : InputType.mouse,
-			"id" : MouseButton.MOUSE_BUTTON_LEFT
+			"id" : MouseButton.MOUSE_BUTTON_LEFT,
 		},
 		"Heavy attack" : {
 			"type" : InputType.mouse,
-			"id" : MouseButton.MOUSE_BUTTON_RIGHT
+			"id" : MouseButton.MOUSE_BUTTON_RIGHT,
 		},
 		"Jump" : {
 			"type" : InputType.keyboard,
-			"id" : Key.KEY_SPACE
+			"id" : Key.KEY_SPACE,
 		},
 		"Target left" : {
 			"type" : InputType.keyboard,
-			"id" : Key.KEY_Q
+			"id" : Key.KEY_Q,
 		},
 		"Target right" : {
 			"type" : InputType.keyboard,
-			"id" : Key.KEY_E
-		},
-		"Dodge" : {
-			"type" : InputType.keyboard,
-			"id" : Key.KEY_SHIFT
+			"id" : Key.KEY_E,
 		},
 		"Dash" : {
 			"type" : InputType.keyboard,
-			"id" : Key.KEY_CTRL
+			"id" : Key.KEY_SHIFT,
 		},
 		"Heal" : {
 			"type" : InputType.keyboard,
-			"id" : Key.KEY_ALT
+			"id" : Key.KEY_Q,
 		},
 		"Held target toggle" : {
 			"type" : InputType.keyboard,
-			"id" : Key.KEY_T
+			"id" : Key.KEY_T,
 		},
 		"Move left" : {
 			"type" : InputType.keyboard,
-			"id" : Key.KEY_A
+			"id" : Key.KEY_A,
 		},
 		"Move right" : {
 			"type" : InputType.keyboard,
-			"id" : Key.KEY_D
+			"id" : Key.KEY_D,
 		},
 		"Move forwards" : {
 			"type" : InputType.keyboard,
-			"id" : Key.KEY_W
+			"id" : Key.KEY_W,
 		},
 		"Move backwards" : {
 			"type" : InputType.keyboard,
-			"id" : Key.KEY_S
+			"id" : Key.KEY_S,
 		},
 		"Switch weapon" : {
 			"type" : InputType.keyboard,
-			"id" : Key.KEY_C
+			"id" : Key.KEY_C,
 		},
 		"Taunt" : {
 			"type" : InputType.keyboard,
