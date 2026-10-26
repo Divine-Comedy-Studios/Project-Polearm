@@ -26,6 +26,8 @@ var _stopHealing : bool = false
 #region Override functions
 
 func _implEnter() -> void:
+	_animationSetupBasic()
+
 	Globals.sfxManager.play(SFXData.Type.heal, player().global_position)
 
 func _implExit() -> void:
@@ -50,6 +52,7 @@ func _implTick(delta : float) -> void:
 		or energy.locked
 		or health.value >= health.maxValue
 		or energy.value <= 0.0
+		or energy.value <= ENERGY_PER_HEAL
 	):
 		_stopHealing = true
 
