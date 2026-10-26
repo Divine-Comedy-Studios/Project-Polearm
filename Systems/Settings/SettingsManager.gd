@@ -204,8 +204,8 @@ func _ready() -> void:
 	applyGameSettings()
 	applyVideoSettings()
 	applyAudioSettings()
-	applyKeyboardSettings()
-	applyControllerSettings()
+	applyInputSettings("keyboard")
+	applyInputSettings("controller")
 
 #endregion
 
@@ -320,9 +320,9 @@ func applyAudioSettings() -> void:
 	Globals.audioManager.muteOnFocusLost = getBool("audio", "mute on focus loss")
 
 
-func applyKeyboardSettings() -> void:
-	for actionName : String in _file.get_section_keys("keyboard"):
-		var actionData := getVariant("keyboard", actionName) as Dictionary
+func applyInputSettings(sectionName : String) -> void:
+	for actionName : String in _file.get_section_keys(sectionName):
+		var actionData := getVariant(sectionName, actionName) as Dictionary
 
 		var events := InputMap.action_get_events(actionName)
 		for event in events:
@@ -332,30 +332,23 @@ func applyKeyboardSettings() -> void:
 		if actionData["type"] == InputType.mouse:
 			var event := InputEventMouseButton.new()
 			event.button_index = actionData["id"] as MouseButton
+
 			InputMap.action_add_event(actionName, event)
 		elif actionData["type"] == InputType.keyboard:
 			var event := InputEventKey.new()
 			event.physical_keycode = actionData["id"] as Key
+
 			InputMap.action_add_event(actionName, event)
-
-
-func applyControllerSettings() -> void:
-	for actionName : String in _file.get_section_keys("controller"):
-		var actionData := getVariant("controller", actionName) as Dictionary
-
-		var events := InputMap.action_get_events(actionName)
-		for event in events:
-			if event is InputEventJoypadButton or event is InputEventJoypadMotion:
-				InputMap.action_erase_event(actionName, event)
-		
-		if actionData["type"] == InputType.controllerButton:
+		elif actionData["type"] == InputType.controllerButton:
 			var event := InputEventJoypadButton.new()
 			event.button_index = actionData["id"]
+
 			InputMap.action_add_event(actionName, event)
 		elif actionData["type"] == InputType.controllerAxis:
 			var event := InputEventJoypadMotion.new()
 			event.axis = actionData["id"]
 			event.axis_value = TRIGGER_SENSITIVITY
+
 			InputMap.action_add_event(actionName, event)
 
 

@@ -162,7 +162,7 @@ func _ready() -> void:
 	_updateTexture()
 
 
-func _unhandled_input(event : InputEvent) -> void:
+func _input(event : InputEvent) -> void:
 	if not _listening or not event.is_pressed():
 		return
 
@@ -171,8 +171,6 @@ func _unhandled_input(event : InputEvent) -> void:
 			_checkKeyboardMouseInput(event)
 		SettingsManager.InputType.controller:
 			_checkControllerInput(event)
-
-	return
 
 
 func _process(_delta: float) -> void:
@@ -188,14 +186,7 @@ func _process(_delta: float) -> void:
 # Texture updates
 
 func _updateTexture() -> void:
-	var section : String = String()
-	match INPUT_MODE:
-		SettingsManager.InputType.keyboard:
-			section = "keyboard"
-		SettingsManager.InputType.controller:
-			section = "controller"
-
-	var inputData := Globals.settingsManager.getVariant(section, ACTION_NAME) as Dictionary
+	var inputData := Globals.settingsManager.getVariant(_getSectionName(), ACTION_NAME) as Dictionary
 	match (inputData["type"] as SettingsManager.InputType):
 		SettingsManager.InputType.keyboard:
 			_icon.texture = KEY_ICONS[inputData["id"] as int]
@@ -225,6 +216,30 @@ func _eventHandled() -> void:
 	set_process_input(false)
 
 
+# Input mapping implementation
+
+func _checkKeyboardMouseInput(event : InputEvent) -> void:
+	if event is InputEventKey:
+		if event.keycode == Key.KEY_ESCAPE:
+			_eventHandled()
+			return
+
+		_eventHandled()
+		_remap("keyboard", SettingsManager.InputType.keyboard, KEY_ICONS, event.keycode)
+	elif event is InputEventMouseButton:
+		_eventHandled()
+		_remap("keyboard", SettingsManager.InputType.mouse, MOUSE_ICONS, event.button_index)
+
+func _checkControllerInput(event : InputEvent) -> void:
+	if event is InputEventJoypadButton:
+		_eventHandled()
+		_remap("controller", SettingsManager.InputType.controllerButton, CONTROLLER_BUTTON_ICONS, event.button_index)
+	elif event is InputEventJoypadMotion:
+		if event.axis == JoyAxis.JOY_AXIS_TRIGGER_LEFT or event.axis == JoyAxis.JOY_AXIS_TRIGGER_RIGHT:
+			_eventHandled()
+			_remap("controller", SettingsManager.InputType.controllerAxis, CONTROLLER_AXIS_ICONS, event.axis)
+
+
 func _remap(section : String, type : SettingsManager.InputType, iconTex : Dictionary[int, Texture2D], code : int) -> void:
 	_icon.texture = iconTex[code]
 	
@@ -252,30 +267,11 @@ func _remap(section : String, type : SettingsManager.InputType, iconTex : Dictio
 	# Set settings
 	Globals.settingsManager.setVariant(section, ACTION_NAME, data)
 	Globals.settingsManager.saveSettings()
+	Globals.settingsManager.applyInputSettings(_getSectionName())
 
+# Utility
 
-# Input mapping implementation
-
-func _checkKeyboardMouseInput(event : InputEvent) -> void:
-	if event is InputEventKey:
-		if event.keycode == Key.KEY_ESCAPE:
-			_eventHandled()
-			return
-
-		_eventHandled()
-		_remap("keyboard", SettingsManager.InputType.keyboard, KEY_ICONS, event.keycode)
-	elif event is InputEventMouseButton:
-		_eventHandled()
-		_remap("keyboard", SettingsManager.InputType.mouse, MOUSE_ICONS, event.button_index)
-
-
-func _checkControllerInput(event : InputEvent) -> void:
-	if event is InputEventJoypadButton:
-		_eventHandled()
-		_remap("controller", SettingsManager.InputType.controllerButton, CONTROLLER_BUTTON_ICONS, event.button_index)
-	elif event is InputEventJoypadMotion:
-		if event.axis == JoyAxis.JOY_AXIS_TRIGGER_LEFT or event.axis == JoyAxis.JOY_AXIS_TRIGGER_RIGHT:
-			_eventHandled()
-			_remap("controller", SettingsManager.InputType.controllerAxis, CONTROLLER_AXIS_ICONS, event.axis)
+func _getSectionName() -> String:
+	return "keyboard" if INPUT_MODE == SettingsManager.InputType.keyboard else "controller"
 
 #endregion
