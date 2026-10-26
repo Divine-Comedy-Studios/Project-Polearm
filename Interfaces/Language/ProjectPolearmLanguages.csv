@@ -52,3 +52,6 @@ UI_QUITCONFIRMMENU_NO,No,否,No,Non,Nein,No,いいえ
 UI_PAUSEOPTIONS_CONTINUE,Continue,继续,Continuar,Continuer,Fortsetzen,Continua,続ける
 UI_PAUSEOPTIONS_OPTIONS,Options,选项,Opciones,Options,Einstellungen,Opzioni,オプション
 UI_PAUSEOPTIONS_EXIT,Exit,退出,Salir,Quitter,Beenden,Esci,終了
+UI_DEATHSCREEN_YOUDIED,You Died,你死了,Has muerto,Vous êtes mort,Du bist gestorben,Sei morto,死亡
+UI_DEATHSCREEN_RESPAWN,Respawn,复活,Reaparecer,Réapparaître,Wiederbeleben,Rigenera,リスポーン
+UI_DEATHSCREEN_MAINMENU,Main Menu,主菜单,Menú principal,Menu principal,Hauptmenü,Menu principale,メインメニュー

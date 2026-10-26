@@ -45,7 +45,7 @@ theme_override_constants/separation = 16
 layout_mode = 2
 theme_override_colors/font_color = Color(0.717647, 0.427451, 0.313725, 1)
 theme_override_font_sizes/font_size = 72
-text = "YOU DIED"
+text = "UI_DEATHSCREEN_YOUDIED"
 horizontal_alignment = 1
 
 [node name="Divider" type="TextureRect" parent="Center/VBox" unique_id=203694312]
@@ -61,12 +61,12 @@ layout_mode = 2
 
 [node name="RespawnButton" type="Button" parent="Center/VBox" unique_id=672115130]
 layout_mode = 2
-text = "Respawn"
+text = "UI_DEATHSCREEN_RESPAWN"
 script = ExtResource("1_2kcie")
 
 [node name="MainMenuButton" type="Button" parent="Center/VBox" unique_id=1272533495]
 layout_mode = 2
-text = "Main Menu"
+text = "UI_DEATHSCREEN_MAINMENU"
 script = ExtResource("1_2kcie")
 
 [node name="FadeInTimer" type="Timer" parent="." unique_id=1517426481]
