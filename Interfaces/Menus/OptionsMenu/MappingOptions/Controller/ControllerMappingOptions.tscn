@@ -5,7 +5,6 @@
 [ext_resource type="Theme" uid="uid://eptqqy8sm6gl" path="res://Interfaces/Themes/MenuTheme.tres" id="kui_theme"]
 
 [node name="ControllerMapping" type="Control" unique_id=984357258]
-theme = ExtResource("kui_theme")
 texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
@@ -13,6 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("kui_theme")
 script = ExtResource("1_a1q1k")
 MAPPING_TYPE = "controller"
 TYPE = 9
@@ -91,9 +91,9 @@ text = "UI_CONTROLLERMAPPING_SHOOT"
 ACTION_NAME = &"Shoot"
 INPUT_MODE = 2
 
-[node name="Launcher" parent="CenterContainer/Panel/HBoxContainer/Right Colon" unique_id=1868718643 instance=ExtResource("2_4b14h")]
+[node name="Heal" parent="CenterContainer/Panel/HBoxContainer/Right Colon" unique_id=1868718643 instance=ExtResource("2_4b14h")]
 layout_mode = 2
-text = "UI_CONTROLLERMAPPING_LAUNCHER"
+text = "UI_CONTROLLERMAPPING_HEAL"
 ACTION_NAME = &"Launcher"
 INPUT_MODE = 2
 
