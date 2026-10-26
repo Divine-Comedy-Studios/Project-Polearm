@@ -1,6 +1,6 @@
 # Project-Polearm: Zwischenabgabe
 
-Dieses Dokument dient als Orientierungshilfe für die Inhalte der Abgabe und erläutert die aktuell implementierten Funktionen des Prototyps. Sie ist auch unter demselben Namen im PDF-Format verfügbar.
+Dieses Dokument dient als Orientierungshilfe für die Inhalte der Abgabe und erläutert die aktuell implementierten Funktionen des Prototyps.
 
 
 ## Inhalt der ZIP-Datei
@@ -9,9 +9,9 @@ Die ZIP-Datei enthält folgende Bestandteile:
 
 * Dieses README
 * Den schriftlichen Begleitbericht
-* Eine ausführbare Version des Spiels (`Spiel.exe` als ZIP-Datei)
-* Arbeitsjournale (Ordner: `Arbeitsjournal/`)
-* Die vollständige Projektdatei des Spiels (Ordner: `Source Code`)
+* Eine ausführbare Version des Spiels (Extrahieren sie dafür `Spiel.zip` als ZIP-Datei)
+* Arbeitsjournale (Ordner: `Arbeitsjournale/`)
+* Die vollständige Projektdatei des Spiels (Ordner: `Source/`)
 
 
 Der Begleitbericht ist grundsätzlich eigenständig verständlich. Das vorliegende README dient insbesondere dazu, die Verbindung zwischen den im Begleitbericht beschriebenen Systemen und den beigelegten Quellcodedateien herzustellen.
