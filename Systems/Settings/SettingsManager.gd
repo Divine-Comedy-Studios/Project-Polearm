@@ -326,7 +326,10 @@ func applyInputSettings(sectionName : String) -> void:
 
 		var events := InputMap.action_get_events(actionName)
 		for event in events:
-			if event is InputEventKey or event is InputEventMouseButton:
+			if sectionName == "keyboard":
+				if event is InputEventKey or event is InputEventMouseButton:
+					InputMap.action_erase_event(actionName, event)
+			elif event is InputEventJoypadButton or event is InputEventJoypadMotion:
 				InputMap.action_erase_event(actionName, event)
 
 		if actionData["type"] == InputType.mouse:
@@ -354,7 +357,7 @@ func applyInputSettings(sectionName : String) -> void:
 
 func saveSectionDefault(sectionName : String) -> void:
 	for settingName : String in DEFAULT_SETTINGS[sectionName].keys():
-			_file.set_value(sectionName, settingName, DEFAULT_SETTINGS[sectionName][settingName])
+		_file.set_value(sectionName, settingName, DEFAULT_SETTINGS[sectionName][settingName])
 
 
 # File saving
