@@ -66,6 +66,10 @@ using System.Data.Common;
 
 	private float m_timeUntilAutoCam = 0.0f;
 
+	// Global camera sensitivity
+
+	public float globalSensitivity = 1.0f;
+
 	#endregion
 
 
@@ -89,8 +93,8 @@ using System.Data.Common;
 			m_controllerActive = true;
 
 			_rotateTarget(m_camera.FollowTarget, new Vector2(
-				Direction.Y * (float)delta * CONTROLLER_SENSITIVITY * INVERT_VERTICAL, 
-				Direction.X * (float)delta * CONTROLLER_SENSITIVITY
+				Direction.Y * (float)delta * CONTROLLER_SENSITIVITY * globalSensitivity * INVERT_VERTICAL, 
+				Direction.X * (float)delta * CONTROLLER_SENSITIVITY * globalSensitivity
 			));
 		} else m_controllerActive = false;
 
@@ -122,7 +126,7 @@ using System.Data.Common;
 			if (inputEvent is InputEventMouseMotion mouse) {
 				m_timeUntilAutoCam = TIME_UNTIL_AUTO_CAM;
 
-				Vector2 mouseDelta = mouse.Relative * MOUSE_SENSITIVITY;
+				Vector2 mouseDelta = mouse.Relative * MOUSE_SENSITIVITY * globalSensitivity;
 
 				_rotateTarget(m_camera.FollowTarget, new Vector2(-mouseDelta.Y * INVERT_VERTICAL, mouseDelta.X));
 			}

@@ -35,6 +35,8 @@ func _ready() -> void:
 	init()
 
 func _physics_process(delta: float) -> void:
+	cameraManager.globalSensitivity = Globals.settingsManager.getFloat("game", "camera sensitivity")
+
 	_processActions(inputManager.inputs.actions)
 
 	tick(delta)
