@@ -30,75 +30,44 @@ grow_vertical = 2
 [node name="Panel" type="PanelContainer" parent="CenterContainer" unique_id=1497871144]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/Panel" unique_id=1837179978]
-custom_minimum_size = Vector2(800, 0)
-layout_mode = 2
-theme_override_constants/separation = 100
-
-[node name="Left Colon" type="VBoxContainer" parent="CenterContainer/Panel/HBoxContainer" unique_id=2121499281]
+[node name="Colon" type="VBoxContainer" parent="CenterContainer/Panel" unique_id=2121499281]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Jump" parent="CenterContainer/Panel/HBoxContainer/Left Colon" unique_id=1216139286 instance=ExtResource("2_4b14h")]
+[node name="Jump" parent="CenterContainer/Panel/Colon" unique_id=1216139286 instance=ExtResource("2_4b14h")]
 layout_mode = 2
 text = "UI_CONTROLLERMAPPING_JUMP"
 ACTION_NAME = &"Jump"
 INPUT_MODE = 2
 
-[node name="Target" parent="CenterContainer/Panel/HBoxContainer/Left Colon" unique_id=1902124974 instance=ExtResource("2_4b14h")]
-layout_mode = 2
-text = "UI_CONTROLLERMAPPING_TARGET"
-ACTION_NAME = &"Held target toggle"
-INPUT_MODE = 2
-
-[node name="SwitchWeapon" parent="CenterContainer/Panel/HBoxContainer/Left Colon" unique_id=1126757994 instance=ExtResource("2_4b14h")]
-layout_mode = 2
-text = "UI_CONTROLLERMAPPING_SWITCHWEAPON"
-ACTION_NAME = &"Switch weapon"
-INPUT_MODE = 2
-
-[node name="LightAttack" parent="CenterContainer/Panel/HBoxContainer/Left Colon" unique_id=1239274261 instance=ExtResource("2_4b14h")]
-layout_mode = 2
-text = "UI_CONTROLLERMAPPING_LIGHTATTACK"
-ACTION_NAME = &"Light attack"
-INPUT_MODE = 2
-
-[node name="HeavyAttack" parent="CenterContainer/Panel/HBoxContainer/Left Colon" unique_id=318456018 instance=ExtResource("2_4b14h")]
-layout_mode = 2
-text = "UI_CONTROLLERMAPPING_HEAVYATTACK"
-ACTION_NAME = &"Heavy attack"
-INPUT_MODE = 2
-
-[node name="Right Colon" type="VBoxContainer" parent="CenterContainer/Panel/HBoxContainer" unique_id=1993309962]
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="Dodge" parent="CenterContainer/Panel/HBoxContainer/Right Colon" unique_id=1295914242 instance=ExtResource("2_4b14h")]
-layout_mode = 2
-text = "UI_CONTROLLERMAPPING_DODGE"
-ACTION_NAME = &"Dodge"
-INPUT_MODE = 2
-
-[node name="Dash" parent="CenterContainer/Panel/HBoxContainer/Right Colon" unique_id=1101762541 instance=ExtResource("2_4b14h")]
+[node name="Dash" parent="CenterContainer/Panel/Colon" unique_id=1101762541 instance=ExtResource("2_4b14h")]
 layout_mode = 2
 text = "UI_CONTROLLERMAPPING_DASH"
 ACTION_NAME = &"Dash"
 INPUT_MODE = 2
 
-[node name="Shoot" parent="CenterContainer/Panel/HBoxContainer/Right Colon" unique_id=361470708 instance=ExtResource("2_4b14h")]
+[node name="LightAttack" parent="CenterContainer/Panel/Colon" unique_id=1239274261 instance=ExtResource("2_4b14h")]
 layout_mode = 2
-text = "UI_CONTROLLERMAPPING_SHOOT"
-ACTION_NAME = &"Shoot"
+text = "UI_CONTROLLERMAPPING_LIGHTATTACK"
+ACTION_NAME = &"Light attack"
 INPUT_MODE = 2
 
-[node name="Heal" parent="CenterContainer/Panel/HBoxContainer/Right Colon" unique_id=1868718643 instance=ExtResource("2_4b14h")]
+[node name="HeavyAttack" parent="CenterContainer/Panel/Colon" unique_id=318456018 instance=ExtResource("2_4b14h")]
+layout_mode = 2
+text = "UI_CONTROLLERMAPPING_HEAVYATTACK"
+ACTION_NAME = &"Heavy attack"
+INPUT_MODE = 2
+
+[node name="Heal" parent="CenterContainer/Panel/Colon" unique_id=1868718643 instance=ExtResource("2_4b14h")]
 layout_mode = 2
 text = "UI_CONTROLLERMAPPING_HEAL"
 ACTION_NAME = &"Launcher"
 INPUT_MODE = 2
 
-[node name="Taunt" parent="CenterContainer/Panel/HBoxContainer/Right Colon" unique_id=1825164760 instance=ExtResource("2_4b14h")]
+[node name="Node" type="Control" parent="CenterContainer/Panel/Colon" unique_id=1709963849]
+custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
-text = "UI_CONTROLLERMAPPING_TAUNT"
-ACTION_NAME = &"Taunt"
-INPUT_MODE = 2
+
+[node name="Reset" type="Button" parent="CenterContainer/Panel/Colon" unique_id=1440947284]
+layout_mode = 2
+text = "UI_RESET"
