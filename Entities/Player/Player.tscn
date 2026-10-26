@@ -215,7 +215,6 @@ libraries/ = SubResource("AnimationLibrary_gbla8")
 libraries/FrameData = ExtResource("15_gallu")
 script = ExtResource("9_uw7o4")
 _sfx = 42
-_finished = true
 metadata/_custom_type_script = "uid://dalncdreadf0e"
 
 [node name="Animator" type="AnimationTree" parent="." unique_id=627681842]

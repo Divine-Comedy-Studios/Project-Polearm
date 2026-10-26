@@ -25,7 +25,6 @@ extends InterfaceState
 #region Built-in functions
 
 func _ready() -> void:
-
 	# Initialize Window Mode
 	windowMode.selected = Globals.settingsManager.getInt("video", "window mode")
 	windowMode.item_selected.connect(_on_window_mode_selected)

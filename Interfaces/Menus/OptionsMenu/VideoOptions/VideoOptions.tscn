@@ -53,9 +53,9 @@ item_count = 3
 popup/item_0/text = "UI_VIDEOOPTIONS_WINDOWED"
 popup/item_0/id = 0
 popup/item_1/text = "UI_VIDEOOPTIONS_FULLSCREEN"
-popup/item_1/id = 3
+popup/item_1/id = 1
 popup/item_2/text = "UI_VIDEOOPTIONS_BORDERLESS"
-popup/item_2/id = 1
+popup/item_2/id = 2
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/MarginContainer/HBoxContainer/Labels" unique_id=316492088]
 layout_mode = 2

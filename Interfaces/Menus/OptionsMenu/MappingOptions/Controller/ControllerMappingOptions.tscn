@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://cnusbpv84eyf0"]
 
 [ext_resource type="Script" uid="uid://pgyhhnbdkno5" path="res://Interfaces/Menus/OptionsMenu/MappingOptions/MappingOptions.gd" id="1_a1q1k"]
-[ext_resource type="PackedScene" uid="uid://cebbhco3k6a5n" path="res://Interfaces/UIElements/ActionMappingButton.tscn" id="2_4b14h"]
+[ext_resource type="PackedScene" uid="uid://cebbhco3k6a5n" path="res://Interfaces/Menus/OptionsMenu/MappingOptions/ActionMappingButton/ActionMappingButton.tscn" id="2_4b14h"]
+[ext_resource type="Script" uid="uid://cfdlgc8aalbtr" path="res://Interfaces/Menus/Button/GameMenuButton.gd" id="4_utaqh"]
 [ext_resource type="Theme" uid="uid://eptqqy8sm6gl" path="res://Interfaces/Themes/MenuTheme.tres" id="kui_theme"]
 
 [node name="ControllerMapping" type="Control" unique_id=984357258]
@@ -61,13 +62,17 @@ INPUT_MODE = 2
 [node name="Heal" parent="CenterContainer/Panel/Colon" unique_id=1868718643 instance=ExtResource("2_4b14h")]
 layout_mode = 2
 text = "UI_CONTROLLERMAPPING_HEAL"
-ACTION_NAME = &"Launcher"
+ACTION_NAME = &"Heal"
 INPUT_MODE = 2
 
 [node name="Node" type="Control" parent="CenterContainer/Panel/Colon" unique_id=1709963849]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 
-[node name="Reset" type="Button" parent="CenterContainer/Panel/Colon" unique_id=1440947284]
+[node name="Reset" type="Button" parent="CenterContainer/Panel/Colon" unique_id=1611227722]
 layout_mode = 2
 text = "UI_RESET"
+script = ExtResource("4_utaqh")
+metadata/_custom_type_script = "uid://cfdlgc8aalbtr"
+
+[connection signal="pressed" from="CenterContainer/Panel/Colon/Reset" to="." method="_onResetPressed"]

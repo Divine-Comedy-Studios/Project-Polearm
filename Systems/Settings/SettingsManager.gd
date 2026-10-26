@@ -4,6 +4,12 @@ class_name SettingsManager
 
 #region Enums
 
+enum WindowMode {
+	windowed,
+	fullscreen,
+	borderless,
+}
+
 enum Resolution {
 	ultrawide,
 	p1080,
@@ -37,6 +43,8 @@ enum SettingVersion {
 
 
 #region Constants
+
+const TRIGGER_SENSITIVITY : float = 0.5
 
 const SETTINGS_PATH : String = "user://settings.cfg"
 const SETTINGS_VERSION : int = SettingVersion.v0_0_1
@@ -79,10 +87,6 @@ const DEFAULT_SETTINGS : Dictionary[String, Dictionary] = {
 			"type" : InputType.controllerButton,
 			"id" : JoyButton.JOY_BUTTON_A
 		},
-		"Shoot" : {
-			"type" : InputType.controllerButton,
-			"id" : JoyButton.JOY_BUTTON_B
-		},
 		"Dodge" : {
 			"type" : InputType.controllerButton,
 			"id" : JoyButton.JOY_BUTTON_LEFT_SHOULDER
@@ -91,7 +95,7 @@ const DEFAULT_SETTINGS : Dictionary[String, Dictionary] = {
 			"type" : InputType.controllerButton,
 			"id" : JoyButton.JOY_BUTTON_RIGHT_SHOULDER
 		},
-		"Launcher" : {
+		"Heal" : {
 			"type" : InputType.controllerButton,
 			"id" : JoyButton.JOY_BUTTON_DPAD_UP
 		},
@@ -107,8 +111,6 @@ const DEFAULT_SETTINGS : Dictionary[String, Dictionary] = {
 			"type" : InputType.controllerButton,
 			"id" : JoyButton.JOY_BUTTON_BACK
 		},
-		"targetStyle" : TargetMode.leftStick,
-		"triggerSensitivity" : 0.5
 	},
 	"keyboard" : {
 		"Light attack" : {
@@ -122,10 +124,6 @@ const DEFAULT_SETTINGS : Dictionary[String, Dictionary] = {
 		"Jump" : {
 			"type" : InputType.keyboard,
 			"id" : Key.KEY_SPACE
-		},
-		"Shoot" : {
-			"type" : InputType.keyboard,
-			"id" : Key.KEY_F
 		},
 		"Target left" : {
 			"type" : InputType.keyboard,
@@ -143,7 +141,7 @@ const DEFAULT_SETTINGS : Dictionary[String, Dictionary] = {
 			"type" : InputType.keyboard,
 			"id" : Key.KEY_CTRL
 		},
-		"Launcher" : {
+		"Heal" : {
 			"type" : InputType.keyboard,
 			"id" : Key.KEY_ALT
 		},
@@ -214,8 +212,8 @@ func _ready() -> void:
 	applyGameSettings()
 	applyVideoSettings()
 	applyAudioSettings()
-	# applyKeyboardSettings()
-	# applyControllerSettings()
+	applyKeyboardSettings()
+	applyControllerSettings()
 
 #endregion
 
@@ -279,17 +277,11 @@ func applyGameSettings() -> void:
 
 func applyVideoSettings() -> void:
 	# Window Mode
-	var windowMode := getInt("video", "window mode")
+	match getInt("video", "window mode"):
+		WindowMode.windowed:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
 
-	if windowMode == DisplayServer.WINDOW_FLAG_BORDERLESS: ### @todo this should not work
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-		DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, true)
-	else:
-		DisplayServer.window_set_mode(windowMode)
-		DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
-
-		# Window size
-		if windowMode == DisplayServer.WINDOW_MODE_WINDOWED:
 			match getInt("video", "resolution"):
 				Resolution.ultrawide:
 					get_window().size = Vector2i(2560, 1080)
@@ -300,7 +292,14 @@ func applyVideoSettings() -> void:
 				Resolution.p720:
 					get_window().size = Vector2i(1280, 720)
 
-		get_window().move_to_center()
+			get_window().move_to_center()
+
+		WindowMode.fullscreen:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
+		WindowMode.borderless:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, true)
 
 	# VSync
 	DisplayServer.window_set_vsync_mode(
@@ -331,20 +330,20 @@ func applyAudioSettings() -> void:
 
 func applyKeyboardSettings() -> void:
 	for actionName : String in _file.get_section_keys("keyboard"):
-		var action := getInt("keyboard", actionName)
+		var actionData := getVariant("keyboard", actionName) as Dictionary
 
 		var events := InputMap.action_get_events(actionName)
 		for event in events:
 			if event is InputEventKey or event is InputEventMouseButton:
 				InputMap.action_erase_event(actionName, event)
 
-		if action is MouseButton: ### @todo Very confident that this does not work
+		if actionData["type"] == InputType.mouse:
 			var event := InputEventMouseButton.new()
-			event.button_index = action as MouseButton
+			event.button_index = actionData["id"] as MouseButton
 			InputMap.action_add_event(actionName, event)
-		else:
+		elif actionData["type"] == InputType.keyboard:
 			var event := InputEventKey.new()
-			event.physical_keycode = action as Key
+			event.physical_keycode = actionData["id"] as Key
 			InputMap.action_add_event(actionName, event)
 
 
@@ -364,8 +363,13 @@ func applyControllerSettings() -> void:
 		elif actionData["type"] == InputType.controllerAxis:
 			var event := InputEventJoypadMotion.new()
 			event.axis = actionData["id"]
-			event.axis_value = getFloat("controller", "triggerSensitivity")
+			event.axis_value = TRIGGER_SENSITIVITY
 			InputMap.action_add_event(actionName, event)
+
+
+func saveSectionDefault(sectionName : String) -> void:
+	for settingName : String in DEFAULT_SETTINGS[sectionName].keys():
+			_file.set_value(sectionName, settingName, DEFAULT_SETTINGS[sectionName][settingName])
 
 
 # File saving
@@ -379,10 +383,10 @@ func saveSettings() -> void:
 
 func _saveDefaultSettings() -> void:
 	for sectionName : String in DEFAULT_SETTINGS.keys():
-		for settingName : String in DEFAULT_SETTINGS[sectionName].keys():
-			_file.set_value(sectionName, settingName, DEFAULT_SETTINGS[sectionName][settingName])
+		saveSectionDefault(sectionName)
 
 	_file.save(SETTINGS_PATH)
+
 
 func _verifySettings() -> void:
 	var needsSave := false

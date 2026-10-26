@@ -39,4 +39,9 @@ func nextMenu(inputs : ISMInputManager.Data) -> Type:
 func _onButtonListening(listening : bool) -> void:
 	_remapping = listening
 
+
+func _onResetPressed() -> void:
+	Globals.settingsManager.saveSectionDefault(MAPPING_TYPE)
+
 #endregion
+

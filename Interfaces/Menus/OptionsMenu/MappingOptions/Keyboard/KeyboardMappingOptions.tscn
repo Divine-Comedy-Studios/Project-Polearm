@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://cthgc7cm7suej"]
 
 [ext_resource type="Script" uid="uid://pgyhhnbdkno5" path="res://Interfaces/Menus/OptionsMenu/MappingOptions/MappingOptions.gd" id="1_poxib"]
-[ext_resource type="PackedScene" uid="uid://cebbhco3k6a5n" path="res://Interfaces/UIElements/ActionMappingButton.tscn" id="2_7kj8o"]
+[ext_resource type="PackedScene" uid="uid://cebbhco3k6a5n" path="res://Interfaces/Menus/OptionsMenu/MappingOptions/ActionMappingButton/ActionMappingButton.tscn" id="2_7kj8o"]
+[ext_resource type="Script" uid="uid://cfdlgc8aalbtr" path="res://Interfaces/Menus/Button/GameMenuButton.gd" id="4_5r1jw"]
 [ext_resource type="Theme" uid="uid://eptqqy8sm6gl" path="res://Interfaces/Themes/MenuTheme.tres" id="kui_theme"]
 
 [node name="KeyboardMapping" type="Control" unique_id=601317194]
@@ -76,12 +77,16 @@ ACTION_NAME = &"Heavy attack"
 [node name="Heal" parent="CenterContainer/Panel/Colon" unique_id=1682102111 instance=ExtResource("2_7kj8o")]
 layout_mode = 2
 text = "UI_KEYBOARDMAPPING_HEAL"
-ACTION_NAME = &"Launcher"
+ACTION_NAME = &"Heal"
 
 [node name="Node" type="Control" parent="CenterContainer/Panel/Colon" unique_id=1912610278]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 
-[node name="Reset" type="Button" parent="CenterContainer/Panel/Colon" unique_id=1565885294]
+[node name="Reset" type="Button" parent="CenterContainer/Panel/Colon" unique_id=449272999]
 layout_mode = 2
 text = "UI_RESET"
+script = ExtResource("4_5r1jw")
+metadata/_custom_type_script = "uid://cfdlgc8aalbtr"
+
+[connection signal="pressed" from="CenterContainer/Panel/Colon/Reset" to="." method="_onResetPressed"]

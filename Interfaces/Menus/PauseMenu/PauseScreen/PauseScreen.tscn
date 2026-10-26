@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://vyxsiwv005q" path="res://Interfaces/Menus/PauseMenu/PauseScreen/PauseScreen.gd" id="1_ch7jw"]
 [ext_resource type="Theme" uid="uid://eptqqy8sm6gl" path="res://Interfaces/Themes/MenuTheme.tres" id="1_i12rr"]
-[ext_resource type="Script" uid="uid://cfdlgc8aalbtr" path="res://Interfaces/UIElements/GameMenuButton.gd" id="2_57qva"]
+[ext_resource type="Script" uid="uid://cfdlgc8aalbtr" path="res://Interfaces/Menus/Button/GameMenuButton.gd" id="2_57qva"]
 
 [node name="PauseMenuScreen" type="Control" unique_id=947122342]
 texture_filter = 1
