@@ -70,7 +70,7 @@ func nextMenu(inputs : ISMInputManager.Data) -> Type:
 #region Signal functions
 
 func _on_language_selected(index: int) -> void:
-	Globals.settingsManager.setInt("game", "language", index)
+	Globals.settingsManager.setString("game", "language", Globals.settingsManager.SUPPORTED_LANGUAGES[index])
 
 	Globals.settingsManager.saveSettings()
 	Globals.settingsManager.applyGameSettings()

@@ -56,14 +56,14 @@ const DEFAULT_SETTINGS : Dictionary[String, Dictionary] = {
 		"lastSave" : -1,
 	},
 	"game" : {
-		"language" : "en", ### @todo why not directly use the string?
+		"language" : "en",
 		"camera sensitivity" : 1.0,
 		"invert y" : false,
 		"camera shake" : 1.0,
 		"rumble" : 1.0,
 	},
 	"video" : {
-		"window mode" : DisplayServer.WINDOW_MODE_FULLSCREEN,
+		"window mode" : WindowMode.fullscreen,
 		"resolution" : Resolution.p1080,
 		"vsync" : true,
 		"gamma" : 1.0,
