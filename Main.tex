@@ -27,7 +27,7 @@
 
 % Language packages
 \usepackage[T1]{fontenc}
-\usepackage[german]{babel}
+\usepackage[ngerman]{babel}
 
 % Formalities
 \usepackage[backend=biber, style=authortitle-ibid]{biblatex}
@@ -71,7 +71,7 @@
 
         \textbf{\Huge{Project-Polearm}} \\ [2em]
         \textbf{\Large Die Entwicklung eines Hack-and-Slash Videospiels} \\ [0.6em]
-        \large{Programmierung, Architektur und Evaluation von Gegnerverhalten und Leveldesign} \\ [2em]
+        \large{Konzeption, Umsetzung und Evaluation von Gegnerverhalten und Leveldesign in einem Hack-and-Slash-Prototyp} \\ [2em]
 
         \Large{Rodin Arslan, Zhile Zhu} \\ [0.5em]
         \large{Klasse G23g}
@@ -98,15 +98,11 @@
 % Abstract
 
 \begin{abstract}
-Die vorliegende Maturitätsarbeit beschäftigt sich mit der Frage, wie Gegnerverhalten und Gegnerplatzierung in einem 3D-Hack-and-Slash-Prototyp gestaltet sein müssen, damit ein Kampfabschnitt mit nachvollziehbarem Spielfluss, angemessener Schwierigkeit und befriedigendem Spielgefühl entsteht. Das Genre ist dabei besonders herausfordernd, da schon kleine Änderungen an einzelnen Systemen spürbare Auswirkungen auf das gesamte Spielerlebnis haben.
+Die vorliegende Maturitätsarbeit beschäftigt sich mit der Leitfrage, wie Gegnerverhalten und Gegnerplatzierung in einem 3D-Hack-and-Slash-Prototyp konzipiert sein müssen, damit ein Kampfabschnitt mit nachvollziehbarem Spielfluss, angemessener Schwierigkeit und befriedigendem Spielgefühl entsteht.
 
-Als methodische Grundlage dient das MDA-Framework, das Spiele in die drei Ebenen: Mechaniken, Dynamiken und Ästhetik unterteilt und deren kausale Beziehung beschreibt. Auf Basis dieses Frameworks wurde ein strukturierter Analyse-Fragebogen mit 15 Fragen entwickelt, der auf das Referenzspiel \textit{Ninja Gaiden Sigma Plus} angewendet wurde. Die Analyse zeigt, dass befriedigendes Kampfgefühl massgeblich durch die Balance zwischen Kontrolle und Kontrollverlust entsteht, durch präzises audiovisuelles Feedback, eine dynamische Gegner-KI sowie eine Wellenstruktur, die Spannung gezielt aufbaut und abbaut.
+Zur Konzipierung des eigenen Prototyps wurde das Gegnerverhalten in \textit{Ninja Gaiden Sigma} und \textit{NieR: Automata} mithilfe des MDA-Frameworks analysiert. Für die Gegnerplatzierung und das Leveldesign wurde Fachliteratur ausgewertet. Aus beidem wurden konkrete Designmittel gewonnen.
 
-Die gewonnenen Erkenntnisse fliessen direkt in die technische Entwicklung eines spielbaren Prototyps in der Game Engine Godot ein. Der Prototyp wird beim Schlussprodukt einen zusammenhängenden Kampfabschnitt mit mindestens zwei unterscheidbaren Gegnertypen sowie grundlegenden Spielmechaniken wie Bewegung, Kampf und Gegner-KI, umfassen. Abschliessend wird der Prototyp in einem strukturierten Playtest mit mehreren Testpersonen evaluiert und die Ergebnisse ausgewertet.
-
-Dieses Dokument stellt den Stand der Entwicklung und der Dokumentation im Stadium des Zwischenberichts dar.
-
-\textcolor{red}{rest [Prüfen: Der Abstract muss für die Schlussabgabe neu geschrieben werden (nicht mehr Zwischenstand); dabei den Wortlaut der Erkenntnisfrage mit Kapitel 1 vereinheitlichen, siehe Notiz dort.]}
+Aus dieser Recherche wurden acht Designvorschläge abgeleitet, welche die Leitfrage beantworten sollen (z.\,B. Begrenzung gleichzeitiger Angreifer, klar telegrafierte Angriffe, Wellenstruktur mit Erholungsphasen). Diese Vorschläge wurden mit den gewonnenen Designmitteln in einem Prototyp umgesetzt, der mit der Gameengine \game{Godot} entwickelt wurde. In einem anschliessenden Playtest wurde untersucht, wie sich diese Umsetzung auf das Spielverhalten und das Spielerlebnis auswirkte. Der Playtest zeigte, dass \textcolor{red}{[Kernergebnis]}. Daraus wurden Verbesserungen für eine weitere Iteration abgeleitet.
 \end{abstract}
 
 \newpage

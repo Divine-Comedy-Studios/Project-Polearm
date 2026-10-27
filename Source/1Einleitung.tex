@@ -7,24 +7,11 @@
 
 \subsection{Motivation und Relevanz}
 
-Das Hack-and-Slash-Genre stellt aus unserer Sicht besonders hohe Anforderungen an das Zusammenspiel einzelner Spielsysteme, da Spielerbewegung, Kampfsystem, Gegnerverhalten und Leveldesign in Echtzeit ineinandergreifen müssen. Im Zentrum unseres Interesses stehen dabei insbesondere Gegnerverhalten und Leveldesign, da wir vermuten, dass gerade diese beiden Elemente das Spielgefühl massgeblich prägen. Genau dieses Zusammenspiel fasziniert uns als Spieler und stellt als Entwickler eine ebenso komplexe Herausforderung dar.
+Diese Maturitätsarbeit entstand aus dem Wunsch, nicht nur Spiele zu spielen, sondern sie genauer zu verstehen und selbst ein solches Spielerlebnis zu erschaffen.
 
-Die vorliegende Maturitätsarbeit entstand aus dem Wunsch, nicht nur Spiele zu spielen, sondern sie genauer zu verstehen und selbst ein solches Spielerlebnis zu erschaffen. Nach unserer eigenen Einschätzung als Spieler können bereits Ungenauigkeiten in einem einzelnen Teilsystem das gesamte Spielerlebnis beeinträchtigen, eine Vermutung, die wir im Rahmen der Evaluation in Kapitel~\ref{sec:Evaluation} überprüfen wollen. Diese Auseinandersetzung mit solchen Detailfragen macht die Entwicklung eines Hack-and-Slash-Prototyps für uns anspruchsvoll und zugleich lehrreich.
+Das Hack-and-Slash-Genre stellt aus unserer Sicht besonders hohe Anforderungen an das Zusammenspiel einzelner Spielsysteme, da Spielerbewegung, Kampfsystem, Gegnerverhalten und Leveldesign in Echtzeit ineinandergreifen. Im Zentrum unseres Interesses stehen dabei insbesondere das Gegnerverhalten und die Gegnerpositionierung.
 
-Nach unserer Wahrnehmung erschienen Genrevertreter wie \game{Ninja Gaiden Sigma Plus} oder \game{God of War} in einer Phase mit vergleichsweise häufigen Neuveröffentlichungen des Genres, während heute nur noch wenige grosse Titel erscheinen. Dadurch existiert einerseits ausreichend Referenzmaterial, um zentrale Genremerkmale herauszuarbeiten, andererseits sind wir bei der Umsetzung nicht an aktuelle Genrekonventionen gebunden, wodurch sich zusätzlicher Freiraum für eigene, moderne Interpretationen klassischer Mechaniken ergibt.
-
-
-\subsection{Zielsetzung und Produktdefinition}
-
-\textcolor{red}{Am Ende den Vertrag, das Spiel und den Text unten Abgleichen}
-
-Ziel dieser Arbeit ist die Entwicklung eines spielbaren 3D-Hack-and-Slash-Prototyps mit der Game Engine Godot. Der Schwerpunkt liegt dabei auf der technischen Umsetzung der zentralen Spielsysteme sowie deren Dokumentation und Evaluation.
-
-Das Endprodukt umfasst einen zusammenhängenden Kampfabschnitt mit mindestens zwei unterscheidbaren Gegnertypen, die sich eigenständig bewegen und angreifen können. Die zentralen Spielmechaniken umfassen grundlegende Spielerbewegungen im dreidimensionalen Raum, Kampfmechaniken und Gegner-KI. Ergänzt wird dies durch übergeordnete Spielsysteme wie Menüs und Neustart nach dem Tod sowie einen Levelabschnitt, der nach den in Kapitel~\ref{sec:Designziele} erarbeiteten Designzielen gestaltet wird.
-
-Neben der technischen Entwicklung werden zwei Referenzspiele des Genres anhand eines ausgearbeiteten Analyse-Frameworks untersucht und Leveldesignprinzipien recherchiert. Die daraus gewonnenen Erkenntnisse fliessen direkt in das Design des Prototyps ein. Schliesslich wird der Prototyp in einem strukturierten Playtest mit etwa fünf Testpersonen evaluiert und die Ergebnisse werden ausgewertet.
-
-\newpage
+In unserer Wahrnehmung erschienen Genrevertreter wie \game{Ninja Gaiden Sigma Plus} oder \game{God of War} in einer Phase mit vergleichsweise häufigen Neuveröffentlichungen des Genres, während heute nur noch wenige grosse Titel erscheinen. Dadurch existiert einerseits ausreichend Referenzmaterial, um zentrale Genremerkmale herauszuarbeiten, andererseits sind wir bei der Umsetzung nicht an aktuelle Genrekonventionen gebunden, wodurch sich zusätzlicher Freiraum für eigene, moderne Interpretationen klassischer Mechaniken ergibt.
 
 \subsection{Erkenntnisfrage} \label{sec:Erkenntnisfrage}
 
@@ -36,10 +23,20 @@ Im Zentrum unserer Arbeit steht folgende Erkenntnisfrage:
 \textit{Wie müssen Gegnerverhalten und Gegnerplatzierung in einem 3D-Hack-and-Slash-Prototyp konzipiert sein, damit ein zusammenhängender Kampfabschnitt mit nachvollziehbarem Spielfluss, angemessener Schwierigkeit und befriedigendem Spielgefühl entsteht?}
 \end{quote}
 
-\textcolor{red}{[Prüfen, Konsistenz] Der Wortlaut der Erkenntnisfrage existiert derzeit in drei Varianten: hier \enquote{konzipiert sein}, im Abstract (Main.tex) \enquote{gestaltet sein müssen}, im Vertrag \enquote{so umgesetzt werden, dass ... von Testspieler:innen als flüssig und herausfordernd erlebt wird}. Eine Formulierung wählen und überall identisch verwenden, mindestens im Abstract und hier.}
-
 \vspace{\baselineskip}
 
-Diese Frage setzt sich aus zwei inhaltlichen Komponenten zusammen. Zum einen geht es um das Gegnerverhalten und das Kampfgefühl, das in Kapitel~\ref{sec:Referenzspielanalyse} anhand einer Analyse bestehender Referenzspiele untersucht wird. Zum anderen geht es um das Leveldesign und die Platzierung von Gegnern, dessen Prinzipien in Kapitel~\ref{sec:Leveldesign} literaturbasiert erarbeitet und anschliessend auf die Gestaltung unseres Kampfabschnitts angewendet werden. Beide Komponenten werden dabei in Kapitel~\ref{sec:Evaluation} in Bezug auf Spielfluss, Schwierigkeit und Spielgefühl evaluiert.
+Diese Frage setzt sich aus zwei inhaltlichen Komponenten zusammen. Zum einen geht es um das Gegnerverhalten und das Kampfgefühl, das in Kapitel~\ref{sec:Referenzspielanalyse} anhand einer Analyse bestehender Referenzspiele untersucht wird. Zum anderen geht es um Gegnerplatzierung und Leveldesign, dessen Prinzipien in Kapitel~\ref{sec:Leveldesign} literaturbasiert erarbeitet und anschliessend auf die Gestaltung unseres Kampfabschnitts angewendet werden. Beide Komponenten werden dabei in Kapitel~\ref{sec:Evaluation} in Bezug auf Spielfluss, Schwierigkeit und Spielgefühl evaluiert.
+
+\subsection{Zielsetzung und Produktdefinition}
+
+\textcolor{red}{Am Ende den Vertrag, das Spiel und den Text unten Abgleichen}
+
+Ziel dieser Arbeit ist die Entwicklung eines spielbaren 3D-Hack-and-Slash-Prototyps mit der Game Engine Godot. Wodurch unsere Erkenntnisfrage geklärt werden soll.
+
+\textcolor{red}{stuff den wir gemacht haben.}
+
+
+
+\newpage
 
 \end{document}
