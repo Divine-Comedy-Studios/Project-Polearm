@@ -52,7 +52,7 @@ func _implTick(delta : float) -> void:
 		or energy.locked
 		or health.value >= health.maxValue
 		or energy.value <= 0.0
-		or energy.value <= ENERGY_PER_HEAL
+		or energy.value < (ENERGY_PER_HEAL - _energyConsumed)
 	):
 		_stopHealing = true
 
