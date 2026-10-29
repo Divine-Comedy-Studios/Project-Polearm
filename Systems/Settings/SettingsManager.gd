@@ -77,35 +77,27 @@ const DEFAULT_SETTINGS : Dictionary[String, Dictionary] = {
 	"controller" : {
 		"Light attack" : {
 			"type" : InputType.controllerButton,
-			"id" : JoyButton.JOY_BUTTON_X
+			"id" : JoyButton.JOY_BUTTON_X,
 		},
 		"Heavy attack" : {
 			"type" : InputType.controllerButton,
-			"id" : JoyButton.JOY_BUTTON_Y
+			"id" : JoyButton.JOY_BUTTON_Y,
 		},
 		"Jump" : {
 			"type" : InputType.controllerButton,
-			"id" : JoyButton.JOY_BUTTON_A
+			"id" : JoyButton.JOY_BUTTON_A,
 		},
 		"Dash" : {
 			"type" : InputType.controllerButton,
-			"id" : JoyButton.JOY_BUTTON_RIGHT_SHOULDER
+			"id" : JoyButton.JOY_BUTTON_RIGHT_SHOULDER,
 		},
 		"Heal" : {
 			"type" : InputType.controllerButton,
-			"id" : JoyButton.JOY_BUTTON_DPAD_UP
-		},
-		"Held target toggle" : {
-			"type" : InputType.controllerButton,
-			"id" : JoyButton.JOY_BUTTON_RIGHT_STICK
+			"id" : JoyButton.JOY_BUTTON_DPAD_UP,
 		},
 		"Switch weapon" : {
 			"type" : InputType.controllerButton,
-			"id" : JoyButton.JOY_BUTTON_DPAD_RIGHT
-		},
-		"Taunt" : {
-			"type" : InputType.controllerButton,
-			"id" : JoyButton.JOY_BUTTON_BACK
+			"id" : JoyButton.JOY_BUTTON_DPAD_RIGHT,
 		},
 	},
 	"keyboard" : {
@@ -121,14 +113,6 @@ const DEFAULT_SETTINGS : Dictionary[String, Dictionary] = {
 			"type" : InputType.keyboard,
 			"id" : Key.KEY_SPACE,
 		},
-		"Target left" : {
-			"type" : InputType.keyboard,
-			"id" : Key.KEY_Q,
-		},
-		"Target right" : {
-			"type" : InputType.keyboard,
-			"id" : Key.KEY_E,
-		},
 		"Dash" : {
 			"type" : InputType.keyboard,
 			"id" : Key.KEY_SHIFT,
@@ -136,10 +120,6 @@ const DEFAULT_SETTINGS : Dictionary[String, Dictionary] = {
 		"Heal" : {
 			"type" : InputType.keyboard,
 			"id" : Key.KEY_Q,
-		},
-		"Held target toggle" : {
-			"type" : InputType.keyboard,
-			"id" : Key.KEY_T,
 		},
 		"Move left" : {
 			"type" : InputType.keyboard,
@@ -156,14 +136,6 @@ const DEFAULT_SETTINGS : Dictionary[String, Dictionary] = {
 		"Move backwards" : {
 			"type" : InputType.keyboard,
 			"id" : Key.KEY_S,
-		},
-		"Switch weapon" : {
-			"type" : InputType.keyboard,
-			"id" : Key.KEY_C,
-		},
-		"Taunt" : {
-			"type" : InputType.keyboard,
-			"id" : Key.KEY_R
 		},
 	},
 }
