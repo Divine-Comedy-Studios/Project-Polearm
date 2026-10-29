@@ -1,2 +1,0 @@
-extends EntityFrameData
-class_name DummyEnemyFrameData

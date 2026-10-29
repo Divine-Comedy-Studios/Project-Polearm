@@ -1,2 +1,0 @@
-extends EntityResources
-class_name DummyEnemyResources
