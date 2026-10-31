@@ -79,14 +79,17 @@ layout_mode = 2
 text = "UI_KEYBOARDMAPPING_HEAL"
 ACTION_NAME = &"Heal"
 
-[node name="Node" type="Control" parent="CenterContainer/Panel/Colon" unique_id=1912610278]
-custom_minimum_size = Vector2(0, 100)
-layout_mode = 2
-
 [node name="Reset" type="Button" parent="CenterContainer/Panel/Colon" unique_id=449272999]
 layout_mode = 2
 text = "UI_RESET"
 script = ExtResource("4_5r1jw")
 metadata/_custom_type_script = "uid://cfdlgc8aalbtr"
 
+[node name="Back" type="Button" parent="CenterContainer/Panel/Colon" unique_id=1559074739]
+layout_mode = 2
+text = "UI_BACK"
+script = ExtResource("4_5r1jw")
+metadata/_custom_type_script = "uid://cfdlgc8aalbtr"
+
 [connection signal="pressed" from="CenterContainer/Panel/Colon/Reset" to="." method="_onResetPressed"]
+[connection signal="pressed" from="CenterContainer/Panel/Colon/Back" to="." method="_on_back_pressed"]

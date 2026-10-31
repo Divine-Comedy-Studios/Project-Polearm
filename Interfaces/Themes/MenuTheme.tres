@@ -102,16 +102,6 @@ texture_margin_left = 4.0
 texture_margin_right = 12.0
 modulate_color = Color(0.717647, 0.427451, 0.313725, 1)
 
-[sub_resource type="StyleBoxTexture" id="sl_track"]
-content_margin_left = 0.0
-content_margin_top = 0.0
-content_margin_right = 0.0
-content_margin_bottom = 0.0
-texture = ExtResource("track")
-texture_margin_left = 4.0
-texture_margin_right = 12.0
-modulate_color = Color(0.47451, 0.545098, 0.568627, 1)
-
 [sub_resource type="StyleBoxTexture" id="opt_disabled"]
 content_margin_left = 24.0
 content_margin_top = 10.0
@@ -250,7 +240,6 @@ HSlider/icons/grabber_disabled = ExtResource("gr_d")
 HSlider/icons/grabber_highlight = ExtResource("gr_h")
 HSlider/styles/grabber_area = SubResource("sl_fill")
 HSlider/styles/grabber_area_highlight = SubResource("sl_fill")
-HSlider/styles/slider = SubResource("sl_track")
 Label/colors/font_color = Color(0.929412, 0.917647, 0.882353, 1)
 Label/colors/font_shadow_color = Color(0.203922, 0.219608, 0.196078, 0)
 Label/constants/line_spacing = 4

@@ -10,6 +10,8 @@ extends InterfaceState
 
 #region Scene members
 
+var _onBackPressed : bool = false
+
 # All Setting Variables
 @onready var langSetting : OptionButton = $"CenterContainer/MarginContainer/Labels/HBoxContainer1/LanguageButton"
 @onready var camSensSetting : HSlider = $"CenterContainer/MarginContainer/Labels/HBoxContainer2/HBoxContainer/Sensitivity"
@@ -62,7 +64,14 @@ func type() -> Type:
 func nextMenu(inputs : ISMInputManager.Data) -> Type:
 	if inputs.cancel:
 		return BACK_MENU
+	
+	if _onBackPressed:
+		return BACK_MENU
+		
 	return Type.none
+
+func _deactivateImpl() -> void:
+	_onBackPressed = false
 
 #endregion
 
@@ -105,5 +114,8 @@ func _on_rumble_changed(value: float) -> void:
 
 	Globals.settingsManager.saveSettings()
 	Globals.settingsManager.applyGameSettings()
+
+func _on_back_pressed() -> void:
+	_onBackPressed = true
 
 #endregion

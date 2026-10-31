@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://6tv3tv4exou" path="res://Interfaces/Menus/OptionsMenu/VideoOptions/VideoOptions.gd" id="1_gwafx"]
 [ext_resource type="Theme" uid="uid://eptqqy8sm6gl" path="res://Interfaces/Themes/MenuTheme.tres" id="1_qmr7p"]
+[ext_resource type="Script" uid="uid://cfdlgc8aalbtr" path="res://Interfaces/Menus/Button/GameMenuButton.gd" id="3_7eyb6"]
 
 [node name="VideoOptions" type="Control" unique_id=2031472548]
 texture_filter = 1
@@ -119,3 +120,11 @@ layout_mode = 2
 size_flags_horizontal = 8
 text = "0.0"
 horizontal_alignment = 3
+
+[node name="Back" type="Button" parent="CenterContainer/MarginContainer/HBoxContainer/Labels" unique_id=616874490]
+layout_mode = 2
+text = "UI_BACK"
+script = ExtResource("3_7eyb6")
+metadata/_custom_type_script = "uid://cfdlgc8aalbtr"
+
+[connection signal="pressed" from="CenterContainer/MarginContainer/HBoxContainer/Labels/Back" to="." method="_on_back_pressed"]

@@ -15,6 +15,8 @@ extends InterfaceState
 
 #region Member variables
 
+var _onBackPressed : bool = false
+
 var _remapping : bool = false
 
 #endregion
@@ -28,8 +30,16 @@ func type() -> Type:
 func nextMenu(inputs : ISMInputManager.Data) -> Type:
 	if inputs.cancel and not _remapping:
 		return BACK_MENU
+	
+	if _onBackPressed and not _remapping:
+		return BACK_MENU
+		
+	return Type.none
 
 	return Type.none
+
+func _deactivateImpl() -> void:
+	_onBackPressed = false
 
 #endregion
 
@@ -43,5 +53,7 @@ func _onButtonListening(listening : bool) -> void:
 func _onResetPressed() -> void:
 	Globals.settingsManager.saveSectionDefault(MAPPING_TYPE)
 
-#endregion
+func _on_back_pressed() -> void:
+	_onBackPressed = true
 
+#endregion

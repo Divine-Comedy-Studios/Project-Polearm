@@ -10,6 +10,8 @@ extends InterfaceState
 
 #region Scene members
 
+var _onBackPressed : bool = false
+
 # All Buttons
 @onready var windowMode : OptionButton = $"CenterContainer/MarginContainer/HBoxContainer/Labels/HBoxContainer/WindowMode2"
 @onready var resolution : OptionButton = $"CenterContainer/MarginContainer/HBoxContainer/Labels/HBoxContainer2/Resolution2"
@@ -53,7 +55,14 @@ func type() -> Type:
 func nextMenu(inputs : ISMInputManager.Data) -> Type:
 	if inputs.cancel:
 		return BACK_MENU
+	
+	if _onBackPressed:
+		return BACK_MENU
+		
 	return Type.none
+
+func _deactivateImpl() -> void:
+	_onBackPressed = false
 
 #endregion
 
@@ -86,5 +95,8 @@ func _on_gamma_value_changed(value : float) -> void:
 
 	Globals.settingsManager.saveSettings()
 	Globals.settingsManager.applyVideoSettings()
+	
+func _on_back_pressed() -> void:
+	_onBackPressed = true
 
 #endregion
