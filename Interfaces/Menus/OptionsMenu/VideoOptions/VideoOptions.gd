@@ -14,6 +14,7 @@ var _onBackPressed : bool = false
 
 # All Buttons
 @onready var windowMode : OptionButton = $"CenterContainer/MarginContainer/HBoxContainer/Labels/HBoxContainer/WindowMode2"
+@onready var resolution : OptionButton = $"CenterContainer/MarginContainer/HBoxContainer/Labels/HBoxContainer2/Resolution2"
 @onready var vSynch : CheckBox = $"CenterContainer/MarginContainer/HBoxContainer/Labels/HBoxContainer3/Vsync2"
 @onready var gamma : HSlider = $"CenterContainer/MarginContainer/HBoxContainer/Labels/HBoxContainer4/Gamma2/Gamma"
 
@@ -29,6 +30,10 @@ func _ready() -> void:
 	# Initialize Window Mode
 	windowMode.selected = Globals.settingsManager.getInt("video", "window mode")
 	windowMode.item_selected.connect(_on_window_mode_selected)
+
+	# Initialize Resolution
+	resolution.selected = Globals.settingsManager.getInt("video", "resolution")
+	resolution.item_selected.connect(_on_resolution_selected)
 
 	# Initialize Vsync
 	vSynch.button_pressed = Globals.settingsManager.getBool("video", "vsync")
@@ -66,6 +71,14 @@ func _deactivateImpl() -> void:
 
 func _on_window_mode_selected(index : int) -> void:
 	Globals.settingsManager.setInt("video", "window mode", index)
+
+	resolution.disabled = (index == 1) # if Fullscreen then resolution disabled
+
+	Globals.settingsManager.saveSettings()
+	Globals.settingsManager.applyVideoSettings()
+
+func _on_resolution_selected(index : int) -> void:
+	Globals.settingsManager.setInt("video", "resolution", index)
 
 	Globals.settingsManager.saveSettings()
 	Globals.settingsManager.applyVideoSettings()
