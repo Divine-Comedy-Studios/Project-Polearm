@@ -16,13 +16,9 @@ var _onBackPressed : bool = false
 @onready var langSetting : OptionButton = $"CenterContainer/MarginContainer/Labels/HBoxContainer1/LanguageButton"
 @onready var camSensSetting : HSlider = $"CenterContainer/MarginContainer/Labels/HBoxContainer2/HBoxContainer/Sensitivity"
 @onready var yInvSetting : CheckBox = $"CenterContainer/MarginContainer/Labels/HBoxContainer3/InverseY"
-@onready var camShakeSetting : HSlider = $"CenterContainer/MarginContainer/Labels/HBoxContainer4/HBoxContainer/CamShake"
-@onready var rumSetting : HSlider = $"CenterContainer/MarginContainer/Labels/HBoxContainer5/HBoxContainer/Rumble"
 
 # All Numerics
 @onready var camSensLabel : Label = $"CenterContainer/MarginContainer/Labels/HBoxContainer2/HBoxContainer/Label"
-@onready var camShakeLabel : Label = $"CenterContainer/MarginContainer/Labels/HBoxContainer4/HBoxContainer/Label"
-@onready var rumLabel : Label = $"CenterContainer/MarginContainer/Labels/HBoxContainer5/HBoxContainer/Label"
 
 #endregion
 
@@ -42,16 +38,6 @@ func _ready() -> void:
 	# Initialize Inverse Y Settins
 	yInvSetting.button_pressed = Globals.settingsManager.getBool("game", "invert y")
 	yInvSetting.toggled.connect(_on_y_inverse_toggled)
-
-	# Initialize Camera Shake Settins
-	camShakeSetting.value = Globals.settingsManager.getFloat("game", "camera shake")
-	camShakeSetting.value_changed.connect(_on_shake_changed)
-	camShakeLabel.text = str(camShakeSetting.value)
-
-	# Initialize Rumble Settins
-	rumSetting.value = Globals.settingsManager.getFloat("game", "rumble")
-	rumSetting.value_changed.connect(_on_rumble_changed)
-	rumLabel.text = str(rumSetting.value)
 
 #endregion
 
@@ -99,21 +85,6 @@ func _on_y_inverse_toggled(status: bool) -> void:
 	Globals.settingsManager.saveSettings()
 	Globals.settingsManager.applyGameSettings()
 
-
-func _on_shake_changed(value: float) -> void:
-	Globals.settingsManager.setFloat("game", "camera shake", value)
-	camShakeLabel.text = str(value)
-
-	Globals.settingsManager.saveSettings()
-	Globals.settingsManager.applyGameSettings()
-
-
-func _on_rumble_changed(value: float) -> void:
-	Globals.settingsManager.setFloat("game", "rumble", value)
-	rumLabel.text = str(value)
-
-	Globals.settingsManager.saveSettings()
-	Globals.settingsManager.applyGameSettings()
 
 func _on_back_pressed() -> void:
 	_onBackPressed = true

@@ -11,17 +11,10 @@ UI_OPTIONS_KEYBOARD,Keyboard & Mouse,键盘与鼠标,Teclado y ratón,Clavier et
 UI_GAMEOPTIONS_LANGUAGE,Language,语言,Idioma,Langue,Sprache,Lingua,言語
 UI_GAMEOPTIONS_CAMERASENSITIVITY,Camera Sensitivity,镜头灵敏度,Sensibilidad de cámara,Sensibilité caméra,Kameraempfindlichkeit,Sensibilità telecamera,カメラ感度
 UI_GAMEOPTIONS_INVERTY,Invert Y,反转Y轴,Invertir eje Y,Inverser l'axe Y,Y-Achse invertieren,Inverti asse Y,Y軸カメラリバース
-UI_GAMEOPTIONS_CAMERASHAKE,Camera Shake,镜头抖动,Temblor de cámara,Secousses de caméra,Kamerawackeln,Scuotimento telecamera,画面揺れ
-UI_GAMEOPTIONS_RUMBLE,Rumble,手柄震动,Vibración,Vibrations,Vibration,Vibrazione,振動
 UI_VIDEOOPTIONS_WINDOWMODE,Window Mode,窗口模式,Modo de pantalla,Mode d'affichage,Anzeigemodus,Modalità di visualizzazione,画面の最大化
 UI_VIDEOOPTIONS_WINDOWED,Windowed,窗口化,En ventana,Fenêtré,Fenster,In finestra,ウィンドウ
 UI_VIDEOOPTIONS_FULLSCREEN,Fullscreen,全屏,Pantalla completa,Plein écran,Vollbild,Schermo intero,フルスクリーン
 UI_VIDEOOPTIONS_BORDERLESS,Borderless,无边框,Sin bordes,Sans bordure,Rahmenlos,Senza bordi,ボーダーレス
-UI_VIDEOOPTIONS_RESOLUTION,Resolution,分辨率,Resolución,Résolution,Auflösung,Risoluzione,解像度
-UI_VIDEOOPTIONS_ULTRAWIDE,Ultrawide,超宽屏,Ultrapanorámico,Ultra-large,Ultrawide,Ultrawide,ウルトラワイド
-UI_VIDEOOPTIONS_RES_1080P,1920 x 1080,1920 x 1080,1920 x 1080,1920 x 1080,1920 x 1080,1920 x 1080,1920 x 1080
-UI_VIDEOOPTIONS_RES_900P,1600 x 900,1600 x 900,1600 x 900,1600 x 900,1600 x 900,1600 x 900,1600 x 900
-UI_VIDEOOPTIONS_RES_720P,1280 x 720,1280 x 720,1280 x 720,1280 x 720,1280 x 720,1280 x 720,1280 x 720
 UI_VIDEOOPTIONS_VSYNC,V-Sync,垂直同步,Sincronización vertical,Synchronisation verticale,V-Sync,Sincronizzazione verticale,垂直同期
 UI_VIDEOOPTIONS_GAMMA,Gamma,亮度,Gamma,Gamma,Gamma,Gamma,ガンマ値
 UI_AUDIOOPTIONS_MASTER,Master,主音量,General,Principal,Gesamt,Principale,主音量

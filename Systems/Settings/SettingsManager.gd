@@ -10,13 +10,6 @@ enum WindowMode {
 	borderless,
 }
 
-enum Resolution {
-	ultrawide,
-	p1080,
-	p900,
-	p720
-}
-
 enum InputType {
 	keyboard,
 	mouse,
@@ -59,12 +52,9 @@ const DEFAULT_SETTINGS : Dictionary[String, Dictionary] = {
 		"language" : "en",
 		"camera sensitivity" : 1.0,
 		"invert y" : false,
-		"camera shake" : 1.0,
-		"rumble" : 1.0,
 	},
 	"video" : {
 		"window mode" : WindowMode.fullscreen,
-		"resolution" : Resolution.p1080,
 		"vsync" : true,
 		"gamma" : 1.0,
 	},
@@ -273,16 +263,6 @@ func applyVideoSettings() -> void:
 		WindowMode.windowed:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
-
-			match getInt("video", "resolution"):
-				Resolution.ultrawide:
-					get_window().size = Vector2i(2560, 1080)
-				Resolution.p1080:
-					get_window().size = Vector2i(1920, 1080)
-				Resolution.p900:
-					get_window().size = Vector2i(1600, 900)
-				Resolution.p720:
-					get_window().size = Vector2i(1280, 720)
 
 			get_window().move_to_center()
 
