@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://cduau7yr7qldu"
+path="res://.godot/imported/ZPLevel.3.map-b5524fc6531710a2cb90880adc7e2342.tres"
+
+[deps]
+
+source_file="res://Common/Tools/Trenchbroom/maps/autosave/ZPLevel.3.map"
+dest_files=["res://.godot/imported/ZPLevel.3.map-b5524fc6531710a2cb90880adc7e2342.tres"]
+
+[params]
+

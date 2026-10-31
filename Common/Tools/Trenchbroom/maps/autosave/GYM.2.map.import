@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://drj25tnrf0s7i"
+path="res://.godot/imported/GYM.2.map-f3c7a6910c663fb23b3ab2f3ccf7ee2f.tres"
+
+[deps]
+
+source_file="res://Common/Tools/Trenchbroom/maps/autosave/GYM.2.map"
+dest_files=["res://.godot/imported/GYM.2.map-f3c7a6910c663fb23b3ab2f3ccf7ee2f.tres"]
+
+[params]
+
