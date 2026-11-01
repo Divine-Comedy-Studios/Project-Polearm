@@ -170,8 +170,7 @@ func _ready() -> void:
 
 	Globals.settingsManager = self
 
-	var error := _file.load(SETTINGS_PATH)
-	_verifySettings()
+	_verifySettings(_file.load(SETTINGS_PATH))
 
 	applyGameSettings()
 	applyVideoSettings()
@@ -348,7 +347,13 @@ func _saveDefaultSettings() -> void:
 	_file.save(SETTINGS_PATH)
 
 
-func _verifySettings() -> void:
+func _verifySettings(error : int) -> void:
+	if error != OK:
+		push_warning("SettingsManager._verifySettings(): Failed to load settings file, creating new!")
+		_saveDefaultSettings()
+
+		return
+
 	var needsSave := false
 	
 	for section in DEFAULT_SETTINGS.keys():
@@ -375,6 +380,7 @@ func _verifySettings() -> void:
 		_file.save(SETTINGS_PATH)
 
 
+@warning_ignore("unused_parameter")
 func _processDeprecatedSettings(version : int) -> void:
 	_saveDefaultSettings() ### @todo Implement a proper version of saving deprecated versions
 
