@@ -15,6 +15,7 @@ var _onVideoOptionsPressed : bool = false
 var _onAudioOptionsPressed : bool = false
 var _onControllerOptionsPressed : bool = false
 var _onKeyboardOptionsPressed : bool = false
+var _onBackPressed : bool = false
 
 #endregion
 
@@ -27,6 +28,9 @@ func type() -> Type:
 func nextMenu(inputs : ISMInputManager.Data) -> Type:
 	if inputs.cancel:
 		currentButton = null
+		return BACK_MENU
+	
+	if _onBackPressed:
 		return BACK_MENU
 		
 	if _onGameOptionsPressed:
@@ -52,6 +56,7 @@ func _deactivateImpl() -> void:
 	_onAudioOptionsPressed = false
 	_onControllerOptionsPressed = false
 	_onKeyboardOptionsPressed = false
+	_onBackPressed = false
 
 #endregion
 
@@ -72,5 +77,8 @@ func _on_controller_pressed() -> void:
 
 func _on_keyboard_pressed() -> void:
 	_onKeyboardOptionsPressed = true
+	
+func _on_back_pressed() -> void:
+	_onBackPressed = true
 
 #endregion

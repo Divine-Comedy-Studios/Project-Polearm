@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://celjwc20dqkr8" path="res://Interfaces/Menus/OptionsMenu/GameOptions/GameOptions.gd" id="1_uru00"]
 [ext_resource type="Theme" uid="uid://eptqqy8sm6gl" path="res://Interfaces/Themes/MenuTheme.tres" id="1_y5cya"]
+[ext_resource type="Script" uid="uid://cfdlgc8aalbtr" path="res://Interfaces/Menus/Button/GameMenuButton.gd" id="3_v7lik"]
 
 [node name="GameOptions" type="Control" unique_id=2031472548]
 texture_filter = 1
@@ -97,52 +98,10 @@ text = "UI_GAMEOPTIONS_INVERTY"
 layout_mode = 2
 size_flags_horizontal = 10
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="CenterContainer/MarginContainer/Labels" unique_id=727475703]
+[node name="Back" type="Button" parent="CenterContainer/MarginContainer/Labels" unique_id=451507357]
 layout_mode = 2
+text = "UI_BACK"
+script = ExtResource("3_v7lik")
+metadata/_custom_type_script = "uid://cfdlgc8aalbtr"
 
-[node name="CamShake" type="Label" parent="CenterContainer/MarginContainer/Labels/HBoxContainer4" unique_id=1078505405]
-layout_mode = 2
-text = "UI_GAMEOPTIONS_CAMERASHAKE"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/MarginContainer/Labels/HBoxContainer4" unique_id=2086634683]
-layout_mode = 2
-size_flags_horizontal = 10
-
-[node name="CamShake" type="HSlider" parent="CenterContainer/MarginContainer/Labels/HBoxContainer4/HBoxContainer" unique_id=242403366]
-custom_minimum_size = Vector2(300, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-max_value = 1.0
-step = 0.1
-
-[node name="Label" type="Label" parent="CenterContainer/MarginContainer/Labels/HBoxContainer4/HBoxContainer" unique_id=508533615]
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 2
-text = "0.0"
-horizontal_alignment = 3
-
-[node name="HBoxContainer5" type="HBoxContainer" parent="CenterContainer/MarginContainer/Labels" unique_id=2130220902]
-layout_mode = 2
-
-[node name="Rumble" type="Label" parent="CenterContainer/MarginContainer/Labels/HBoxContainer5" unique_id=2026895949]
-layout_mode = 2
-text = "UI_GAMEOPTIONS_RUMBLE"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/MarginContainer/Labels/HBoxContainer5" unique_id=33523015]
-layout_mode = 2
-size_flags_horizontal = 10
-
-[node name="Rumble" type="HSlider" parent="CenterContainer/MarginContainer/Labels/HBoxContainer5/HBoxContainer" unique_id=181476467]
-custom_minimum_size = Vector2(300, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-max_value = 1.0
-step = 0.1
-
-[node name="Label" type="Label" parent="CenterContainer/MarginContainer/Labels/HBoxContainer5/HBoxContainer" unique_id=1133653538]
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 2
-text = "0.0"
-horizontal_alignment = 3
+[connection signal="pressed" from="CenterContainer/MarginContainer/Labels/Back" to="." method="_on_back_pressed"]
