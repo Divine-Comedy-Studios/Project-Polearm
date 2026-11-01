@@ -5,7 +5,6 @@ class_name Globals
 
 # Utilities
 
-static var saveUtility : SaveUtility = null
 static var settingsManager : SettingsManager = null
 
 # Audio
