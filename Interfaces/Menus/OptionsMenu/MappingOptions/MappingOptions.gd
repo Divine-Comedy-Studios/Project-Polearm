@@ -36,7 +36,6 @@ func nextMenu(inputs : ISMInputManager.Data) -> Type:
 		
 	return Type.none
 
-	return Type.none
 
 func _deactivateImpl() -> void:
 	_onBackPressed = false
