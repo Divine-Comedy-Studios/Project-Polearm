@@ -10,6 +10,14 @@ enum WindowMode {
 	borderless,
 }
 
+enum Resolution {
+	ultrawide,
+	p1080,
+	p900,
+	p720
+}
+
+
 enum InputType {
 	keyboard,
 	mouse,
@@ -19,17 +27,10 @@ enum InputType {
 }
 
 
-enum TargetMode { ### @todo
-	leftStick,
-	bumper,
-	trigger,
-	dPad,
-}
-
-
 enum SettingVersion {
 	invalid = 0,
 	v0_0_1 = 1,
+	v1_0_0 = 1 << 16
 }
 
 #endregion
@@ -40,7 +41,7 @@ enum SettingVersion {
 const TRIGGER_SENSITIVITY : float = 0.5
 
 const SETTINGS_PATH : String = "user://settings.cfg"
-const SETTINGS_VERSION : int = SettingVersion.v0_0_1
+const SETTINGS_VERSION : int = SettingVersion.v1_0_0
 
 
 const DEFAULT_SETTINGS : Dictionary[String, Dictionary] = {
@@ -55,6 +56,7 @@ const DEFAULT_SETTINGS : Dictionary[String, Dictionary] = {
 	},
 	"video" : {
 		"window mode" : WindowMode.fullscreen,
+		"resolution" : Resolution.p1080,
 		"vsync" : true,
 		"gamma" : 1.0,
 	},
@@ -162,12 +164,6 @@ func _ready() -> void:
 
 	_verifySettings(_file.load(SETTINGS_PATH))
 
-	applyGameSettings()
-	applyVideoSettings()
-	applyAudioSettings()
-	applyInputSettings("keyboard")
-	applyInputSettings("controller")
-
 #endregion
 
 
@@ -244,20 +240,28 @@ func applyVideoSettings() -> void:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, true)
 
+	# Resolution
+	match getInt("video", "resolution"):
+			Resolution.ultrawide:
+				get_window().size = Vector2i(2560, 1080)
+			Resolution.p1080:
+				get_window().size = Vector2i(1920, 1080)
+			Resolution.p900:
+				get_window().size = Vector2i(1600, 900)
+			Resolution.p720:
+				get_window().size = Vector2i(1280, 720)
+
 	# VSync
 	DisplayServer.window_set_vsync_mode(
 		DisplayServer.VSYNC_ENABLED if getBool("video", "vsync") else DisplayServer.VSYNC_DISABLED)
 
 	# Gamma
-
 	if Globals.visuals == null:
 		push_error("SettingsManager.applyVideoSettings(): Global visuals not assigned!")
-
-		return
-
-	var worldEnv := Globals.visuals.environment
-	worldEnv.environment.adjustment_enabled = true
-	worldEnv.environment.adjustment_brightness = getFloat("video", "gamma")
+	else:
+		var worldEnv := Globals.visuals.environment
+		worldEnv.environment.adjustment_enabled = true
+		worldEnv.environment.adjustment_brightness = getFloat("video", "gamma")
 
 
 func applyAudioSettings() -> void:
