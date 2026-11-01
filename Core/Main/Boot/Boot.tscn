@@ -1,18 +1,255 @@
 [gd_scene format=3 uid="uid://dqfsomcbp0v3k"]
 
 [ext_resource type="Script" uid="uid://56qy2l42kqa8" path="res://Core/Main/Boot/Boot.gd" id="1_4bay4"]
+[ext_resource type="Script" uid="uid://covgehn0y4vp2" path="res://Systems/Settings/SettingsManager.gd" id="2_f2eom"]
+[ext_resource type="PackedScene" uid="uid://cke1sl2cms1u7" path="res://Systems/Visuals/Visuals.tscn" id="2_gluvi"]
+[ext_resource type="Script" uid="uid://b3tphudgr2uii" path="res://Systems/Audio/AudioManager.gd" id="3_f2eom"]
+[ext_resource type="Script" uid="uid://cwj15obtj5njm" path="res://Systems/Audio/Data/MusicData.gd" id="4_q4rto"]
+[ext_resource type="AudioStream" uid="uid://benr8p3jthv0i" path="res://Assets/Music/Menu/Welcome to Com-Mecha.mp3" id="5_xl4c8"]
+[ext_resource type="AudioStream" uid="uid://iy81ngwf4ocf" path="res://Assets/Music/Game/big boss 2.ogg" id="6_ssxnk"]
+[ext_resource type="AudioStream" uid="uid://byssch4bx5fop" path="res://Assets/Music/Game/blind rage.mp3" id="7_g1f8k"]
+[ext_resource type="AudioStream" uid="uid://da2bkqn1be0tg" path="res://Assets/Music/Game/Zander Noriega - Fight Them Until We Cant.mp3" id="8_77qqj"]
+[ext_resource type="AudioStream" uid="uid://jc5pwc76t8rb" path="res://Assets/Music/Pause/music_pause.wav" id="9_q5ucy"]
+[ext_resource type="AudioStream" uid="uid://crgtegfwum8vk" path="res://Assets/Music/Death/bleeding_out2.ogg" id="10_18cwx"]
+[ext_resource type="Script" uid="uid://ckrmd64looadf" path="res://Systems/Audio/Data/MusicDataset.gd" id="11_41fku"]
+[ext_resource type="Script" uid="uid://cvxs53avnhinn" path="res://Systems/Audio/Data/SFXData.gd" id="12_21oim"]
+[ext_resource type="AudioStream" uid="uid://bfkprodwnlo8c" path="res://Assets/SFX/400 Sounds Pack/Footsteps/foley_footstep_concrete_1.wav" id="13_ai2lo"]
+[ext_resource type="AudioStream" uid="uid://bqagoop6njdp2" path="res://Assets/SFX/400 Sounds Pack/Footsteps/foley_footstep_concrete_2.wav" id="14_do7bq"]
+[ext_resource type="AudioStream" uid="uid://rxqu5gh08sjs" path="res://Assets/SFX/400 Sounds Pack/Footsteps/foley_footstep_concrete_3.wav" id="15_6ddcw"]
+[ext_resource type="AudioStream" uid="uid://des2ihnbjl3jh" path="res://Assets/SFX/400 Sounds Pack/Footsteps/foley_footstep_concrete_4.wav" id="16_xhpwt"]
+[ext_resource type="AudioStream" uid="uid://dxhhauitqyqiw" path="res://Assets/SFX/400 Sounds Pack/Footsteps/foley_footstep_gravel_2.wav" id="17_eg8bo"]
+[ext_resource type="AudioStream" uid="uid://dvfqtwt65j7rx" path="res://Assets/SFX/400 Sounds Pack/Footsteps/foley_footstep_gravel_1.wav" id="18_plcyp"]
+[ext_resource type="AudioStream" uid="uid://c16eiebdmrrms" path="res://Assets/SFX/400 Sounds Pack/Combat and Gore/kick.wav" id="19_1nwem"]
+[ext_resource type="AudioStream" uid="uid://coyq7o8lktpdk" path="res://Assets/SFX/400 Sounds Pack/Materials/cork_stabbed.wav" id="20_mta4m"]
+[ext_resource type="AudioStream" uid="uid://u33to2ef4jp4" path="res://Assets/SFX/400 Sounds Pack/Combat and Gore/swipe.wav" id="21_2k13b"]
+[ext_resource type="AudioStream" uid="uid://ct5nylm4ekp0o" path="res://Assets/SFX/400 Sounds Pack/Footsteps/foley_footstep_gravel_4.wav" id="22_5voog"]
+[ext_resource type="AudioStream" uid="uid://xm42kv1ri0da" path="res://Assets/SFX/Sword Combat Sound Effects Pack FREE VERSION/Main Sounds/Sword Stabs/w:Whoosh/WEAPSwrd_SwordStabwWhoosh_HoveAud_SwordCombat_01.wav" id="23_0eblp"]
+[ext_resource type="AudioStream" uid="uid://bkm867j1o4765" path="res://Assets/SFX/Sword Combat Sound Effects Pack FREE VERSION/Main Sounds/Sword Stabs/w:Whoosh/WEAPSwrd_SwordStabwWhoosh_HoveAud_SwordCombat_11.wav" id="24_qr3vt"]
+[ext_resource type="AudioStream" uid="uid://dojl524x1k2i4" path="res://Assets/SFX/Sword Combat Sound Effects Pack FREE VERSION/Main Sounds/Sword Stabs/w:Whoosh/WEAPSwrd_SwordStabwWhoosh_HoveAud_SwordCombat_17.wav" id="25_3nyek"]
+[ext_resource type="AudioStream" uid="uid://difkqqi120rti" path="res://Assets/SFX/Sword Combat Sound Effects Pack FREE VERSION/Voicelines/Action Grunts/VOXEfrt_ActionGrunt_HoveAud_SwordCombat_01.wav" id="26_jj2gv"]
+[ext_resource type="AudioStream" uid="uid://bj4k88iknd2ut" path="res://Assets/SFX/Sword Combat Sound Effects Pack FREE VERSION/Voicelines/Action Grunts/VOXEfrt_ActionGrunt_HoveAud_SwordCombat_07.wav" id="27_g2cc6"]
+[ext_resource type="AudioStream" uid="uid://bgqpibcnjbisj" path="res://Assets/SFX/Sword Combat Sound Effects Pack FREE VERSION/Voicelines/Action Grunts/VOXEfrt_ActionGrunt_HoveAud_SwordCombat_29.wav" id="28_wbv5l"]
+[ext_resource type="AudioStream" uid="uid://do0bvbwxoh3dr" path="res://Assets/SFX/Sword Combat Sound Effects Pack FREE VERSION/Voicelines/Action Grunts/VOXEfrt_ActionGrunt_HoveAud_SwordCombat_23.wav" id="29_feg4u"]
+[ext_resource type="AudioStream" uid="uid://0mfmqs6a281p" path="res://Assets/SFX/Sword Combat Sound Effects Pack FREE VERSION/Voicelines/Action Grunts/VOXEfrt_ActionGrunt_HoveAud_SwordCombat_54.wav" id="30_14w5n"]
+[ext_resource type="AudioStream" uid="uid://cp23a6cumebtw" path="res://Assets/SFX/Metal Hit/Metal Hit.mp3" id="31_np5dp"]
+[ext_resource type="AudioStream" uid="uid://cjo875b5c024i" path="res://Assets/SFX/400 Sounds Pack/Combat and Gore/squelching_1.wav" id="32_i802i"]
+[ext_resource type="AudioStream" uid="uid://b54o3jyei8pce" path="res://Assets/SFX/Sword Combat Sound Effects Pack FREE VERSION/Voicelines/Damage Grunts/VOXScrm_DamageGrunt_HoveAudio_SwordCombat_01.wav" id="33_68kdq"]
+[ext_resource type="AudioStream" uid="uid://c37rotl1dbr2l" path="res://Assets/SFX/Sword Combat Sound Effects Pack FREE VERSION/Voicelines/Damage Grunts/VOXScrm_DamageGrunt_HoveAudio_SwordCombat_22.wav" id="34_4u8fp"]
+[ext_resource type="AudioStream" uid="uid://m7e1ye4n6qe5" path="res://Assets/SFX/Sword Combat Sound Effects Pack FREE VERSION/Voicelines/Damage Grunts/VOXScrm_DamageGrunt_HoveAudio_SwordCombat_27.wav" id="35_ur87c"]
+[ext_resource type="AudioStream" uid="uid://yce08t6u6cgy" path="res://Assets/SFX/400 Sounds Pack/Combat and Gore/squelching_2.wav" id="36_nfapy"]
+[ext_resource type="AudioStream" uid="uid://xiewbdcted6a" path="res://Assets/SFX/Sword Combat Sound Effects Pack FREE VERSION/Voicelines/Damage Grunts/VOXScrm_DamageGrunt_HoveAudio_SwordCombat_13.wav" id="37_lfols"]
+[ext_resource type="AudioStream" uid="uid://cy8udo4e7jthg" path="res://Assets/SFX/400 Sounds Pack/Retro/power_up_2.wav" id="38_dlc87"]
+[ext_resource type="Script" uid="uid://c8r7t2ljyuyb6" path="res://Systems/Audio/Data/SFXDataset.gd" id="39_0rdq0"]
+
+[sub_resource type="Resource" id="Resource_yemvf"]
+script = ExtResource("4_q4rto")
+STREAMS = Array[AudioStream]([ExtResource("5_xl4c8")])
+
+[sub_resource type="Resource" id="Resource_on7mp"]
+script = ExtResource("4_q4rto")
+STREAMS = Array[AudioStream]([ExtResource("6_ssxnk"), ExtResource("7_g1f8k"), ExtResource("8_77qqj")])
+
+[sub_resource type="Resource" id="Resource_hy1so"]
+script = ExtResource("4_q4rto")
+STREAMS = Array[AudioStream]([ExtResource("9_q5ucy")])
+
+[sub_resource type="Resource" id="Resource_mgqku"]
+script = ExtResource("4_q4rto")
+STREAMS = Array[AudioStream]([ExtResource("10_18cwx")])
+metadata/_custom_type_script = "uid://cwj15obtj5njm"
+
+[sub_resource type="Resource" id="Resource_f2eom"]
+script = ExtResource("11_41fku")
+DATASET = Dictionary[int, ExtResource("4_q4rto")]({
+1: SubResource("Resource_yemvf"),
+2: SubResource("Resource_on7mp"),
+3: SubResource("Resource_hy1so"),
+4: SubResource("Resource_mgqku")
+})
+
+[sub_resource type="Resource" id="Resource_04dfk"]
+script = ExtResource("12_21oim")
+STREAMS = Array[AudioStream]([ExtResource("13_ai2lo"), ExtResource("14_do7bq"), ExtResource("15_6ddcw"), ExtResource("16_xhpwt")])
+metadata/_custom_type_script = "uid://cvxs53avnhinn"
+
+[sub_resource type="Resource" id="Resource_0vj3r"]
+script = ExtResource("12_21oim")
+STREAMS = Array[AudioStream]([ExtResource("17_eg8bo")])
+metadata/_custom_type_script = "uid://cvxs53avnhinn"
+
+[sub_resource type="Resource" id="Resource_ndcaw"]
+script = ExtResource("12_21oim")
+STREAMS = Array[AudioStream]([ExtResource("18_plcyp")])
+PITCH_MIN = 1.2
+PITCH_MAX = 1.3
+metadata/_custom_type_script = "uid://cvxs53avnhinn"
+
+[sub_resource type="Resource" id="Resource_vb6yl"]
+script = ExtResource("12_21oim")
+STREAMS = Array[AudioStream]([ExtResource("19_1nwem")])
+metadata/_custom_type_script = "uid://cvxs53avnhinn"
+
+[sub_resource type="Resource" id="Resource_8xpkm"]
+script = ExtResource("12_21oim")
+STREAMS = Array[AudioStream]([ExtResource("18_plcyp")])
+metadata/_custom_type_script = "uid://cvxs53avnhinn"
+
+[sub_resource type="Resource" id="Resource_3yi1f"]
+script = ExtResource("12_21oim")
+STREAMS = Array[AudioStream]([ExtResource("19_1nwem")])
+metadata/_custom_type_script = "uid://cvxs53avnhinn"
+
+[sub_resource type="Resource" id="Resource_8kq0m"]
+script = ExtResource("12_21oim")
+STREAMS = Array[AudioStream]([ExtResource("20_mta4m")])
+metadata/_custom_type_script = "uid://cvxs53avnhinn"
+
+[sub_resource type="Resource" id="Resource_1i3ho"]
+script = ExtResource("12_21oim")
+STREAMS = Array[AudioStream]([ExtResource("21_2k13b")])
+metadata/_custom_type_script = "uid://cvxs53avnhinn"
+
+[sub_resource type="Resource" id="Resource_ay6x1"]
+script = ExtResource("12_21oim")
+STREAMS = Array[AudioStream]([ExtResource("22_5voog")])
+metadata/_custom_type_script = "uid://cvxs53avnhinn"
+
+[sub_resource type="Resource" id="Resource_aytpi"]
+script = ExtResource("12_21oim")
+STREAMS = Array[AudioStream]([ExtResource("23_0eblp"), ExtResource("24_qr3vt"), ExtResource("25_3nyek")])
+metadata/_custom_type_script = "uid://cvxs53avnhinn"
+
+[sub_resource type="Resource" id="Resource_ion71"]
+script = ExtResource("12_21oim")
+STREAMS = Array[AudioStream]([ExtResource("23_0eblp"), ExtResource("24_qr3vt"), ExtResource("25_3nyek")])
+PITCH_MIN = 1.3
+PITCH_MAX = 1.4
+metadata/_custom_type_script = "uid://cvxs53avnhinn"
+
+[sub_resource type="Resource" id="Resource_0fr8a"]
+script = ExtResource("12_21oim")
+STREAMS = Array[AudioStream]([ExtResource("26_jj2gv"), ExtResource("27_g2cc6"), ExtResource("28_wbv5l")])
+metadata/_custom_type_script = "uid://cvxs53avnhinn"
+
+[sub_resource type="Resource" id="Resource_8q6ni"]
+script = ExtResource("12_21oim")
+STREAMS = Array[AudioStream]([ExtResource("29_feg4u"), ExtResource("30_14w5n")])
+metadata/_custom_type_script = "uid://cvxs53avnhinn"
+
+[sub_resource type="Resource" id="Resource_imhhi"]
+script = ExtResource("12_21oim")
+STREAMS = Array[AudioStream]([ExtResource("26_jj2gv"), ExtResource("27_g2cc6"), ExtResource("28_wbv5l")])
+PITCH_MIN = 1.3
+PITCH_MAX = 1.4
+metadata/_custom_type_script = "uid://cvxs53avnhinn"
+
+[sub_resource type="Resource" id="Resource_hk4cq"]
+script = ExtResource("12_21oim")
+STREAMS = Array[AudioStream]([ExtResource("29_feg4u"), ExtResource("30_14w5n")])
+PITCH_MIN = 1.3
+PITCH_MAX = 1.4
+metadata/_custom_type_script = "uid://cvxs53avnhinn"
+
+[sub_resource type="Resource" id="Resource_rm52v"]
+script = ExtResource("12_21oim")
+STREAMS = Array[AudioStream]([ExtResource("31_np5dp")])
+VOLUME_DB = 0.5
+metadata/_custom_type_script = "uid://cvxs53avnhinn"
+
+[sub_resource type="Resource" id="Resource_s5tgp"]
+script = ExtResource("12_21oim")
+STREAMS = Array[AudioStream]([ExtResource("32_i802i")])
+VOLUME_DB = 0.20000000000000284
+metadata/_custom_type_script = "uid://cvxs53avnhinn"
+
+[sub_resource type="Resource" id="Resource_ts7x6"]
+script = ExtResource("12_21oim")
+STREAMS = Array[AudioStream]([ExtResource("33_68kdq"), ExtResource("34_4u8fp"), ExtResource("35_ur87c")])
+VOLUME_DB = 0.3999999999999986
+metadata/_custom_type_script = "uid://cvxs53avnhinn"
+
+[sub_resource type="Resource" id="Resource_6uran"]
+script = ExtResource("12_21oim")
+STREAMS = Array[AudioStream]([ExtResource("33_68kdq"), ExtResource("34_4u8fp"), ExtResource("35_ur87c")])
+PITCH_MIN = 1.3
+PITCH_MAX = 1.4
+metadata/_custom_type_script = "uid://cvxs53avnhinn"
+
+[sub_resource type="Resource" id="Resource_pdm0v"]
+script = ExtResource("12_21oim")
+STREAMS = Array[AudioStream]([ExtResource("36_nfapy")])
+metadata/_custom_type_script = "uid://cvxs53avnhinn"
+
+[sub_resource type="Resource" id="Resource_56pq6"]
+script = ExtResource("12_21oim")
+STREAMS = Array[AudioStream]([ExtResource("37_lfols")])
+metadata/_custom_type_script = "uid://cvxs53avnhinn"
+
+[sub_resource type="Resource" id="Resource_wq2aa"]
+script = ExtResource("12_21oim")
+STREAMS = Array[AudioStream]([ExtResource("37_lfols")])
+PITCH_MIN = 1.3
+PITCH_MAX = 1.4
+metadata/_custom_type_script = "uid://cvxs53avnhinn"
+
+[sub_resource type="Resource" id="Resource_47dup"]
+script = ExtResource("12_21oim")
+STREAMS = Array[AudioStream]([ExtResource("38_dlc87")])
+VOLUME_DB = 0.5
+metadata/_custom_type_script = "uid://cvxs53avnhinn"
+
+[sub_resource type="Resource" id="Resource_q4rto"]
+script = ExtResource("39_0rdq0")
+DATASET = Dictionary[int, ExtResource("12_21oim")]({
+40: SubResource("Resource_04dfk"),
+41: SubResource("Resource_0vj3r"),
+42: SubResource("Resource_ndcaw"),
+43: SubResource("Resource_vb6yl"),
+44: SubResource("Resource_8xpkm"),
+45: SubResource("Resource_3yi1f"),
+46: SubResource("Resource_8kq0m"),
+47: SubResource("Resource_1i3ho"),
+48: SubResource("Resource_ay6x1"),
+100: SubResource("Resource_aytpi"),
+101: SubResource("Resource_ion71"),
+110: SubResource("Resource_0fr8a"),
+111: SubResource("Resource_8q6ni"),
+112: SubResource("Resource_imhhi"),
+113: SubResource("Resource_hk4cq"),
+120: SubResource("Resource_rm52v"),
+200: SubResource("Resource_s5tgp"),
+201: SubResource("Resource_ts7x6"),
+202: SubResource("Resource_6uran"),
+210: SubResource("Resource_pdm0v"),
+211: SubResource("Resource_56pq6"),
+212: SubResource("Resource_wq2aa"),
+220: SubResource("Resource_47dup")
+})
+metadata/_custom_type_script = "uid://c8r7t2ljyuyb6"
 
 [node name="Boot" type="Node" unique_id=1863929709]
 process_mode = 4
 script = ExtResource("1_4bay4")
 metadata/_custom_type_script = "uid://56qy2l42kqa8"
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1632851874]
+[node name="SettingsManager" type="Node" parent="." unique_id=1268425507]
+script = ExtResource("2_f2eom")
+metadata/_custom_type_script = "uid://covgehn0y4vp2"
+
+[node name="Visuals" parent="." unique_id=1659141589 instance=ExtResource("2_gluvi")]
+process_mode = 3
+
+[node name="AudioManager" type="Node" parent="." unique_id=1582410232]
+physics_interpolation_mode = 2
+script = ExtResource("3_f2eom")
+MUSIC_DATASET = SubResource("Resource_f2eom")
+SFX_DATASET = SubResource("Resource_q4rto")
+metadata/_custom_type_script = "uid://b3tphudgr2uii"
+
+[node name="Background" type="ColorRect" parent="." unique_id=1632851874]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.92941177, 0.91764706, 0.88235295, 1)
-
-[node name="Boot" type="Node2D" parent="." unique_id=1893134298]

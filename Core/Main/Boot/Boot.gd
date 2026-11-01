@@ -1,9 +1,17 @@
 extends AppState
 
 
+#region Scene members
+
+@onready var _background := $"Background" as ColorRect
+
+#endregion
+
+
 #region Member variables
 
-@export var _timer : float = 1.0
+# Add a minimum timer to the booting screen, so that it feels like as if it has a impact
+@export var _minTimer : float = 1.0
 
 #endregion
 
@@ -11,14 +19,18 @@ extends AppState
 #region Built-in functions
 
 func _ready() -> void:
-	add_sibling.call_deferred(SettingsManager.new())
-	add_sibling.call_deferred(SaveUtility.new())
-
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	process_mode = Node.PROCESS_MODE_INHERIT
 
+	Globals.settingsManager.applyGameSettings()
+	Globals.settingsManager.applyInputSettings("keyboard")
+	Globals.settingsManager.applyInputSettings("controller")
+	Globals.settingsManager.applyVideoSettings()
+	Globals.settingsManager.applyAudioSettings()
+
+
 func _physics_process(delta: float) -> void:
-	_timer -= delta
+	_minTimer -= delta
 
 #endregion
 
@@ -26,14 +38,16 @@ func _physics_process(delta: float) -> void:
 #region Override functions
 
 func exit() -> void:
-	queue_free()
+	_background.queue_free()
+
+	process_mode = Node.PROCESS_MODE_DISABLED
 
 
 func type() -> StringName:
 	return Type.boot
 
 func nextState() -> StringName:
-	if _timer > 0.0:
+	if _minTimer > 0.0:
 		return Type.none
 
 	return Type.mainMenu
