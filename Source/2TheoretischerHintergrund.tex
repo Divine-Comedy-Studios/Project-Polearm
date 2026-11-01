@@ -3,35 +3,44 @@
 
 \begin{document}
 
-\section{Theoretischer Hintergrund \& Methodik}
+\section{Grundlagen und Methodik} \label{sec:Grundlagen}
 Im folgenden Kapitel sind Definitionen und Informationen zu finden, welche zum Verständnis unserer Arbeit beitragen. Des weiteren ist unser Vorgehen  und es dem Leser erleichtern, unsere Arbeit zu verstehen.
+
+\begin{itemize}[leftmargin=1.5cm]
+    \item \textcolor{red}{Einleitung an die neue Struktur anpassen (der zweite Satz ist abgebrochen): Zuerst die Grundlagen für die ganze Arbeit (Genre, MDA und Game Feel), danach das Vorgehen pro Arbeitsschritt in der Reihenfolge der Kapitel 3 bis 6: Analyseframework, Leveldesign-Recherche, Umsetzung, Playtests.}
+\end{itemize}
 
 \subsection{Definition des Hack-and-Slash-Genres} \label{sec:Genredefinition}
 Ein Videospielgenre zu definieren ist nicht immer einfach, denn Genres sind nicht statisch, sondern entwickeln sich laufend weiter und verzweigen sich. Zudem existiert selten eine scharfe Definition; vielmehr ergibt sich ein Genre aus den Gemeinsamkeiten vieler Spiele, wobei nicht jedes Spiel alle Merkmale erfüllen muss. Im Folgenden beschreiben wir deshalb unser Verständnis des Hack-and-Slash-Genres als Arbeitsdefinition für diese Arbeit. In der Videospielindustrie bezeichnet \textit{Hack-and-Slash} ein Subgenre der Action Games.\autocite{wikipedia_hackandslash} Der Fokus liegt dabei auf Echtzeitkampf mit Nahkampfwaffen, wie Schwertern, Äxten oder anderen Klingen. Fernkampfwaffen sind zwar vertreten, spielen aber nur eine untergeordnete und unterstützende Rolle. Das Genre entstammt den 2D-Beat'em-Up-Games, entwickelte sich weiter in der 3D-Ära und wurde vor allem durch Titel wie \game{Devil May Cry} (2001)\autocite{wikipedia_devilmaycry} oder \game{Bayonetta} (2009)\autocite{wikipedia_bayonetta} geprägt.
 
-Die modernen Spiele zeichnen sich durch hohe Spielgeschwindigkeiten und stilvolle, fliessende Bewegungen aus. Das Verketten präziser Angriffs-Combos, das gezielte Abbrechen von Bewegungen, I-Frames und strategisches Distanzmanagement zum Gegner zeichnen das Gameplay aus. Das, was ein überzeugendes Hack-and-Slash ausmacht, ist nicht allein die Anzahl dieser Mechaniken, sondern das Zusammenspiel dieser. Erst wenn präzises Kampfverhalten und befriedigendes Spielgefühl aufeinander abgestimmt sind, entsteht das genredefinierende Gefühl von Kontrolle und Ausdrucksstärke.\autocite[s.5-s.7]{lindgren2025striking}
+Die modernen Spiele zeichnen sich durch hohe Spielgeschwindigkeiten und stilvolle, fliessende Bewegungen aus. Das Verketten präziser Angriffs-Combos, das gezielte Abbrechen von Bewegungen, I-Frames und strategisches Distanzmanagement zum Gegner zeichnen das Gameplay aus. Das, was ein überzeugendes Hack-and-Slash ausmacht, ist nicht allein die Anzahl dieser Mechaniken, sondern das Zusammenspiel dieser. Erst wenn präzises Kampfverhalten und befriedigendes \textcolor{red}{Spielgefühl} aufeinander abgestimmt sind, entsteht das genredefinierende Gefühl von Kontrolle und Ausdrucksstärke.\autocite[s.5-s.7]{lindgren2025striking}
 
 Innerhalb des Genres hat sich für Spiele, die diese Ausdrucksstärke ins Zentrum stellen, die Bezeichnung \textit{Stylish-Action} etabliert: Titel wie die bereits genannten \game{Devil May Cry} und \game{Bayonetta} fordern den Spieler auf, nicht nur effektiv, sondern möglichst elegant und abwechslungsreich zu kämpfen, und bewerten dies teils explizit mit Stil-Wertungen im Kampf. \game{Project-Polearm} verortet sich in dieser Tradition.
 
 \game{Project-Polearm} ist ein \textit{lineares} Hack-and-Slash und legt den Fokus besonders auf \textit{fast-paced combat}, also auf einen schnellen Kampffluss. Die Spieler sollen für aggressives Verhalten und stylischen Combat belohnt werden. Dabei soll sich die Spielfigur nicht schwerfällig, sondern agil durch die Level der Spielwelt bewegen.
 
-\subsection{Das MDA-Framework}
+\subsection{Das MDA-Framework und Game Feel}
 Um das Zusammenspiel von Gegnern und Spielfigur systematisch zu erfassen und vergleichbar zu machen, bedarf es eines geeigneten Analyserahmens. Im folgenden Abschnitt wird das MDA-Framework als methodisches Werkzeug eingeführt, das die Beziehung zwischen Spielregeln, emergenten Verhaltensmustern und dem emotionalen Spielerleben strukturiert beschreibt.
 
-Das MDA-Framework (Mechanics, Dynamics, Aesthetics) wurde von Hunicke, LeBlanc und Zubek entwickelt und ist ein formaler Ansatz zur Analyse und zum Verständnis von Gamedesign. Es beschreibt Spiele nicht als statisches Medium wie Buch oder Film, sondern als interaktives Erlebnis, welches aus dem Zusammenspiel dreier klar abgegrenzter Ebenen entsteht. Dieses Verständnis von Spielen als Zusammenspiel mehrerer Ebenen weist Parallelen zu Steven Swinks Konzept des \textit{Game Feel} auf, das er in seinem Werk \game{Game Feel: A Game Designer’s Guide to Virtual Sensation} beschreibt. Swink definiert Game Feel als die subjektive Wahrnehmung der Steuerung und Rückmeldung eines Spiels und untersucht, weshalb sich bestimmte Spielmechaniken für den Spieler präzise, befriedigend oder wirkungsvoll anfühlen.\autocite[s.1-s.6]{swink2008gamefeel} Wenn in dieser Arbeit von \textit{Spielgefühl} die Rede ist, insbesondere in der Erkenntnisfrage, ist damit Game Feel im Sinne Swinks gemeint; die beiden Begriffe werden im Folgenden synonym verwendet.
+Das MDA-Framework (Mechanics, Dynamics, Aesthetics) wurde von Hunicke, LeBlanc und Zubek entwickelt und ist ein formaler Ansatz zur Analyse und zum Verständnis von Gamedesign. Es beschreibt Spiele nicht als statisches Medium wie Buch oder Film, sondern als interaktives Erlebnis, welches aus dem Zusammenspiel dreier klar abgegrenzter Ebenen entsteht. Dieses Verständnis von Spielen als Zusammenspiel mehrerer Ebenen weist Parallelen zu Steven Swinks Konzept des \textit{Game Feel} auf, das er in seinem Werk \game{Game Feel: A Game Designer’s Guide to Virtual Sensation} beschreibt. Swink definiert Game Feel als die subjektive Wahrnehmung der Steuerung und Rückmeldung eines Spiels und untersucht, weshalb sich bestimmte Spielmechaniken für den Spieler präzise, befriedigend oder wirkungsvoll anfühlen.\autocite[s.1-s.6]{swink2008gamefeel} Wenn in dieser Arbeit von \textit{\textcolor{red}{Spielgefühl}} die Rede ist, insbesondere in der Erkenntnisfrage, ist damit Game Feel im Sinne Swinks gemeint; die beiden Begriffe werden im Folgenden synonym verwendet.
+
+\begin{itemize}[leftmargin=1.5cm]
+    \item \textcolor{red}{\textbf{Begriffe Spielgefühl und Kampfgefühl:} Laut deiner Angabe meint \enquote{Spielgefühl} im Bericht je nach Kontext das Gesamtgefühl des Spiels oder (meistens) das Kampfgefühl. Das widerspricht dem Satz oben, dass Spielgefühl und Game Feel synonym verwendet werden. Alle Vorkommen von \enquote{Spielgefühl} im Bericht sind rot markiert. Hinweis: Für den Bewerter ist \enquote{aus dem Kontext lesen} riskant. Besser hier beide Begriffe kurz definieren und danach konsequent verwenden.}
+    \item \textcolor{red}{\textbf{Spielfluss und Schwierigkeit definieren:} Abschnitt~\ref{sec:Erkenntnisfrage} verweist für alle drei Qualitäten hierher. Je 1--2 Sätze, idealerweise mit Quelle.}
+\end{itemize}
 
 Die unterste Ebene, die Mechaniken, umfasst die konkreten Regeln und Systeme eines Spiels. Darunter versteht man alles, was durch Daten und Algorithmen getrieben ist, wie Schadenswerte, Treffererkennung, Bewegungsgeschwindigkeit oder die Gegner-KI. Daraus entstehen zur Laufzeit die Dynamiken, also das emergente Verhalten, das sich aus dem Zusammenspiel von Mechaniken und Spielerentscheidungen ergibt. Konkret geht es um den Kampfrhythmus, taktische Ausweichmuster oder eskalierende Gegnerwellen. Die oberste Ebene, die Ästhetik, beschreibt schliesslich die emotionale Reaktion des Spielers auf dieses System. Gefühle wie Kontrolle und Befriedigung bei gelungenen Combos stehen im Vordergrund.
 
-Entscheidend ist die Kausalität zwischen den Ebenen. Mechaniken erzeugen Dynamiken, die wiederum Ästhetik erzeugen. Gleichzeitig erleben die Spieler das Spiel in umgekehrter Reihenfolge. Für die Analyse bestehender Spiele bedeutet das, dass man vom Spielgefühl beginnt und sich systematisch zu den Ursachen, also den Mechaniken, vorarbeiten muss.
+Entscheidend ist die Kausalität zwischen den Ebenen. Mechaniken erzeugen Dynamiken, die wiederum Ästhetik erzeugen. Gleichzeitig erleben die Spieler das Spiel in umgekehrter Reihenfolge. Für die Analyse bestehender Spiele bedeutet das, dass man vom \textcolor{red}{Spielgefühl} beginnt und sich systematisch zu den Ursachen, also den Mechaniken, vorarbeiten muss.
 
 Dieses Framework eignet sich besonders gut für die Analyse von Hack-and-Slash-Spielen, da das Genre ein besonders hohes Mass dieser Kausalität aufweist. Beispielsweise sind die genauen Parameter einer einzelnen Mechanik, wie einer Attacke, bedeutungslos, wenn sie nicht im Kontext weiterer Systeme, wie Gegnerlebenspunkten, Gegnerverhalten und Animationsgeschwindigkeit, betrachtet werden.\autocite{hunicke2004mda}
 
 Auf Basis dieses Frameworks wurde ein strukturierter Fragebogen mit 15 Fragen entwickelt, der die drei Ebenen getrennt betrachtet. Er dient als Grundlage für die Analyse der Referenzspiele ab dem Abschnitt~\ref{sec:Referenzspielanalyse} sowie als inhaltliche Basis für den Playtest-Fragebogen.
 
 
-\subsection{Analyse-Fragebogen} \label{sec:Analysefragebogen}
+\subsection{Analyseframework} \label{sec:Analysefragebogen}
 
-Die 15 Fragen sind den drei MDA-Ebenen zugeordnet und werden in umgekehrter Reihenfolge gestellt, da die Analyse beim Spielgefühl beginnt und sich systematisch zu den Ursachen vorarbeitet. Thematisch sind die Fragen so ausgerichtet, dass sie gezielt Gegnerverhalten, Gegnerplatzierung, Spielfluss, Schwierigkeit und Feedback beleuchten, da diese Aspekte im Zentrum unserer Erkenntnisfrage stehen.
+Die 15 Fragen sind den drei MDA-Ebenen zugeordnet und werden in umgekehrter Reihenfolge gestellt, da die Analyse beim \textcolor{red}{Spielgefühl} beginnt und sich systematisch zu den Ursachen vorarbeitet. Thematisch sind die Fragen so ausgerichtet, dass sie gezielt Gegnerverhalten, Gegnerplatzierung, Spielfluss, Schwierigkeit und Feedback beleuchten, da diese Aspekte im Zentrum unserer Erkenntnisfrage stehen.
 
 \subsubsection{Aesthetics (Ästhetik und emotionales Erleben)}
 
@@ -63,8 +72,13 @@ Die 15 Fragen sind den drei MDA-Ebenen zugeordnet und werden in umgekehrter Reih
     \item Wie hängen die gedrückten Tasten mit den visuellen Kampfereignissen zusammen, gibt es eine bestimmte Intention hinter den Tasten?
 \end{enumerate}
 
-\subsection{Vorgehen bei der Leveldesign-Recherche}
-Während die Referenzspielanalyse (Abschnitt~\ref{sec:Analysefragebogen}) den Einfluss des Gegnerverhaltens auf das Spielgefühl am konkreten Spiel untersucht, stützt sich die Recherche zu Leveldesign und Gegnerplatzierung auf Fachliteratur, nicht auf eine systematische Analyse. Ziel ist die gezielte Herleitung von Gestaltungsprinzipien für einen zusammenhängenden Kampfabschnitt im gewählten Genre.
+\begin{itemize}[leftmargin=1.5cm]
+    \item \textcolor{red}{\textbf{Begründung des Frameworks (Vertragspunkt):} Tabelle Frage (A1--M5) $\rightarrow$ abgedecktes Kriterium (Gegnerverhalten, manuelle/algorithmische Gegnerplatzierung, Spielfluss, Schwierigkeit, Feedback) $\rightarrow$ Begründung mit Quelle (z.\,B. Swink für Feedback, Totten/Rogers für Platzierung und Raum, GDC-Talks für Pacing, Hunicke für die MDA-Ebenen).}
+    \item \textcolor{red}{Kurz beschreiben, wie die Analyse durchgeführt wurde: Plattform/Version, gespielte Abschnitte, ungefähre Spielzeit, wer gespielt hat, ob aufgezeichnet wurde.}
+\end{itemize}
+
+\subsection{Vorgehen bei der Leveldesign-Recherche} \label{sec:VorgehenLeveldesign}
+Während die Referenzspielanalyse (Abschnitt~\ref{sec:Analysefragebogen}) den Einfluss des Gegnerverhaltens auf das \textcolor{red}{Spielgefühl} am konkreten Spiel untersucht, stützt sich die Recherche zu Leveldesign und Gegnerplatzierung auf Fachliteratur, nicht auf eine systematische Analyse. Ziel ist die gezielte Herleitung von Gestaltungsprinzipien für einen zusammenhängenden Kampfabschnitt im gewählten Genre.
 
 Bei den Quellen handelt es sich vor allem um Fachliteratur und Erfahrungswerte von Entwicklern. Sie umfassen zwei Fachbücher, \game{Level Up! The Guide to Great Video Game Design} von Scott Rogers\autocite{rogers2014levelup} und \game{An Architectural Approach to Level Design} von Christopher W. Totten\autocite{totten2014architectural}, sowie vier Fachvorträge der Game Developers Conference (GDC): \enquote{Ten Principles for Good Level Design}\autocite{gdc_tenprinciples2010}, \enquote{Level Design in a Day: A Series of First Steps}\autocite{gdc_leveldesignaday2020}, \enquote{Moving Mountains: Speedy Level Creation as a Desperate Indie Dev}\autocite{gdc_movingmountains2020} sowie \enquote{Level Design Workshop: Balancing Action and RPG in Horizon Zero Dawn Quests}\autocite{gdc_horizonquests2018}. Damit werden bewusst Buchtheorie und praktische Erfahrung verbunden.
 
@@ -72,7 +86,22 @@ Im Fokus stehen besonders jene Themenbereiche, die für den Prototyp relevant si
 
 Es handelt sich überwiegend um Fach- und Praktikerwissen erfahrener Entwickler, nicht um empirische oder wissenschaftliche Studien. Zudem behandelt keine der Quellen das Hack-and-Slash-Genre unmittelbar. Diese genrespezifische Lücke wird durch die eigene Referenzanalyse in Kapitel~\ref{sec:Referenzspielanalyse} geschlossen.
 
-\subsection{Vorgehen bei den Playtests}
+\begin{itemize}[leftmargin=1.5cm]
+    \item \textcolor{red}{\textbf{Auswahlkriterium} für die Recherchepunkte nennen: Sie wirken auf Gegnerverhalten oder Gegnerplatzierung, sind in einem linearen Kampfabschnitt umsetzbar und im Playtest prüfbar. Zeitmangel gehört dagegen in die Limitationen (Kap.~\ref{sec:Schlussfolgerungen}).}
+\end{itemize}
+
+\subsection{Vorgehen bei der Umsetzung} \label{sec:VorgehenUmsetzung}
+
+\begin{itemize}[leftmargin=1.5cm]
+    \item \textcolor{red}{Werkzeuge: Godot (Engine), TrenchBroom (Greyboxing), Blender (Modelle/Animation), Git (Versionsverwaltung), externe Assets (z.\,B. Poly Haven) -- jeweils ein Halbsatz, wofür.}
+    \item \textcolor{red}{Ablauf iterativ: Planung $\rightarrow$ Greybox in TrenchBroom $\rightarrow$ Umsetzung in Godot $\rightarrow$ interne Tests $\rightarrow$ Anpassung $\rightarrow$ Playtest. Bezug auf Abschnitt~\ref{sec:Prototyping}.}
+    \item \textcolor{red}{Wie die Designvorschläge in den Prototyp übersetzt wurden (Kap.~\ref{sec:Umsetzung}).}
+    \item \textcolor{red}{Verweis auf die technische Dokumentation für Architektur und Code. Kurz halten (ca.\ ein Absatz).}
+\end{itemize}
+
+\subsection{Vorgehen bei den Playtests} \label{sec:VorgehenPlaytest}
+
+\subsubsection{Methode und Ablauf} \label{sec:MethodePlaytest}
 Das Ziel des Playtests ist, die im weiteren Verlauf der Arbeit hergeleiteten Designvorschläge mit der tatsächlichen Spielerfahrung von Testpersonen abzugleichen. Für die Umsetzung stützen wir uns auf das Buch \enquote{Games User Research} von Anders Drachen, Pejman Mirza Babaei und Lennart E. Nacke.\autocite{drachen2018gamesuserresearch}. Bei Games User Research (GUR) liegt der Fokus auf der Spielerfahrung, was für unsere Ziele genau passt.
 
 Durch die Kombination verschiedener Methoden ist es uns möglich, verschiedene Perspektiven und Ebenen einer Spielerfahrung zu erfassen. So kann die Beobachtung eines Spielers Aufschluss darüber geben, was dieser tatsächlich macht, ein Fragebogen das subjektive Empfinden des Spielers erfassen und ein semistrukturiertes Interview genauer auf Auffälligkeiten im Spielverhalten oder Empfinden eingehen.
@@ -85,12 +114,14 @@ Im eigentlichen Playtest werden zwei verschiedene Aspekte gleichzeitig beobachte
 
 Das semistrukturierte retrospektive Interview dient dazu, während des Gameplays beobachtete Auffälligkeiten und relevante Situationen nachträglich zu validieren und deren Ursachen aus Sicht der Testperson zu untersuchen.
 
-\subsection{Aufbau des Playtests}
+\subsubsection{Auswahl der Testpersonen} \label{sec:AuswahlTP}
 
-\subsubsection{Testpersonen}
-Teilnehmer, Auswertungsmethode kommt noch.
-
-\subsubsection{Fragebogen}
+\begin{itemize}[leftmargin=1.5cm]
+    \item \textcolor{red}{Auswahlkriterien (z.\,B. unterschiedliche Spielerfahrung, Bezug zu Action-Spielen) und warum etwa fünf Personen (Vertrag; Games User Research).}
+    \item \textcolor{red}{Rekrutierung offenlegen (Mitschüler/Freunde) und mögliche Verzerrung kurz nennen.}
+    \item \textcolor{red}{Einverständnis für die Aufnahmen und Anonymisierung im Anhang erwähnen.}
+    \item \textcolor{red}{Die tatsächlichen Testpersonen (Tabelle TP1--TP5) kommen in Kapitel~\ref{sec:Evaluation}.}
+\end{itemize}
 
 \subsubsection{Pre-Questionnaire} \label{sec:PreQuestionnaire}
  
@@ -109,7 +140,7 @@ Das Pre-Questionnaire dient dazu, die Testperson zu charakterisieren. Ihre Aussa
 
 \subsubsection{Post-Questionnaire} \label{sec:PostQuestionnaire}
  
-Das Post-Questionnaire erfasst die subjektive Einschätzung der Testperson direkt im Anschluss an den Playtest, pro Designvorschlag sowie für den gesamten Kampfabschnitt. Hinter jeder Aussage steht in Klammern der Designvorschlag, den sie überprüft. Alle Aussagen werden auf einer Skala von 1 (\enquote{trifft gar nicht zu}) bis 5 (\enquote{trifft völlig zu}) bewertet, die offenen Fragen frei beantwortet.
+Das Post-Questionnaire erfasst die subjektive Einschätzung der Testperson direkt im Anschluss an den Playtest, pro Designvorschlag sowie für den gesamten Kampfabschnitt. Hinter jeder Aussage steht in Klammern der Designvorschlag, den sie überprüft (V1--V8, hergeleitet in Abschnitt~\ref{sec:Designvorschlaege}). Alle Aussagen werden auf einer Skala von 1 (\enquote{trifft gar nicht zu}) bis 5 (\enquote{trifft völlig zu}) bewertet, die offenen Fragen frei beantwortet.
  
 \paragraph{Gegnerverhalten}
 \begin{enumerate}[label=\textbf{Q\arabic*}, leftmargin=1.5cm, itemsep=0.5em]
@@ -129,7 +160,7 @@ Das Post-Questionnaire erfasst die subjektive Einschätzung der Testperson direk
  
 \paragraph{Gesamteindruck}
 \begin{enumerate}[label=\textbf{Q\arabic*}, leftmargin=1.5cm, itemsep=0.5em, resume]
-    \item Insgesamt war dieser Kampfabschnitt für mich befriedigend zu spielen. \hfill (Spielgefühl)
+    \item Insgesamt war dieser Kampfabschnitt für mich befriedigend zu spielen. \hfill (\textcolor{red}{Spielgefühl})
     \item Der gesamte Kampfabschnitt fühlte sich zusammenhängend an, nicht wie eine Aneinanderreihung einzelner Momente. \hfill (Spielfluss)
     \item Der Schwierigkeitsgrad war insgesamt angemessen. \hfill (Schwierigkeit)
     \item Was hat sich am besten angefühlt? \hfill (offen)
@@ -181,5 +212,13 @@ Das Interview findet im Anschluss an das Post-Questionnaire statt und nutzt die 
     \item Gab es einen Punkt, an dem sich der Kampf für dich in einen anderen \enquote{Modus} verschoben hat (z.\,B. von entspannt zu angespannt)? Wo genau?
     \item Gibt es etwas, das du während des Spielens gedacht oder gefühlt hast, das wir bisher nicht angesprochen haben?
 \end{enumerate}
+
+\subsubsection{Auswertung} \label{sec:Auswertung}
+
+\begin{itemize}[leftmargin=1.5cm]
+    \item \textcolor{red}{Die Auswertung ist qualitativ und beschreibend: Wegen der kleinen Stichprobe (fünf Testpersonen) werden keine Kennwerte wie Mittelwert oder Median berechnet (Absprache mit dem Betreuer; Playtests dieser Grösse dienen dem Erkennen von Mustern, nicht statistischen Aussagen).}
+    \item \textcolor{red}{Fragebogen, Beobachtung und Interview werden pro Designvorschlag (V1--V8) gemeinsam betrachtet; Häufigkeiten werden als \enquote{x von 5 Testpersonen} angegeben, Likert-Antworten als Tendenz beschrieben.}
+    \item \textcolor{red}{Widersprüche zwischen den Quellen werden in der Diskussion aufgegriffen. 2--4 Sätze reichen.}
+\end{itemize}
 
 \end{document}

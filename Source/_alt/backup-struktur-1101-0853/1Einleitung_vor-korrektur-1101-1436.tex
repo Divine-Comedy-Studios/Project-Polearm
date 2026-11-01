@@ -1,0 +1,77 @@
+\documentclass[../Main.tex]{subfiles}
+
+\begin{document}
+
+\section{Einleitung}
+
+\subsection{Motivation und Relevanz}
+
+Diese Maturitätsarbeit entstand aus dem Wunsch, nicht nur Spiele zu spielen, sondern sie genauer zu verstehen und selbst ein solches Spielerlebnis zu erschaffen.
+
+Das Hack-and-Slash-Genre stellt aus unserer Sicht besonders hohe Anforderungen an das Zusammenspiel einzelner Spielsysteme, da Spielerbewegung, Kampfsystem, Gegnerverhalten und Leveldesign in Echtzeit ineinandergreifen. Im Zentrum unseres Interesses stehen dabei insbesondere das Gegnerverhalten und die Gegnerpositionierung. Wir haben uns diese beiden Themenbereiche ausgesucht, weil wir von ihnen glauben, dass sie besonders tragend sind für dieses Genre.
+
+In unserer Wahrnehmung erschienen Genrevertreter wie \game{Ninja Gaiden Sigma Plus} oder \game{God of War} in einer Phase mit vergleichsweise häufigen Neuveröffentlichungen des Genres, während heute nur noch wenige grosse Titel erscheinen. Dadurch existiert einerseits ausreichend Referenzmaterial, um zentrale Genremerkmale herauszuarbeiten, andererseits sind wir bei der Umsetzung nicht an aktuelle Genrekonventionen gebunden, wodurch sich zusätzlicher Freiraum für eigene, moderne Interpretationen klassischer Mechaniken ergibt.
+
+Diese Maturitätsarbeit zielt auf die Fans von den oben genannten Spielen. Da das Hack-and-Slash-Genre ein Untergenre von Action-Games ist, fassen wir unsere Zielgruppe so auf.
+
+\begin{itemize}[leftmargin=1.5cm]
+    \item \textcolor{red}{\textbf{Eingrenzung begründen (Checkliste):} Warum gerade Gegnerverhalten und Gegnerplatzierung und nicht z.\,B. Combos, Animation oder Story? 1--2 Sätze.}
+    \item \textcolor{red}{\textbf{Relevanz und Zielgruppe} aus dem Vertrag (A.5) ergänzen: Fans von Action- bzw.\ Stylish-Action-Spielen; bekannte Elemente aufgreifen und modern interpretieren.}
+    \item \textcolor{red}{\textbf{Kurzer Forschungsstand} (Checkliste): Was gibt es bereits? MDA (Hunicke), Game Feel (Swink), Leveldesign-Literatur (Totten, Rogers, GDC), Games User Research (Drachen) -- und welche Lücke bleibt: keine dieser Quellen behandelt das Hack-and-Slash-Genre direkt (vgl.\ Abschnitt~\ref{sec:VorgehenLeveldesign}). 2--4 Sätze, Details in Kapitel~\ref{sec:Grundlagen}.}
+    \item \textcolor{red}{Optional für einen spannenden Einstieg: mit einer konkreten Spielszene beginnen (z.\,B. ein Gegner in \game{Ninja Gaiden}, der dich flankiert, während du einen anderen bekämpfst).}
+    \item \textcolor{red}{Genannte Spiele (\game{Ninja Gaiden Sigma Plus}, \game{God of War}) in der Ludografie aufführen und zitieren.}
+\end{itemize}
+
+\subsection{Erkenntnisfrage} \label{sec:Erkenntnisfrage}
+
+Im Zentrum unserer Arbeit steht folgende Erkenntnisfrage:
+
+\vspace{\baselineskip}
+
+\begin{quote}
+    \textit{Wie müssen Gegnerverhalten und Gegnerplatzierung in einem 3D-Hack-and-Slash-Prototyp konzipiert sein, damit ein zusammenhängender Kampfabschnitt mit nachvollziehbarem Spielfluss, angemessener Schwierigkeit und befriedigendem Spielgefühl entsteht?}
+\end{quote}
+
+\vspace{\baselineskip}
+
+Diese Frage setzt sich aus zwei inhaltlichen Komponenten zusammen. Zum einen geht es um das Gegnerverhalten und das Kampfgefühl, zum anderen geht es um Gegnerplatzierung und Leveldesign. Diese beiden Komponenten werden durch die drei Qualitäten: Spielfluss, Schwierigkeit und Spielgefühl, evaluiert. Wie genau wir jeden der einzelnen Begriffe definieren, wird im verlauf dieses Begleitberichts erkenntlich.
+
+\begin{itemize}[leftmargin=1.5cm]
+    \item \textcolor{red}{\textbf{Vertrag:} Die Erkenntnisfrage weicht vom Vertrag ab (dort: \enquote{Wie können \ldots so umgesetzt werden, dass ein Kampfabschnitt von Testspieler:innen als flüssig und herausfordernd erlebt wird?}). Mit dem Betreuer klären oder angleichen.}
+    \item \textcolor{red}{\textbf{Begriffe:} Die drei Qualitäten kurz definieren oder auf Kapitel~\ref{sec:Grundlagen} verweisen: Spielgefühl = Game Feel nach Swink (Abschnitt~2.2), Spielfluss, Schwierigkeit; dazu Gegnerplatzierung (manuell/algorithmisch).}
+    \item \textcolor{red}{Begriffe einheitlich: hier steht \enquote{Kampfgefühl}, in der Frage \enquote{Spielgefühl}.}
+    \item \textcolor{red}{Präzisieren: Kapitel~\ref{sec:Referenzspielanalyse} behandelt auch die Gegnerplatzierung (Fragen A3, D3), Kapitel~\ref{sec:Leveldesign} vor allem den Raum. Besser \enquote{vor allem}. Und das Bindeglied ergänzen: Aus beidem werden in Kapitel~\ref{sec:Umsetzung} acht Designvorschläge abgeleitet und im Prototyp umgesetzt.}
+\end{itemize}
+
+\subsection{Zielsetzung und Aubau der Arbeit}
+
+\textcolor{red}{Am Ende den Vertrag, das Spiel und den Text unten Abgleichen}
+
+Ziel dieser Arbeit ist die Entwicklung eines spielbaren 3D-Hack-and-Slash-Prototyps, wodurch wir unsere Erkenntnisfrage zu beantworten versuchen.
+
+Dafür haben wir die uns folgendes vorgehen überlegt und umgesetzt: Zu aller erst haben wir Anhand unserer Erkenntnisfrage Recherchen zu den Themen Gegnerverhalten kapitel 3 referenz und Gegnerplatzierung kapitel 4 referenz angestellt. Um das gegnerverhalten zu analysieren haben wir uns selbst Genrevertreter angesehen und durchgespielt und haben unsere beobachtungen notiert. für die Gegnerplatzierung haben wir Leveldesign aus sachbüchern und experten tedtalks angesehen. Daraus haben wir 8 Designvorschläge als antwort für die Erkenntnisfrage ausgearbeitet, von denen wir gedacht haben, das diese besonders viel zu Gegnerverhalten und Gegnerplatzierung respektiv beitragen. Diese Vorschläge haben wir dann konkret in unserem Prototyp umsesetzt. Mit einem Playtest haben wir dann versucht unsere Designvorschläge zu evaluieren. Zum schluss haben wir aus der Evaluation der Designvorschläge, den Playtests und unseren Recherchen das weiter vorgehen überlegt und weitere nach unserer Einschätzung faktoren, die zum Gegnerverhalten und Gegnerplatzierung beitragen zusammengetragne, die wir als nächstes analysieren würden.
+
+\textcolor{red}{stuff den wir gemacht haben.}
+
+\begin{itemize}[leftmargin=1.5cm]
+    \item \textcolor{red}{Der Satz \enquote{Wodurch unsere Erkenntnisfrage geklärt werden soll.} ist kein vollständiger Satz.}
+    \item \textcolor{red}{\textbf{Ziele} klar benennen, z.\,B. drei: (1) Analyse zweier Referenzspiele mit einem begründeten Framework, (2) Entwicklung eines spielbaren Prototyps mit einem zusammenhängenden Kampfabschnitt, (3) Evaluation in Playtests.}
+    \item \textcolor{red}{\textbf{Produktbestandteile laut Vertrag (A.4):} spielbarer 3D-Prototyp in Godot; zusammenhängender Kampfabschnitt; mind.\ zwei unterscheidbare Gegnertypen (ihr habt fünf); Mechaniken Bewegung, Kamera, Angriff, Treffererkennung, Schaden, Gegnerverhalten, Tod und Neustart; dokumentierte Architektur; Analyse; Playtest mit ca.\ fünf Testpersonen; schriftlicher Kommentar.}
+    \item \textcolor{red}{Optional: welche Bonus-Inhalte aus dem Vertrag umgesetzt wurden (z.\,B. Lock-on, Menü, Settings, Musik, Mac-Export).}
+    \item \textcolor{red}{\textbf{Abgrenzung:} Was steht in diesem Begleitbericht, was in der technischen Dokumentation? Titel des anderen Dokuments nennen und darauf verweisen.}
+    \item \textcolor{red}{Kann jetzt geschrieben werden (hängt nicht von den Ergebnissen ab).}
+\end{itemize}
+
+\subsection{Aufbau der Arbeit} \label{sec:Aufbau}
+
+\begin{itemize}[leftmargin=1.5cm]
+    \item \textcolor{red}{Den Bogen der Arbeit ausformulieren: Frage $\rightarrow$ Grundlagen und Methodik (Kap.~\ref{sec:Grundlagen}) $\rightarrow$ von den Vorbildern lernen (Kap.~\ref{sec:Referenzspielanalyse}) $\rightarrow$ aus der Literatur lernen (Kap.~\ref{sec:Leveldesign}) $\rightarrow$ Vorschläge ableiten und bauen (Kap.~\ref{sec:Umsetzung}) $\rightarrow$ testen (Kap.~\ref{sec:Evaluation}) $\rightarrow$ Antwort (Kap.~\ref{sec:Schlussfolgerungen}) $\rightarrow$ Rückblick (Kap.~\ref{sec:Reflexion}).}
+    \item \textcolor{red}{Pro Kapitel 1--2 Sätze: was passiert dort und \emph{warum steht es an dieser Stelle} (Merkblatt: Aufbau erklären und begründen).}
+    \item \textcolor{red}{Ein Satz zur Zweiteilung: Begleitbericht und technische Dokumentation.}
+    \item \textcolor{red}{Anhang mit den Playtest-Protokollen kurz erwähnen.}
+    \item \textcolor{red}{Umfang ca.\ eine halbe Seite. Kann jetzt geschrieben werden, die Gliederung steht.}
+\end{itemize}
+
+\newpage
+
+\end{document}

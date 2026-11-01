@@ -5,7 +5,15 @@
 
 \section{Recherche zum Leveldesign} \label{sec:Leveldesign}
 Dieses Kapitel bündelt die recherchierten Designprinzipien thematisch in sechs Überkategorien. Diese werden besonders in Bezug auf das Hack-and-Slash-Genre verstanden. Wo möglich wird zusätzlich Bezug auf die Referenzanalyse (Kapitel~\ref{sec:Referenzspielanalyse}) genommen. Die unten genannten Designprinzipien variieren von abstrakten Denkmustern über praktisch anwendbare Methoden bis hin zu Gamedesign-Prozessen. Das liegt an der Vielfalt der Quellen und den verschiedenen Absichten der Autoren.
+\begin{itemize}[leftmargin=1.5cm]
+    \item \textcolor{red}{Erinnerung ans Vorgehen (2--3 Sätze, Abschnitt~\ref{sec:VorgehenLeveldesign}).}
+\end{itemize}
+
 \subsection{Kernmechanik-zentriertes Design} \label{sec:Kernmechanik}
+
+\begin{itemize}[leftmargin=1.5cm]
+    \item \textcolor{red}{Entscheiden: streichen oder auf 2--3 Sätze kürzen. Wird in Kapitel~\ref{sec:Umsetzung} kaum genutzt (nur Basisklasse).}
+\end{itemize}
 Ein Videospiel wird vor allem wegen seiner Kernmechanik gespielt. Diese ist das grundlegende Verb, das die Spielhandlung trägt.\autocite{totten2014architectural} Bei \game{Super Mario Bros.} ist dies das Springen, bei \game{The Legend of Zelda} das Erkunden. So liegt der Fokus der Spieler auf genau diesen Kernmechaniken, was nicht heisst, dass Spiele keine Zweit- oder Drittmechaniken haben können.
 
 Das Leveldesign wird von den Mechaniken getrieben; das Level ist demnach das Medium, durch das sich die Mechaniken entfalten.\autocite{gdc_tenprinciples2010} Deshalb ist es sinnvoll, jene Objektklasse, die zur Kernmechanik beiträgt, so breit wie möglich im Spiel zu verankern. Ist die Kernmechanik beispielsweise das Zerstören von Objekten, sollte möglichst vieles von dieser Klasse erben, sodass die Mechanik auf die eine oder andere Weise überall im Spiel auftaucht.\autocite{gdc_movingmountains2020}
@@ -71,5 +79,11 @@ Level sollten nicht in einem Durchgang entworfen, sondern schrittweise entwickel
 Ein konkreter Ablauf dafür führt vom Konzept über einen \textit{Walkthrough}, eine schriftliche Beschreibung des Levelverlaufs samt Draufsicht-Karte, zur \textit{Blockworld}. Dabei weicht die Blockworld oft stärker vom ursprünglichen Plan ab als erwartet, weil sich Sichtlinien, Kameraverdeckung und tatsächliche Raumgrössen erst im 3D-Raum beurteilen lassen. Als Planungswerkzeug davor eignen sich \textit{Bubble-Diagramme}, die Räume als Blasen und deren Beziehungen statt genauer Geometrie festhalten, ähnlich den Proximity-Diagrammen aus Abschnitt~\ref{sec:Raumtypologien}. Beim Bauen der Blockworld empfiehlt es sich zudem, von einem einzelnen markanten Kernpunkt aus zu wachsen, statt das ganze Level gleichzeitig anzulegen.\autocite{gdc_leveldesignaday2020}
 
 Wie zentral diese iterative Arbeitsweise ist, zeigt Valve am Beispiel von \game{Half-Life 2}: Die Level durchliefen mehrere vollständige Überarbeitungsdurchgänge, und die Entwickler bezeichnen ebendiese mehrfachen Iterationen rückblickend als einen Schlüssel zum Erfolg des Spiels, da sie deutlich bessere Designentscheidungen ermöglichten.\autocite{jacobson2005postmortem} Für \game{Project-Polearm} entspricht dieser Ablauf unserem eigenen Vorgehen, den Kampfabschnitt zuerst als Greybox zu bauen und iterativ zu verfeinern, bevor Grafik und Politur folgen.
+
+\subsection{Zwischenfazit} \label{sec:ZwischenfazitLD}
+
+\begin{itemize}[leftmargin=1.5cm]
+    \item \textcolor{red}{Spiegelbildlich zu Abschnitt~\ref{sec:Vergleich}: die wichtigsten Prinzipien für \game{Project-Polearm} in 4--6 Sätzen, mit Überleitung zu den Designvorschlägen in Kapitel~\ref{sec:Umsetzung}.}
+\end{itemize}
 
 \end{document}
