@@ -1,0 +1,59 @@
+\documentclass[../Main.tex]{subfiles}
+
+\begin{document}
+
+\section{Einleitung}
+
+\subsection{Motivation und Relevanz}
+
+Diese Maturitätsarbeit entstand aus dem Wunsch, Spiele nicht nur zu spielen, sondern sie genauer zu verstehen und selbst ein solches Spielerlebnis zu erschaffen.
+
+Das Hack-and-Slash-Genre stellt aus unserer Sicht besonders hohe Anforderungen an das Zusammenspiel einzelner Spielsysteme, da Spielerbewegung, Kampfsystem, Gegnerverhalten und Leveldesign in Echtzeit ineinandergreifen. Im Zentrum unseres Interesses stehen das Gegnerverhalten und die Gegnerplatzierung. Wir haben diese beiden Bereiche gewählt, weil das Genre auf dem Kampfgeschehen aufbaut und die Gegner deshalb unserer Einschätzung nach für das Spielerlebnis besonders tragend sind.
+
+Zu Videospielen gibt es umfangreiche Forschung und Fachliteratur. Auch im Rahmen dieser Maturitätsarbeit haben wir auf zahlreiche Quellen zurückgegriffen, etwa auf das MDA-Framework\autocite{hunicke2004mda}, auf Vorträge der Game Developers Conference (GDC)\autocite{gdc_tenprinciples2010,gdc_leveldesignaday2020,gdc_movingmountains2020,gdc_horizonquests2018} oder auf Methoden der Games User Research\autocite{drachen2018gamesuserresearch}. Diese werden in Kapitel~\ref{sec:Grundlagen} erläutert. Im Unterschied zu unserer Arbeit behandeln diese Quellen jedoch meist Spiele im Allgemeinen und nicht spezifisch das Hack-and-Slash-Genre.
+
+In unserer Wahrnehmung erschienen Genrevertreter wie \game{Ninja Gaiden Sigma Plus}\autocite{koeitechmo_ninjagaiden_2012} oder \game{NieR: Automata}\autocite{platinumgames_nierautomata_2017} in einer Phase, in der das Genre vergleichsweise häufig neue Titel hervorbrachte, während heute nur noch wenige grosse Titel erscheinen. Dadurch gibt es einerseits genügend Referenzmaterial, um zentrale Genremerkmale herauszuarbeiten. Andererseits sind wir bei der Umsetzung nicht an aktuelle Genrekonventionen gebunden, was uns zusätzlichen Freiraum für eigene, moderne Interpretationen klassischer Mechaniken lässt.
+
+Unser Prototyp richtet sich in erster Linie an Fans der oben genannten Spiele. Da das Hack-and-Slash-Genre ein Untergenre der Action-Spiele ist, zählen wir auch Fans von Action-Spielen allgemein zu unserer Zielgruppe.
+
+\subsection{Erkenntnisfrage} \label{sec:Erkenntnisfrage}
+
+Im Zentrum unserer Arbeit steht folgende Erkenntnisfrage:
+
+\vspace{\baselineskip}
+
+\begin{quote}
+    \textit{Wie müssen Gegnerverhalten und Gegnerplatzierung in einem 3D-Hack-and-Slash-Prototyp konzipiert sein, damit ein zusammenhängender Kampfabschnitt mit nachvollziehbarem Spielfluss, angemessener Schwierigkeit und befriedigendem Spielgefühl entsteht?}
+\end{quote}
+
+\vspace{\baselineskip}
+
+Diese Frage setzt sich aus zwei inhaltlichen Komponenten zusammen: Zum einen geht es um das Gegnerverhalten, zum anderen um die Gegnerplatzierung und das Leveldesign. Beide Komponenten werden anhand von drei Qualitäten beurteilt: Spielfluss, Schwierigkeit und Spielgefühl.
+
+Wie wir Spielfluss, Schwierigkeit und Spielgefühl definieren, ist so wie es die spieler finden. also wenn wir wissen wollen ob die Schwierigkeit angemessen war, dann wird das anhand der spieler bewertet. Wie der Spielfluss war, also ob die spieler in einem flow waren, fragen wir sie auch und auch ob sich das Spiel gut angefühlt hat fragen wir sie.
+
+\begin{itemize}[leftmargin=1.5cm]
+    \item \textcolor{red}{\textbf{Hier die drei Qualitäten definieren} (operational, also darüber, woran ihr sie gemessen habt). Muster: \enquote{In dieser Arbeit definieren wir die drei Qualitäten über das Erleben der Testpersonen. \emph{Spielfluss} bedeutet, dass der Kampfabschnitt als zusammenhängend erlebt wird und die Übergänge ohne Bruch wirken (Q10, B14). \emph{Angemessene Schwierigkeit} bedeutet, dass \ldots\ (Q11, Q13, I6). \emph{Spielgefühl} bedeutet, dass \ldots\ (Q9, Q12).} Die Lücken füllst du; die Nummern verweisen auf Abschnitt~\ref{sec:VorgehenPlaytest}.}
+\end{itemize}
+
+\subsection{Zielsetzung und Aufbau der Arbeit} \label{sec:Aufbau}
+
+Ziel dieser Arbeit ist es, unsere Erkenntnisfrage anhand eines selbst entwickelten, spielbaren 3D-Hack-and-Slash-Prototyps zu beantworten. Auf dem Weg dorthin haben wir uns drei Teilziele gesetzt:
+
+\begin{enumerate}
+    \item die Analyse zweier Referenzspiele (\game{Ninja Gaiden Sigma Plus} und \game{NieR: Automata}) mithilfe eines auf dem MDA-Framework basierenden Fragebogens mit 15 Fragen (MDA-Fragebogen),
+    \item die Entwicklung eines spielbaren Prototyps in Godot mit einem zusammenhängenden Kampfabschnitt aus zwölf Räumen und fünf Gegnertypen,
+    \item die Evaluation von acht Designvorschläge durch Playtests mit fünf Testpersonen.
+\end{enumerate}
+
+Der Prototyp ist ein 3D-Hack-and-Slash-Spiel in der Third-Person-Perspektive.\footnote{\textcolor{red}{[Download-Link bzw.\ Bezugsquelle des Prototyps einfügen]}} Einen Überblick über Spielfigur, Gegnertypen und Kampfabschnitt gibt Abschnitt~\ref{sec:Prototyp};. Es handelt sich dabei um den Prototyp eines einzelnen Kampfabschnitts und nicht um ein vollständiges Spiel. Da wir mit fünf Testpersonen gearbeitet haben, werten wir die Playtests qualitativ aus; die Ergebnisse sind nicht statistisch repräsentativ.
+
+Dieser Begleitbericht beschreibt Recherche, Design und Evaluation des Prototyps. Die technische Umsetzung in Godot ist in einem separaten Dokument beschrieben.\footnote{\textcolor{red}{[Titel der technischen Dokumentation einfügen]}}
+
+Um diese Ziele zu erreichen, sind wir wie folgt vorgegangen. Die Grundlagen dazu, also unsere Arbeitsdefinition des Genres, das MDA-Framework sowie unser methodisches Vorgehen in den einzelnen Arbeitsschritten, beschreibt Kapitel~\ref{sec:Grundlagen}. Danach haben wir ausgehend von der Erkenntnisfrage recherchiert, wobei Kapitel~\ref{sec:Referenzspielanalyse} vor allem das Gegnerverhalten und Kapitel~\ref{sec:Leveldesign} vor allem die Gegnerplatzierung behandelt. Um das Gegnerverhalten zu untersuchen, haben wir Genrevertreter selbst gespielt und unsere Beobachtungen mithilfe unseres MDA-Fragebogens (Abschnitt~\ref{sec:Analysefragebogen}) festgehalten. Für die Gegnerplatzierung haben wir Fachliteratur zum Leveldesign\autocite{totten2014architectural,rogers2014levelup} sowie Vorträge von Fachleuten ausgewertet. Daraus haben wir acht Designvorschläge abgeleitet, je vier zum Gegnerverhalten und zur Gegnerplatzierung, die nach unserer Einschätzung besonders viel zur Beantwortung der Erkenntnisfrage beitragen. Diese Vorschläge haben wir anschliessend konkret in unserem Prototyp umgesetzt (Kapitel~\ref{sec:Umsetzung}).
+
+In Playtests mit fünf Testpersonen haben wir dann versucht, die Designvorschläge zu evaluieren (Kapitel~\ref{sec:Evaluation}). Zum Schluss haben wir aus der Evaluation, den Playtests und unseren Recherchen das weitere Vorgehen abgeleitet und Faktoren zusammengetragen, die nach unserer Einschätzung das Gegnerverhalten und die Gegnerplatzierung ebenfalls beeinflussen und die wir als Nächstes untersuchen würden (Kapitel~\ref{sec:Schlussfolgerungen}). In Kapitel~\ref{sec:Reflexion} blicken wir auf den Arbeitsprozess, die Zusammenarbeit und die Verwendung von KI zurück. Die Protokolle der Playtests finden sich im Anhang (Abschnitt~\ref{sec:PlaytestProtokolle}).
+
+\newpage
+
+\end{document}
