@@ -88,12 +88,14 @@ custom_minimum_size = Vector2(380, 72)
 layout_mode = 2
 size_flags_vertical = 3
 focus_neighbor_top = NodePath("../Controller")
-focus_neighbor_bottom = NodePath("../Game")
+focus_neighbor_bottom = NodePath("../Back")
 text = "UI_OPTIONS_KEYBOARD"
 script = ExtResource("1_4i0wx")
 
 [node name="Back" type="Button" parent="CenterContainer/Panel/VBoxContainer" unique_id=532568397]
 layout_mode = 2
+focus_neighbor_top = NodePath("../Keyboard")
+focus_neighbor_bottom = NodePath("../Game")
 text = "UI_BACK"
 script = ExtResource("1_4i0wx")
 metadata/_custom_type_script = "uid://cfdlgc8aalbtr"
