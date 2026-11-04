@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://bbifbqx1x67ct"]
 
-[ext_resource type="PackedScene" uid="uid://2twxnnq3mj7i" path="res://Common/Camera/SceneCamera/SceneCamera.tscn" id="1_6ld1k"]
+[ext_resource type="PackedScene" uid="uid://2twxnnq3mj7i" path="res://Common/SceneCamera/SceneCamera.tscn" id="1_6ld1k"]
 [ext_resource type="Material" uid="uid://cgj2lr4vp41pl" path="res://Assets/Materials/Prototype/FloorGray.tres" id="1_r3mhs"]
 [ext_resource type="Shader" uid="uid://exx180lp74b0" path="res://Assets/Shaders/Sky/StylizedSky.gdshader" id="1_tsewk"]
 [ext_resource type="PackedScene" uid="uid://cyti0335fm7s0" path="res://Entities/Player/Player.tscn" id="2_d2u3u"]
@@ -10,8 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://duc76equt8iqk" path="res://Stages/Documentation/Gym/Old/Obstacles/Round.tscn" id="8_tsewk"]
 [ext_resource type="PackedScene" uid="uid://dhsuh2ufuvwdp" path="res://Stages/Documentation/Gym/Old/Obstacles/Stairs.tscn" id="9_jiqka"]
 [ext_resource type="Script" uid="uid://cwu5cf7a0awcd" path="res://addons/func_godot/src/map/func_godot_map.gd" id="10_8gnrv"]
-[ext_resource type="Resource" uid="uid://cnygh8csloaqa" path="res://Trenchbroom/ProjectPolearmMapSettings.tres" id="11_epoir"]
-[ext_resource type="Material" uid="uid://byucy5ve5rloo" path="res://Trenchbroom/textures/Greybox Textures/PNG/Dark/texture_07.tres" id="12_0l7lt"]
+[ext_resource type="Resource" uid="uid://cnygh8csloaqa" path="res://Common/Tools/Trenchbroom/ProjectPolearmMapSettings.tres" id="11_epoir"]
+[ext_resource type="Material" uid="uid://byucy5ve5rloo" path="res://Common/Tools/Trenchbroom/textures/Greybox Textures/PNG/Dark/texture_07.tres" id="12_0l7lt"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jiqka"]
 shader = ExtResource("1_tsewk")

@@ -6,15 +6,6 @@ public static class PPUtil {
 	public static bool DEBUG_BUILD = true;
 
 
-	public static class Enums {
-		public enum CollisionLayers {
-			entities = 0,
-			player = 1,
-			world = 15,
-		}
-	}
-
-
 	public static class Math {	
 		public static Vector3 RotateVectorOntoPlane(Vector3 input, Vector3 normal) {
 			return (input - input.Dot(normal) * normal).Normalized() * input.Length();

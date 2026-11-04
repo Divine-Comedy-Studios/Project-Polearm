@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bs4he7xaulleg" path="res://Core/Game/DeathScreen/DeathScreen.gd" id="1_death"]
 [ext_resource type="PackedScene" uid="uid://bh6y5scr0xf4j" path="res://Interfaces/Menus/DeathMenu/DeathMenu.tscn" id="2_dh8rm"]
 
-[node name="DeathScreen" type="Node" unique_id=1358499396]
+[node name="DeathMenuState" type="Node" unique_id=1358499396]
 process_mode = 4
 script = ExtResource("1_death")
 

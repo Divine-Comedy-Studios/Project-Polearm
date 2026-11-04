@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cke1sl2cms1u7"]
 
 [ext_resource type="Script" uid="uid://bswlqikhstlc3" path="res://Systems/Visuals/Visuals.gd" id="1_sy3id"]
-[ext_resource type="PackedScene" uid="uid://2twxnnq3mj7i" path="res://Common/Camera/SceneCamera/SceneCamera.tscn" id="2_gon8a"]
+[ext_resource type="PackedScene" uid="uid://2twxnnq3mj7i" path="res://Common/SceneCamera/SceneCamera.tscn" id="2_gon8a"]
 [ext_resource type="Shader" uid="uid://exx180lp74b0" path="res://Assets/Shaders/Sky/StylizedSky.gdshader" id="3_karxv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jdc7p"]

@@ -10,7 +10,7 @@ const MainMenu := preload("res://Interfaces/Menus/MainMenu/MainMenu.gd")
 
 #region Signals
 
-signal saveSlotSelected(slot : int)
+# signal saveSlotSelected(slot : int)
 
 #endregion
 
@@ -19,7 +19,7 @@ signal saveSlotSelected(slot : int)
 
 func enter() -> void:
 	super.enter()
-	(scene as MainMenu).injectSaveSlotSignal(saveSlotSelected)
+	# (scene as MainMenu).injectSaveSlotSignal(saveSlotSelected)
 	
 	Globals.audioManager.playMusic(MusicData.Type.mainMenu)
 

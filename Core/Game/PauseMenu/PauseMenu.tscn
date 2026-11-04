@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://0ctaafdcixpy" path="res://Core/Game/PauseMenu/PauseMenu.gd" id="1_6dbdc"]
 [ext_resource type="PackedScene" uid="uid://cnqb8o2cbehq4" path="res://Interfaces/Menus/PauseMenu/PauseMenu.tscn" id="2_6dbdc"]
 
-[node name="PauseMenu" type="Node" unique_id=52204255]
+[node name="PauseMenuState" type="Node" unique_id=52204255]
 process_mode = 4
 physics_interpolation_mode = 2
 script = ExtResource("1_6dbdc")

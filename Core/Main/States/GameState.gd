@@ -30,7 +30,6 @@ func _ready() -> void:
 	assert(_mainMenuState != null, "GameState._ready(): Please assign the main menu!")
 
 	super._ready()
-	(_mainMenuState as MainMenuState).saveSlotSelected.connect(_SIG_saveFileSelected)
 
 
 #region Override functions
@@ -51,6 +50,7 @@ func nextState() -> StringName:
 
 #region Signal functions
 
+# Saves are not implemented anymore
 func _SIG_saveFileSelected(slot : int) -> void:
 	_saveSlot = slot
 
