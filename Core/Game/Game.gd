@@ -1,6 +1,13 @@
 extends AppStateMachine
 
 
+#region Exported variables
+
+@export var LEVEL_TYPE : Stage.Type = Stage.Type.level1
+
+#endregion
+
+
 #region Scene members
 
 @export_group("Scene members")
@@ -86,7 +93,7 @@ func _nextState() -> StringName:
 	# else:
 
 func enter() -> void:
-	payload = Stage.Type.LEVEL_1
+	payload = LEVEL_TYPE
 	loadingScreen.requestLoad(loadingScreen, _world as AppState)
 
 

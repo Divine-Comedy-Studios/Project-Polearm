@@ -5,10 +5,10 @@ class_name Stage
 #region Enums
 
 enum Type {
-	NULL = 0,
+	none = 0,
 
-	GYM = 1,
-	LEVEL_1 = 2,
+	gym = 1,
+	level1 = 2,
 }
 
 #endregion
