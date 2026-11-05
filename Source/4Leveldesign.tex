@@ -1,6 +1,5 @@
 \documentclass[../Main.tex]{subfiles}
 
-
 \begin{document}
 
 \section{Recherche zum Leveldesign} \label{sec:Leveldesign}
@@ -25,7 +24,6 @@ Das Leveldesign wird von den Mechaniken getrieben; das Level ist demnach das Med
 Für \game{Project-Polearm} heisst das, dass die Welt auf schnellen, aggressiven Combat ausgerichtet sein muss und dass beispielsweise alle Gegner von derselben grundlegenden Klasse erben.\endgroup
 
 \textcolor{red}{[Fällt mit 4.1 weg] [Prüfen, Bericht-Code-Verknüpfung] Die Zwischenbewertung verlangt, dass solche Architekturaussagen im Code überprüfbar sind. Hier mit einem Halbsatz auf Abschnitt~\ref{sec:Gegnertypen} und die konkrete Basisklasse verweisen (etwa die Entity-Basisklasse, von der Spieler und Gegner erben), sobald die Gegnerklassen stehen.}
-
 
 \subsection{Kampf-Encounter-Design} \label{sec:Encounter}
 Encounter-Design hat viel mit der \textit{Lesbarkeit} eines Levels oder eines Spielabschnitts zu tun. So bewegen sich Spieler schneller und unbekümmerter durch offene und überschaubare Flächen, während Horrorspiele eher in engen und geschlossenen Räumlichkeiten stattfinden. Ein Kampfraum sollte bereits vom Eingang aus lesbar sein: Ziel, Gegnerpositionen und Deckung müssen erkennbar sein, damit der Spieler eine Strategie fassen kann.\autocite{gdc_horizonquests2018} \textcolor{red}{Je nachdem, wie übersichtlich ein Raum ist, muss ihn ein Spieler ein- oder mehrmals scannen. Bei Multiplayer-Spielen wie \game{Counter-Strike} macht dies einen Skillunterschied aus, da geübte Spieler den Raum schneller und mit den richtigen Abständen scannen.\autocite{totten2014architectural}} Umgekehrt kann eine bewusste Verletzung dieser Lesbarkeit gezielt Überraschung erzeugen: In \game{Ninja Gaiden Sigma Plus} tauchen neue Gegner häufig ausserhalb des Sichtfeldes auf (siehe Frage~A3, Kapitel~\ref{sec:Referenzspielanalyse}).
@@ -64,9 +62,6 @@ Die räumliche Gestaltung lässt sich in \textit{Narrow Space}, \textit{Intimate
     \end{minipage}
 \end{figure}
 \textcolor{red}{Kevin Lynch unterteilt städtische Räume in fünf Elemente: Landmarks, Paths, Nodes, Edges und Districts. Dieses Modell war ursprünglich für grosse, offene Welten gedacht. Für einen linearen Kampfabschnitt sind davon vor allem \textit{Edges} und \textit{Nodes} nützlich. Edges sind Grenzen oder Übergänge, die einen Ortswechsel signalisieren, etwa durch einen Wechsel von Textur, Bewuchs oder Baustil. Nodes sind Entscheidungspunkte, an denen sich Pfade kreuzen. Beide helfen dabei, die Übergänge zwischen den einzelnen Abschnitten eines Kampfareals klar zu markieren, sodass der Spieler erkennt, wann er einen neuen Abschnitt betritt.\autocite{totten2014architectural}}
-
-
-
 
 \begin{itemize}[leftmargin=1.5cm]
     \item \textcolor{red}{Rot markiert: Molekül- und Proximity-Diagramme sowie Lynch betreffen die Planung ganzer Level, nicht Gegner. Nur behalten, wenn ihr diese Diagramme selbst verwendet habt. Werden sie gestrichen, auch die beiden Abbildungen entfernen.}
@@ -113,16 +108,32 @@ Wie zentral diese iterative Arbeitsweise ist, zeigt Valve am Beispiel von \game{
     \item \textcolor{red}{Hinweis: 4.6 betrifft eure Arbeitsweise, nicht die Erkenntnisfrage. Wenn ihr kürzen müsst, könnte der Abschnitt auch ganz raus; dann den Verweis in Abschnitt~\ref{sec:VorgehenUmsetzung} entfernen.}
 \end{itemize}
 
-\subsection{Zwischenfazit} \label{sec:ZwischenfazitLD}
+\subsection{Erkenntnisse für Project-Polearm} \label{sec:ZwischenfazitLD}
+
+Im Folgenden fassen wir kurz zusammen, welche Erkenntnisse aus diesem Kapitel für unsere Erkenntnisfrage und unseren Prototyp wichtig sind. Sie sind vor allem für den Teil der Erkenntnisfrage relevant, in dem es um die Gegnerplatzierung und das Leveldesign geht, während die Analyse der Referenzspiele (Kapitel~\ref{sec:Referenzspielanalyse}) vor allem das Gegnerverhalten betrifft.
+
+Als übergeordneten Grundsatz gehen wir bei der Gestaltung unseres Prototyps vom gewünschten Gefühl aus und gestalten den Kampf danach (Abschnitt~\ref{sec:Pacing}). Für unser Spiel stellen wir uns einen schnellen und aggressiven Kampf vor, in dem sich der Spieler grundsätzlich überlegen fühlt (Abschnitte~\ref{sec:Genredefinition} und~\ref{sec:Vergleich}). Daraus folgt für uns, dass wir Räume, Hindernisse und Gegner so entwerfen müssen, dass sie dieses Gefühl unterstützen oder hervorrufen. Die konkreten Werkzeuge, mit denen wir diese Gefühle beeinflussen wollen, sind die folgenden.
+
+Erstens muss ein Raum schnell lesbar sein, damit sich der Spieler rasch eine Strategie zurechtlegen kann (Abschnitt~\ref{sec:Encounter}).
+
+Zweitens sind die Raumtypen Narrow, Intimate und Prospect Space besonders wichtig (Abschnitt~\ref{sec:Raumtypologien}). Wenn wir sie gezielt mischen, können wir sowohl das Pacing des Spiels als auch die Gefühle der Spieler lenken. Dafür müssen wir uns aber bewusst sein, wie die einzelnen Raumtypen wirken. So muss etwa die Anzahl der Gegner an den Raumtyp angepasst werden, wie es auch Rogers empfiehlt.
+
+Nicht nur die Grösse der Räume, sondern auch die Gegner selbst können den Spieler dazu zwingen, sich anders zu bewegen; Gegnergruppen können einen Raum sogar gefühlt verengen (\textit{Shrinking Fortress}, Abschnitt~\ref{sec:Encounter}). Damit haben wir unserer Ansicht nach ein weiteres Mittel, um die Bewegungen der Spieler vorherzusehen und abzuschätzen, welche Gefühle ein Raum bei ihnen auslöst (Abschnitt~\ref{sec:Raumtypologien}).
+
+Drittens nutzen wir das Rollercoaster-Pacing, das Anspannung und Erholung abwechselt und sich fraktalähnlich auf mehreren Ebenen gleichzeitig wiederholt (Abschnitt~\ref{sec:Pacing}). Damit ist gemeint, dass sowohl der gesamte Spannungsbogen eines Spiels als auch die einzelnen Kampfabschnitte einem solchen Verlauf folgen.
+
+Viertens sind das Scaffolding- und das Braiding-Prinzip für unseren Prototyp zentral (Abschnitt~\ref{sec:Scaffolding}). Übertragen auf Gegner bedeutet das, einen neuen Gegnertyp zuerst einzeln und gefahrlos vorzustellen und ihn erst danach nach und nach in Gruppen und Kombinationen ins Spiel einzubinden. Auch den Grundsatz, dass pro Level nur eine neue Mechanik hinzukommen soll, möchten wir auf unseren Prototyp übertragen, und zwar auf einzelne Spielabschnitte statt auf ganze Level.
+
+All diese Erkenntnisse fliessen zusammen mit jenen aus der Analyse der Referenzspiele (Abschnitt~\ref{sec:Vergleich}) in unseren Prototyp und in die Beantwortung unserer Erkenntnisfrage ein. Im nächsten Kapitel zeigen wir, wie wir dabei konkret vorgehen.
 
 \begin{itemize}[leftmargin=1.5cm]
-    \item \textcolor{red}{\textbf{Schreiben, gleich aufgebaut wie Abschnitt 3.3.3} (ohne V-Verweise): die Prinzipien, die ihr tatsächlich verwendet, in dieser Reihenfolge, je 1--2 Sätze, mit Rückverweis auf den Abschnitt:}
-    \item \textcolor{red}{Lesbarkeit des Kampfraums: Gegner und Raum sollen vom Eingang aus erfassbar sein (Abschnitt~\ref{sec:Encounter}).}
-    \item \textcolor{red}{Gegner als raumbildende Elemente (\textit{Shrinking Fortress}): Gegnergruppen verengen den Raum gefühlt und drängen den Spieler (Abschnitt~\ref{sec:Encounter}).}
-    \item \textcolor{red}{Raumtypen Narrow, Intimate und Prospect Space für den Wechsel zwischen Enge und Weite (Abschnitt~\ref{sec:Raumtypologien}).}
-    \item \textcolor{red}{Rollercoaster-Pacing für den Wechsel von Anspannung und Erholung, und vom gewünschten Gefühl aus gestalten (Abschnitt~\ref{sec:Pacing}).}
-    \item \textcolor{red}{Scaffolding bzw.\ Braiding für die gestaffelte Einführung neuer Gegner (Abschnitt~\ref{sec:Scaffolding}).}
-    \item \textcolor{red}{Schlusssatz: Diese Prinzipien fliessen zusammen mit den Erkenntnissen aus Abschnitt~\ref{sec:Vergleich} in die Designvorschläge in Abschnitt~\ref{sec:Designvorschlaege} ein.}
+    \item \textcolor{red}{\textbf{Für später (Kapitel~\ref{sec:Umsetzung}):} In Abschnitt~\ref{sec:V8} steht \enquote{nach unserer Recherche pro Raum}. Dort an 4.7 angleichen: Die Quelle sagt \enquote{pro Level}, die Übertragung auf Räume bzw.\ Spielabschnitte ist eure eigene.}
+    \item \textcolor{red}{\textbf{Nicht in 4.7, aber nicht vorschnell löschen -- passt zu euren Playtest-Ergebnissen und damit zu 6.4 (Verbesserungen) bzw.\ 7.4 (Ausblick):}}
+    \item \textcolor{red}{-- \textit{Edges} nach Lynch/Totten (Abschnitt~\ref{sec:Raumtypologien}): Übergänge sichtbar markieren. Im Playtest wurden offene Türen oft übersehen, und es fehlte ein Hinweis, dass ein Encounter beendet ist (Abschnitt~\ref{sec:ErgAllgemein}).}
+    \item \textcolor{red}{-- Molekül- bzw.\ Proximity-Diagramme (Verbindung der Räume): Die Testpersonen meinten, die Räume stünden jeweils für sich und wenig verbinde sie (Abschnitt~\ref{sec:ErgAllgemein}).}
+    \item \textcolor{red}{-- Lesbarkeit \enquote{vom Eingang aus}: Bei euch erscheinen die Gegner erst nach dem Betreten des Raumes; TP4 und TP5 vermissten den Überblick zu Beginn bzw.\ wurden von hinten getroffen (V5 in Abschnitt~\ref{sec:ErgVorschlag}).}
+    \item \textcolor{red}{-- Designer's Curse (Überraschung): passt zur Spawn-Art als Variable im Ausblick.}
+    \item \textcolor{red}{-- \textit{Shrinking Fortress}: \enquote{in einer Horde eingeklemmt sein} wurde als unangenehm genannt (Q13) -- zeigt die Kehrseite des Prinzips.}
 \end{itemize}
 
 \end{document}
