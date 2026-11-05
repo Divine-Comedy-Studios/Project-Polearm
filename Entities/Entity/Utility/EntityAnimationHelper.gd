@@ -10,9 +10,10 @@
 ## (stripped of library prefix), extracts root bone orientation from skeleton and assigns
 ## it to _animationPlayer.rootOrientation, and removes itself from the scene tree on _ready.
 ##
-## Minimally modified for bugfixes
+## Manually modified for diverse improvements
 
 @tool
+
 class_name EntityAnimationHelper
 extends Node
 
