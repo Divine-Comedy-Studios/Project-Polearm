@@ -11,10 +11,10 @@ const GROUND_RAY_LENGTH : float = 100.0 # Arbitrary constant
 
 #region Override functions
 
-func spawn(spawnTransform : Transform3D) -> void:
-	_spawn()
+func spawn(payload : Variant) -> void:
+	super.spawn(payload)
 
-	var pos := spawnTransform.origin
+	var pos := (payload as Transform3D).origin
 	var result := PhysicsServer3D.space_get_direct_state(get_world_3d().space).intersect_ray(
 		PhysicsRayQueryParameters3D.create(
 			pos,

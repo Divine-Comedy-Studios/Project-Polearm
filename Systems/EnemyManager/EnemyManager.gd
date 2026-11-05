@@ -71,7 +71,7 @@ var _currentEnemyIdx : int = -1
 
 # Enemy management
 
-var _activeEnemyStates : Dictionary[BasicEnemyHandle, RoleState] = { }
+var _activeEnemyStates : Dictionary[BasicEnemy, RoleState] = { }
 
 # Enemy perception
 
@@ -133,10 +133,10 @@ func beginEncounter(encounter : Encounter, script : EncounterScript) -> void:
 	_nextWave()
 
 
-func register(enemy : BasicEnemyHandle) -> void:
+func register(enemy : BasicEnemy) -> void:
 	_activeEnemyStates[enemy] = RoleState.new(enemy.role())
 
-func unregister(enemy : BasicEnemyHandle) -> void:
+func unregister(enemy : BasicEnemy) -> void:
 	_activeEnemyStates.erase(enemy)
 
 
@@ -158,7 +158,7 @@ func reset() -> void:
 # Enemy updates
 
 func _tickEnemies(delta : float) -> void:
-	for enemy : BasicEnemyHandle in _activeEnemyStates.keys():
+	for enemy : BasicEnemy in _activeEnemyStates.keys():
 		enemy.tick(delta, _perceptionEngine.request(enemy.position(), _activeEnemyStates[enemy].role))
 
 
@@ -252,7 +252,7 @@ func _planRoles(delta : float, requiredRoles : Dictionary[EnemyManager.Role, int
 	# but what is a weapon in the hands of one who shall not use it
 	if _activeEnemyStates.size() ==	1:
 		for role : Role in ROLE_STRENGTH:
-			var enemy : BasicEnemyHandle = _activeEnemyStates.keys()[0]
+			var enemy : BasicEnemy = _activeEnemyStates.keys()[0]
 			if enemy.availableRoles().has(role):
 				_activeEnemyStates[enemy].role = role
 
@@ -269,7 +269,7 @@ func _planRoles(delta : float, requiredRoles : Dictionary[EnemyManager.Role, int
 
 func _updateRoleState(delta : float) -> void:
 	_roleDifficulty.value = 0
-	for enemy : BasicEnemyHandle in _activeEnemyStates.keys():
+	for enemy : BasicEnemy in _activeEnemyStates.keys():
 		var roleState := _activeEnemyStates[enemy]
 
 		roleState.holdTimer -= delta
@@ -277,17 +277,17 @@ func _updateRoleState(delta : float) -> void:
 
 		_roleDifficulty.value += _roleWeight(roleState.role)
 
-func _fillRequiredRoles(randomizedKeys : Array[BasicEnemyHandle], requiredRoles : Dictionary[EnemyManager.Role, int]) -> void:
+func _fillRequiredRoles(randomizedKeys : Array[BasicEnemy], requiredRoles : Dictionary[EnemyManager.Role, int]) -> void:
 	for role : Role in ROLE_STRENGTH:
 		var requestedCount : int = requiredRoles.get(role, 0.0)
 		var weight := _roleWeight(role)
 
-		var enterCandidates : Array[BasicEnemyHandle] = [ ]
-		var exitCandidates : Array[BasicEnemyHandle] = [ ]
-		var stayCandidates : Array[BasicEnemyHandle] = [ ]
+		var enterCandidates : Array[BasicEnemy] = [ ]
+		var exitCandidates : Array[BasicEnemy] = [ ]
+		var stayCandidates : Array[BasicEnemy] = [ ]
 
 		# First, we query all enemies and see what we can do about them
-		for enemy : BasicEnemyHandle in randomizedKeys:
+		for enemy : BasicEnemy in randomizedKeys:
 			var roleState := _activeEnemyStates[enemy]
 
 			if roleState.role == role:
@@ -305,11 +305,11 @@ func _fillRequiredRoles(randomizedKeys : Array[BasicEnemyHandle], requiredRoles 
 		requestedCount -= _swapEnemyRoles(enterCandidates, stayCandidates, role)
 
 		# Then all remaining enemies are registered
-		for enemy : BasicEnemyHandle in stayCandidates:
+		for enemy : BasicEnemy in stayCandidates:
 			requestedCount -= 1
 		
 		# All remaining candidates get demoted
-		for enemy : BasicEnemyHandle in exitCandidates:
+		for enemy : BasicEnemy in exitCandidates:
 			var roleState := _activeEnemyStates[enemy]
 			var currentWeight := _roleWeight(roleState.role)
 
@@ -329,12 +329,12 @@ func _fillRequiredRoles(randomizedKeys : Array[BasicEnemyHandle], requiredRoles 
 			_assignEnemyRole(candidate[0], role, candidate[1], weight)
 			requestedCount -= 1
 
-func _promoteEnemies(randomizedKeys : Array[BasicEnemyHandle]) -> void:
+func _promoteEnemies(randomizedKeys : Array[BasicEnemy]) -> void:
 	# We loop trhough all enemies by the inverse of the role strength to promote any enemies left
 	for i in range(ROLE_STRENGTH.size()):
 		var role := ROLE_STRENGTH[-i - 1]
 
-		for enemy : BasicEnemyHandle in randomizedKeys:
+		for enemy : BasicEnemy in randomizedKeys:
 			var roleState := _activeEnemyStates[enemy]
 			var weight := _roleWeight(role)
 			var currentWeight := _roleWeight(roleState.role)
@@ -347,7 +347,7 @@ func _promoteEnemies(randomizedKeys : Array[BasicEnemyHandle]) -> void:
 				_assignEnemyRole(roleState, role, currentWeight, weight)
 
 
-func _swapEnemyRoles(enterCandidates : Array[BasicEnemyHandle], exitCandidates : Array[BasicEnemyHandle], role : Role) -> int:
+func _swapEnemyRoles(enterCandidates : Array[BasicEnemy], exitCandidates : Array[BasicEnemy], role : Role) -> int:
 	var count := 0
 	while enterCandidates.size() > 0:
 		if exitCandidates.size() == 0:
@@ -378,11 +378,11 @@ func _assignEnemyRole(roleState : RoleState, role : Role, currentWeight : float,
 	_roleDifficulty.value = _roleDifficulty.value + newWeight - currentWeight
 
 
-func _roleCandidate(randomizedKeys : Array[BasicEnemyHandle], role : Role, weight : float) -> Array:
+func _roleCandidate(randomizedKeys : Array[BasicEnemy], role : Role, weight : float) -> Array:
 	var best : RoleState = null
 	var bestWeight : float = INF
 
-	for enemy : BasicEnemyHandle in randomizedKeys:
+	for enemy : BasicEnemy in randomizedKeys:
 		var roleState := _activeEnemyStates[enemy]
 		var currentWeight := _roleWeight(roleState.role)
 

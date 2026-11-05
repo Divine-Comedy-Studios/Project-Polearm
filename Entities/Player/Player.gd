@@ -22,10 +22,10 @@ func _ready() -> void:
 
 #region Override functions
 
-func _spawn() -> void:
+func _spawn(_payload : Variant) -> void:
 	_cameraManager.setFollowTarget(actionManager.entity)
 
-func kill() -> void:
+func _kill() -> void:
 	actionManager.reset()
 
 #endregion

@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://413tgy3jmvma" path="res://Components/Collision/HitboxData.gd" id="2_8u6s1"]
 [ext_resource type="Script" uid="uid://beiorgsa2hjgm" path="res://Components/Collision/Hitbox.gd" id="2_c5v5m"]
 
-[sub_resource type="Resource" id="Resource_fyhvn"]
+[sub_resource type="Resource" id="Resource_8lhpa"]
 script = ExtResource("2_8u6s1")
 DAMAGE = 20.0
 metadata/_custom_type_script = "uid://413tgy3jmvma"
@@ -15,12 +15,10 @@ radius = 0.25
 [sub_resource type="SphereShape3D" id="SphereShape3D_q6toh"]
 radius = 0.19902699
 
-[node name="HomingMissile" type="Node3D" unique_id=791150937 node_paths=PackedStringArray("_hurtbox")]
+[node name="HomingMissile" type="Node3D" unique_id=791150937 node_paths=PackedStringArray("hitbox")]
 script = ExtResource("1_sjpgl")
 TURN_SPEED = 2.5
-_hurtbox = NodePath("Hurtbox")
-TYPE = &"homing"
-DEFAULT_HIT_DATA = SubResource("Resource_fyhvn")
+hitbox = NodePath("Hitbox")
 
 [node name="Hitbox" type="Area3D" parent="." unique_id=1970727056]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.0475758)
@@ -30,6 +28,7 @@ monitoring = false
 monitorable = false
 script = ExtResource("2_c5v5m")
 LAYERS = 2
+_data = SubResource("Resource_8lhpa")
 metadata/_custom_type_script = "uid://beiorgsa2hjgm"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" unique_id=1236294613]
@@ -57,3 +56,6 @@ height = 1.4355469
 [node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D" unique_id=344007449]
 transform = Transform3D(0.7071033, -0.7071033, 0, 0.7071033, 0.7071033, 0, -1.5276669e-13, -1.5276669e-13, 1, 0.0051793302, 0.81078815, -0.0026245117)
 size = Vector3(0.55, 0.55, 0.19470215)
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_onHurtboxCollided"]
+[connection signal="body_entered" from="Hurtbox" to="." method="_onHurtboxCollided"]

@@ -1,13 +1,5 @@
-extends Node3D
+extends GameObject
 class_name Entity
-
-
-#region Helper classes
-
-class SpawnData extends Resource:
-	@export var TRANSFORM : Transform3D = Transform3D.IDENTITY
-
-#endregion
 
 
 #region Scene members
@@ -28,17 +20,20 @@ func _ready() -> void:
 
 #region Public functions
 
-func spawn(spawnTransform : Transform3D) -> void:
-	_spawn()
+func spawn(payload : Variant) -> void:
+	assert(payload is Transform3D, "PlayerHandle.spawn(): Wrong spawn data type!")
 
-	actionManager.entity.global_transform = spawnTransform
+	_spawn(payload)
+
+	actionManager.entity.global_transform = payload as Transform3D
 
 #endregion
 
 
 #region Private functions
 
-func _spawn() -> void:
+@warning_ignore("unused_parameter")
+func _spawn(payload : Variant) -> void:
 	pass
 
 #endregion

@@ -12,8 +12,6 @@ class_name BasicEnemy
 
 #region Member variables
 
-var handle : BasicEnemyHandle = null
-
 var _needsReset : bool = false
 
 #endregion
@@ -26,7 +24,7 @@ func _ready() -> void:
 
 	assert(_controller != null, "BasicEnemy._ready(): Controller not assigned!")
 
-	actionManager.killed.connect(handle.kill)
+	actionManager.killed.connect(kill)
 
 #endregion
 
@@ -35,14 +33,6 @@ func _ready() -> void:
 
 func tick(delta : float, payload : EnemyPerception.Data) -> void:
 	_controller.tick(delta, payload)
-
-
-func kill() -> void:
-	process_mode = Node.PROCESS_MODE_DISABLED
-	_needsReset = true
-
-	if handle == null:
-		queue_free()
 
 
 func role() -> EnemyManager.Role:
@@ -62,18 +52,24 @@ func position() -> Vector3:
 
 #region Override functions
 
-func _spawn() -> void:
+@warning_ignore("unused_parameter")
+func _spawn(payload : Variant) -> void:
 	process_mode = Node.PROCESS_MODE_INHERIT
 
+	Globals.enemyManager.register(self)
+
 	if _needsReset:
-		_reset()
+		actionManager.reset()
+		_needsReset = false
 
-#endregion
 
+func _kill() -> void:
+	process_mode = Node.PROCESS_MODE_DISABLED
+	_needsReset = true
 
-#region Private functions
+	Globals.enemyManager.unregister(self)
 
-func _reset() -> void:
-	actionManager.reset()
+	if _pool == null:
+		queue_free()
 
 #endregion
