@@ -50,7 +50,7 @@ func nextMenu(inputs : ISMInputManager.Data) -> Type:
 	
 	return Type.none
 
-func _deactivateImpl() -> void:
+func _implDeactivate() -> void:
 	_onGameOptionsPressed = false
 	_onVideoOptionsPressed = false
 	_onAudioOptionsPressed = false

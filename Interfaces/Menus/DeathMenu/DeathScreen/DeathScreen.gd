@@ -46,7 +46,7 @@ func activate() -> void:
 	Globals.audioManager.playMusic(MusicData.Type.death)
 
 
-func _deactivateImpl() -> void:
+func _implDeactivate() -> void:
 	_respawnPressed = false
 	_mainMenuPressed = false
 

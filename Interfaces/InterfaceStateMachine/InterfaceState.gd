@@ -47,7 +47,7 @@ func deactivate() -> void:
 	currentButton = get_viewport().gui_get_focus_owner()
 	hide()
 
-	_deactivateImpl()
+	_implDeactivate()
 	
 #endregion
 
@@ -61,7 +61,7 @@ func type() -> Type:
 func nextMenu(inputs : ISMInputManager.Data) -> Type:
 	return Type.none
 
-func _deactivateImpl() -> void:
+func _implDeactivate() -> void:
 	pass
 
 func exit() -> StringName:

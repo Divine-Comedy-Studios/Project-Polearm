@@ -22,7 +22,7 @@ func nextMenu(inputs : ISMInputManager.Data) -> Type:
 		return BACK_MENU
 	return Type.none
 
-func _deactivateImpl() -> void:
+func _implDeactivate() -> void:
 	_yesPressed = false
 	_noPressed = false
 
