@@ -1,36 +1,25 @@
-[gd_scene format=3 uid="uid://18tkpaq0j2oi"]
+[gd_scene format=3 uid="uid://b2m5k2alnmi75"]
 
-[ext_resource type="Script" uid="uid://dfgsdaaqmi0tx" path="res://Objects/Weapons/Weapon.gd" id="1_7qlvt"]
-[ext_resource type="Script" uid="uid://413tgy3jmvma" path="res://Components/Collision/HitboxData.gd" id="2_2uvj0"]
-[ext_resource type="Script" uid="uid://beiorgsa2hjgm" path="res://Components/Collision/Hitbox.gd" id="2_l0m5m"]
-[ext_resource type="PackedScene" uid="uid://cpljmsrqxyr8i" path="res://Assets/3D Models/Weapons/Scimitar.glb" id="3_fdvy7"]
-
-[sub_resource type="Resource" id="Resource_s5tgp"]
-script = ExtResource("2_2uvj0")
-metadata/_custom_type_script = "uid://413tgy3jmvma"
+[ext_resource type="Script" uid="uid://beiorgsa2hjgm" path="res://Components/Collision/Hitbox.gd" id="1_6s27s"]
+[ext_resource type="PackedScene" uid="uid://cpljmsrqxyr8i" path="res://Assets/3D Models/Weapons/Scimitar.glb" id="2_6s27s"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_be4l1"]
 radius = 0.1
 height = 1.0896766
 
-[node name="Scimitar" type="Node3D" unique_id=762137938]
-script = ExtResource("1_7qlvt")
-DEFAULT_HIT_DATA = SubResource("Resource_s5tgp")
-metadata/_custom_type_script = "uid://dfgsdaaqmi0tx"
-
-[node name="Hitbox" type="Area3D" parent="." unique_id=1705073012]
+[node name="Scimitar" type="Area3D" unique_id=433165035]
 collision_layer = 0
 collision_mask = 2
 monitoring = false
 monitorable = false
-script = ExtResource("2_l0m5m")
+script = ExtResource("1_6s27s")
 LAYERS = 2
 metadata/_custom_type_script = "uid://beiorgsa2hjgm"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" unique_id=1326221915]
+[node name="Scimitar" parent="." unique_id=961342832 instance=ExtResource("2_6s27s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1694704331]
 transform = Transform3D(1, -7.450562e-09, -5.960461e-08, 7.450576e-09, 1, 2.3841841e-07, 5.960461e-08, -2.3841841e-07, 1, 0.014, 0.6461616, -1.2306307e-09)
 shape = SubResource("CapsuleShape3D_be4l1")
 debug_color = Color(0, 0.6515532, 0.017827053, 0.41960785)
-
-[node name="Scimitar" parent="." unique_id=961342832 instance=ExtResource("3_fdvy7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)

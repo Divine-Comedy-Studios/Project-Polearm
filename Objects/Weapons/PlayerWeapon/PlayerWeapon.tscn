@@ -1,31 +1,25 @@
-[gd_scene format=3 uid="uid://cqkvrwqakickj"]
+[gd_scene format=3 uid="uid://bmbqu1ffjkq5y"]
 
-[ext_resource type="Script" uid="uid://dfgsdaaqmi0tx" path="res://Objects/Weapons/Weapon.gd" id="1_g6l1u"]
-[ext_resource type="Script" uid="uid://beiorgsa2hjgm" path="res://Components/Collision/Hitbox.gd" id="2_p7km3"]
-[ext_resource type="PackedScene" uid="uid://dndepc7avfpxg" path="res://Assets/3D Models/Weapons/Guandao.glb" id="3_yovif"]
+[ext_resource type="Script" uid="uid://beiorgsa2hjgm" path="res://Components/Collision/Hitbox.gd" id="1_pwf04"]
+[ext_resource type="PackedScene" uid="uid://dndepc7avfpxg" path="res://Assets/3D Models/Weapons/Guandao.glb" id="2_br7xn"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_be4l1"]
 radius = 0.453125
 height = 2.9420319
 
-[node name="PlayerWeapon" type="Node3D" unique_id=762137938]
-script = ExtResource("1_g6l1u")
-metadata/_custom_type_script = "uid://dfgsdaaqmi0tx"
-
-[node name="Hitbox" type="Area3D" parent="." unique_id=1705073012]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.046934128, 0, 0)
+[node name="Guandao" type="Area3D" unique_id=2072444421]
 collision_layer = 0
 collision_mask = 4
 monitoring = false
 monitorable = false
-script = ExtResource("2_p7km3")
+script = ExtResource("1_pwf04")
 LAYERS = 4
 metadata/_custom_type_script = "uid://beiorgsa2hjgm"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" unique_id=1326221915]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1003149858]
 transform = Transform3D(1, -7.450562e-09, -5.960461e-08, 7.450576e-09, 1, 2.3841841e-07, 5.960461e-08, -2.3841841e-07, 1, 0.014271367, 1.0052366, 0.02523232)
 shape = SubResource("CapsuleShape3D_be4l1")
 debug_color = Color(0, 0.6515532, 0.017827053, 0.41960785)
 
-[node name="Guandao" parent="." unique_id=1828826130 instance=ExtResource("3_yovif")]
-transform = Transform3D(-4.8082526e-08, 0, -1.1, 0, 1.1, 0, 1.1, 0, -4.8082526e-08, 0, -0.44691873, 0)
+[node name="Guandao" parent="." unique_id=1604273883 instance=ExtResource("2_br7xn")]
+transform = Transform3D(-4.8082526e-08, 0, -1.1, 0, 1.1, 0, 1.1, 0, -4.8082526e-08, -0.046934128, -0.44691873, 0)

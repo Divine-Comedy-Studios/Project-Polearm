@@ -18,7 +18,7 @@ func _implEnter() -> void:
 
 
 func _implTick(_delta : float) -> void:
-	if weapon().hitbox.hitCount > 0 and not _addedEnergy:
+	if weapon().hitCount > 0 and not _addedEnergy:
 		resources().energy.value += data.ENERGY_GAIN
 
 		_addedEnergy = true

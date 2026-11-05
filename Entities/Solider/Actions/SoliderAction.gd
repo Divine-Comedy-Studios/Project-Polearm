@@ -143,8 +143,8 @@ func resources() -> BasicEnemyResources:
 func animator() -> SoliderAnimator:
 	return context().animator as SoliderAnimator
 
-func weapon() -> Weapon:
-	return context().weapon as Weapon
+func weapon() -> Hitbox:
+	return context().weapon as Hitbox
 
 #endregion
 

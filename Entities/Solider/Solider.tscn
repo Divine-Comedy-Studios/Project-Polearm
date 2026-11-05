@@ -17,7 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://dvykeeeeon0qa" path="res://Components/ValueBar/ValueBarUI/ValueBarUI.tscn" id="8_2rfmy"]
 [ext_resource type="AnimationLibrary" uid="uid://b3cu7qf5ygk0k" path="res://Assets/3D Models/Characters/YBot/Animations/TPose.glb" id="8_h8mvu"]
 [ext_resource type="Script" uid="uid://c12nkcphob0hm" path="res://Components/NumericResource/ValueResource.gd" id="9_h8mvu"]
-[ext_resource type="PackedScene" uid="uid://18tkpaq0j2oi" path="res://Objects/Weapons/SoliderWeapon/Scimitar.tscn" id="17_lce6u"]
+[ext_resource type="PackedScene" uid="uid://b2m5k2alnmi75" path="res://Objects/Weapons/SoliderWeapon/Scimitar.tscn" id="17_lce6u"]
 [ext_resource type="PackedScene" uid="uid://7x8lifaigdru" path="res://Assets/3D Models/Characters/YBot/Variants/Red.scn" id="18_ion71"]
 
 [sub_resource type="Resource" id="Resource_lce6u"]
@@ -222,7 +222,7 @@ frameData = NodePath("../FrameData")
 resources = NodePath("../SoliderResources")
 animator = NodePath("../SoliderAnimator")
 hurtbox = NodePath("../Model/HurtboxAttachment/Hurtbox")
-weapon = NodePath("../Model/WeaponAttachment/SoliderWeapon")
+weapon = NodePath("../Model/WeaponAttachment/Scimitar")
 
 [node name="Model" type="CharacterBody3D" parent="." unique_id=1787037269 node_paths=PackedStringArray("bodyCollider", "groundCast") groups=["Enemies", "Entities"]]
 collision_mask = 32769
@@ -269,8 +269,8 @@ bone_idx = 49
 use_external_skeleton = true
 external_skeleton = NodePath("../Skeleton")
 
-[node name="SoliderWeapon" parent="Model/WeaponAttachment" unique_id=762137938 instance=ExtResource("17_lce6u")]
-transform = Transform3D(1.0000007, 0, 0, 0, 0.9999997, 0, 0, 0, 1.0000004, 0, 0, 0)
+[node name="Scimitar" parent="Model/WeaponAttachment" unique_id=433165035 instance=ExtResource("17_lce6u")]
+transform = Transform3D(1.0000007, 0, 0, 0, 0.9999996, 0, 0, 0, 1.0000004, 0, 0, 0)
 
 [node name="Skeleton" parent="Model" unique_id=941680751 instance=ExtResource("6_xaobu")]
 bones/1/position = Vector3(-0.01341346, -0.022663385, 0.8726493)
@@ -295,7 +295,6 @@ bones/11/rotation = Quaternion(-1.5336601e-08, -0.015548538, 4.8575095e-07, 0.99
 bones/12/rotation = Quaternion(0.13623983, -0.01595226, 0.10885968, 0.9845475)
 bones/12/scale = Vector3(0.99999994, 1.0000001, 0.9999998)
 bones/13/rotation = Quaternion(-0.20185664, -0.3867334, -0.22018424, 0.87247366)
-bones/13/scale = Vector3(1.0000001, 1.0000006, 1.0000001)
 bones/14/rotation = Quaternion(-0.021954041, 0.027743109, -0.01022691, 0.9993217)
 bones/14/scale = Vector3(0.99999994, 0.9999972, 1.0000001)
 bones/15/rotation = Quaternion(0.02070708, -0.00017593955, 0.008685728, 0.9997479)

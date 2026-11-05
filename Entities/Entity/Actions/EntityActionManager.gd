@@ -10,7 +10,7 @@ class_name EntityActionManager
 @export var resources : EntityResources = null
 @export var animator : EntityAnimator = null
 @export var hurtbox : Hurtbox = null
-@export var weapon : Weapon = null
+@export var weapon : Hitbox = null
 
 #endregion
 
