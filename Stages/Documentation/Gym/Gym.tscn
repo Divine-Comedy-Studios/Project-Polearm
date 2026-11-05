@@ -4,22 +4,24 @@
 [ext_resource type="Script" uid="uid://m3xnuvqxxrog" path="res://Systems/EnemyManager/Encounter/Encounter.gd" id="2_viyit"]
 [ext_resource type="Script" uid="uid://dgudxdqyw5eah" path="res://Systems/EnemyManager/Encounter/Wave.gd" id="3_l1jfe"]
 [ext_resource type="Script" uid="uid://ddnfnyl5gscdh" path="res://Stages/Data/StageData.gd" id="3_y445v"]
-[ext_resource type="Script" uid="uid://d1rene0g6t1ld" path="res://Trenchbroom/CustomScripts/funcGodotCustomBuild.gd" id="4_jiqka"]
-[ext_resource type="Material" uid="uid://bh5edhjdyq7w5" path="res://Trenchbroom/textures/Greybox Textures/PNG/Dark/texture_05.tres" id="6_jiqka"]
-[ext_resource type="Resource" uid="uid://cnygh8csloaqa" path="res://Trenchbroom/ProjectPolearmMapSettings.tres" id="6_pnhxc"]
-[ext_resource type="Material" uid="uid://7hc10ax011h4" path="res://Trenchbroom/textures/Greybox Textures/PNG/Dark/texture_02.tres" id="8_pnhxc"]
-[ext_resource type="Material" path="res://Trenchbroom/textures/Greybox Textures/PNG/Purple/texture_04.tres" id="9_0qwk7"]
-[ext_resource type="Material" uid="uid://ha4c3ra5ig1b" path="res://Trenchbroom/textures/Greybox Textures/PNG/Green/texture_02.tres" id="9_4oxs2"]
-[ext_resource type="Material" uid="uid://cks3wq6pt51u1" path="res://Trenchbroom/textures/Greybox Textures/PNG/Orange/texture_03.tres" id="10_l1jfe"]
-[ext_resource type="Material" path="res://Trenchbroom/textures/Greybox Textures/PNG/Green/texture_04.tres" id="10_uesqs"]
-[ext_resource type="Material" uid="uid://cosn5wkayhf52" path="res://Trenchbroom/textures/Greybox Textures/PNG/Red/texture_03.tres" id="11_viyit"]
-[ext_resource type="Material" uid="uid://rwe38pjq0qbw" path="res://Trenchbroom/textures/Greybox Textures/PNG/Orange/texture_01.tres" id="13_y445v"]
+[ext_resource type="Script" uid="uid://d1rene0g6t1ld" path="res://Common/Tools/Trenchbroom/CustomScripts/funcGodotCustomBuild.gd" id="4_jiqka"]
+[ext_resource type="Material" uid="uid://bh5edhjdyq7w5" path="res://Common/Tools/Trenchbroom/textures/Greybox Textures/PNG/Dark/texture_05.tres" id="6_jiqka"]
+[ext_resource type="Resource" uid="uid://cnygh8csloaqa" path="res://Common/Tools/Trenchbroom/ProjectPolearmMapSettings.tres" id="6_pnhxc"]
+[ext_resource type="Material" uid="uid://7hc10ax011h4" path="res://Common/Tools/Trenchbroom/textures/Greybox Textures/PNG/Dark/texture_02.tres" id="8_pnhxc"]
+[ext_resource type="Material" uid="uid://bd7xycc2bjchi" path="res://Assets/Materials/Prototype/ObstaclePurple.tres" id="9_0qwk7"]
+[ext_resource type="Material" uid="uid://ha4c3ra5ig1b" path="res://Common/Tools/Trenchbroom/textures/Greybox Textures/PNG/Green/texture_02.tres" id="9_4oxs2"]
+[ext_resource type="Material" uid="uid://cks3wq6pt51u1" path="res://Common/Tools/Trenchbroom/textures/Greybox Textures/PNG/Orange/texture_03.tres" id="10_l1jfe"]
+[ext_resource type="Material" uid="uid://p2ekc74yxtq1" path="res://Assets/Materials/Prototype/ObstacleGreen.tres" id="10_uesqs"]
+[ext_resource type="Material" uid="uid://cosn5wkayhf52" path="res://Common/Tools/Trenchbroom/textures/Greybox Textures/PNG/Red/texture_03.tres" id="11_viyit"]
+[ext_resource type="Material" uid="uid://rwe38pjq0qbw" path="res://Common/Tools/Trenchbroom/textures/Greybox Textures/PNG/Orange/texture_01.tres" id="13_y445v"]
 [ext_resource type="Script" uid="uid://03vkcknbw2k" path="res://Systems/EnemyManager/Encounter/EncounterTrigger.gd" id="15_l1jfe"]
 [ext_resource type="PackedScene" uid="uid://dobb4o5ifw1e6" path="res://Stages/Documentation/Gym/Old/Obstacles/Ramps.tscn" id="16_2a03v"]
 [ext_resource type="PackedScene" uid="uid://4721tk72gs1t" path="res://Stages/Documentation/Gym/Old/Obstacles/Steps.tscn" id="17_vhbbt"]
 [ext_resource type="PackedScene" uid="uid://bduaf0ou244na" path="res://Stages/Documentation/Gym/Old/Obstacles/Bumps.tscn" id="18_1ju63"]
 [ext_resource type="PackedScene" uid="uid://duc76equt8iqk" path="res://Stages/Documentation/Gym/Old/Obstacles/Round.tscn" id="19_fplkt"]
 [ext_resource type="PackedScene" uid="uid://dhsuh2ufuvwdp" path="res://Stages/Documentation/Gym/Old/Obstacles/Stairs.tscn" id="20_5njd6"]
+[ext_resource type="Script" uid="uid://fch0au0c1272" path="res://Objects/KillZone/KillZone.gd" id="21_1ju63"]
+[ext_resource type="Script" uid="uid://413tgy3jmvma" path="res://Components/Collision/HitboxData.gd" id="22_fplkt"]
 
 [sub_resource type="Resource" id="Resource_l1jfe"]
 script = ExtResource("3_y445v")
@@ -264,6 +266,13 @@ metadata/_custom_type_script = "uid://m3xnuvqxxrog"
 [sub_resource type="SphereShape3D" id="SphereShape3D_7mb0h"]
 radius = 2.75
 
+[sub_resource type="Resource" id="Resource_5o5jh"]
+script = ExtResource("22_fplkt")
+DAMAGE = 1000000.0
+metadata/_custom_type_script = "uid://413tgy3jmvma"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7mb0h"]
+
 [node name="Gym" type="Node" unique_id=1668630103]
 script = ExtResource("1_l1jfe")
 DATA = SubResource("Resource_l1jfe")
@@ -452,3 +461,17 @@ visible = false
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="EncounterTrigger/SpawnPoints/Node3D2" unique_id=305582124]
 visible = false
+
+[node name="Hitbox" type="Area3D" parent="." unique_id=758003663]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.35, 0, 0)
+collision_layer = 0
+collision_mask = 2
+monitoring = false
+monitorable = false
+script = ExtResource("21_1ju63")
+LAYERS = 2
+_data = SubResource("Resource_5o5jh")
+metadata/_custom_type_script = "uid://fch0au0c1272"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" unique_id=406954513]
+shape = SubResource("BoxShape3D_7mb0h")
