@@ -59,29 +59,35 @@ KI haben wir nicht als Quelle für sachliche Informationen verwendet. Alle Sacha
 \endlastfoot
     Arbeitsplanung und Organisation & Claude Opus 5.5 (Claude Cowork), 28.10.--4.11.2026 & Aufgabenliste für den Begleitbericht, Abschätzen des verbleibenden Aufwands & Liste als Orientierung verwendet und laufend selbst angepasst. \\
     \hline
-    Informations- und Literaturrecherche & Claude (claude.ai), Oktober 2026; Claude Opus 5.5, 28.10.--4.11.2026 & BibTeX-Einträge zu von uns gefundenen Quellen, Einschätzung ihrer Eignung, Prüfen von Quellenangaben (Literaturverzeichnis) & Einträge übernommen und mit den Originalquellen abgeglichen. Die Quellen haben wir selbst gesucht und gelesen. \\
+     & Claude (claude.ai), \textcolor{red}{[Zeitraum]} & Brainstorming und Planung: Einschätzungen der KI zu unseren Ideen und zum Vorgehen & Als Meinung eingeholt; die Entscheidungen haben wir selbst getroffen. \\
+    \hline
+    Informations- und Literaturrecherche & Claude (claude.ai), Oktober 2026; Claude Opus 5.5, 28.10.--4.11.2026 & Vorschläge für Fachbücher auf unsere Frage nach Material \textcolor{red}{[Datum prüfen]}; BibTeX-Einträge zu unseren Quellen, Einschätzung ihrer Eignung, Prüfen von Quellenangaben (Literaturverzeichnis) & Vorgeschlagene Bücher selbst gelesen und geprüft; die übrigen Quellen haben wir selbst über Google Scholar gesucht und gelesen. BibTeX-Einträge übernommen und mit den Originalquellen abgeglichen. \\
     \hline
     Vorgehen und Methode & Claude Opus 5.5, 28.10.--4.11.2026 & Rückmeldungen zur Beschreibung des Vorgehens (Kapitel~\ref{sec:Grundlagen}), Anpassen der Beschreibung des Beobachtungsrasters an das tatsächliche Vorgehen & Hinweise geprüft und Texte überwiegend selbst überarbeitet. MDA-Fragebogen und Playtest-Fragebögen haben wir selbst entwickelt. \\
     \hline
     Untersuchung und Datenerhebung & -- & Kein KI-Einsatz: Die Playtests haben wir selbst geplant und durchgeführt. & -- \\
     \hline
-    Auswertung von Daten & Claude Opus 5.5, 28.10.--4.11.2026 & Zuordnen der Beobachtungsnotizen zu den Kriterien B1--B14, sprachliches Vereinheitlichen der Notizen und Interviewantworten, Anonymisieren der Protokolle (Anhang~\ref{sec:PlaytestProtokolle}) & Zuordnung und Formulierungen weitgehend übernommen, von uns geprüft und an mehreren Stellen korrigiert. Die Auswertung und Interpretation in Kapitel~\ref{sec:Evaluation} stammt von uns. \\
+    Auswertung von Daten & Claude Opus 5.5, 28.10.--4.11.2026 & Zuordnen der Beobachtungsnotizen zu den Kriterien B1--B14, sprachliches Vereinheitlichen der Notizen und Interviewantworten, Anonymisieren der Protokolle (Anhang~\ref{sec:PlaytestProtokolle}); Zusammentragen und Auszählen der Ergebnisse aus den Protokollen für Kapitel~\ref{sec:Evaluation} (z.\,B.\ \enquote{x von 5}) & Zuordnung und Formulierungen weitgehend übernommen, von uns geprüft und an mehreren Stellen korrigiert; Zählungen anhand der Protokolle geprüft. Die Interpretation in Kapitel~\ref{sec:Evaluation} stammt von uns. \\
     \hline
     Hilfsmittel und Werkzeuge & Claude Opus 5.5, 28.10.--4.11.2026 & Textsatz mit \LaTeX: mehrseitige Tabellen, Tabellenformatierung, Fehlersuche beim Kompilieren & \LaTeX-Code übernommen und im kompilierten Dokument kontrolliert. \\
     \hline
     Programmieren und Berechnungen & Claude Sonnet 4.6 (claude.ai), 15.03.2026 & Editor-Werkzeug zum Erzeugen von Treppen (\code{Common/\allowbreak Tools/\allowbreak CSG/\allowbreak CSGStair.gd}) & Code übernommen; Prompts im Datei-Header. \\
     \hline
-     & Claude Sonnet 4.6 (claude.ai), 09.04.2026 und 22.05.2026 & Hilfsskript für Animationen (\code{Entities/\allowbreak Entity/\allowbreak Utility/\allowbreak EntityAnimationHelper.gd}), Grundgerüst und eine Funktion & Code übernommen und für Fehlerbehebungen minimal angepasst; Prompts im Datei-Header. \\
+     & Claude Sonnet 4.6 (claude.ai), 09.04.2026 und 22.05.2026 & Hilfsskript für Animationen (\code{Entities/\allowbreak Entity/\allowbreak Utility/\allowbreak EntityAnimationHelper.gd}), Grundgerüst und eine Funktion & Als Ausgangspunkt übernommen und danach von uns verändert; Prompts im Datei-Header. \\
     \hline
-     & Claude Sonnet 5.5 (claude.ai), Oktober 2026 & Audiosystem (\code{Systems/\allowbreak Audio}): Musikverwaltung und Grundlage für Soundeffekte & Ganz oder teilweise übernommen; Prompts in \code{Systems/\allowbreak Audio/\allowbreak README.md}. \textcolor{red}{[Eigenanteil ergänzen]} \\
+     & Claude Sonnet 5.5 (claude.ai), Oktober 2026 & Audiosystem (\code{Systems/\allowbreak Audio}): Musikverwaltung und Grundlage für Soundeffekte & Grösstenteils übernommen; Prompts in \code{Systems/\allowbreak Audio/\allowbreak README.md}. \\
+    \hline
+     & Claude \textcolor{red}{[Modell]}, Juli und Oktober 2026 & Shader: nicht kompatible Shader portiert und eigene Shader geschrieben \textcolor{red}{[Dateien prüfen, z.\,B.\ \code{Common/\allowbreak Shader/\allowbreak Reference}, \code{Common/\allowbreak Shader/\allowbreak Industrial}, \code{Objects/\allowbreak Door/\allowbreak DoorField.gdshader}]} & Grösstenteils übernommen und im Spiel visuell überprüft. \textcolor{red}{[prüfen]} \\
     \hline
     Rückmeldungen und Orientierung & Claude Opus 5.5, 28.10.--4.11.2026 & Durchsicht aller Kapitel des Begleitberichts mit Hinweisen zu Struktur, Verständlichkeit, fehlenden Belegen und Widersprüchen zwischen den Kapiteln & Hinweise als Notizen erhalten; die Texte haben wir überwiegend selbst überarbeitet, einige Hinweise bewusst verworfen. \\
     \hline
     Überprüfung und Kontrolle & Claude Opus 5.5, 28.10.--4.11.2026 & Korrektur von Rechtschreibung, Grammatik und Wortwahl; Kennzeichnen von eigenen und belegten Aussagen; Abgleich mit Projektvertrag und Zwischenbewertung; Prüfen der Einheitlichkeit von Begriffen und Nummerierungen & Korrekturen übernommen; der Inhalt wurde dabei nicht verändert. \\
     \hline
-    Darstellung von Ergebnissen & Claude Opus 5.5, 28.10.--4.11.2026 & Gestaltung der Tabellen~\ref{tab:Designvorschlaege} bis~\ref{tab:Raeume} aus unseren Angaben & Aufbau der Tabellen übernommen; die Inhalte stammen von uns. \\
+    Darstellung von Ergebnissen & Claude Opus 5.5, 28.10.--6.11.2026 & Gestaltung der Tabellen~\ref{tab:Designvorschlaege} bis~\ref{tab:Raeume} aus unseren Angaben; Umstrukturierung der Ergebnisse in Kapitel~\ref{sec:Evaluation} nach Sichtweisen der Testpersonen & Aufbau der Tabellen übernommen; die Inhalte stammen von uns. Kapitel~\ref{sec:Evaluation}: Gliederung und einzelne Überleitungssätze übernommen, Inhalte und Formulierungen von uns. \\
     \hline
-    Weiteres: von der KI formulierte Texte & Claude Opus 5.5, 28.10.--4.11.2026 & Glossar (Anhang~\ref{sec:Glossar}), Abschnitt~\ref{sec:Limitationen} (Limitationen), einzelne Sätze in Kapitel~\ref{sec:Umsetzung}, Abschnitt~\ref{sec:Beteiligte} (Beteiligte Personen) & Aus unseren Angaben formuliert und weitgehend übernommen; inhaltlich von uns geprüft. An den Stellen mit Fussnote gekennzeichnet. \\
+    Weiteres: von der KI formulierte Texte & Claude Opus 5.5, 28.10.--4.11.2026 & Glossar (Anhang~\ref{sec:Glossar}), Abschnitt~\ref{sec:Limitationen} (Limitationen), einzelne Sätze in Kapitel~\ref{sec:Umsetzung}, Charakterisierung der Testpersonen (Tabelle~\ref{tab:Testpersonen}), Abschnitt~\ref{sec:Beteiligte} (Beteiligte Personen) & Aus unseren Angaben formuliert und weitgehend übernommen; inhaltlich von uns geprüft. An den Stellen mit Fussnote gekennzeichnet. \\
+    \hline
+    Weiteres: Arbeitsjournal & Claude \textcolor{red}{[Modell, Zeitraum]} & Strukturieren unserer Journaleinträge nach den Vorgaben der Betreuungsperson & Gliederung übernommen; die Inhalte stammen von uns. \\
     \hline
 \end{longtable}
 }
@@ -471,7 +477,7 @@ Die Testpersonen sind anonymisiert und werden nur mit TP1 bis TP5 bezeichnet; Na
 \textit{Antwort:} Die Testperson ist nicht gestorben, die Frage entfällt.
 
 \item Wie haben sich die grossen und kleinen Räume für dich unterschieden? \\
-\textit{Antwort:} Mein Lieblingsraum war Raum~10, weil er eine schöne neue Struktur eingeführt hat, nämlich die Brücke. Damit kann man mehr machen als mit nur zwei Containern. Es gab eine coole Abwechslung zwischen grossen und kleinen Räumen, oder besser gesagt eine Mischung. Kleine Räume waren eher schwerer, weil es keine Zuflucht gab. \\
+\textit{Antwort:} Mein Lieblingsraum war Raum~6, weil er eine schöne neue Struktur eingeführt hat, nämlich die Brücke. Damit kann man mehr machen als mit nur zwei Containern. Es gab eine coole Abwechslung zwischen grossen und kleinen Räumen, oder besser gesagt eine Mischung. Kleine Räume waren eher schwerer, weil es keine Zuflucht gab. \\
 \textit{Bezug zur Beobachtung (B7, B12):} In kleinen Räumen spielte sie taktischer (Treffer austeilen und zurückziehen) und war genervt, wenn sie beim Heilen unterbrochen wurde.
 
 \item Als hier mehrere Gegner gleichzeitig da waren: Wie hast du entschieden, wen du zuerst angreifst? \\
@@ -1073,6 +1079,7 @@ In diesem Glossar erklären wir Fachbegriffe, die wir in dieser Arbeit verwenden
 \item[Beat 'em up] Genre, in dem sich die Spielfigur im Nahkampf durch viele Gegner kämpft; Vorläufer des Hack-and-Slash.
 \item[Bossgegner] Besonders starker, meist einzigartiger Gegner, häufig am Ende eines Levels.
 \item[Combo] Abfolge von Angriffen, die durch eine bestimmte Tastenfolge nacheinander ausgelöst wird. In \game{Project-Polearm} gibt es eine Light, eine Heavy und eine Air Combo (Tabelle~\ref{tab:Combos}).
+\item[Crunch] Phase mit stark erhöhtem Arbeitsaufwand, oft mit Überstunden, kurz vor einer Deadline; in der Spieleentwicklung verbreitet.
 \item[Dash] Kurze, schnelle Ausweich- oder Sprintbewegung.
 \item[Encounter] Einzelne Kampfbegegnung. In unserem Prototyp findet jeder Encounter in einem Raum statt und besteht aus mehreren Wellen; Encounter~3 und~12 finden im selben Raum statt (Abschnitt~\ref{sec:Kampfabschnitt}).
 \item[Feedback] Rückmeldung des Spiels auf eine Eingabe oder ein Ereignis, etwa durch Animation, Ton, Kamerabewegung oder Anzeigen.
@@ -1098,6 +1105,7 @@ In diesem Glossar erklären wir Fachbegriffe, die wir in dieser Arbeit verwenden
 \item[Scaffolding] Schrittweises Heranführen an neue Spielelemente, zuerst einzeln, dann in Kombination (Abschnitt~\ref{sec:Scaffolding}).
 \item[Spannungskurve] Verlauf der Intensität über einen Spielabschnitt.
 \item[Spawn, Spawnpunkt] Das Erscheinen einer Figur im Level bzw.\ der Ort, an dem sie erscheint.
+\item[Stylemeter] Anzeige in Stylish-Action-Spielen wie \game{Devil May Cry}, die bewertet, wie abwechslungsreich und elegant der Spieler kämpft.
 \item[Stylish-Action] Spiele des Hack-and-Slash-Genres, die elegantes und abwechslungsreiches Kämpfen ins Zentrum stellen (Abschnitt~\ref{sec:Genredefinition}).
 \item[Telegrafieren] Ankündigen eines gegnerischen Angriffs durch sichtbare oder hörbare Signale, damit der Spieler reagieren kann (Abschnitt~\ref{sec:V4}).
 \item[Think-aloud] Methode, bei der Testpersonen ihre Gedanken während des Spielens laut äussern (Abschnitt~\ref{sec:MethodePlaytest}).

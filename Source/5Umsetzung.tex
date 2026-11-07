@@ -101,7 +101,7 @@ In unserem Prototyp gibt es zwei Gegnerklassen, Nah- und Fernkämpfer, von denen
     \label{fig:Gegnertypen}
 \end{figure}
 
-Der Soldier ist der grundlegende Nahkämpfer, der auf den Spieler zurennt und zuschlägt. Der Heavy Soldier ist grösser, stärker aber greift langsamer an als der Soldier und hat mehr Lebenspunkte, zeigt aber dasselbe Verhalten. Als einziger Gegner lässt er sich nicht unterbrechen. Damit setzen wir die Erkenntnis aus Abschnitt~\ref{sec:Vergleich} um, die Überlegenheit des Spielers wie in \game{Ninja Gaiden} gezielt durch einen Gegner zu brechen, der sich nicht unterbrechen lässt (Abschnitt~\ref{sec:V1}).
+Der Soldier ist der grundlegende Nahkämpfer, der auf den Spieler zurennt und zuschlägt. Der Heavy Soldier ist grösser und stärker als der Soldier und hat mehr Lebenspunkte, greift aber langsamer an und trifft ungenauer, sodass er häufiger verfehlt. Sonst zeigt er dasselbe Verhalten. Als einziger Gegner lässt er sich nicht unterbrechen. Damit setzen wir die Erkenntnis aus Abschnitt~\ref{sec:Vergleich} um, die Überlegenheit des Spielers wie in \game{Ninja Gaiden} gezielt durch einen Gegner zu brechen, der sich nicht unterbrechen lässt (Abschnitt~\ref{sec:V1}).
 
 Die Fernkämpfer bewegen sich alle nicht. Der Archer schiesst ein Projektil auf den Spieler. Der Heavy Archer macht dasselbe, sein Projektil ist jedoch langsamer, kann dafür die Richtung ändern und verfolgt den Spieler. Der Chain Archer schiesst gleich drei Pfeile auf den Spieler, die mehr als doppelt so schnell sind wie jene des Archers.
 
@@ -119,7 +119,7 @@ Die Reichweite der Archers, also die Distanz, aus der sie auf den Spieler schies
         \hline
         Soldier & rennt auf den Spieler zu & Nahkampfschlag & 130 & 15 & ja \\
         \hline
-        Heavy Soldier & wie Soldier, aber langsamer; grösser & wie Soldier & 200 & 30 & nein \\
+        Heavy Soldier & wie Soldier, aber langsamer; grösser & wie Soldier, aber langsamer und ungenauer & 200 & 30 & nein \\
         \hline
         \multicolumn{6}{|l|}{\textit{Fernkämpfer (Gelb- bis Orangetöne)}} \\
         \hline
@@ -221,6 +221,7 @@ Im Eins-gegen-eins ist der Spieler jedem einzelnen Gegner deutlich überlegen. E
 Man könnte deshalb annehmen, dass der Spieler auch grosse Mengen von Gegnern problemlos bewältigt. Das stimmt allerdings nicht ganz, denn die Überlegenheit wird an mehreren Stellen gezielt durchbrochen:
 
 \begin{itemize}[leftmargin=1.5cm]
+    \item In der Gruppe werden die Gegner von einem zentralen Gegnermanager koordiniert und stellen so eine grössere Gefahr dar (Abschnitte~\ref{sec:V2} und~\ref{sec:V3}).
     \item Einige Gegner lassen sich nicht mit einer einzigen Combo besiegen, was grosse Horden zusätzlich gefährlich macht.
     \item Am Ende einer Combo weist der Spieler eine gewisse Trägheit auf. Wird der Gegner mit der Combo nicht besiegt, erhält dieser dadurch die Möglichkeit, den Spieler zu treffen.
     \item Das Heilen dauert eine gewisse Zeit. Gibt es zu wenig Platz und keine Möglichkeit, sich zu verstecken, ist es sehr schwer, sich zu heilen (vgl.~Abschnitt~\ref{sec:V6}).
@@ -246,7 +247,7 @@ Die Grenzwerte sowie die Anzahl der Gegner und Wellen haben wir je nach Raumgrö
 \subsubsection{V3: Ein taktisches Dilemma durch Nah- und Fernkämpfer} \label{sec:V3}
 
 \paragraph{Vorschlag und Herleitung}
-Der Kampfabschnitt soll Nah- und Fernkämpfer kombinieren, sodass der Spieler entscheiden muss, welche Bedrohung er zuerst ausschaltet. Der Nutzen liegt in der Schwierigkeit, die dadurch taktisch statt rein mechanisch (etwa durch mehr Lebenspunkte der Gegner) entsteht und schon kleine Gruppen anspruchsvoll macht. Grundlage ist, dass genau diese Kombination in beiden Referenzspielen den taktischen Druck trägt (Frage~D2 beider Analysen, Abschnitt~\ref{sec:ErkenntnisseRS}).
+Der Kampfabschnitt soll Nah- und Fernkämpfer kombinieren, sodass der Spieler entscheiden muss, welche Bedrohung er zuerst ausschaltet. Der Nutzen liegt in der Schwierigkeit, die dadurch taktisch statt rein mechanisch (etwa durch mehr Lebenspunkte der Gegner) entsteht. Grundlage ist, dass genau diese Kombination in beiden Referenzspielen den taktischen Druck trägt (Frage~D2 beider Analysen, Abschnitt~\ref{sec:ErkenntnisseRS}).
 
 \paragraph{Umsetzung im Prototyp}
 Wie in Abschnitt~\ref{sec:Gegnertypen} beschrieben, gibt es im Prototyp zwei Nah- und drei Fernkämpfer. Den Nahkämpfern kann man, wenn man will, einfach davonrennen, da sie den Spieler nur verfolgen, nicht springen können und langsamer sind als er. Bei den Fernkämpfern geht das nicht, weil sie den Spieler nicht verfolgen, sondern beschiessen. Deshalb stellen die Archers eine grosse Gefahr dar.
