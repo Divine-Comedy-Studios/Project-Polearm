@@ -319,6 +319,10 @@ func _fillRequiredRoles(randomizedKeys : Array[BasicEnemy], requiredRoles : Dict
 				if _fitsRoleDifficulty(exitWeight, currentWeight):
 					_assignEnemyRole(roleState, exitRole, currentWeight, exitWeight)
 
+					continue
+			
+			requestedCount -= 1
+
 		# If we have surplus roles left over, we see which enemy we can get
 		while requestedCount > 0:
 			var candidate := _roleCandidate(randomizedKeys, role, weight)
