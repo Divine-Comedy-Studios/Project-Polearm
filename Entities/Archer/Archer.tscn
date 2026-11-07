@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://dymt4yoc21xx" path="res://Entities/Archer/Data/ArcherResources.gd" id="3_pbajo"]
 [ext_resource type="Script" uid="uid://dyset1m48keqp" path="res://Entities/Archer/Controller/ArcherController.gd" id="4_o7i30"]
 [ext_resource type="Script" uid="uid://c12nkcphob0hm" path="res://Components/NumericResource/ValueResource.gd" id="5_1j70g"]
-[ext_resource type="PackedScene" uid="uid://dvykeeeeon0qa" path="res://Components/ValueBar/ValueBarUI/ValueBarUI.tscn" id="5_m5jv2"]
+[ext_resource type="PackedScene" uid="uid://dvykeeeeon0qa" path="res://Components/ValueBar/ValueBar.tscn" id="5_m5jv2"]
 [ext_resource type="Script" uid="uid://bh8o0071kt7qg" path="res://Entities/Archer/Animation/ArcherAnimator.gd" id="6_rnhsn"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://dwhg68g5b8p6a" path="res://Entities/Archer/Resources/AnimationBlendTree.tres" id="6_sfw1s"]
 [ext_resource type="AnimationLibrary" uid="uid://bbevjk88lo1q" path="res://Entities/Archer/Resources/FrameData.res" id="7_7ysdf"]
@@ -167,7 +167,7 @@ metadata/_custom_type_script = "uid://dyset1m48keqp"
 
 [node name="ArcherResources" type="Node" parent="." unique_id=1970353266 node_paths=PackedStringArray("_healthBar", "actionManager")]
 script = ExtResource("3_pbajo")
-_healthBar = NodePath("../Model/HealthBar/SubViewport/ValueBarUI")
+_healthBar = NodePath("../Model/HealthBar/SubViewport/ValueBar")
 health = SubResource("Resource_1j70g")
 energy = SubResource("Resource_rnhsn")
 superArmor = SubResource("Resource_qaoqx")
@@ -365,7 +365,7 @@ texture = SubResource("ViewportTexture_s5tgp")
 transparent_bg = true
 size = Vector2i(256, 32)
 
-[node name="ValueBarUI" parent="Model/HealthBar/SubViewport" unique_id=2065143325 instance=ExtResource("5_m5jv2")]
+[node name="ValueBar" parent="Model/HealthBar/SubViewport" unique_id=2065143325 instance=ExtResource("5_m5jv2")]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

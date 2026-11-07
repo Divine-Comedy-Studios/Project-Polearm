@@ -2,7 +2,7 @@ extends EntityResources
 class_name BasicEnemyResources
 
 
-@export var _healthBar : ValueBarUI = null
+@export var _healthBar : ValueBar = null
 
 
 func _ready() -> void:

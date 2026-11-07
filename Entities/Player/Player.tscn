@@ -22,7 +22,7 @@
 [ext_resource type="Script" uid="uid://del87rrtko1do" path="res://Entities/Entity/Utility/EntityAnimationHelper.gd" id="14_uw7o4"]
 [ext_resource type="AnimationLibrary" uid="uid://cybavteruqaiw" path="res://Entities/Player/Resources/FrameData.res" id="15_gallu"]
 [ext_resource type="PackedScene" uid="uid://c6ck6empr4lu2" path="res://Assets/3D Models/Characters/YBot/Skeleton.scn" id="17_5m37j"]
-[ext_resource type="PackedScene" uid="uid://dvykeeeeon0qa" path="res://Components/ValueBar/ValueBarUI/ValueBarUI.tscn" id="24_mgqku"]
+[ext_resource type="PackedScene" uid="uid://dvykeeeeon0qa" path="res://Components/ValueBar/ValueBar.tscn" id="24_mgqku"]
 
 [sub_resource type="Resource" id="Resource_h03de"]
 script = ExtResource("8_samso")

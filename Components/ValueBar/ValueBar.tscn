@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://dvykeeeeon0qa"]
 
-[ext_resource type="Script" uid="uid://5q0dxq2wk20s" path="res://Components/ValueBar/ValueBarUI/ValueBarUI.gd" id="1_narf7"]
+[ext_resource type="Script" uid="uid://5q0dxq2wk20s" path="res://Components/ValueBar/ValueBar.gd" id="1_narf7"]
 [ext_resource type="Texture2D" uid="uid://civ4me10g6qei" path="res://Assets/Interfaces/Healthbar/DefaultProgress.png" id="2_6pvtr"]
 [ext_resource type="Texture2D" uid="uid://b0nj0qib5h30v" path="res://Assets/Interfaces/Healthbar/DefaultUnder.png" id="3_t8rqo"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vxpqq"]
 
-[node name="ValueBarUI" type="Panel" unique_id=2065143325 node_paths=PackedStringArray("timer", "changeBar", "valueBar")]
+[node name="ValueBar" type="Panel" unique_id=2065143325 node_paths=PackedStringArray("timer", "changeBar", "valueBar")]
 texture_filter = 1
 custom_minimum_size = Vector2(200, 15)
 offset_right = 200.0
@@ -23,8 +23,6 @@ VALUE_TEXTURE = ExtResource("2_6pvtr")
 CHANGE_TEXTURE = ExtResource("2_6pvtr")
 BACKGROUND_TEXTURE = ExtResource("3_t8rqo")
 CHANGE_WAIT_TIME = 0.5
-VALUE_TWEEN_DURATION = null
-CHANGE_TWEEN_DURATION = null
 
 [node name="ChangeBar" type="TextureProgressBar" parent="." unique_id=1440632380]
 layout_mode = 1

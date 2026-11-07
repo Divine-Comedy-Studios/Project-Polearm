@@ -16,7 +16,7 @@
 [ext_resource type="Script" uid="uid://cyecr71fggv70" path="res://Entities/Entity/Collisions/EntityHurtbox.gd" id="14_t48fo"]
 [ext_resource type="PackedScene" uid="uid://c6ck6empr4lu2" path="res://Assets/3D Models/Characters/YBot/Skeleton.scn" id="15_j1477"]
 [ext_resource type="PackedScene" uid="uid://c04obwvot74fi" path="res://Assets/3D Models/Characters/YBot/Variants/Orange.scn" id="16_3c2cb"]
-[ext_resource type="PackedScene" uid="uid://dvykeeeeon0qa" path="res://Components/ValueBar/ValueBarUI/ValueBarUI.tscn" id="17_g3pwg"]
+[ext_resource type="PackedScene" uid="uid://dvykeeeeon0qa" path="res://Components/ValueBar/ValueBar.tscn" id="17_g3pwg"]
 
 [sub_resource type="Resource" id="Resource_1j70g"]
 resource_local_to_scene = true
@@ -155,7 +155,7 @@ metadata/_custom_type_script = "uid://dyset1m48keqp"
 
 [node name="ArcherResources" type="Node" parent="." unique_id=1970353266 node_paths=PackedStringArray("_healthBar", "actionManager")]
 script = ExtResource("5_wnvyh")
-_healthBar = NodePath("../Model/HealthBar/SubViewport/ValueBarUI")
+_healthBar = NodePath("../Model/HealthBar/SubViewport/ValueBar")
 health = SubResource("Resource_1j70g")
 energy = SubResource("Resource_rnhsn")
 superArmor = SubResource("Resource_qaoqx")
@@ -358,7 +358,7 @@ texture = SubResource("ViewportTexture_s5tgp")
 transparent_bg = true
 size = Vector2i(256, 32)
 
-[node name="ValueBarUI" parent="Model/HealthBar/SubViewport" unique_id=2065143325 instance=ExtResource("17_g3pwg")]
+[node name="ValueBar" parent="Model/HealthBar/SubViewport" unique_id=2065143325 instance=ExtResource("17_g3pwg")]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://c6ck6empr4lu2" path="res://Assets/3D Models/Characters/YBot/Skeleton.scn" id="6_xaobu"]
 [ext_resource type="AnimationLibrary" uid="uid://dfqr4nawpg2vu" path="res://Assets/3D Models/Characters/YBot/Animations/Movement.res" id="7_2rfmy"]
 [ext_resource type="PackedScene" uid="uid://cpac4pxb58swk" path="res://Entities/Solider/Actions/SoliderActionManager.tscn" id="7_qklw5"]
-[ext_resource type="PackedScene" uid="uid://dvykeeeeon0qa" path="res://Components/ValueBar/ValueBarUI/ValueBarUI.tscn" id="8_2rfmy"]
+[ext_resource type="PackedScene" uid="uid://dvykeeeeon0qa" path="res://Components/ValueBar/ValueBar.tscn" id="8_2rfmy"]
 [ext_resource type="AnimationLibrary" uid="uid://b3cu7qf5ygk0k" path="res://Assets/3D Models/Characters/YBot/Animations/TPose.glb" id="8_h8mvu"]
 [ext_resource type="Script" uid="uid://c12nkcphob0hm" path="res://Components/NumericResource/ValueResource.gd" id="9_h8mvu"]
 [ext_resource type="PackedScene" uid="uid://b2m5k2alnmi75" path="res://Objects/Weapons/SoliderWeapon/Scimitar.tscn" id="17_lce6u"]
@@ -160,7 +160,7 @@ metadata/_custom_type_script = "uid://y08q7alkcbu0"
 
 [node name="SoliderResources" type="Node" parent="." unique_id=1375468483 node_paths=PackedStringArray("_healthBar", "actionManager")]
 script = ExtResource("4_2rfmy")
-_healthBar = NodePath("../Model/HealthBar/SubViewport/ValueBarUI")
+_healthBar = NodePath("../Model/HealthBar/SubViewport/ValueBar")
 health = SubResource("Resource_lce6u")
 energy = SubResource("Resource_ion71")
 superArmor = SubResource("Resource_qklw5")
@@ -391,7 +391,7 @@ texture = SubResource("ViewportTexture_lce6u")
 transparent_bg = true
 size = Vector2i(256, 32)
 
-[node name="ValueBarUI" parent="Model/HealthBar/SubViewport" unique_id=2065143325 instance=ExtResource("8_2rfmy")]
+[node name="ValueBar" parent="Model/HealthBar/SubViewport" unique_id=2065143325 instance=ExtResource("8_2rfmy")]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

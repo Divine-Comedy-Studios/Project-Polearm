@@ -1,7 +1,7 @@
 @tool
 
 extends Panel
-class_name ValueBarUI
+class_name ValueBar
 
 
 #region Scene members
