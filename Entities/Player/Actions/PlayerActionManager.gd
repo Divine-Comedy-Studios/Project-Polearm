@@ -100,6 +100,7 @@ func _processAerialStates(actions : Array[StringName]) -> void:
 	if (entity as FloatingBody).onGround():
 		resources.jumpCount.value = 0
 		resources.airDashed = false
+		resources.airComboed = false
 
 		return
 	
