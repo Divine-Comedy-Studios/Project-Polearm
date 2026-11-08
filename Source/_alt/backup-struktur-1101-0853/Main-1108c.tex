@@ -1,0 +1,143 @@
+\documentclass[10pt]{article}
+
+% Packages
+
+\usepackage[
+    a4paper,
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
+    marginparwidth=1.75cm
+]{geometry}
+
+\usepackage{subfiles}
+
+% Spacing packages
+\usepackage{setspace}
+\usepackage{parskip}
+
+% Extra formatting packages
+% in Main.tex, Präambel:
+\usepackage{csquotes}
+\newcommand{\game}[1]{\textit{#1}}   % Spieltitel
+\newcommand{\code}[1]{\texttt{#1}}   % Klassen-,
+\usepackage{enumitem}
+
+% Language packages
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+
+% Formalities
+\usepackage[backend=biber, style=authortitle-ibid]{biblatex}
+
+% Graphical packages
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{abstract}
+
+% Mathematical packages
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{siunitx}
+\usepackage{caption}
+\usepackage{array}
+\usepackage{longtable}
+
+% Definitions and setup
+
+\onehalfspacing
+\addbibresource{Source/Sources.bib}
+
+\setlength{\absleftindent}{0pt}
+\setlength{\absrightindent}{0pt}
+
+\graphicspath{
+    { ./Assets/ }
+}
+
+% Document
+
+\begin{document}
+
+% Title page
+
+\begin{titlepage}
+    \begin{center}
+        \vspace*{2cm}
+
+        \textbf{\Huge{Project-Polearm}} \\ [2em]
+        \textbf{\Large Die Entwicklung eines Hack-and-Slash-Videospiels} \\ [0.6em]
+        \large{Konzeption, Umsetzung und Evaluation von Gegnerverhalten und Leveldesign in einem Hack-and-Slash-Prototyp} \\ [2em]
+
+        \Large{Rodin Arslan, Zhile Zhu} \\ [0.5em]
+        \large{Klasse G23g}
+
+        \vspace{3cm}
+
+        \LARGE{\textbf{Maturitätsarbeit}} \\ [0.3em]
+        \Large{Begleitbericht} \\ [0.5em]
+        \large{Kantonsschule Baden}
+
+        \vfill
+
+        \Large{\textbf{Betreuung und Bewertung}} \\ [0.5em]
+        \large{Betreuer: Michael Schneider, Kantonsschule Baden, Dept. Informatik} \\
+        \large{Zweitbewerter: Dr. Christophe Bersier, Kantonsschule Baden, Dept. Physik} \\
+
+        \vspace{2cm}
+        \large{10. November 2026}
+    \end{center}
+\end{titlepage}
+
+\newpage
+
+% Abstract
+
+\begin{abstract}
+    Die vorliegende Maturitätsarbeit beschäftigt sich mit der Erkenntnisfrage, wie Gegnerverhalten und Gegnerplatzierung in einem 3D-Hack-and-Slash-Prototyp konzipiert sein müssen, damit ein Kampfabschnitt mit nachvollziehbarem Spielfluss, angemessener Schwierigkeit und befriedigendem Spielgefühl entsteht.
+
+    Zur Konzipierung des eigenen Prototyps wurde das Gegnerverhalten in \game{Ninja Gaiden Sigma Plus} und \game{NieR: Automata} mithilfe des MDA-Frameworks analysiert. Für die Gegnerplatzierung und das Leveldesign wurde Fachliteratur ausgewertet. Aus beidem wurden konkrete Designmittel gewonnen.
+
+    Aus dieser Recherche wurden acht Designvorschläge abgeleitet, welche die Erkenntnisfrage beantworten sollen (z.\,B. Begrenzung gleichzeitig aktiver Gegner, klar telegrafierte Angriffe, Wellenstruktur mit Erholungsphasen). Diese Vorschläge wurden mit den gewonnenen Designmitteln in einem Prototyp umgesetzt, der mit der Game Engine Godot entwickelt wurde. In Playtests mit fünf Testpersonen wurde anschliessend untersucht, wie sich diese Umsetzung auf das Spielverhalten und das Spielerlebnis auswirkte. \textcolor{red}{Die Playtests deuten darauf hin, dass vor allem die Begrenzung der gleichzeitig aktiven Gegner, die Kombination von Nah- und Fernkämpfern und die gestaffelte Einführung neuer Gegner zu einer angemessenen Schwierigkeit beitragen; Spielfluss und Spielgefühl wurden dagegen teilweise durch Faktoren ausserhalb der Gegner beeinträchtigt, etwa durch träge Combos und ein fehlendes Signal am Ende eines Encounters.} Daraus wurden Verbesserungen für eine weitere Iteration abgeleitet.
+\end{abstract}
+
+\newpage
+
+% Table of contents
+
+\tableofcontents
+
+\newpage
+
+% Main document
+
+\subfile{Source/1Einleitung.tex}
+\newpage
+
+\subfile{Source/2TheoretischerHintergrund.tex}
+\newpage
+
+\subfile{Source/3KampfAnalyse}
+\newpage
+
+\subfile{Source/4Leveldesign.tex}
+\newpage
+
+\subfile{Source/5Umsetzung.tex}
+\newpage
+
+\subfile{Source/7Evaluation.tex}
+\newpage
+
+\subfile{Source/8Schlussfolgerung.tex}
+\newpage
+
+\subfile{Source/9Reflektion.tex}
+\newpage
+
+\subfile{Source/10Verzeichnis.tex}
+\newpage
+
+\end{document}
