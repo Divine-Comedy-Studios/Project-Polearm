@@ -35,7 +35,7 @@ func nonLowerable(animationName : StringName, time : float) -> bool:
 func weaponActivate(animationName : StringName, time : float) -> bool:
 	return _getValue(animationName, ^"FrameData:_weaponActivate", time) as bool
 
-func finished(animationName : StringName, time : float) -> float:
+func finished(animationName : StringName, time : float) -> bool:
 	return _getValue(animationName, ^"FrameData:_finished", time) as bool
 
 

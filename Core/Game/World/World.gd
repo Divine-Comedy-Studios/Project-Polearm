@@ -12,7 +12,7 @@ class_name World
 
 #region Member variables
 
-var currentStageType : Stage.Type = Stage.Type.NULL
+var currentStageType : Stage.Type = Stage.Type.none
 
 var _currentStagePath : String = String()
 var _currentStageResource : PackedScene = null

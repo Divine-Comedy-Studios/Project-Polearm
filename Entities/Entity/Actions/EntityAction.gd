@@ -151,9 +151,6 @@ func interrupt(actionType : StringName) -> StringName:
 
 # Frame data interface
 
-func interruptable() -> bool:
-	return _context.frameData.interruptable(data.ANIMATION_NAME, _progress)
-
 func finished() -> bool:
 	return _context.frameData.finished(data.ANIMATION_NAME, _progress) or _context.animator.animation(data.ANIMATION_FULL_NAME).loop_mode != Animation.LOOP_NONE
 

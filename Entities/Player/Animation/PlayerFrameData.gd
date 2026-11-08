@@ -18,7 +18,7 @@ class_name PlayerFrameData
 
 #region Public functions
 
-func comboPause(animationName : String, time : float) -> bool:
+func comboPause(animationName : StringName, time : float) -> bool:
 	return _getValue(animationName, ^"FrameData:_comboPause", time)
 
 func acceptsQueue(animationName : StringName, time : float) -> bool:

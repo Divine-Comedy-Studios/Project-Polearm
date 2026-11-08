@@ -62,7 +62,7 @@ func _implNextAction(next : StringName) -> StringName:
 	if player().flatVelocity().length_squared() > _runSpeedSquared:
 		return Type.sprintStop
 
-	if next == Type.idle and frameData().finished(data.ANIMATION_NAME, _progress):
+	if next == Type.idle and finished():
 		return Type.none
 
 	return next;
