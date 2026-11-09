@@ -186,6 +186,9 @@ func _process(_delta: float) -> void:
 # Texture updates
 
 func _updateTexture() -> void:
+	if _listening:
+		return
+
 	var inputData := Globals.settingsManager.getVariant(_getSectionName(), ACTION_NAME) as Dictionary
 	match (inputData["type"] as SettingsManager.InputType):
 		SettingsManager.InputType.keyboard:
