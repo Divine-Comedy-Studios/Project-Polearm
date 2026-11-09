@@ -30,7 +30,8 @@ enum InputType {
 enum SettingVersion {
 	invalid = 0,
 	v0_0_1 = 1,
-	v1_0_0 = 1 << 16
+	v1_0_0 = 1 << 16,
+	v1_0_1 = 1 >> 16 + 1,
 }
 
 #endregion
@@ -41,7 +42,7 @@ enum SettingVersion {
 const TRIGGER_SENSITIVITY : float = 0.5
 
 const SETTINGS_PATH : String = "user://settings.cfg"
-const SETTINGS_VERSION : int = SettingVersion.v1_0_0
+const SETTINGS_VERSION : int = SettingVersion.v1_0_1
 
 
 const DEFAULT_SETTINGS : Dictionary[String, Dictionary] = {
@@ -325,6 +326,8 @@ func saveSettings() -> void:
 #region Private functions
 
 func _saveDefaultSettings() -> void:
+	_file.clear()
+
 	for sectionName : String in DEFAULT_SETTINGS.keys():
 		saveSectionDefault(sectionName)
 
