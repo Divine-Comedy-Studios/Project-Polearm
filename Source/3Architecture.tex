@@ -1,0 +1,89 @@
+\documentclass[../Main.tex]{subfiles}
+
+\begin{document}
+
+\section{Architecture and Systems}\label{sec:4}
+
+Now, we examine the architecture of Project Polearm through major systems that make up the game. It moves from the overall structure of the application to the individual systems for entities, an overview of the player state machine and shared functionality between enemies and players. Through architectural diagrams and explanations of their relationships, this chapter demonstrates how a comparatively large collection of interactions can remain organized through managed communication and distribution of responsibility. Systems are abstracted and dependencies are kept deliberate to avoid tight coupling of unrelated parts of the game.
+
+\subsection{Architectural Overview}\label{sec:4-1}
+
+The application and systems layer of the game can be roughly divided into three layers. The first is the \emph{core}, which decides the current state of the game (booting, in the main menu, in the game). The second is a set of global systems that live as long as the application or the world does, depending on their location. The third is the \emph{interface} layer, which holds all menus. This subchapter explores these three layers.
+
+The core consists of two nested state machines, where \code{Main} is the top-level machine. On start, the application enters \code{Boot}, which is a short splash state where the settings are applied. It then moves on to the main menu, and from there into the game or out of the application.
+
+The \code{GameState} does not hold the game itself, but loads it dynamically on request. The loaded \code{Game} is again a state machine, with the states \code{DeathMenuState}, \code{PauseMenuState} and \code{World}. This separation stems from not every state the game is in needing to be loaded at the same time. Pausing or dying can only occur during gameplay, which excludes the possibility of needing the main menu loaded, and vice versa.
+
+Both machines own their own loading screen. When a state is not ready yet, for example because its scene is still loading in the background, the machine first switches to its loading screen and enters the requested state afterwards. Both mechanisms above are explained further in section~\ref{sec:5-1}.
+
+\placeholderfigure{core-state-machines}{The two nested state machines of the core.}{The two nested state machines of the core. Own figure.}{fig:core-state-machines}
+
+Continuing into the next layer of the game, most of the functionality that is not specific to a single state lives in global systems. Each of them has one responsibility:
+
+\begin{itemize}
+    \item \code{SettingsManager}, which loads, stores and applies all settings
+    \item \code{AudioManager} and \code{SFXManager}, which handle music and sound effects respectively. The \code{SFXManager} uses the sound effect data from the \code{AudioManager}, and can therefore be understood as a subsystem of the \code{AudioManager}
+    \item \code{Visuals}, which handles the global visual settings
+    \item \code{GameObjectManager}, which creates and recycles all non-static game objects through pools
+    \item \code{EnemyManager}, which manages the enemies of an encounter. It spawns them through the \code{GameObjectManager} and assigns roles to their AIs
+\end{itemize}
+
+The systems are owned by the part of the core whose lifetime they share. The settings, audio and visuals belong to \code{Boot}, as they are set up once at the start. The \code{GameObjectManager}, the \code{EnemyManager} and the \code{SFXManager} belong to the \code{World}, so they are only alive while a game is running, again, as these are only needed whilst the player is in the game world.
+
+To avoid passing references to every node that needs them, every system registers itself in the \code{Globals} registry as soon as it is ready. Any other part of the game can then reach them from there.
+
+\placeholderfigure{global-systems}{The global systems, their owners and the Globals registry.}{The global systems, their owners and the Globals registry. Own figure.}{fig:global-systems}
+
+The \code{World} again does not contain a level itself. A stage is loaded dynamically on request, and it contains only the level geometry with its collision data and the encounter triggers. The stage is deliberately kept free of logic and simply requests what it needs, leaving the global systems to handle the rest. This keeps stages easy to produce, as a stage only has to define where things happen, not how. This makes stages relatively light on the code front and easy to set up.
+
+\placeholderfigure{stage-loading}{The World and the dynamically loaded stage.}{The World and the dynamically loaded stage. Own figure.}{fig:stage-loading}
+
+Returning to the game's core state machines, each of the three menu states of the core owns one menu of the interface layer: \code{MainMenu}, \code{PauseMenu} and \code{DeathMenu}. A menu consists of the screen which is specific to it as well as common menu components, which are building blocks for the options menu and shared between the main and pause menus. As the options are the same in both menus, they are not implemented separately. These components for the options menu refer to the \code{SettingsManager} to modify and apply the game's settings.
+
+\placeholderfigure{interface-layer}{The menus of the interface layer and their core states.}{The menus of the interface layer and their core states. Own figure.}{fig:interface-layer}
+
+The flexibility of the \code{Main} and \code{Interface} state machines was put to the test on the last day before the handing-in of the Matura project, when we decided on a whim to add a credits screen to thank everyone who was involved in helping us with the project. This extra menu was implemented and integrated into the game within an hour and signifies the extensibility of our state-machine-based approach to the game.
+
+\subsection{\texorpdfstring{\code{GameObjectManager}}{GameObjectManager}}\label{sec:4-2}
+
+In Project Polearm, all non-static objects are handled by the \code{GameObjectManager} and its subsystems. This ranges from enemies and projectiles up to even the player, as demonstrated in section~\ref{sec:4-1}. The \code{GameObjectManager} is responsible for managing all \code{GameObjectPool}s, which exist once per game object type. The \code{GameObjectPool}s themselves handle the actual pooling, spawning and death of their managed game objects.
+
+\placeholderfigure{game-object-manager}{Structure of the GameObjectManager and its pools.}{Structure of the GameObjectManager and its pools. Own figure.}{fig:game-object-manager}
+
+This, on the one hand, is an optimization pattern\autocite[Cf.][]{nystrom_objectpool}. Normally, one might manually instantiate a scene into the world and delete it when the game object is dead. But this requires re-instantiating the object every time one needs it, which could possibly cause sudden lag spikes during execution. It would be far more efficient to store dead game objects somewhere where they can simply be retrieved, reset and instantly reused. This means that, e.g., if the game only ever shows 8 enemies of the same type on screen at once, only 8 unique instances of the enemy will ever exist in total, reducing the total amount of lag spikes. The lag spikes can even be decreased further with proper usage of pool prewarming, which preinitializes some enemies whilst the level is loading. This is a common optimization used in many games. The drawback is the slight amount of boilerplate introduced to implement resetting logic, which for us was trivial.
+
+On the other hand, this allowed us to significantly simplify the process of spawning anything into the game world. One must only configure the \code{GameObjectDataset} once in the global \code{GameObjectManager}, and it becomes possible to simply use its corresponding enum value to spawn the entity. The developer only has to state once where the entity scene is and which type the entity belongs to, and spawning it anywhere within the game code becomes as simple as \code{Globals.\allowbreak{}gameObjectManager.\allowbreak{}spawn(GameObject.\allowbreak{}Type.\allowbreak{}someGameObject)}. This also makes it trivial to add new types of entities or swap out old entities with something else.
+
+Furthermore, to increase flexibility, one can also pass a payload to the spawning function. The \code{GameObjectManager} does not provide any default behavior upon spawning, thus the developer can decide precisely what data they want to pass on to the object. This payload is used to carry anything from a simple \code{Transform3D} up to the configuration data for a whole projectile.
+
+The game object system also only cares about the spawning and despawning of the entities; it does not interfere with the ticking or any other aspect of its managed objects. This decouples the actual implementation of the object from its interface and the game object system, and frees the developer's mind from having to think about resource management, as the system takes care of object lifetimes for the developer, who now only has to decide when to spawn something in.
+
+\subsection{Entities}\label{sec:4-3}
+
+The entity, i.e. the structure which lies at the base of the player and all enemies in Project Polearm, is a complex system consisting of multiple components communicating to create a single, coherent character. The entity in Project Polearm is designed using the \emph{Model View Controller} pattern.
+
+The state machine within the model is the heart of every entity. It defines the behavior and connects all components together. It manages the transition between states and acts as a registry for all components, which are in turn provided to the states, so that the currently active one can determine the current behavior.
+
+\placeholderfigure{entity-model}{The model layer of an entity.}{The model layer of an entity. Own figure.}{fig:entity-model}
+
+Take the core state machine of the player as an example: it contains 26 states. All states act independently from each other, know nothing about another state's implementation and do not hold any references to other states. States are therefore a functional \enquote{black box} and decoupled from the rest of the game. The only thing a state describes is what it suggests it actually does. To keep this high level of independence, the precise chaining of states is achieved through requesting a transition to the \code{PlayerActionManager}. Therefore, adding states becomes trivial and only a matter of implementing a specific behavior and matching it to an input. The exact algorithm used in state switching is described further in section~\ref{sec:5-2}.
+
+\placeholderfigure{player-states}{Structure of the player's state machine and the priorities of its states.}{Structure of the player's state machine and the priorities of its states. Own figure.}{fig:player-states}
+
+As one may notice in this graph, the \code{PlayerActionManager}, and by extension all \code{EntityActionManager}s, are not the root of the graph, and neither is the physics object responsible for the movement, despite their nature being the core or perceived core of the entire entity. The true root of the scene is the \code{Entity}, which acts as the interface for the entity to the game object manager, whilst also being a relatively stateless container for all components of the entity, which prevents intermingling of unrelated systems.
+
+The view layer is considerably simpler, since it has fewer components. Furthermore, most components of the view layer are provided by Godot, such as the meshes and \code{Skeleton3D}. Their outward-facing APIs are designed in such a way that they only need to be told what to do, without needing to know more about the concrete state of what tells them to do so. Other parts of the view layer which we coded ourselves follow the same philosophy. The \code{ValueBar}, which implements the health bar and, for the player specifically, the energy bar, only needs a reference to the resource it displays to function correctly, and the entity's resources do not have to know about the \code{ValueBar}'s existence. Therefore, the view layer does not need to hold references to the systems of the player, as they are being told by them what to do. This is best exemplified through the ability to swap out any model and skeleton for any other model-skeleton pair, given that the animations and frame data are also updated properly. Neither the model nor the controller will care about the change.
+
+\placeholderfigure{entity-view}{The view layer of an entity.}{The view layer of an entity. Own figure.}{fig:entity-view}
+
+The controller layer is the part which differs across all entities, and no default controller implementation exists, but all controllers work the same in essence, as they all have the common goal of producing an array with the current possible intents of the character in mind. Therefore, it also becomes possible to control the player through an AI-based controller just by swapping the \code{PlayerInputManager}, as long as the controller can produce all intents the \code{PlayerInputManager} does. This is, at the end of the day, the goal of the MVC pattern and the reason why we chose to use it in the characters, namely the decoupling of a complex and interconnected system, which enables modularity and leads to extensibility.
+
+\placeholderfigure{entity-controller}{The controller layer of an entity.}{The controller layer of an entity. Own figure.}{fig:entity-controller}
+
+Furthermore, the separation of concerns in the entity was not only executed on an implementation basis, but also in the scene itself. The aforementioned unique structure of our entities, with the static game object being the scene root instead of the component which is responsible for the movement (i.e. \code{FloatingBody} or \code{CharacterBody3D}), allowed us to spill most of the \enquote{guts} of our entities out of the physics body, or at least the parts which are not dependent on it, which is the majority. Most systems do not have the explicit need to reference the physics body, and it would only make sense to separate concerns. Hence, this separation of entity components was sensible to us and helped with the organization of the scene.
+
+\placeholderfigure{entity-scene-tree}{Scene tree of an entity, with its components separated from the physics body.}{Scene tree of an entity, with its components separated from the physics body. Own screenshot from Project Polearm.}{fig:entity-scene-tree}
+
+\newpage
+
+\end{document}

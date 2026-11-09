@@ -1,0 +1,328 @@
+\documentclass[../Main.tex]{subfiles}
+
+\begin{document}
+
+\section{Organization}\label{sec:2}
+
+Before examining the code itself, it is important to understand how the project is organized. This chapter introduces the file structure of Project Polearm, the purpose of its directories and describes the conventions established throughout development. By grouping related systems, separating shared resources from system-specific implementations and following consistent naming and structural conventions, we sought to make the project understandable and maintainable even as it grew in complexity, as cleanliness is not only important in code, but also where the code resides.
+
+\subsection{Files}\label{sec:2-1}
+
+Within Project-Polearm, the most important and a large portion of files are either of the extensions \code{.\allowbreak{}gd}, \code{.\allowbreak{}cs}, \code{.\allowbreak{}tscn}. These contain the code and scene data needed by Godot to run the game. The code for the game is found in \code{.\allowbreak{}gd} and \code{.\allowbreak{}cs} files, whereas \code{.\allowbreak{}tscn} and occasionally \code{.\allowbreak{}scn} describe scene files. \code{.\allowbreak{}tscn} stores its data in a human-readable and editable text format based on the INI format, and \code{.\allowbreak{}scn} stores its data in a binary format, which is exclusively used for scenes containing large amounts of data. One can also encounter \code{.\allowbreak{}tres} (text resource) and \code{.\allowbreak{}res} (resource) files within the project, which denote other data which Godot needs to run the game. \code{.\allowbreak{}gdshader} files denote shader files in Godot's custom shader language.
+
+One can also find an assortment of files which contain the assets of the game. 3D models are exclusively stored in the GLTF format with the extension \code{.\allowbreak{}glb}. Textures are most commonly stored as \code{.\allowbreak{}png} files and \code{.\allowbreak{}jpeg} files. Godot resource files may also be found here.
+
+Other file types can also be found throughout the project. Unless explicitly denoted otherwise, these contain metadata used by Godot or configuration information for either Godot, .NET or IDEs utilized for editing the source code.
+
+\subsection{Conventions}\label{sec:2-2}
+
+The project uses a set of enforced conventions for its code and files to promote navigability, consistency and good practice. They are documented in \code{Common/\allowbreak{}Templates/\allowbreak{}Convention/\allowbreak{}Convention.\allowbreak{}gd}. This convention fully defines a rigid structure and way of organizing code for all long code files, as well as standardized naming conventions for almost every language feature and pattern used.
+
+Furthermore, we have also orally agreed upon a convention for all file and directory names at the start of development, which simply amounts to naming all files and directories which are not generated automatically in PascalCase.
+
+Although the naming conventions are enforced throughout most parts of the project, some conventions were enforced with some leniency so as to allow for developer flexibility, as conventions are only good as long as they promote their stated goals, which are navigability, consistency and good practice. The conventions were not enforced for their own sake.
+
+\subsection{Directories}\label{sec:2-3}
+
+All directories in the project were named to be as self-explanatory as possible. The entire project encompasses the directories below:
+
+\begin{itemize}
+    \item \code{Assets}
+    \item \code{addons}
+    \item \code{Common}
+    \item \code{Components}
+    \item \code{Core}
+    \item \code{Docs}
+    \item \code{Entities}
+    \item \code{Interfaces}
+    \item \code{Objects}
+    \item \code{Stages}
+    \item \code{Systems}
+\end{itemize}
+
+We organized our directories as such to best describe their contents as well as their association and dependencies. A directory usually contains source and scene files which belong to the same system, or a grouping of systems which stands on its own pillar within the project.
+
+The files in the root directory of the project, which are of note, are the core project configuration file \code{project.\allowbreak{}godot} and \code{README.\allowbreak{}md}, a short introduction to the demo alongside explanations for core game mechanics. The \code{Docs} folder contains assets used in the \code{README.\allowbreak{}md} file and is not relevant for the rest of the project.
+
+Below is a summary of all other directories within Project Polearm and an explanation of their contents in alphabetical order:
+
+\subsubsection{\texorpdfstring{\code{Assets}}{Assets}}\label{sec:2-3-1}
+
+The \code{Assets} directory contains the majority of the game's visual and audio assets, including 3D models, textures, materials, animations, sound effects, music as well as their metadata. The subdirectories under \code{Assets} directly categorize the type of assets contained within. Within those, assets are either sorted by their functionality, their associated system and/or their origin, allowing them to be located and referenced relatively easily.
+
+It is important to note that the assets in this directory consist of external assets. That means that they do not directly influence anything about the execution of the game. Other assets, specifically game data, like animation frame data or asset datasets, which are crucial to the behavior of the game, are stored alongside their respective systems and entities.
+
+The directories are named to be self-explanatory and will therefore not be explained further.
+
+\subsubsection{\texorpdfstring{\code{addons}}{addons}}\label{sec:2-3-2}
+
+This directory contains all Godot plugins used throughout the game's development. As mentioned, only \code{PhantomCamera}, found in the folder of the same name, is necessary for the game's execution, but other extensions were kept for completeness' sake.
+
+The plugins were installed through Godot's built-in Asset Library, which downloads them into this specific directory. The name of the directory uses Godot's own convention, which we did not enforce our own onto, as that may cause issues and inconveniences. Therefore it is the only directory in the project, created by us, which does not conform to our naming convention.
+
+These are all addons used in the project and how we utilized them in Project-Polearm:
+
+{\small
+\begin{xltabular}{\linewidth}{l>{\raggedright\arraybackslash}p{0.2\linewidth}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}p{0.2\linewidth}}
+\caption{Godot plugins used in Project Polearm.}\label{tab:addons} \\
+\toprule
+\textbf{Extension / directory name} & \textbf{Functionality} & \textbf{Reason for utilization} & \textbf{Runtime dependency} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Extension / directory name} & \textbf{Functionality} & \textbf{Reason for utilization} & \textbf{Runtime dependency} \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+\textbf{\code{anim\_\allowbreak{}player\_\allowbreak{}refactor}} & Edit Godot scene paths within animations & Godot usually imports models grouped alongside their skeleton and animations, which we separated. Therefore, all animation paths become invalid and must be reset & No, editor plugin \\ \addlinespace[0.4em]
+\textbf{\code{debug\_\allowbreak{}draw\_\allowbreak{}3d}} & Draw simple, geometrical shapes for debugging & This plugin was used during development to display 3D debugging information, mainly for the inspection of vectors & Runtime plugin, no release build dependency \\ \addlinespace[0.4em]
+\textbf{\code{phantom\_\allowbreak{}camera}} & Ready-to-go camera library for Godot & Godot cameras only implement basic features, with the rest having to be implemented by the developer. Phantom Camera implements functionality useful for most games, like following, smooth camera movement, camera collision etc. & Runtime plugin, release build dependency \\
+\end{xltabular}
+}
+
+\subsubsection{\texorpdfstring{\code{Common}}{Common}}\label{sec:2-3-3}
+
+\code{Common} is the place for everything which does not belong to a single system, but is needed by several of them. What separates it from \code{Components} is that nothing in here is meant to be dropped into a scene and configured on its own. The code is either supposed to be extended, called from elsewhere, or only ever run inside the editor.
+
+{\small
+\begin{xltabular}{\linewidth}{l>{\raggedright\arraybackslash}Xl}
+\caption{Contents of the Common directory.}\label{tab:common} \\
+\toprule
+\textbf{Directory} & \textbf{Contents} & \textbf{See also} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Directory} & \textbf{Contents} & \textbf{See also} \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+\code{StateMachine} & \code{BasicStateMachine} and \code{BasicState}, the generic finite state machine and its base state. Nearly everything in the game which has to switch between modes, from the application itself down to the individual actions of an entity, is built on these two classes & Section~\ref{sec:3-4-3} \\ \addlinespace[0.4em]
+\code{Utility} & \code{PPUtil}, a collection of constants, enumerations and math helpers, e.g. for measuring the horizontal length of a vector. As the project uses both GDScript and C\#, it exists in two versions, \code{Utility.\allowbreak{}gd} and \code{Utility.\allowbreak{}cs}, so that neither language has to reach across the language boundary for simple tasks & – \\ \addlinespace[0.4em]
+\code{SceneCamera} & \code{SceneCamera}, the main camera of the game. It contains the host of \emph{PhantomCamera}, whose transformation is decided by sub-cameras such as the player camera, as well as the post-processing quad of the game's visual style. It is kept as its own scene to allow for swappable cameras and is instantiated by the \code{Visuals} system & Sections~\ref{sec:2-3-6}, ~\ref{sec:2-3-10} \\ \addlinespace[0.4em]
+\code{Templates} & \code{Convention}, where the code conventions of the project are written down, and \code{PlayerAction}, a script template for new player states & Section~\ref{sec:2-2} \\ \addlinespace[0.4em]
+\code{Tools} & Scripts and configuration files which only serve the developer inside the editor, listed below & Chapter~\ref{sec:6} \\
+\end{xltabular}
+}
+
+The \code{Tools} directory contains the following editor tools:
+
+\begin{itemize}
+    \item \code{CSG/\allowbreak{}CSGStair.\allowbreak{}gd}: A generator for staircases built from CSG nodes. It was generated with the help of AI, which is declared at the top of the file.
+    \item \code{LevelMesh/\allowbreak{}LevelMesh.\allowbreak{}gd}: Applies the style of one master material to every mesh of a level.
+    \item \code{MetallicZero/\allowbreak{}MetallicZero.\allowbreak{}gd}: An import script which sets the metallic value of every material of an imported model to zero.
+    \item \code{Trenchbroom}: The configuration, greybox textures, map files (\code{.\allowbreak{}map}) and a custom build script for \emph{TrenchBroom}, an external level editor. Its maps are imported into Godot with the \code{func\_\allowbreak{}godot} plugin, and the custom build script moves the generated level geometry onto the collision layer of the world.
+\end{itemize}
+
+\subsubsection{\texorpdfstring{\code{Components}}{Components}}\label{sec:2-3-4}
+
+Components are the practical result of our \emph{Configure Everything, Code Nothing} philosophy (see section~\ref{sec:3-1}). Each one is a small, self-contained building block, which can be added to a scene, configured through its exported variables and then simply works. To keep it that way, components know nothing about the entities, systems or stages which use them, and depend on nothing but \code{Common}.
+
+{\small
+\begin{xltabular}{\linewidth}{l>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}p{0.2\linewidth}}
+\caption{Components of Project Polearm.}\label{tab:components} \\
+\toprule
+\textbf{Directory} & \textbf{What it does} & \textbf{Used by} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Directory} & \textbf{What it does} & \textbf{Used by} \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+\code{Collision} & \code{Hitbox} and \code{Hurtbox} for dealing and receiving damage, and \code{HitboxData}, the resource describing a single hit (see section~\ref{sec:5-3}) & Weapons, entities, kill zones \\ \addlinespace[0.4em]
+\code{EventTrigger} & \code{EventTrigger}, an area which reacts to bodies of configurable collision layers entering it & \code{EncounterTrigger} \\ \addlinespace[0.4em]
+\code{FloatingBody} & The character controller of the game, written in C\#. Its code is split into three files: \code{FloatingBody.\allowbreak{}cs} for the node and its configuration, \code{FloatingBodyAPI.\allowbreak{}cs} for the functions other code calls, and \code{FloatingBodyPhysics.\allowbreak{}cs} for the collision and velocity calculations (see sections~\ref{sec:5-5} and ~\ref{sec:7-2-1}) & All entities \\ \addlinespace[0.4em]
+\code{Interaction} & \code{Interactor} and \code{Interactable}, a pair for interactions with objects. It is currently unused, as no interactable objects made it into the demo & – \\ \addlinespace[0.4em]
+\code{LedgeStopper} & \code{LedgeStopper} and \code{LedgeStopperBlock}, which keep an entity from walking off ledges & The player \\ \addlinespace[0.4em]
+\code{Miscellaneous} & \code{RemoteChild}, a C\# node which follows the global position of another node without being its child & The player camera \\ \addlinespace[0.4em]
+\code{NumericResource} & \code{ValueResource} and \code{IntegerResource}, which hold a value and its maximum and notify other objects when it changes & Health, energy and other values \\ \addlinespace[0.4em]
+\code{ValueBar} & \code{ValueBar}, a bar which displays a \code{ValueResource} & Health and energy bars \\
+\end{xltabular}
+}
+
+\subsubsection{\texorpdfstring{\code{Core}}{Core}}\label{sec:2-3-5}
+
+\code{Core} contains everything that controls the large-scale flow of the game, which is starting, loading, running, pausing and quitting. These parts are not organized as one large piece of code, but as two state machines nested into each other (see sections~\ref{sec:4-1} and ~\ref{sec:5-1}).
+
+{\small
+\begin{xltabular}{\linewidth}{l>{\raggedright\arraybackslash}X}
+\caption{Contents of the Core directory.}\label{tab:core} \\
+\toprule
+\textbf{Directory} & \textbf{Contents} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Directory} & \textbf{Contents} \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+\code{Main} & The outer state machine. \code{Main.\allowbreak{}tscn} is the scene Godot loads first. \code{Boot} contains the splash state which applies the settings, \code{Loading} the loading screen of \code{Main}, and \code{States} the states of the application: the main menu, the \code{GameState} which loads \code{Game}, and quitting. \code{ThreadLoadedScene.\allowbreak{}gd} is the base of all states whose scene is loaded on a background thread \\ \addlinespace[0.4em]
+\code{Game} & The inner state machine, which is loaded when the player enters the game. \code{World} loads the stage and spawns the player, \code{States} contains the pause and death menu states, which connect the menus of \code{Interfaces} to the state machine, and \code{Loading} contains the loading screen of \code{Game} \\ \addlinespace[0.4em]
+\code{AppStateMachine} & The shared base of both machines. \code{AppStateMachine} extends the \code{BasicStateMachine} of \code{Common} by a loading state, which the machine enters whenever its next state is not ready yet. \code{Loading} contains this loading state and the base of both loading screens \\
+\end{xltabular}
+}
+
+Note that two different files are named \code{GameState.\allowbreak{}gd}. \code{Core/\allowbreak{}Main/\allowbreak{}States/\allowbreak{}GameState.\allowbreak{}gd} is the state of \code{Main} which loads and enters the game, whereas \code{Core/\allowbreak{}Game/\allowbreak{}GameState.\allowbreak{}gd} is the base class of all states of \code{Game}.
+
+\subsubsection{\texorpdfstring{\code{Entities}}{Entities}}\label{sec:2-3-6}
+
+Entities are the characters of the game, which are the player and all enemies. Instead of giving each of them its own implementation, they all inherit from a shared base and extend it with what makes them different (see section~\ref{sec:4-3}):
+
+\dirtree{%
+.1 Entity.
+.2 Player.
+.2 BasicEnemy.
+.3 Solider   (variant: HeavySolider).
+.3 Archer    (variants: ChainArcher, HeavyArcher).
+}
+
+\code{Entity} holds everything every character needs: the action state machine, the animation and frame data, the receiving of hits, the combo system and the resources like health. \code{Player} adds to this the input handling, its camera and its combat, while \code{BasicEnemy} adds the controller, which decides what an enemy wants to do, and the actions every enemy shares. \code{Solider} and \code{Archer} are the two enemy types of the demo, a melee and a ranged fighter. The variants are further enemies derived from them, which mostly consist of their own configured scenes.
+
+Every entity directory is organized in the same way, although not every entity needs every directory:
+
+{\small
+\begin{xltabular}{\linewidth}{l>{\raggedright\arraybackslash}Xl}
+\caption{Shared directory structure of the entities.}\label{tab:entities} \\
+\toprule
+\textbf{Directory} & \textbf{Contents} & \textbf{See also} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Directory} & \textbf{Contents} & \textbf{See also} \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+\code{Actions} & The action manager, i.e. the state machine of the entity, and in \code{States}, one script per action the entity can perform & Sections~\ref{sec:4-3}, ~\ref{sec:5-2} \\ \addlinespace[0.4em]
+\code{Animation} & The animator of the entity and, in most cases, its frame data class & Section~\ref{sec:6-1-2} \\ \addlinespace[0.4em]
+\code{Controller} & Enemies only: the controller, which turns the role assigned by the \code{EnemyManager} into concrete intents & Section~\ref{sec:5-4} \\ \addlinespace[0.4em]
+\code{Data} & Scripts which define what can be configured, such as the data of an action or the resources of an entity & – \\ \addlinespace[0.4em]
+\code{Resources} & The configured resource files, such as frame data, animation blend trees and combos & Section~\ref{sec:6-1-2} \\ \addlinespace[0.4em]
+\code{Variants} & Enemies only: the variants of an enemy type & – \\
+\end{xltabular}
+}
+
+The difference between \code{Data} and \code{Resources} is worth remembering, as it applies to the entire project: \code{Data} contains the scripts which define \emph{what} can be configured, whereas \code{Resources} contains the actual configured instances.
+
+Some directories only exist for specific entities:
+
+\begin{itemize}
+    \item \code{Entity/\allowbreak{}Collisions} contains \code{EntityHurtbox}, the hurtbox which forwards hits to the resources of the entity (see section~\ref{sec:5-3}).
+    \item \code{Entity/\allowbreak{}Combat} contains the \code{EntityCombatManager} and, in \code{Combo}, the structure of a combo. The configured combos of the player can be found in \code{Player/\allowbreak{}Resources/\allowbreak{}Combos}.
+    \item \code{Entity/\allowbreak{}Utility} contains the \code{EntityAnimationHelper} (see section~\ref{sec:6-2-2}).
+    \item \code{Player/\allowbreak{}Input} contains the \code{PlayerInputManager}, the controller of the player.
+    \item \code{Player/\allowbreak{}Camera} contains the \code{PlayerCameraManager}, a C\# script controlling the player's camera, which builds upon \emph{PhantomCamera}.
+    \item \code{Player/\allowbreak{}Actions/\allowbreak{}States} contains the 26 states of the player. \code{BasicActions} holds the base classes shared by several states, such as jumping, dashing and stopping, \code{TransitionAction} holds short states which chain into other states, such as \code{JumpStart} or \code{MoveStop}, and \code{Physics} holds \code{PlayerPhysics}, the physics configuration shared across states (see section~\ref{sec:6-1}).
+\end{itemize}
+
+\subsubsection{\texorpdfstring{\code{Interfaces}}{Interfaces}}\label{sec:2-3-7}
+
+Everything the player clicks on, reads or navigates through in menus is located in \code{Interfaces}. The menus are built on \code{InterfaceStateMachine}, a state machine of their own with a small input manager, which is independent of the application's state machine in \code{Core}. That way, the same menu machinery can be used by the main menu, the pause menu and the death menu alike.
+
+The menus themselves are found in \code{Menus}:
+
+{\small
+\begin{xltabular}{\linewidth}{l>{\raggedright\arraybackslash}X}
+\caption{Menus of the game.}\label{tab:menus} \\
+\toprule
+\textbf{Directory} & \textbf{Contents} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Directory} & \textbf{Contents} \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+\code{MainMenu} & The main menu, consisting of its screen (\code{MainMenuScreen}), the quit confirmation (\code{QuitConfirmMenu}) and the credits screen \todonote{add directory name} \\ \addlinespace[0.4em]
+\code{PauseMenu} & The pause menu and its screen (\code{PauseScreen}) \\ \addlinespace[0.4em]
+\code{DeathMenu} & The death menu and its screen (\code{DeathScreen}), from which the player can respawn or return to the main menu \\ \addlinespace[0.4em]
+\code{OptionsMenu} & The options, shared by the main and pause menus, with their pages \code{GameOptions}, \code{VideoOptions}, \code{AudioOptions} and \code{MappingOptions}. The latter exists in a keyboard and a controller version and uses an \code{ActionMappingButton} for every action that can be remapped \\ \addlinespace[0.4em]
+\code{Button} & \code{GameMenuButton}, the button shared by all menus \\ \addlinespace[0.4em]
+\code{SaveMenu} & \todonote{save menu elements, describe or delete} \\
+\end{xltabular}
+}
+
+All menus use the single theme found in \code{Themes}. The game is also translated: the \code{Language} directory contains \code{ProjectPolearmLanguages.\allowbreak{}csv}, one table of all texts of the game, from which the translated in-Game text for English, German, French, Spanish, Italian, Japanese and Chinese can be found.
+
+\subsubsection{\texorpdfstring{\code{Objects}}{Objects}}\label{sec:2-3-8}
+
+Objects are what is placed into or spawned in the game world, but is neither alive like an entity, nor a general building block like a component.
+
+{\small
+\begin{xltabular}{\linewidth}{l>{\raggedright\arraybackslash}Xl}
+\caption{Contents of the Objects directory.}\label{tab:objects} \\
+\toprule
+\textbf{Directory} & \textbf{Contents} & \textbf{See also} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Directory} & \textbf{Contents} & \textbf{See also} \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+\code{Weapons} & \code{Weapon}, the base of all weapons carried by entities, together with the weapon of the player in \code{PlayerWeapon} and the \code{Hammer} and \code{Scimitar} of the \code{Solider} enemies in \code{SoliderWeapon} & Section~\ref{sec:5-3} \\ \addlinespace[0.4em]
+\code{Weapons/\allowbreak{}Projectile} & \code{Projectile}, the base of the \code{Arrow} and the \code{HomingMissile}, and \code{ProjectilePhysics}, the resource describing their flight. Unlike other weapons, projectiles are game objects, which are spawned and pooled by the \code{GameObjectManager} while the game is running & Section~\ref{sec:4-2} \\ \addlinespace[0.4em]
+\code{Door} & The \code{Door}, which blocks the way as a force field while it is active, and is opened and closed by the encounter script of a level & Section~\ref{sec:6-1-1} \\ \addlinespace[0.4em]
+\code{KillZone} & The \code{KillZone}, an area which extends the \code{Hitbox} component and damages everything inside of it & Section~\ref{sec:5-3} \\
+\end{xltabular}
+}
+
+\subsubsection{\texorpdfstring{\code{Stages}}{Stages}}\label{sec:2-3-9}
+
+A stage is a scene which the game can load as its world, consisting of the level geometry, doors and enemy encounters (see section~\ref{sec:4-1}). The base script of all stages is \code{Stage.\allowbreak{}gd}, located directly in this directory. It defines the stage types and holds the stage's configuration.
+
+{\small
+\begin{xltabular}{\linewidth}{l>{\raggedright\arraybackslash}Xl}
+\caption{Contents of the Stages directory.}\label{tab:stages} \\
+\toprule
+\textbf{Directory} & \textbf{Contents} & \textbf{See also} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Directory} & \textbf{Contents} & \textbf{See also} \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+\code{Data} & \code{StageData}, which holds, for example, where the player spawns, and \code{StageDataset} together with its configured instance, which assigns each stage type its scene & Section~\ref{sec:3-4-4} \\ \addlinespace[0.4em]
+\code{Levels} & \code{Level\_\allowbreak{}1}, the only level of the demo, and \code{Encounter.\allowbreak{}gd}, the encounter script of the level, which opens and closes its doors & Sections~\ref{sec:6-1-1}, ~\ref{sec:6-2-1} \\ \addlinespace[0.4em]
+\code{Documentation} & Stages which were not made for the player, but for us: the \code{Gym}, the open testing area used for player mechanics and enemy encounters throughout development, with its earlier version and obstacles in \code{Gym/\allowbreak{}Old}, as well as the \code{Museum} and a test stage built with TrenchBroom & Section~\ref{sec:7-1} \\
+\end{xltabular}
+}
+
+\subsubsection{\texorpdfstring{\code{Systems}}{Systems}}\label{sec:2-3-10}
+
+Systems exist exactly once per game and provide services which many other parts depend on. They are nodes in a scene, register themselves in \code{Globals} when the game starts, and refuse to do so a second time (see section~\ref{sec:3-4-2}). \code{Globals.\allowbreak{}gd}, the script lying directly in this directory, holds the references to all systems.
+
+{\small
+\begin{xltabular}{\linewidth}{l>{\raggedright\arraybackslash}Xl>{\raggedright\arraybackslash}p{0.2\linewidth}}
+\caption{Global systems of the game.}\label{tab:systems} \\
+\toprule
+\textbf{Directory} & \textbf{Contents} & \textbf{Found in \code{Globals} as} & \textbf{See also} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Directory} & \textbf{Contents} & \textbf{Found in \code{Globals} as} & \textbf{See also} \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+\code{Audio} & The \code{AudioManager} for music and, in \code{SFX}, the \code{SFXManager} for sound effects at positions in the world. \code{Data} defines the sound data and datasets, and \code{Resources} contains the configured datasets. The \code{README.\allowbreak{}md} declares the use of AI for this system & \code{audioManager}, \code{sfxManager} & Section~\ref{sec:4-1} \\ \addlinespace[0.4em]
+\code{EnemyManager} & The \code{EnemyManager}, which ticks, spawns and assigns roles to all enemies. \code{Encounter} contains the \code{Encounter} and \code{Wave} structures, the \code{EncounterTrigger} and the base of all encounter scripts, and \code{Perception} contains \code{EnemyPerception}, the information enemies receive about the player & \code{enemyManager} & Sections~\ref{sec:5-4}, ~\ref{sec:6-1-1}, ~\ref{sec:6-2-1}, ~\ref{sec:7-2-2} \\ \addlinespace[0.4em]
+\code{GameObject} & \code{GameObject}, the \code{GameObjectManager} and the \code{GameObjectPool}. \code{Data} defines the dataset of all game objects, and \code{Resources} contains its configured instance & \code{gameObjectManager} & Section~\ref{sec:4-2} \\ \addlinespace[0.4em]
+\code{Settings} & The \code{SettingsManager}, which stores the game's settings in a configuration file in the user directory and applies them & \code{settingsManager} & Section~\ref{sec:4-1} \\ \addlinespace[0.4em]
+\code{Visuals} & \code{Visuals}, which holds the \code{SceneCamera} and the world environment of the game & \code{visuals} & Section~\ref{sec:4-1} \\
+\end{xltabular}
+}
+
+Besides these systems, \code{Globals} also holds a reference to the \code{World} of \code{Core}, so that other parts of the game can reach the currently running world.
+
+\newpage
+
+\end{document}

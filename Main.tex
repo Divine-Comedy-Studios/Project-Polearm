@@ -17,19 +17,32 @@
 \usepackage{setspace}
 \usepackage{parskip}
 
-% Extra formatting packages
-% in Main.tex, Präambel:
-\usepackage{csquotes}
-\newcommand{\game}[1]{\textit{#1}}   % Spieltitel
-\newcommand{\code}[1]{\texttt{#1}}   % Klassen-,
-\usepackage{enumitem}
-
 % Language packages
 \usepackage[T1]{fontenc}
-\usepackage[ngerman]{babel}
+\usepackage[ngerman, english]{babel}
+
+% Extra formatting packages
+\usepackage[autostyle=true]{csquotes}
+\newcommand{\game}[1]{\textit{#1}}   % Game titles
+\newcommand{\code}[1]{\texttt{#1}}   % Class, function, file and directory names
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{dirtree}
 
 % Formalities
-\usepackage[backend=biber, style=authortitle-ibid]{biblatex}
+\usepackage[
+    backend=biber,
+    style=authortitle-ibid,
+    sorting=nyt,
+    date=short,
+    urldate=short,
+    datezeros=true,
+    maxcitenames=3,
+    maxbibnames=10,
+    uniquename=false,
+    uniquelist=false
+]{biblatex}
 
 % Graphical packages
 \usepackage{graphicx}
@@ -44,18 +57,126 @@
 \usepackage{caption}
 \usepackage{array}
 \usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{xltabular}
+\usepackage{booktabs}
+
+% Links (loaded last)
+\usepackage{xurl}
+\usepackage[hidelinks, hypertexnames=false]{hyperref}
 
 % Definitions and setup
 
 \onehalfspacing
-\addbibresource{Source/Sources.bib}
+\frenchspacing
+\setlength{\emergencystretch}{3em}
+\addbibresource{Source/sources.bib}
 
 \setlength{\absleftindent}{0pt}
 \setlength{\absrightindent}{0pt}
 
 \graphicspath{
-    { ./Assets/ }
+    {./Assets/}
+    {./Assets/Figures/}
 }
+
+% Citation rules of the Kantonsschule Baden (footnote variant)
+% Footnote:      Name(s): short title (year).  /  Web sources: Name(s): short title, DD.MM.YYYY.
+% Bibliography:  Family name, Given name: Title. Subtitle, Place: Publisher, Year. URL, retrieved on DD.MM.YYYY.
+
+\DeclareNameAlias{sortname}{family-given}
+\DeclareNameAlias{default}{family-given}
+\renewcommand*{\multinamedelim}{\slash}
+\renewcommand*{\finalnamedelim}{\slash}
+\renewcommand*{\revsdnamepunct}{\addcomma\space}
+\renewcommand*{\labelnamepunct}{\addcolon\space}
+\renewcommand*{\nametitledelim}{\addcolon\space}
+
+\DeclareFieldFormat*{title}{#1}
+\DeclareFieldFormat*{citetitle}{#1}
+\DeclareFieldFormat{url}{\url{#1}}
+\DeclareFieldFormat{urldate}{\bibstring{urlseen}\space#1}
+
+\DefineBibliographyStrings{english}{
+    urlseen = {retrieved on},
+    in = {in},
+    nodate = {n.d.}
+}
+
+\DefineBibliographyExtras{english}{%
+    \protected\def\mkbibdateshort#1#2#3{%
+        \iffieldundef{#3}{}{\mkdayzeros{\thefield{#3}}.}%
+        \iffieldundef{#2}{}{\mkmonthzeros{\thefield{#2}}.}%
+        \iffieldbibstring{#1}
+            {\bibstring{\thefield{#1}}}
+            {\dateeraprintpre{#1}\mkyearzeros{\thefield{#1}}}}%
+}
+
+% Full names for every entry, ragged URLs and "n.d." for web sources without a date
+\ExecuteBibliographyOptions{dashed=false}
+\AtBeginBibliography{\raggedright}
+\renewbibmacro*{date}{%
+    \iffieldundef{year}
+        {\ifentrytype{online}{\bibstring{nodate}}{}}
+        {\printdate}}
+
+\renewbibmacro*{url+urldate}{%
+    \usebibmacro{url}%
+    \iffieldundef{urlyear}
+        {}
+        {\setunit*{\addcomma\space}\usebibmacro{urldate}}}
+
+\renewbibmacro*{cite:title}{%
+    \printtext[bibhyperref]{\printfield[citetitle]{labeltitle}}%
+    \ifnameundef{labelname}
+        {\iflistundef{organization}
+            {}
+            {\setunit{\addcomma\space}\bibstring{in}\addcolon\space\printlist{organization}}}
+        {}%
+    \ifentrytype{online}
+        {\setunit{\addcomma\space}%
+         \iffieldundef{year}{\bibstring{nodate}}{\printdate}}
+        {\setunit{\addspace}%
+         \printtext[parens]{\iffieldundef{year}{\bibstring{nodate}}{\printfield{year}}}}}
+
+% Code listings
+\lstdefinelanguage{GDScript}{
+    morekeywords={extends, class_name, func, var, const, static, enum, if, elif, else, for, while, return, pass, null, self, true, false, in, and, or, not, assert, super, await, signal},
+    sensitive=true,
+    morecomment=[l]{\#},
+    morestring=[b]",
+}
+\lstset{
+    basicstyle=\ttfamily\small,
+    keywordstyle=\bfseries,
+    commentstyle=\color{gray},
+    columns=fullflexible,
+    keepspaces=true,
+    tabsize=4,
+    frame=single,
+    breaklines=true,
+    xleftmargin=0.5em,
+    xrightmargin=0.5em
+}
+
+% Temporary placeholders
+% Figures: the image is included automatically as soon as Assets/Figures/<name>.pdf or .png exists.
+% Arguments: file name, caption, entry in the list of figures (with source), label
+\newcommand{\placeholderfigure}[4]{%
+    \begin{figure}[H]
+        \centering
+        \IfFileExists{Assets/Figures/#1.pdf}
+            {\includegraphics[width=\linewidth, height=0.6\textheight, keepaspectratio]{Assets/Figures/#1.pdf}}
+            {\IfFileExists{Assets/Figures/#1.png}
+                {\includegraphics[width=\linewidth, height=0.6\textheight, keepaspectratio]{Assets/Figures/#1.png}}
+                {\fbox{\parbox[c][4cm][c]{0.8\linewidth}{\centering\textcolor{red}{\textbf{Placeholder:} \code{Assets/Figures/#1}}}}}}
+        \caption[#3]{#2}
+        \label{#4}
+    \end{figure}%
+}
+\newcommand{\todonote}[1]{\textcolor{red}{\textbf{[TODO: #1]}}}
+\newcommand{\todocite}[1]{\footnote{\textcolor{red}{\textbf{TODO: source missing:} #1}}}
+\newcommand{\todolink}[1]{\textcolor{red}{\textbf{[TODO: link to #1]}}}
 
 % Document
 
@@ -99,12 +220,26 @@
 % Abstract
 
 \begin{abstract}
-    Die vorliegende Maturitätsarbeit beschäftigt sich mit der Erkenntnisfrage, wie Gegnerverhalten und Gegnerplatzierung in einem 3D-Hack-and-Slash-Prototyp konzipiert sein müssen, damit ein Kampfabschnitt mit nachvollziehbarem Spielfluss, angemessener Schwierigkeit und befriedigendem Spielgefühl entsteht. Der Zweck besteht darin, selbst einen solchen Prototyp zu erstellen und die gewonnenen Erkenntnisse zu überprüfen.
+    A fast-paced action game might appear straightforward on the surface. Characters move, attack and react to incoming threats. But behind a truly engaging action game lies a complex web of interconnected systems. Movement, combat, enemy behavior, physics and even sound and animation must all work together. How does such a huge amount of interaction remain architecturally clean? Project Polearm is a demo for a hack-and-slash video game, developed for the Maturitätsarbeit 2026 by Rodin Arslan and Zhile Zhu of the class G23g at the Kantonsschule Baden. This \emph{Technical Documentation} describes the technical structure and organization as well as the core architectural decisions and systems of the game, alongside some insights into the development process.
 
-    Zur Konzipierung des eigenen Prototyps wurde das Gegnerverhalten in \game{Ninja Gaiden Sigma Plus} und \game{NieR: Automata} mithilfe des MDA-Frameworks analysiert. Für die Gegnerplatzierung und das Leveldesign wurden Fachliteratur und Fachvorträge ausgewertet. Aus beidem wurden acht konkrete Designvorschläge gewonnen. Diese wurden in einem Prototyp umgesetzt, der mit der Game Engine Godot entwickelt wurde. Der Prototyp umfasst insgesamt zwölf Encounter in elf verschiedenen Räumen und beinhaltet fünf verschiedene Gegnervarianten. In Playtests mit fünf Testpersonen wurde anschliessend untersucht, wie sich diese Umsetzung auf das Spielverhalten und das Spielerlebnis auswirkte. Dazu füllten die Testpersonen vor und nach dem Spielen einen Fragebogen aus. Des Weiteren wurde ihr Spielverhalten beobachtet, und sie wurden in einem semistrukturierten Interview zu Auffälligkeiten in ihrem Spiel befragt.
+    The project, created using the Godot engine, encompasses roughly 11,800 lines of GDScript and C\# code, the majority of it handwritten, with documented AI assistance. We sought to learn how to implement features found in hack-and-slash games by doing, but it did not stop there. We also aimed to do so cleanly and with thought. Not only did we ask ourselves, \enquote{What does an action game do and how is it designed?}, but we also asked: \enquote{How can developers build a complex game from many interlocking systems without losing control of the codebase?}
 
-    Da die Playtests nur mit fünf Testpersonen durchgeführt wurden, liessen sich keine statistisch repräsentativen Daten sammeln, sondern nur Tendenzen erkennen und mögliche Ursachen eingrenzen. Die Playtestergebnisse deuten darauf hin, dass vor allem die Begrenzung der gleichzeitig aktiven Gegner, die Kombination von Nah- und Fernkämpfern und die gestaffelte Einführung neuer Gegnervarianten zu einer angemessenen Schwierigkeit beitragen. Auch beim Spielfluss zeigte sich eine starke Tendenz: Vier von fünf Testpersonen erlebten den Kampfabschnitt als zusammenhängend, und zwei spielten nach dem Ende sogar ungefragt weiter. Dazu trugen vor allem die Begrenzung der Gegner und die Pausen zwischen den Räumen bei. Unterbrochen wurde der Spielfluss dort, wo das Spiel den Spieler zu wenig informierte, etwa beim Öffnen der Türen. Beim Spielgefühl zeigte sich eine erkennbare, aber keine starke Tendenz, da Faktoren ausserhalb der Gegner, vor allem die Trägheit der Combos, das Ergebnis beeinflussten. Als vorläufige Antwort auf die Erkenntnisfrage ergibt sich daher, dass vor allem die Begrenzung der Gegner, die Kombination von Nah- und Fernkämpfern, die gestaffelte Einführung neuer Gegnervarianten und die Pausen zwischen den Räumen zu den drei angestrebten Qualitäten beitragen. Die lesbare Anfangsaufstellung und die Pausen zwischen den Wellen konnten dagegen nur in Ansätzen überprüft werden. Aus den gewonnenen Ergebnissen konnten Verbesserungen für eine weitere Iteration der Designvorschläge und der Playtests hergeleitet werden.
+    Project Polearm demonstrates the core features expected of the genre, but it also showcases the intersection of data-driven and object-oriented programming, combined with design patterns and practices from the game development industry. We utilized our modular architecture and components to create a mobile and dynamic player character, as well as five different enemy variants working together to stop the player, all placed in a series of combat encounters within a hand-crafted level.
+
+    The project was the result of our exploration of philosophies and paradigms, modular systems programming, finite state machines, complex entity management and the abstraction of physics for player enjoyment. We reasoned about program architecture and structure, and how they might be cleanly implemented to create engaging gameplay systems. Not only should the gameplay be intuitive, but so should the development experience, which is why we made many efforts to streamline development and to develop, test and iterate efficiently.
+
+    As this document aims to highlight the technical development of Project Polearm, please consult the main accompanying report for information about the game design and research of this project.
+
+    This document starts with \textbf{Chapter~\ref{sec:2}: Organization}, which documents the file structure of the project, how directories are organized and how to navigate the project. \textbf{Chapter~\ref{sec:3}: Design Decisions and Goals} then explains our philosophies for the development process. These led us to use certain patterns and paradigms across the entire project, each with its own consequences for the project.
+
+    The next two chapters, \textbf{Chapter~\ref{sec:4}: Architecture and Systems} and \textbf{Chapter~\ref{sec:5}: Procedures and Algorithms}, dive into the code of Project Polearm. The former does this on a macro level, explaining the structure of the most far-reaching systems of the game and how they interconnect to form its architecture. The latter does this on a much smaller but more detailed level. Algorithms which drive player and enemy behavior are showcased in pseudocode diagrams alongside explanations of the design choices which led to their final form.
+
+    \textbf{Chapter~\ref{sec:6}: Tooling and Developer Experience} walks through how we sought to make our lives easier during development, with tools, scripts and clever usage of the aforementioned design patterns. It is followed by a retrospective in \textbf{Chapter~\ref{sec:7}: Post-Mortem}, where we ask what went well, what went less well, and how we dealt with issues that came up. Finally, \textbf{Chapter~\ref{sec:8}: Appendix} provides additional information about the project, and a glossary of terms used in this document.
+
+    \placeholderfigure{intro-screenshot}{Screenshot of Project Polearm.}{Screenshot of Project Polearm. Own screenshot from Project Polearm.}{fig:intro-screenshot}
 \end{abstract}
+
+\newpage
 
 
 % Table of contents
@@ -113,6 +248,43 @@
 
 \newpage
 
+
 % Main document
+
+\subfile{Source/1Organization}
+\newpage
+
+\subfile{Source/2DesignDecisions}
+\newpage
+
+\subfile{Source/3Architecture}
+\newpage
+
+\subfile{Source/4Procedures}
+\newpage
+
+\subfile{Source/5Tooling}
+\newpage
+
+\subfile{Source/6PostMortem}
+\newpage
+
+\subfile{Source/7Appendix}
+\newpage
+
+
+% Sources, figures and tables
+
+\printbibliography[heading=bibintoc, title={Bibliography}]
+
+\newpage
+\phantomsection
+\addcontentsline{toc}{section}{\listfigurename}
+\listoffigures
+
+\newpage
+\phantomsection
+\addcontentsline{toc}{section}{\listtablename}
+\listoftables
 
 \end{document}

@@ -1,0 +1,121 @@
+\documentclass[../Main.tex]{subfiles}
+
+\begin{document}
+
+\section{Procedures and Algorithms}\label{sec:5}
+
+While the previous chapter describes the overall structure of Project Polearm's systems, this chapter explores how selected parts of them operate internally. It focuses on the procedures and algorithms that drive important gameplay behavior, including booting the game, state selection, damage handling, smooth movement, and enemy role assignment. These examples illustrate how the development principles introduced earlier are executed not only on a large, architectural level, but flow into even minor parts of the code. By breaking down complex behavior into readable diagrams and explaining the reasoning behind their implementation and how our architectural principles influenced those, we demonstrate their cleanliness and flexibility.
+
+\subsection{Boot Sequence}\label{sec:5-1}
+
+What fits better than starting the section on the procedures and algorithms used in Project Polearm with how the game even boots itself? As suggested by section~\ref{sec:4-1}, Project Polearm is designed in such a way that starting the game does not even mandate the loading of any enemies, the game world or the player for that matter. This design decision was made to increase the flexibility of the game and simplify the process of choosing where the game loads into. In theory, it is even possible to load Project Polearm into a completely different game which shares none of the mechanics with the demo with minimal modification to the core. This, in turn, would theoretically simplify our work if we decided to add more levels.
+
+The first stage of booting can be understood as setting the game up and taking care of the formalities such as menus and settings, with the end goal of switching into the game:
+
+\placeholderfigure{boot-sequence}{Boot sequence from starting the application to entering the game.}{Boot sequence from starting the application to entering the game. Own figure.}{fig:boot-sequence}
+
+Here, we can observe a pattern which allowed for the dynamic loading of the game: Whenever a scene is supposed to be dynamically loaded into the game, we switch onto the loading screen if it has not finished yet, and wait until it does on another thread. This way, the game can keep running without pausing entirely for the duration of the load. As \code{Game} and \code{Main} share many of the same features, they consequently inherit from the same extension of the \code{BasicStateMachine}, the \code{AppStateMachine}.
+
+After the game is entered, \code{Main} enters a sort of idle state, as it will stop taking care of anything until it becomes active after the player requests a return to the main screen and the main menu is loaded again. The program forgets about it, and \code{Game} now takes center stage and manages all systems central to gameplay, as well as pausing the game:
+
+\placeholderfigure{world-loading}{Loading the world after entering the game.}{Loading the world after entering the game. Own figure.}{fig:world-loading}
+
+\subsection{Entity Action Selection}\label{sec:5-2}
+
+There are multiple ways of implementing state switching inside of a finite state machine. One common way is to explicitly define which state may transition to which other, and store this transition information somewhere. Although this does work, it is very cumbersome to do and to debug, as the workload increases quadratically with the number of states. The player of Project Polearm contains, as mentioned, 26 states, which would mean 676 transitions to potentially configure and debug.
+
+This was out of the question. Although some state transitions were explicitly defined in code, the vast majority of state transitions were handled through a priority system. An action with a higher priority will be taken first as a candidate for state transition.
+
+In Project Polearm, states and actions are used to refer to the same thing, the state of a finite state machine which defines the behavior of the system once active. Actions are specifically used with entities, as this makes sense in that specific context. Furthermore, inputs and actions refer to similar concepts within an entity, whereas an input is simply an identification for an abstract input event, which always maps to a specific action or a chain thereof.
+
+The finite state machine follows the MVC pattern, where it represents the model part. It uses a set of inputs to determine the behavior of the player. To allow for custom behavior during input filtering, the \emph{Template Method} pattern is used, which is demonstrated below:
+
+\placeholderfigure{process-actions}{Processing of the requested actions before a state switch.}{Processing of the requested actions before a state switch. Own figure.}{fig:process-actions}
+
+Referencing the diagram from section~\ref{sec:3-4-3}, the \code{BasicStateMachine} needs to retrieve the next action from the current one and send over a payload, if defined, to the next state, if a transition is to be requested. Within the entities, this is done via the function \code{nextAction()}:
+
+\placeholderfigure{next-action}{Selection of the next action in nextAction().}{Selection of the next action in nextAction(). Own figure.}{fig:next-action}
+
+\code{\_\allowbreak{}implNextAction()} corresponds to the part where the developer can specify specific transitions, if so desired. This is for example used to chain certain actions together, like a braking animation when the player stops moving. This practice leaves as much freedom for the developer as possible, whilst still providing them with powerful behavior by default.
+
+Another use case of the \emph{Template Method} pattern in the above diagram is the \code{\_\allowbreak{}preprocessActions()} function, which does nothing on the enemy, as action queueing is a feature reserved for the player, yet both entities use the \code{nextAction()} function. This again demonstrates the flexibility that the proper usage of this pattern allowed us.
+
+A core part of the state switching procedure lies in the function \code{actionViability}, which checks, as its name might suggest, for the viability of an action as a follow-up to the current one:
+
+\placeholderfigure{action-viability}{Viability check of an action in actionViability().}{Viability check of an action in actionViability(). Own figure.}{fig:action-viability}
+
+The \emph{Template Method} pattern is again utilized here. This is, at the end of the day, what makes the state machine so extensible and versatile across multiple systems in the game.
+
+\subsection{From Attacking to Damage}\label{sec:5-3}
+
+Project Polearm defines two structures, which are core to the damage system. These are the \code{Hitbox} and \code{Hurtbox}. Hitboxes are active and scan for the passive hurtboxes. Hurtboxes in turn leave an implementation function open to the developer to determine the behavior after a hit. Both hit- and hurtboxes use the default collision layer and detection system provided by Godot's \code{Area3D} node instead of reinventing the wheel.
+
+\placeholderfigure{hit-to-damage}{From hit detection to damage and death.}{From hit detection to damage and death. Own figure.}{fig:hit-to-damage}
+
+The \code{Hitbox} is highly decoupled from the rest of the game's systems, as it knows of no other system except for the hurtboxes, and even then it does not care what specific type of hurtbox it encountered. The hurtboxes, on the other hand, are specifically implemented for each entity which wants to use one to encompass all possible custom behavior. Here, all the \code{EntityHurtbox} needs to do is to tell the entity's resource container to take damage, and it stops caring about the exact implementation.
+
+The entire hit- and hurtbox system is so decoupled that it is even possible to delete the \code{Hitbox} of an entity or its weapon and for it to remain working, and one only has to delete a few lines of code to fully remove the \code{Hurtbox}. This, of course, comes at the price of losing the functionality which these systems intend to provide. The decoupling of the collision system was demonstrated in the opposite way when we first implemented taking damage. What could have been an arduous process of linking systems became adding a scene to the player and setting up a small amount of code, and thus, taking damage just worked.
+
+The reason why hit- and hurtboxes are not a solid body or just the collision shape of the character's physics body is to enable as much flexibility as possible. If the designer wanted that to be the case, this would just have to be configured, but leaving this open creates a lot of possibilities, e.g. by being able to adjust hit- and hurtbox size for a different gameplay feeling without being coupled to the physics simulation of the character.
+
+\subsection{Enemy Role Assignment}\label{sec:5-4}
+
+The \code{EnemyManager} has multiple responsibilities. In a nutshell, these are:
+
+\begin{itemize}
+    \item Ticking enemy AI
+    \item Spawning enemies
+    \item Assigning enemy roles
+\end{itemize}
+
+The assigned roles are pushed to the enemy AI, also called the enemy controller, through the tick function, where the assigned role and other data are packed into a structure. The algorithm which allocates these roles is also rather lengthy and advanced.
+
+This is due to the large amount of configurability of the encounter. Even aside from enemy spawning behavior, the designer can configure the difficulty of the current wave by setting the \code{MAX\_\allowbreak{}ROLE\_\allowbreak{}DIFFICULTY} property in \code{Wave}. This difficulty works as a sort of point system, which is calculated by adding up the difficulty score of the roles of all enemies currently active. This property is always respected as best as possible by the enemy manager and used to its limit. Here it should be mentioned that, to introduce some amount of dynamic behavior into the game, the role difficulty is randomized every frame by a configurable amount.
+
+The role assignment algorithm starts by handling a special case to guarantee that the last enemy is always aggressive, such that in this case, the enemy manager can avoid unnecessary processing and unwanted behavior.
+
+\placeholderfigure{roles-single-enemy}{Special case of a single active enemy in the role assignment.}{Special case of a single active enemy in the role assignment. Own figure.}{fig:roles-single-enemy}
+
+As the designer may configure a certain number of required roles, the enemy manager has to respect that. This is done via the \code{\_\allowbreak{}fillRequiredRoles} function.
+
+\placeholderfigure{roles-required}{Filling the required roles in \_fillRequiredRoles().}{Filling the required roles in \_fillRequiredRoles(). Own figure.}{fig:roles-required}
+
+It should be noted here that the \code{EnemyManager} defines a timer, which stops an enemy from switching roles too often. This is a conscious choice made to balance correctness of implementation and the playability of the game, which would suffer if enemies could switch roles every frame.
+
+At last, if any difficulty points remain, the enemy manager promotes remaining enemies according to specific criteria.
+
+\placeholderfigure{roles-promote}{Promoting enemies in \_promoteEnemies().}{Promoting enemies in \_promoteEnemies(). Own figure.}{fig:roles-promote}
+
+Now, with the newly acquired role, it becomes the responsibility of the enemy controller what to make of it. Roles are only something abstract, and the concrete implementation in the enemy might differ. For example, the \code{ArcherController} starts the preparation routine for a shot when it receives the \code{ranged} role, and \code{SoliderController} picks a flanking target at a certain, configurable radius around the player and sets that as the new target for the enemy once it receives that role.
+
+The enemy manager allows for enemies not being able to take on all defined roles and respects this fact for all role assignments, which is also the case for enemies in Project Polearm. This gives the designer and enemy AI implementation more flexibility. A conscious decision can be made for which roles to split, which roles to describe using the same tag and how different enemies might behave differently even though they have the same role.
+
+\subsection{\texorpdfstring{\code{FloatingBody}}{FloatingBody}}\label{sec:5-5}
+
+The algorithm used in \code{FloatingBody} is one of the most advanced single algorithms in the entire project. It is a \code{CharacterBody3D} that does not stand on the ground but floats slightly above it. The body collider is shortened by \code{BODY\_\allowbreak{}COLLIDER\_\allowbreak{}FLOATING\_\allowbreak{}HEIGHT}, so the lower part of the character is covered by a sphere cast and rays instead of the collider itself. This allows the body to walk over small steps and slopes without catching on edges.
+
+This works by approximating the bump in front of the player as a slope whilst moving. And thus, during continuous movement, it appears to be smooth. If it stops on a step, the body will slowly move the character up or down to the actual ground height.
+
+Every tick is split into three stages:
+
+\begin{itemize}
+    \item Collision processing
+    \item Velocity calculation
+    \item Movement
+\end{itemize}
+
+The \code{FloatingBody} does not simulate physics realistically. For example, to allow the player to jump without any weird behavior such as sluggish movement in proximity to the ground or clipping into the ground due to the reduced collider size, the floating body uses a \enquote{physics} mode, where the collider is set to full size and the movement smoothing code is disabled. To enable this floating behavior, custom collision code had to be made, as the default collision behavior of the \code{CharacterBody3D} could no longer be used. The collision processing stage works as follows:
+
+\placeholderfigure{floatingbody-collisions}{Collision processing of the FloatingBody.}{Collision processing of the FloatingBody. Own figure.}{fig:floatingbody-collisions}
+
+When using the \code{FloatingBody}, the developer is never supposed to directly set the built-in \code{velocity} of the character, like what one would do with a normal \code{CharacterBody3D}. The \code{FloatingBody} hijacks the velocity calculation and exposes an extensive API to set an alternate target velocity, which is used in the calculation of the proper velocity used in Godot's movement calculations:
+
+\placeholderfigure{floatingbody-velocity}{Velocity calculation of the FloatingBody.}{Velocity calculation of the FloatingBody. Own figure.}{fig:floatingbody-velocity}
+
+And at last, the velocity can be calculated and the character moved:
+
+\placeholderfigure{floatingbody-tick}{A complete tick of the FloatingBody.}{A complete tick of the FloatingBody. Own figure.}{fig:floatingbody-tick}
+
+\newpage
+
+\end{document}
