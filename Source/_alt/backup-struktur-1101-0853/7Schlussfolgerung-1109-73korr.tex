@@ -1,0 +1,98 @@
+\documentclass[../Main.tex]{subfiles}
+
+\begin{document}
+
+\section{Schlussfolgerungen und weiteres Vorgehen} \label{sec:Schlussfolgerungen}
+
+Damit sind wir am Schluss unserer Arbeit angekommen. In diesem Kapitel versuchen wir, unsere Erkenntnisfrage zu beantworten, und gehen dabei auf die Limitationen ein, die wir hatten. Zudem liefern wir weitere Ansätze zur Beantwortung unserer Erkenntnisfrage und schlagen Verbesserungen für unseren Prototyp vor.
+
+\subsection{Beantwortung der Erkenntnisfrage} \label{sec:Beantwortung}
+
+Unsere Erkenntnisfrage lautete:
+
+\begin{quote}
+    \textit{Wie müssen Gegnerverhalten und Gegnerplatzierung in einem 3D-Hack-and-Slash-Prototyp konzipiert sein, damit ein zusammenhängender Kampfabschnitt mit nachvollziehbarem Spielfluss, angemessener Schwierigkeit und befriedigendem Spielgefühl entsteht?}
+\end{quote}
+
+Im Folgenden fassen wir zusammen, was unsere acht Designvorschläge zur Beantwortung beitragen. Wir ordnen sie dabei danach, wie deutlich die Beobachtungen aus Abschnitt~\ref{sec:ErgVorschlag} für die Wirkung sprechen, die wir uns von ihnen erhofft hatten (Kapitel~\ref{sec:Umsetzung}).
+
+Für das Gegnerverhalten zeigt sich eine starke Tendenz dafür, dass die Begrenzung der gleichzeitig erscheinenden Gegner (V2) die grossen Gegnermengen, die es in 3D-Hack-and-Slash-Spielen gibt, bekämpfbar macht und dass die Spieler durch die Kombination von Nah- und Fernkämpfern (V3) entscheiden müssen, welchen Gegner sie zuerst angreifen. Ebenso deutlich sprechen unsere Beobachtungen dafür, dass sich der Spieler als Grundzustand überlegen fühlt (V1) und dass das dynamische Verhalten der Gegner Druck erzeugt (V5).
+
+Bei der Gegnerplatzierung zeigt sich eine starke Tendenz dafür, dass neue Gegner erkannt werden, wenn sie zuerst einzeln eingeführt werden, und dass ihre spätere Kombination die Schwierigkeit erhöht (V8). Eine ebenso starke Tendenz zeigt sich dafür, dass sich die Spieler in den Pausen zwischen den Räumen erholen (V7) und dass weite Räume mehr Bewegungsfreiheit und taktische Distanz bieten (V6).
+
+Für das gezielte Durchbrechen der Überlegenheit (V1) zeigt sich dagegen eine erkennbare, aber keine starke Tendenz dafür, dass es Spannung erzeugt. Das liegt daran, dass das Durchbrechen nicht immer beabsichtigt war und nicht immer Spannung, sondern auch Frust erzeugt hat. Eine erkennbare Tendenz zeigt sich auch dafür, dass die Schwierigkeit taktisch statt mechanisch entsteht (V3), dass die Anfangsaufstellung Überblick gibt (V5), dass enge Räume zu methodischerem Spiel zwingen (V6), dass die Pausen zwischen den Wellen Entlastung bringen und die Schwierigkeit planbar ansteigt (V7) und dass die isolierte Einführung beim Verstehen neuer Gegner hilft (V8).
+
+Bei der Ankündigung von Angriffen (V4) deutet sich an, dass bei den Nahkämpfern Animationen allein ausreichen, bei den Archers finden wir dagegen kaum Hinweise darauf. Ob eine Ankündigung über weitere Kanäle wie Sound bei den Archers ausreicht, konnten wir nicht überprüfen.
+
+Durch all diese Designvorschläge zeigt sich eine starke Tendenz dafür, dass unsere Schwierigkeit angemessen war. Auch für einen gelungenen Spielfluss sprechen unsere Daten deutlich: Vier von fünf Testpersonen erlebten den Kampfabschnitt als zusammenhängend, und zwei spielten nach dem Ende sogar ungefragt weiter. Für ein befriedigendes Spielgefühl zeigt sich dagegen eine erkennbare, aber keine starke Tendenz, da es durch Faktoren beeinflusst wurde, die nicht direkt mit den Gegnern zu tun hatten, wie zum Beispiel, dass die Combos etwas zu träge waren (Abschnitt~\ref{sec:Gesamteindruck}). Auch der Spielfluss wurde an einer Stelle durch einen solchen Faktor gebrochen, weil das Ende eines Encounters nicht kommuniziert wurde.
+
+Deshalb lautet die Antwort auf unsere Erkenntnisfrage vorläufig: Für unseren Prototyp deuten die Playtests darauf hin, dass Gegnerverhalten und Gegnerplatzierung vor allem dann zu einem nachvollziehbaren Spielfluss, einer angemessenen Schwierigkeit und einem befriedigenden Spielgefühl beitragen, wenn die Zahl der gleichzeitig aktiven Gegner begrenzt ist, Nah- und Fernkämpfer kombiniert werden, neue Gegner isoliert eingeführt und erst danach kombiniert werden und es zwischen den Räumen Pausen gibt. Die lesbare Anfangsaufstellung und die Pausen zwischen den Wellen konnten wir dagegen nur in Ansätzen belegen.
+
+Diese Arbeit entstand aus dem Wunsch, Spiele nicht nur zu spielen, sondern sie genauer zu verstehen und selbst ein solches Spielerlebnis zu erschaffen. Das haben wir mit diesem Prototyp erreicht, und zumindest für unseren Kampfabschnitt konnten wir Tendenzen erkennen, wie Gegnerverhalten und Gegnerplatzierung zu einem solchen Spielerlebnis beitragen. Zudem betreffen diese Tendenzen speziell das 3D-Hack-and-Slash-Genre.
+
+\subsection{Limitationen} \label{sec:Limitationen}
+
+Im Rahmen dieser Maturitätsarbeit unterlagen wir einigen Limitationen, welche die Ergebnisse dieser Arbeit einschränken. Im Folgenden listen wir sie chronologisch auf.
+
+Bei der Referenzspielanalyse (Kapitel~\ref{sec:Referenzspielanalyse}) wurden zwei Spiele von zwei unterschiedlichen Personen analysiert. Die Struktur des MDA-Fragebogens ist zwar einheitlich, Einschätzungen wie \enquote{befriedigend} bleiben aber subjektiv (Abschnitt~\ref{sec:Analysefragebogen}). Des Weiteren hatten wir keinen Zugang zum Quellcode der Spiele und dadurch keine tiefergehenden Einblicke. Wir konnten nur beschreiben, was von aussen beobachtbar war.
+
+Bei der Leveldesign-Recherche (Kapitel~\ref{sec:Leveldesign}) behandelt keine der Quellen das Hack-and-Slash-Genre direkt. Alle Erkenntnisse haben wir selbst auf unser Genre übertragen (Abschnitt~\ref{sec:VorgehenLeveldesign}).
+
+Bei der Umsetzung im Prototyp (Kapitel~\ref{sec:Umsetzung}) haben wir die genauen Raumgrössen, Schadenswerte und weiteren Parameter iterativ nach eigenem Ermessen und Spielgefühl festgelegt (Abschnitt~\ref{sec:VorgehenUmsetzung}). Deshalb können wir nicht ausschliessen, dass auch diese Werte unsere Ergebnisse beeinflusst haben. Aufgrund von Zeitmangel und der Priorisierung anderer Systeme konnten wir zudem nicht alle Designvorschläge vollständig wie vorgesehen umsetzen, sondern nur teilweise. Die Rede ist vor allem von der Begrenzung der gleichzeitig angreifenden Gegner (V2) und von der Ankündigung von Angriffen über die Animationen hinaus (V4). Die erhaltenen Resultate haben für das weitere Vorgehen dennoch einen Wert. Auch Faktoren ausserhalb der Gegner haben unsere Daten beeinflusst: die Trägheit der Combos, die Türen, die sich öffnen, ohne dass dies dem Spieler vermittelt wird, was zu Verwirrung führt, und der Neustart nach einem Tod, bei dem man wieder ganz am Anfang beginnt (Abschnitt~\ref{sec:Gesamteindruck}).
+
+Bei den Playtests und der Auswertung (Kapitel~\ref{sec:Evaluation}) lassen sich mit fünf Testpersonen keine repräsentativen Daten ermitteln, weshalb wir nur Tendenzen erkennen konnten (Abschnitt~\ref{sec:Auswertung}). Wo wir keine Hinweise auf unsere Annahmen gefunden haben, lässt sich deshalb auch nicht das Gegenteil feststellen. Die meisten Testpersonen waren etwa in unserem Alter, also Ende Teenageralter oder Anfang zwanzig, und wir kannten alle persönlich oder über Bekannte, was die Ehrlichkeit ihrer Antworten beeinflusst haben könnte (Abschnitt~\ref{sec:AuswahlTP}). Zudem fanden zwei Playtests über Discord statt, weshalb wir Mimik und Körpersprache dieser Testpersonen nicht beobachten konnten (Abschnitt~\ref{sec:Beobachtungsraster}). Nach den Playtests ist uns ausserdem aufgefallen, dass einige Aussagen im Post-Questionnaire die Designvorschläge nicht genau messen. Gemeint ist beispielsweise Q5, die zwei Dinge gleichzeitig abfragt, aber auch Q6, Q8 und Q10 (Abschnitt~\ref{sec:ErgVorschlag}).
+
+Des Weiteren gelten unsere Ergebnisse nur für unseren eigenen Prototyp und nicht für Hack-and-Slash-Spiele im Allgemeinen. Ausschlaggebend sind dabei besonders unsere eigenen Definitionen der drei Qualitäten (Abschnitt~\ref{sec:Erkenntnisfrage}). Zudem haben wir den Prototyp selbst entwickelt und könnten deshalb bei der Auswertung der Playtests voreingenommen gewesen sein. Wir haben auch nur eine Reihe von Playtests mit einer einzigen Version des Prototyps durchgeführt und konnten die Verbesserungen aus Abschnitt~\ref{sec:Verbesserungen} nicht mehr umsetzen.
+
+\subsection{Weiteres Vorgehen und Ausblick} \label{sec:Verbesserungen}
+
+In einem weiteren Vorgehen wo wir das Gegnerverhalten und Gegnerplatzierung untersuchen, würden wir wie folgt vorgehen. Zum einen würden wir einige unserer Designvorschläge, bei denen wir \textcolor{red}{nur eine erkennbare Tendenz} feststellen konnten, noch einmal und spezifischer überprüfen, damit wir diesmal klarere Antworten erhalten. \textcolor{red}{Zum anderen würden wir einzelne Vorschläge abwandeln. Für jeden Designvorschlag sieht das wie folgt aus.}
+
+\paragraph{\textcolor{red}{V1: Überlegenheit als Grundzustand}}
+Die Überlegenheit des Spielers konnten wir der Tendenz nach schon recht gut etablieren, sie aber noch nicht richtig geplant brechen \textcolor{red}{(Abschnitt~\ref{sec:ErgVorschlag}, V1)}. Die konkrete Verbesserung wäre dabei, den Heavy Soldier wieder etwas stärker zu machen. Des weiteren würden wir versuche alle störfaktoren, die wir gefunden haben und die die datenerhebung erschwert haben im letzten durchgang versuchen zu kontrollieren. Zudem würden wir auch noch Brüche genauer kathegorisieren in solche die Spass machen und solche die es nicht tun.
+
+\begin{itemize}[leftmargin=1.5cm]
+    \item \textcolor{red}{[Aus V1 ergänzen:] Untersuchen, welche Arten von Brüchen der Überlegenheit Spass machen und welche nicht. Beispiel: Das Heilen hat als taktischer Bruch Spannung erzeugt, ob es Spass gemacht hat, ist offen. Die Trägheit der Combos war dagegen kein taktischer Bruch und eher frustrierend (Abschnitt~\ref{sec:ErgVorschlag}, V1).}
+\end{itemize}
+
+\paragraph{\textcolor{red}{V2: Begrenzung gleichzeitig aktiver Gegner}}
+\textcolor{red}{Die Begrenzung der gleichzeitig angreifenden Gegner haben wir kaum genutzt. In einem nächsten Playtest würden wir sie gezielt einsetzen, auch um dem Stunlock entgegenzuwirken, der gerade dann entstand, wenn alle Gegner gleichzeitig angriffen (Abschnitt~\ref{sec:ErgVorschlag}, V2).} MOmentan haben wir nur das spawnen der gegner begrenzt und nicht genau die aktiven angreifer, diesen punkt genauer anzusachuen würde uns dabei auch helfen das stunlock problem zu beseitigen.
+
+\paragraph{\textcolor{red}{V3: Ein taktisches Dilemma durch Nah- und Fernkämpfer}}
+\textcolor{red}{Das Dilemma wurde wahrgenommen, liess sich aber auch ignorieren (Abschnitt~\ref{sec:ErgVorschlag}, V3).} das heisst bei diesem dilemma würden wir weiter versuchen es zu stärken, wir hatten schon wege gefundne unser jetzige version zu schwächen, eventuell liesen isch durch stärkere archer oder weiter gegnertypen oder varianten das stärken.
+
+\begin{itemize}[leftmargin=1.5cm]
+    \item \textcolor{red}{[Fehlt:] Was würdet ihr bei V3 ändern oder genauer prüfen? Zum Beispiel: ob das Dilemma stärker wirkt, wenn Archers mehr Schaden machen und man sie deshalb nicht mehr ignorieren kann, oder eine Frage, die direkt nach taktischer statt mechanischer Schwierigkeit fragt.}
+\end{itemize}
+
+\paragraph{\textcolor{red}{V4: Klar telegrafierte Angriffe}}
+Die Ankündigung von Angriffen würden wir mit mehreren Kanälen erneut testen\textcolor{red}{, etwa mit Sound und Partikeleffekten}. Dabei könnten wir vielleicht auch Unterschiede bei den Soldiers feststellen, ganz besonders aber bei den Archers. \textcolor{red}{Auch diesen Vorschlag würden wir weiterverfolgen, da unsere Daten zumindest bei den Nahkämpfern in diese Richtung tendieren.}
+
+\paragraph{\textcolor{red}{V5: Lesbare Platzierung, dynamisches Verhalten}}
+\textcolor{red}{In einem nächsten Schritt würden wir das dynamische Verhalten weglassen und nur die symmetrische Platzierung überprüfen.} Das ist uns dieses Mal nicht ganz gelungen, weil dieser Vorschlag zwei unterschiedliche Dinge zu überprüfen versuchte. Zudem könnte man prüfen, ob es einen Unterschied macht, ob die Gegner schon da sind, wenn man den Raum betritt, oder ob sie erst dann spawnen\textcolor{red}{, wie in \game{NieR: Automata} bzw.\ \game{Ninja Gaiden} (Abschnitt~\ref{sec:ErgVorschlag}, V5)}.
+
+\paragraph{\textcolor{red}{V6: Der Raum als Druckmittel}}
+\textcolor{red}{Die weiten Räume haben wie beabsichtigt gewirkt. Bei den engen Räumen ist die Wirkung dagegen weniger klar und hängt stark vom Spielstil ab. Den Vorschlag würden wir deshalb abgewandelt weiterverfolgen: Da der Druck in engen Räumen vor allem durch den fehlenden Platz zum Heilen entstand (Abschnitt~\ref{sec:ErgVorschlag}, V6), würden wir die Enge gezielter über die Zahl der Gegner steuern und nicht nur über die Raumgrösse. Zudem würden wir die Schwierigkeit der Räume direkt abfragen und nicht nur, ob sie sich anders anfühlten.} diesen vorsclag würden wir eher nicht verfolgen, da wir jetzt schon wenige zuferlässige daten gewinnen konnten. des weiteren hat es zwar mit gegner plazierung zu tun weil ein gener anders platziert wird in einem klieneren ode grösseren raum aber das thema ist viel zu brei gefasst  und deswegen würden wir es fallen lassen.
+
+\paragraph{\textcolor{red}{V7: Wellenstruktur mit Erholungsphasen}}
+Auch die Wellenstruktur würden wir weiterverfolgen und dabei noch gezielter auf Ruhe und Anspannung achten, zum Beispiel mit einer Pulsmessung während des Playtests.\autocite[285--287]{drachen2018gamesuserresearch} Dabei würden wir zwischen Pausen unterscheiden, die wir dem Spieler vorgeben, und solchen, die sich der Spieler selbst verschafft. \textcolor{red}{Damit die Pausen zwischen den Wellen besser erkennbar sind, bräuchte es zudem eine Rückmeldung, wann eine Welle oder ein Encounter vorbei ist (siehe unten).}
+
+\paragraph{\textcolor{red}{V8: Gestaffelte Einführung neuer Gegner}}
+Was wir schon gut gemach haben bei diesem playtest war, das gestafelte einführen aber wir konnten noch nicht die efekte auf die spieler messen. das lag unter nderem daran, dass die frage nichtganz suaber formuliert war und man einen gegner nicht ansehen konnte, was genau seine attacken warne. das würden wir versuchen zu ändern, indem wir visuelle hinweise mit z.b. klareren 3d modellen für unsere gegner probieren würden.
+
+\paragraph{\textcolor{red}{Playtests}}
+\textcolor{red}{Allgemein würden wir die Aussagen Q5, Q6, Q8 und Q10 beim nächsten Playtest genauer formulieren, da sie nicht immer genau das abfragten, was der jeweilige Vorschlag bewirken sollte (Abschnitt~\ref{sec:Limitationen}).} Ausserdem könnten wir Playtests mit einer grösseren Gruppe durchführen, um statistisch auswertbare Daten zu erhalten.
+
+\paragraph{\textcolor{red}{Verbesserungen am Prototyp}}
+Um dieses Vorgehen zu unterstützen \textcolor{red}{und Faktoren auszuschliessen, die nicht direkt mit den Gegnern zu tun haben}, würden wir an unserem Prototyp folgende Verbesserungen vornehmen:
+
+\begin{itemize}[leftmargin=1.5cm]
+    \item die Trägheit der Combos verringern (V1 und Abschnitt~\ref{sec:Gesamteindruck}),
+    \item den Übergang zwischen Bewegung und Kampf verbessern (Abschnitt~\ref{sec:Gesamteindruck}),
+    \item Audio- und/oder Partikeleffekte ergänzen, die Angriffe ankündigen (V4),
+    \item einen Indikator einbauen, der anzeigt, wann ein Encounter vorbei ist, sowie Sounds für die Türen, damit auch diese klar erkennbar sind (Abschnitt~\ref{sec:Gesamteindruck}),
+    \item I-Frames hinzufügen, etwa beim Aufstehen nach einem Treffer, um dem Stunlock entgegenzuwirken (V1 und V2),
+    \item den Air Combat, der gegen unsere Bodengegner kaum nützlich war und trotzdem von einigen Testpersonen eingesetzt wurde (TP2, TP3 und TP4, jeweils B13), mit zwei Moves ergänzen: einer Aktion, die Gegner in die Luft wirft, und einer, mit der man aus der Luft auf den Boden dashen kann. Einen solchen Angriff aus der Luft wünschten sich auch mehrere Testpersonen (TP1, Q13; TP2, Q13; TP4, B11).
+\end{itemize}
+
+\end{document}
