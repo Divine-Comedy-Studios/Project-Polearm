@@ -2,19 +2,143 @@
 
 [ext_resource type="Script" uid="uid://dst11fwy0jr66" path="res://Interfaces/Menus/CreditsMenu/CreditsMenu.gd" id="1_m28ru"]
 [ext_resource type="Script" uid="uid://cfdlgc8aalbtr" path="res://Interfaces/Menus/Button/GameMenuButton.gd" id="2_aati5"]
+[ext_resource type="Theme" uid="uid://eptqqy8sm6gl" path="res://Interfaces/Themes/MenuTheme.tres" id="3_theme"]
+[ext_resource type="Texture2D" uid="uid://r1c2gke6bvc" path="res://Assets/Interfaces/Kenney/Derived/divider_center.png" id="4_divider"]
 
 [node name="CreditsMenu" type="Control" unique_id=1191166775]
+texture_filter = 1
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("3_theme")
 script = ExtResource("1_m28ru")
 metadata/_custom_type_script = "uid://cyn28bbc16luj"
 
-[node name="Back" type="Button" parent="." unique_id=1018012283]
-layout_mode = 0
-focus_neighbor_top = NodePath("../Keyboard")
-focus_neighbor_bottom = NodePath("../Game")
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=907700234]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="PanelContainer" parent="CenterContainer" unique_id=1362503701]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/Panel" unique_id=456727424]
+layout_mode = 2
+theme_override_constants/separation = 28
+
+[node name="Title" type="Label" parent="CenterContainer/Panel/VBoxContainer" unique_id=1840211557]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.717647, 0.427451, 0.313725, 1)
+theme_override_font_sizes/font_size = 72
+text = "UI_STARTMENU_CREDITS"
+horizontal_alignment = 1
+
+[node name="Divider" type="TextureRect" parent="CenterContainer/Panel/VBoxContainer" unique_id=1840211558]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("4_divider")
+stretch_mode = 3
+
+[node name="Sections" type="VBoxContainer" parent="CenterContainer/Panel/VBoxContainer" unique_id=1840211559]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="Developers" type="VBoxContainer" parent="CenterContainer/Panel/VBoxContainer/Sections" unique_id=1840211560]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Heading" type="Label" parent="CenterContainer/Panel/VBoxContainer/Sections/Developers" unique_id=1840211561]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.717647, 0.427451, 0.313725, 1)
+theme_override_font_sizes/font_size = 34
+text = "UI_CREDITSMENU_DEVELOPERS"
+horizontal_alignment = 1
+
+[node name="Names" type="Label" parent="CenterContainer/Panel/VBoxContainer/Sections/Developers" unique_id=1840211562]
+auto_translate_mode = 2
+layout_mode = 2
+text = "Rodin Arslan
+Zhile Zhu"
+horizontal_alignment = 1
+
+[node name="Supervisors" type="VBoxContainer" parent="CenterContainer/Panel/VBoxContainer/Sections" unique_id=1840211563]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Heading" type="Label" parent="CenterContainer/Panel/VBoxContainer/Sections/Supervisors" unique_id=1840211564]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.717647, 0.427451, 0.313725, 1)
+theme_override_font_sizes/font_size = 34
+text = "UI_CREDITSMENU_SUPERVISORS"
+horizontal_alignment = 1
+
+[node name="Names" type="Label" parent="CenterContainer/Panel/VBoxContainer/Sections/Supervisors" unique_id=1840211565]
+auto_translate_mode = 2
+layout_mode = 2
+text = "Michael Schneider
+Dr. Christophe Bersier"
+horizontal_alignment = 1
+
+[node name="Logo" type="VBoxContainer" parent="CenterContainer/Panel/VBoxContainer/Sections" unique_id=1840211566]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Heading" type="Label" parent="CenterContainer/Panel/VBoxContainer/Sections/Logo" unique_id=1840211567]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.717647, 0.427451, 0.313725, 1)
+theme_override_font_sizes/font_size = 34
+text = "UI_CREDITSMENU_LOGO"
+horizontal_alignment = 1
+
+[node name="Names" type="Label" parent="CenterContainer/Panel/VBoxContainer/Sections/Logo" unique_id=1840211568]
+auto_translate_mode = 2
+layout_mode = 2
+text = "Beatrice Schötzau"
+horizontal_alignment = 1
+
+[node name="SpecialThanks" type="VBoxContainer" parent="CenterContainer/Panel/VBoxContainer/Sections" unique_id=1840211569]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Heading" type="Label" parent="CenterContainer/Panel/VBoxContainer/Sections/SpecialThanks" unique_id=1840211570]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.717647, 0.427451, 0.313725, 1)
+theme_override_font_sizes/font_size = 34
+text = "UI_CREDITSMENU_SPECIAL_THANKS"
+horizontal_alignment = 1
+
+[node name="Names" type="Label" parent="CenterContainer/Panel/VBoxContainer/Sections/SpecialThanks" unique_id=1840211571]
+auto_translate_mode = 2
+layout_mode = 2
+text = "Bastian Nakatsu
+Beatrice Schötzau
+Cyrill Bruttin
+Luca Savoldelli
+Max Starrowsky"
+horizontal_alignment = 1
+
+[node name="Buttons" type="VBoxContainer" parent="CenterContainer/Panel/VBoxContainer" unique_id=1840211572]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Back" type="Button" parent="CenterContainer/Panel/VBoxContainer/Buttons" unique_id=1018012283]
+texture_filter = 1
+custom_minimum_size = Vector2(340, 76)
+layout_mode = 2
+focus_neighbor_top = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
 text = "UI_BACK"
 script = ExtResource("2_aati5")
 metadata/_custom_type_script = "uid://cfdlgc8aalbtr"
 
-[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="CenterContainer/Panel/VBoxContainer/Buttons/Back" to="." method="_on_back_pressed"]
