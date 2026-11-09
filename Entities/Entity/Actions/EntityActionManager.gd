@@ -1,3 +1,12 @@
+# The overall structure of the Entity State Machine as well as the
+# FrameDatawere heavily inspired by the following tutorial series:
+# 
+# https://www.youtube.com/watch?v=FgO5edghqRE&list=PLzia-gCwY2G2AXn2hvAjKzLH2_rCvVQFQ
+#
+# A big thank you to @PointDown for providing the Godot community
+# with these invaluable resources and insights!
+
+
 extends BasicStateMachine
 class_name EntityActionManager
 

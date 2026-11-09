@@ -1,3 +1,14 @@
+/**
+ * This implementation was inspired by following sources:
+ *
+ * https://github.com/NoiRC256/SRMove
+ * https://www.reddit.com/r/godot/comments/1nznsej/my_approach_to_stairs_dubbed_the_balloon/
+ * https://www.youtube.com/watch?v=CdPYlj5uZeI
+ *
+ * A big thanks to the creators of these sources for their contributions,
+ * as I would not have been able to come up with the solution myself!
+ */
+
 using Godot;
 
 
