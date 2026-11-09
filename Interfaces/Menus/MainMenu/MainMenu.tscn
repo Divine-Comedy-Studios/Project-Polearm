@@ -51,22 +51,26 @@ BACK_MENU = 2
 [node name="GameOptions" parent="." unique_id=2031472548 instance=ExtResource("11_3nt47")]
 process_mode = 4
 visible = false
-BACK_MENU = 4
+BACK_MENU = 5
 
 [node name="VideoOptions" parent="." unique_id=889703237 instance=ExtResource("13_0ye7o")]
 process_mode = 4
 visible = false
-BACK_MENU = 4
+BACK_MENU = 5
 
 [node name="AudioOptions" parent="." unique_id=805272734 instance=ExtResource("8_6nkw5")]
 process_mode = 4
 visible = false
-BACK_MENU = 4
+BACK_MENU = 5
 
 [node name="ControllerMapping" parent="." unique_id=984357258 instance=ExtResource("4_0vu78")]
 process_mode = 4
 visible = false
+TYPE = 10
+BACK_MENU = 5
 
 [node name="KeyboardMapping" parent="." unique_id=601317194 instance=ExtResource("7_smu38")]
 process_mode = 4
 visible = false
+TYPE = 11
+BACK_MENU = 5

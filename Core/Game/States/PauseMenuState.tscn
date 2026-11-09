@@ -11,3 +11,4 @@ metadata/_custom_type_script = "uid://dsimdcatc5tk5"
 
 [node name="PauseMenu" parent="." unique_id=1914925635 instance=ExtResource("2_6dbdc")]
 visible = false
+INITIAL_MENU_TYPE = 6

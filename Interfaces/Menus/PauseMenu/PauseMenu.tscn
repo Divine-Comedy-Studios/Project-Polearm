@@ -32,27 +32,31 @@ metadata/_custom_type_script = "uid://7cjw5im7rxvp"
 [node name="OptionsMenu" parent="." unique_id=865326453 instance=ExtResource("3_cgrnr")]
 process_mode = 4
 visible = false
-BACK_MENU = 5
+BACK_MENU = 6
 
 [node name="GameOptions" parent="." unique_id=2031472548 instance=ExtResource("5_apx62")]
 process_mode = 4
 visible = false
-BACK_MENU = 4
+BACK_MENU = 5
 
 [node name="VideoOptions" parent="." unique_id=1719290083 instance=ExtResource("7_uqgmp")]
 process_mode = 4
 visible = false
-BACK_MENU = 4
+BACK_MENU = 5
 
 [node name="AudioOptions" parent="." unique_id=1890015755 instance=ExtResource("9_li8nt")]
 process_mode = 4
 visible = false
-BACK_MENU = 4
+BACK_MENU = 5
 
 [node name="KeyboardMapping" parent="." unique_id=601317194 instance=ExtResource("13_mmoyh")]
 process_mode = 4
 visible = false
+TYPE = 11
+BACK_MENU = 5
 
 [node name="ControllerMapping" parent="." unique_id=984357258 instance=ExtResource("11_byafs")]
 process_mode = 4
 visible = false
+TYPE = 10
+BACK_MENU = 5

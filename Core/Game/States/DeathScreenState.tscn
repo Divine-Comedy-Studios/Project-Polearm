@@ -9,3 +9,4 @@ script = ExtResource("1_death")
 
 [node name="DeathMenu" parent="." unique_id=475905331 instance=ExtResource("2_dh8rm")]
 visible = false
+INITIAL_MENU_TYPE = 12
