@@ -313,15 +313,18 @@ func _fillRequiredRoles(randomizedKeys : Array[BasicEnemy], requiredRoles : Dict
 			var roleState := _activeEnemyStates[enemy]
 			var currentWeight := _roleWeight(roleState.role)
 
+			requestedCount -= 1
+	
 			for exitRole : Role in ROLE_STRENGTH:
-				var exitWeight := _roleWeight(exitRole)
+				if exitRole == roleState.role or not enemy.availableRoles().has(exitRole):
+					continue
 
+				var exitWeight := _roleWeight(exitRole)
 				if _fitsRoleDifficulty(exitWeight, currentWeight):
 					_assignEnemyRole(roleState, exitRole, currentWeight, exitWeight)
+					requestedCount += 1
 
-					continue
-			
-			requestedCount -= 1
+					break
 
 		# If we have surplus roles left over, we see which enemy we can get
 		while requestedCount > 0:
@@ -379,6 +382,7 @@ func _swapEnemyRoles(enterCandidates : Array[BasicEnemy], exitCandidates : Array
 func _assignEnemyRole(roleState : RoleState, role : Role, currentWeight : float, newWeight : float) -> void:
 	roleState.role = role
 	roleState.holdTimer = ROLE_HOLD_TIME
+	roleState.requestsChange = false
 	_roleDifficulty.value = _roleDifficulty.value + newWeight - currentWeight
 
 
