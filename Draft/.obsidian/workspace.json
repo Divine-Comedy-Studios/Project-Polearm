@@ -111,12 +111,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "5. Procedures and Algorithms.md",
+                "file": "7. Post-Mortem.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "5. Procedures and Algorithms"
+              "title": "7. Post-Mortem"
             }
           },
           {
@@ -303,14 +303,14 @@
   },
   "active": "e12b485604497f9a",
   "lastOpenFiles": [
-    "8. Appendix.md",
-    "7. Post-Mortem.md",
     "6. Tooling and Developer Experience.md",
+    "7. Post-Mortem.md",
     "5. Procedures and Algorithms.md",
-    "4. Architecture and Systems.md",
     "3. Design Decisions and Goals.md",
-    "1. Introduction.md",
     "2. Organization.md",
+    "4. Architecture and Systems.md",
+    "1. Introduction.md",
+    "8. Appendix.md",
     "Test.md",
     "Untitled",
     "5. Systems.md",
