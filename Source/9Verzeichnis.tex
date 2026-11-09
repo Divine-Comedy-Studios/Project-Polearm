@@ -27,7 +27,7 @@ An der Entstehung dieser Arbeit waren die folgenden Personen beteiligt.\footnote
 \begin{description}[leftmargin=1.5cm, style=nextline, itemsep=0.6em]
     \item[Projektteam] Rodin Arslan (\url{rodin.delil.arslan@gmail.com}) und Zhile Zhu (\url{zhuzhile08@gmail.com}), Klasse G23g, Kantonsschule Baden: Konzeption, Entwicklung des Prototyps und Verfassen des Begleitberichts
     \item[Erstbetreuung] Michael Schneider, Kantonsschule Baden, Dept.\ Informatik, der uns während der gesamten Arbeit begleitet hat
-    \item[Zweitbetreuung] Dr.\ Christophe Bersier, Kantonsschule Baden, Dept.\ Physik
+    \item[Zweitbewerter] Dr.\ Christophe Bersier, Kantonsschule Baden, Dept.\ Physik
     \item[Testpersonen] Bastian Nakatsu, Beatrice Schötzau, Cyrill Bruttin, Luca Savoldelli und Max Starrowsky, die den Prototyp in den Playtests gespielt und uns mit ihren Rückmeldungen wertvolle Hinweise für unsere Auswertung gegeben haben (Abschnitt~\ref{sec:Durchfuehrung}). In den Protokollen (Abschnitt~\ref{sec:PlaytestProtokolle}) sind sie anonymisiert. Die alphabetische Reihenfolge hier entspricht nicht der Nummerierung TP1--TP5.
     \item[Weitere Unterstützung] Beatrice Schötzau (\url{beatrice.schotzau@gmail.com}) hat das coole App-Icon des Prototyps gestaltet.
 \end{description}
@@ -39,54 +39,54 @@ Für diese Arbeit haben wir KI-Werkzeuge eingesetzt: beim Begleitbericht und bei
 KI haben wir nicht als Quelle für sachliche Informationen verwendet. Alle Sachaussagen stützen sich auf die angegebenen Quellen. Quellenangaben, welche die KI geprüft oder formatiert hat, haben wir selbst mit den Originalquellen abgeglichen.
 
 {\small
-\renewcommand{\arraystretch}{1.3}
-\begin{longtable}{|>{\raggedright\arraybackslash}p{2.3cm}|>{\raggedright\arraybackslash}p{2.4cm}|>{\raggedright\arraybackslash}p{4.4cm}|>{\raggedright\arraybackslash}p{4.6cm}|}
-    \hline
-    \textbf{Bereich} & \textbf{Tool, Datum} & \textbf{Zweck und betroffene Stelle} & \textbf{Art der Übernahme, Eigenanteil und Überprüfung} \\
-    \hline
-\endfirsthead
-    \hline
-    \textbf{Bereich} & \textbf{Tool, Datum} & \textbf{Zweck und betroffene Stelle} & \textbf{Art der Übernahme, Eigenanteil und Überprüfung} \\
-    \hline
-\endhead
-    \multicolumn{4}{r}{\textit{Fortsetzung auf der nächsten Seite}} \\
-\endfoot
-\caption{Einsatz von KI nach den Bereichen des Rasters \enquote{Verwendung von KI}}
-\label{tab:KI}
-\endlastfoot
-    Arbeitsplanung und Organisation & Claude Opus 5.5 (Claude Cowork), 28.10.--4.11.2026 & Aufgabenliste für den Begleitbericht, Abschätzen des verbleibenden Aufwands & Liste als Orientierung verwendet und laufend selbst angepasst. \\
-    \hline
-     & Claude (claude.ai), \textcolor{red}{[Zeitraum]} & Brainstorming und Planung: Einschätzungen der KI zu unseren Ideen und zum Vorgehen & Als Meinung eingeholt. Die Entscheidungen haben wir selbst getroffen. \\
-    \hline
-    Informations- und Literaturrecherche & Claude (claude.ai), Oktober 2026; Claude Opus 5.5, 28.10.--4.11.2026 & Vorschläge für Fachbücher auf unsere Frage nach Material \textcolor{red}{[Datum prüfen]}; BibTeX-Einträge zu unseren Quellen, Einschätzung ihrer Eignung, Prüfen von Quellenangaben (Literaturverzeichnis) & Vorgeschlagene Bücher selbst gelesen und geprüft. Die übrigen Quellen haben wir selbst über Google Scholar gesucht und gelesen. BibTeX-Einträge übernommen und mit den Originalquellen abgeglichen. \\
-    \hline
-    Vorgehen und Methode & Claude Opus 5.5, 28.10.--4.11.2026 & Rückmeldungen zur Beschreibung des Vorgehens (Kapitel~\ref{sec:Grundlagen}), Anpassen der Beschreibung des Beobachtungsrasters an das tatsächliche Vorgehen & Hinweise geprüft und Texte überwiegend selbst überarbeitet. MDA-Fragebogen und Playtest-Fragebögen haben wir selbst entwickelt. \\
-    \hline
-    Untersuchung und Datenerhebung & -- & Kein KI-Einsatz: Die Playtests haben wir selbst geplant und durchgeführt. & -- \\
-    \hline
-    Auswertung von Daten & Claude Opus 5.5, 28.10.--4.11.2026 & Zuordnen der Beobachtungsnotizen zu den Kriterien B1--B14, sprachliches Vereinheitlichen der Notizen und Interviewantworten, Anonymisieren der Protokolle (Anhang~\ref{sec:PlaytestProtokolle}); Zusammentragen und Auszählen der Ergebnisse aus den Protokollen für Kapitel~\ref{sec:Evaluation} (z.\,B.\ \enquote{x von 5}) & Zuordnung und Formulierungen weitgehend übernommen, von uns geprüft und an mehreren Stellen korrigiert. Zählungen anhand der Protokolle geprüft. Die Interpretation in Kapitel~\ref{sec:Evaluation} stammt von uns. \\
-    \hline
-    Hilfsmittel und Werkzeuge & Claude Opus 5.5, 28.10.--4.11.2026 & Textsatz mit \LaTeX: mehrseitige Tabellen, Tabellenformatierung, Fehlersuche beim Kompilieren & \LaTeX-Code übernommen und im kompilierten Dokument kontrolliert. \\
-    \hline
-    Programmieren und Berechnungen & Claude Sonnet 4.6 (claude.ai), 15.03.2026 & Editor-Werkzeug zum Erzeugen von Treppen & Code übernommen; Prompts \textcolor{red}{im \textit{Project Polearm Technical Report} [prüfen, ob sie dort stehen]}. \\
-    \hline
-     & Claude Sonnet 4.6 (claude.ai), 09.04.2026 und 22.05.2026 & Hilfsskript für Animationen, Grundgerüst und eine Funktion & Als Ausgangspunkt übernommen und danach von uns verändert; Prompts \textcolor{red}{im \textit{Project Polearm Technical Report} [prüfen]}. \\
-    \hline
-     & Claude Sonnet 5.5 (claude.ai), Oktober 2026 & Audiosystem: Musikverwaltung und Grundlage für Soundeffekte & Grösstenteils übernommen; Prompts \textcolor{red}{im \textit{Project Polearm Technical Report} [prüfen]}. \\
-    \hline
-     & Claude \textcolor{red}{[Modell]}, Juli und Oktober 2026 & Shader: nicht kompatible Shader portiert und eigene Shader geschrieben \textcolor{red}{[welche Shader genau, prüfen]} & Grösstenteils übernommen und im Spiel visuell überprüft. \textcolor{red}{[prüfen]} \\
-    \hline
-    Rückmeldungen und Orientierung & Claude Opus 5.5, 28.10.--4.11.2026 & Durchsicht aller Kapitel des Begleitberichts mit Hinweisen zu Struktur, Verständlichkeit, fehlenden Belegen und Widersprüchen zwischen den Kapiteln & Hinweise als Notizen erhalten. Die Texte haben wir überwiegend selbst überarbeitet, einige Hinweise bewusst verworfen. \\
-    \hline
-    Überprüfung und Kontrolle & Claude Opus 5.5, 28.10.--4.11.2026 & Korrektur von Rechtschreibung, Grammatik und Wortwahl; Kennzeichnen von eigenen und belegten Aussagen; Abgleich mit Projektvertrag und Zwischenbewertung; Prüfen der Einheitlichkeit von Begriffen und Nummerierungen & Korrekturen übernommen. Der Inhalt wurde dabei nicht verändert. \\
-    \hline
-    Darstellung von Ergebnissen & Claude Opus 5.5, 28.10.--6.11.2026 & Gestaltung der Tabellen~\ref{tab:Designvorschlaege} bis~\ref{tab:Raeume} aus unseren Angaben; Umstrukturierung der Ergebnisse in Kapitel~\ref{sec:Evaluation} nach Sichtweisen der Testpersonen & Aufbau der Tabellen übernommen. Die Inhalte stammen von uns. Kapitel~\ref{sec:Evaluation}: Gliederung und einzelne Überleitungssätze übernommen, Inhalte und Formulierungen von uns. \\
-    \hline
-    Weiteres: von der KI formulierte Texte & Claude Opus 5.5, 28.10.--4.11.2026 & Glossar (Anhang~\ref{sec:Glossar}), Abschnitt~\ref{sec:Limitationen} (Limitationen), einzelne Sätze in Kapitel~\ref{sec:Umsetzung}, Charakterisierung der Testpersonen (Tabelle~\ref{tab:Testpersonen}), Abschnitt~\ref{sec:Beteiligte} (Beteiligte Personen) & Aus unseren Angaben formuliert und weitgehend übernommen. Inhaltlich von uns geprüft. An den Stellen mit Fussnote gekennzeichnet. \\
-    \hline
-    Weiteres: Arbeitsjournal & Claude \textcolor{red}{[Modell, Zeitraum]} & Strukturieren unserer Journaleinträge nach den Vorgaben der Betreuungsperson & Gliederung übernommen. Die Inhalte stammen von uns. \\
-    \hline
-\end{longtable}
+    \renewcommand{\arraystretch}{1.3}
+    \begin{longtable}{|>{\raggedright\arraybackslash}p{2.3cm}|>{\raggedright\arraybackslash}p{2.4cm}|>{\raggedright\arraybackslash}p{4.4cm}|>{\raggedright\arraybackslash}p{4.6cm}|}
+        \hline
+        \textbf{Bereich} & \textbf{Tool, Datum} & \textbf{Zweck und betroffene Stelle} & \textbf{Art der Übernahme, Eigenanteil und Überprüfung} \\
+        \hline
+        \endfirsthead
+        \hline
+        \textbf{Bereich} & \textbf{Tool, Datum} & \textbf{Zweck und betroffene Stelle} & \textbf{Art der Übernahme, Eigenanteil und Überprüfung} \\
+        \hline
+        \endhead
+        \multicolumn{4}{r}{\textit{Fortsetzung auf der nächsten Seite}} \\
+        \endfoot
+        \caption{Einsatz von KI nach den Bereichen des Rasters \enquote{Verwendung von KI}}
+        \label{tab:KI}
+        \endlastfoot
+        Arbeitsplanung und Organisation & Claude Opus 5.5 (Claude Cowork), 28.10.--4.11.2026 & Aufgabenliste für den Begleitbericht, Abschätzen des verbleibenden Aufwands & Liste als Orientierung verwendet und laufend selbst angepasst. \\
+        \hline
+        & Claude (claude.ai), \textcolor{red}{[Zeitraum]} & Brainstorming und Planung: Einschätzungen der KI zu unseren Ideen und zum Vorgehen & Als Meinung eingeholt. Die Entscheidungen haben wir selbst getroffen. \\
+        \hline
+        Informations- und Literaturrecherche & Claude (claude.ai), Oktober 2026; Claude Opus 5.5, 28.10.--4.11.2026 & Vorschläge für Fachbücher auf unsere Frage nach Material \textcolor{red}{[Datum prüfen]}; BibTeX-Einträge zu unseren Quellen, Einschätzung ihrer Eignung, Prüfen von Quellenangaben (Literaturverzeichnis) & Vorgeschlagene Bücher selbst gelesen und geprüft. Die übrigen Quellen haben wir selbst über Google Scholar gesucht und gelesen. BibTeX-Einträge übernommen und mit den Originalquellen abgeglichen. \\
+        \hline
+        Vorgehen und Methode & Claude Opus 5.5, 28.10.--4.11.2026 & Rückmeldungen zur Beschreibung des Vorgehens (Kapitel~\ref{sec:Grundlagen}), Anpassen der Beschreibung des Beobachtungsrasters an das tatsächliche Vorgehen & Hinweise geprüft und Texte überwiegend selbst überarbeitet. MDA-Fragebogen und Playtest-Fragebögen haben wir selbst entwickelt. \\
+        \hline
+        Untersuchung und Datenerhebung & -- & Kein KI-Einsatz: Die Playtests haben wir selbst geplant und durchgeführt. & -- \\
+        \hline
+        Auswertung von Daten & Claude Opus 5.5, 28.10.--4.11.2026 & Zuordnen der Beobachtungsnotizen zu den Kriterien B1--B14, sprachliches Vereinheitlichen der Notizen und Interviewantworten, Anonymisieren der Protokolle (Anhang~\ref{sec:PlaytestProtokolle}); Zusammentragen und Auszählen der Ergebnisse aus den Protokollen für Kapitel~\ref{sec:Evaluation} (z.\,B.\ \enquote{x von 5}) & Zuordnung und Formulierungen weitgehend übernommen, von uns geprüft und an mehreren Stellen korrigiert. Zählungen anhand der Protokolle geprüft. Die Interpretation in Kapitel~\ref{sec:Evaluation} stammt von uns. \\
+        \hline
+        Hilfsmittel und Werkzeuge & Claude Opus 5.5, 28.10.--4.11.2026 & Textsatz mit \LaTeX: mehrseitige Tabellen, Tabellenformatierung, Fehlersuche beim Kompilieren & \LaTeX-Code übernommen und im kompilierten Dokument kontrolliert. \\
+        \hline
+        Programmieren und Berechnungen & Claude Sonnet 4.6 (claude.ai), 15.03.2026 & Editor-Werkzeug zum Erzeugen von Treppen & Code übernommen; Prompts \textcolor{red}{im \textit{Project Polearm Technical Report} [prüfen, ob sie dort stehen]}. \\
+        \hline
+        & Claude Sonnet 4.6 (claude.ai), 09.04.2026 und 22.05.2026 & Hilfsskript für Animationen, Grundgerüst und eine Funktion & Als Ausgangspunkt übernommen und danach von uns verändert; Prompts \textcolor{red}{im \textit{Project Polearm Technical Report} [prüfen]}. \\
+        \hline
+        & Claude Sonnet 5.5 (claude.ai), Oktober 2026 & Audiosystem: Musikverwaltung und Grundlage für Soundeffekte & Grösstenteils übernommen; Prompts \textcolor{red}{im \textit{Project Polearm Technical Report} [prüfen]}. \\
+        \hline
+        & Claude \textcolor{red}{[Modell]}, Juli und Oktober 2026 & Shader: nicht kompatible Shader portiert und eigene Shader geschrieben \textcolor{red}{[welche Shader genau, prüfen]} & Grösstenteils übernommen und im Spiel visuell überprüft. \textcolor{red}{[prüfen]} \\
+        \hline
+        Rückmeldungen und Orientierung & Claude Opus 5.5, 28.10.--4.11.2026 & Durchsicht aller Kapitel des Begleitberichts mit Hinweisen zu Struktur, Verständlichkeit, fehlenden Belegen und Widersprüchen zwischen den Kapiteln & Hinweise als Notizen erhalten. Die Texte haben wir überwiegend selbst überarbeitet, einige Hinweise bewusst verworfen. \\
+        \hline
+        Überprüfung und Kontrolle & Claude Opus 5.5, 28.10.--4.11.2026 & Korrektur von Rechtschreibung, Grammatik und Wortwahl; Kennzeichnen von eigenen und belegten Aussagen; Abgleich mit Projektvertrag und Zwischenbewertung; Prüfen der Einheitlichkeit von Begriffen und Nummerierungen & Korrekturen übernommen. Der Inhalt wurde dabei nicht verändert. \\
+        \hline
+        Darstellung von Ergebnissen & Claude Opus 5.5, 28.10.--6.11.2026 & Gestaltung der Tabellen~\ref{tab:Designvorschlaege} bis~\ref{tab:Raeume} aus unseren Angaben; Umstrukturierung der Ergebnisse in Kapitel~\ref{sec:Evaluation} nach Sichtweisen der Testpersonen & Aufbau der Tabellen übernommen. Die Inhalte stammen von uns. Kapitel~\ref{sec:Evaluation}: Gliederung und einzelne Überleitungssätze übernommen, Inhalte und Formulierungen von uns. \\
+        \hline
+        Weiteres: von der KI formulierte Texte & Claude Opus 5.5, 28.10.--4.11.2026 & Glossar (Anhang~\ref{sec:Glossar}), Abschnitt~\ref{sec:Limitationen} (Limitationen), einzelne Sätze in Kapitel~\ref{sec:Umsetzung}, Charakterisierung der Testpersonen (Tabelle~\ref{tab:Testpersonen}), Abschnitt~\ref{sec:Beteiligte} (Beteiligte Personen) & Aus unseren Angaben formuliert und weitgehend übernommen. Inhaltlich von uns geprüft. An den Stellen mit Fussnote gekennzeichnet. \\
+        \hline
+        Weiteres: Arbeitsjournal & Claude \textcolor{red}{[Modell, Zeitraum]} & Strukturieren unserer Journaleinträge nach den Vorgaben der Betreuungsperson & Gliederung übernommen. Die Inhalte stammen von uns. \\
+        \hline
+    \end{longtable}
 }
 
 Nicht mit KI erstellt haben wir insbesondere die Analysen der Referenzspiele, die Designvorschläge, den Kampfabschnitt des Prototyps mit seinen Räumen und Gegnern, die Durchführung der Playtests sowie die Interpretation der Ergebnisse und die Schlussfolgerungen.
@@ -104,12 +104,6 @@ Nicht mit KI erstellt haben wir insbesondere die Analysen der Referenzspiele, di
     \item \textcolor{red}{\textbf{Zhile:} Eigene KI-Einsätze (Code, Journal, Vertrag) ergänzen. In der Zwischenbewertung wird KI bei der Vertragsarbeit erwähnt -- wer hat das gemacht, mit welchem Tool?}
     \item \textcolor{red}{\textbf{Zitierregeln:} KI-Ergebnisse dürfen nicht wortwörtlich übernommen werden (Merkblatt, Zitierregeln 1.7). Glossar, Limitationen und Beteiligte Personen entweder in eigenen Worten umschreiben oder die Übernahme mit Herrn Schneider absprechen. Danach die Zeile \enquote{Weiteres: von der KI formulierte Texte} anpassen.}
     \item \textcolor{red}{\textbf{Am Schluss prüfen:} Einsätze in Kapitel~6--8 und beim Abstract nachtragen; Satz \enquote{Nicht mit KI erstellt \ldots} muss dann noch stimmen.}
-\end{itemize}
-
-\subsection{Selbstständigkeitserklärung}
-
-\begin{itemize}[leftmargin=1.5cm]
-    \item \textcolor{red}{Erklärung, dass die Arbeit selbst entwickelt und verfasst wurde, mit Ort, Datum und Unterschriften beider Personen.}
 \end{itemize}
 
 \newpage
@@ -1114,63 +1108,53 @@ In diesem Glossar erklären wir Fachbegriffe, die wir in dieser Arbeit verwenden
 \newpage
 \section{Anhang: Liste der externen Assets} \label{sec:Assets}
 
-Die folgende Liste führt die externen Ressourcen auf, die im Prototyp verwendet oder als Grundlage angepasst wurden. Der Einsatz von KI ist in der KI-Deklaration (Abschnitt~\ref{sec:KIDeklaration}) aufgeführt. Quellenangaben zu übernommenem Code stehen direkt in den jeweiligen Dateien.
-
-\begin{itemize}[leftmargin=1.5cm]
-\item \textcolor{red}{Diese Liste habe ich aus den Ordnern und Lizenzdateien des Spielprojekts zusammengestellt. Was dort nicht stand, ist rot markiert und muss ergänzt werden. Ausserdem prüfen, ob alle Einträge im finalen Build wirklich verwendet werden; ungenutzte streichen.}
-\end{itemize}
+Die folgende Liste führt die externen Ressourcen auf, die im Prototyp verwendet oder als Grundlage angepasst wurden. Der Einsatz von KI ist in der KI-Deklaration (Abschnitt~\ref{sec:KIDeklaration}) aufgeführt. Quellenangaben zu übernommenem Code finden sich im \textit{Project Polearm Technical Report}.
 
 \paragraph{3D-Modelle und Animationen}
 \begin{itemize}[leftmargin=1.5cm]
-\item \textbf{Y Bot} (Grundmodell für Spielfigur und Gegner) und Animationen -- Mixamo (Adobe), \url{https://www.mixamo.com}. Lizenz: Nutzungsbedingungen von Mixamo \textcolor{red}{[prüfen]}. Angepasst: Farbvarianten, Animationen in Blender überarbeitet.
-\item \textbf{Animationspaket} -- 9CG \textcolor{red}{[genauer Name, Link, Lizenz]}. Alle Animationen in Blender abgeändert.
-\item \textbf{Waffenmodelle} Guandao, Hammer, Scimitar -- \textcolor{red}{[Quelle, Lizenz]}.
-\item \textbf{Gegnermodell} -- \textcolor{red}{[Quelle, Lizenz; wird es noch verwendet?]}.
-\item \textbf{Truhe} \textcolor{red}{[Quelle und Lizenz ergänzen, der Dateiname deutet auf Copilot 3D hin; wird sie im Kampfabschnitt verwendet?]}.
-\item \textbf{Umgebungstexturen und Props} (u.\,a.\ Bodenfliesen, Fels, Beton, Metallplatten, Rohre, Lüftungsschächte, Feuerlöscher, Feuermelder, Generator, Stromkasten, Überwachungskamera, Kanaldeckel) -- Poly Haven, \url{https://polyhaven.com}, CC0. \textcolor{red}{[anhand der Dateinamen zugeordnet, bitte prüfen]}
-\item \textbf{Metallbox-Textur} (Stachelgrube) -- \textcolor{red}{[Quelle, Lizenz]}.
-\item \textbf{Prototype Textures 1.0} (Greybox-Texturen) -- Kenney, \url{https://www.kenney.nl}, CC0 (laut beiliegender Lizenzdatei).
+\item \textbf{Y Bot} (Grundmodell für Spielfigur und Gegner) und Animationen -- Mixamo (Adobe), \url{https://www.mixamo.com}. Lizenz: Nutzungsbedingungen von Mixamo. Angepasst: Farbvarianten für die Gegner, Animationen in Blender überarbeitet.
+\item \textbf{Spear Animations Pack} -- 9CG, Fab, \url{https://www.fab.com/listings/02b4b496-4591-4cee-8970-e28c08026eae}, Fab Standard License. Alle Animationen in Blender abgeändert.
+\item \textbf{Fantasy Treasure Chest} (Truhe) -- -X-ScornGames, Sketchfab, \url{https://sketchfab.com/3d-models/x-fantasy-treasure-chest-313a236caaec44f5b55aed327d7b56d8}, CC BY 4.0. Laut Angabe des Autors mit KI generiert.
+\item \textbf{Umgebungstexturen und Props} (u.\,a.\ Bodenfliesen, Fels, Beton, Metallplatten, Rohre, Lüftungsschächte, Feuerlöscher, Feuermelder, Generator, Stromkasten, Überwachungskamera, Kanaldeckel) -- Poly Haven, \url{https://polyhaven.com}, CC0.
+\item \textbf{Prototype Textures 1.0} (Greybox-Texturen) -- Kenney, \url{https://www.kenney.nl}, CC0.
 \end{itemize}
 
 \paragraph{Shader}
 \begin{itemize}[leftmargin=1.5cm]
-\item \textbf{Stylized Sky with Procedural Sun and Moon} -- godotshaders.com \textcolor{red}{[Autor, Lizenz]}.
-\item \textbf{Foam Water Shader} -- \textcolor{red}{[Quelle, Lizenz; wird er verwendet?]}.
-\item \textbf{PSX-Shader} -- \textcolor{red}{[Quelle, Lizenz; wird er verwendet?]}.
+\item \textbf{Stylized Sky with Procedural Sun and Moon} -- krzmig, godotshaders.com, \url{https://godotshaders.com/shader/stylized-sky-with-procedural-sun-and-moon/}, MIT-Lizenz.
+\item \textbf{Godot Foam Water} (Wasser-Shader) -- antzGames, GitHub, \url{https://github.com/antzgames/godot-foam-water}, MIT-Lizenz.
 \end{itemize}
 
 \paragraph{Benutzeroberfläche}
 \begin{itemize}[leftmargin=1.5cm]
-\item \textbf{UI-Elemente} (Panels, Rahmen, Trennlinien) -- Kenney, \url{https://www.kenney.nl}, CC0 (laut beiliegender Lizenzdatei).
-\item \textbf{Tastensymbole} (Tastatur und Maus, Xbox, PlayStation) -- \textcolor{red}{[Quelle, Lizenz]}.
+\item \textbf{UI-Elemente} (Panels, Rahmen, Trennlinien) -- Kenney, \url{https://www.kenney.nl}, CC0.
+\item \textbf{Tastensymbole} (Tastatur und Maus, Xbox, PlayStation) -- Kenney, \url{https://www.kenney.nl}, CC0.
 \item \textbf{Schrift Noto Serif SC} -- Google Fonts, SIL Open Font License 1.1.
 \end{itemize}
 
 \paragraph{Musik}
 \begin{itemize}[leftmargin=1.5cm]
-\item \textbf{Fight Them Until We Can't} -- Zander Noriega \textcolor{red}{[Link, Lizenz]}. Verwendung: Spiel.
-\item \textbf{Big Boss 2} und \textbf{Blind Rage} -- \textcolor{red}{[Autor, Link, Lizenz]}. Verwendung: Spiel.
-\item \textbf{Welcome to Com-Mecha} -- \textcolor{red}{[Autor, Link, Lizenz]}. Verwendung: Hauptmenü.
-\item \textbf{Boss Battle \#2 (Metal Opening)} -- \textcolor{red}{[Autor, Link, Lizenz; wird es verwendet?]}.
-\item \textbf{Pausenmusik} -- \textcolor{red}{[Autor, Link, Lizenz]}.
-\item \textbf{Bleeding Out} -- OpenGameArt, \url{https://opengameart.org/content/bleeding-out} \textcolor{red}{[Autor, Lizenz]}. Verwendung: Todesbildschirm.
+\item \textbf{Fight Them Until We Can't} -- Zander Noriega, OpenGameArt, \url{https://opengameart.org/content/fight-them-until-we-cant}, CC-BY 3.0. Verwendung: Spiel.
+\item \textbf{Big Boss} -- bart, OpenGameArt, \url{https://opengameart.org/content/big-boss}, CC-BY 3.0. Verwendung: Spiel.
+\item \textbf{Blind Rage} -- Azazel42, OpenGameArt, \url{https://opengameart.org/content/blind-rage}, GPL 3.0. Verwendung: Spiel.
+\item \textbf{Theme of Com-Mecha} (\enquote{Welcome to Com-Mecha}) -- Matthew Pablo, OpenGameArt, \url{https://opengameart.org/content/theme-of-com-mecha}, CC-BY 3.0. Verwendung: Hauptmenü.
+\item \textbf{Boss Battle \#2 [Symphonic Metal]} -- nene, OpenGameArt, \url{https://opengameart.org/content/boss-battle-2-symphonic-metal}, CC0. Verwendung: Hauptmenü.
+\item \textbf{Bleeding Out} -- Brandon Morris, OpenGameArt, \url{https://opengameart.org/content/bleeding-out}, CC0 bzw.\ OGA-BY 3.0. Verwendung: Todesbildschirm.
 \end{itemize}
 
 \paragraph{Soundeffekte}
 \begin{itemize}[leftmargin=1.5cm]
-\item \textbf{Sword Combat Sound Effects Pack (Free Version)} -- Hove Audio, \url{https://hoveaudio.gumroad.com} \textcolor{red}{[Lizenz]}.
-\item \textbf{400 Sounds Pack} -- \textcolor{red}{[Autor, Link, Lizenz]}.
-\item \textbf{Metal Hit} -- OpenGameArt, \url{https://opengameart.org/content/metal-hit} \textcolor{red}{[Autor, Lizenz]}.
-\item \textbf{Meeresrauschen} -- \textcolor{red}{[Quelle, Lizenz; wird es verwendet?]}.
+\item \textbf{Sword Combat Sound Effects Pack (Free Version)} -- Hove Audio, itch.io, \url{https://hoveaudio.itch.io/sword-combat-sound-effects-pack-free-version}. Lizenz: lizenzfrei (Royalty Free), eine Nennung ist laut Autor nicht nötig.
+\item \textbf{400 Sounds Pack} -- Chequered Ink, itch.io, \url{https://ci.itch.io/400-sounds-pack}. Lizenz: freie Nutzung, auch kommerziell, mit oder ohne Nennung, solange die Dateien nicht unverändert weiterverkauft werden.
+\item \textbf{Metal Hit} -- Marcelo Fernandez, OpenGameArt, \url{https://opengameart.org/content/metal-hit}, CC-BY 3.0.
 \end{itemize}
 
 \paragraph{Godot-Erweiterungen}
 \begin{itemize}[leftmargin=1.5cm]
 \item \textbf{FuncGodot} (Import der TrenchBroom-Karten) -- func\_godot Community, MIT-Lizenz.
-\item \textbf{Phantom Camera} -- Marcus Skov \textcolor{red}{[Lizenz]}.
+\item \textbf{Phantom Camera} -- Marcus Skov, MIT-Lizenz.
 \item \textbf{Debug Draw 3D} -- Dmitriy Salnikov, MIT-Lizenz.
-\item \textbf{SliderGamepad} -- Victor Meunier (MrEliptik), MIT-Lizenz.
-\item \textbf{Animation Player Refactor} -- poohcom1 \textcolor{red}{[Lizenz]}.
+\item \textbf{Animation Player Refactor} -- poohcom1, MIT-Lizenz.
 \end{itemize}
 
 \end{document}
