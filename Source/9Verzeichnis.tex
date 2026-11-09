@@ -34,9 +34,9 @@ An der Entstehung dieser Arbeit waren die folgenden Personen beteiligt.\footnote
 
 \subsection{KI-Deklaration} \label{sec:KIDeklaration}
 
-Für diese Arbeit haben wir KI-Werkzeuge eingesetzt: beim Begleitbericht und bei einzelnen Teilen des Prototyps Claude (Anthropic). Die folgende Tabelle fasst den Einsatz nach den Bereichen des Rasters \enquote{Verwendung von KI} zusammen. Die einzelnen Nachweise mit Prompt, Datum und Art der Übernahme finden sich in unseren Arbeitsjournalen. An Stellen, an denen von der KI formulierte Texte in den Begleitbericht eingeflossen sind, steht zusätzlich eine Fussnote. Diese Nachweise sind am Ende dieses Abschnitts aufgeführt. Bei Programmcode ist der KI-Einsatz im Header der jeweiligen Datei dokumentiert, einschliesslich der verwendeten Prompts.
+Für diese Arbeit haben wir KI-Werkzeuge eingesetzt\footnote{Mit Claude formuliert, siehe Nachweise am Ende dieses Abschnitts.}: beim Begleitbericht und bei einzelnen Teilen des Prototyps Claude (Anthropic) und in der Gratisversion auch ChatGPT (OpenAI). Die folgende Tabelle fasst den Einsatz nach den Bereichen des Rasters \enquote{Verwendung von KI} zusammen. Die einzelnen Nachweise mit Prompt, Datum und Art der Übernahme finden sich in unseren Arbeitsjournalen. An Stellen, an denen von der KI formulierte Texte in den Begleitbericht eingeflossen sind, steht zusätzlich eine Fussnote. Diese Nachweise sind am Ende dieses Abschnitts aufgeführt. Bei Programmcode ist der KI-Einsatz einschliesslich der verwendeten Prompts direkt im Quellcode der betroffenen Dateien dokumentiert. Bei den Shadern und beim Hitbox-Skript haben wir die Originalprompts nicht gespeichert. Dort stehen nachträglich rekonstruierte Prompts, die als solche gekennzeichnet sind.
 
-KI haben wir nicht als Quelle für sachliche Informationen verwendet. Alle Sachaussagen stützen sich auf die angegebenen Quellen. Quellenangaben, welche die KI geprüft oder formatiert hat, haben wir selbst mit den Originalquellen abgeglichen.
+Für Sachaussagen im Begleitbericht haben wir KI nicht als Quelle verwendet. Alle Sachaussagen stützen sich auf die angegebenen Quellen. Quellenangaben, welche die KI geprüft oder formatiert hat, haben wir selbst mit den Originalquellen abgeglichen.
 
 {\small
     \renewcommand{\arraystretch}{1.3}
@@ -54,56 +54,47 @@ KI haben wir nicht als Quelle für sachliche Informationen verwendet. Alle Sacha
         \caption{Einsatz von KI nach den Bereichen des Rasters \enquote{Verwendung von KI}}
         \label{tab:KI}
         \endlastfoot
-        Arbeitsplanung und Organisation & Claude Opus 5.5 (Claude Cowork), 28.10.--4.11.2026 & Aufgabenliste für den Begleitbericht, Abschätzen des verbleibenden Aufwands & Liste als Orientierung verwendet und laufend selbst angepasst. \\
+        Arbeitsplanung und Organisation & Claude Opus 5.5 (Claude Cowork), 28.10.--9.11.2026 & Aufgabenliste für den Begleitbericht, Abschätzen des verbleibenden Aufwands & Liste als Orientierung verwendet und laufend selbst angepasst. \\
         \hline
-        & Claude (claude.ai), \textcolor{red}{[Zeitraum]} & Brainstorming und Planung: Einschätzungen der KI zu unseren Ideen und zum Vorgehen & Als Meinung eingeholt. Die Entscheidungen haben wir selbst getroffen. \\
+        Informations- und Literaturrecherche & Claude (claude.ai), Juli 2026; Claude Opus 5.5, 28.10.--4.11.2026 & Vorschläge für Fachbücher zum Leveldesign auf unsere Frage nach Material; BibTeX-Einträge zu unseren Quellen, Einschätzung ihrer Eignung, Prüfen von Quellenangaben (Literaturverzeichnis) & Vorgeschlagene Bücher selbst gelesen und geprüft. Die übrigen Quellen haben wir selbst über Google Scholar gesucht und gelesen. BibTeX-Einträge übernommen und mit den Originalquellen abgeglichen. \\
         \hline
-        Informations- und Literaturrecherche & Claude (claude.ai), Oktober 2026; Claude Opus 5.5, 28.10.--4.11.2026 & Vorschläge für Fachbücher auf unsere Frage nach Material \textcolor{red}{[Datum prüfen]}; BibTeX-Einträge zu unseren Quellen, Einschätzung ihrer Eignung, Prüfen von Quellenangaben (Literaturverzeichnis) & Vorgeschlagene Bücher selbst gelesen und geprüft. Die übrigen Quellen haben wir selbst über Google Scholar gesucht und gelesen. BibTeX-Einträge übernommen und mit den Originalquellen abgeglichen. \\
-        \hline
-        Vorgehen und Methode & Claude Opus 5.5, 28.10.--4.11.2026 & Rückmeldungen zur Beschreibung des Vorgehens (Kapitel~\ref{sec:Grundlagen}), Anpassen der Beschreibung des Beobachtungsrasters an das tatsächliche Vorgehen & Hinweise geprüft und Texte überwiegend selbst überarbeitet. MDA-Fragebogen und Playtest-Fragebögen haben wir selbst entwickelt. \\
+        Vorgehen und Methode & Claude Opus 5.5, 28.10.--9.11.2026 & Rückmeldungen zur Beschreibung des Vorgehens (Kapitel~\ref{sec:Grundlagen}), Anpassen der Beschreibung des Beobachtungsrasters an das tatsächliche Vorgehen & Hinweise geprüft und Texte überwiegend selbst überarbeitet. MDA-Fragebogen und Playtest-Fragebögen haben wir selbst entwickelt. \\
         \hline
         Untersuchung und Datenerhebung & -- & Kein KI-Einsatz: Die Playtests haben wir selbst geplant und durchgeführt. & -- \\
         \hline
-        Auswertung von Daten & Claude Opus 5.5, 28.10.--4.11.2026 & Zuordnen der Beobachtungsnotizen zu den Kriterien B1--B14, sprachliches Vereinheitlichen der Notizen und Interviewantworten, Anonymisieren der Protokolle (Anhang~\ref{sec:PlaytestProtokolle}); Zusammentragen und Auszählen der Ergebnisse aus den Protokollen für Kapitel~\ref{sec:Evaluation} (z.\,B.\ \enquote{x von 5}) & Zuordnung und Formulierungen weitgehend übernommen, von uns geprüft und an mehreren Stellen korrigiert. Zählungen anhand der Protokolle geprüft. Die Interpretation in Kapitel~\ref{sec:Evaluation} stammt von uns. \\
+        Aufbereitung von Daten & Claude Opus 5.5, 28.10.--9.11.2026 & Zuordnen der Beobachtungsnotizen zu den Kriterien B1--B14, sprachliches Vereinheitlichen der Notizen und Interviewantworten, Anonymisieren der Protokolle (Anhang~\ref{sec:PlaytestProtokolle}); Heraussuchen der Stellen aus den rund 20 Seiten Protokollen, die für die einzelnen Designvorschläge passen, und Auszählen der Antworten für Kapitel~\ref{sec:Evaluation} (z.\,B.\ \enquote{x von 5}) & Zuordnung und Formulierungen weitgehend übernommen, von uns geprüft und an mehreren Stellen korrigiert. Die herausgesuchten Stellen haben wir anhand der Protokolle geprüft und ergänzt, damit nichts fehlt. Zählungen ebenfalls anhand der Protokolle geprüft. \\
         \hline
-        Hilfsmittel und Werkzeuge & Claude Opus 5.5, 28.10.--4.11.2026 & Textsatz mit \LaTeX: mehrseitige Tabellen, Tabellenformatierung, Fehlersuche beim Kompilieren & \LaTeX-Code übernommen und im kompilierten Dokument kontrolliert. \\
+        Hilfsmittel und Werkzeuge & Claude Opus 5.5, 28.10.--9.11.2026 & Textsatz mit \LaTeX: mehrseitige Tabellen, Tabellenformatierung, Fehlersuche beim Kompilieren & \LaTeX-Code übernommen und im kompilierten Dokument kontrolliert. \\
         \hline
-        Programmieren und Berechnungen & Claude Sonnet 4.6 (claude.ai), 15.03.2026 & Editor-Werkzeug zum Erzeugen von Treppen & Code übernommen; Prompts \textcolor{red}{in der \textit{Project Polearm Technical Documentation} [prüfen, ob sie dort stehen]}. \\
+        Programmieren und Berechnungen & Claude Sonnet 4.6 (claude.ai), 04.03.2026 & Editor-Werkzeug zum Erzeugen von Treppen & Code übernommen; Prompts im Quellcode dokumentiert. \\
         \hline
-        & Claude Sonnet 4.6 (claude.ai), 09.04.2026 und 22.05.2026 & Hilfsskript für Animationen, Grundgerüst und eine Funktion & Als Ausgangspunkt übernommen und danach von uns verändert; Prompts \textcolor{red}{in der \textit{Project Polearm Technical Documentation} [prüfen]}. \\
+        & Claude Sonnet 4.6 (claude.ai), 09.04.2026 und 22.05.2026 & Hilfsskript für Animationen, Grundgerüst und eine Funktion & Als Ausgangspunkt übernommen und danach von uns verändert; Prompts im Quellcode dokumentiert. \\
         \hline
-        & Claude Sonnet 5.5 (claude.ai), Oktober 2026 & Audiosystem: Musikverwaltung und Grundlage für Soundeffekte & Grösstenteils übernommen; Prompts \textcolor{red}{in der \textit{Project Polearm Technical Documentation} [prüfen]}. \\
+        & Claude Sonnet 5.5 (claude.ai), Oktober 2026 & Audiosystem: Musikverwaltung und Grundlage für Soundeffekte & Grösstenteils übernommen; Prompts im Quellcode dokumentiert. \\
         \hline
-        & Claude \textcolor{red}{[Modell]}, Juli und Oktober 2026 & Shader: nicht kompatible Shader portiert und eigene Shader geschrieben \textcolor{red}{[welche Shader genau, prüfen]} & Grösstenteils übernommen und im Spiel visuell überprüft. \textcolor{red}{[prüfen]} \\
+        & Claude bzw.\ ChatGPT (jeweils Gratisversion), Juli und Oktober 2026 & Shader: nicht kompatible GLSL-Shader nach Godot portiert und zu zwei Stilisierungs-Shadern für die Toon-Beleuchtung und die Nachbearbeitung des Bildes zusammengefasst (Juli) sowie zwei eigene Shader für den Industrie-Look geschrieben (Oktober) & Grösstenteils übernommen und im Spiel visuell überprüft. Prompts nachträglich rekonstruiert und im Quellcode dokumentiert. \\
         \hline
-        Rückmeldungen und Orientierung & Claude Opus 5.5, 28.10.--4.11.2026 & Durchsicht aller Kapitel des Begleitberichts mit Hinweisen zu Struktur, Verständlichkeit, fehlenden Belegen und Widersprüchen zwischen den Kapiteln & Hinweise als Notizen erhalten. Die Texte haben wir überwiegend selbst überarbeitet, einige Hinweise bewusst verworfen. \\
+        & Claude bzw.\ ChatGPT (jeweils Gratisversion), 17.10.2026 & Skript, das die Hitboxen der Blender-Modelle automatisch erzeugt & Übernommen und an den Modellen im Spiel überprüft. Prompts nachträglich rekonstruiert und im Quellcode dokumentiert. \\
         \hline
-        Überprüfung und Kontrolle & Claude Opus 5.5, 28.10.--4.11.2026 & Korrektur von Rechtschreibung, Grammatik und Wortwahl; Kennzeichnen von eigenen und belegten Aussagen; Abgleich mit Projektvertrag und Zwischenbewertung; Prüfen der Einheitlichkeit von Begriffen und Nummerierungen & Korrekturen übernommen. Der Inhalt wurde dabei nicht verändert. \\
+        Rückmeldungen und Orientierung & Claude Opus 5.5, 28.10.--9.11.2026 & Durchsicht aller Kapitel des Begleitberichts mit Hinweisen zu Struktur, Verständlichkeit, fehlenden Belegen und Widersprüchen zwischen den Kapiteln & Hinweise als Notizen erhalten, teilweise umgesetzt und teilweise verworfen. Alle Verweise auf vorherige Kapitel hat die KI gesetzt. \\
         \hline
-        Darstellung von Ergebnissen & Claude Opus 5.5, 28.10.--6.11.2026 & Gestaltung der Tabellen~\ref{tab:Designvorschlaege} bis~\ref{tab:Raeume} aus unseren Angaben; Umstrukturierung der Ergebnisse in Kapitel~\ref{sec:Evaluation} nach Sichtweisen der Testpersonen & Aufbau der Tabellen übernommen. Die Inhalte stammen von uns. Kapitel~\ref{sec:Evaluation}: Gliederung und einzelne Überleitungssätze übernommen, Inhalte und Formulierungen von uns. \\
+        Überprüfung und Kontrolle & Claude Opus 5.5, 28.10.--9.11.2026 & Korrektur von Rechtschreibung, Grammatik und Wortwahl; Kennzeichnen von eigenen und belegten Aussagen; Abgleich mit Projektvertrag und Zwischenbewertung; Prüfen der Einheitlichkeit von Begriffen und Nummerierungen & Korrekturen übernommen. Der Inhalt wurde dabei nicht verändert. \\
         \hline
-        Weiteres: von der KI formulierte Texte & Claude Opus 5.5, 28.10.--4.11.2026 & Glossar (Anhang~\ref{sec:Glossar}), Abschnitt~\ref{sec:Limitationen} (Limitationen), einzelne Sätze in Kapitel~\ref{sec:Umsetzung}, Abschnitt~\ref{sec:Beteiligte} (Beteiligte Personen) & Aus unseren Angaben formuliert und weitgehend übernommen. Inhaltlich von uns geprüft. An den Stellen mit Fussnote gekennzeichnet. \\
+        Darstellung von Ergebnissen & Claude Opus 5.5, 28.10.--9.11.2026 & Gestaltung der Tabellen~\ref{tab:Designvorschlaege} bis~\ref{tab:Raeume} aus unseren Angaben & Aufbau der Tabellen übernommen. Die Inhalte stammen von uns. \\
         \hline
-        Weiteres: Arbeitsjournal & Claude \textcolor{red}{[Modell, Zeitraum]} & Strukturieren unserer Journaleinträge nach den Vorgaben der Betreuungsperson & Gliederung übernommen. Die Inhalte stammen von uns. \\
+        Weiteres: von der KI formulierte Texte & Claude Opus 5.5, 28.10.--9.11.2026 & Glossar (Anhang~\ref{sec:Glossar}), Abschnitt~\ref{sec:Beteiligte} (Beteiligte Personen) und Abschnitt~\ref{sec:KIDeklaration} (KI-Deklaration) & Aus unseren Angaben formuliert und weitgehend übernommen. Inhaltlich von uns geprüft. An den Stellen mit Fussnote gekennzeichnet. \\
+        \hline
+        Weiteres: Arbeitsjournal & Claude bzw.\ ChatGPT (jeweils Gratisversion), 29.03.--10.11.2026 & Strukturieren unserer Journaleinträge nach den Vorgaben der Betreuungsperson. & Gliederung übernommen. Die Inhalte stammen von uns. \\
         \hline
     \end{longtable}
 }
 
-Nicht mit KI erstellt haben wir insbesondere die Analysen der Referenzspiele, die Designvorschläge, den Kampfabschnitt des Prototyps mit seinen Räumen und Gegnern, die Durchführung der Playtests sowie die Interpretation der Ergebnisse und die Schlussfolgerungen.
-
 \paragraph{Nachweise der von der KI formulierten Texte}
 \begin{itemize}[leftmargin=1.5cm, itemsep=0.4em]
     \item Claude (Opus 5.5): «[\ldots] leg ein glossar am ende an [\ldots] und auch bitte eine asset liste», 01.11.2026. Glossar nach unseren Vorgaben verfasst und weitgehend übernommen.
-    \item Claude (Opus 5.5): «die limitationen von unserem playtest bogen kannst du aufschreiben [\ldots]», 01.11.2026. Abschnitt Limitationen aus unseren Stichpunkten verfasst und weitgehend übernommen.
-    \item Claude (Opus 5.5): «also ich habe jetzt v6 geschreiebn. das mit den hindernissen und den verschiedenen ebenen kannst du schreiben und auch das mit auf die karte verweisen. schau dir hier besonders die struktur an ich glaube es ist ein wenig alles überll und wenig struktur», 04.11.2026. Absatz zu Hindernissen und Ebenen in Abschnitt~\ref{sec:V6} formuliert und übernommen. Ebenso einzelne Rückbezüge in den Abschnitten~\ref{sec:Kampfabschnitt} bis~\ref{sec:V8}.
-    \item Claude (Opus 5.5): «okay ich habe jetzt auch den letzten palytest gemacht. damit bin ich mit allen fertig. bitte korrigiere noch testperson eins und füge alle sachen an ihren platzt [\ldots]», 04.11.2026. Beobachtungsnotizen den Kriterien zugeordnet und sprachlich vereinheitlicht; übernommen und korrigiert.
-    \item Claude (Opus 5.5): «okay jetzt was ich jetzt von dir will ist dass du die die tests komplett anonymisierst und auch das geschriebene genderneutral aufschreibst, und [\ldots] alle personen die beteiligt sind an unserem projekt auf eine seite schreiben [\ldots]», 04.11.2026. Protokolle anonymisiert und Abschnitt Beteiligte Personen verfasst; übernommen.
-\end{itemize}
-
-\begin{itemize}[leftmargin=1.5cm]
-    \item \textcolor{red}{\textbf{Zhile:} Eigene KI-Einsätze (Code, Journal, Vertrag) ergänzen. In der Zwischenbewertung wird KI bei der Vertragsarbeit erwähnt -- wer hat das gemacht, mit welchem Tool?}
-    \item \textcolor{red}{\textbf{Zitierregeln:} KI-Ergebnisse dürfen nicht wortwörtlich übernommen werden (Merkblatt, Zitierregeln 1.7). Glossar, Limitationen und Beteiligte Personen entweder in eigenen Worten umschreiben oder die Übernahme mit Herrn Schneider absprechen. Danach die Zeile \enquote{Weiteres: von der KI formulierte Texte} anpassen.}
-    \item \textcolor{red}{\textbf{Am Schluss prüfen:} Einsätze in Kapitel~6--8 und beim Abstract nachtragen; Satz \enquote{Nicht mit KI erstellt \ldots} muss dann noch stimmen.}
+    \item Claude (Opus 5.5): «okay ich habe jetzt auch den letzten palytest gemacht. damit bin ich mit allen fertig. bitte korrigiere noch testperson eins und füge alle sachen an ihren platzt [\ldots]», 04.11.2026. Beobachtungsnotizen den Kriterien zugeordnet und sprachlich vereinheitlicht. Übernommen und korrigiert.
+    \item Claude (Opus 5.5): «okay jetzt was ich jetzt von dir will ist dass du die die tests komplett anonymisierst und auch das geschriebene genderneutral aufschreibst, und [\ldots] alle personen die beteiligt sind an unserem projekt auf eine seite schreiben [\ldots]», 04.11.2026. Protokolle anonymisiert und Abschnitt Beteiligte Personen verfasst. Übernommen.
+    \item Claude (Opus 5.5): «okay lass uns mit der KI dekleration starten. du kannst wahrscheinlich alle daten eigentlich selbst einfügen», 09.11.2026. Abschnitt KI-Deklaration aus unseren Angaben und dem Arbeitsjournal ergänzt und überarbeitet. Von uns geprüft, korrigiert und übernommen.
 \end{itemize}
 
 \newpage
@@ -465,7 +456,7 @@ Die Testpersonen sind anonymisiert und werden nur mit TP1 bis TP5 bezeichnet. Na
 \textit{Bezug zur Beobachtung (B2, B5):} Bei zu vielen Gegnern rannte sie weg, um zu heilen, und machte danach weiter. Beim Hochkommen scheiterte sie wiederholt am Ledge Grab.
 
 \item An dieser Stelle bist du wiederholt gestorben bzw. hast du gezögert. Was hat dir das Weiterkommen erschwert? \\
-\textit{Antwort:} Die Testperson ist nicht gestorben, die Frage entfällt.
+\textit{Antwort:} \textcolor{red}{Die Testperson ist mindestens einmal gestorben. Die Frage haben wir im Interview aber nicht gestellt.}
 
 \item Wie haben sich die grossen und kleinen Räume für dich unterschieden? \\
 \textit{Antwort:} Mein Lieblingsraum war Raum~6, weil er eine schöne neue Struktur eingeführt hat, nämlich die Brücke. Damit kann man mehr machen als mit nur zwei Containern. Es gab eine coole Abwechslung zwischen grossen und kleinen Räumen, oder besser gesagt eine Mischung. Kleine Räume waren eher schwerer, weil es keine Zuflucht gab. \\
@@ -641,6 +632,7 @@ Die Testpersonen sind anonymisiert und werden nur mit TP1 bis TP5 bezeichnet. Na
     \item Sie versucht oft die Luftkombo, obwohl sie damit die Bodengegner seltener trifft.
     \item Statt auf eine Box zu steigen und Pause zu machen, versucht sie wegzurennen. Die Beobachtenden verstehen das nicht ganz, vielleicht hat sie es vergessen.
     \item Ihre momentane Taktik: Gegner anhäufen, hineinspringen, etwas Schaden machen und wieder herausgehen, immer wieder.
+    \item \textcolor{red}{Während des semistrukturierten Interviews spielt sie ungefragt weiter.}
 \end{itemize}
 
 \item
@@ -851,10 +843,6 @@ Die Testpersonen sind anonymisiert und werden nur mit TP1 bis TP5 bezeichnet. Na
 
 \subsubsection{Semistrukturiertes Interview}
 
-\begin{itemize}[leftmargin=1.5cm]
-\item \textcolor{red}{Die Fragen I1a sowie I2--I4 waren nur als Stichworte notiert und sind nach dem Leitfaden ausformuliert. Prüfen, ob sie so gestellt wurden.}
-\end{itemize}
-
 \begin{enumerate}[label=\textbf{I\arabic*}, leftmargin=1.5cm, itemsep=1em]
 \item
 \begin{enumerate}[label=\alph*), itemsep=0.6em]
@@ -1023,6 +1011,7 @@ Die Testpersonen sind anonymisiert und werden nur mit TP1 bis TP5 bezeichnet. Na
 \item Sie versucht, die Gegner von ihrem High Ground aus auszutricksen, was aber nicht funktioniert.
 \item Sie bemerkt, dass die Angriffe unterschiedlich viel Schaden machen und dass zwei Heavy Attacks einen Archer direkt besiegen.
 \item Sie ist die ganze Zeit eher damit beschäftigt, das Spiel zu beobachten und Muster sowie Bugs zu finden.
+\item \textcolor{red}{Nach dem Ende des Spiels spielt sie ungefragt weiter, auch während des semistrukturierten Interviews.}
 \end{itemize}
 \item
 \begin{itemize}[nosep]
