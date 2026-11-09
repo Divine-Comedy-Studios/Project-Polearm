@@ -6,7 +6,7 @@
 
 In den folgenden Abschnitten~\ref{sec:ReferenzspielanalyseNinja} und~\ref{sec:ReferenzspielanalyseNier} analysieren wir die Spiele \game{Ninja Gaiden Sigma Plus} und \game{NieR: Automata} mithilfe des MDA-Fragebogens (Abschnitt~\ref{sec:Analysefragebogen}). Die Analyse diente uns in erster Linie als Recherche zum Gegnerverhalten und zur Interaktion zwischen Gegnern und Spieler, teilweise auch zur Gegnerplatzierung (Fragen A3 und D3). Damit trägt sie zum ersten Teil unserer Erkenntnisfrage bei. Gleichzeitig dienten uns die Referenzspiele als Vorbild für Designentscheidungen in unserem Prototyp. Auch Fragen, die in dieser Arbeit nicht direkt behandelt werden, für einen Prototyp aber unverzichtbar sind (z.\,B. wie sich die Spielfigur anfühlt oder wie die Spiele aufgebaut sind), konnten wir mithilfe dieser Analyse klären. Zudem ist nicht auszuschliessen, dass uns die Referenzspiele auch unbewusst zu Designentscheidungen verleitet haben.
 
-Alle folgenden Aussagen beruhen auf unseren eigenen Beobachtungen. Wertungen wie \enquote{befriedigend} oder \enquote{fair} sind unsere eigenen Interpretationen des Spielerlebnisses. Aussagen über die technische Funktionsweise der Spielsysteme haben wir aus dem beobachteten Verhalten rekonstruiert, da wir keinen Einblick in den Quellcode oder eine offizielle Dokumentation der Implementierung hatten.
+Alle folgenden Aussagen beruhen auf unseren eigenen Beobachtungen. Wertungen wie \enquote{befriedigend} oder \enquote{fair} sind unsere eigenen Interpretationen des Spielerlebnisses. Aussagen über die technische Funktionsweise der Spielsysteme haben wir aus dem beobachteten Verhalten erschlossen, da wir keinen Einblick in den Quellcode oder eine offizielle Dokumentation der Implementierung hatten.
 
 \subsection{Analyse: Ninja Gaiden Sigma Plus} \label{sec:ReferenzspielanalyseNinja}
 
@@ -360,7 +360,5 @@ In beiden Spielen gibt es zudem eine Art Wellenstruktur, die kontrolliert und sc
 Die Grundstruktur der Kampfräume ist in beiden Spielen gleich: Man kann einen Raum erst verlassen, wenn man den Kampf überstanden hat. Das möchten wir genau so übernehmen, da es uns am einfachsten umsetzbar erscheint. Zudem lässt sich so ziemlich genau kontrollieren, wo sich der Spieler während einer Kampfsequenz aufhält. Innerhalb dieser Struktur möchten wir zudem wie in \game{Ninja Gaiden} die Grösse der Räume gezielt verändern, um den Spieler unter Druck zu setzen (Frage~M3).
 
 Da wir nur einen Prototyp entwickeln und die Gegner im Zentrum unserer Erkenntnisfrage stehen, müssen wir sicherstellen, dass die Spieler die Gegner verstehen. Dafür nehmen wir uns die gestaffelte Einführung neuer Gegnervarianten im Prolog von \game{NieR: Automata} zum Vorbild (Frage~D1).
-
-Diese Erkenntnisse fliessen zusammen mit den Prinzipien aus der Leveldesign-Recherche (Kapitel~\ref{sec:Leveldesign}) in die Designvorschläge in Abschnitt~\ref{sec:Designvorschlaege} ein.
 
 \end{document}

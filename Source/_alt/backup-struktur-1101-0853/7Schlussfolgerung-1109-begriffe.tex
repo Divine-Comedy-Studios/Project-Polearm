@@ -1,0 +1,62 @@
+\documentclass[../Main.tex]{subfiles}
+
+\begin{document}
+
+\section{Schlussfolgerungen und weiteres Vorgehen} \label{sec:Schlussfolgerungen}
+
+Damit sind wir am Schluss unserer Arbeit angekommen. In diesem Kapitel versuchen wir, unsere Erkenntnisfrage zu beantworten, und gehen dabei auf die Limitationen ein, die wir hatten. Zudem liefern wir weitere Ansätze zur Beantwortung unserer Erkenntnisfrage und schlagen Verbesserungen für unseren Prototyp vor.
+
+\subsection{Beantwortung der Erkenntnisfrage} \label{sec:Beantwortung}
+
+Unsere Erkenntnisfrage lautete:
+
+\begin{quote}
+    \textit{Wie müssen Gegnerverhalten und Gegnerplatzierung in einem 3D-Hack-and-Slash-Prototyp konzipiert sein, damit ein zusammenhängender Kampfabschnitt mit nachvollziehbarem Spielfluss, angemessener Schwierigkeit und befriedigendem Spielgefühl entsteht?}
+\end{quote}
+
+Für das Gegnerverhalten haben wir bei der Begrenzung der gleichzeitig aktiven Gegner (V2) und bei der Kombination von Nah- und Fernkämpfern (V3) \textcolor{red}{eine starke Tendenz, dass sie so wirken wie beabsichtigt.} Dadurch werden nämlich die grossen Gegnermengen, die es in 3D-Hack-and-Slash-Spielen gibt, bekämpfbar, und es entsteht eine Schwierigkeit, die taktischer Natur ist und nicht rein mechanisch durch mehr Lebenspunkte und Schaden. \textcolor{red}{Schwächer ist die Tendenz bei der grundsätzlichen Überlegenheit} des Spielers und dem gezielten Durchbrechen dieser Überlegenheit, um Spannung zu erzeugen (V1). Das liegt daran, dass das Durchbrechen nicht immer beabsichtigt war und nicht immer Spannung, sondern auch Frust erzeugt hat. \textcolor{red}{Auch beim Vorschlag zur Ankündigung von Angriffen (V4) zeigt sich tendenziell, dass er funktioniert,} und zwar um die Nachvollziehbarkeit und das Spielgefühl zu verbessern. \textcolor{red}{Dabei deutet sich an, dass bei den Nahkämpfern} Animationen allein ausreichen, bei den Archers aber nicht. Ob eine Ankündigung über weitere Kanäle wie Sound bei den Archers ausreicht, konnten wir demnach nicht überprüfen. Wir würden beide Vorschläge weiterverfolgen, \textcolor{red}{da unsere Daten zumindest in diese Richtung tendieren.}
+
+Für die Gegnerplatzierung \textcolor{red}{zeigt besonders V8 eine starke Tendenz dafür,} neue Gegner zuerst allein im Raum zu platzieren, bevor sie mit anderen kombiniert werden. Dass die Anfangsaufstellung zuerst symmetrisch und die Bewegung der Gegner danach dynamisch ist (V5), \textcolor{red}{zeigt ebenfalls eine Tendenz, wenn auch eine schwächere.} In einem nächsten Schritt würden wir das dynamische Verhalten weglassen und nur die symmetrische Platzierung überprüfen. Das ist uns dieses Mal nicht ganz gelungen, weil dieser Vorschlag zwei unterschiedliche Dinge zu überprüfen versuchte. Der Wechsel der Raumgrösse (V6) \textcolor{red}{zeigt eine noch schwächere Tendenz,} und die Aussagen der Testpersonen gehen auseinander und widersprechen sich teilweise. Deshalb würden wir diesen Vorschlag nicht weiterverfolgen. Bei der Wellenstruktur (V7) \textcolor{red}{zeigt sich tendenziell, dass sie etwas bewirkt hat.}
+
+Durch all diese Designvorschläge \textcolor{red}{zeigt sich eine starke Tendenz, dass unsere Schwierigkeit angemessen war.} Dafür, dass der Spielfluss nachvollziehbar und das Spielgefühl gut war, \textcolor{red}{zeigt sich dagegen nur eine schwache Tendenz, da} beide durch Faktoren beeinflusst wurden, die nicht direkt mit den Gegnern zu tun hatten, wie zum Beispiel, dass das Ende eines Encounters nicht kommuniziert wurde oder dass die Combos etwas zu träge waren (Abschnitt~\ref{sec:Gesamteindruck}).
+
+Deshalb lautet die Antwort auf unsere Erkenntnisfrage vorläufig: Für unseren Prototyp deuten die Playtests darauf hin, dass Gegnerverhalten und Gegnerplatzierung vor allem dann zu einem nachvollziehbaren Spielfluss, einer angemessenen Schwierigkeit und einem befriedigenden Spielgefühl beitragen, wenn die Zahl der gleichzeitig aktiven Gegner begrenzt ist, Nah- und Fernkämpfer kombiniert werden und neue Gegner isoliert eingeführt und platziert werden. Die Wirkung der Wellenstruktur und der symmetrischen Platzierung konnten wir dagegen nur in Ansätzen belegen.
+
+Diese Arbeit entstand aus dem Wunsch, Spiele nicht nur zu spielen, sondern sie genauer zu verstehen und selbst ein solches Spielerlebnis zu erschaffen. Das haben wir mit diesem Prototyp erreicht, und zumindest für unseren Kampfabschnitt \textcolor{red}{konnten wir Tendenzen erkennen, wie} Gegnerverhalten und Gegnerplatzierung zu einem solchen Spielerlebnis beitragen. \textcolor{red}{Zudem betreffen diese Tendenzen speziell} das 3D-Hack-and-Slash-Genre, das die meisten unserer Quellen nicht spezifisch behandeln.
+
+\subsection{Limitationen} \label{sec:Limitationen}
+
+Die Ergebnisse dieser Arbeit unterliegen mehreren Einschränkungen.\footnote{Mit Claude formuliert, siehe KI-Deklaration (Abschnitt~\ref{sec:KIDeklaration}).}
+
+Bei den Playtests ist zunächst die kleine Stichprobe zu nennen: Mit fünf Testpersonen lassen sich nur Tendenzen erkennen (Abschnitt~\ref{sec:Auswertung}). Die Urteile in Kapitel~\ref{sec:Evaluation} \textcolor{red}{sind deshalb als Tendenzen und nicht als Bestätigungen zu verstehen. Wo wir kaum oder keine Hinweise gefunden haben,} bedeutet das nicht, dass das Gegenteil zutrifft. Zudem kannten wir die meisten Testpersonen persönlich oder über Bekannte, was trotz unserer Bitte um ehrliche Antworten zu wohlwollenderen Einschätzungen geführt haben kann (Abschnitt~\ref{sec:AuswahlTP}). Zwei Playtests fanden über Discord statt, wo wir nur Bildschirm und Stimme der Testpersonen wahrnehmen konnten, nicht aber Mimik und Körpersprache (Abschnitt~\ref{sec:Beobachtungsraster}).
+
+Auch das Post-Questionnaire hat Schwächen. Q5 enthält zwei Aussagen auf einmal (überschaubare Anfangsposition und danach unvorhersehbareres Verhalten), sodass unklar bleibt, auf welchen Teil sich eine Bewertung bezieht.
+
+Bei der Referenzspielanalyse wurde jedes Spiel nur von einer Person analysiert. Die Struktur des MDA-Fragebogens ist zwar einheitlich, Einschätzungen wie \enquote{befriedigend} bleiben aber subjektiv und personenabhängig (Abschnitt~\ref{sec:Analysefragebogen}). Zudem konnten wir die Funktionsweise der Referenzspiele nur aus dem beobachteten Verhalten rekonstruieren, da wir keinen Einblick in deren Quellcode hatten.
+
+\begin{itemize}[leftmargin=1.5cm]
+    \item \textcolor{red}{Diesen Abschnitt habe ich aus euren Angaben geschrieben. Falls gewünscht noch ergänzen: mündliche Erklärung der Steuerung vor dem Spielen (statt Selbstentdecken), Gespräche in entspannten Phasen, Leveldesign-Quellen nicht genrespezifisch, Zeitmangel bei der Auswahl der Recherchepunkte.}
+\end{itemize}
+
+\subsection{Weiteres Vorgehen und Ausblick} \label{sec:Verbesserungen}
+
+In einem weiteren Vorgehen würden wir weiterhin Gegnerverhalten und Gegnerplatzierung untersuchen. Zum einen würden wir einige unserer Designvorschläge, bei denen wir nur Tendenzen feststellen konnten, noch einmal und spezifischer überprüfen, damit wir diesmal klarere Antworten erhalten. Konkret würden wir die symmetrische Anordnung ohne das dynamische Verhalten abfragen (V5). Die Ankündigung von Angriffen würden wir mit mehreren Kanälen erneut testen (V4). Dabei könnten wir vielleicht auch Unterschiede bei den Soldiers feststellen, ganz besonders aber bei den Archers. Auch die Wellenstruktur würden wir weiterverfolgen (V7) und dabei noch gezielter auf Ruhe und Anspannung achten, zum Beispiel mit einer Pulsmessung während des Playtests.\autocite[285--287]{drachen2018gamesuserresearch} Dabei würden wir zwischen Pausen unterscheiden, die wir dem Spieler vorgeben, und solchen, die sich der Spieler selbst verschafft.
+
+Die Überlegenheit des Spielers konnten wir der Tendenz nach schon recht gut etablieren, sie aber noch nicht richtig geplant brechen (V1). Die konkrete Verbesserung wäre dabei, den Heavy Soldier wieder etwas stärker zu machen. Zudem könnte man prüfen, ob es einen Unterschied macht, ob die Gegner schon da sind, wenn man den Raum betritt, oder ob sie erst dann spawnen (V5). Ausserdem könnten wir Playtests mit einer grösseren Gruppe durchführen, um statistisch auswertbare Daten zu erhalten.
+
+\begin{itemize}[leftmargin=1.5cm]
+    \item \textcolor{red}{[Aus V1 ergänzen:] Untersuchen, welche Arten von Brüchen der Überlegenheit Spass machen und welche nicht. Beispiel: Das Heilen hat als taktischer Bruch Spannung erzeugt, ob es Spass gemacht hat, ist offen. Die Trägheit der Combos war dagegen kein taktischer Bruch und eher frustrierend (Abschnitt~\ref{sec:ErgVorschlag}, V1).}
+\end{itemize}
+
+Um dieses Vorgehen zu unterstützen, würden wir an unserem Prototyp folgende Verbesserungen vornehmen:
+
+\begin{itemize}[leftmargin=1.5cm]
+    \item die Trägheit der Combos verringern (V1 und Abschnitt~\ref{sec:Gesamteindruck}),
+    \item den Übergang zwischen Bewegung und Kampf verbessern (Abschnitt~\ref{sec:Gesamteindruck}),
+    \item Audio- und/oder Partikeleffekte ergänzen, die Angriffe ankündigen (V4),
+    \item einen Indikator einbauen, der anzeigt, wann ein Encounter vorbei ist, sowie Sounds für die Türen, damit auch diese klar erkennbar sind (Abschnitt~\ref{sec:Gesamteindruck}),
+    \item I-Frames hinzufügen, etwa beim Aufstehen nach einem Treffer, um dem Stunlock entgegenzuwirken (V1 und V2),
+    \item den Air Combat, der gegen unsere Bodengegner kaum nützlich war und trotzdem von einigen Testpersonen eingesetzt wurde (TP2, TP3 und TP4, jeweils B13), mit zwei Moves ergänzen: einer Aktion, die Gegner in die Luft wirft, und einer, mit der man aus der Luft auf den Boden dashen kann. Einen solchen Angriff aus der Luft wünschten sich auch mehrere Testpersonen (TP1, Q13; TP2, Q13; TP4, B11).
+\end{itemize}
+
+\end{document}

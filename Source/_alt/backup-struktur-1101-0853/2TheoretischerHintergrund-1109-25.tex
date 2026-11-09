@@ -1,0 +1,203 @@
+\documentclass[../Main.tex]{subfiles}
+
+\begin{document}
+
+\section{Grundlagen und Methodik} \label{sec:Grundlagen}
+Im folgenden Kapitel finden sich Definitionen und Informationen, die zum Verständnis unserer Arbeit beitragen. Zuerst grenzen wir das Hack-and-Slash-Genre ab (Abschnitt~\ref{sec:Genredefinition}) und führen das MDA-Framework ein (Abschnitt~\ref{sec:MDA}). Danach beschreiben und begründen wir unser Vorgehen in den einzelnen Arbeitsschritten, in der Reihenfolge, in der wir gearbeitet haben: den MDA-Fragebogen für die Referenzspielanalyse, die Leveldesign-Recherche, die Umsetzung und die Playtests. Fachbegriffe, die wir benutzen und die zum Verständnis unserer Texte nötig sind, werden zudem im Glossar im Anhang (Abschnitt~\ref{sec:Glossar}) erklärt.
+
+\subsection{Definition und Einordnung des Genres} \label{sec:Genredefinition}
+Ein Videospielgenre zu definieren ist aus unserer Sicht nicht einfach, denn Genres sind unserer Wahrnehmung nach nicht statisch, sondern entwickeln sich laufend weiter und verzweigen sich. Eine scharfe Definition gibt es deshalb kaum. Wir verstehen ein Genre vielmehr als Sammlung von Gemeinsamkeiten vieler Spiele, wobei nicht jedes Spiel alle Merkmale erfüllen muss. Eine wissenschaftlich anerkannte Definition des Hack-and-Slash-Genres haben wir bei unserer Recherche nicht gefunden. Der Begriff taucht vor allem in Wikis und Spielemagazinen auf und wird dort nicht einheitlich verwendet, teilweise etwa auch für Rollenspiele.\autocite{wikipedia_hackandslash} Im Folgenden beschreiben wir deshalb unser Verständnis des Hack-and-Slash-Genres als Arbeitsdefinition für diese Arbeit. Wir verstehen darunter Action-Spiele, in denen der Echtzeitkampf mit Nahkampfwaffen wie Schwertern oder anderen Klingen im Zentrum steht. Fernkampfwaffen können vorkommen, dienen aber höchstens als Nebenwaffen. Wir beschränken uns dabei auf 3D-Spiele in der Third-Person-Perspektive, für die der Begriff unserer Wahrnehmung nach seit Anfang der 2000er-Jahre vor allem verwendet wird. Historisch entstand das Genre als Untergenre der Beat 'em ups und entwickelte sich danach zu einem eigenständigen Genre.\autocite{wikipedia_hackandslash} Aus \game{Devil May Cry} (2001)\autocite{capcom_devilmaycry_2001} entwickelte sich dabei ein eigener Zweig des Genres, der massgeblich von Hideki Kamiya geprägt wurde, dem Schöpfer von \game{Devil May Cry} und \game{Bayonetta} (2009)\autocite{platinumgames_bayonetta_2009}.\autocite{wikipedia_hackandslash}
+
+Moderne Hack-and-Slash-Spiele zeichnen sich \textcolor{red}{unserem Verständnis nach} durch hohe Spielgeschwindigkeiten und stilvolle, fliessende Bewegungen aus. Das Verketten präziser Angriffs-Combos, das gezielte Abbrechen von Bewegungen, I-Frames und strategisches Distanzmanagement zum Gegner prägen das Gameplay. \textcolor{red}{Entscheidend ist für uns dabei weniger die Anzahl dieser Mechaniken als ihr Zusammenspiel.}
+
+Den oben genannten Zweig, der die Ausdrucksstärke ins Zentrum stellt, bezeichnen wir in dieser Arbeit als \textit{Stylish-Action} (von englisch \textit{stylish}, stilvoll). Titel wie die bereits genannten \game{Devil May Cry} und \game{Bayonetta} fordern den Spieler auf, nicht nur effektiv, sondern möglichst elegant und abwechslungsreich zu kämpfen, und bewerten dies teils explizit mit Stil-Wertungen im Kampf.\autocite{capcom_devilmaycry_2001,platinumgames_bayonetta_2009}
+
+\game{Project Polearm} ist ein \textit{lineares} Hack-and-Slash und legt den Fokus besonders auf \textit{Fast-paced Combat} (englisch für temporeichen Kampf), also auf schnelle Kämpfe mit wenigen Pausen. Die Spieler sollen für aggressives Verhalten belohnt werden (Abschnitt~\ref{sec:V1}). Dabei soll sich die Spielfigur nicht schwerfällig, sondern agil durch die Level der Spielwelt bewegen.
+
+\subsection{Das MDA-Framework} \label{sec:MDA}
+\textcolor{red}{Um das Zusammenspiel von Gegnern und Spielfigur in den Referenzspielen zu erfassen und vergleichbar zu machen, nutzen wir das MDA-Framework (Mechanics, Dynamics, Aesthetics).} Es wurde von Hunicke, LeBlanc und Zubek entwickelt und ist ein formaler Ansatz zur Analyse und zum Verständnis von Gamedesign. Es beschreibt Spiele nicht als statisches Medium wie Buch oder Film, sondern als interaktives Erlebnis, das aus dem Zusammenspiel dreier klar abgegrenzter Ebenen entsteht\textcolor{red}{: den Spielregeln, den daraus entstehenden Verhaltensmustern und dem emotionalen Spielerleben}.\autocite[1--2]{hunicke2004mda}
+
+Die unterste Ebene, die Mechaniken, umfasst die konkreten Regeln und Systeme eines Spiels. Darunter versteht man alles, was durch Daten und Algorithmen getrieben ist, in einem Hack-and-Slash etwa Schadenswerte, Treffererkennung, Bewegungsgeschwindigkeit oder die Gegner-KI. Daraus entstehen zur Laufzeit die Dynamiken, also das emergente Verhalten, das sich aus dem Zusammenspiel von Mechaniken und Spielerentscheidungen ergibt. In einem Hack-and-Slash sind das etwa der Kampfrhythmus, taktische Ausweichmuster oder eskalierende Gegnerwellen. Die oberste Ebene, die Ästhetik (Aesthetics), beschreibt schliesslich die emotionale Reaktion des Spielers auf dieses System.\autocite[2]{hunicke2004mda} Bei Hack-and-Slash-Spielen stehen unserer Einschätzung nach Gefühle wie Kontrolle und Befriedigung bei gelungenen Combos im Vordergrund.
+
+Entscheidend ist die Kausalität zwischen den Ebenen: Mechaniken erzeugen Dynamiken, die wiederum Ästhetik erzeugen. Die Spieler erleben das Spiel jedoch in umgekehrter Reihenfolge.\autocite[2]{hunicke2004mda} Für die Analyse bestehender Spiele folgt daraus für uns, dass man beim Erleben (Aesthetics) beginnt und sich \textcolor{red}{Schritt für Schritt} zu den Ursachen, also den Mechaniken, vorarbeitet.
+
+Unserer Einschätzung nach eignet sich dieses Framework besonders gut für die Analyse von Hack-and-Slash-Spielen, \textcolor{red}{da die Systeme in diesem Genre besonders stark voneinander abhängen}. Beispielsweise sind die genauen Parameter einer einzelnen Mechanik, etwa einer Attacke, bedeutungslos, wenn sie nicht im Kontext weiterer Systeme wie Gegnerlebenspunkten, Gegnerverhalten und Animationsgeschwindigkeit betrachtet werden.
+
+Verwandt damit ist Steve Swinks Konzept des \textit{Game Feel}, das beschreibt, wie sich Steuerung und Rückmeldung eines Spiels für den Spieler anfühlen.\autocite[1--6]{swink2008gamefeel}
+
+\subsection{MDA-Fragebogen} \label{sec:Analysefragebogen}
+
+Auf Basis des MDA-Frameworks haben wir einen strukturierten Fragebogen mit 15 Fragen entwickelt, der die drei Ebenen getrennt betrachtet. Dieser MDA-Fragebogen ist unser Analyseframework für die Referenzspielanalyse in Kapitel~\ref{sec:Referenzspielanalyse}. Die 15 Fragen sind den drei MDA-Ebenen zugeordnet und wurden in umgekehrter Reihenfolge gestellt, da die Analyse beim Erleben (Aesthetics) beginnt und sich \textcolor{red}{Schritt für Schritt} zu den Ursachen vorarbeitet. Thematisch sind die Fragen so ausgerichtet, dass sie gezielt Gegnerverhalten, Gegnerplatzierung, Spielfluss, Schwierigkeit und Feedback beleuchten, da diese Aspekte im Zentrum unserer Erkenntnisfrage stehen. Die Gliederung in drei Ebenen haben wir aus dem MDA-Framework übernommen.\autocite{hunicke2004mda} Die einzelnen Fragen haben wir hingegen selbst aus der Erkenntnisfrage abgeleitet, indem wir überlegten, was für deren Beantwortung relevant ist. Da wir die GDC-Vorträge aus Abschnitt~\ref{sec:VorgehenLeveldesign} bereits kannten, ist nicht auszuschliessen, dass sie uns dabei inspiriert haben. Die Fragen stammen aber im Wesentlichen von uns.
+
+Die beiden Referenzspiele wurden von je einer Person analysiert: \game{Ninja Gaiden Sigma Plus} von Zhile Zhu und \game{NieR: Automata} von Rodin Arslan. Dass die Analysen von unterschiedlichen Personen stammen, ist unserer Ansicht nach unproblematisch, da der MDA-Fragebogen für beide Analysen dieselbe Struktur vorgibt. Gespielt haben wir die Spiele mit unserem gewohnten Setup und ohne Modifikationen, \game{Ninja Gaiden Sigma Plus} auf der PlayStation Vita und \game{NieR: Automata} unter Windows. Jeden analysierten Abschnitt haben wir drei- bis fünfmal gespielt, um die einzelnen Fragen gezielt und nacheinander betrachten zu können. Dennoch bleibt eine Einschränkung: Die Einschätzungen stammen von nur zwei Personen und sind subjektiv (Abschnitt~\ref{sec:Limitationen}).
+
+\subsubsection{Aesthetics (Ästhetik und emotionales Erleben)}
+
+\begin{enumerate}[label=\textbf{A\arabic*}, leftmargin=1.5cm, itemsep=0.5em]
+    \item Welche emotionale Reaktion löst der Kampf primär aus: Kontrolle, Befriedigung, Anspannung oder Frustration? Warum?
+    \item Wie gut vermittelt das audiovisuelle Feedback die Wucht und Präzision der Treffer?
+    \item Vermittelt die Gegnerplatzierung ein Gefühl von intentionalem Design? Wirkt die Anordnung der Gegner durchdacht oder zufällig, und wie beeinflusst sie das Empfinden des Spielers?
+    \item Verändert sich das emotionale Erleben im Verlauf des Levelabschnitts, und ist eine Spannungskurve erkennbar?
+    \item Unterscheiden sich die Combos darin, welche Emotionen sie auslösen? Bringen sie den Spieler in Bedrängnis, oder entsteht ein Gefühl der Erleichterung?
+\end{enumerate}
+
+\subsubsection{Dynamics (Spieldynamik und Interaktion)}
+
+\begin{enumerate}[label=\textbf{D\arabic*}, leftmargin=1.5cm, itemsep=0.5em]
+    \item Wie ist der Levelabschnitt von Beginn bis Ende aufgebaut? Welche Muster sind erkennbar, und wie hängen sie mit der Spannungskurve zusammen?
+    \item Erzeugt die Kombination verschiedener Gegnertypen innerhalb eines Encounters taktischen Druck, oder agieren die Gegner unabhängig voneinander?
+    \item Entsteht durch Gegnerplatzierung, Spawnpunkte und Gegneranzahl ein flüssiger Spielfluss? Gibt es einen spürbaren Unterschied zwischen Einzel- und Gruppenkonfrontationen?
+    \item Wie erholt sich der Spieler nach einem Fehler? Ist die Feedback-Schleife zwischen Fehler und Korrektur nachvollziehbar?
+    \item Gibt es verschiedene Combos bzw.\ Kampfabläufe, und folgen daraus verschiedene Arten, die Gegner zu bekämpfen?
+\end{enumerate}
+
+\subsubsection{Mechanics (Spielmechaniken)}
+
+\begin{enumerate}[label=\textbf{M\arabic*}, leftmargin=1.5cm, itemsep=0.5em]
+    \item Wie unterscheiden sich die Gegnertypen auf Mechanikebene: Bewegungsgeschwindigkeit, Angriffsreichweite, Schadenswerte?
+    \item Wie ist das Angriffsverhalten der Gegner implementiert? Reagieren sie aktiv auf den Spieler, oder folgen sie festen, vordefinierten Mustern?
+    \item Wie begrenzt das Leveldesign die Bewegungsoptionen von Spieler und Gegner? Gibt es räumliche Einschränkungen, die den Kampf beeinflussen?
+    \item Wie sind das Hitstun- und das Knockback-System gestaltet? Lassen sich verschiedene Arten beobachten?
+    \item Wie hängen die gedrückten Tasten mit den visuellen Kampfereignissen zusammen? Steckt hinter der Tastenbelegung eine erkennbare Absicht?
+\end{enumerate}
+
+\subsection{Vorgehen bei der Leveldesign-Recherche} \label{sec:VorgehenLeveldesign}
+Während die Referenzspielanalyse (Kapitel~\ref{sec:Referenzspielanalyse}) am konkreten Spiel untersuchte, wie das Gegnerverhalten Spielgefühl, Spielfluss und Schwierigkeit beeinflusst, stützte sich die Recherche zu Leveldesign und Gegnerplatzierung auf Fachliteratur und nicht auf eine systematische Analyse. \textcolor{red}{Ziel war es, Gestaltungsprinzipien zu finden, die wir für einen zusammenhängenden Kampfabschnitt im gewählten Genre nutzen können.}
+
+Bei den Quellen handelt es sich vor allem um Fachliteratur und Erfahrungswerte von Entwicklern. Sie umfassen zwei Fachbücher, die uns eine KI auf unsere Anfrage nach Material vorgeschlagen hat und die wir anschliessend selbst gelesen und geprüft haben (KI-Deklaration, Abschnitt~\ref{sec:KIDeklaration}), \textit{Level Up! The Guide to Great Video Game Design} von Scott Rogers\autocite{rogers2014levelup} und \textit{An Architectural Approach to Level Design} von Christopher W. Totten\autocite{totten2014architectural}, sowie drei Fachvorträge der Game Developers Conference (GDC), die wir bereits vor dieser Arbeit kannten und gezielt wieder herausgesucht haben: \enquote{Ten Principles for Good Level Design}\autocite{gdc_tenprinciples2010}, \enquote{Moving Mountains: Speedy Level Creation as a Desperate Indie Dev}\autocite{gdc_movingmountains2020} sowie \enquote{Level Design Workshop: Balancing Action and RPG in Horizon Zero Dawn Quests}\autocite{gdc_horizonquests2018}.
+
+Im Fokus standen besonders jene Themenbereiche, die für den Prototyp relevant sind. Da \game{Project Polearm} nicht auf Exploration oder eine offene Spielwelt zielt, sondern kampfzentriert ist, konzentrierte sich die Recherche auf Themen wie Encounter-Design, räumliche Typologien, Pacing und Spannungskurve sowie Scaffolding. Die Quellen sind häufig allgemein gehalten und nicht auf ein bestimmtes Genre bezogen, weshalb wir sie in Bezug auf das Hack-and-Slash-Genre interpretiert haben.
+
+Nach unserer Einschätzung handelt es sich überwiegend um Fach- und Praktikerwissen erfahrener Entwickler, nicht um empirische oder wissenschaftliche Studien. Zudem behandelt keine der Quellen das Hack-and-Slash-Genre unmittelbar. Diese genrespezifische Lücke gleicht unserer Ansicht nach die eigene Referenzspielanalyse in Kapitel~\ref{sec:Referenzspielanalyse} teilweise aus.
+
+\subsection{Vorgehen bei der Umsetzung} \label{sec:VorgehenUmsetzung}
+Aus den Recherchen haben wir acht Designvorschläge ausgearbeitet, die sich an der Erkenntnisfrage orientieren: je vier zum Gegnerverhalten und zur Gegnerplatzierung (Abschnitt~\ref{sec:Designvorschlaege}). \textcolor{red}{Bei allen Vorschlägen haben wir uns an den drei Qualitäten der Erkenntnisfrage orientiert. [4, wiederholt den Satz davor: streichen]}
+
+Die praktische Umsetzung erfolgte in mehreren Stufen. Das Level haben wir zunächst in TrenchBroom als Greybox aufgebaut und danach in Blender optisch aufgewertet. Texturen, Props, UI-Elemente, Animationen, Musik und Soundeffekte haben wir aus dem Internet bezogen. Was genau woher stammt, ist in der Asset-Liste im Anhang (Abschnitt~\ref{sec:Assets}) aufgeführt. Die Animationen haben wir dabei in Blender für unsere Zwecke angepasst. Anschliessend haben wir alles in der Game Engine Godot zusammengeführt, in der auch der Grossteil des Codes entstand.
+
+Die genauen Raumgrössen, Schadenswerte und weitere Parameter haben wir iterativ selbst erarbeitet. Iterativ hiess bei uns: zuerst ein System implementieren, dann selbst testen, ob es sich gut anfühlt, und es so lange überarbeiten, bis dies der Fall war. Erst danach haben wir es optisch ausgestaltet (vgl.\ Abschnitt~\ref{sec:Prototyping}). Dabei haben wir uns auf unsere eigene Spielerfahrung gestützt und unsere Recherche stets im Hinterkopf behalten. Systeme wie der Gegnermanager (Abschnitt~\ref{sec:V2}) wurden direkt aus der Recherche heraus entworfen und gezielt für unsere Designvorschläge gestaltet.
+
+Für die Zusammenarbeit und die Versionsverwaltung haben wir Git und GitHub verwendet. Genaueres zu unserer Code-Architektur findet sich in der technischen Dokumentation.\footnote{\textit{Project Polearm Technical Report}.} Eine Liste aller verwendeten externen Assets findet sich im Anhang (Abschnitt~\ref{sec:Assets}). \textcolor{red}{Woher übernommener Code stammt, ist im \textit{Project Polearm Technical Report} angegeben. [Prüfen, ob das dort steht.]}
+
+\subsection{Vorgehen bei den Playtests} \label{sec:VorgehenPlaytest}
+
+\subsubsection{Methode und Ablauf} \label{sec:MethodePlaytest}
+Ziel der Playtests war es, die in Abschnitt~\ref{sec:Designvorschlaege} hergeleiteten Designvorschläge mit der tatsächlichen Spielerfahrung von Testpersonen abzugleichen. Methodisch stützten wir uns dabei auf das Buch \textit{Games User Research} von Anders Drachen, Pejman Mirza-Babaei und Lennart E. Nacke.\autocite{drachen2018gamesuserresearch} Bei Games User Research (GUR) liegt der Fokus auf der Spielerfahrung,\autocite[2]{drachen2018gamesuserresearch} was genau zu unseren Zielen passt.
+
+Durch die Kombination verschiedener Methoden lassen sich verschiedene Perspektiven und Ebenen einer Spielerfahrung erfassen: Die Beobachtung zeigt, was eine Testperson tatsächlich tut, ein Fragebogen erfasst ihr subjektives Empfinden, und ein semistrukturiertes Interview kann gezielt auf Auffälligkeiten im Spielverhalten oder Empfinden eingehen.\autocite[112]{drachen2018gamesuserresearch}
+
+Unser Ablauf war wie folgt: Zuerst wurden die Testpersonen mit einem Pre-Questionnaire charakterisiert. Darauf folgte der eigentliche Playtest, den wir beobachtet und aufgezeichnet haben, um die Reaktionen und das Spielverhalten der Testpersonen zu dokumentieren. Zum Abschluss füllten die Testpersonen ein Post-Questionnaire aus. Hatten sich während des Playtests Fragen ergeben, folgte zudem ein semistrukturiertes Interview, um bestimmte Aussagen oder Verhaltensweisen genauer zu untersuchen.
+
+Fragebögen (Questionnaires) eignen sich unter anderem zur Erfassung von Spielercharakteristika sowie von subjektiven Einstellungen und Erfahrungen.\autocite[142--143]{drachen2018gamesuserresearch} Deshalb haben wir sie für genau diese beiden Zwecke im Pre- und im Post-Questionnaire eingesetzt.
+
+Während des Playtests wurden zwei Aspekte gleichzeitig erfasst. Zum einen lässt das beobachtete Spielverhalten Rückschlüsse darauf zu, ob eine Testperson beispielsweise verwirrt ist, wiederholt Fehler macht, auffällige Entscheidungen trifft oder Orientierungsschwierigkeiten hat. Dabei haben wir zunächst nicht auf die Ursache geschlossen, sondern nur beobachtet und dokumentiert. Zum anderen haben wir festgehalten, was die Testpersonen während des Spielens von sich aus äusserten. Lautes Denken (\textit{Think-aloud}) gibt Einblick in die Wahrnehmung der Spielenden.\autocite[189--190]{drachen2018gamesuserresearch} Im Kontext von Hack-and-Slash-Spielen halten wir eine kontinuierliche Verbalisierung jedoch für schwierig, da sehr vieles gleichzeitig passiert und die Belastung in anspruchsvollen Situationen unserer Erfahrung nach hoch ist. Deshalb haben wir die Testpersonen nicht zum lauten Denken aufgefordert, sondern nur ihre spontanen Äusserungen notiert. So konnten wir unmittelbare Reaktionen einfangen und Hinweise auf die Gedanken und Beweggründe hinter ihren Aktionen gewinnen.
+
+Das semistrukturierte, retrospektive Interview diente dazu, während des Spielens beobachtete Auffälligkeiten und relevante Situationen nachträglich zu \textcolor{red}{validieren [Begriff: \enquote{validieren} heisst in der Forschung, die Gültigkeit einer Messung zu prüfen. Gemeint ist: bei der Testperson nachfragen, ob wir richtig beobachtet haben. Vorschlag: \enquote{nachträglich mit der Testperson zu besprechen}]} und deren Ursachen aus Sicht der Testperson zu untersuchen.\autocite[164--167]{drachen2018gamesuserresearch}
+
+\subsubsection{Auswahl der Testpersonen} \label{sec:AuswahlTP}
+Bei der Auswahl der Testpersonen haben wir uns nicht auf unseren engsten Bekanntenkreis beschränkt, sondern auch darüber hinaus gesucht. Besonders wichtig war es, Spielerinnen und Spieler zu finden, denen das Genre von \game{Project Polearm} zusagt und die Erfahrung damit haben. Darüber hinaus haben wir uns überlegt, welche Perspektiven uns eine potenzielle Testperson liefern könnte, und versucht, möglichst unterschiedliche Typen zu finden. Wir haben beispielsweise eingeschätzt, wie ausführlich oder präzise eine Testperson antworten kann und welche Einblicke und Referenzen sie mitbringt. So haben wir unter anderem einen befreundeten Entwickler aus Deutschland angefragt, von dem wir besonders fachkundige Antworten erwartet haben. Zudem haben wir Frauen wie Männer einbezogen.
+
+Folgende Einschränkungen sind uns aufgefallen: Alle Testpersonen sind in ihren späten Teenagerjahren oder Anfang zwanzig. Zudem spielt keine von ihnen ausschliesslich Hack-and-Slash-Spiele. Ausserdem kannten wir die meisten Testpersonen persönlich oder über Bekannte, was zu wohlwollenderen Antworten führen kann. Wir haben die Testpersonen deshalb ausdrücklich gebeten, ehrlich zu antworten. Ganz ausschliessen lässt sich dieser Effekt jedoch nicht.
+
+Wir haben fünf Playtests durchgeführt, weil dies im Rahmen unserer Maturitätsarbeit und angesichts des Umfangs unserer Befragung das Maximum war und laut unserer Betreuungsperson eine gute Anzahl ist, um genügend Perspektiven auf das Spiel zu erhalten.
+
+Die Testpersonen wussten, dass sie aufgezeichnet wurden, und haben dem zugestimmt. Nach der Auswertung haben wir die Aufnahmen gelöscht.
+
+\subsubsection{Pre-Questionnaire} \label{sec:PreQuestionnaire}
+
+Das Pre-Questionnaire diente dazu, die Testpersonen zu charakterisieren, damit ihre Aussagen im Kontext gesehen und gewichtet werden können. Die Antworten jeder Testperson betrachten wir deshalb immer im Zusammenhang mit ihrer Charakterisierung, etwa mit ihrer Spielerfahrung oder ihrem bevorzugten Spielstil.
+
+\begin{enumerate}[label=\textbf{P\arabic*}, leftmargin=1.5cm, itemsep=0.5em]
+    \item Wie viele Stunden spielst du pro Woche Videospiele?
+    \item Was für Videospielgenres spielst du besonders gerne?
+    \item Was macht für dich einen guten Kampfabschnitt aus?
+    \item Was stellst du dir unter einem Hack-and-Slash vor?
+    \item Wie schätzt du dein eigenes Können in actionlastigen Spielen generell ein? (Skala 1--5: \enquote{Anfänger} bis \enquote{sehr erfahren})
+    \item Bevorzugst du eher vorsichtiges, methodisches Spiel oder aggressives, schnelles Spiel?
+    \item Was erwartest du dir von diesem Playtest, bevor du ihn spielst?
+    \item Worauf reagierst du in Kämpfen erfahrungsgemäss am empfindlichsten: z.\,B. unfaire Treffer, Unübersichtlichkeit, zu leichte Gegner, zu schwere Gegner?
+\end{enumerate}
+
+\subsubsection{Post-Questionnaire} \label{sec:PostQuestionnaire}
+
+Das Post-Questionnaire erfasste die subjektive Einschätzung der Testpersonen direkt im Anschluss an den Playtest, pro Designvorschlag sowie für den gesamten Kampfabschnitt. Hinter jeder Aussage steht in Klammern der Designvorschlag, den sie überprüft (V1--V8, hergeleitet in Abschnitt~\ref{sec:Designvorschlaege}), bzw.\ die Qualität aus der Erkenntnisfrage. Die Aussagen wurden auf einer Skala von 1 (\enquote{trifft gar nicht zu}) bis 5 (\enquote{trifft völlig zu}) bewertet, die offenen Fragen frei beantwortet. Diese Angaben in Klammern dienen nur der Zuordnung in dieser Arbeit und wurden den Testpersonen nicht angezeigt. Zudem erhielten die Testpersonen die Fragen einzeln nacheinander und nicht alle auf einmal.
+
+\paragraph{Gegnerverhalten}
+\begin{enumerate}[label=\textbf{Q\arabic*}, leftmargin=1.5cm, itemsep=0.5em]
+    \item Ich fühlte mich meinen Gegnern grundsätzlich überlegen, ausser in einzelnen zugespitzten Momenten. \hfill (V1)
+    \item Auch bei vielen Gegnern gleichzeitig behielt ich die Kontrolle über die Situation. \hfill (V2)
+    \item Ich musste bewusst entscheiden, welchen Gegner ich zuerst angreife. \hfill (V3)
+    \item Angriffe der Gegner wurden klar angekündigt, bevor sie mich trafen. \hfill (V4)
+\end{enumerate}
+
+\paragraph{Gegnerplatzierung und Kampfraum}
+\begin{enumerate}[label=\textbf{Q\arabic*}, leftmargin=1.5cm, itemsep=0.5em, resume]
+    \item Die Gegner waren zu Beginn klar überschaubar positioniert, das Verhalten wurde danach unvorhersehbarer. \hfill (V5)
+    \item Der enge Abschnitt fühlte sich beim Spielen anders an als der offene Abschnitt. \hfill (V6)
+    \item Der Kampf hatte spürbare Phasen von Anspannung und Erholung. \hfill (V7)
+    \item Neue Gegnervarianten wurden mir zuerst einzeln, dann erst in Kombination vorgestellt. \hfill (V8)
+\end{enumerate}
+
+\paragraph{Gesamteindruck}
+\begin{enumerate}[label=\textbf{Q\arabic*}, leftmargin=1.5cm, itemsep=0.5em, resume]
+    \item Insgesamt war dieser Kampfabschnitt für mich befriedigend zu spielen. \hfill (Spielgefühl)
+    \item Der gesamte Kampfabschnitt fühlte sich zusammenhängend an, nicht wie eine Aneinanderreihung einzelner Momente. \hfill (Spielfluss)
+    \item Der Schwierigkeitsgrad war insgesamt angemessen. \hfill (Schwierigkeit)
+    \item Was hat sich am besten angefühlt? \hfill (offen)
+    \item Was hat sich unfair oder unangenehm angefühlt? \hfill (offen)
+    \item Wie war dieser Kampfabschnitt im Vergleich zu dem, was du dir vor dem Test erwartet hast? \hfill (offen)
+\end{enumerate}
+
+\subsubsection{Beobachtungsraster} \label{sec:Beobachtungsraster}
+
+Während des Playtests wurde das Verhalten der Testperson anhand der folgenden Kriterien dokumentiert. Dabei wurde zunächst nur beobachtet und protokolliert, nicht interpretiert. Zwei der fünf Playtests fanden über Discord statt (Abschnitt~\ref{sec:Durchfuehrung}). Dort sahen wir nur den Bildschirm der Testperson und hörten ihre Stimme, nicht aber ihr Gesicht. Mimik und Körpersprache konnten wir bei diesen Tests deshalb nicht beobachten. Reaktionen wie Frustration oder Freude (B12) liessen sich nur über Stimme und Spielverhalten erkennen.
+
+\paragraph{Gegnerverhalten}
+\begin{enumerate}[label=\textbf{B\arabic*}, leftmargin=1.5cm, itemsep=0.5em]
+    \item Verhält sich die Testperson in normalen Phasen risikofreudig und aggressiv (z.\,B. wenig Ausweichen, viel Angreifen) und spürbar vorsichtiger in den zugespitzten Momenten? \hfill (V1)
+    \item Verhält sich die Testperson in Momenten mit vielen Gegnern anders (hektischer, mehr Fehler) als in ruhigeren Momenten? \hfill (V2)
+    \item Welchen Gegnertyp greift die Testperson zuerst an, wenn Nah- und Fernkämpfer gleichzeitig anwesend sind? \hfill (V3)
+    \item Reagiert die Testperson (z.\,B. durch Ausweichen), bevor ein Angriff trifft, oder erst danach bzw.\ gar nicht? \hfill (V4)
+    \item Wiederholt die Testperson denselben Fehler mehrfach an derselben Stelle?
+\end{enumerate}
+
+\paragraph{Gegnerplatzierung und Kampfraum}
+\begin{enumerate}[label=\textbf{B\arabic*}, leftmargin=1.5cm, itemsep=0.5em, resume]
+    \item Zeigt die Testperson zu Beginn eines Encounters ein zielgerichtetes Vorgehen (z.\,B. gezieltes Anvisieren einzelner Gegner), und wird dieses Vorgehen unruhiger, sobald sich die Gegner umzingelnd verhalten? \hfill (V5)
+    \item Unterscheidet sich das Bewegungsmuster im engen Abschnitt sichtbar vom offenen Abschnitt (mehr Ausweichen, mehr Distanzhalten)? \hfill (V6)
+    \item Zeigt die Testperson in Erholungsphasen ein erkennbar anderes Verhalten (z.\,B. Innehalten, freies Erkunden) als während einer Welle? \hfill (V7)
+    \item Wirkt die Testperson beim ersten Auftreten einer neuen Gegnervariante zögerlich oder unsicher, und verschwindet dieses Zögern bei späteren Wiederholungen derselben Variante? \hfill (V8)
+\end{enumerate}
+
+\paragraph{Allgemein}
+\begin{enumerate}[label=\textbf{B\arabic*}, leftmargin=1.5cm, itemsep=0.5em, resume]
+    \item Anzeichen von Verwirrung oder Orientierungslosigkeit (z.\,B. Stehenbleiben, Umherblicken ohne erkennbares Ziel)
+    \item Spontane verbale Reaktionen (Wortlaut notieren)
+    \item Sichtbare Frustration oder sichtbare Freude bzw.\ Erleichterung
+    \item Auffällige, nicht vorhergesehene Entscheidungen (z.\,B. Ignorieren eines Gegnertyps, unerwartete Fluchtversuche)
+    \item Wirkt der Übergang zwischen zwei Segmenten (z.\,B. Welle zu Erholung, eng zu offen) beim Spielverhalten fliessend, oder gibt es einen sichtbaren Bruch (Zögern, Pause, sichtbare Neuorientierung)? \hfill (Spielfluss)
+\end{enumerate}
+
+\subsubsection{Semistrukturiertes Interview} \label{sec:Interview}
+
+Das Interview fand bei Bedarf im Anschluss an das Post-Questionnaire statt und nutzte die Videoaufnahme des Playtests, um gezielt auf die während der Beobachtung notierten Auffälligkeiten einzugehen. Die folgenden Fragen dienten als Leitfaden und wurden je nach den tatsächlich beobachteten Auffälligkeiten der jeweiligen Testperson angepasst und ergänzt. Die tatsächlich gestellten Fragen pro Testperson finden sich im Anhang (Abschnitt~\ref{sec:PlaytestProtokolle}).
+
+\begin{enumerate}[label=\textbf{I\arabic*}, leftmargin=1.5cm, itemsep=0.5em]
+    \item An den markierten Stellen: Was ist dir hier durch den Kopf gegangen?
+    \item Du hast hier [Reaktion/Aussage] gezeigt bzw.\ gesagt. Kannst du beschreiben, warum?
+    \item An dieser Stelle bist du wiederholt gestorben bzw.\ hast du gezögert. Was hat dir das Weiterkommen erschwert?
+    \item Vergleiche diesen Moment mit jenem dort: Haben sich die beiden unterschiedlich angefühlt, und wenn ja, wie?
+    \item Als hier mehrere Gegner gleichzeitig da waren: Wie hast du entschieden, wen du zuerst angreifst?
+    \item Empfandest du diesen Treffer bzw.\ diesen Tod als eigenen Fehler oder als unfair? Warum?
+    \item Gab es einen Punkt, an dem sich der Kampf für dich in einen anderen \enquote{Modus} verschoben hat (z.\,B. von entspannt zu angespannt)? Wo genau?
+    \item Gibt es etwas, das du während des Spielens gedacht oder gefühlt hast, das wir bisher nicht angesprochen haben?
+\end{enumerate}
+
+\subsubsection{Auswertung} \label{sec:Auswertung}
+Da die Playtests für uns sehr aufwendig waren und wir im Rahmen unserer Maturitätsarbeit nur wenige durchführen konnten, haben wir die Ergebnisse \textcolor{red}{qualitativ und nicht quantitativ [Begriff: \enquote{qualitativ} steht in der Forschung für bestimmte Methoden (z.\,B. qualitative Inhaltsanalyse mit Kategorien und Kodierung). Ihr meint vermutlich nur \enquote{beschreibend, ohne Statistik}. Falls ja, ersetzen, z.\,B. \enquote{beschreibend statt statistisch}]} ausgewertet. Mit fünf Testpersonen lassen sich keine abschliessenden oder statistisch belastbaren Aussagen zur Erkenntnisfrage treffen. Kennwerte wie Mittelwert oder Median haben wir deshalb nicht berechnet. Dies entspricht auch der Empfehlung unserer Betreuungsperson. Zudem sind die Faktoren, die ein Spielerlebnis prägen, unserer Meinung nach so eng miteinander verwoben, dass sich kaum ein einzelner Faktor als alleinige Ursache benennen lässt. Ziel der Auswertung war es deshalb, Tendenzen zu erkennen und mögliche Gründe einzugrenzen. \textcolor{red}{Ausserdem konnten wir weitere Bereiche ausfindig machen, die unserer Einschätzung nach vielversprechende Erklärungen liefern könnten. [5, leer ohne Beispiel: Welche Bereiche? Entweder streichen oder konkret machen, z.\,B. \enquote{Ausserdem sind wir auf Faktoren ausserhalb von Gegnerverhalten und Gegnerplatzierung gestossen, etwa die Trägheit der Combos oder fehlende Hinweise auf offene Türen, die Spielfluss und Spielgefühl ebenfalls beeinflussen (Abschnitt~\ref{sec:Gesamteindruck}).}]}
+
+Zu jedem Designvorschlag gab es gezielte Aussagen im Post-Questionnaire und Kriterien im Beobachtungsraster (Abschnitte~\ref{sec:PostQuestionnaire} und~\ref{sec:Beobachtungsraster}). Diese haben wir zusammen mit den Interviews pro Designvorschlag gemeinsam betrachtet. Häufigkeiten geben wir als \enquote{x von 5 Testpersonen} an, die Antworten auf der Skala von 1 bis 5 beschreiben wir als Tendenz. Wie stark unsere Daten einen Designvorschlag stützen, beurteilen wir \textcolor{red}{in drei Stufen (starke Tendenz, schwache Tendenz sowie kaum oder keine Hinweise)}, die wir in Abschnitt~\ref{sec:ErgVorschlag} erläutern. Alle Angaben lassen sich in den Protokollen im Anhang (Abschnitt~\ref{sec:PlaytestProtokolle}) nachprüfen.
+
+Dabei sind uns Widersprüche aufgefallen, sowohl in den Antworten der Testpersonen als auch in unseren Beobachtungen. Diese greifen wir in der Diskussion (Abschnitt~\ref{sec:Interpretation}) auf. Widersprüche in den Beobachtungen entstehen vor allem dadurch, dass sich das Spielverhalten der Testpersonen im Verlauf des Playtests verändert hat und teilweise von Raum zu Raum unterschiedlich war. So können Notizen, die auf den ersten Blick widersprüchlich wirken, im Kontext des ganzen Playtests durchaus zusammenpassen.
+
+\end{document}

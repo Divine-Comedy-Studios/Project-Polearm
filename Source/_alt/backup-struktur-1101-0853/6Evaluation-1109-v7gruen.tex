@@ -1,0 +1,314 @@
+\documentclass[../Main.tex]{subfiles}
+
+\begin{document}
+
+\section{Evaluation durch Playtests} \label{sec:Evaluation}
+
+In diesem Kapitel wird überprüft, ob die acht Designvorschläge (V1--V8), die wir aus unseren Spieleanalysen und der Leveldesign-Recherche hergeleitet und in Kapitel~\ref{sec:Umsetzung} umgesetzt haben, die beabsichtigten Wirkungen auf Spielfluss, Schwierigkeit und Spielgefühl tatsächlich erzeugen.
+
+Das folgende Kapitel beschreibt zunächst den Ablauf der Playtests (zum Vorgehen siehe Abschnitt~\ref{sec:VorgehenPlaytest}). Danach gehen wir die Designvorschläge einzeln durch, stellen jeweils unsere Beobachtungen dar und interpretieren sie. Anschliessend ordnen wir den Gesamteindruck nach Spielfluss, Schwierigkeit und Spielgefühl ein. Die Verbesserungen, die wir aus den Playtests ableiten, folgen in Abschnitt~\ref{sec:Verbesserungen}.
+
+\subsection{Durchführung und Testpersonen} \label{sec:Durchfuehrung}
+
+Alle fünf Playtests wurden von derselben Person geleitet, um möglichst vergleichbare Ergebnisse zu erhalten. Gespielt wurde immer mit Maus und Tastatur. Zwei Playtests fanden über Discord mit Bildschirmübertragung statt, drei vor Ort. Alle Testpersonen spielten dieselbe exportierte Version des Spiels (für Mac oder Windows) und benutzten dabei ihre gewohnte Hardware. Aufgenommen haben wir die Playtests jeweils mit einem Handy.
+
+Die Playtests fanden zwischen dem 26.10.2026 und dem 02.11.2026 statt. Das Pre-Questionnaire dauerte in der Regel höchstens fünf Minuten. Der Playtest selbst war unterschiedlich lang: Der kürzeste dauerte etwa 20, der längste etwa 40 Minuten. Das lag unserer Einschätzung nach weniger am Können der Testpersonen als an ihren Absichten: Manche wollten Glitches finden, andere das Spiel möglichst schnell durchspielen. Post-Questionnaire und Interview dauerten zusammen etwa 15 Minuten. Insgesamt nahm jeder Playtest für die Testperson also etwa 40 bis 60 Minuten in Anspruch.
+
+Während des Spielens haben wir keinen Smalltalk geführt, um die Testpersonen nicht abzulenken. In entspannten Phasen haben wir mit ihnen allerdings über das Spiel gesprochen. Hatte eine Testperson eine Frage zum Kampfsystem oder etwas vergessen, haben wir die Frage beantwortet. Ganz zu Beginn haben wir den Testpersonen zudem gezeigt, welche Aktionen es gibt und wie man sie ausführt, da der Prototyp kein Tutorial enthält.
+
+Obwohl wir die Testpersonen nicht zum lauten Denken aufgefordert hatten (Abschnitt~\ref{sec:MethodePlaytest}), haben sie während des Spielens immer wieder von sich aus erzählt, was sie gerade denken. Dadurch erhielten wir schon in der Beobachtung viele Informationen über ihre Gedanken und Absichten. Das semistrukturierte Interview fiel deshalb deutlich kürzer aus als geplant, da meist nur wenige Fragen offen blieben.
+
+Nach der Auswertung haben wir die Aufnahmen gelöscht (Abschnitt~\ref{sec:AuswahlTP}) und die Testpersonen in dieser Arbeit anonymisiert. So lassen sich die einzelnen Aussagen nicht direkt mit einer Person in Verbindung bringen. Für die Auswertung spielt es zudem keine Rolle, wer eine Aussage gemacht hat, da wir die Testpersonen über das Pre-Questionnaire charakterisiert haben. In Tabelle~\ref{tab:Testpersonen} fassen wir diese Charakterisierungen zusammen. Sie stützen sich auf die Antworten aus dem Pre-Questionnaire und auf unsere Beobachtungen aus den Playtests.
+\begin{table}[H]
+    \centering
+    \small
+    \renewcommand{\arraystretch}{1.3}
+    \begin{tabular}{|>{\raggedright\arraybackslash}p{1.2cm}|>{\raggedright\arraybackslash}p{12.6cm}|}
+        \hline
+        \textbf{TP} & \textbf{Charakterisierung} \\
+        \hline
+        TP1 & Die Person spielt während der Schulzeit kaum, in den Ferien dafür viel, vor allem Survival- und Shooter-Spiele, und schätzt das eigene Können mit 3--4 ein. Bevorzugt aggressives Spiel, zog sich im Playtest bei viel Schaden aber zurück, heilte regelmässig und suchte nebenbei nach Glitches. \\
+        \hline
+        TP2 & Die Person spielt unter der Woche nur etwa 3--4 Stunden, in den Ferien aber deutlich mehr, und zwar quer durch viele Genres, u.\,a.\ auch Souls-likes, Shooter und Horror. Die Selbsteinschätzung liegt bei etwa 3--4. Spielte im Playtest wie angegeben sehr aggressiv und nahm viele Treffer in Kauf, ging in kleinen Räumen aber auch taktisch vor. \\
+        \hline
+        TP3 & Spielt je nach Neuerscheinungen 0--20 Stunden pro Woche, vor allem Action- und Platformer-Spiele. Schätzt sich auf etwa 3 ein und spielt nach eigener Aussage, ohne viel nachzudenken. Das zeigte sich im Playtest am aggressiven Verhalten und daran, dass die Lebenspunkte kaum beachtet wurden. \\
+        \hline
+        TP4 & Spielt heute kaum noch, früher aber mehrere Stunden pro Woche, am liebsten Taktik- und Aufbauspiele. Die Selbsteinschätzung liegt bei etwa 3. Mag je nach Stimmung sowohl aggressives als auch taktisches Spiel, im Playtest haben wir aber wenig taktisches Spiel beobachtet. Kommentierte das Spiel währenddessen ausführlich. \\
+        \hline
+        TP5 & Spielt 4 bis 30 Stunden pro Woche in vielen Genres, darunter Souls-likes und Roguelikes. Schätzt sich mit 4 am höchsten ein. Spielt methodisch, probierte im Playtest alles aus, suchte zudem nach Glitches und zeigte viel Interesse an Mustern im Gamedesign. \\
+        \hline
+    \end{tabular}
+    \caption{Charakterisierung der Testpersonen (Pre-Questionnaire P1--P8, ergänzt durch Beobachtungen)}
+    \label{tab:Testpersonen}
+\end{table}
+
+\subsection{Beobachtungen und Interpretation pro Designvorschlag} \label{sec:ErgVorschlag} \label{sec:Interpretation}
+
+Im Folgenden gehen wir die Designvorschläge V1--V8 der Reihe nach durch. Zu jedem Vorschlag beschreiben wir zuerst kurz das Ziel, wie wir es schon in Kapitel~\ref{sec:Umsetzung} hergeleitet haben. Danach führen wir unter \enquote{Beobachtungen} die Antworten und das beobachtete Verhalten auf, die für diesen Vorschlag wichtig sind. Zum Schluss interpretieren wir diese Beobachtungen: Wir halten zuerst fest, wie stark die Tendenz zur beabsichtigten Wirkung ist, und erklären danach, warum. Da fünf Testpersonen keine repräsentative Zielgruppe bilden, können wir die Vorschläge weder bestätigen noch widerlegen, sondern nur Tendenzen festhalten. Wir unterscheiden deshalb drei Stufen: Entweder zeigt sich eine starke Tendenz zur beabsichtigten Wirkung, oder eine schwache Tendenz, bei der ein Vorschlag tendenziell eher so wirkt wie beabsichtigt, oder wir finden kaum oder keine Hinweise darauf. Letzteres bedeutet nicht, dass das Gegenteil zutrifft. Die einzelnen Antworten der Testpersonen sind im Anhang aufgeführt (Abschnitt~\ref{sec:PlaytestProtokolle}). Im Text finden sich Verweise wie zum Beispiel (TP3, B1). Diese beziehen sich auf die Protokolle im Anhang: P steht für das Pre-Questionnaire, Q für das Post-Questionnaire, B für das Beobachtungsraster und I für das semistrukturierte Interview.
+
+\subsubsection{V1: Überlegenheit als Grundzustand}
+
+\paragraph{Ziel}
+Der Spieler soll sich seinen Gegnern grundsätzlich überlegen fühlen, wobei dieser Zustand gezielt durchbrochen werden kann. Aggression soll sich dadurch sicher und belohnt anfühlen, während Spannung erst dort entsteht, wo die Kontrolle kurzzeitig bedroht wird (Abschnitt~\ref{sec:V1}).
+
+\paragraph{Beobachtungen}
+Drei von fünf Testpersonen stimmten völlig zu, sich den Gegnern überlegen gefühlt zu haben, während zwei dies als neutral bewerteten (jeweils Q1). Dabei zeigen sich zwei Gruppen. Zugestimmt haben vor allem jene Testpersonen, die im Playtest sehr aggressiv spielten (TP2, TP3 und TP4). Eine von ihnen ignorierte beispielsweise ihre eigenen Lebenspunkte und konzentrierte sich nur auf die Gegner. Am besten fand sie, dass man einen Archer unter Umständen mit nur einem Schlag besiegen kann (TP3, B1 und Q12). Eine andere meinte: \enquote{Ich geniesse meine Überlegenheit}. Besonders befriedigend sei es, alle Gegner auf einmal zu besiegen. Das habe sich insgesamt am besten angefühlt (TP4, B11 und Q12).
+
+Neutral bewerteten die Überlegenheit dagegen die beiden Testpersonen, die vorsichtiger spielten. TP5 spielte weniger aggressiv, eher taktisch und methodisch (TP5, B1), und hätte sich den Spieler im Vergleich zu den Gegnern noch stärker vorgestellt, etwa wie in \game{Hyrule Warriors}\autocite{omegaforce_hyrulewarriors_2014} (TP5, Q14). TP1 bevorzugt laut eigener Aussage zwar eher aggressives Spiel (TP1, P6), im Playtest haben wir aber beobachtet, dass sie aus dem Kampf flüchtete, wenn es zu brenzlig wurde, besonders dann, wenn sie zu viel Schaden nahm (TP1, B1). Genauso verhielt sich TP5 (TP5, B4). Beide beobachteten das Spielgeschehen oft auch ein wenig, bevor sie kämpften, und suchten nach Glitches (TP1, B13; TP5, B2 und B13). Abgesehen von TP1 entsprach die Spielweise im Playtest damit meist der Spielweise, die die Testpersonen im Pre-Questionnaire angegeben hatten: TP2 spielt laut eigener Aussage gerne aggressiv und schnell und tat das auch (TP2, P6 und B1), und TP5 bevorzugt methodisches Spiel und spielte auch so (TP5, P6 und B1).
+
+Die Überlegenheit wurde aber auch immer wieder durchbrochen. Einzelne Gegner bereiteten den Testpersonen kaum Probleme, schwieriger wurde es erst in Gruppen (TP2, I6; TP5, B2). Insbesondere wenn die Testpersonen von einer Gegnergruppe umzingelt waren, konnte es passieren, dass sie wie in einem Stunlock gefangen waren und erst nach erlittenem Schaden wieder herauskamen (TP4, B2; TP5, Q13).
+
+Das Heilen setzten die Testpersonen unterschiedlich ein. TP1 nahm hinter Boxen Deckung, um sich zu heilen (TP1, B8), und TP2 rannte bei zu vielen Gegnern weg oder stieg auf Boxen, um sich in Ruhe zu heilen (TP2, B2 und B8). In kleinen Räumen war TP2 sichtlich genervt, wenn sie beim Heilen unterbrochen wurde, und meinte, Heilpausen seien schwer zu finden gewesen (TP2, B12 und I7). TP3 heilte sich anfangs gar nicht und starb deshalb einmal, später rannte sie zum Heilen vor einer Gruppe Soldiers weg (TP3, B2 und B8).
+
+Auch die Trägheit der Combos machte die Testpersonen anfällig (TP3, Q13, B4 und I2b; TP4, Q13, B11 und I1). TP3 meinte, nach einer Combo sehe man die Pfeile zwar kommen, könne aber trotzdem nicht ausweichen, und TP4 sah den Grund für solche Treffer teils bei sich selbst, teils bei den Combos (TP3, I6; TP4, I6). Während einer Combo spielte dies keine Rolle, da die Spielfigur nicht nur geradeaus, sondern um sich schlägt und damit keine Nahkampfgegner an sich heranlässt. Am Ende einer Combo konnte es jedoch passieren, dass man Schaden erlitt.
+
+Der Heavy Soldier, der als gezielter Bruch der Überlegenheit dienen sollte, wurde dagegen kaum als Bedrohung wahrgenommen. Bei seinem ersten Auftreten im kleinen Raum wirkte er zwar bedrohlich (TP1, B9; TP2, B9), danach fanden die Testpersonen aber heraus, dass er doch nicht so schwer zu besiegen ist (TP1, I1a), spätestens wenn sie ihn in Kombination mit anderen Gegnern antrafen. Besonders dazu beigetragen hat, dass er häufig verfehlte (TP1, B9; TP3, I5; TP4, I2). Deshalb scheuten die Testpersonen ihn nicht oder hoben ihn sich für das Ende auf, um zuvor die für sie bedrohlicheren Gegner zu besiegen (TP2, I5; TP3, B3; TP5, B9).
+
+Ausserdem waren die Testpersonen in der Luft durch die Archers verwundbar: Wurden sie getroffen, fielen sie zu Boden, und es kam vor, dass sie beim Aufstehen weiteren Schaden erlitten (TP2, I6; TP4, B2 und B11; TP5, I8). Die Archers konnten den Spieler zudem auch während einer Combo treffen, da sie sich ihm nicht nähern mussten. Kam ein Pfeil angeflogen, konnte man fast nicht ausweichen, und vier von fünf Testpersonen haben den Schaden einfach in Kauf genommen (TP1, TP2, TP3 und TP4, jeweils B4). Interessanterweise empfanden alle Testpersonen eine bestimmte Archer-Variante als besonders unangenehm, aber nicht alle dieselbe: drei den Heavy Archer (TP2, B12; TP3, B12; TP4, B11), eine den Chain Archer (TP1, I1b) und eine die Archers allgemein (TP5, B3).
+
+Angespannt waren die Testpersonen vor allem dann, wenn ihre Kontrolle bedroht war. Die Kombination aus vielen Gegnern und wenig Leben löste gerne Panik aus (TP3, B2; TP5, I7), und auch die Fernkämpfer erzeugten Spannung (TP3, I7).
+
+\paragraph{Interpretation}
+Insgesamt wirkt V1 tendenziell eher so, wie wir es beabsichtigt haben. Beim Grundzustand der Überlegenheit zeigt sich eine starke Tendenz. Das gezielte Durchbrechen konnten wir dagegen nicht ganz so umsetzen wie geplant, weshalb wir dafür weniger Hinweise haben: Durchbrochen wurde die Überlegenheit zwar durch Elemente, die wir geplant hatten, aber auch durch solche, die wir nicht geplant hatten.
+
+Ziel war es, die Spieler zu aggressivem Spiel zu animieren. Die Testpersonen, die lieber aggressiv spielen, haben das im Playtest tendenziell auch getan und ihre Überlegenheit genossen. Wer aggressiv spielen wollte, konnte das in unserem Prototyp also auch tun. Für TP5, die eher taktisch spielte, war der Spieler dagegen noch etwas zu schwach und hätte stärker sein können. TP1 schätzte sich zwar als eher aggressiv ein, spielte nach TP5 aber am taktischsten und bewertete die Überlegenheit wie TP5 neutral. Dafür sehen wir zwei mögliche Gründe: Entweder reichten unsere Massnahmen nicht aus, um TP1 zu aggressivem Spiel zu bewegen, oder TP1 war davon abgelenkt, dass es sich um einen Prototyp handelt, suchte deshalb eher nach Glitches und war so in einer taktischeren Denkweise. Für die beiden taktisch spielenden Testpersonen fühlte sich aggressiver Kampf zu unsicher an. Beide zogen es vor, nach zu viel Schaden Abstand zu halten, während die aggressiveren Testpersonen einfach weiterschlugen.
+
+Die geplanten Brüche (Abschnitt~\ref{sec:V1}) haben unterschiedlich gut gewirkt. Wie geplant waren einzelne Gegner nie ein Problem, sondern erst Gruppen, auch weil wir den Gegnermanager sehr aggressiv eingestellt haben. Einige Testpersonen wichen ihnen aus oder mussten sich zwischendurch erholen (Abschnitt~\ref{sec:ErgVorschlag}, V2). Das Heilen war als taktischer Bruch geplant (Abschnitt~\ref{sec:V1}). Es hat die Testpersonen nicht nur genervt, sondern auch Spannung erzeugt, weil man sich dafür einen sicheren Platz suchen musste, etwa auf einer Box (Beobachtungen oben). Ob dieser Bruch auch Spass gemacht hat, ist allerdings eine andere Frage, die wir mit unseren Daten nicht beantworten können. Das Heilen liegt damit auf der Grenze zwischen einem gelungenen und einem eher störenden Bruch. Dass für manche Gegner mehrere Combos nötig waren, sollte den Spieler ebenfalls zu etwas taktischerem Spiel bringen. Ob das gewirkt hat, lässt sich aus unseren Beobachtungen nicht direkt ablesen: Die aggressiven Testpersonen schlugen einfach weiter (TP3, B1; TP4, B2), die vorsichtigeren zogen sich bei viel Schaden zurück (TP1, B1; TP5, B4).
+
+Auch die Trägheit der Combos, die wir ebenfalls als Bruch eingeplant hatten, brach die Überlegenheit. Sie unterscheidet sich aber von den anderen Brüchen: Bei TP3 und TP4 hat die Trägheit die meisten Kommentare ausgelöst. Sie war aber kein taktischer Bruch, bei dem die Testpersonen meinten, sie hätten anders handeln können (TP3, I6; TP4, I6). Sie garantierte vielmehr, getroffen zu werden, denn auch wer ausweichen wollte, steckte noch in der Animation fest.
+
+Nicht gelungen ist der Bruch durch den Heavy Soldier, denn er ist etwas zu schwach geraten. Wir haben ihn als stärkere Variante des Soldiers entworfen, daher auch der Name, und ihm mehr Lebenspunkte und mehr Schaden gegeben. Zudem lässt er sich als einziger Gegner nicht unterbrechen (Abschnitt~\ref{sec:Gegnertypen}). Um ihn etwas abzuschwächen, greift er aber langsamer an und trifft ungenauer, sodass er häufiger verfehlt als der Soldier. Diese Abschwächungen und der Umstand, dass wir Soldiers meist in Horden, Heavy Soldiers aber nur selten in grösserer Zahl erscheinen liessen, machten einen Heavy Soldier leichter als eine Horde normaler Soldiers. Man konnte ihm leicht davonrennen und ihn erst zum Schluss besiegen. Dem hätten wir entgegenwirken können, indem wir ihn wie den Soldier häufiger und in Gruppen platziert hätten. Das ist uns vor dem Playtest aber nicht aufgefallen. Als Bruch wirkte der Heavy Soldier damit nicht. Gelungen ist dagegen seine Inszenierung: Weil wir ihn in einem kleinen Raum eingeführt haben, wirkte er beim ersten Auftreten stärker, als er tatsächlich ist.
+
+Dafür brachen Faktoren die Überlegenheit, die wir nicht als Bruch geplant hatten: die Treffer in der Luft und die Archers. Dass nicht alle dieselbe Archer-Variante als besonders unangenehm empfanden, liegt wahrscheinlich an ihren Bewegungsmustern, an der Reihenfolge, in der sie die Gegner besiegten, oder an den Stellen, an denen sie zu kämpfen begannen. Spannung entstand damit zwar dort, wo die Kontrolle verloren ging oder kurzzeitig bedroht war, vor allem bei wenig Leben und vielen Gegnern, zu einem guten Teil aber auch durch Faktoren, die wir nicht vorhergesehen hatten. Diese Faktoren könnten wir in einem weiteren Playtest dennoch gezielt verändern und anpassen.
+
+Den Kontrollzustand erlebten die Testpersonen damit ähnlich wie in \game{NieR: Automata}, also als Kontrolle im Grundzustand. Das gezielte Brechen der Kontrolle wie in \game{Ninja Gaiden} kam dagegen nur teilweise zur Geltung (Abschnitt~\ref{sec:Vergleich}).
+
+\subsubsection{V2: Begrenzung gleichzeitig aktiver Gegner}
+
+\paragraph{Ziel}
+In Encountern mit vielen Gegnern sollen nicht alle Gegner gleichzeitig erscheinen oder gleichzeitig angreifen. So sollen auch grosse Gruppen lesbar und fair bleiben, statt den Spieler zu überfordern (Abschnitt~\ref{sec:V2}).
+
+\paragraph{Beobachtungen}
+Die allermeisten Testpersonen fanden laut eigener Aussage, dass sie auch bei vielen Gegnern die Kontrolle behalten haben (jeweils Q2). TP2 meinte, es sei schwerer, wenn die Gegner in einem Haufen seien, als wenn sie einzeln kämen, aber nicht unangenehm schwer (TP2, I6).
+
+Dabei hatten alle eine eigene Strategie, um mit grösseren Gegnermassen umzugehen, und es liessen sich ähnliche Muster beobachten: Einige griffen einfach den ersten Gegner an, der bei ihnen war, andere wollten zuerst alle Archers loswerden. Grob lassen sich zwei Vorgehensweisen unterscheiden. Die einen stellten sich der Gruppe direkt und kämpften gegen viele Gegner gleichzeitig. Eine von ihnen häufte die Soldiers sogar gezielt bei einem Archer an, um alle mit einer Combo zu treffen (TP3, B2; TP4, B2). Wurde das Leben dabei knapp, kam es zu kurzen Momenten der Panik (TP3, B2). Die anderen verschafften sich Abstand oder lösten die Gruppe auf: Sie rannten weg, um sich zu heilen, sprangen auf Boxen, die sie zu Beginn eines Encounters von Gegnern befreit hatten, oder versuchten, die Gegner zu trennen und einzeln anzugreifen (TP1, B2; TP2, B2; TP5, B2 und B3).
+
+Nicht immer liessen sich grosse Gruppen gut überblicken. TP1 rannte weg, wenn unklar war, wie viele Gegner sich in der Nähe befanden, und kämpfte erst weiter, wenn wieder alles im Blick war (TP1, B2). TP5 meinte, sie könne nicht einschätzen, wie viel Schaden eine Gruppe von Gegnern mache, wenn sie in die Gruppe hineinlaufe, und ob sie dann im Haufen auch noch in einen Stunlock gerate (TP5, I6). Deshalb versuchte sie, Gegner abzusondern (TP5, B2).
+
+Am unangenehmsten war für mehrere Testpersonen der Stunlock: Griffen mehrere Gegner gleichzeitig an, konnte es passieren, dass man von allen getroffen wurde und erst nach erlittenem Schaden wieder herauskam (TP3, B12 und I2b; TP4, B2; TP5, Q13 und I6).
+
+In der Gruppe konnten Fehler zudem stark bestraft werden. TP1 lief oft nah an den Wänden und versuchte einmal, direkt an der Wand zu kämpfen, damit alle Gegner aus einer Richtung kamen. Bei mehr als drei Gegnern kam sie dadurch aber kaum noch von der Wand weg und wäre beinahe gestorben (TP1, B6 und B13). Wurde man in der Luft abgeschossen, fiel man zu Boden und wurde von den Nahkämpfern umzingelt, sodass man doppelt bestraft werden konnte (TP4, B2; TP2, I6; TP3, B6).
+
+\paragraph{Interpretation}
+Bei der Begrenzung der gleichzeitig erscheinenden Gegner zeigt sich eine starke Tendenz zur beabsichtigten Wirkung. Zur Begrenzung der gleichzeitig angreifenden Gegner können wir dagegen kaum etwas sagen, da wir sie kaum genutzt haben. Im Spiel gibt es zwei Systeme, welche die Gegner begrenzen: die Begrenzung der gleichzeitig angreifenden Gegner und die Begrenzung der gleichzeitig erscheinenden Gegner (Abschnitt~\ref{sec:V2}). Zudem lässt sich generell nur schwer ausmachen, welches der beiden Systeme dazu beigetragen hat, dass ein Kampf zu einfach, zu schwer oder genau richtig war, denn beide sollen so wirken, dass der Spieler sie nicht aktiv bemerkt.
+
+Die allermeisten Testpersonen behielten auch bei vielen Gegnern die Kontrolle (Beobachtungen oben). Die Menge der gleichzeitig aktiven Gegner war insgesamt so gewählt, dass die Testpersonen nicht überfordert waren und die Situation meist zur Genüge überblicken konnten. Gelang ihnen das nicht, rannten sie aus dem Kampf heraus, um sich schnell wieder einen Überblick zu verschaffen. In manchen Situationen waren Gruppen schwerer, was wie in V1 beschrieben die Überlegenheit brach. Für TP2 war der Kampf gegen Gruppen schwer, aber nicht unangenehm, also in dem Sinn, dass das Spiel schwer sein darf, ohne unmachbar zu werden.
+
+Dass wir zwei verschiedene Vorgehensweisen gegen Gruppen beobachten konnten, liegt an der Umsetzung des Designvorschlags: Ohne die Begrenzung der Gegnermengen wäre das nicht möglich gewesen. Wären die Gegnergruppen aber für alle Testpersonen angenehm gewesen, wären vermutlich alle direkt hineingerannt.
+
+Es gab aber Momente, die zu stark bestraft haben. Als besonders unangenehm empfanden mehrere Testpersonen den Stunlock (TP3, B12; TP4, B2; TP5, Q13): Man konnte nicht genau einschätzen, wie viel Schaden man kassiert, wenn man in eine Gruppe gerät, und der grösste Schaden entstand dann, wenn man im Stunlock von allen Gegnern gleichzeitig getroffen wurde. Der Stunlock zeigt, dass wir es mit dem aggressiv eingestellten Gegnermanager vermutlich übertrieben haben: Er entstand gerade dann, wenn alle Gegner gleichzeitig angriffen, also in den Situationen, die die Begrenzung der Angreifer verhindern sollte. Wurde man in der Luft abgeschossen und fiel hin, schlugen die Gegner zudem weiter auf den Spieler ein, da sie nicht wissen, in welchem Zustand er sich befindet.
+
+Schlussendlich haben wir es ähnlich wie \game{Ninja Gaiden} gelöst, wo die maximale Anzahl aktiver Gegner begrenzt wird (Abschnitt~\ref{sec:Vergleich}). Die Begrenzung der Angreifer, wie wir sie in \game{NieR: Automata} beobachtet haben, haben wir dagegen kaum genutzt.
+
+\subsubsection{V3: Ein taktisches Dilemma durch Nah- und Fernkämpfer}
+
+\paragraph{Ziel}
+Der Kampfabschnitt soll Nah- und Fernkämpfer kombinieren, sodass der Spieler entscheiden muss, welche Bedrohung er zuerst ausschaltet. Die Schwierigkeit soll dadurch taktisch statt rein mechanisch entstehen (Abschnitt~\ref{sec:V3}).
+
+\paragraph{Beobachtungen}
+Vier von fünf Testpersonen fanden, dass sie bewusst entscheiden mussten, welchen Gegner sie zuerst angreifen. Die Ausnahme war TP4, die das neutral bewertete (jeweils Q3).
+
+Die meisten lösten das Dilemma so, wie wir es erwartet hatten. Im Interview gaben alle Testpersonen an, zuerst die Archers anzugreifen, wenn sich die Möglichkeit bietet (jeweils I5), und bei drei von ihnen wurde dieses Verhalten auch beobachtet: zuerst die Archers, dann die Soldiers, wobei die Soldiers den Weg zu den Archers blockierten (TP1, TP2 und TP3, jeweils B3). Häufig kamen Soldiers dazwischen, die dann zuerst erledigt wurden (TP1, B3; TP2, B3). Begründet wurde das Vorgehen damit, dass die Archers eher trafen und ständig präsent waren, während die Nahkämpfer ohnehin auf einen zukommen (TP2, I5; TP3, I5). TP1 entschied dabei nach eigener Aussage aus Intuition (TP1, I5). Der Heavy Soldier wurde generell als Letztes angegriffen, aber auch früher besiegt, wenn sich die Möglichkeit bot (TP2, I5; TP3, B3; TP4, B3).
+
+Oft passten die Testpersonen ihr Vorgehen erst im Verlauf eines Kampfes an: Mehrere konzentrierten sich vor allem dann auf die Archers, nachdem sie von ihnen getroffen worden waren (TP2, B3; TP4, B3; TP5, B3).
+
+Nicht alle liessen sich aber gleich stark vom Dilemma leiten. Oft wurden Gegner priorisiert, die oben auf den Boxen erschienen. TP1 griff zuerst die am höchsten platzierten Archers an (TP1, B3). Für TP5 waren die Gegner auf den Boxen sogar ausschlaggebend, weil sie sich so einen sicheren Platz zum Heilen verschaffen konnte. Ansonsten probierte sie Verschiedenes aus und griff manchmal zuerst die Archers, manchmal die Nahkämpfer an (TP5, B3). TP4 hat das taktische Dilemma zwar gesehen, meinte aber, es habe für sie keine allzu grosse Rolle gespielt. Sie habe einfach, wie sie wollte, alles kurz und klein gehauen. Erst wenn sie merkte, dass es so nicht ging, und dazu gezwungen war, habe sie sich Gedanken zum Vorgehen gemacht (TP4, I5). Entsprechend schlug sie zuerst auf die Soldiers ein und ging erst danach auf die Archers los (TP4, B3). Im Verlauf des Playtests änderte sich das allerdings, und sie ging zunehmend zuerst auf die Archers (TP4, B3).
+
+\paragraph{Interpretation}
+Dass das Dilemma wahrgenommen wurde und das Vorgehen beeinflusst hat, zeigt sich als starke Tendenz: Alle Testpersonen haben es zumindest wahrgenommen, und vier von fünf liessen sich nach eigener Aussage davon auch beeinflussen. Dass die Schwierigkeit dadurch taktisch statt mechanisch wurde, zeigt sich dagegen nur als schwache Tendenz, da man das Dilemma auch ignorieren konnte. Es gab verschiedene Ansätze, das Dilemma zu lösen. Grundsätzlich hatten die Archers Vorrang, bei einigen Testpersonen zudem die Gegner auf den Boxen. Aufgrund der unterschiedlichen Gegnervarianten empfanden die einzelnen Testpersonen allerdings unterschiedliche Gegner als lästig (Abschnitt~\ref{sec:ErgVorschlag}, V1).
+
+Dass zwar alle Testpersonen grundsätzlich zuerst die Archers angreifen wollten, dies aber nicht immer taten, spricht dafür, dass die Schwierigkeit eher taktisch als rein mechanisch war: Sie wichen davon ab, weil oft Soldiers im Weg standen oder weil sie nach Treffern durch einen Archer umplanten (Beobachtungen oben). Dieses Abweichen war also selbst taktisch. Mit rein mechanisch meinen wir eine Schwierigkeit, die etwa durch mehr Lebenspunkte oder mehr Schaden der Gegner entsteht. Die Testpersonen mussten je nach Situation anders reagieren und ihren Kampfplan anpassen, TP1 etwa nach eigener Aussage aus Intuition (TP1, I5). Es war allerdings auch möglich, das Spiel mit wenig Taktik durchzuspielen und wie TP4 zu Beginn einfach kopfvoran auf die Gegner einzuschlagen. Dass sie im Verlauf zunehmend zuerst auf die Archers ging, spricht allerdings dafür, dass sich das Dilemma mit der Zeit auch bei ihr durchsetzte. Davon zu unterscheiden ist, wenn Testpersonen das Dilemma zwar erkannten, aber bewusst nicht danach handelten. Das war kein Umplanen, sondern ein Ignorieren des Dilemmas: Es war oft ebenfalls zielführend, einfach den erstbesten Gegner anzugreifen, und der Schaden der Archers wurde teils ignoriert (Abschnitt~\ref{sec:ErgVorschlag}, V1). Schaden in Kauf zu nehmen, war in manchen Situationen die mental einfachere Option und passte auch zum aggressiven Spielstil.
+
+Dass Gegner auf Boxen bevorzugt angegriffen wurden (TP1, B3; TP5, B3), zeigt, dass die erhöhte Platzierung der Archers das Dilemma zusätzlich verstärkt hat (Abschnitt~\ref{sec:V3}).
+
+Wie in \game{NieR: Automata}, wo die Small Stubbies den Weg zu den Fernkämpfern versperren (Abschnitt~\ref{sec:ReferenzspielanalyseNier}, Frage~D2), standen auch bei uns die Soldiers zwischen Spieler und Archers (TP1, B3; TP2, B3).
+
+\subsubsection{V4: Klar telegrafierte Angriffe}
+
+\paragraph{Ziel}
+Bevorstehende Gegnerangriffe sollen deutlich angekündigt werden. So soll der Spieler auch im Gruppenkampf rechtzeitig reagieren können und Treffer als eigene Fehler statt als Willkür erleben (Abschnitt~\ref{sec:V4}).
+
+\paragraph{Beobachtungen}
+Bei der Aussage, die Angriffe seien klar angekündigt worden, gingen die Meinungen am weitesten auseinander: von völliger Zustimmung (TP3) über neutral (TP2 und TP5) bis zu eher keiner oder gar keiner Zustimmung (TP1 und TP4, jeweils Q4). Ein Zusammenhang mit dem Spielstil zeigt sich dabei nicht.
+
+Alle Gegner spielten vor einem Angriff eine kurze Animation ab. Bei den Nahkämpfern wurde diese tendenziell erkannt: Den Heavy Soldier konnte man gut kontern, weil er langsam war (TP2, I5), TP1 bemerkte sofort, dass er nicht genau trifft (TP1, B9), und TP3 sah das Telegraphing grundsätzlich, auch wenn sie nicht immer reagieren konnte (TP3, Q13). Für TP5 sprang der Heavy Soldier dagegen einfach irgendwohin (TP5, B11). Die Animation der Archers sieht aus wie eine Laufanimation auf der Stelle, was eine Testperson verwirrend fand (TP5, B4). Die Pfeile selbst waren nach dem Abschuss klar zu erkennen, da man sie auf sich zufliegen sah, und man konnte ihnen auch ausweichen (TP3, B4; TP4, B4). Zielsuchende Geschosse waren allerdings schwerer auszuweichen, besonders wenn man sie erst im letzten Moment bemerkte (TP2, I6). Zudem konnte man von hinten getroffen werden, ohne dass es irgendeinen Hinweis gab: Die Archers griffen laut TP4 ohne wirkliche Vorwarnung oder Soundeffekte an, und von hinten angegriffen zu werden, fand sie nicht gut (TP4, I5 und B11).
+
+Wir konnten oft beobachten, dass Pfeile einfach ignoriert und Treffer in Kauf genommen wurden (TP1, TP2, TP3 und TP4, jeweils B4). Teils reagierten die Testpersonen erst nach dem Treffer (TP2, B4), teils kaum auf die Angriffe der Nahkämpfer (TP3, B4), oder sie wichen nur aus, wenn es ohne Aufwand ging, und liefen sonst einfach durch (TP4, B4). Wer gerade eine Combo ausführte, konnte den Pfeilen oft nicht ausweichen, auch wenn er sie kommen sah (TP3, I6; TP4, Q13).
+
+Als unfair wurden die meisten Treffer und auch die Tode nicht empfunden, weil sie angekündigt waren und für die Testpersonen nicht aus dem Nichts kamen (TP2, I6; TP5, I6). Die Treffer machten zudem so wenig Schaden, dass es die Testpersonen wenig störte (vgl.\ jeweils B4). Dadurch fühlten sich Fehler eher selbstverschuldet an als wie eine unerwartete Bestrafung. Bei den Combos hatte man dagegen eher das Gefühl, die Treffer in Kauf nehmen zu müssen (TP3, I6; TP4, I6).
+
+\paragraph{Interpretation}
+Bei den Nahkämpfern zeigt sich eine schwache Tendenz, dass die Animationen als Ankündigung ausreichen. Bei den Archers finden wir dagegen kaum Hinweise darauf. Dabei ist zu beachten, dass wir den Vorschlag nur teilweise umgesetzt haben: Die Angriffe werden ausschliesslich visuell über Animationen angekündigt, ohne Partikeleffekte oder Audio (Abschnitt~\ref{sec:V4}). Getestet haben wir deshalb nur, ob sich die Ankündigung durch Animationen allein umsetzen lässt.
+
+Dabei müssen zwei Probleme getrennt werden: zum einen die Wahrnehmung, also die Ankündigung an sich, und zum anderen die Reaktionsmöglichkeit, also ob man auf die Ankündigung überhaupt reagieren kann.
+
+Ob die Angriffe deutlich angekündigt wurden, darüber gehen die Meinungen stark auseinander. Bei den Nahkämpfern ist die Ankündigung tendenziell besser als bei den Archers, denn die Soldiers müssen erst auf den Spieler zukommen und greifen an, sobald sie bei ihm sind. Die Archers müssen sich dagegen nicht nähern und können einfach schiessen, auch von hinten, wo man ihre Ankündigung gar nicht sieht. Und auch von vorne war ihre Animation nicht eindeutig, da sie eher wie Laufen aussieht (TP5, B4). Hinzu kommt vermutlich, dass wir die Zeit bis zum Schuss zufällig verlängert haben (Abschnitt~\ref{sec:V4}), was den Zeitpunkt schwerer vorhersehbar macht. Dass TP3 völlig zustimmte, kann damit zusammenhängen, dass ihr die meisten Treffer egal waren und ihr die Ankündigungen deshalb genügten. Dass TP2 erst nach einem Treffer reagierte, kann daran liegen, dass die Ankündigungszeit zu kurz war, oder daran, dass TP2 Treffer ohnehin in Kauf nahm.
+
+Rechtzeitig reagieren konnte man tendenziell bei den Soldiers, bei den Archers dagegen eher weniger, vor allem wenn man gerade in einer Combo war. Die kassierten Treffer fühlten sich aber nicht wie Willkür an: Zum einen machten sie so wenig Schaden, dass es die Testpersonen wenig interessierte, zum anderen sah man die Pfeile ankommen oder die Soldiers auf sich zulaufen. Dass man den Pfeilen nicht immer ausweichen konnte und von hinten ohne Ankündigung getroffen wurde, empfanden die Testpersonen eher als nervig.
+
+Unsere Beobachtungen deuten somit darauf hin, dass Animationen allein tendenziell nur für die Nahkämpfer ausreichen, nicht aber für die Archers. Gerade diese können Angriffe ausserhalb des Blickfelds starten. Wir schätzen deshalb, dass ein weiterer Kanal wie ein Sound Abhilfe leisten könnte. Anders als \game{NieR: Automata}, das Angriffe gleichzeitig über Animation, Partikeleffekte und leuchtende Augen ankündigt (Abschnitt~\ref{sec:ReferenzspielanalyseNier}, Frage~M2), haben wir nur einen Kanal genutzt. Unsere Beobachtungen sprechen dafür, dass das bei den Archers nicht genügt.
+
+\subsubsection{V5: Lesbare Platzierung, dynamisches Verhalten}
+
+\paragraph{Ziel}
+Die Gegner sollen zu Beginn lesbar und teils symmetrisch platziert sein, sich danach aber dynamisch verhalten, etwa den Spieler umzingeln. Die Anfangsaufstellung soll Überblick geben, das anschliessende Verhalten den Kampf unter Druck und unvorhersehbar halten (Abschnitt~\ref{sec:V5}).
+
+\paragraph{Beobachtungen}
+Hier stimmten drei Testpersonen eher oder völlig zu, zwei eher nicht (TP1, TP2 und TP3 bzw.\ TP4 und TP5, jeweils Q5).
+
+Mehrere Testpersonen erkannten mit der Zeit Muster in der Platzierung, etwa dass Archers eher erhöht erscheinen, und konnten sie teils sogar in neuen Räumen voraussagen (TP1, B6; TP3, I8). TP3 meinte zudem, die Gegner würden zwar ausserhalb des Sichtfelds erscheinen, man bemerke sie aber früh genug, um zu reagieren (TP3, I8). Auch die Verteilung selbst kam gut an: TP2 gefiel die Verteilung der Gegner im Raum am besten (TP2, Q12), und TP5 meinte, es fühle sich richtig gut an, wenn man wisse, wo ein Gegner spawnen wird, und ihn direkt zu Beginn ausschalten könne (TP5, Q12).
+
+Den Überblick mussten sich die meisten aber erst verschaffen: Sie kletterten zwischen den Wellen auf Boxen, sahen sich eine Welle lange an oder sprangen bei vielen neuen Gegnern aus dem Kampf heraus (TP1, B2 und B6; TP2, B6; TP4, B6). Andere griffen einfach an, was vor ihnen stand. Die vorhandene Information reichte ihnen also aus (TP3, B6; TP5, B6). Nicht immer gelang der Überblick: Einen versteckten Heavy Archer fand TP3 nicht und musste ihn suchen (TP3, B6), und TP4 fand es unangenehm, von hinten, also ausserhalb des Sichtfelds, getroffen zu werden (TP4, B11). In Raum~12 starb TP4 sogar, weil sie einen Archer nicht gesehen hatte (TP4, B6).
+
+Dass Gegner den Spieler umzingelten, konnte man bei mehreren Testpersonen beobachten: TP1 wurde in einer Ecke des Raumes von den Gegnern umzingelt (TP1, B6), TP3 nach einem Treffer in der Luft am Boden (TP3, B6), und TP5 wurde beinahe in einen Türrahmen gedrängt und kam wegen der vielen Gegner fast nicht mehr heraus (TP5, B6). Dabei konnte auch der Stunlock entstehen, der bei V2 beschrieben ist (TP5, Q13).
+
+\paragraph{Interpretation}
+Beim dynamischen Verhalten der Gegner zeigt sich eine starke Tendenz, dass es Druck erzeugt hat. Bei der lesbaren Anfangsaufstellung zeigt sich dagegen nur eine schwache Tendenz. Eine genauere Aussage ist schwierig, und das liegt an der Art des Designvorschlags: Wir haben versucht, zwei verschiedene Komponenten, die auf den ersten Blick zusammengehören, nämlich die Anfangsaufstellung beim Spawnen und die anschliessende dynamische Bewegung, als eine zu evaluieren. Die Antworten sind deshalb schwer zu deuten, da die Aussage Q5 zwei Dinge gleichzeitig abfragt: die Überschaubarkeit zu Beginn und das danach unvorhersehbare, dynamische Verhalten.
+
+Dass sich die Testpersonen den Überblick oft erst verschaffen mussten (TP1, B6; TP2, B6; TP4, B6), spricht dafür, dass die Aufstellung beim Betreten nicht sofort lesbar war. Lesbar wurde sie eher mit der Zeit, weil die Testpersonen Muster in der Platzierung erkannten (TP1, B6; TP3, I8). Dazu passt, dass TP2 die Verteilung der Gegner gefiel. Für TP3 und TP5 reichte die vorhandene Information dagegen schon beim Betreten. Sie griffen einfach an, was vor ihnen stand (TP3, B6; TP5, B6), und TP5 gefiel es, zu wissen, wo ein Gegner erscheint (TP5, Q12). Manchmal wurden aber auch Archers übersehen (TP3, B6; TP4, B6), unerwartete Treffer von hinten gab es trotzdem (TP4, B11), und die Formation der Gegner lässt sich nicht sehen, bevor man den Raum betritt (Abschnitt~\ref{sec:V5}).
+
+Das dynamische Verhalten hatte dagegen deutlich eine Wirkung, wie wir beim Umzingeln beobachten konnten (TP1, B6; TP3, B6; TP5, B6). Geplant war, dass dieser Druck durch das Umkreisen entsteht. Tatsächlich kam er aber vor allem daher, dass alle Gegner gleichzeitig angriffen (Abschnitt~\ref{sec:ErgVorschlag}, V2). Ungeplant entstand dadurch auch der Stunlock (TP5, Q13).
+
+Die symmetrische Aufstellung haben wir aus \game{NieR: Automata} übernommen. Dass die Gegner erst nach dem Betreten erscheinen, entspricht aber eher \game{Ninja Gaiden} (Frage~A3 beider Analysen). Ob die Aufstellung lesbarer wird, wenn die Gegner wie in \game{NieR: Automata} schon vor dem Betreten sichtbar sind, wäre deshalb ein nächster Schritt (Abschnitt~\ref{sec:Verbesserungen}).
+
+\subsubsection{V6: Der Raum als Druckmittel}
+
+\paragraph{Ziel}
+Die Grösse des Kampfraums soll gezielt zwischen Enge und Weite wechseln. Ein enger Raum soll den Spieler zu methodischerem Spiel zwingen, während ihm ein weiter Raum taktische Distanz erlaubt (Abschnitt~\ref{sec:V6}).
+
+\paragraph{Beobachtungen}
+Hier gehen die Meinungen etwas auseinander. Die beiden eher taktisch spielenden Testpersonen, TP1 und TP5, stimmten eher oder völlig zu, während die drei aggressiven Spieler sich uneinig waren (jeweils Q6).
+
+Mehrere Testpersonen spielten in kleinen Räumen vorsichtiger. TP2 spielte in grossen Räumen aggressiver, in kleineren weniger aggressiv und eher taktisch, da es dort wenig Platz zum Heilen gab und das Leben dadurch wertvoller war (TP2, B7). Die kleinen Räume seien tendenziell schwerer, weil es keine Zufluchtsmöglichkeit gebe (TP2, I4). TP5 bemerkte einen deutlichen Unterschied (TP5, Q6) und war in Raum~10 vorsichtig, wenn sie um die Ecken ging (TP5, B7).
+
+Bei den übrigen beiden Testpersonen zeigte sich kaum ein klarer Unterschied: TP3 spielte in manchen kleinen Räumen genau gleich aggressiv, in anderen hektischer (TP3, B7), und für TP4 spielte die Raumgrösse keine Rolle, weil sie einfach alles kopfvoran versucht hat (TP4, I4).
+
+Gleichzeitig galten kleine Räume als übersichtlicher und grosse als vielseitiger. TP3 meinte, kleine Räume seien einfacher zu überblicken gewesen, man habe direkt gewusst, was gespawnt sei und was auf einen zukomme. In grösseren Räumen mit Boxen und Brücke habe es dagegen mehr Möglichkeiten gegeben, sich im Raum zu bewegen (TP3, I4). Ähnlich meinte TP5, kleine Räume seien übersichtlicher, man könne aber in Ecken gedrängt werden. Die grossen seien schwerer gewesen, weil es dort mehr Gegner gab (TP5, I4). TP1 meinte, der Brückenraum (Raum~6) habe im Vergleich zum engen Raum am Schluss mehr Möglichkeiten geboten, sich zu verstecken und den Gegnern auszuweichen. Stressiger sei er aber nicht gewesen, da sich die Gegner auf mehr Fläche verteilten (TP1, I4). Zudem konnte TP1 ihr Leben gut regulieren und nahm regelmässig kurz Abstand von den Gegnerhorden, um zu heilen (TP1, B8). Raum~6 mit der Brücke war auch der Lieblingsraum von TP2, die insgesamt eine gute Mischung der Raumgrössen sah (TP2, I4).
+
+\paragraph{Interpretation}
+Bei den engen Räumen zeigt sich nur eine schwache Tendenz, dass sie den Spieler zu methodischerem Spiel zwingen. Bei den weiten Räumen zeigt sich dagegen eine starke Tendenz, dass sie mehr Bewegungsfreiheit und taktische Distanz bieten. Einen Unterschied im Verhalten zwischen grossen und kleinen Räumen gab es, aber nur bei einem Teil der Testpersonen: Ein klar anderes Verhalten in engen Räumen zeigten zwei von fünf (TP2, B7; TP5, B7), und auch bei Q6 waren sich drei Testpersonen uneinig.
+
+Tendenziell fördern engere Räume methodisches Spiel, da man dort sein Leben weniger gut heilen kann (TP2, B7 und I4). Der Druck entstand also eher durch den fehlenden Platz zum Heilen, der wiederum durch die Gegner erzeugt wird, als durch die Enge allein. Geplant war, dass die Enge selbst Druck erzeugt. Dass er vor allem durch den fehlenden Platz zum Heilen entstand, passt aber zu unserer Einordnung der Räume, die neben der Grösse auch von der Anzahl und der Art der Gegner abhängt (Abschnitt~\ref{sec:V6}). Dass TP3 in kleinen Räumen teils gleich aggressiv, teils hektischer spielte, liegt wahrscheinlich daran, dass sie wegen ihres aggressiven Spielstils ohnehin wenig Platz brauchte und den zusätzlichen Platz der Prospect Spaces nur in Momenten mit wenig Leben oder zu grosser Gefahr vermisste. Bei TP4 spielte die Raumgrösse gar keine Rolle, weil sie alles kopfvoran versuchte (TP4, I4). Ob ein enger Raum methodisches Spiel fördert, hängt also auch stark vom Spielstil ab.
+
+Ungeplant galten kleine Räume als übersichtlicher, weil man sofort sah, was auf einen zukam (TP3, I4; TP5, I4). Das gilt aber nur, solange der Raum keine Ecken hat: In Raum~10 war TP5 gerade an den Ecken vorsichtig (TP5, B7).
+
+Offene Räume bieten dagegen mehr Platz für Taktik, weil man mehr Raum zum Bewegen hat (TP1, I4; TP3, I4). TP1 nutzte diesen Platz etwa, um regelmässig kurz Abstand zu nehmen und sich zu heilen (TP1, B8). Davon war allerdings auszugehen, da wir die drei Raumtypen nach dem Bewegungsfreiraum definiert haben (Abschnitt~\ref{sec:V6}). Nicht alle waren sich aber einig: Wir haben auch gehört, dass grosse Räume schwerer sind, weil es dort mehr Gegner gibt (TP5, I4). Das liegt wahrscheinlich daran, dass TP5 schon bei V2 Mühe mit grösseren Gegnermengen hatte.
+
+Die Schwierigkeit, auf die der Vorschlag abzielt (Abschnitt~\ref{sec:V6}), haben wir bei V6 nicht direkt abgefragt. Q6 fragt nur, ob sich der enge Abschnitt anders anfühlte als der offene. Das Verhalten haben wir im Beobachtungsraster erfasst (B7). Indirekt zeigen die Aussagen kein einheitliches Bild: TP2 fand die kleinen Räume schwerer, TP5 die grossen (TP2, I4; TP5, I4).
+
+Den Wechsel der Raumgrössen selbst fand TP2 gelungen: Sie sah eine gute Mischung und mochte Raum~6 mit der Brücke am liebsten (TP2, I4). Dass der Druck in engen Räumen vor allem entstand, weil man keinen freien Platz zum Heilen fand, deckt sich mit \game{Ninja Gaiden}, wo man in einem verengten Raum kaum einen Ort ohne Gegner findet (Frage~M3). Anders als dort sind unsere grossen Räume aber nicht offen und leer, sondern haben Boxen und eine Brücke.  Gerade diese Räume boten laut TP1 und TP3 mehr Möglichkeiten, sich zu bewegen und auszuweichen (TP1, I4; TP3, I4).
+
+\subsubsection{V7: Wellenstruktur mit Erholungsphasen}
+
+\paragraph{Ziel}
+Der Kampfabschnitt soll in Wellen mit kontrollierter Eskalation und kurzen Erholungsphasen dazwischen aufgebaut sein. So sollen sich Anspannung und Entlastung abwechseln, und die Schwierigkeit soll planbar ansteigen (Abschnitt~\ref{sec:V7}).
+
+\paragraph{Beobachtungen}
+Tendenziell stimmten die taktischer spielenden Testpersonen völlig zu, dass der Kampf spürbare Phasen von Anspannung und Erholung hatte, während die aggressiveren Testpersonen entweder neutral blieben oder ebenfalls völlig zustimmten (TP1 und TP5 bzw.\ TP2, TP3 und TP4, jeweils Q7).
+
+Alle fünf Testpersonen organisierten ihre Erholungszeit selbst, vor allem am Ende eines Raumes oder vor dem Raumwechsel. TP2 machte Pause, bevor sie in den nächsten Raum ging, und nutzte die Boxen (TP2, B8). Auch TP4 heilte sich vor dem Raumwechsel (TP4, B8). TP3 ist gestorben, weil sie sich anfangs nicht geheilt hat. Nachdem sie das bemerkt hatte, legte sie am Ende eines Raumes eine Ruhephase zum Heilen ein (TP3, B8). TP5 ging dabei etwas taktischer vor und heilte sich, wenn am Ende einer Welle nur noch wenige Gegner übrig waren (TP5, B8). TP1 heilte besonders regelmässig: Sie achtete darauf, dass ihre Energieleiste nie voll war, und heilte sich, sobald sie voll war. Dafür ging sie auf Boxen oder versteckte sich hinter Boxen, um Deckung zu haben (TP1, B8).
+
+Wie sich Anspannung und Entlastung abwechselten, erlebten die Testpersonen unterschiedlich. TP2, die eher aggressiv spielte, empfand die Wellen als überlappend. Deshalb sei es schwer gewesen, während eines Encounters Heilpausen zu finden (TP2, I7). \textcolor{red}{Zudem bemerkte sie das Ende eines Encounters nicht immer gleich (TP2, B10).} TP5 meinte, die Spannung hänge vom eigenen Leben ab, da man mit wenig Leben angespannter sei (TP5, I7). \textcolor{red}{Ähnlich geriet TP3 nur in Panik, wenn sie wenig Leben hatte und viele Gegner da waren (TP3, B2), und hielt einmal eine ruhige Welle für das Ende des Raums (TP3, B11).} TP3 meinte, es gebe eine gute Balance. Sobald alle Fernkämpfer besiegt seien, werde es entspannt (TP3, I7). \textcolor{red}{TP4 dagegen war nach eigener Aussage die ganze Zeit ins Spiel vertieft und bemerkte keinen Wechsel (TP4, I7).} TP1 meinte schliesslich, gegen Ende seien die Wellen immer interessanter geworden, da dann alle Gegner vorgestellt waren und es verschiedene Kombinationen gab (TP1, I7).
+
+\textcolor{red}{Raum~11, der so aussehen sollte, als käme gleich etwas Grosses, weckte bei TP3 die Erwartung eines Bosskampfs (TP3, I2a). Bei TP1, die in diesem Raum voraussagte, dass sie sterben werde, vermuten wir Spannung (TP1, B11).}
+
+\paragraph{Interpretation}
+\textcolor{red}{Bei den Erholungsphasen zwischen den Räumen zeigt sich eine starke Tendenz, dass sie wie beabsichtigt wirkten. Bei den Erholungsphasen zwischen den Wellen und beim planbaren Anstieg der Schwierigkeit zeigt sich dagegen nur eine schwache Tendenz.} Für die meisten Testpersonen gab es spürbare Phasen von Erholung und Anspannung (jeweils Q7).
+
+Dass die Testpersonen wie geplant ihre Pausen selbst einteilen konnten, sah man vor allem bei den taktischer spielenden Testpersonen, die sich gezielt Pausen verschafften (TP1, B8; TP5, B8). Die Pausen, die wir allen Testpersonen gegeben haben, ohne dass sie stark taktisch denken mussten, lagen zwischen den Räumen, und diese haben alle gefunden (jeweils B8). Auch die Boxen haben die meisten benutzt, manche mehr, manche weniger (TP1, TP2 und TP5, jeweils B8). Die zweite Taktik, die wir einkalkuliert hatten, nämlich den letzten Gegner einer Welle am Leben zu lassen (Abschnitt~\ref{sec:V7}), hat dagegen niemand so genutzt. Am nächsten kam TP5, die sich heilte, wenn nur noch wenige Gegner übrig waren (TP5, B8).
+
+Dass TP2 es schwer fand, Heilpausen zu finden, liegt wahrscheinlich daran, dass sie die einzelnen Wellen nicht als getrennt, sondern als überlappend wahrnahm (TP2, I7) und auch das Ende eines Encounters nicht gleich bemerkte (TP2, B10). Von der Wellenstruktur des Spiels konnte sie deshalb kaum profitieren.
+
+\textcolor{red}{Tendenziell hängt die Spannung vom eigenen Leben ab:} Das wurde so gesagt (TP5, I7), und wie bereits bei V1 beschrieben, löste die Kombination aus vielen Gegnern und wenig Leben gerne Panik aus (TP3, B2; TP5, I7). Dass sich unsere Wellen in ihrer Schwierigkeit unterscheiden, zeigte sich daran, dass eine Testperson eine ruhige Welle fälschlicherweise für das Ende des Raums hielt (TP3, B11).
+
+\textcolor{red}{Geplant war, dass die Entlastung von den Pausen zwischen den Wellen kommt. Innerhalb eines Encounters hing sie aber eher vom eigenen Leben ab (TP5, I7) und davon, welche Gegner noch übrig waren: TP3 wurde entspannt, sobald die Fernkämpfer besiegt waren (TP3, I7). Bei TP4, die ganz ins Spiel vertieft war, zeigte sich gar kein Wechsel (TP4, I7).}
+
+Für die planbare Erhöhung der Schwierigkeit haben wir unsere Räume nach und nach schwerer gemacht, mit mehr und mit schwereren Gegnern (Abschnitt~\ref{sec:V7} und Tabelle~\ref{tab:Raeume}). Dass TP1 gegen Ende mehr Spass hatte (TP1, I7), ist ein Indiz dafür, dass der Schwierigkeitsanstieg die Anteilnahme erhöht hat. Ob damit auch die Spannung gestiegen ist, können wir daraus allerdings nicht ableiten.
+
+\textcolor{red}{Auch der bewusste Bruch des Musters in Raum~11 (Abschnitt~\ref{sec:Kampfabschnitt}) hat zumindest eine Erwartung geweckt: TP3 rechnete mit einem Bosskampf (TP3, I2a), und bei TP1 vermuten wir Spannung (TP1, B11). Ob das Rollercoaster-Pacing dadurch weniger vorhersehbar wurde (Abschnitt~\ref{sec:Pacing}), können wir daraus nicht ableiten.}
+
+\textcolor{red}{In \game{NieR: Automata} liegen die Erholungsphasen in ruhigen Zwischenpassagen (Frage~A4). Bei uns entsprechen ihnen die selbst gewählten Pausen am Ende eines Raumes, und diese haben alle Testpersonen gefunden. Dass die Spannung innerhalb eines Encounters davon abhing, welche Gegner noch übrig waren (TP3, I7), passt zu \game{Ninja Gaiden}, wo sie von Anzahl und Art der Gegner abhängt (Frage~A4). Weil bei uns die nächste Welle schnell erscheint, ähnlich wie das sofortige Nachrücken in \game{Ninja Gaiden} (Frage~D1), empfand TP2 die Wellen als überlappend.}
+
+\subsubsection{V8: Gestaffelte Einführung neuer Gegner}
+
+\paragraph{Ziel}
+Jede neue Gegnervariante soll zuerst isoliert auftreten und erst danach mit anderen kombiniert werden. So soll der Spieler einen Gegner in Ruhe verstehen können, bevor die Kombination ihn fordert (Abschnitt~\ref{sec:V8}).
+
+\paragraph{Beobachtungen}
+Hier stimmten alle Testpersonen völlig zu (jeweils Q8). Alle erkannten neue Gegnervarianten bei ihrer Einführung an der Farbe, am Aussehen oder an ihren Angriffen (jeweils B9). Wie sie mit ihnen umgingen, war allerdings unterschiedlich, und es zeigten sich zwei Vorgehensweisen.
+
+Die einen zeigten Interesse an den neuen Gegnern und beobachteten sie zuerst. TP2 hielt meist kurz inne und analysierte, ob sich noch etwas im Raum befand (TP2, B9), und TP4 beobachtete den Chain Archer zuerst, ohne anzugreifen, um zu sehen, was er macht (TP4, B9). TP1 griff die ersten Archers nicht an, sondern wich ihren Schüssen aus, und erkannte die Eigenschaften neuer Gegner sofort, etwa dass der Heavy Soldier ungenau trifft (TP1, B9). Diese Testpersonen liessen die neuen Gegner also zuerst ein paar Mal angreifen, um zu sehen, was genau sie machen. Anfangs empfand TP1 Treffer allerdings als unfair, bis sie verstanden hatte, was die neuen Gegner machen (TP1, I6).
+
+Die anderen griffen neue Gegner sofort an (TP3 und TP5, jeweils B9). TP3 dachte bei der Einführung des Archers, es handle sich einfach um eine stärkere Version der Soldiers, und wusste anhand des Aussehens anfangs nicht, was die neuen Gegner tun (TP3, I1b).
+
+Zum Kombinieren der Gegner meinte TP1, die Encounter seien gegen Ende immer cooler geworden, da dann verschiedene Gegner eingeführt waren und es verschiedene Kombinationen gab (TP1, I7).
+
+\paragraph{Interpretation}
+\textcolor{red}{Dass die neuen Gegnervarianten erkannt und als gestaffelt wahrgenommen wurden, zeigt eine starke Tendenz. Dass die isolierte Einführung auch beim Verstehen geholfen hat, zeigt dagegen nur eine schwache Tendenz.} Zum einen haben alle Testpersonen bemerkt, dass die Gegner gestaffelt eingeführt wurden (jeweils Q8), und alle erkannten die neuen Gegner (jeweils B9). Dabei konnten sie selbst entscheiden, ob sie den ersten Encounter mit einem neuen Gegner als Übung ansahen und sich Zeit liessen oder den Gegner direkt angriffen. Q8 misst allerdings nur, ob die Reihenfolge bemerkt wurde, nicht, ob sie beim Verstehen geholfen hat. TP3 erkannte die neuen Gegner zwar, wusste anfangs aber nicht, was sie tun (TP3, I1b). \textcolor{red}{Ungeplant zeigte sich, dass die isolierte Einführung allein nicht immer reicht: Wer einen neuen Gegner nicht am Aussehen versteht, lernt ihn erst durch Treffer kennen, die sich dann unfair anfühlen können (TP1, I6; TP3, I1b).}
+
+Dass die Schwierigkeit mit der Kombination der Gegner anstieg, schliessen wir aus den Beobachtungen zu V1 und V3: Einzelne Gegner waren nie ein Problem, sondern erst in Kombination und in grossen Mengen (V1), und erst die Kombination von Nah- und Fernkämpfern erzeugte das taktische Dilemma (V3). Zudem meinte TP1, die Encounter seien gegen Ende wegen der verschiedenen Kombinationen immer cooler geworden (TP1, I7).
+
+\textcolor{red}{Geplant war, dass der Spieler einen neuen Gegner in Ruhe versteht, bevor die Kombination ihn fordert. In \game{NieR: Automata} bildet jede Vorstellungsphase ein ruhiges Tal vor der nächsten Arena (Frage~D1). Bei uns wird ein neuer Gegner dagegen schon in den nächsten Wellen desselben Raumes kombiniert (Abschnitt~\ref{sec:V8}). Mehr Zeit zwischen Einführung und Kombination könnte Testpersonen wie TP3 helfen, einen neuen Gegner zu verstehen, bevor er sie fordert.}
+
+\subsection{Gesamteindruck: Spielfluss, Schwierigkeit und Spielgefühl} \label{sec:Gesamteindruck} \label{sec:ErgAllgemein}
+
+Wie bereits mehrfach erwähnt, wollen wir die beiden Elemente Gegnerplatzierung und Gegnerverhalten und somit die acht Designvorschläge anhand der drei Qualitäten Spielfluss, Schwierigkeit und Spielgefühl evaluieren. Da sich die beiden Elemente gegenseitig beeinflussen und oft mehrere Designvorschläge auf dieselbe Qualität abzielen, möchten wir hier ihre Gesamtwirkung betrachten. Wie die einzelnen Designvorschläge diese drei Qualitäten beeinflusst haben, haben wir in Abschnitt~\ref{sec:ErgVorschlag} beschrieben. Der Gesamteindruck der Testpersonen für die drei Qualitäten fällt ziemlich ähnlich aus.
+
+\subsubsection{Spielfluss}
+
+\paragraph{Ziel}
+Wir haben uns vorgenommen, den Spielfluss zum einen verständlich und zum anderen flüssig zu gestalten. Spielfluss bedeutet für uns, in anderen Worten, das, was den Spieler dazu bringt, weiterspielen zu wollen. Verwirrung stört für uns den Spielfluss von Actionspielen. Dazu haben wir im Prototyp Folgendes umzusetzen versucht: Grosse Gegnergruppen sollten lesbar bleiben, die Anfangsaufstellung sollte einen schnellen Überblick ermöglichen, Anspannung und Entlastung sollten sich in Wellen abwechseln, und neue Gegner sollten gestaffelt eingeführt werden, um den Spieler nicht zu überfordern (V2, V5, V7 und V8).
+
+\paragraph{Beobachtungen}
+Vier von fünf Testpersonen empfanden den Spielfluss als zusammenhängend. Eine unterschied zwischen dem Kampf, den sie mit 4 bewertete, und dem Übergang von Raum zu Raum, den sie mit 1 bewertete (jeweils Q10). Dabei meinten die Testpersonen, dass die Räume zwar jeweils für sich stehen und wenig miteinander verbinde, der Spielfluss insgesamt aber gepasst habe. \textcolor{red}{TP4 war nach eigener Aussage während der ganzen Zeit ins Spiel vertieft (TP4, I7 und Q10).}
+
+An einer Stelle wurde der Spielfluss für einige Testpersonen gebrochen, und sie waren verwirrt, nämlich dann, wenn die letzte Welle eines Encounters besiegt war. Dann öffnete sich die Tür zum nächsten Raum, doch oft bemerkten die Testpersonen die offene Tür nicht und blieben noch einige Sekunden im Kampfmodus (TP2, B10 und B14; TP4, B10 und B14). Zudem gibt es keine Anzeige, die angibt, wann ein Encounter fertig ist oder wie lange er noch dauert.
+
+\paragraph{Interpretation}
+\textcolor{red}{Beim Spielfluss zeigt sich insgesamt nur eine schwache Tendenz zur beabsichtigten Wirkung:} Die meisten Testpersonen empfanden ihn als zusammenhängend, obwohl die einzelnen Räume an sich nichts miteinander zu tun hatten. An einer Stelle wurde der Spielfluss für einige Testpersonen dennoch gebrochen.
+
+Zum Spielfluss tragen ausser Gegnerverhalten und Gegnerplatzierung auch andere \textcolor{red}{Variablen [Begriff: \enquote{Variable} ist ein Begriff aus der Versuchsplanung (gezielt veränderte oder kontrollierte Grössen). Das habt ihr hier nicht gemacht. Vorschlag: \enquote{Faktoren}]} bei, am prominentesten die Raumstruktur. Diese hatte in unserem Prototyp einen minimalen Einfluss, da unser Kampfabschnitt linear aufgebaut ist und der Spieler deshalb keine Entscheidungen über den Weg treffen muss, sondern einfach dem Weg folgt. So tragen die einzelnen Wellen den grössten Teil zum Spielfluss bei. \textcolor{red}{Eine Variable [Begriff: wie oben, Vorschlag: \enquote{Einen weiteren Faktor}]} gab es dennoch, und zwar gleich nach den Wellen: Wenn sich die Türen öffneten, gab es keine Rückmeldung an den Spieler, und oft wurde nicht bemerkt, dass die Tür offen war (siehe \textcolor{red}{Beobachtungen} oben). Ansonsten mochten die Testpersonen den Verlauf: Die Intensität und das Rollercoaster-Pacing (Abschnitt~\ref{sec:Pacing}) wurden überwiegend positiv aufgenommen (jeweils Q7 und Q10).
+
+\subsubsection{Schwierigkeit}
+
+\paragraph{Ziel}
+Die Schwierigkeit ist von der Bedeutung her wohl die offensichtlichste unserer drei Qualitäten, gleichzeitig aber am schwersten zu überprüfen und richtig hinzubekommen. Wir wollten kein leichtes Spiel machen, damit sich die Spieler nicht langweilen. Gleichzeitig sollte es aber auch nicht zu schwer sein, damit die Spieler noch Spass haben. Wir hatten uns also vorgenommen, ein Spiel mit einer angemessenen Schwierigkeit zu machen. Ob wir das erreicht haben, können uns nur die Spieler sagen. So haben wir es auch definiert. Zur Schwierigkeit in unserem Prototyp sollten folgende Elemente beitragen: die begrenzte Menge gleichzeitig aktiver Gegner, das taktische Dilemma zwischen Nah- und Fernkämpfern, das Ankündigen von Angriffen, das das Spiel fair wirken lassen soll, die unterschiedlichen Spielstile, die enge und grosse Räume verlangen, und die verschiedenen Gegner, die das Spiel nach und nach schwerer machen (V2, V3, V4, V6 und V8).
+
+\paragraph{Beobachtungen}
+Alle Testpersonen fanden die Schwierigkeit angemessen. Vier stimmten völlig zu, eine eher (jeweils Q11). Gestorben sind sie unterschiedlich oft: eine gar nicht (TP2, I3), zwei einmal (TP1, Q12; TP3, B8 und I3), eine mindestens zweimal (TP4, I1a) und eine dreimal (TP5, I3). Es gab zudem Momente, in denen sie knapp überlebten (TP1, Q12).
+
+Als interessant nannten die Testpersonen die taktischen Entscheidungen, das Heilen und das Weglaufen (TP3, Q12). Als unfair oder unangenehm empfanden sie dagegen, dass man Combos nicht abbrechen und deshalb nicht so einfach auf Gegner reagieren konnte (TP3, Q13; TP4, Q13). Auch in einer Horde von Gegnern eingeklemmt zu sein, fühlte sich unbefriedigend an (TP2, Q13; TP5, Q13).
+
+\paragraph{Interpretation}
+\textcolor{red}{Es zeigt sich eine starke Tendenz, dass wir erreicht haben,} was wir uns vorgenommen hatten, nämlich eine angemessene Schwierigkeit. Das sagen uns auch unsere Testpersonen (jeweils Q11). Unser Spiel liegt unserer Einschätzung nach eher am unteren Ende der Schwierigkeitsskala: Es ist bei Weitem nicht einfach, aber es sollte machbar sein, den Prototyp ohne Tode durchzuspielen. Der Grund dafür ist folgender: Da man nach einem Tod wieder ganz am Anfang beginnt und ein Durchgang ohne Tod etwa 25 Minuten dauert, kann es nach mehreren Toden recht repetitiv werden. Das deckt sich mit der Aussage, die Tode seien sehr bestrafend gewesen, weil man alles neu machen musste (TP5, I6).
+
+Da der Spieler den Gegnern grundsätzlich überlegen ist (V1), haben wir die Schwierigkeit über das taktische Dilemma und die Menge der Gegner gesteuert statt rein mechanisch, was die Testpersonen als angenehme Schwierigkeit empfanden (V2 und V3). Welche Räume schwer waren, darüber waren sich die Testpersonen nicht einig (V6). Das spielt aber keine grosse Rolle, solange sie die einen Räume schwerer fanden als die anderen und überhaupt einen Unterschied bemerkten. Es gab aber auch eine Schwierigkeit, die sie nicht gut fanden. Sie hat nicht direkt mit den Gegnern zu tun: die Trägheit der Combos, durch die man manchmal nicht rechtzeitig ausweichen konnte, obwohl man den gegnerischen Angriff kommen sah (TP3, Q13; TP4, Q13).
+
+\subsubsection{Spielgefühl}
+
+\paragraph{Ziel}
+Actionspiele und besonders Hack-and-Slash-Spiele sollen sich unserer Ansicht nach während eines Kampfes atemberaubend anfühlen. Wir persönlich wollten für den Spieler eine Erfahrung kreieren, in der sich das Bewegen und Kämpfen in der Welt gut anfühlt und cool aussieht. Dabei wollten wir besonders, dass der Spieler sehr stark ist und die Schwierigkeit aus der Menge der Gegner entsteht. Im Prototyp haben wir das umgesetzt, indem wir den Spieler stärker gemacht haben als seine Gegner, Angriffe angekündigt haben, damit sich Treffer nicht unfair anfühlen, und das Gegnerverhalten so eingestellt haben, dass es konstant einen gewissen Druck gibt (V1, V4 und V5).
+
+\paragraph{Beobachtungen}
+Das Spielgefühl beurteilten alle als eher befriedigend (jeweils Q9). Als das, was sich am besten anfühlte, nannten die Testpersonen die Gegnerverteilung und die Spawns, etwa wenn man Gegner direkt beim Spawnen besiegen kann (TP2, Q12; TP5, Q12). Horden zu vernichten, was der Kern des Spiels ist, habe Spass gemacht und sich gut angefühlt (TP4, Q12). Positiv erwähnt wurde zudem die Tiefe durch die unterschiedlichen Combos, also Light und Heavy mit ihren verschiedenen Schadenswerten (TP1, Q12; TP3, Q12).
+
+Eine Testperson meinte, das Springen fühle sich nicht wie erwartet an (TP2, Q13). Das deckt sich damit, dass eine andere etwas Mühe mit dem Wechsel zwischen Bewegung und Kampf hatte (TP5, B10) und eine dritte sich die Bewegung flüssiger vorgestellt hatte (TP3, Q14).
+
+Im Vergleich mit ihren Erwartungen waren die Testpersonen vom Umfang der Spielmechaniken und von der Gegnervielfalt positiv überrascht (TP2, Q14; TP4, Q14). Erwartet wurde ein Boss, der nicht kam (TP2, Q14; TP3, I2). Zudem wurden Moves wie Block oder Dodge gewünscht (TP4, Q14 und I8). Ausserdem wurde erwartet, dass man als Spieler noch stärker sei (TP5, Q14).
+
+\paragraph{Interpretation}
+\textcolor{red}{Beim Spielgefühl zeigt sich tendenziell eher die beabsichtigte Wirkung.} Unsere Ziele haben wir nur teilweise erreicht. Das Bewegen und das Kämpfen haben sich je für sich gut angefühlt, die Verbindung von Kampf und Bewegung und der Übergang dazwischen waren für einige Testpersonen aber nicht ganz angenehm. Des Weiteren konnten die Testpersonen ihre Überlegenheit geniessen, es gab aber Stellen, an denen sie zu stark eingeschränkt waren, nämlich durch die Trägheit der Combos.
+
+Alle haben das Spielgefühl als eher gut, aber nicht als völlig befriedigend empfunden (jeweils Q9). Dafür gab es verschiedene Gründe, oder die einzelnen Faktoren bedeuteten den Testpersonen unterschiedlich viel. Positiv haben die Gegner dazu beigetragen, mit ihren Spawns und ihrem Verhalten (V5): Im direkten Kontakt haben sie sich sehr gut angefühlt, und die aggressiv spielenden Testpersonen genossen ihre Überlegenheit (V1). Eine hätte sich den Spieler sogar noch stärker gewünscht (TP5, Q14). Zudem wurde ein Boss erwartet, der nicht kam (TP2, Q14; TP3, I2).
+
+\end{document}
