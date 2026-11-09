@@ -16,7 +16,7 @@
 [ext_resource type="Script" uid="uid://d0cpw8dp6pm66" path="res://Stages/Levels/Encounter.gd" id="14_anmfr"]
 [ext_resource type="Script" uid="uid://fch0au0c1272" path="res://Objects/KillZone/KillZone.gd" id="15_ri5of"]
 [ext_resource type="Script" uid="uid://413tgy3jmvma" path="res://Components/Collision/HitboxData.gd" id="16_7rj22"]
-[ext_resource type="PackedScene" uid="uid://csnnwrfsj2ola" path="res://Stages/Levels/Level_1/level1_mesh.scn" id="17_j34vj"]
+[ext_resource type="PackedScene" uid="uid://csnnwrfsj2ola" path="res://Stages/Levels/Level1/Level1Mesh.scn" id="17_j34vj"]
 
 [sub_resource type="Resource" id="Resource_a20cb"]
 script = ExtResource("2_qumhc")
@@ -672,7 +672,7 @@ metadata/_custom_type_script = "uid://413tgy3jmvma"
 [sub_resource type="BoxShape3D" id="BoxShape3D_67nfo"]
 size = Vector3(24.265, 3.62, 21.37)
 
-[node name="Level_1" type="Node" unique_id=1251288287]
+[node name="Level1" type="Node" unique_id=1251288287]
 script = ExtResource("1_67nfo")
 DATA = SubResource("Resource_a20cb")
 metadata/_custom_type_script = "uid://bfqflhgefhtl1"
