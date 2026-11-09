@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://bmqerfgkqspjc"]
+
+[ext_resource type="Script" uid="uid://dst11fwy0jr66" path="res://Interfaces/Menus/CreditsMenu/CreditsMenu.gd" id="1_m28ru"]
+[ext_resource type="Script" uid="uid://cfdlgc8aalbtr" path="res://Interfaces/Menus/Button/GameMenuButton.gd" id="2_aati5"]
+
+[node name="CreditsMenu" type="Control" unique_id=1191166775]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_m28ru")
+metadata/_custom_type_script = "uid://cyn28bbc16luj"
+
+[node name="Back" type="Button" parent="." unique_id=1018012283]
+layout_mode = 0
+focus_neighbor_top = NodePath("../Keyboard")
+focus_neighbor_bottom = NodePath("../Game")
+text = "UI_BACK"
+script = ExtResource("2_aati5")
+metadata/_custom_type_script = "uid://cfdlgc8aalbtr"
+
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]

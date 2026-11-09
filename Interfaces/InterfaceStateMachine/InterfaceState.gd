@@ -10,6 +10,7 @@ enum Type {
 	quitConfirmMenu,
 	startMenu,
 	saves,
+	credits,
 	options,
 	pause,
 	gameOptions,

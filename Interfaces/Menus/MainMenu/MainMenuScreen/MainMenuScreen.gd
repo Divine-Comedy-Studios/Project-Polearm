@@ -11,8 +11,8 @@ extends InterfaceState
 #region Member variables
 
 var _startGamePressed : bool = false
-var _savesPressed : bool = false
 var _openOptionsPressed : bool = false
+var _creditsPressed : bool = false
 var _quitGamePressed : bool = false
 
 #endregion
@@ -29,9 +29,9 @@ func nextMenu(inputs : ISMInputManager.Data) -> Type:
 	
 	if _openOptionsPressed:
 		return Type.options
-	
-	if _savesPressed:
-		return Type.saves
+	if _creditsPressed:
+		return Type.credits
+
 	if _quitGamePressed:
 		return Type.quitConfirmMenu
 	
@@ -39,8 +39,8 @@ func nextMenu(inputs : ISMInputManager.Data) -> Type:
 
 func _implDeactivate() -> void:
 	_startGamePressed = false
-	_savesPressed = false
 	_openOptionsPressed = false
+	_creditsPressed = false
 	_quitGamePressed = false
 
 func exit() -> StringName:
@@ -57,11 +57,11 @@ func exit() -> StringName:
 func _on_continue_pressed() -> void:
 	_startGamePressed = true
 
-func _on_saves_pressed() -> void:
-	_savesPressed = true
-
 func _on_options_pressed() -> void:
 	_openOptionsPressed = true
+
+func _on_credits_pressed() -> void:
+	_creditsPressed = true
 
 func _on_exit_game_pressed() -> void:
 	_quitGamePressed = true

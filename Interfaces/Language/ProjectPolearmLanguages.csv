@@ -2,6 +2,11 @@ id,en,zh_CN,es,fr,de,it,ja
 UI_STARTMENU_PLAY,Play,开始,Jugar,Jouer,Spielen,Gioca,プレイ
 UI_STARTMENU_SAVES,Saves,存档,Partidas,Sauvegardes,Spielstände,Salvataggi,セーブデータ
 UI_STARTMENU_OPTIONS,Options,设置,Opciones,Options,Einstellungen,Opzioni,オプション
+UI_STARTMENU_CREDITS,Credits,制作人员名单,Créditos,Crédits,Credits,Crediti,クレジット
+UI_CREDITSMENU_DEVELOPERS,Developers,开发人员,Desarrolladores,Développeurs,Entwickler,Sviluppatori,開発者
+UI_CREDITSMENU_LOGO,Logo Design,标志设计,Diseño del logotipo,Conception du logo,Logo-Design,Design del logo,ロゴデザイン
+UI_CREDITSMENU_SUPERVISORS,Supervisors,指导教师,Supervisores,Superviseurs,Betreuer,Supervisori,指導教員
+UI_CREDITSMENU_SPECIAL_THANKS,Special Thanks,致谢,Agradecimientos especiales,Remerciements spéciaux,Besonderer Dank,Ringraziamenti speciali,スペシャルサンクス
 UI_STARTMENU_QUIT,Quit,退出,Salir,Quitter,Beenden,Esci,終了
 UI_OPTIONS_GAMEPLAY,Gameplay,游戏玩法,Jugabilidad,Jeu,Gameplay,Gameplay,全般
 UI_OPTIONS_VIDEO,Video,画面,Vídeo,Vidéo,Video,Video,ビデオ

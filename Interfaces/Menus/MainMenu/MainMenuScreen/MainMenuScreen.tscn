@@ -58,6 +58,8 @@ texture_filter = 1
 custom_minimum_size = Vector2(340, 76)
 layout_mode = 2
 size_flags_vertical = 3
+focus_neighbor_top = NodePath("../Quit Game")
+focus_neighbor_bottom = NodePath("../Options")
 text = "UI_STARTMENU_PLAY"
 script = ExtResource("2_1kon5")
 metadata/_custom_type_script = "uid://cfdlgc8aalbtr"
@@ -67,7 +69,20 @@ texture_filter = 1
 custom_minimum_size = Vector2(340, 76)
 layout_mode = 2
 size_flags_vertical = 3
+focus_neighbor_top = NodePath("../Continue")
+focus_neighbor_bottom = NodePath("../Credits")
 text = "UI_STARTMENU_OPTIONS"
+script = ExtResource("2_1kon5")
+metadata/_custom_type_script = "uid://cfdlgc8aalbtr"
+
+[node name="Credits" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer/Buttons" unique_id=1430533424]
+texture_filter = 1
+custom_minimum_size = Vector2(340, 76)
+layout_mode = 2
+size_flags_vertical = 3
+focus_neighbor_top = NodePath("../Options")
+focus_neighbor_bottom = NodePath("../Quit Game")
+text = "UI_STARTMENU_CREDITS"
 script = ExtResource("2_1kon5")
 metadata/_custom_type_script = "uid://cfdlgc8aalbtr"
 
@@ -76,10 +91,13 @@ texture_filter = 1
 custom_minimum_size = Vector2(340, 76)
 layout_mode = 2
 size_flags_vertical = 3
+focus_neighbor_top = NodePath("../Credits")
+focus_neighbor_bottom = NodePath("../Continue")
 text = "UI_STARTMENU_QUIT"
 script = ExtResource("2_1kon5")
 metadata/_custom_type_script = "uid://cfdlgc8aalbtr"
 
 [connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/Buttons/Continue" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/Buttons/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/Buttons/Credits" to="." method="_on_credits_pressed"]
 [connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/Buttons/Quit Game" to="." method="_on_exit_game_pressed"]
