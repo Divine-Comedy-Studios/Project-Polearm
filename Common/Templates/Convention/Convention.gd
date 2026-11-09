@@ -141,7 +141,11 @@ var _privateBar : Vector2 = Vector2.ZERO
 
 #region Public funcitons
 
-
+# This function demonstrates the naming convention of template functions
+# This is the original, public function. Refer to the implementatin function
+# segment for the implementation functions
+func fooing() -> void:
+	_fooing()
 
 #endregion
 
@@ -155,7 +159,16 @@ var _privateBar : Vector2 = Vector2.ZERO
 
 #region Pick the one that fits the most: Implementation functions; Virtual functions; Implementation and virtual functions
 
+# This is the first layer implementation function. It should be named
+# like a private function. If the function to be implemented is a private
+# function, skip this name
+func _fooing() -> void:
+	_implFooing()
 
+# This is the second layer implementation function, or the first layer
+# implementatino function for private functions
+func _implFooing() -> void:
+	pass
 
 #endregion
 
