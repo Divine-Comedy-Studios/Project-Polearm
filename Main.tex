@@ -70,7 +70,7 @@
 \onehalfspacing
 \frenchspacing
 \setlength{\emergencystretch}{3em}
-\addbibresource{Source/sources.bib}
+\addbibresource{\subfix{Source/sources.bib}}
 
 \setlength{\absleftindent}{0pt}
 \setlength{\absrightindent}{0pt}
@@ -165,10 +165,10 @@
 \newcommand{\placeholderfigure}[4]{%
     \begin{figure}[H]
         \centering
-        \IfFileExists{Assets/Figures/#1.pdf}
-            {\includegraphics[width=\linewidth, height=0.6\textheight, keepaspectratio]{Assets/Figures/#1.pdf}}
-            {\IfFileExists{Assets/Figures/#1.png}
-                {\includegraphics[width=\linewidth, height=0.6\textheight, keepaspectratio]{Assets/Figures/#1.png}}
+        \IfFileExists{\subfix{Assets/Figures/#1.pdf}}
+            {\includegraphics[width=\linewidth, height=0.6\textheight, keepaspectratio]{\subfix{Assets/Figures/#1.pdf}}}
+            {\IfFileExists{\subfix{Assets/Figures/#1.png}}
+                {\includegraphics[width=\linewidth, height=0.6\textheight, keepaspectratio]{\subfix{Assets/Figures/#1.png}}}
                 {\fbox{\parbox[c][4cm][c]{0.8\linewidth}{\centering\textcolor{red}{\textbf{Placeholder:} \code{Assets/Figures/#1}}}}}}
         \caption[#3]{#2}
         \label{#4}
@@ -192,7 +192,7 @@
 
         \textbf{\Huge{Project Polearm}} \\ [2em]
         \textbf{\Large The Development of a Hack-and-Slash Video Game} \\ [0.6em]
-        \large{Conception, implementation and evaluation of enemy behavior and level design in a Hack-an-Slash Prototype} \\ [2em]
+        \large{Conception, implementation and evaluation of enemy behavior and level design in a Hack-and-Slash Prototype} \\ [2em]
 
         \Large{Rodin Arslan, Zhile Zhu} \\ [0.5em]
         \large{Class G23g}
@@ -230,11 +230,11 @@
 
     As this document aims to highlight the technical development of Project Polearm, please consult the main accompanying report for information about the game design and research of this project.
 
-    This document starts with \textbf{Chapter~\ref{sec:2}: Organization}, which documents the file structure of the project, how directories are organized and how to navigate the project. \textbf{Chapter~\ref{sec:3}: Design Decisions and Goals} then explains our philosophies for the development process. These led us to use certain patterns and paradigms across the entire project, each with its own consequences for the project.
+    This document starts with \textbf{Chapter~\ref{sec:organization}: Organization}, which documents the file structure of the project, how directories are organized and how to navigate the project. \textbf{Chapter~\ref{sec:design-decisions-and-goals}: Design Decisions and Goals} then explains our philosophies for the development process. These led us to use certain patterns and paradigms across the entire project, each with its own consequences for the project.
 
-    The next two chapters, \textbf{Chapter~\ref{sec:4}: Architecture and Systems} and \textbf{Chapter~\ref{sec:5}: Procedures and Algorithms}, dive into the code of Project Polearm. The former does this on a macro level, explaining the structure of the most far-reaching systems of the game and how they interconnect to form its architecture. The latter does this on a much smaller but more detailed level. Algorithms which drive player and enemy behavior are showcased in pseudocode diagrams alongside explanations of the design choices which led to their final form.
+    The next two chapters, \textbf{Chapter~\ref{sec:architecture-and-systems}: Architecture and Systems} and \textbf{Chapter~\ref{sec:procedures-and-algorithms}: Procedures and Algorithms}, dive into the code of Project Polearm. The former does this on a macro level, explaining the structure of the most far-reaching systems of the game and how they interconnect to form its architecture. The latter does this on a much smaller but more detailed level. Algorithms which drive player and enemy behavior are showcased in pseudocode diagrams alongside explanations of the design choices which led to their final form.
 
-    \textbf{Chapter~\ref{sec:6}: Tooling and Developer Experience} walks through how we sought to make our lives easier during development, with tools, scripts and clever usage of the aforementioned design patterns. It is followed by a retrospective in \textbf{Chapter~\ref{sec:7}: Post-Mortem}, where we ask what went well, what went less well, and how we dealt with issues that came up. Finally, \textbf{Chapter~\ref{sec:8}: Appendix} provides additional information about the project, and a glossary of terms used in this document.
+    \textbf{Chapter~\ref{sec:tooling-and-developer-experience}: Tooling and Developer Experience} walks through how we sought to make our lives easier during development, with tools, scripts and clever usage of the aforementioned design patterns. It is followed by a retrospective in \textbf{Chapter~\ref{sec:post-mortem}: Post-Mortem}, where we ask what went well, what went less well, and how we dealt with issues that came up. Finally, \textbf{Chapter~\ref{sec:appendix}: Appendix} provides additional information about the project, and a glossary of terms used in this document.
 
     \placeholderfigure{intro-screenshot}{Screenshot of Project Polearm.}{Screenshot of Project Polearm. Own screenshot from Project Polearm.}{fig:intro-screenshot}
 \end{abstract}

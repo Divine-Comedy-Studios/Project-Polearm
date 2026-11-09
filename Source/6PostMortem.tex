@@ -1,12 +1,13 @@
+% !TeX root = ../Main.tex
 \documentclass[../Main.tex]{subfiles}
 
 \begin{document}
 
-\section{Post-Mortem}\label{sec:7}
+\section{Post-Mortem}\label{sec:post-mortem}
 
 This final chapter reflects on the technical development of Project Polearm, examining not only the systems we created, but also the difficulties and limitations we encountered while building them. It begins by discussing our approach to debugging and testing, including the use of dedicated testing environments such as the Gym, and acknowledges our relatively informal testing practices. The development of the custom \code{FloatingBody} character controller and the \code{EnemyManager} responsible for coordinating enemy encounters represent our biggest challenges throughout development, and a look back is taken at the roots of these troubles. Finally, after the strengths of our philosophies have been demonstrated in previous chapters, the less successful parts of our development process equally reveal their weaknesses. Investing in modularity and configurability often made later development considerably cleaner and faster, but sometimes introduced unnecessary complexity and delayed overall progress, which at last leads us to our conclusion of what we would do differently in the future.
 
-\subsection{Debugging and Testing}\label{sec:7-1}
+\subsection{Debugging and Testing}\label{sec:debugging-and-testing}
 
 As the feature set of our game is, at least in comparison to AAA games, not the biggest, we could get away with less rigorous testing practices than those more commonly seen in larger studios. That meant that for most features, no separate testing environment was developed before they were utilized, and that systems were instead developed sequentially, such that one subsystem would always be debugged before development was continued. Integration testing was our main way of weeding out bugs and other issues.
 
@@ -18,23 +19,23 @@ Debugging throughout development was also rather primitive. As the game is simpl
 
 The lack of proper testing also has to do with our lack of a proper workflow for establishing separate environments in which every system can be tested in isolation. To test API-based systems, one has to establish a testing environment in which time is spent developing test cases that call said API. Most often, we did not find the time or patience to do this, as we could simply test a system's functionality by inserting it into its proper use case. The time was instead invested into other parts of the project or into polishing the same system. For future endeavors, exploring rigorous testing practices may prove to be an insightful undertaking.
 
-\subsection{Challenges During Development}\label{sec:7-2}
+\subsection{Challenges During Development}\label{sec:challenges-during-development}
 
 Neither of the team members had ever worked on such an extensive and long-winding project before. It was therefore to be expected that many technical problems and challenges would arise along the way. Many of the choices we made during development, be it concrete design philosophies or architectural decisions, were made to avoid technical debt and issues as best as possible, but avoiding them altogether has proven not to be possible for us. These are some of the largest challenges we encountered during the 11-month timespan:
 
-\subsubsection{A Dream of Stepping Up Stairs}\label{sec:7-2-1}
+\subsubsection{A Dream of Stepping Up Stairs}\label{sec:a-dream-of-stepping-up}
 
 The \code{FloatingBody} was the first big roadblock in the development of the project. Before we started development on the project proper, a small test was created in Godot simply to explore the capabilities and limitations of the engine, where we very quickly came to the realization that Godot's default \code{CharacterBody3D} could possibly prove not to be enough for our purposes, as it oftentimes got stuck on even small edges in the ground, where a player might expect to simply walk over them. Furthermore, it occurred to us that in many newer games, characters can move across extremely uneven ground with obstacles jutting out, e.g. stairs, with extreme smoothness, which a naïve collision resolution algorithm could not achieve.
 
 Although we were aware that one could simply use slopes as the collision shapes for stairs and avoid having any spots jutting out from the ground, this would have meant a trade-off between level design and code complexity, which was not one that we deemed acceptable.
 
-Due to our supposed foresight regarding future troubles and the aim to avoid them, development on the \code{FloatingBody} was started. As demonstrated in section~\ref{sec:5-5}, it became one of the most complex single algorithms in the project. The only resources on this topic we found at the time of development were a few Reddit posts\todocite{Reddit posts on floating character controllers}, a single GitHub repository\todocite{GitHub repository which inspired the FloatingBody} and a YouTube video\todocite{YouTube video demonstrating a floating character controller} (which used the same technique in a bouncy, physics-based game instead of a snappy action game), all demonstrating a technique of a collision body floating on top of a raycast. Although that sounds like much, it was still far from a tutorial we could base a custom implementation on. In the end, the GitHub repository became the main source of inspiration, although only a limited amount of information was and could be gathered from it due to the difference in engines and our aim to strive for our own solution to the problem.
+Due to our supposed foresight regarding future troubles and the aim to avoid them, development on the \code{FloatingBody} was started. As demonstrated in section~\ref{sec:floatingbody}, it became one of the most complex single algorithms in the project. The only resources on this topic we found at the time of development were a few Reddit posts\todocite{Reddit posts on floating character controllers}, a single GitHub repository\todocite{GitHub repository which inspired the FloatingBody} and a YouTube video\todocite{YouTube video demonstrating a floating character controller} (which used the same technique in a bouncy, physics-based game instead of a snappy action game), all demonstrating a technique of a collision body floating on top of a raycast. Although that sounds like much, it was still far from a tutorial we could base a custom implementation on. In the end, the GitHub repository became the main source of inspiration, although only a limited amount of information was and could be gathered from it due to the difference in engines and our aim to strive for our own solution to the problem.
 
 The development process was arduous, and the algorithm went through several iterations before landing on its final form, with some iterations being arguably more complex, but less smooth. In the end, the source code of the \code{FloatingBody} was divided into three files, as its length had become a source of confusion. And yet, our demo level in the end proved to be less complicated than what the \code{FloatingBody} was built for. This is one example of where our philosophy of encompassing as many future changes as possible backfired.
 
 The sources we used in the development of the class are documented in the respective code files.
 
-\subsubsection{The Troubles of Managing Enemies}\label{sec:7-2-2}
+\subsubsection{The Troubles of Managing Enemies}\label{sec:the-troubles-of-managing-enemies}
 
 The \code{EnemyManager} also utilized a very complicated and rather sophisticated algorithm. The entire system surrounding the spawning of enemies was inspired by \emph{Ninja Gaiden Sigma Plus}\autocite{koeitechmo_ninjagaiden_2012}, one of the games that we analyzed during this project, in which it seemed to us that foes could take on different roles. For more information, please refer to the main accompanying report.
 
@@ -46,23 +47,23 @@ The final algorithm, having even gone through one major redesign, was not writte
 
 In the end, the engineering put into the \code{EnemyManager} paid off, as configuring enemies became a simple act of entering an array of enemy types into the editor and configuring some details surrounding the encounter, after which the enemy manager worked its magic. For future endeavors, however, it is also important to recognize the dangers of overthinking future features and premature systems design.
 
-\subsubsection{Dead Ends}\label{sec:7-2-3}
+\subsubsection{Dead Ends}\label{sec:dead-ends}
 
 Both of the above troubles have one thing in common, which would be overencompassing and overthinking future features. This problem is also present in some other parts of the codebase, although on a smaller scale than in the two examples above. There are hints of incomplete features scattered throughout, and although they do not influence the correct execution of the game, they are still byproducts of this philosophy.
 
 For example, the player states have a flag called \code{ENEMY\_\allowbreak{}DETECTABLE}, which was implemented for the idea that enemies could parry the player's attacks or attack the player in vulnerable situations. This could not be realized due to time and scope constraints. Entities also contain a property in their resources named \code{superArmor}. This was initially derived from a mechanic of the same name present in many hack-and-slash games, but ultimately could not be integrated into the final product. These are not the only examples that one may find in the codebase.
 
-As mentioned in section~\ref{sec:3-1}, this planning for the future is a trade-off, one which has paid off multiple times, incredibly so, but also one which has left parts of our code in debt. Sometimes, we were shocked at how quickly systems could be assembled in a clean fashion. For example, when attacking was first properly added to the game, it was done in a single day, as all other systems were already in place and prepared for it, and the first proper enemy in the demo was cleanly implemented in roughly three days. Other times, this philosophy led to burnout, procrastination and dead ends in code, hinting at a plan not yet fulfilled.
+As mentioned in section~\ref{sec:configure-everything-code-nothing-our}, this planning for the future is a trade-off, one which has paid off multiple times, incredibly so, but also one which has left parts of our code in debt. Sometimes, we were shocked at how quickly systems could be assembled in a clean fashion. For example, when attacking was first properly added to the game, it was done in a single day, as all other systems were already in place and prepared for it, and the first proper enemy in the demo was cleanly implemented in roughly three days. Other times, this philosophy led to burnout, procrastination and dead ends in code, hinting at a plan not yet fulfilled.
 
-\subsection{What We Would Do Differently}\label{sec:7-3}
+\subsection{What We Would Do Differently}\label{sec:what-we-would-do-differently}
 
-Looking back, the philosophies described in chapter~\ref{sec:3} served us well in most parts of the project, but the experiences of this chapter show where we would set our priorities differently in a future project.
+Looking back, the philosophies described in chapter~\ref{sec:design-decisions-and-goals} served us well in most parts of the project, but the experiences of this chapter show where we would set our priorities differently in a future project.
 
 Firstly, we would invest in testing earlier and more deliberately. The Gym proved how valuable an isolated environment can be for finding issues quickly. Extending this idea to small, dedicated test scenes for individual systems would allow us to rely less on integration testing alone and to catch issues before they spread into other parts of the game.
 
 Secondly, we would be more careful about how far ahead we plan. Configurability and extensibility paid off whenever a system was actually reused, as the quick implementation of attacking and of the first enemy demonstrated. The \code{FloatingBody} and the \code{EnemyManager}, however, showed that designing for every possible future feature can stall development and leave dead ends behind. In the future, we would first build a system to fulfill its current purpose, and only generalize it once a concrete need for it arises.
 
-Lastly, as mentioned in section~\ref{sec:6-1}, we would consider centralizing the configuration of the game further, so that the many configurable properties remain easy to find as the project grows.
+Lastly, as mentioned in section~\ref{sec:to-configure-everything}, we would consider centralizing the configuration of the game further, so that the many configurable properties remain easy to find as the project grows.
 
 In short, we would keep our core philosophy of \emph{Configure Everything, Code Nothing}, but apply it where it is proven to be needed, instead of everywhere at once.
 

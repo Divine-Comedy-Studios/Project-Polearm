@@ -1,14 +1,15 @@
+% !TeX root = ../Main.tex
 \documentclass[../Main.tex]{subfiles}
 
 \begin{document}
 
-\section{Tooling and Developer Experience}\label{sec:6}
+\section{Tooling and Developer Experience}\label{sec:tooling-and-developer-experience}
 
 The tools and workflows used to create, configure and maintain a project have a significant influence on the quality of the development process. This chapter presents the techniques we used to make development more efficient, such as configurable resources, editor tooling and custom helper scripts. Examples such as the encounter configuration workflow and the generation of animation frame data demonstrate how repetitive or error-prone tasks can be simplified through carefully designed tools, as well as through the responsible use of AI in the project. These efforts reflect the same principles that shaped the architecture of the game, namely reducing unnecessary repetitive work and making complex systems easier to configure and extend.
 
-\subsection{To Configure Everything}\label{sec:6-1}
+\subsection{To Configure Everything}\label{sec:to-configure-everything}
 
-In accordance with our main development philosophy, a vast number of properties of objects in Project Polearm are configurable. Even behavioral patterns can sometimes be configured (see section~\ref{sec:6-1-2}). This ranges from obvious properties, such as player and enemy movement speeds, to more specific ones, such as the factor by which jump velocity decreases during successive aerial jumps. Many properties that would functionally be constants are configurable. In the code, this often means using the naming convention for constants for configurable variables, alongside the implied promise that exported variables will not be modified during runtime, a convention we enforced ourselves.
+In accordance with our main development philosophy, a vast number of properties of objects in Project Polearm are configurable. Even behavioral patterns can sometimes be configured (see section~\ref{sec:frame-data}). This ranges from obvious properties, such as player and enemy movement speeds, to more specific ones, such as the factor by which jump velocity decreases during successive aerial jumps. Many properties that would functionally be constants are configurable. In the code, this often means using the naming convention for constants for configurable variables, alongside the implied promise that exported variables will not be modified during runtime, a convention we enforced ourselves.
 
 One of the more extreme examples of this aggressive use of exported variables can be found in the \code{Hitbox} and \code{Hurtbox} collision components. We added an extra exported setter property solely to configure the collision layer or mask of the underlying \code{Area3D}, even though Godot already exposes these properties in the editor. This decision stems from the fact that Godot's collision layer and mask system can be confusing at times, despite its flexibility and power. Our collision components only need one of these properties, depending on their type, while the other bitmask is set to zero. Together with the fact that custom exported variables appear at the top of the Inspector, this made configuring the collision components considerably easier without adding any new functionality.
 
@@ -16,7 +17,7 @@ One of the more extreme examples of this aggressive use of exported variables ca
 
 This approach naturally led to a large number of exported variables in the editor. To maintain clarity, these were organized into collapsible categories. For the most part, exported variables were not centralized, as we wanted to keep configuration close to the systems responsible for it. There was one exception: several configurable variables, specifically many physics properties, were collected in the \code{PlayerPhysics} structure, as some of them are used across multiple states (e.g. gravity). In hindsight, extending this idea might have been advantageous. A centralized configuration file for all game properties, similar to a more global version of \code{PlayerPhysics}, could have made the game easier to configure. During the design of the demo, we sometimes had to look through adjacent systems to find the location of a particular exported property. A more centralized approach could have preserved configurability while simplifying the configuration process, although it is important to also consider the large amounts of coupling this approach would bring with it.
 
-\subsubsection{\texorpdfstring{\code{Encounter}}{Encounter} and \texorpdfstring{\code{Wave}}{Wave}}\label{sec:6-1-1}
+\subsubsection{\texorpdfstring{\code{Encounter}}{Encounter} and \texorpdfstring{\code{Wave}}{Wave}}\label{sec:encounter-and-wave}
 
 One prominent example of extensive configurability is provided by the \code{Encounter} and \code{Wave} structures. These are small POD resources with exported fields, yet almost everything that needs to be specified about an encounter can be found within these two classes.
 
@@ -26,9 +27,9 @@ The only thing \code{EnemyManager} needs to begin an encounter is the \code{Enco
 
 \placeholderfigure{encounter-configuration}{Configuration of an EncounterTrigger with its Encounter and Wave resources.}{Configuration of an EncounterTrigger with its Encounter and Wave resources. Own screenshot from Project Polearm.}{fig:encounter-configuration}
 
-In the systems surrounding enemies, configurability, extensibility and flexibility were used to their fullest to create a system that is quick to set up and iterate upon. For more information about how we improved the developer experience through the \code{EncounterTrigger}, please refer to section~\ref{sec:6-2-1}.
+In the systems surrounding enemies, configurability, extensibility and flexibility were used to their fullest to create a system that is quick to set up and iterate upon. For more information about how we improved the developer experience through the \code{EncounterTrigger}, please refer to section~\ref{sec:encountertrigger}.
 
-\subsubsection{Frame Data}\label{sec:6-1-2}
+\subsubsection{Frame Data}\label{sec:frame-data}
 
 The \code{EntityFrameData} class and its descendants might be the crown jewel of our philosophy of \emph{Configure Everything, Code Nothing}. The feel of an action in an action game is extremely important, and many factors influence how the player perceives it. These include the point at which an action may be canceled, when it may transition into another action, the frames during which a weapon is dangerous, and the point at which a queued input is accepted. These are not merely surface-level properties of an action; they are central to its behavior. Furthermore, these properties are not only numerous, but also have a second dimension: time. We wanted not only to make these timed events configurable, but also to allow designers to configure them easily and clearly, without touching a single line of code. This raised the question: how could we design a system whose core behavior could be described entirely through configuration?
 
@@ -46,15 +47,15 @@ Using the action's own progress timer instead of the playhead of the actual anim
 
 This means that actions ask what they should do instead of being told what to do. \code{nextAction()} asks whether the action is \code{transitionable}; \code{\_\allowbreak{}processWeapon()} asks \code{weaponActivate} whether it should enable or disable the weapon; \code{\_\allowbreak{}processDirection()} uses the \code{rotationTracking()} speed; and \code{\_\allowbreak{}processSFX()} plays a sound effect defined by \code{sfx()}. All of this is implemented once in the \code{EntityAction} base class, meaning that every new action receives this behavior by default, while custom properties for a particular entity type can still be implemented whenever necessary. This is perhaps the clearest example of what \emph{Configure Everything, Code Nothing} means to us.
 
-The greatest difficulty arose when adding frame-data animations for every new animation introduced into the project. This eventually led to the creation of the \code{EntityAnimationHelper}, described in section~\ref{sec:6-2-2}.
+The greatest difficulty arose when adding frame-data animations for every new animation introduced into the project. This eventually led to the creation of the \code{EntityAnimationHelper}, described in section~\ref{sec:entityanimationhelper}.
 
-\subsection{Quality of Life}\label{sec:6-2}
+\subsection{Quality of Life}\label{sec:quality-of-life}
 
-All this configurability was intended to improve the development experience, but there were also more specialized examples of this. Throughout development, we used editor helper scripts and helper functions, some of which were provided by third parties (see section~\ref{sec:2-3-2}) and others which we developed ourselves, with or without the assistance of AI. The use of AI is declared in the respective source files. The following examples demonstrate some of these quality-of-life tools in practice.
+All this configurability was intended to improve the development experience, but there were also more specialized examples of this. Throughout development, we used editor helper scripts and helper functions, some of which were provided by third parties (see section~\ref{sec:addons}) and others which we developed ourselves, with or without the assistance of AI. The use of AI is declared in the respective source files. The following examples demonstrate some of these quality-of-life tools in practice.
 
-\subsubsection{\texorpdfstring{\code{EncounterTrigger}}{EncounterTrigger}}\label{sec:6-2-1}
+\subsubsection{\texorpdfstring{\code{EncounterTrigger}}{EncounterTrigger}}\label{sec:encountertrigger}
 
-As described in section~\ref{sec:6-1-1}, the spawn points for an encounter, including fixed spawn points for specific enemies, are configurable. Initially, the designer was supposed to place a helper object in the scene, move it into position and manually copy its coordinates into the corresponding spawn-point array. This proved to be arduous, unintuitive and unclear almost immediately after the feature was first tested, so an alternative solution was devised.
+As described in section~\ref{sec:encounter-and-wave}, the spawn points for an encounter, including fixed spawn points for specific enemies, are configurable. Initially, the designer was supposed to place a helper object in the scene, move it into position and manually copy its coordinates into the corresponding spawn-point array. This proved to be arduous, unintuitive and unclear almost immediately after the feature was first tested, so an alternative solution was devised.
 
 For randomized spawn points, the most logical approach was to allow any \code{Node3D} to be assigned to an exported slot, then iterate over its children and use their global coordinates as the spawn points. Unfortunately, exported properties in Godot resources cannot reference \code{Node} objects. At that point in development, the encounter data was still attached to the level data. We therefore restructured the system so that each \code{EncounterTrigger} kept track of its own encounter data. This allowed the spawn-point parent to be assigned to the \code{EncounterTrigger}, which could then automatically update the encounter data in the editor. This new approach was more intuitive and allowed for faster development and iteration. Another positive side effect was that designers could attach visual indicators to the spawn points, making the process even more streamlined.
 
@@ -62,7 +63,7 @@ For fixed spawn points, however, the issue remained. During the design of the de
 
 \placeholderfigure{spawn-points}{Configuration of the spawn points of an encounter in the scene tree.}{Configuration of the spawn points of an encounter in the scene tree. Own screenshot from Project Polearm.}{fig:spawn-points}
 
-\subsubsection{\texorpdfstring{\code{EntityAnimationHelper}}{EntityAnimationHelper}}\label{sec:6-2-2}
+\subsubsection{\texorpdfstring{\code{EntityAnimationHelper}}{EntityAnimationHelper}}\label{sec:entityanimationhelper}
 
 The \code{EntityAnimationHelper} is one of the densest helper scripts in the entire project. Its development also demonstrates our collaboration between AI and human developers. The majority of the script was written by AI (refer to \code{Entities/\allowbreak{}Entity/\allowbreak{}Utility/\allowbreak{}EntityAnimationHelper.\allowbreak{}gd} for the corresponding declaration), while many parts were subsequently edited or completely rewritten manually. This degree of collaboration was possible because the \code{EntityAnimationHelper} was designed to be completely isolated from the rest of the codebase. No other scripts reference its functions or properties, as its only purpose is to modify resource files in the editor. More specifically, it modifies entity frame data and animations. The script is so isolated that it can delete itself at runtime without affecting anything else, which is exactly what it does.
 

@@ -1,12 +1,13 @@
+% !TeX root = ../Main.tex
 \documentclass[../Main.tex]{subfiles}
 
 \begin{document}
 
-\section{Architecture and Systems}\label{sec:4}
+\section{Architecture and Systems}\label{sec:architecture-and-systems}
 
 Now, we examine the architecture of Project Polearm through major systems that make up the game. It moves from the overall structure of the application to the individual systems for entities, an overview of the player state machine and shared functionality between enemies and players. Through architectural diagrams and explanations of their relationships, this chapter demonstrates how a comparatively large collection of interactions can remain organized through managed communication and distribution of responsibility. Systems are abstracted and dependencies are kept deliberate to avoid tight coupling of unrelated parts of the game.
 
-\subsection{Architectural Overview}\label{sec:4-1}
+\subsection{Architectural Overview}\label{sec:architectural-overview}
 
 The application and systems layer of the game can be roughly divided into three layers. The first is the \emph{core}, which decides the current state of the game (booting, in the main menu, in the game). The second is a set of global systems that live as long as the application or the world does, depending on their location. The third is the \emph{interface} layer, which holds all menus. This subchapter explores these three layers.
 
@@ -14,7 +15,7 @@ The core consists of two nested state machines, where \code{Main} is the top-lev
 
 The \code{GameState} does not hold the game itself, but loads it dynamically on request. The loaded \code{Game} is again a state machine, with the states \code{DeathMenuState}, \code{PauseMenuState} and \code{World}. This separation stems from not every state the game is in needing to be loaded at the same time. Pausing or dying can only occur during gameplay, which excludes the possibility of needing the main menu loaded, and vice versa.
 
-Both machines own their own loading screen. When a state is not ready yet, for example because its scene is still loading in the background, the machine first switches to its loading screen and enters the requested state afterwards. Both mechanisms above are explained further in section~\ref{sec:5-1}.
+Both machines own their own loading screen. When a state is not ready yet, for example because its scene is still loading in the background, the machine first switches to its loading screen and enters the requested state afterwards. Both mechanisms above are explained further in section~\ref{sec:boot-sequence}.
 
 \placeholderfigure{core-state-machines}{The two nested state machines of the core.}{The two nested state machines of the core. Own figure.}{fig:core-state-machines}
 
@@ -44,9 +45,9 @@ Returning to the game's core state machines, each of the three menu states of th
 
 The flexibility of the \code{Main} and \code{Interface} state machines was put to the test on the last day before the handing-in of the Matura project, when we decided on a whim to add a credits screen to thank everyone who was involved in helping us with the project. This extra menu was implemented and integrated into the game within an hour and signifies the extensibility of our state-machine-based approach to the game.
 
-\subsection{\texorpdfstring{\code{GameObjectManager}}{GameObjectManager}}\label{sec:4-2}
+\subsection{\texorpdfstring{\code{GameObjectManager}}{GameObjectManager}}\label{sec:gameobjectmanager}
 
-In Project Polearm, all non-static objects are handled by the \code{GameObjectManager} and its subsystems. This ranges from enemies and projectiles up to even the player, as demonstrated in section~\ref{sec:4-1}. The \code{GameObjectManager} is responsible for managing all \code{GameObjectPool}s, which exist once per game object type. The \code{GameObjectPool}s themselves handle the actual pooling, spawning and death of their managed game objects.
+In Project Polearm, all non-static objects are handled by the \code{GameObjectManager} and its subsystems. This ranges from enemies and projectiles up to even the player, as demonstrated in section~\ref{sec:architectural-overview}. The \code{GameObjectManager} is responsible for managing all \code{GameObjectPool}s, which exist once per game object type. The \code{GameObjectPool}s themselves handle the actual pooling, spawning and death of their managed game objects.
 
 \placeholderfigure{game-object-manager}{Structure of the GameObjectManager and its pools.}{Structure of the GameObjectManager and its pools. Own figure.}{fig:game-object-manager}
 
@@ -58,7 +59,7 @@ Furthermore, to increase flexibility, one can also pass a payload to the spawnin
 
 The game object system also only cares about the spawning and despawning of the entities; it does not interfere with the ticking or any other aspect of its managed objects. This decouples the actual implementation of the object from its interface and the game object system, and frees the developer's mind from having to think about resource management, as the system takes care of object lifetimes for the developer, who now only has to decide when to spawn something in.
 
-\subsection{Entities}\label{sec:4-3}
+\subsection{Entities}\label{sec:architecture-entities}
 
 The entity, i.e. the structure which lies at the base of the player and all enemies in Project Polearm, is a complex system consisting of multiple components communicating to create a single, coherent character. The entity in Project Polearm is designed using the \emph{Model View Controller} pattern.
 
@@ -66,7 +67,7 @@ The state machine within the model is the heart of every entity. It defines the 
 
 \placeholderfigure{entity-model}{The model layer of an entity.}{The model layer of an entity. Own figure.}{fig:entity-model}
 
-Take the core state machine of the player as an example: it contains 26 states. All states act independently from each other, know nothing about another state's implementation and do not hold any references to other states. States are therefore a functional \enquote{black box} and decoupled from the rest of the game. The only thing a state describes is what it suggests it actually does. To keep this high level of independence, the precise chaining of states is achieved through requesting a transition to the \code{PlayerActionManager}. Therefore, adding states becomes trivial and only a matter of implementing a specific behavior and matching it to an input. The exact algorithm used in state switching is described further in section~\ref{sec:5-2}.
+Take the core state machine of the player as an example: it contains 26 states. All states act independently from each other, know nothing about another state's implementation and do not hold any references to other states. States are therefore a functional \enquote{black box} and decoupled from the rest of the game. The only thing a state describes is what it suggests it actually does. To keep this high level of independence, the precise chaining of states is achieved through requesting a transition to the \code{PlayerActionManager}. Therefore, adding states becomes trivial and only a matter of implementing a specific behavior and matching it to an input. The exact algorithm used in state switching is described further in section~\ref{sec:entity-action-selection}.
 
 \placeholderfigure{player-states}{Structure of the player's state machine and the priorities of its states.}{Structure of the player's state machine and the priorities of its states. Own figure.}{fig:player-states}
 

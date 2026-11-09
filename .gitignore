@@ -16,7 +16,7 @@
 *.toc
 *.xml
 
-!2025_zitierregeln.pdf
+out/
 
 # VSCode ignores
 .vscode

@@ -1,14 +1,15 @@
+% !TeX root = ../Main.tex
 \documentclass[../Main.tex]{subfiles}
 
 \begin{document}
 
-\section{Procedures and Algorithms}\label{sec:5}
+\section{Procedures and Algorithms}\label{sec:procedures-and-algorithms}
 
 While the previous chapter describes the overall structure of Project Polearm's systems, this chapter explores how selected parts of them operate internally. It focuses on the procedures and algorithms that drive important gameplay behavior, including booting the game, state selection, damage handling, smooth movement, and enemy role assignment. These examples illustrate how the development principles introduced earlier are executed not only on a large, architectural level, but flow into even minor parts of the code. By breaking down complex behavior into readable diagrams and explaining the reasoning behind their implementation and how our architectural principles influenced those, we demonstrate their cleanliness and flexibility.
 
-\subsection{Boot Sequence}\label{sec:5-1}
+\subsection{Boot Sequence}\label{sec:boot-sequence}
 
-What fits better than starting the section on the procedures and algorithms used in Project Polearm with how the game even boots itself? As suggested by section~\ref{sec:4-1}, Project Polearm is designed in such a way that starting the game does not even mandate the loading of any enemies, the game world or the player for that matter. This design decision was made to increase the flexibility of the game and simplify the process of choosing where the game loads into. In theory, it is even possible to load Project Polearm into a completely different game which shares none of the mechanics with the demo with minimal modification to the core. This, in turn, would theoretically simplify our work if we decided to add more levels.
+What fits better than starting the section on the procedures and algorithms used in Project Polearm with how the game even boots itself? As suggested by section~\ref{sec:architectural-overview}, Project Polearm is designed in such a way that starting the game does not even mandate the loading of any enemies, the game world or the player for that matter. This design decision was made to increase the flexibility of the game and simplify the process of choosing where the game loads into. In theory, it is even possible to load Project Polearm into a completely different game which shares none of the mechanics with the demo with minimal modification to the core. This, in turn, would theoretically simplify our work if we decided to add more levels.
 
 The first stage of booting can be understood as setting the game up and taking care of the formalities such as menus and settings, with the end goal of switching into the game:
 
@@ -20,7 +21,7 @@ After the game is entered, \code{Main} enters a sort of idle state, as it will s
 
 \placeholderfigure{world-loading}{Loading the world after entering the game.}{Loading the world after entering the game. Own figure.}{fig:world-loading}
 
-\subsection{Entity Action Selection}\label{sec:5-2}
+\subsection{Entity Action Selection}\label{sec:entity-action-selection}
 
 There are multiple ways of implementing state switching inside of a finite state machine. One common way is to explicitly define which state may transition to which other, and store this transition information somewhere. Although this does work, it is very cumbersome to do and to debug, as the workload increases quadratically with the number of states. The player of Project Polearm contains, as mentioned, 26 states, which would mean 676 transitions to potentially configure and debug.
 
@@ -32,7 +33,7 @@ The finite state machine follows the MVC pattern, where it represents the model 
 
 \placeholderfigure{process-actions}{Processing of the requested actions before a state switch.}{Processing of the requested actions before a state switch. Own figure.}{fig:process-actions}
 
-Referencing the diagram from section~\ref{sec:3-4-3}, the \code{BasicStateMachine} needs to retrieve the next action from the current one and send over a payload, if defined, to the next state, if a transition is to be requested. Within the entities, this is done via the function \code{nextAction()}:
+Referencing the diagram from section~\ref{sec:state-machine}, the \code{BasicStateMachine} needs to retrieve the next action from the current one and send over a payload, if defined, to the next state, if a transition is to be requested. Within the entities, this is done via the function \code{nextAction()}:
 
 \placeholderfigure{next-action}{Selection of the next action in nextAction().}{Selection of the next action in nextAction(). Own figure.}{fig:next-action}
 
@@ -46,7 +47,7 @@ A core part of the state switching procedure lies in the function \code{actionVi
 
 The \emph{Template Method} pattern is again utilized here. This is, at the end of the day, what makes the state machine so extensible and versatile across multiple systems in the game.
 
-\subsection{From Attacking to Damage}\label{sec:5-3}
+\subsection{From Attacking to Damage}\label{sec:from-attacking-to-damage}
 
 Project Polearm defines two structures, which are core to the damage system. These are the \code{Hitbox} and \code{Hurtbox}. Hitboxes are active and scan for the passive hurtboxes. Hurtboxes in turn leave an implementation function open to the developer to determine the behavior after a hit. Both hit- and hurtboxes use the default collision layer and detection system provided by Godot's \code{Area3D} node instead of reinventing the wheel.
 
@@ -58,7 +59,7 @@ The entire hit- and hurtbox system is so decoupled that it is even possible to d
 
 The reason why hit- and hurtboxes are not a solid body or just the collision shape of the character's physics body is to enable as much flexibility as possible. If the designer wanted that to be the case, this would just have to be configured, but leaving this open creates a lot of possibilities, e.g. by being able to adjust hit- and hurtbox size for a different gameplay feeling without being coupled to the physics simulation of the character.
 
-\subsection{Enemy Role Assignment}\label{sec:5-4}
+\subsection{Enemy Role Assignment}\label{sec:enemy-role-assignment}
 
 The \code{EnemyManager} has multiple responsibilities. In a nutshell, these are:
 
@@ -90,7 +91,7 @@ Now, with the newly acquired role, it becomes the responsibility of the enemy co
 
 The enemy manager allows for enemies not being able to take on all defined roles and respects this fact for all role assignments, which is also the case for enemies in Project Polearm. This gives the designer and enemy AI implementation more flexibility. A conscious decision can be made for which roles to split, which roles to describe using the same tag and how different enemies might behave differently even though they have the same role.
 
-\subsection{\texorpdfstring{\code{FloatingBody}}{FloatingBody}}\label{sec:5-5}
+\subsection{\texorpdfstring{\code{FloatingBody}}{FloatingBody}}\label{sec:floatingbody}
 
 The algorithm used in \code{FloatingBody} is one of the most advanced single algorithms in the entire project. It is a \code{CharacterBody3D} that does not stand on the ground but floats slightly above it. The body collider is shortened by \code{BODY\_\allowbreak{}COLLIDER\_\allowbreak{}FLOATING\_\allowbreak{}HEIGHT}, so the lower part of the character is covered by a sphere cast and rays instead of the collider itself. This allows the body to walk over small steps and slopes without catching on edges.
 

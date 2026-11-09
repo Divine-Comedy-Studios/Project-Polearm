@@ -1,10 +1,11 @@
+% !TeX root = ../Main.tex
 \documentclass[../Main.tex]{subfiles}
 
 \begin{document}
 
-\section{Appendix}\label{sec:8}
+\section{Appendix}\label{sec:appendix}
 
-\subsection{Tools}\label{sec:8-1}
+\subsection{Tools}\label{sec:tools}
 
 Project Polearm uses the open-source Godot game engine along with the programming languages GDScript and C\#, which requires the .NET build of Godot. The project started development in Godot version 4.6, and the final version uses Godot 4.7. The game relies on the \emph{Jolt} physics engine, which is built into Godot but needed to be enabled manually. The only external runtime dependency is the PhantomCamera plugin for Godot, which is included in the source code distribution.
 
@@ -12,7 +13,7 @@ Visual Studio Code was used as the external IDE, and Git was used for version co
 
 The command \code{cloc --include-ext=gd,cs --exclude-dir=addons --vcs=git --by-file .\allowbreak{}} was used to determine the number of lines in the project. The count includes code, comment and blank lines.
 
-\subsection{Running Project Polearm}\label{sec:8-2}
+\subsection{Running Project Polearm}\label{sec:running-project-polearm}
 
 The provided source code contains all assets necessary to run and build the game. To run Project Polearm from source in the engine, one needs version 4.7 of the .NET build of Godot and potentially the .NET SDK. Pressing the \emph{Run Project} button starts the game just as the executable build does. The game has been tested and is confirmed to work on the following platforms with these input methods:
 
@@ -34,7 +35,7 @@ The provided source code contains all assets necessary to run and build the game
 \end{xltabular}
 }
 
-\subsection{Glossary}\label{sec:8-3}
+\subsection{Glossary}\label{sec:glossary}
 
 This glossary explains terms which are used throughout this document, but are not explained in the text itself.
 
