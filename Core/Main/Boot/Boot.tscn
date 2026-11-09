@@ -7,9 +7,8 @@
 [ext_resource type="Script" uid="uid://cwj15obtj5njm" path="res://Systems/Audio/Data/MusicData.gd" id="4_q4rto"]
 [ext_resource type="AudioStream" uid="uid://benr8p3jthv0i" path="res://Assets/Music/Menu/Welcome to Com-Mecha.mp3" id="5_xl4c8"]
 [ext_resource type="AudioStream" uid="uid://iy81ngwf4ocf" path="res://Assets/Music/Game/big boss 2.ogg" id="6_ssxnk"]
-[ext_resource type="AudioStream" uid="uid://byssch4bx5fop" path="res://Assets/Music/Game/blind rage.mp3" id="7_g1f8k"]
 [ext_resource type="AudioStream" uid="uid://da2bkqn1be0tg" path="res://Assets/Music/Game/Zander Noriega - Fight Them Until We Cant.mp3" id="8_77qqj"]
-[ext_resource type="AudioStream" uid="uid://jc5pwc76t8rb" path="res://Assets/Music/Pause/music_pause.wav" id="9_q5ucy"]
+[ext_resource type="AudioStream" uid="uid://c8rvu416pvbkb" path="res://Assets/Music/Pause/Iwan Gabovitch - Dark Ambience Loop.ogg" id="9_gluvi"]
 [ext_resource type="AudioStream" uid="uid://crgtegfwum8vk" path="res://Assets/Music/Death/bleeding_out2.ogg" id="10_18cwx"]
 [ext_resource type="Script" uid="uid://ckrmd64looadf" path="res://Systems/Audio/Data/MusicDataset.gd" id="11_41fku"]
 [ext_resource type="Script" uid="uid://cvxs53avnhinn" path="res://Systems/Audio/Data/SFXData.gd" id="12_21oim"]
@@ -47,11 +46,11 @@ STREAMS = Array[AudioStream]([ExtResource("5_xl4c8")])
 
 [sub_resource type="Resource" id="Resource_on7mp"]
 script = ExtResource("4_q4rto")
-STREAMS = Array[AudioStream]([ExtResource("6_ssxnk"), ExtResource("7_g1f8k"), ExtResource("8_77qqj")])
+STREAMS = Array[AudioStream]([ExtResource("6_ssxnk"), ExtResource("8_77qqj")])
 
 [sub_resource type="Resource" id="Resource_hy1so"]
 script = ExtResource("4_q4rto")
-STREAMS = Array[AudioStream]([ExtResource("9_q5ucy")])
+STREAMS = Array[AudioStream]([ExtResource("9_gluvi")])
 
 [sub_resource type="Resource" id="Resource_mgqku"]
 script = ExtResource("4_q4rto")
