@@ -5,6 +5,10 @@
 [ext_resource type="Script" uid="uid://cfdlgc8aalbtr" path="res://Interfaces/Menus/Button/GameMenuButton.gd" id="2_1kon5"]
 [ext_resource type="Texture2D" uid="uid://bfjo74xlmyqn1" path="res://Assets/Interfaces/ProjectPolearm.png" id="3_jco50"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_logo"]
+atlas = ExtResource("3_jco50")
+region = Rect2(319, 168, 3887, 1024)
+
 [node name="MainMenuScreen" type="Control" unique_id=1875216693]
 physics_interpolation_mode = 0
 texture_filter = 1
@@ -28,15 +32,20 @@ grow_vertical = 2
 
 [node name="Container" type="VBoxContainer" parent="CenterContainer" unique_id=74259460]
 layout_mode = 2
+theme_override_constants/separation = 48
 
 [node name="Logo" type="TextureRect" parent="CenterContainer/Container" unique_id=1309851598]
+texture_filter = 4
+custom_minimum_size = Vector2(1500, 260)
 layout_mode = 2
-texture = ExtResource("3_jco50")
-expand_mode = 4
-stretch_mode = 4
+size_flags_horizontal = 4
+texture = SubResource("AtlasTexture_logo")
+expand_mode = 5
+stretch_mode = 5
 
 [node name="MarginContainer" type="PanelContainer" parent="CenterContainer/Container" unique_id=1425320903]
 layout_mode = 2
+size_flags_horizontal = 4
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/Container/MarginContainer" unique_id=1080161198]
 layout_mode = 2
