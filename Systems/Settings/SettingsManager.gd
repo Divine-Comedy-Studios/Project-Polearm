@@ -226,37 +226,59 @@ func applyGameSettings() -> void:
 
 
 func applyVideoSettings() -> void:
-	# Window Mode
-	match getInt("video", "window mode"):
-		WindowMode.windowed:
-			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
+	applyWindowSettings()
+	applyVsyncSetting()
+	applyGammaSetting()
 
-			get_window().move_to_center()
 
+static func resolutionToSize(res : int) -> Vector2i:
+	match res:
+		Resolution.ultrawide:
+			return Vector2i(2560, 1080)
+		Resolution.p900:
+			return Vector2i(1600, 900)
+		Resolution.p720:
+			return Vector2i(1280, 720)
+		_:
+			return Vector2i(1920, 1080)
+
+
+# Window mode + resolution. Only call this when one of those two settings changes,
+# re-applying them every frame/slider tick makes the OS window flicker and resize.
+func applyWindowSettings() -> void:
+	var window := get_window()
+	var mode := getInt("video", "window mode")
+
+	match mode:
 		WindowMode.fullscreen:
-			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
+			# Exclusive fullscreen: real fullscreen, never resizable
+			window.mode = Window.MODE_EXCLUSIVE_FULLSCREEN
 		WindowMode.borderless:
-			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, true)
+			# Godot's non-exclusive fullscreen is a borderless window covering the screen
+			window.mode = Window.MODE_FULLSCREEN
+		_:
+			if window.mode != Window.MODE_WINDOWED:
+				window.mode = Window.MODE_WINDOWED
+				# Leaving fullscreen is asynchronous (esp. on macOS), wait before resizing
+				await get_tree().process_frame
+				await get_tree().process_frame
+			window.borderless = false
 
-	# Resolution
-	match getInt("video", "resolution"):
-			Resolution.ultrawide:
-				get_window().size = Vector2i(2560, 1080)
-			Resolution.p1080:
-				get_window().size = Vector2i(1920, 1080)
-			Resolution.p900:
-				get_window().size = Vector2i(1600, 900)
-			Resolution.p720:
-				get_window().size = Vector2i(1280, 720)
+			var target := resolutionToSize(getInt("video", "resolution"))
+			var screenSize := DisplayServer.screen_get_usable_rect(window.current_screen).size
+			window.size = Vector2i(mini(target.x, screenSize.x), mini(target.y, screenSize.y))
+			window.move_to_center()
 
-	# VSync
+	# Mode switches can reset window flags, so always re-apply: the player never drags the window size
+	window.unresizable = true
+
+
+func applyVsyncSetting() -> void:
 	DisplayServer.window_set_vsync_mode(
 		DisplayServer.VSYNC_ENABLED if getBool("video", "vsync") else DisplayServer.VSYNC_DISABLED)
 
-	# Gamma
+
+func applyGammaSetting() -> void:
 	if Globals.visuals == null:
 		push_error("SettingsManager.applyVideoSettings(): Global visuals not assigned!")
 	else:
