@@ -38,7 +38,7 @@ This was out of the question. Although some state transitions were explicitly de
 
 In Project Polearm, states and actions are used to refer to the same thing, the state of a finite state machine which defines the behavior of the system once active. Actions are specifically used with entities, as this makes sense in that specific context. Furthermore, inputs and actions refer to similar concepts within an entity, whereas an input is simply an identification for an abstract input event, which always maps to a specific action or a chain thereof.
 
-The finite state machine follows the MVC pattern, where it represents the model part. It uses a set of inputs to determine the behavior of the player. To allow for custom behavior during input filtering, the \emph{Template Method} pattern is used, which is demonstrated below:
+The finite state machine follows the MVC pattern, where it represents the model part. It uses a set of inputs to determine the behavior of the player. To allow for custom behavior during input filtering, the \textbf{Template Method} pattern is used, which is demonstrated below:
 
 \begin{figure}[H]
     \centering
@@ -58,7 +58,7 @@ Referencing the diagram from section~\ref{sec:state-machine}, the \code{BasicSta
 
 \code{\_implNextAction()} corresponds to the part where the developer can specify specific transitions, if so desired. This is for example used to chain certain actions together, like a braking animation when the player stops moving. This practice leaves as much freedom for the developer as possible, whilst still providing them with powerful behavior by default.
 
-Another use case of the \emph{Template Method} pattern in the above diagram is the \code{\_preprocessActions()} function, which does nothing on the enemy, as action queueing is a feature reserved for the player, yet both entities use the \code{nextAction()} function. This again demonstrates the flexibility that the proper usage of this pattern allowed us.
+Another use case of the \textbf{Template Method} pattern in the above diagram is the \code{\_preprocessActions()} function, which does nothing on the enemy, as action queueing is a feature reserved for the player, yet both entities use the \code{nextAction()} function. This again demonstrates the flexibility that the proper usage of this pattern allowed us.
 
 A core part of the state switching procedure lies in the function \code{actionViability}, which checks, as its name might suggest, for the viability of an action as a follow-up to the current one:
 
@@ -69,7 +69,7 @@ A core part of the state switching procedure lies in the function \code{actionVi
     \label{fig:action-viability}
 \end{figure}
 
-The \emph{Template Method} pattern is again utilized here. This is, at the end of the day, what makes the state machine so extensible and versatile across multiple systems in the game.
+The \textbf{Template Method} pattern is again utilized here. This is, at the end of the day, what makes the state machine so extensible and versatile across multiple systems in the game.
 
 \subsection{From Attacking to Damage}\label{sec:from-attacking-to-damage}
 
@@ -175,6 +175,18 @@ And at last, the velocity can be calculated and the character moved:
     \caption[A complete tick of the FloatingBody. Own figure.]{A complete tick of the FloatingBody.}
     \label{fig:floatingbody-tick}
 \end{figure}
+
+\subsection{\code{Miscellaneous}}\label{sec:miscellaneous}
+
+These are but a small taste of everything that Project Polearm has to offer. There are many more systems and algorithms that implement other important and, at the same time, interesting features. Here are some of them that are worth checking out:
+
+\begin{itemize}
+    \item The \code{\_spawn()} function of the \code{Arrow} class contains a formula for calculating the angle at which the arrow must be shot to hit the target's current position. The algorithm is derived from ballistic physics formulas, and its derivation is demonstrated in a comment above the implementation.
+
+    \item The \code{EntityAnimator} is an advanced wrapper around Godot's default \code{AnimationTree}. It was implemented because we found the \code{AnimationTree} to be insufficiently flexible. Its API is highly abstract, and animations would otherwise have to be hardcoded. This custom animator identifies certain patterns within the animation graph and exposes them through a much more streamlined API for developers.
+    
+    \item The \code{EntityCombatManager} and its derivative, the \code{PlayerCombatManager}, are also worth checking out. Their implementation is relatively simple, and neither class is particularly long, but they play an important role within Project Polearm. They construct a tree of actions at runtime to validate and register the player's combos while dynamically pushing the data for the next combo action to the current player state.
+\end{itemize}
 
 \newpage
 

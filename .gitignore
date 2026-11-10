@@ -17,6 +17,7 @@
 *.xml
 
 out/
+*svg-inkscape/
 
 # VSCode ignores
 .vscode

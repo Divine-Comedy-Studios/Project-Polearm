@@ -27,7 +27,12 @@
 \usepackage[english]{babel}
 
 % Formalities
-\usepackage[backend=biber, style=authortitle-ibid]{biblatex}
+\usepackage[style=verbose, backend=biber, urldate=long, date=long]{biblatex}
+
+\AtBeginBibliography{\raggedright}
+\setcounter{biburlnumpenalty}{9000}
+\setcounter{biburllcpenalty}{7000}
+\setcounter{biburlucpenalty}{8000}
 
 % Graphical packages
 \usepackage{graphicx}
@@ -101,7 +106,7 @@
 % Abstract
 
 \begin{abstract}
-    A fast-paced action game might appear straightforward on the surface. Characters move, attack and react to incoming threats. But behind a truly engaging action game lies a complex web of interconnected systems. Movement, combat, enemy behavior, physics and even sound and animation must all work together. How does such a huge amount of interaction remain architecturally clean? Project Polearm is a demo for a hack-and-slash video game, developed for the Maturitätsarbeit 2026 by Rodin Arslan and Zhile Zhu of the department G23g at the Kantonsschule Baden. This \emph{Technical Documentation} describes the technical structure and organization as well as the core architectural decisions and systems of the game, alongside some insights into the development process.
+    A fast-paced action game might appear straightforward on the surface. Characters move, attack and react to incoming threats. But behind a truly engaging action game lies a complex web of interconnected systems. Movement, combat, enemy behavior, physics and even sound and animation must all work together. How does such a huge amount of interaction remain architecturally clean? Project Polearm is a demo for a hack-and-slash video game, developed for the Maturitätsarbeit 2026 by Rodin Arslan and Zhile Zhu of the department G23g at the Kantonsschule Baden. This \textbf{Technical Documentation} describes the technical structure and organization as well as the core architectural decisions and systems of the game, alongside some insights into the development process.
 
     The project, created using the Godot engine, encompasses roughly 11,800 lines of GDScript and C\# code, the majority of it handwritten, with documented AI assistance. We sought to learn how to implement features found in hack-and-slash games by doing, but it did not stop there. We also aimed to do so cleanly and with thought. Not only did we ask ourselves, \enquote{What does an action game do and how is it designed?}, but we also asked: \enquote{How can developers build a complex game from many interlocking systems without losing control of the codebase?}
 
@@ -115,16 +120,11 @@
 
     The next two chapters, \textbf{Chapter~\ref{sec:architecture-and-systems}: Architecture and Systems} and \textbf{Chapter~\ref{sec:procedures-and-algorithms}: Procedures and Algorithms}, dive into the code of Project Polearm. The former does this on a macro level, explaining the structure of the most far-reaching systems of the game and how they interconnect to form its architecture. The latter does this on a much smaller but more detailed level. Algorithms which drive player and enemy behavior are showcased in pseudocode diagrams alongside explanations of the design choices which led to their final form.
 
-    \textbf{Chapter~\ref{sec:tooling-and-developer-experience}: Tooling and Developer Experience} walks through how we sought to make our lives easier during development, with tools, scripts and clever usage of the aforementioned design patterns. It is followed by a retrospective in \textbf{Chapter~\ref{sec:post-mortem}: Post-Mortem}, where we ask what went well, what went less well, and how we dealt with issues that came up. Finally, \textbf{Chapter~\ref{sec:appendix}: Appendix} provides additional information about the project, and a glossary of terms used in this document.
-
-    \begin{figure}[H]
-        \centering
-        % \includegraphics[width=\linewidth]{Assets/Figures/intro-screenshot}
-        \fbox{\parbox[c][3cm][c]{0.8\linewidth}{\centering Placeholder: Assets/Figures/intro-screenshot}}
-        \caption[Screenshot of Project Polearm. Own screenshot from Project Polearm.]{Screenshot of Project Polearm.}
-        \label{fig:intro-screenshot}
-    \end{figure}
+    \textbf{Chapter~\ref{sec:tooling-and-developer-experience}: Tooling and Developer Experience} walks through how we sought to make our lives easier during development, with tools, scripts and clever usage of the aforementioned design patterns. It is followed by a retrospective in \textbf{Chapter~\ref{sec:post-mortem}: Post-Mortem}, where we ask what went well, what went less well, and how we dealt with issues that came up. Finally, \textbf{Chapter~\ref{sec:appendix}: Appendix} provides additional information about the project.
 \end{abstract}
+
+
+\newpage
 
 
 % Table of contents

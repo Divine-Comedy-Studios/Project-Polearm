@@ -39,7 +39,7 @@ All directories in the project were named to be as self-explanatory as possible.
     \item \code{Systems}
 \end{itemize}
 
-We organized our directories as such to best describe their contents as well as their association and dependencies. A directory usually contains source and scene files which belong to the same system, or a grouping of systems which stands on its own pillar within the project \code{project.godot}, the core project configuration file, sits at the root directory of the project.
+We organized our directories as such to best describe their contents as well as their association and dependencies. A directory usually contains source and scene files which belong to the same system, or a grouping of systems which stands on its own pillar within the project. \code{project.godot}, the core project configuration file, sits at the root directory of the project.
 
 Below is a summary of all other directories within Project Polearm and an explanation of their contents in alphabetical order:
 
@@ -149,7 +149,7 @@ These are all addons used in the project and how we utilized them in Project Pol
     \hline
 
     \code{SceneCamera} &
-    \code{SceneCamera}, the main camera of the game. It contains the host of \emph{PhantomCamera}, whose transformation is decided by sub-cameras such as the player camera, as well as a post-processing layer. It is kept as its own scene to allow for swappable cameras within the \code{Visuals} system &
+    \code{SceneCamera}, the main camera of the game. It contains the host of \textbf{PhantomCamera}, whose transformation is decided by sub-cameras such as the player camera, as well as a post-processing layer. It is kept as its own scene to allow for swappable cameras within the \code{Visuals} system &
     Sections~\ref{sec:entities}, \ref{sec:systems} \\
     \hline
 
@@ -163,6 +163,7 @@ These are all addons used in the project and how we utilized them in Project Pol
     Chapter~\ref{sec:tooling-and-developer-experience} \\
     \hline
 \end{longtable}
+}
 
 \subsubsection{\code{Components}}\label{sec:components}
 
@@ -249,7 +250,7 @@ Components are a cornerstone of Project Polearm's architecture and a result of o
     \endhead
 
     \hline
-    \multicolumn{2}{r}{\textit{Continuation on next page}} \\
+    \multicolumn{2}{r}{\textit{Continued on next page}} \\
     \endfoot
 
     \hline
@@ -302,7 +303,7 @@ Every entity directory is organized in a similar fashion, although not every ent
     \endhead
 
     \hline
-    \multicolumn{3}{r}{\textit{Continuation on next page}} \\
+    \multicolumn{3}{r}{\textit{Continued on next page}} \\
     \endfoot
 
     \hline
@@ -349,7 +350,7 @@ Some directories only exist for specific entities:
     \item \code{Entity/Combat} contains the \code{EntityCombatManager} as well as the structure of a combo in \code{Combo}. The configured combos of the player can be found in \code{Player/Resources/Combos}.
     \item \code{Entity/Utility} contains the \code{EntityAnimationHelper} (see section~\ref{sec:entityanimationhelper}).
     \item \code{Player/Input} contains the \code{PlayerInputManager}, the controller of the player, which converts input events into intents.
-    \item \code{Player/Camera} contains the \code{PlayerCameraManager}, a C\# script controlling the player's camera, which builds upon \emph{PhantomCamera}.
+    \item \code{Player/Camera} contains the \code{PlayerCameraManager}, a C\# script controlling the player's camera, which builds upon \textbf{PhantomCamera}.
     \item \code{Player/Actions/States} contains the 26 states of the player. The directory \code{BasicActions} holds the base classes shared by several states, such as jumping, dashing and stopping, \code{TransitionAction} holds short states which chain into other states, and \code{Physics} holds \code{PlayerPhysics}, the physics configuration shared across states (see section~\ref{sec:to-configure-everything}) as well as ledge grabbing physics.
 \end{itemize}
 
@@ -374,7 +375,7 @@ The menus themselves are found in the directory \code{Menus}:
     \endhead
 
     \hline
-    \multicolumn{2}{r}{\textit{Continuation on next page}} \\
+    \multicolumn{2}{r}{\textit{Continued on next page}} \\
     \endfoot
 
     \hline
@@ -385,7 +386,7 @@ The menus themselves are found in the directory \code{Menus}:
     \hline
 
     \code{CreditsMenu} &
-    The credits menu (\code{PauseScreen}) \\
+    The credits menu (\code{CreditsMenu}) \\
     \hline
 
     \code{PauseMenu} &

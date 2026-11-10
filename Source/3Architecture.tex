@@ -8,7 +8,7 @@ Now, we examine the architecture of Project Polearm through major systems that m
 
 \subsection{Architectural Overview}\label{sec:architectural-overview}
 
-The application and systems layer of the game can be roughly divided into three layers. The first is the \emph{core}, which decides the current state of the game (booting, in the main menu, in the game). The second is a set of global systems that live as long as the application or the world does, depending on their location. The third is the \emph{interface} layer, which holds all menus. This subchapter explores these three layers.
+The application and systems layer of the game can be roughly divided into three layers. The first is the \textbf{core}, which decides the current state of the game (booting, in the main menu, in the game). The second is a set of global systems that live as long as the application or the world does, depending on their location. The third is the \textbf{interface} layer, which holds all menus. This subchapter explores these three layers.
 
 The core consists of two nested state machines, where \code{Main} is the top-level machine. On start, the application enters \code{Boot}, which is a short splash state where the settings are applied. It then moves on to the main menu, and from there into the game or out of the application.
 
@@ -87,7 +87,7 @@ The game object system also only cares about the spawning and despawning of the 
 
 \subsection{Entities}\label{sec:architecture-entities}
 
-The entity, i.e. the structure which lies at the base of the player and all enemies in Project Polearm, is a complex system consisting of multiple components communicating to create a single, coherent character. The entity in Project Polearm is designed using the \emph{Model View Controller} pattern.
+The entity, i.e. the structure which lies at the base of the player and all enemies in Project Polearm, is a complex system consisting of multiple components communicating to create a single, coherent character. The entity in Project Polearm is designed using the \textbf{Model View Controller} pattern.
 
 The state machine within the model is the heart of every entity. It defines the behavior and connects all components together. It manages the transition between states and acts as a registry for all components, which are in turn provided to the states, so that the currently active one can determine the current behavior.
 
