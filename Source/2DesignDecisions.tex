@@ -1,11 +1,10 @@
-% !TeX root = ../Main.tex
 \documentclass[../Main.tex]{subfiles}
 
 \begin{document}
 
 \section{Design Decisions and Goals}\label{sec:design-decisions-and-goals}
 
-A clean architecture does not emerge by accident. It is the result of decisions made early in development about the principles which shall guide the software’s programming. This chapter presents the central philosophies and design goals behind Project Polearm, including configurability, modularity, extensibility, readiness for the future and the use of established and uniquely modified programming paradigms and design patterns. The philosophies are not abstract principles and empty jargon, as they have directly influenced our development process from the macro to the micro level. Together, they establish the reasoning behind the architecture explored in the following chapters and demonstrate our intention to keep the codebase flexible, consistent and comprehensible.
+A clean architecture does not emerge by accident. It is the result of decisions made early in development about the principles which shall guide the software's programming. This chapter presents the central philosophies and design goals behind Project Polearm, including configurability, modularity, extensibility, readiness for the future and the use of established and uniquely modified programming paradigms and design patterns. The philosophies are not abstract principles and empty jargon, as they have directly influenced our development process from the macro to the micro level. Together, they establish the reasoning behind the architecture explored in the following chapters and demonstrate our intention to keep the codebase flexible, consistent and comprehensible.
 
 \subsection{\emph{\enquote{Configure Everything, Code Nothing}}: Our Philosophies on Clean Code}\label{sec:configure-everything-code-nothing-our}
 
@@ -19,25 +18,25 @@ Pursuing these philosophies had a few practical reasons. First, consistency and 
 
 \subsection{Paradigms}\label{sec:paradigms}
 
-Our primary design philosophy heavily implies the use of a certain programming paradigm, namely data-driven programming. This means that many systems consist of two parts: the behavioral part and the configurational part. The behavioral part defines all features of the system. Whereas in other codebases these might be exposed as an API and used exclusively as such, Project Polearm also exposes configurable structures in the editor, and lets the system itself, or other systems using it, interpret the configuration and call the API functions on the programmer’s behalf.
+Our primary design philosophy heavily implies the use of a certain programming paradigm, namely data-driven programming. This means that many systems consist of two parts: the behavioral part and the configurational part. The behavioral part defines all features of the system. Whereas in other codebases these might be exposed as an API and used exclusively as such, Project Polearm also exposes configurable structures in the editor, and lets the system itself, or other systems using it, interpret the configuration and call the API functions on the programmer's behalf.
 
 In practice, this meant that many systems were extremely centralized. This implies one instance per system, which leads to the game containing global state. The upfront development of such systems took longer than it would have taken to create their non-centralized, solely API-based equivalents. Most systems also contained an API for certain use cases, and the configuration data structure and its interpretation had to be created in a well-architected, non-invasive and extensible way which works for the majority of use cases.
 
 Since we are working in a game engine, we also had to work within the philosophy of that engine. Godot is object-oriented, and strongly so. It uses composition of \code{Node}s to build its world, as most objects in Godot are nodes. Nodes describe scenes and behavior. One node may contain multiple nodes and build a so-called \emph{scene tree}, and, to simplify, every node inherits from another, simpler one until we reach the base \code{Node}. For example, a \code{Node3D} extends the basic \code{Node} by introducing a field describing its transformation in 3D space, which a \code{Node} does not have. Every other node which needs to describe its transformation in 3D space inherits in some way from \code{Node3D}, e.g. \code{CollisionShape3D}. This node is placed as a child in the scene tree of a node which inherits \code{CollisionObject3D}, which defines specific behavior during collisions with its \code{CollisionShape3D}. In turn, \code{CollisionObject3D} also inherits from \code{Node3D}.
 
-Godot’s design philosophy came with some advantages and limitations. The node system was the cornerstone supporting the modularity and extensibility principles, as commonly reused parts of a scene tree can be saved as a separate scene, which can then be instantiated to create copies of itself when needed. This facilitates extensibility, but careful consideration was still required to keep the architecture clean.
+Godot's design philosophy came with some advantages and limitations. The node system was the cornerstone supporting the modularity and extensibility principles, as commonly reused parts of a scene tree can be saved as a separate scene, which can then be instantiated to create copies of itself when needed. This facilitates extensibility, but careful consideration was still required to keep the architecture clean.
 
 Then again, it should not be underestimated how this system limits the developer, as all systems do. Communicating nodes can exist at varying depth levels of the tree, which made setting up a path of connection in an architecturally clean way difficult. Communication between systems was not straightforward. Godot provides multiple solutions to the issue and leaves it to the programmer to decide, for better or worse, which one to pick. We were left wishing for other solutions, though our concerns were never strong enough to make us search for extreme alternatives. In the end, we arrived at a solution we were content with (section~\ref{sec:global-state}).
 
 \subsection{Avoiding Signals}\label{sec:avoiding-signals}
 
-One of these solutions is Godot’s \emph{signals}. Signals are an integral part of Godot’s design, and the documentation encourages their use\autocite[Cf.][]{godot_signals}. But all hand-authored code in Project Polearm uses signals extremely sparingly and in very localized situations. Our signals rarely even cross multiple nodes. But if we already established that communication between nodes is a problem, why did we avoid such an obvious solution?
+One of these solutions is Godot's \emph{signals}. Signals are an integral part of Godot's design, and the documentation encourages their use\autocite[]{godot_signals}. But all hand-authored code in Project Polearm uses signals extremely sparingly and in very localized situations. Our signals rarely even cross multiple nodes. But if we already established that communication between nodes is a problem, why did we avoid such an obvious solution?
 
-In early development, the concept of a signal bus was raised. It was supposed to be a global structure which accepts signals from any source and sends them to whatever target wants to receive them. The idea did not survive long, as we soon agreed that this was not the way to go. Signal buses are a popular pattern in the Godot community\autocite[Cf.][]{gdquest_eventbus,reddit_signalbuses}so why this negative reaction from us? The sheer number of systems which need to communicate within a game is huge, and the signal bus is an obvious and easy answer to this problem, too easy in fact. We sensed that it might become the default solution to every complicated architectural problem we come across: instead of thinking of a clever way to resolve the issue, a new signal is simply added to the signal bus. This cycle continues until a massive, monolithic layer filled with signals is created, and it may become extremely confusing for developers to tell which signal connects what to what.
+In early development, the concept of a signal bus was raised. It was supposed to be a global structure which accepts signals from any source and sends them to whatever target wants to receive them. The idea did not survive long, as we soon agreed that this was not the way to go. Signal buses are a popular pattern in the Godot community\autocite[]{gdquest_eventbus}\autocite[]{reddit_signalbuses} so why this negative reaction from us? The sheer number of systems which need to communicate within a game is huge, and the signal bus is an obvious and easy answer to this problem, too easy in fact. We sensed that it might become the default solution to every complicated architectural problem we come across: instead of thinking of a clever way to resolve the issue, a new signal is simply added to the signal bus. This cycle continues until a massive, monolithic layer filled with signals is created, and it may become extremely confusing for developers to tell which signal connects what to what.
 
-A signal bus hides a dependency that would otherwise be an explicit reference to a global object, behind a seemingly clean language feature encouraged by the documentation and the community. People say that signals decouple systems from each other, and decoupling is something good. But often, even with a signal bus, the systems remain coupled. If the player wants to play a sound, the player and the global sound system are inherently coupled. Given two systems which are coupled and need knowledge about each other’s existence, if a signal bus were used naively to alleviate this issue, the coupling would simply become functional, where one system relies on the other to do something. One thinks the problem is resolved, when the coupling has merely taken on a different form and, even worse, has become hidden and indirect.
+A signal bus hides a dependency that would otherwise be an explicit reference to a global object, behind a seemingly clean language feature encouraged by the documentation and the community. People say that signals decouple systems from each other, and decoupling is something good. But often, even with a signal bus, the systems remain coupled. If the player wants to play a sound, the player and the global sound system are inherently coupled. Given two systems which are coupled and need knowledge about each other's existence, if a signal bus were used naively to alleviate this issue, the coupling would simply become functional, where one system relies on the other to do something. One thinks the problem is resolved, when the coupling has merely taken on a different form and, even worse, has become hidden and indirect.
 
-Therefore, coupling, if it happens, should be direct, and the solution to global state should be ugly. If that is the case, every time a global object is used in a way that creates coupling, it will feel awkward and set off alarm bells in the developer’s head. Only then is the developer incentivized to limit global state as much as possible, and the code comes out cleanest. This is what we tried to achieve with the pattern described in section~\ref{sec:global-state}: to make global state as obvious as possible. Signal buses could even incentivize coupling in an ironic way. If two systems risk coupling and a solution is needed, one could take the easy way out and add a signal to the bus, so that the systems become indirectly coupled instead of the problem being made visible.
+Therefore, coupling, if it happens, should be direct, and the solution to global state should be ugly. If that is the case, every time a global object is used in a way that creates coupling, it will feel awkward and set off alarm bells in the developer's head. Only then is the developer incentivized to limit global state as much as possible, and the code comes out cleanest. This is what we tried to achieve with the pattern described in section~\ref{sec:global-state}: to make global state as obvious as possible. Signal buses could even incentivize coupling in an ironic way. If two systems risk coupling and a solution is needed, one could take the easy way out and add a signal to the bus, so that the systems become indirectly coupled instead of the problem being made visible.
 
 This also explains our use cases for signals. Signals are not inherently unclean; we must simply use them in a way that we find clean. We use them when they are either the only way to achieve a goal or the cleanest way to do so, for example to detect UI button presses. As the use case is confined to the specific menu the button is in, and the button only communicates with its manager and nothing else, we deemed this and similar cases clean and perfectly acceptable.
 
@@ -49,17 +48,22 @@ Our philosophies and the resulting paradigms were executed not only on a macro, 
 
 This is one of the simplest patterns in the project, but also one of the most widely used. It exists to promote the extensibility of systems:
 
-\placeholderfigure{template-method}{Structure of the Template Method pattern.}{Structure of the Template Method pattern. Own figure.}{fig:template-method}
+\begin{figure}[H]
+    \centering
+    \includesvg[width=8cm]{Assets/TemplateFunction.svg}
+    \caption[Structure of the Template Method pattern. Own figure.]{Structure of the Template Method pattern.}
+    \label{fig:template-method}
+\end{figure}
 
-The \emph{Template Method}\autocite[Cf.][325]{gamma1994designpatterns} defines a function and a virtual function with a similar name, which the former calls. Children can then override the virtual function to add custom behavior to existing procedures. Contrary to GDScript’s built-in \code{super}, this pattern allows control over where the child’s code is injected within a parent’s process, if the child chooses to define it at all.
+The \emph{Template Method}\autocite[325]{gamma1994designpatterns} defines a function and a virtual function with a similar name, which the former calls. Children can then override the virtual function to add custom behavior to existing procedures. Contrary to GDScript's built-in \code{super}, this pattern allows control over where the child's code is injected within a parent's process, if the child chooses to define it at all.
 
-It is important to note that these implementation functions do not always start with \code{\_\allowbreak{}impl}; the convention only defines a naming pattern for such functions at a certain position in the call chain.
+It is important to note that these implementation functions do not always start with \code{\_impl}; the convention only defines a naming pattern for such functions at a certain position in the call chain.
 
 \subsubsection{Global State}\label{sec:global-state}
 
-Godot provides multiple ways to realize global state. The Godot documentation encourages the use of \emph{Autoloads} for global systems\autocite[Cf.][]{godot_autoload}. We initially tried them but quickly decided against using them, as \emph{Autoloads} initialize the system outside of the main scene before the game starts and expose the name of the system to the entire project, thereby polluting the global namespace. Furthermore, \emph{Autoloads} are always initialized unconditionally, unless their \emph{Autoload} status is removed in an editor menu, which could in turn break other dependencies. It is also not possible to delay the initialization of an \emph{Autoload} to a later point in time. Errors in a globally loaded system will therefore always be present, even if the code currently being tested does not require that system. We therefore went with another approach, which works like this:
+Godot provides multiple ways to realize global state. The Godot documentation encourages the use of \emph{Autoloads} for global systems\autocite[]{godot_autoload}. We initially tried them but quickly decided against using them, as \emph{Autoloads} initialize the system outside of the main scene before the game starts and expose the name of the system to the entire project, thereby polluting the global namespace. Furthermore, \emph{Autoloads} are always initialized unconditionally, unless their \emph{Autoload} status is removed in an editor menu, which could in turn break other dependencies. It is also not possible to delay the initialization of an \emph{Autoload} to a later point in time. Errors in a globally loaded system will therefore always be present, even if the code currently being tested does not require that system. We therefore went with another approach, which works like this:
 
-\begin{lstlisting}[language=GDScript]
+\begin{verbatim}
 # Globals.gd
 
 class_name Globals
@@ -80,29 +84,34 @@ func _ready() -> void:
     Globals.fooSystem = self
     
     # Other initialization steps...
-\end{lstlisting}
+\end{verbatim}
 
-This pattern is a modified version of the \emph{Service Locator} pattern\autocite[Cf.][]{nystrom_servicelocator}. In order for a global system to be initialized, a node has to be explicitly placed in the scene tree. System initialization can therefore happen when the developer wants it to, and if the system is not used in a particular testing scenario, its field in \code{Globals} simply remains \code{null}, so any bugs in that system do not influence the tests. Furthermore, if a system is not fully implemented and still contains syntax errors, its line in the \code{Globals} file and the references to it can simply be commented out. The \code{Globals} class encapsulates all systems within itself and pollutes the global namespace minimally, while all references to a global system remain clear and obvious. All non-third-party global systems in the game use this exact pattern.
+This pattern is a modified version of the \emph{Service Locator} pattern\autocite[]{nystrom_servicelocator}. In order for a global system to be initialized, a node has to be explicitly placed in the scene tree. System initialization can therefore happen when the developer wants it to, and if the system is not used in a particular testing scenario, its field in \code{Globals} simply remains \code{null}, so any bugs in that system do not influence the tests. Furthermore, if a system is not fully implemented and still contains syntax errors, its line in the \code{Globals} file and the references to it can simply be commented out. The \code{Globals} class encapsulates all systems within itself and pollutes the global namespace minimally, while all references to a global system remain clear and obvious. All non-third-party global systems in the game use this exact pattern.
 
 This also means that these global systems are not truly global, as their core functionality is still local. If there were no assert checking for a duplicate of the system in the global registry, the system could work entirely on its own, given that its dependencies on other global systems are resolved. The only truly global object in Project Polearm is the \code{Globals} registry. On the other hand, this approach has an obvious price: access to \code{null} if a system has not been initialized.
 
 \subsubsection{State Machine}\label{sec:state-machine}
 
-State machines\autocite[Cf.][]{nystrom_state} also proved to be a very widely used pattern in Project Polearm. Many things in a game can be described using a state machine, and it was the ideal fit for our philosophies of \emph{Configure Everything, Code Nothing}, modularity, extensibility and being ready for the future. State machines in the project give the developer a large amount of freedom in configuration and an extensive API, but only a very limited set of extension points for each state, which is achieved, for example, through the \emph{Template Method} pattern. This way, we hoped that creating new states for the state machine could be trivialized, as with the proper design each state can be made responsible for a single action only, greatly simplifying its code.
+State machines\autocite[]{nystrom_state} also proved to be a very widely used pattern in Project Polearm. Many things in a game can be described using a state machine, and it was the ideal fit for our philosophies of \emph{Configure Everything, Code Nothing}, modularity, extensibility and being ready for the future. State machines in the project give the developer a large amount of freedom in configuration and an extensive API, but only a very limited set of extension points for each state, which is achieved, for example, through the \emph{Template Method} pattern. This way, we hoped that creating new states for the state machine could be trivialized, as with the proper design each state can be made responsible for a single action only, greatly simplifying its code.
 
-The freedom of configuration was achieved by programming the state machine with Godot’s design in mind. The states are nodes in the scene tree instead of raw pieces of code. They are children of the state machine, and their properties as states of the state machine can therefore be configured simply in the editor. Managing states was thus done by leveraging what Godot already provides instead of a custom system, which greatly simplified the code. Below is the rough structure of our basic state machine:
+The freedom of configuration was achieved by programming the state machine with Godot's design in mind. The states are nodes in the scene tree instead of raw pieces of code. They are children of the state machine, and their properties as states of the state machine can therefore be configured simply in the editor. Managing states was thus done by leveraging what Godot already provides instead of a custom system, which greatly simplified the code. Below is the rough structure of our basic state machine:
 
-\placeholderfigure{basic-state-machine}{Rough structure of the basic state machine.}{Rough structure of the basic state machine. Own figure.}{fig:basic-state-machine}
+\begin{figure}[H]
+    \centering
+    \includesvg[width=\linewidth]{Assets/BasicStateMachine.svg}
+    \caption[Rough structure of the basic state machine. Own figure.]{Rough structure of the basic state machine.}
+    \label{fig:basic-state-machine}
+\end{figure}
 
 The state machine manages the states as well as the switching between them, and its behavior can be customized through \emph{Template Methods}. The basic state machine itself, however, is a sort of \enquote{inverted} Template Method pattern: it does nothing on its own, as it only provides an API. It lets the developer call its functions later on in an inherited class, for maximum extensibility and flexibility.
 
-Due to its good synergy with our design philosophies and its versatility, state machines are used in many parts of Project Polearm. To give a broad overview: the core of the game’s entities is a state machine, the menus are state machines, and the entire core processing of the game happens in a state machine. This is explored further in sections~\ref{sec:architecture-entities} and~\ref{sec:entity-action-selection}.
+Due to its good synergy with our design philosophies and its versatility, state machines are used in many parts of Project Polearm. To give a broad overview: the core of the game's entities is a state machine, the menus are state machines, and the entire core processing of the game happens in a state machine. This is explored further in sections~\ref{sec:architecture-entities} and~\ref{sec:entity-action-selection}.
 
 \subsubsection{Dataset Pattern}\label{sec:dataset-pattern}
 
 The dataset is a pattern which is widely used across the entire project. A dataset carries no functionality; it is simply a dictionary mapping a type enum, or an equivalent identification structure, to plain-old-data.
 
-\begin{lstlisting}[language=GDScript]
+\begin{verbatim}
 # FooData.gd
 
 class_name FooData
@@ -123,7 +132,7 @@ class_name FooDataset
 extends Resource
 
 @export var DATASET : Dictionary [FooData.Type, FooData]
-\end{lstlisting}
+\end{verbatim}
 
 The dataset was essential for executing the \emph{Configure Everything} part of our core philosophy, as datasets were often exported alongside a system to define the set of objects it should act on and the way it should act on each of them.
 

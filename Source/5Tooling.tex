@@ -1,4 +1,3 @@
-% !TeX root = ../Main.tex
 \documentclass[../Main.tex]{subfiles}
 
 \begin{document}
@@ -13,19 +12,37 @@ In accordance with our main development philosophy, a vast number of properties 
 
 One of the more extreme examples of this aggressive use of exported variables can be found in the \code{Hitbox} and \code{Hurtbox} collision components. We added an extra exported setter property solely to configure the collision layer or mask of the underlying \code{Area3D}, even though Godot already exposes these properties in the editor. This decision stems from the fact that Godot's collision layer and mask system can be confusing at times, despite its flexibility and power. Our collision components only need one of these properties, depending on their type, while the other bitmask is set to zero. Together with the fact that custom exported variables appear at the top of the Inspector, this made configuring the collision components considerably easier without adding any new functionality.
 
-\placeholderfigure{hitbox-inspector}{Custom collision properties of a Hitbox in the Inspector.}{Custom collision properties of a Hitbox in the Inspector. Own screenshot from Project Polearm.}{fig:hitbox-inspector}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{Assets/HitboxInspector}
+    \fbox{\parbox[c][3cm][c]{0.8\linewidth}{\centering Placeholder: Assets/Figures/hitbox-inspector}}
+    \caption[Custom collision layer setter of a Hitbox in the Inspector alongside default Godot setters. Own screenshot from Project Polearm.]{Custom collision layer setter of a Hitbox in the Inspector alongside default Godot setters.}
+    \label{fig:hitbox-inspector}
+\end{figure}
 
 This approach naturally led to a large number of exported variables in the editor. To maintain clarity, these were organized into collapsible categories. For the most part, exported variables were not centralized, as we wanted to keep configuration close to the systems responsible for it. There was one exception: several configurable variables, specifically many physics properties, were collected in the \code{PlayerPhysics} structure, as some of them are used across multiple states (e.g. gravity). In hindsight, extending this idea might have been advantageous. A centralized configuration file for all game properties, similar to a more global version of \code{PlayerPhysics}, could have made the game easier to configure. During the design of the demo, we sometimes had to look through adjacent systems to find the location of a particular exported property. A more centralized approach could have preserved configurability while simplifying the configuration process, although it is important to also consider the large amounts of coupling this approach would bring with it.
 
-\subsubsection{\texorpdfstring{\code{Encounter}}{Encounter} and \texorpdfstring{\code{Wave}}{Wave}}\label{sec:encounter-and-wave}
+\subsubsection{\code{Encounter} and \code{Wave}}\label{sec:encounter-and-wave}
 
 One prominent example of extensive configurability is provided by the \code{Encounter} and \code{Wave} structures. These are small POD resources with exported fields, yet almost everything that needs to be specified about an encounter can be found within these two classes.
 
 Firstly, the structure of these two classes reflects our research, in which we established that an encounter consists of one or more waves of enemies (refer to the accompanying report for more details). An \code{Encounter} defines the waves as well as the spawn points for the enemies, whereas a \code{Wave} specifically defines which enemies will appear, in which order and where, alongside difficulty settings and other configurable data. The game object system is particularly useful here, since one only needs to fill out a simple array with the game object enum values corresponding to the desired enemy types, and repeat this process for every wave in the encounter to design an entire fight.
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{Assets/EncounterConfig}
+    \caption[Configuration of an Encounter and its Waves. Own screenshot from Project Polearm.]{Configuration of an Encounter and its Waves.}
+    \label{fig:encounter-configuration}
+\end{figure}
+
 The only thing \code{EnemyManager} needs to begin an encounter is the \code{Encounter} resource itself, alongside an optional script. Once these have been passed to the \code{beginEncounter()} function, everything proceeds automatically. The designer only has to decide what should trigger an encounter. In Project Polearm, this is handled by the \code{EncounterTrigger}, a simple class that keeps track of the trigger area, the \code{Encounter} and the \code{EncounterScript}. In our project, the \code{EncounterScript} only keeps track of the respective doors and opens and closes them at the beginning and end of each encounter. However, it could be extended to handle a wider range of tasks, such as playing custom music, showing a cutscene, and so on.
 
-\placeholderfigure{encounter-configuration}{Configuration of an EncounterTrigger with its Encounter and Wave resources.}{Configuration of an EncounterTrigger with its Encounter and Wave resources. Own screenshot from Project Polearm.}{fig:encounter-configuration}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{Assets/EncounterTriggerConfig}
+    \caption[Configuration of an EncounterTrigger with its Encounter and Wave resources. Own screenshot from Project Polearm.]{Configuration of an EncounterTrigger with its Encounter and Wave resources.}
+    \label{fig:encounter-configuration}
+\end{figure}
 
 In the systems surrounding enemies, configurability, extensibility and flexibility were used to their fullest to create a system that is quick to set up and iterate upon. For more information about how we improved the developer experience through the \code{EncounterTrigger}, please refer to section~\ref{sec:encountertrigger}.
 
@@ -33,19 +50,25 @@ In the systems surrounding enemies, configurability, extensibility and flexibili
 
 The \code{EntityFrameData} class and its descendants might be the crown jewel of our philosophy of \emph{Configure Everything, Code Nothing}. The feel of an action in an action game is extremely important, and many factors influence how the player perceives it. These include the point at which an action may be canceled, when it may transition into another action, the frames during which a weapon is dangerous, and the point at which a queued input is accepted. These are not merely surface-level properties of an action; they are central to its behavior. Furthermore, these properties are not only numerous, but also have a second dimension: time. We wanted not only to make these timed events configurable, but also to allow designers to configure them easily and clearly, without touching a single line of code. This raised the question: how could we design a system whose core behavior could be described entirely through configuration?
 
-This considerably increased the complexity of developing the system. In fact, it was one of the systems that took the longest to program and refine during the first half of development. We considered several possible implementations, such as the naïve approach of exposing pairs of values and timestamps for each state. However, this would have gone against our philosophy of configurability and would not have been particularly readable. Eventually, through an external source\autocite[Cf.][]{fairfight_godotcharacters}we arrived at a solution that we had also encountered in other action games, particularly fighting games: \emph{frame data}.
+This considerably increased the complexity of developing the system. In fact, it was one of the systems that took the longest to program and refine during the first half of development. We considered several possible implementations, such as the naïve approach of exposing pairs of values and timestamps for each state. However, this would have gone against our philosophy of configurability and would not have been particularly readable. Eventually, through an external source\autocite[]{fairfight_godotcharacters}we arrived at a solution that we had also encountered in other action games, particularly fighting games: \emph{frame data}.
 
-Frame data describes the timing of the sub-actions within a move as a collection of properties mapped to the corresponding frame or point in time of the animation. In fighting games, a move is typically divided into several phases, namely startup, during which the attack is being prepared and cannot yet hit anyone; active frames, during which the attack can connect; and recovery, during which the character is vulnerable and cannot act freely. Beyond these phases, frame data can also record when a move can be canceled into another or when a buffered input is accepted. Players and designers use this information to reason about a move, as it describes precisely and deterministically what happens and when\autocite[Cf.][]{srk_sf6gamedata}.
+Frame data describes the timing of the sub-actions within a move as a collection of properties mapped to the corresponding frame or point in time of the animation. In fighting games, a move is typically divided into several phases, namely startup, during which the attack is being prepared and cannot yet hit anyone; active frames, during which the attack can connect; and recovery, during which the character is vulnerable and cannot act freely. Beyond these phases, frame data can also record when a move can be canceled into another or when a buffered input is accepted. Players and designers use this information to reason about a move, as it describes precisely and deterministically what happens and when\autocite[]{srk_sf6gamedata}.
 
 To achieve such a system in Godot, we made use of its built-in animation system. \code{EntityFrameData} extends \code{AnimationPlayer} and is placed in each entity's scene as a node. It holds an animation library containing one animation for every animation the entity has, under the same name and with the same length. Instead of animating properties such as a character's skeleton, we animate the properties that determine the behavior of its actions. Unlike ordinary animations, however, these frame-data animations are never played back; they are only sampled.
 
 Each property has a public getter with a corresponding name, such as \code{weaponActivate(animationName, time)}. This function looks up the requested animation in the frame-data library, finds the track corresponding to the property and retrieves its value at the requested time. The action itself keeps track of its progress using a variable that is advanced every tick. Configuring the properties of an action therefore becomes almost trivial, and the designer can synchronize them directly with the corresponding animation.
 
-\placeholderfigure{frame-data}{Frame-data animation of an action in the animation editor.}{Frame-data animation of an action in the animation editor. Own screenshot from Project Polearm.}{fig:frame-data}
+\begin{figure}[H]
+    \centering
+    % \includegraphics[width=\linewidth]{Assets/Figures/frame-data}
+    \fbox{\parbox[c][3cm][c]{0.8\linewidth}{\centering Placeholder: Assets/Figures/frame-data}}
+    \caption[Frame-data animation of an action in the animation editor. Own screenshot from Project Polearm.]{Frame-data animation of an action in the animation editor.}
+    \label{fig:frame-data}
+\end{figure}
 
 Using the action's own progress timer instead of the playhead of the actual animation was a deliberate decision. It keeps actions independent of the animation tree, which may blend or fade between several animations. It also makes the results of each lookup deterministic, as looking up an animated property at the same progress time will always yield the same result. This is particularly important for properties that influence the behavior of the action, such as whether it can transition into another action, something that a conventional skeletal animation player does not need to handle.
 
-This means that actions ask what they should do instead of being told what to do. \code{nextAction()} asks whether the action is \code{transitionable}; \code{\_\allowbreak{}processWeapon()} asks \code{weaponActivate} whether it should enable or disable the weapon; \code{\_\allowbreak{}processDirection()} uses the \code{rotationTracking()} speed; and \code{\_\allowbreak{}processSFX()} plays a sound effect defined by \code{sfx()}. All of this is implemented once in the \code{EntityAction} base class, meaning that every new action receives this behavior by default, while custom properties for a particular entity type can still be implemented whenever necessary. This is perhaps the clearest example of what \emph{Configure Everything, Code Nothing} means to us.
+This means that actions ask what they should do instead of being told what to do. \code{nextAction()} asks whether the action is \code{transitionable}; \code{\_processWeapon()} asks \code{weaponActivate} whether it should enable or disable the weapon; \code{\_processDirection()} uses the \code{rotationTracking()} speed; and \code{\_processSFX()} plays a sound effect defined by \code{sfx()}. All of this is implemented once in the \code{EntityAction} base class, meaning that every new action receives this behavior by default, while custom properties for a particular entity type can still be implemented whenever necessary. This is perhaps the clearest example of what \emph{Configure Everything, Code Nothing} means to us.
 
 The greatest difficulty arose when adding frame-data animations for every new animation introduced into the project. This eventually led to the creation of the \code{EntityAnimationHelper}, described in section~\ref{sec:entityanimationhelper}.
 
@@ -53,7 +76,7 @@ The greatest difficulty arose when adding frame-data animations for every new an
 
 All this configurability was intended to improve the development experience, but there were also more specialized examples of this. Throughout development, we used editor helper scripts and helper functions, some of which were provided by third parties (see section~\ref{sec:addons}) and others which we developed ourselves, with or without the assistance of AI. The use of AI is declared in the respective source files. The following examples demonstrate some of these quality-of-life tools in practice.
 
-\subsubsection{\texorpdfstring{\code{EncounterTrigger}}{EncounterTrigger}}\label{sec:encountertrigger}
+\subsubsection{\code{EncounterTrigger}}\label{sec:encountertrigger}
 
 As described in section~\ref{sec:encounter-and-wave}, the spawn points for an encounter, including fixed spawn points for specific enemies, are configurable. Initially, the designer was supposed to place a helper object in the scene, move it into position and manually copy its coordinates into the corresponding spawn-point array. This proved to be arduous, unintuitive and unclear almost immediately after the feature was first tested, so an alternative solution was devised.
 
@@ -61,17 +84,29 @@ For randomized spawn points, the most logical approach was to allow any \code{No
 
 For fixed spawn points, however, the issue remained. During the design of the demo level, we found that extensive configuration of fixed spawn points would be necessary, something we had not anticipated during development. A similarly convenient method was therefore needed. The solution was straightforward, yet effective, and extended the previous approach. All spawn points were once again stored under a parent node, but this time they were numbered. The top-level nodes simply carried the number of the wave, while the second-level nodes, representing the actual spawn points, carried the index of the enemy. This provided the same flexibility, readability and clarity as the configuration of randomized spawn points, at the cost of requiring the designer to pay attention to the naming convention. These quality-of-life features made it possible to create complex enemy placements with considerably less effort.
 
-\placeholderfigure{spawn-points}{Configuration of the spawn points of an encounter in the scene tree.}{Configuration of the spawn points of an encounter in the scene tree. Own screenshot from Project Polearm.}{fig:spawn-points}
+\begin{figure}[H]
+    \centering
+    % \includegraphics[width=\linewidth]{Assets/Figures/spawn-points}
+    \fbox{\parbox[c][3cm][c]{0.8\linewidth}{\centering Placeholder: Assets/Figures/spawn-points}}
+    \caption[Configuration of the spawn points of an encounter in the scene tree. Own screenshot from Project Polearm.]{Configuration of the spawn points of an encounter in the scene tree.}
+    \label{fig:spawn-points}
+\end{figure}
 
-\subsubsection{\texorpdfstring{\code{EntityAnimationHelper}}{EntityAnimationHelper}}\label{sec:entityanimationhelper}
+\subsubsection{\code{EntityAnimationHelper}}\label{sec:entityanimationhelper}
 
-The \code{EntityAnimationHelper} is one of the densest helper scripts in the entire project. Its development also demonstrates our collaboration between AI and human developers. The majority of the script was written by AI (refer to \code{Entities/\allowbreak{}Entity/\allowbreak{}Utility/\allowbreak{}EntityAnimationHelper.\allowbreak{}gd} for the corresponding declaration), while many parts were subsequently edited or completely rewritten manually. This degree of collaboration was possible because the \code{EntityAnimationHelper} was designed to be completely isolated from the rest of the codebase. No other scripts reference its functions or properties, as its only purpose is to modify resource files in the editor. More specifically, it modifies entity frame data and animations. The script is so isolated that it can delete itself at runtime without affecting anything else, which is exactly what it does.
+The \code{EntityAnimationHelper} is one of the densest helper scripts in the entire project. Its development also demonstrates our collaboration between AI and human developers. The majority of the script was written by AI (refer to \code{Entities/Entity/Utility/EntityAnimationHelper.gd} for the corresponding declaration), while many parts were subsequently edited or completely rewritten manually. This degree of collaboration was possible because the \code{EntityAnimationHelper} was designed to be completely isolated from the rest of the codebase. No other scripts reference its functions or properties, as its only purpose is to modify resource files in the editor. More specifically, it modifies entity frame data and animations. The script is so isolated that it can delete itself at runtime without affecting anything else, which is exactly what it does.
 
-The motivation behind this helper script was the arduous process of manually adding frame-data animations to the frame-data animation library. Each animation had to have the same name as its corresponding ordinary animation, the same length, and a \code{\_\allowbreak{}finished} flag set to true at its end. Initially, we thought that developing such a helper script would consume precious time that could be spent elsewhere. However, we remembered that during early development, we had used AI to create a helper script that generated stairs in our Gym environment. We decided to try a similar AI-based approach. Despite our initial skepticism, the result was almost immediately usable and required only minor modifications. Over time, the script was extended with additional quality-of-life features, such as automatically updating animation lengths when the corresponding animations were changed, and deleting animations that could no longer be found in the current animation library. The latter was particularly useful during the period when we were still importing and modifying animations, as these changes often left obsolete entries behind.
+The motivation behind this helper script was the arduous process of manually adding frame-data animations to the frame-data animation library. Each animation had to have the same name as its corresponding ordinary animation, the same length, and a \code{\_finished} flag set to true at its end. Initially, we thought that developing such a helper script would consume precious time that could be spent elsewhere. However, we remembered that during early development, we had used AI to create a helper script that generated stairs in our Gym environment. We decided to try a similar AI-based approach. Despite our initial skepticism, the result was almost immediately usable and required only minor modifications. Over time, the script was extended with additional quality-of-life features, such as automatically updating animation lengths when the corresponding animations were changed, and deleting animations that could no longer be found in the current animation library. The latter was particularly useful during the period when we were still importing and modifying animations, as these changes often left obsolete entries behind.
 
 Towards the end of development, we encountered another issue. Some animations contained unintended scaling tracks introduced during the animation import process. When a collider was attached to a bone that was scaled during an animation, the \emph{Jolt} physics library logged an error, even though the scaling was effectively ignored by Jolt. We discussed this issue with our supervisor and decided that removing these tracks altogether would be preferable to leaving them in place and having to explain that the scaling did not affect the game's execution while Jolt continued to fill the terminal with error messages. Since the animation library was already exposed as a component of the helper script, adding a function to remove all animation tracks containing scaling animations was straightforward. The change was applied, and the game's logs were finally free of these error messages.
 
-\placeholderfigure{animation-helper}{The EntityAnimationHelper in the Inspector.}{The EntityAnimationHelper in the Inspector. Own screenshot from Project Polearm.}{fig:animation-helper}
+\begin{figure}[H]
+    \centering
+    % \includegraphics[width=\linewidth]{Assets/Figures/animation-helper}
+    \fbox{\parbox[c][3cm][c]{0.8\linewidth}{\centering Placeholder: Assets/Figures/animation-helper}}
+    \caption[The EntityAnimationHelper in the Inspector. Own screenshot from Project Polearm.]{The EntityAnimationHelper in the Inspector.}
+    \label{fig:animation-helper}
+\end{figure}
 
 This script came to be used for all six entities in the game. In the end, the time spent developing it proved well worthwhile, as it saved us considerable effort that could instead be devoted to more important parts of the project. Its creation also became an example of what responsible AI use means to us: delegating arduous, repetitive and non-runtime-critical tasks to AI, while still understanding and reviewing the code it produces.
 

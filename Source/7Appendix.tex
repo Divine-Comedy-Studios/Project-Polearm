@@ -1,4 +1,3 @@
-% !TeX root = ../Main.tex
 \documentclass[../Main.tex]{subfiles}
 
 \begin{document}
@@ -9,30 +8,30 @@
 
 Project Polearm uses the open-source Godot game engine along with the programming languages GDScript and C\#, which requires the .NET build of Godot. The project started development in Godot version 4.6, and the final version uses Godot 4.7. The game relies on the \emph{Jolt} physics engine, which is built into Godot but needed to be enabled manually. The only external runtime dependency is the PhantomCamera plugin for Godot, which is included in the source code distribution.
 
-Visual Studio Code was used as the external IDE, and Git was used for version control, with the repository hosted on GitHub\footnote{\url{https://github.com/Divine-Comedy-Studios/Project-Polearm/tree/main}}. The branch corresponding to the matura project submission is \code{demo-v1.\allowbreak{}0.\allowbreak{}0}. Please note that the \code{Assets} directory is a git submodule, which links to a private repository due to licensing, and can therefore not be accessed. Blender was used for 3D-modeling, alongside Aseprite, Krita and Autodesk Sketchbook for 2D assets such as textures or UI elements. This document was written in LaTeX, and its diagrams were created and rendered with PlantUML.
+Visual Studio Code was used as the external IDE, and Git was used for version control, with the repository hosted on GitHub\footnote{\url{https://github.com/Divine-Comedy-Studios/Project-Polearm/tree/main}}. The branch corresponding to the matura project submission is \code{demo-v1.0.0}. Please note that the \code{Assets} directory is a git submodule, which links to a private repository due to licensing, and can therefore not be accessed. Blender was used for 3D-modeling, alongside Aseprite, Krita and Autodesk Sketchbook for 2D assets such as textures or UI elements. This document was written in LaTeX, and its diagrams were created and rendered with PlantUML.
 
-The command \code{cloc --include-ext=gd,cs --exclude-dir=addons --vcs=git --by-file .\allowbreak{}} was used to determine the number of lines in the project. The count includes code, comment and blank lines.
+The command \code{cloc --include-ext=gd,cs --exclude-dir=addons --vcs=git --by-file .} was used to determine the number of lines in the project. The count includes code, comment and blank lines.
 
 \subsection{Running Project Polearm}\label{sec:running-project-polearm}
 
 The provided source code contains all assets necessary to run and build the game. To run Project Polearm from source in the engine, one needs version 4.7 of the .NET build of Godot and potentially the .NET SDK. Pressing the \emph{Run Project} button starts the game just as the executable build does. The game has been tested and is confirmed to work on the following platforms with these input methods:
 
 {\small
-\begin{xltabular}{\linewidth}{l>{\raggedright\arraybackslash}p{0.2\linewidth}l>{\raggedright\arraybackslash}X}
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.1\linewidth}>{\raggedright\arraybackslash}p{0.27\linewidth}>{\raggedright\arraybackslash}p{0.16\linewidth}>{\raggedright\arraybackslash}p{0.37\linewidth}}
 \caption{Tested platforms and input methods.}\label{tab:platforms} \\
-\toprule
+\hline
  & \textbf{Windows 11} & \textbf{Arch Linux} & \textbf{macOS Tahoe} \\
-\midrule
+\hline
 \endfirsthead
-\toprule
+\hline
  & \textbf{Windows 11} & \textbf{Arch Linux} & \textbf{macOS Tahoe} \\
-\midrule
+\hline
 \endhead
-\bottomrule
+\hline
 \endlastfoot
-\textbf{x86-64} & In-Engine \& Executable (Keyboard) & In-Engine (Keyboard) & Not tested \\ \addlinespace[0.4em]
+\textbf{x86-64} & In-Engine \& Executable (Keyboard) & In-Engine (Keyboard) & Not tested \\
 \textbf{ARM64} & Not tested & Not tested & In-Engine \& Executable (Keyboard \& Controller) \\
-\end{xltabular}
+\end{longtable}
 }
 
 \subsection{Glossary}\label{sec:glossary}
@@ -40,56 +39,56 @@ The provided source code contains all assets necessary to run and build the game
 This glossary explains terms which are used throughout this document, but are not explained in the text itself.
 
 {\small
-\begin{xltabular}{\linewidth}{>{\raggedright\arraybackslash}p{0.2\linewidth}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}p{0.2\linewidth}}
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.22\linewidth}>{\raggedright\arraybackslash}p{0.34\linewidth}>{\raggedright\arraybackslash}p{0.34\linewidth}}
 \caption{Glossary of terms used in this document.}\label{tab:glossary} \\
-\toprule
+\hline
 \textbf{Term} & \textbf{Explanation} & \textbf{Source} \\
-\midrule
+\hline
 \endfirsthead
-\toprule
+\hline
 \textbf{Term} & \textbf{Explanation} & \textbf{Source} \\
-\midrule
+\hline
 \endhead
-\bottomrule
+\hline
 \endlastfoot
-\textbf{AAA} & Games developed by large studios with large budgets and big teams. & \cite{wikipedia_aaa} \\ \addlinespace[0.4em]
-\textbf{AnimationTree} & A Godot node which blends and transitions between several animations of a character, e.g. from walking into running. & \cite{godot_animationtree} \\ \addlinespace[0.4em]
-\textbf{API} (Application Programming Interface) & The set of functions a system exposes, so that other code can use the system without knowing its internal implementation. & \cite{wikipedia_api} \\ \addlinespace[0.4em]
-\textbf{Area3D} & A Godot node which detects when other bodies or areas enter or leave its shape, without physically colliding with them. Hitboxes, hurtboxes and triggers in Project Polearm are based on it. & \cite{godot_area3d} \\ \addlinespace[0.4em]
-\textbf{Armor} (also \emph{super armor}) & A mechanic of action and fighting games in which a character can absorb a hit without being interrupted by it, allowing them to continue their attack or movement. & \cite{infil_armor} \\ \addlinespace[0.4em]
-\textbf{Assert} & A statement which checks a condition while the program is running and stops it with an error message if the condition is false. In Godot, asserts are only executed in debug builds and serve to catch programming errors early. & \cite{wikipedia_assertion} \\ \addlinespace[0.4em]
-\textbf{Boilerplate} & Code which has to be written repeatedly in many places with little to no variation. & \cite{wikipedia_boilerplate} \\ \addlinespace[0.4em]
-\textbf{Buffer} (input buffer) & Accepting an input slightly before the action it triggers can be performed, and executing it as soon as it becomes possible, so that the player does not have to time their inputs perfectly. & \cite{infil_buffer} \\ \addlinespace[0.4em]
-\textbf{Cancel} & Interrupting an action, for example the end of an attack, with another action. & \cite{infil_cancel} \\ \addlinespace[0.4em]
-\textbf{CharacterBody3D} & A Godot physics body for characters which are moved by code instead of the physics simulation. Its function \code{move\_\allowbreak{}and\_\allowbreak{}slide()} moves the body and resolves its collisions with the environment. & \cite{godot_characterbody3d} \\ \addlinespace[0.4em]
-\textbf{Collision layer and mask} & Godot's way of filtering collisions. The layer describes which layers an object is in, whereas the mask describes which layers the object scans for collisions. & \cite{godot_physicsintro} \\ \addlinespace[0.4em]
-\textbf{Combo} & A sequence of attacks which are chained into each other. & \cite{infil_combo} \\ \addlinespace[0.4em]
-\textbf{Coupling} & The degree to which two parts of a program depend on each other. The lower the coupling, the less a change in one part requires changes in the other. & \cite{wikipedia_coupling,nystrom_architecture} \\ \addlinespace[0.4em]
-\textbf{CSG} (Constructive Solid Geometry) & Building shapes by combining simple primitives, such as boxes and cylinders, through adding or subtracting them from each other. In Godot, it is mainly intended for prototyping levels. & \cite{godot_csg} \\ \addlinespace[0.4em]
-\textbf{Enum} (enumeration) & A data type consisting of a fixed set of named values, e.g. the types of all game objects. & \cite{wikipedia_enum} \\ \addlinespace[0.4em]
-\textbf{Exported variable} & A variable of a script marked with \code{@export}, which makes it appear in the Inspector of the Godot editor, where it can be configured for every node or resource without changing any code. & \cite{godot_exports} \\ \addlinespace[0.4em]
-\textbf{Finite state machine} & A model in which a system is always in exactly one of a limited number of states, and switches between them through transitions. & \cite{wikipedia_fsm,nystrom_state} \\ \addlinespace[0.4em]
-\textbf{glTF} (\code{.\allowbreak{}glb}) & An open file format for 3D models and scenes, including their materials, skeletons and animations. \code{.\allowbreak{}glb} is its binary variant. & \cite{khronos_gltf} \\ \addlinespace[0.4em]
-\textbf{Greybox} (also \emph{blockout}) & A rough, untextured version of a level, used to test its layout and gameplay before any art is created. & \cite{ldb_blockout} \\ \addlinespace[0.4em]
-\textbf{Hack and slash} & A genre of action games focused on fast-paced melee combat, often against many enemies at once. & \cite{wikipedia_hackandslash} \\ \addlinespace[0.4em]
-\textbf{Inspector} & The panel of the Godot editor which displays and allows editing the properties of the currently selected node or resource. & \cite{godot_inspector} \\ \addlinespace[0.4em]
-\textbf{Integration testing} & Testing several parts of a program together in their actual use case, instead of testing each part in isolation. & \cite{wikipedia_integrationtesting} \\ \addlinespace[0.4em]
-\textbf{Jolt} & An open-source physics engine, which Godot offers as an alternative to its own default physics engine. & \cite{godot_jolt,rouwe_jolt} \\ \addlinespace[0.4em]
-\textbf{Model View Controller} (MVC) & A pattern which divides a program into the model, which holds the data and logic, the view, which presents it, and the controller, which handles input. & \cite{wikipedia_mvc} \\ \addlinespace[0.4em]
-\textbf{Namespace} & A scope within which every name, e.g. of a class or variable, has to be unique. Names in the global namespace are visible from everywhere in the project. & \cite{wikipedia_namespace} \\ \addlinespace[0.4em]
-\textbf{.NET} & The software platform by Microsoft on which C\# runs. Godot requires its .NET build to run C\# code. & \cite{godot_csharp} \\ \addlinespace[0.4em]
-\textbf{Parry} & Deflecting an incoming attack with a precisely timed defensive action, which usually opens up the attacker to a counterattack. & \cite{infil_parry} \\ \addlinespace[0.4em]
-\textbf{PascalCase} & A naming convention in which every word begins with a capital letter and no separators are used, e.g. \code{EnemyManager}. & \cite{wikipedia_camelcase} \\ \addlinespace[0.4em]
-\textbf{Plain old data} (POD) & A data structure which only holds data and contains no behavior of its own. & \cite{wikipedia_pod} \\ \addlinespace[0.4em]
-\textbf{Post-processing} & Image effects which are applied to the already rendered image of the game, e.g. outlines or color adjustments. & \cite{godot_postprocessing} \\ \addlinespace[0.4em]
-\textbf{Profiler} & A tool which measures how much time the individual parts of a program take, in order to find performance issues. & \cite{godot_profiler} \\ \addlinespace[0.4em]
-\textbf{Raycast} and \textbf{shape cast} & Casting an invisible ray, or a shape such as a sphere, through the physics world to find out what it hits first. They are commonly used to detect the ground below a character. & \cite{godot_raycasting,godot_shapecast3d} \\ \addlinespace[0.4em]
-\textbf{Resource} (Godot) & A data container in Godot, saved as a \code{.\allowbreak{}tres} or \code{.\allowbreak{}res} file, which can be configured in the editor and shared between scenes. & \cite{godot_resources} \\ \addlinespace[0.4em]
-\textbf{Technical debt} & The future cost which arises when quick or incomplete solutions are chosen now and have to be reworked later. & \cite{wikipedia_techdebt} \\ \addlinespace[0.4em]
-\textbf{Thread} & An independent sequence of execution which runs in parallel to the rest of the program. Godot can load resources on a background thread, so that the game continues running during loading. & \cite{wikipedia_thread,godot_backgroundloading} \\ \addlinespace[0.4em]
-\textbf{Tick} & A single update step of the game. Godot updates its physics at a fixed rate, by default 60 times per second, and most gameplay code in Project Polearm runs in these physics ticks. & \cite{godot_processing} \\ \addlinespace[0.4em]
+\textbf{AAA} & Games developed by large studios with large budgets and big teams. & \cite{wikipedia_aaa} \\
+\textbf{AnimationTree} & A Godot node which blends and transitions between several animations of a character, e.g. from walking into running. & \cite{godot_animationtree} \\
+\textbf{API} (Application Programming Interface) & The set of functions a system exposes, so that other code can use the system without knowing its internal implementation. & \cite{wikipedia_api} \\
+\textbf{Area3D} & A Godot node which detects when other bodies or areas enter or leave its shape, without physically colliding with them. Hitboxes, hurtboxes and triggers in Project Polearm are based on it. & \cite{godot_area3d} \\
+\textbf{Armor} (also \emph{super armor}) & A mechanic of action and fighting games in which a character can absorb a hit without being interrupted by it, allowing them to continue their attack or movement. & \cite{infil_armor} \\
+\textbf{Assert} & A statement which checks a condition while the program is running and stops it with an error message if the condition is false. In Godot, asserts are only executed in debug builds and serve to catch programming errors early. & \cite{wikipedia_assertion} \\
+\textbf{Boilerplate} & Code which has to be written repeatedly in many places with little to no variation. & \cite{wikipedia_boilerplate} \\
+\textbf{Buffer} (input buffer) & Accepting an input slightly before the action it triggers can be performed, and executing it as soon as it becomes possible, so that the player does not have to time their inputs perfectly. & \cite{infil_buffer} \\
+\textbf{Cancel} & Interrupting an action, for example the end of an attack, with another action. & \cite{infil_cancel} \\
+\textbf{CharacterBody3D} & A Godot physics body for characters which are moved by code instead of the physics simulation. Its function \code{move\_and\_slide()} moves the body and resolves its collisions with the environment. & \cite{godot_characterbody3d} \\
+\textbf{Collision layer and mask} & Godot's way of filtering collisions. The layer describes which layers an object is in, whereas the mask describes which layers the object scans for collisions. & \cite{godot_physicsintro} \\
+\textbf{Combo} & A sequence of attacks which are chained into each other. & \cite{infil_combo} \\
+\textbf{Coupling} & The degree to which two parts of a program depend on each other. The lower the coupling, the less a change in one part requires changes in the other. & \cite{wikipedia_coupling,nystrom_architecture} \\
+\textbf{CSG} (Constructive Solid Geometry) & Building shapes by combining simple primitives, such as boxes and cylinders, through adding or subtracting them from each other. In Godot, it is mainly intended for prototyping levels. & \cite{godot_csg} \\
+\textbf{Enum} (enumeration) & A data type consisting of a fixed set of named values, e.g. the types of all game objects. & \cite{wikipedia_enum} \\
+\textbf{Exported variable} & A variable of a script marked with \code{@export}, which makes it appear in the Inspector of the Godot editor, where it can be configured for every node or resource without changing any code. & \cite{godot_exports} \\
+\textbf{Finite state machine} & A model in which a system is always in exactly one of a limited number of states, and switches between them through transitions. & \cite{wikipedia_fsm,nystrom_state} \\
+\textbf{glTF} (\code{.glb}) & An open file format for 3D models and scenes, including their materials, skeletons and animations. \code{.glb} is its binary variant. & \cite{khronos_gltf} \\
+\textbf{Greybox} (also \emph{blockout}) & A rough, untextured version of a level, used to test its layout and gameplay before any art is created. & \cite{ldb_blockout} \\
+\textbf{Hack and slash} & A genre of action games focused on fast-paced melee combat, often against many enemies at once. & \cite{wikipedia_hackandslash} \\
+\textbf{Inspector} & The panel of the Godot editor which displays and allows editing the properties of the currently selected node or resource. & \cite{godot_inspector} \\
+\textbf{Integration testing} & Testing several parts of a program together in their actual use case, instead of testing each part in isolation. & \cite{wikipedia_integrationtesting} \\
+\textbf{Jolt} & An open-source physics engine, which Godot offers as an alternative to its own default physics engine. & \cite{godot_jolt,rouwe_jolt} \\
+\textbf{Model View Controller} (MVC) & A pattern which divides a program into the model, which holds the data and logic, the view, which presents it, and the controller, which handles input. & \cite{wikipedia_mvc} \\
+\textbf{Namespace} & A scope within which every name, e.g. of a class or variable, has to be unique. Names in the global namespace are visible from everywhere in the project. & \cite{wikipedia_namespace} \\
+\textbf{.NET} & The software platform by Microsoft on which C\# runs. Godot requires its .NET build to run C\# code. & \cite{godot_csharp} \\
+\textbf{Parry} & Deflecting an incoming attack with a precisely timed defensive action, which usually opens up the attacker to a counterattack. & \cite{infil_parry} \\
+\textbf{PascalCase} & A naming convention in which every word begins with a capital letter and no separators are used, e.g. \code{EnemyManager}. & \cite{wikipedia_camelcase} \\
+\textbf{Plain old data} (POD) & A data structure which only holds data and contains no behavior of its own. & \cite{wikipedia_pod} \\
+\textbf{Post-processing} & Image effects which are applied to the already rendered image of the game, e.g. outlines or color adjustments. & \cite{godot_postprocessing} \\
+\textbf{Profiler} & A tool which measures how much time the individual parts of a program take, in order to find performance issues. & \cite{godot_profiler} \\
+\textbf{Raycast} and \textbf{shape cast} & Casting an invisible ray, or a shape such as a sphere, through the physics world to find out what it hits first. They are commonly used to detect the ground below a character. & \cite{godot_raycasting,godot_shapecast3d} \\
+\textbf{Resource} (Godot) & A data container in Godot, saved as a \code{.tres} or \code{.res} file, which can be configured in the editor and shared between scenes. & \cite{godot_resources} \\
+\textbf{Technical debt} & The future cost which arises when quick or incomplete solutions are chosen now and have to be reworked later. & \cite{wikipedia_techdebt} \\
+\textbf{Thread} & An independent sequence of execution which runs in parallel to the rest of the program. Godot can load resources on a background thread, so that the game continues running during loading. & \cite{wikipedia_thread,godot_backgroundloading} \\
+\textbf{Tick} & A single update step of the game. Godot updates its physics at a fixed rate, by default 60 times per second, and most gameplay code in Project Polearm runs in these physics ticks. & \cite{godot_processing} \\
 \textbf{Virtual function} & A function of a base class which derived classes can override with their own implementation. & \cite{wikipedia_virtualfunction} \\
-\end{xltabular}
+\end{longtable}
 }
 
 \newpage

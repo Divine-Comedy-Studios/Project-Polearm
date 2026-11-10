@@ -17,37 +17,23 @@
 \usepackage{setspace}
 \usepackage{parskip}
 
+% Extra formatting packages
+\usepackage{csquotes}
+\newcommand{\code}[1]{\texttt{#1}}
+\usepackage{enumitem}
+
 % Language packages
 \usepackage[T1]{fontenc}
-\usepackage[ngerman, english]{babel}
-
-% Extra formatting packages
-\usepackage[autostyle=true]{csquotes}
-\newcommand{\game}[1]{\textit{#1}}   % Game titles
-\newcommand{\code}[1]{\texttt{#1}}   % Class, function, file and directory names
-\usepackage{enumitem}
-\usepackage{xcolor}
-\usepackage{listings}
-\usepackage{dirtree}
+\usepackage[english]{babel}
 
 % Formalities
-\usepackage[
-    backend=biber,
-    style=authortitle-ibid,
-    sorting=nyt,
-    date=short,
-    urldate=short,
-    datezeros=true,
-    maxcitenames=3,
-    maxbibnames=10,
-    uniquename=false,
-    uniquelist=false
-]{biblatex}
+\usepackage[backend=biber, style=authortitle-ibid]{biblatex}
 
 % Graphical packages
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{abstract}
+\usepackage{svg}
 
 % Mathematical packages
 \usepackage{amssymb}
@@ -57,126 +43,23 @@
 \usepackage{caption}
 \usepackage{array}
 \usepackage{longtable}
-\usepackage{tabularx}
-\usepackage{xltabular}
-\usepackage{booktabs}
 
-% Links (loaded last)
-\usepackage{xurl}
-\usepackage[hidelinks, hypertexnames=false]{hyperref}
 
 % Definitions and setup
 
 \onehalfspacing
-\frenchspacing
-\setlength{\emergencystretch}{3em}
-\addbibresource{\subfix{Source/sources.bib}}
+\addbibresource{Source/sources.bib}
+
+\svgsetup{inkscapelatex=false}
 
 \setlength{\absleftindent}{0pt}
 \setlength{\absrightindent}{0pt}
 
+\addto\captionsenglish{\renewcommand{\abstractname}{Introduction}}
+
 \graphicspath{
-    {./Assets/}
-    {./Assets/Figures/}
+    { ./Assets/ }
 }
-
-% Citation rules of the Kantonsschule Baden (footnote variant)
-% Footnote:      Name(s): short title (year).  /  Web sources: Name(s): short title, DD.MM.YYYY.
-% Bibliography:  Family name, Given name: Title. Subtitle, Place: Publisher, Year. URL, retrieved on DD.MM.YYYY.
-
-\DeclareNameAlias{sortname}{family-given}
-\DeclareNameAlias{default}{family-given}
-\renewcommand*{\multinamedelim}{\slash}
-\renewcommand*{\finalnamedelim}{\slash}
-\renewcommand*{\revsdnamepunct}{\addcomma\space}
-\renewcommand*{\labelnamepunct}{\addcolon\space}
-\renewcommand*{\nametitledelim}{\addcolon\space}
-
-\DeclareFieldFormat*{title}{#1}
-\DeclareFieldFormat*{citetitle}{#1}
-\DeclareFieldFormat{url}{\url{#1}}
-\DeclareFieldFormat{urldate}{\bibstring{urlseen}\space#1}
-
-\DefineBibliographyStrings{english}{
-    urlseen = {retrieved on},
-    in = {in},
-    nodate = {n.d.}
-}
-
-\DefineBibliographyExtras{english}{%
-    \protected\def\mkbibdateshort#1#2#3{%
-        \iffieldundef{#3}{}{\mkdayzeros{\thefield{#3}}.}%
-        \iffieldundef{#2}{}{\mkmonthzeros{\thefield{#2}}.}%
-        \iffieldbibstring{#1}
-            {\bibstring{\thefield{#1}}}
-            {\dateeraprintpre{#1}\mkyearzeros{\thefield{#1}}}}%
-}
-
-% Full names for every entry, ragged URLs and "n.d." for web sources without a date
-\ExecuteBibliographyOptions{dashed=false}
-\AtBeginBibliography{\raggedright}
-\renewbibmacro*{date}{%
-    \iffieldundef{year}
-        {\ifentrytype{online}{\bibstring{nodate}}{}}
-        {\printdate}}
-
-\renewbibmacro*{url+urldate}{%
-    \usebibmacro{url}%
-    \iffieldundef{urlyear}
-        {}
-        {\setunit*{\addcomma\space}\usebibmacro{urldate}}}
-
-\renewbibmacro*{cite:title}{%
-    \printtext[bibhyperref]{\printfield[citetitle]{labeltitle}}%
-    \ifnameundef{labelname}
-        {\iflistundef{organization}
-            {}
-            {\setunit{\addcomma\space}\bibstring{in}\addcolon\space\printlist{organization}}}
-        {}%
-    \ifentrytype{online}
-        {\setunit{\addcomma\space}%
-         \iffieldundef{year}{\bibstring{nodate}}{\printdate}}
-        {\setunit{\addspace}%
-         \printtext[parens]{\iffieldundef{year}{\bibstring{nodate}}{\printfield{year}}}}}
-
-% Code listings
-\lstdefinelanguage{GDScript}{
-    morekeywords={extends, class_name, func, var, const, static, enum, if, elif, else, for, while, return, pass, null, self, true, false, in, and, or, not, assert, super, await, signal},
-    sensitive=true,
-    morecomment=[l]{\#},
-    morestring=[b]",
-}
-\lstset{
-    basicstyle=\ttfamily\small,
-    keywordstyle=\bfseries,
-    commentstyle=\color{gray},
-    columns=fullflexible,
-    keepspaces=true,
-    tabsize=4,
-    frame=single,
-    breaklines=true,
-    xleftmargin=0.5em,
-    xrightmargin=0.5em
-}
-
-% Temporary placeholders
-% Figures: the image is included automatically as soon as Assets/Figures/<name>.pdf or .png exists.
-% Arguments: file name, caption, entry in the list of figures (with source), label
-\newcommand{\placeholderfigure}[4]{%
-    \begin{figure}[H]
-        \centering
-        \IfFileExists{\subfix{Assets/Figures/#1.pdf}}
-            {\includegraphics[width=\linewidth, height=0.6\textheight, keepaspectratio]{\subfix{Assets/Figures/#1.pdf}}}
-            {\IfFileExists{\subfix{Assets/Figures/#1.png}}
-                {\includegraphics[width=\linewidth, height=0.6\textheight, keepaspectratio]{\subfix{Assets/Figures/#1.png}}}
-                {\fbox{\parbox[c][4cm][c]{0.8\linewidth}{\centering\textcolor{red}{\textbf{Placeholder:} \code{Assets/Figures/#1}}}}}}
-        \caption[#3]{#2}
-        \label{#4}
-    \end{figure}%
-}
-\newcommand{\todonote}[1]{\textcolor{red}{\textbf{[TODO: #1]}}}
-\newcommand{\todocite}[1]{\footnote{\textcolor{red}{\textbf{TODO: source missing:} #1}}}
-\newcommand{\todolink}[1]{\textcolor{red}{\textbf{[TODO: link to #1]}}}
 
 % Document
 
@@ -188,14 +71,12 @@
     \begin{center}
         \vspace*{0.5cm}
 
-        \includegraphics[width=3.5cm]{Assets/Logo.png} \\ [1.5em]
-
-        \textbf{\Huge{Project Polearm}} \\ [2em]
+        \includegraphics[width=15cm]{Assets/ProjectPolearm.png} \\ [1.5em]
         \textbf{\Large The Development of a Hack-and-Slash Video Game} \\ [0.6em]
         \large{Conception, implementation and evaluation of enemy behavior and level design in a Hack-and-Slash Prototype} \\ [2em]
 
         \Large{Rodin Arslan, Zhile Zhu} \\ [0.5em]
-        \large{Class G23g}
+        \large{Department G23g}
 
         \vspace{3cm}
 
@@ -220,7 +101,7 @@
 % Abstract
 
 \begin{abstract}
-    A fast-paced action game might appear straightforward on the surface. Characters move, attack and react to incoming threats. But behind a truly engaging action game lies a complex web of interconnected systems. Movement, combat, enemy behavior, physics and even sound and animation must all work together. How does such a huge amount of interaction remain architecturally clean? Project Polearm is a demo for a hack-and-slash video game, developed for the Maturitätsarbeit 2026 by Rodin Arslan and Zhile Zhu of the class G23g at the Kantonsschule Baden. This \emph{Technical Documentation} describes the technical structure and organization as well as the core architectural decisions and systems of the game, alongside some insights into the development process.
+    A fast-paced action game might appear straightforward on the surface. Characters move, attack and react to incoming threats. But behind a truly engaging action game lies a complex web of interconnected systems. Movement, combat, enemy behavior, physics and even sound and animation must all work together. How does such a huge amount of interaction remain architecturally clean? Project Polearm is a demo for a hack-and-slash video game, developed for the Maturitätsarbeit 2026 by Rodin Arslan and Zhile Zhu of the department G23g at the Kantonsschule Baden. This \emph{Technical Documentation} describes the technical structure and organization as well as the core architectural decisions and systems of the game, alongside some insights into the development process.
 
     The project, created using the Godot engine, encompasses roughly 11,800 lines of GDScript and C\# code, the majority of it handwritten, with documented AI assistance. We sought to learn how to implement features found in hack-and-slash games by doing, but it did not stop there. We also aimed to do so cleanly and with thought. Not only did we ask ourselves, \enquote{What does an action game do and how is it designed?}, but we also asked: \enquote{How can developers build a complex game from many interlocking systems without losing control of the codebase?}
 
@@ -236,10 +117,14 @@
 
     \textbf{Chapter~\ref{sec:tooling-and-developer-experience}: Tooling and Developer Experience} walks through how we sought to make our lives easier during development, with tools, scripts and clever usage of the aforementioned design patterns. It is followed by a retrospective in \textbf{Chapter~\ref{sec:post-mortem}: Post-Mortem}, where we ask what went well, what went less well, and how we dealt with issues that came up. Finally, \textbf{Chapter~\ref{sec:appendix}: Appendix} provides additional information about the project, and a glossary of terms used in this document.
 
-    \placeholderfigure{intro-screenshot}{Screenshot of Project Polearm.}{Screenshot of Project Polearm. Own screenshot from Project Polearm.}{fig:intro-screenshot}
+    \begin{figure}[H]
+        \centering
+        % \includegraphics[width=\linewidth]{Assets/Figures/intro-screenshot}
+        \fbox{\parbox[c][3cm][c]{0.8\linewidth}{\centering Placeholder: Assets/Figures/intro-screenshot}}
+        \caption[Screenshot of Project Polearm. Own screenshot from Project Polearm.]{Screenshot of Project Polearm.}
+        \label{fig:intro-screenshot}
+    \end{figure}
 \end{abstract}
-
-\newpage
 
 
 % Table of contents
@@ -273,18 +158,8 @@
 \newpage
 
 
-% Sources, figures and tables
+% Bibliography, figures and tables
 
 \printbibliography[heading=bibintoc, title={Bibliography}]
-
-\newpage
-\phantomsection
-\addcontentsline{toc}{section}{\listfigurename}
-\listoffigures
-
-\newpage
-\phantomsection
-\addcontentsline{toc}{section}{\listtablename}
-\listoftables
 
 \end{document}

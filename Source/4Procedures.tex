@@ -1,4 +1,3 @@
-% !TeX root = ../Main.tex
 \documentclass[../Main.tex]{subfiles}
 
 \begin{document}
@@ -13,13 +12,23 @@ What fits better than starting the section on the procedures and algorithms used
 
 The first stage of booting can be understood as setting the game up and taking care of the formalities such as menus and settings, with the end goal of switching into the game:
 
-\placeholderfigure{boot-sequence}{Boot sequence from starting the application to entering the game.}{Boot sequence from starting the application to entering the game. Own figure.}{fig:boot-sequence}
+\begin{figure}[H]
+    \centering
+    \includesvg[width=\linewidth]{Assets/BootSequence}
+    \caption[Boot sequence from starting the application to entering the game. Own figure.]{Boot sequence from starting the application to entering the game.}
+    \label{fig:boot-sequence}
+\end{figure}
 
 Here, we can observe a pattern which allowed for the dynamic loading of the game: Whenever a scene is supposed to be dynamically loaded into the game, we switch onto the loading screen if it has not finished yet, and wait until it does on another thread. This way, the game can keep running without pausing entirely for the duration of the load. As \code{Game} and \code{Main} share many of the same features, they consequently inherit from the same extension of the \code{BasicStateMachine}, the \code{AppStateMachine}.
 
 After the game is entered, \code{Main} enters a sort of idle state, as it will stop taking care of anything until it becomes active after the player requests a return to the main screen and the main menu is loaded again. The program forgets about it, and \code{Game} now takes center stage and manages all systems central to gameplay, as well as pausing the game:
 
-\placeholderfigure{world-loading}{Loading the world after entering the game.}{Loading the world after entering the game. Own figure.}{fig:world-loading}
+\begin{figure}[H]
+    \centering
+    \includesvg[width=\linewidth]{Assets/WorldLoading}
+    \caption[Loading the world after entering the game. Own figure.]{Loading the world after entering the game.}
+    \label{fig:world-loading}
+\end{figure}
 
 \subsection{Entity Action Selection}\label{sec:entity-action-selection}
 
@@ -31,19 +40,34 @@ In Project Polearm, states and actions are used to refer to the same thing, the 
 
 The finite state machine follows the MVC pattern, where it represents the model part. It uses a set of inputs to determine the behavior of the player. To allow for custom behavior during input filtering, the \emph{Template Method} pattern is used, which is demonstrated below:
 
-\placeholderfigure{process-actions}{Processing of the requested actions before a state switch.}{Processing of the requested actions before a state switch. Own figure.}{fig:process-actions}
+\begin{figure}[H]
+    \centering
+    \includesvg[width=\linewidth]{Assets/ProcessActions}
+    \caption[Processing of the requested actions before a state switch. Own figure.]{Processing of the requested actions before a state switch.}
+    \label{fig:process-actions}
+\end{figure}
 
 Referencing the diagram from section~\ref{sec:state-machine}, the \code{BasicStateMachine} needs to retrieve the next action from the current one and send over a payload, if defined, to the next state, if a transition is to be requested. Within the entities, this is done via the function \code{nextAction()}:
 
-\placeholderfigure{next-action}{Selection of the next action in nextAction().}{Selection of the next action in nextAction(). Own figure.}{fig:next-action}
+\begin{figure}[H]
+    \centering
+    \includesvg[width=\linewidth]{Assets/NextAction}
+    \caption[Selection of the next action in nextAction(). Own figure.]{Selection of the next action in nextAction().}
+    \label{fig:next-action}
+\end{figure}
 
-\code{\_\allowbreak{}implNextAction()} corresponds to the part where the developer can specify specific transitions, if so desired. This is for example used to chain certain actions together, like a braking animation when the player stops moving. This practice leaves as much freedom for the developer as possible, whilst still providing them with powerful behavior by default.
+\code{\_implNextAction()} corresponds to the part where the developer can specify specific transitions, if so desired. This is for example used to chain certain actions together, like a braking animation when the player stops moving. This practice leaves as much freedom for the developer as possible, whilst still providing them with powerful behavior by default.
 
-Another use case of the \emph{Template Method} pattern in the above diagram is the \code{\_\allowbreak{}preprocessActions()} function, which does nothing on the enemy, as action queueing is a feature reserved for the player, yet both entities use the \code{nextAction()} function. This again demonstrates the flexibility that the proper usage of this pattern allowed us.
+Another use case of the \emph{Template Method} pattern in the above diagram is the \code{\_preprocessActions()} function, which does nothing on the enemy, as action queueing is a feature reserved for the player, yet both entities use the \code{nextAction()} function. This again demonstrates the flexibility that the proper usage of this pattern allowed us.
 
 A core part of the state switching procedure lies in the function \code{actionViability}, which checks, as its name might suggest, for the viability of an action as a follow-up to the current one:
 
-\placeholderfigure{action-viability}{Viability check of an action in actionViability().}{Viability check of an action in actionViability(). Own figure.}{fig:action-viability}
+\begin{figure}[H]
+    \centering
+    \includesvg[width=\linewidth]{Assets/ActionViability}
+    \caption[Viability check of an action in actionViability(). Own figure.]{Viability check of an action in actionViability().}
+    \label{fig:action-viability}
+\end{figure}
 
 The \emph{Template Method} pattern is again utilized here. This is, at the end of the day, what makes the state machine so extensible and versatile across multiple systems in the game.
 
@@ -51,7 +75,12 @@ The \emph{Template Method} pattern is again utilized here. This is, at the end o
 
 Project Polearm defines two structures, which are core to the damage system. These are the \code{Hitbox} and \code{Hurtbox}. Hitboxes are active and scan for the passive hurtboxes. Hurtboxes in turn leave an implementation function open to the developer to determine the behavior after a hit. Both hit- and hurtboxes use the default collision layer and detection system provided by Godot's \code{Area3D} node instead of reinventing the wheel.
 
-\placeholderfigure{hit-to-damage}{From hit detection to damage and death.}{From hit detection to damage and death. Own figure.}{fig:hit-to-damage}
+\begin{figure}[H]
+    \centering
+    \includesvg[width=\linewidth]{Assets/HitDamage}
+    \caption[From hit detection to damage and death. Own figure.]{From hit detection to damage and death.}
+    \label{fig:hit-to-damage}
+\end{figure}
 
 The \code{Hitbox} is highly decoupled from the rest of the game's systems, as it knows of no other system except for the hurtboxes, and even then it does not care what specific type of hurtbox it encountered. The hurtboxes, on the other hand, are specifically implemented for each entity which wants to use one to encompass all possible custom behavior. Here, all the \code{EntityHurtbox} needs to do is to tell the entity's resource container to take damage, and it stops caring about the exact implementation.
 
@@ -71,29 +100,44 @@ The \code{EnemyManager} has multiple responsibilities. In a nutshell, these are:
 
 The assigned roles are pushed to the enemy AI, also called the enemy controller, through the tick function, where the assigned role and other data are packed into a structure. The algorithm which allocates these roles is also rather lengthy and advanced.
 
-This is due to the large amount of configurability of the encounter. Even aside from enemy spawning behavior, the designer can configure the difficulty of the current wave by setting the \code{MAX\_\allowbreak{}ROLE\_\allowbreak{}DIFFICULTY} property in \code{Wave}. This difficulty works as a sort of point system, which is calculated by adding up the difficulty score of the roles of all enemies currently active. This property is always respected as best as possible by the enemy manager and used to its limit. Here it should be mentioned that, to introduce some amount of dynamic behavior into the game, the role difficulty is randomized every frame by a configurable amount.
+This is due to the large amount of configurability of the encounter. Even aside from enemy spawning behavior, the designer can configure the difficulty of the current wave by setting the \code{MAX\_ROLE\_DIFFICULTY} property in \code{Wave}. This difficulty works as a sort of point system, which is calculated by adding up the difficulty score of the roles of all enemies currently active. This property is always respected as best as possible by the enemy manager and used to its limit. Here it should be mentioned that, to introduce some amount of dynamic behavior into the game, the role difficulty is randomized every frame by a configurable amount.
 
 The role assignment algorithm starts by handling a special case to guarantee that the last enemy is always aggressive, such that in this case, the enemy manager can avoid unnecessary processing and unwanted behavior.
 
-\placeholderfigure{roles-single-enemy}{Special case of a single active enemy in the role assignment.}{Special case of a single active enemy in the role assignment. Own figure.}{fig:roles-single-enemy}
+\begin{figure}[H]
+    \centering
+    \includesvg[width=7cm]{Assets/RolePreprocessing}
+    \caption[Special case of a single active enemy in the role assignment. Own figure.]{Special case of a single active enemy in the role assignment.}
+    \label{fig:roles-single-enemy}
+\end{figure}
 
-As the designer may configure a certain number of required roles, the enemy manager has to respect that. This is done via the \code{\_\allowbreak{}fillRequiredRoles} function.
+As the designer may configure a certain number of required roles, the enemy manager has to respect that. This is done via the \code{\_fillRequiredRoles} function.
 
-\placeholderfigure{roles-required}{Filling the required roles in \_fillRequiredRoles().}{Filling the required roles in \_fillRequiredRoles(). Own figure.}{fig:roles-required}
+\begin{figure}[H]
+    \centering
+    \includesvg[width=\linewidth]{Assets/RequiredRoles}
+    \caption[Filling the required roles in \_fillRequiredRoles(). Own figure.]{Filling the required roles in \_fillRequiredRoles().}
+    \label{fig:roles-required}
+\end{figure}
 
 It should be noted here that the \code{EnemyManager} defines a timer, which stops an enemy from switching roles too often. This is a conscious choice made to balance correctness of implementation and the playability of the game, which would suffer if enemies could switch roles every frame.
 
 At last, if any difficulty points remain, the enemy manager promotes remaining enemies according to specific criteria.
 
-\placeholderfigure{roles-promote}{Promoting enemies in \_promoteEnemies().}{Promoting enemies in \_promoteEnemies(). Own figure.}{fig:roles-promote}
+\begin{figure}[H]
+    \centering
+    \includesvg[width=7cm]{Assets/Promotion}
+    \caption[Promoting enemies in \_promoteEnemies(). Own figure.]{Promoting enemies in \_promoteEnemies().}
+    \label{fig:roles-promote}
+\end{figure}
 
 Now, with the newly acquired role, it becomes the responsibility of the enemy controller what to make of it. Roles are only something abstract, and the concrete implementation in the enemy might differ. For example, the \code{ArcherController} starts the preparation routine for a shot when it receives the \code{ranged} role, and \code{SoliderController} picks a flanking target at a certain, configurable radius around the player and sets that as the new target for the enemy once it receives that role.
 
 The enemy manager allows for enemies not being able to take on all defined roles and respects this fact for all role assignments, which is also the case for enemies in Project Polearm. This gives the designer and enemy AI implementation more flexibility. A conscious decision can be made for which roles to split, which roles to describe using the same tag and how different enemies might behave differently even though they have the same role.
 
-\subsection{\texorpdfstring{\code{FloatingBody}}{FloatingBody}}\label{sec:floatingbody}
+\subsection{\code{FloatingBody}}\label{sec:floatingbody}
 
-The algorithm used in \code{FloatingBody} is one of the most advanced single algorithms in the entire project. It is a \code{CharacterBody3D} that does not stand on the ground but floats slightly above it. The body collider is shortened by \code{BODY\_\allowbreak{}COLLIDER\_\allowbreak{}FLOATING\_\allowbreak{}HEIGHT}, so the lower part of the character is covered by a sphere cast and rays instead of the collider itself. This allows the body to walk over small steps and slopes without catching on edges.
+The algorithm used in \code{FloatingBody} is one of the most advanced single algorithms in the entire project. It is a \code{CharacterBody3D} that does not stand on the ground but floats slightly above it. The body collider is shortened by \code{BODY\_COLLIDER\_FLOATING\_HEIGHT}, so the lower part of the character is covered by a sphere cast and rays instead of the collider itself. This allows the body to walk over small steps and slopes without catching on edges.
 
 This works by approximating the bump in front of the player as a slope whilst moving. And thus, during continuous movement, it appears to be smooth. If it stops on a step, the body will slowly move the character up or down to the actual ground height.
 
@@ -107,15 +151,30 @@ Every tick is split into three stages:
 
 The \code{FloatingBody} does not simulate physics realistically. For example, to allow the player to jump without any weird behavior such as sluggish movement in proximity to the ground or clipping into the ground due to the reduced collider size, the floating body uses a \enquote{physics} mode, where the collider is set to full size and the movement smoothing code is disabled. To enable this floating behavior, custom collision code had to be made, as the default collision behavior of the \code{CharacterBody3D} could no longer be used. The collision processing stage works as follows:
 
-\placeholderfigure{floatingbody-collisions}{Collision processing of the FloatingBody.}{Collision processing of the FloatingBody. Own figure.}{fig:floatingbody-collisions}
+\begin{figure}[H]
+    \centering
+    \includesvg[width=\linewidth]{Assets/FloatingBodyCollision}
+    \caption[Collision processing of the FloatingBody. Own figure.]{Collision processing of the FloatingBody.}
+    \label{fig:floatingbody-collisions}
+\end{figure}
 
 When using the \code{FloatingBody}, the developer is never supposed to directly set the built-in \code{velocity} of the character, like what one would do with a normal \code{CharacterBody3D}. The \code{FloatingBody} hijacks the velocity calculation and exposes an extensive API to set an alternate target velocity, which is used in the calculation of the proper velocity used in Godot's movement calculations:
 
-\placeholderfigure{floatingbody-velocity}{Velocity calculation of the FloatingBody.}{Velocity calculation of the FloatingBody. Own figure.}{fig:floatingbody-velocity}
+\begin{figure}[H]
+    \centering
+    \includesvg[width=\linewidth]{Assets/FloatingBodyVelocity}
+    \caption[Velocity calculation of the FloatingBody. Own figure.]{Velocity calculation of the FloatingBody.}
+    \label{fig:floatingbody-velocity}
+\end{figure}
 
 And at last, the velocity can be calculated and the character moved:
 
-\placeholderfigure{floatingbody-tick}{A complete tick of the FloatingBody.}{A complete tick of the FloatingBody. Own figure.}{fig:floatingbody-tick}
+\begin{figure}[H]
+    \centering
+    \includesvg[width=12cm]{Assets/FloatingBodyMove}
+    \caption[A complete tick of the FloatingBody. Own figure.]{A complete tick of the FloatingBody.}
+    \label{fig:floatingbody-tick}
+\end{figure}
 
 \newpage
 
