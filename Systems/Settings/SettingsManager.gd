@@ -39,11 +39,8 @@ enum SettingVersion {
 
 #region Constants
 
-const TRIGGER_SENSITIVITY : float = 0.5
-
 const SETTINGS_PATH : String = "user://settings.cfg"
 const SETTINGS_VERSION : int = SettingVersion.v1_0_1
-
 
 const DEFAULT_SETTINGS : Dictionary[String, Dictionary] = {
 	"metadata" : {
@@ -143,6 +140,11 @@ const SUPPORTED_LANGUAGES : Array[String] = [
 	"ja",
 ]
 
+
+const TRIGGER_SENSITIVITY : float = 0.5
+
+const WINDOW_RESIZE_WAIT_TIME : float = 0.2
+
 #endregion
 
 
@@ -230,53 +232,36 @@ func applyVideoSettings() -> void:
 	applyVsyncSetting()
 	applyGammaSetting()
 
-
-static func resolutionToSize(res : int) -> Vector2i:
-	match res:
-		Resolution.ultrawide:
-			return Vector2i(2560, 1080)
-		Resolution.p900:
-			return Vector2i(1600, 900)
-		Resolution.p720:
-			return Vector2i(1280, 720)
-		_:
-			return Vector2i(1920, 1080)
-
-
-# Window mode + resolution. Only call this when one of those two settings changes,
-# re-applying them every frame/slider tick makes the OS window flicker and resize.
 func applyWindowSettings() -> void:
 	var window := get_window()
-	var mode := getInt("video", "window mode")
 
-	match mode:
+	match getInt("video", "window mode"):
 		WindowMode.fullscreen:
-			# Exclusive fullscreen: real fullscreen, never resizable
 			window.mode = Window.MODE_EXCLUSIVE_FULLSCREEN
+			window.borderless = true
 		WindowMode.borderless:
-			# Godot's non-exclusive fullscreen is a borderless window covering the screen
 			window.mode = Window.MODE_FULLSCREEN
+			window.borderless = true
 		_:
-			if window.mode != Window.MODE_WINDOWED:
-				window.mode = Window.MODE_WINDOWED
-				# Leaving fullscreen is asynchronous (esp. on macOS), wait before resizing
-				await get_tree().process_frame
-				await get_tree().process_frame
+			window.mode = Window.MODE_WINDOWED
 			window.borderless = false
 
-			var target := resolutionToSize(getInt("video", "resolution"))
-			var screenSize := DisplayServer.screen_get_usable_rect(window.current_screen).size
-			window.size = Vector2i(mini(target.x, screenSize.x), mini(target.y, screenSize.y))
-			window.move_to_center()
+	await get_tree().create_timer(WINDOW_RESIZE_WAIT_TIME).timeout # OS window is a bit slower to scale down the window
 
-	# Mode switches can reset window flags, so always re-apply: the player never drags the window size
-	window.unresizable = true
+	match getInt("video", "resolution"):
+		Resolution.ultrawide:
+			window.size = Vector2i(2560, 1080)
+		Resolution.p900:
+			window.size = Vector2i(1600, 900)
+		Resolution.p720:
+			window.size = Vector2i(1280, 720)
+		_:
+			window.size = Vector2i(1920, 1080)
 
 
 func applyVsyncSetting() -> void:
 	DisplayServer.window_set_vsync_mode(
 		DisplayServer.VSYNC_ENABLED if getBool("video", "vsync") else DisplayServer.VSYNC_DISABLED)
-
 
 func applyGammaSetting() -> void:
 	if Globals.visuals == null:
@@ -285,6 +270,7 @@ func applyGammaSetting() -> void:
 		var worldEnv := Globals.visuals.environment
 		worldEnv.environment.adjustment_enabled = true
 		worldEnv.environment.adjustment_brightness = getFloat("video", "gamma")
+
 
 
 func applyAudioSettings() -> void:

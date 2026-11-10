@@ -28,13 +28,14 @@ var _onBackPressed : bool = false
 
 func _ready() -> void:
 	# Initialize Window Mode
-	windowMode.selected = Globals.settingsManager.getInt("video", "window mode")
+	var windowModeValue := Globals.settingsManager.getInt("video", "window mode")
+	windowMode.selected =windowModeValue
 	windowMode.item_selected.connect(_on_window_mode_selected)
 
 	# Initialize Resolution
 	resolution.selected = Globals.settingsManager.getInt("video", "resolution")
 	resolution.item_selected.connect(_on_resolution_selected)
-	_updateResolutionEnabled()
+	resolution.disabled = (windowModeValue != SettingsManager.WindowMode.windowed)
 
 	# Initialize Vsync
 	vSynch.button_pressed = Globals.settingsManager.getBool("video", "vsync")
@@ -72,8 +73,7 @@ func _implDeactivate() -> void:
 
 func _on_window_mode_selected(index : int) -> void:
 	Globals.settingsManager.setInt("video", "window mode", index)
-
-	_updateResolutionEnabled()
+	resolution.disabled = (index != SettingsManager.WindowMode.windowed)
 
 	Globals.settingsManager.saveSettings()
 	Globals.settingsManager.applyWindowSettings()
@@ -88,7 +88,7 @@ func _on_vsync_toggled(status : bool) -> void:
 	Globals.settingsManager.setBool("video", "vsync", status)
 
 	Globals.settingsManager.saveSettings()
-	Globals.settingsManager.applyVsyncSetting()
+	Globals.settingsManager.applyVSyncSettings()
 
 func _on_gamma_value_changed(value : float) -> void:
 	Globals.settingsManager.setFloat("video", "gamma", value)
@@ -96,10 +96,7 @@ func _on_gamma_value_changed(value : float) -> void:
 
 	Globals.settingsManager.saveSettings()
 	Globals.settingsManager.applyGammaSetting()
-	
-func _updateResolutionEnabled() -> void:
-	# Resolution only applies to windowed mode, fullscreen/borderless always use the monitor size
-	resolution.disabled = windowMode.selected != SettingsManager.WindowMode.windowed
+
 
 func _on_back_pressed() -> void:
 	_onBackPressed = true
