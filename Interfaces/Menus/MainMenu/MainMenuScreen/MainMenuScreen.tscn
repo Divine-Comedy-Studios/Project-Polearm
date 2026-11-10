@@ -3,8 +3,7 @@
 [ext_resource type="Script" uid="uid://da7enr8axqhyb" path="res://Interfaces/Menus/MainMenu/MainMenuScreen/MainMenuScreen.gd" id="1_006fw"]
 [ext_resource type="Theme" uid="uid://eptqqy8sm6gl" path="res://Interfaces/Themes/MenuTheme.tres" id="1_ijn5t"]
 [ext_resource type="Script" uid="uid://cfdlgc8aalbtr" path="res://Interfaces/Menus/Button/GameMenuButton.gd" id="2_1kon5"]
-[ext_resource type="Texture2D" uid="uid://ceidsf8ux60iq" path="res://Assets/Interfaces/Logo.png" id="3_jco50"]
-[ext_resource type="Texture2D" uid="uid://r1c2gke6bvc" path="res://Assets/Interfaces/Kenney/Derived/divider_center.png" id="kui_divider"]
+[ext_resource type="Texture2D" uid="uid://bfjo74xlmyqn1" path="res://Assets/Interfaces/ProjectPolearm.png" id="3_jco50"]
 
 [node name="MainMenuScreen" type="Control" unique_id=1875216693]
 physics_interpolation_mode = 0
@@ -27,33 +26,28 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="PanelContainer" parent="CenterContainer" unique_id=1425320903]
+[node name="Container" type="VBoxContainer" parent="CenterContainer" unique_id=74259460]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/MarginContainer" unique_id=1080161198]
+[node name="Logo" type="TextureRect" parent="CenterContainer/Container" unique_id=1309851598]
+layout_mode = 2
+texture = ExtResource("3_jco50")
+expand_mode = 4
+stretch_mode = 4
+
+[node name="MarginContainer" type="PanelContainer" parent="CenterContainer/Container" unique_id=1425320903]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/Container/MarginContainer" unique_id=1080161198]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/separation = 28
 
-[node name="TextureRect" type="TextureRect" parent="CenterContainer/MarginContainer/VBoxContainer" unique_id=762412828]
-custom_minimum_size = Vector2(0, 240)
-layout_mode = 2
-texture = ExtResource("3_jco50")
-expand_mode = 5
-stretch_mode = 5
-
-[node name="Divider" type="TextureRect" parent="CenterContainer/MarginContainer/VBoxContainer" unique_id=795425564]
-texture_filter = 1
-layout_mode = 2
-size_flags_horizontal = 4
-texture = ExtResource("kui_divider")
-stretch_mode = 3
-
-[node name="Buttons" type="VBoxContainer" parent="CenterContainer/MarginContainer/VBoxContainer" unique_id=1354261490]
+[node name="Buttons" type="VBoxContainer" parent="CenterContainer/Container/MarginContainer/VBoxContainer" unique_id=1354261490]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Play" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer/Buttons" unique_id=1927661442]
+[node name="Play" type="Button" parent="CenterContainer/Container/MarginContainer/VBoxContainer/Buttons" unique_id=1927661442]
 texture_filter = 1
 custom_minimum_size = Vector2(340, 76)
 layout_mode = 2
@@ -64,7 +58,7 @@ text = "UI_STARTMENU_PLAY"
 script = ExtResource("2_1kon5")
 metadata/_custom_type_script = "uid://cfdlgc8aalbtr"
 
-[node name="Options" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer/Buttons" unique_id=903404609]
+[node name="Options" type="Button" parent="CenterContainer/Container/MarginContainer/VBoxContainer/Buttons" unique_id=903404609]
 texture_filter = 1
 custom_minimum_size = Vector2(340, 76)
 layout_mode = 2
@@ -75,7 +69,7 @@ text = "UI_STARTMENU_OPTIONS"
 script = ExtResource("2_1kon5")
 metadata/_custom_type_script = "uid://cfdlgc8aalbtr"
 
-[node name="Credits" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer/Buttons" unique_id=1430533424]
+[node name="Credits" type="Button" parent="CenterContainer/Container/MarginContainer/VBoxContainer/Buttons" unique_id=1430533424]
 texture_filter = 1
 custom_minimum_size = Vector2(340, 76)
 layout_mode = 2
@@ -86,7 +80,7 @@ text = "UI_STARTMENU_CREDITS"
 script = ExtResource("2_1kon5")
 metadata/_custom_type_script = "uid://cfdlgc8aalbtr"
 
-[node name="Quit Game" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer/Buttons" unique_id=322889893]
+[node name="Quit Game" type="Button" parent="CenterContainer/Container/MarginContainer/VBoxContainer/Buttons" unique_id=322889893]
 texture_filter = 1
 custom_minimum_size = Vector2(340, 76)
 layout_mode = 2
@@ -97,7 +91,7 @@ text = "UI_STARTMENU_QUIT"
 script = ExtResource("2_1kon5")
 metadata/_custom_type_script = "uid://cfdlgc8aalbtr"
 
-[connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/Buttons/Play" to="." method="_on_continue_pressed"]
-[connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/Buttons/Options" to="." method="_on_options_pressed"]
-[connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/Buttons/Credits" to="." method="_on_credits_pressed"]
-[connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/Buttons/Quit Game" to="." method="_on_exit_game_pressed"]
+[connection signal="pressed" from="CenterContainer/Container/MarginContainer/VBoxContainer/Buttons/Play" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="CenterContainer/Container/MarginContainer/VBoxContainer/Buttons/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="CenterContainer/Container/MarginContainer/VBoxContainer/Buttons/Credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="CenterContainer/Container/MarginContainer/VBoxContainer/Buttons/Quit Game" to="." method="_on_exit_game_pressed"]
