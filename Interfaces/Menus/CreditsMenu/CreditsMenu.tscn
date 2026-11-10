@@ -49,75 +49,65 @@ size_flags_horizontal = 4
 texture = ExtResource("4_divider")
 stretch_mode = 3
 
-[node name="Sections" type="VBoxContainer" parent="CenterContainer/Panel/VBoxContainer" unique_id=1840211559]
+[node name="Contents" type="HBoxContainer" parent="CenterContainer/Panel/VBoxContainer" unique_id=1186719135]
+layout_mode = 2
+
+[node name="Spacing" type="Control" parent="CenterContainer/Panel/VBoxContainer/Contents" unique_id=1812171221]
+custom_minimum_size = Vector2(50, 0)
+custom_maximum_size = Vector2(100, -1)
+layout_mode = 2
+
+[node name="Column1" type="VBoxContainer" parent="CenterContainer/Panel/VBoxContainer/Contents" unique_id=1840211559]
 layout_mode = 2
 theme_override_constants/separation = 24
 
-[node name="Developers" type="VBoxContainer" parent="CenterContainer/Panel/VBoxContainer/Sections" unique_id=1840211560]
+[node name="Developers" type="VBoxContainer" parent="CenterContainer/Panel/VBoxContainer/Contents/Column1" unique_id=1840211560]
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="Heading" type="Label" parent="CenterContainer/Panel/VBoxContainer/Sections/Developers" unique_id=1840211561]
+[node name="Heading" type="Label" parent="CenterContainer/Panel/VBoxContainer/Contents/Column1/Developers" unique_id=1840211561]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.717647, 0.427451, 0.313725, 1)
-theme_override_font_sizes/font_size = 34
+theme_override_font_sizes/font_size = 40
 text = "UI_CREDITSMENU_DEVELOPERS"
 horizontal_alignment = 1
 
-[node name="Names" type="Label" parent="CenterContainer/Panel/VBoxContainer/Sections/Developers" unique_id=1840211562]
+[node name="Names" type="Label" parent="CenterContainer/Panel/VBoxContainer/Contents/Column1/Developers" unique_id=1840211562]
 auto_translate_mode = 2
 layout_mode = 2
 text = "Rodin Arslan
 Zhile Zhu"
 horizontal_alignment = 1
 
-[node name="Supervisors" type="VBoxContainer" parent="CenterContainer/Panel/VBoxContainer/Sections" unique_id=1840211563]
+[node name="Logo" type="VBoxContainer" parent="CenterContainer/Panel/VBoxContainer/Contents/Column1" unique_id=1840211566]
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="Heading" type="Label" parent="CenterContainer/Panel/VBoxContainer/Sections/Supervisors" unique_id=1840211564]
+[node name="Heading" type="Label" parent="CenterContainer/Panel/VBoxContainer/Contents/Column1/Logo" unique_id=1840211567]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.717647, 0.427451, 0.313725, 1)
-theme_override_font_sizes/font_size = 34
-text = "UI_CREDITSMENU_SUPERVISORS"
-horizontal_alignment = 1
-
-[node name="Names" type="Label" parent="CenterContainer/Panel/VBoxContainer/Sections/Supervisors" unique_id=1840211565]
-auto_translate_mode = 2
-layout_mode = 2
-text = "Michael Schneider
-Dr. Christophe Bersier"
-horizontal_alignment = 1
-
-[node name="Logo" type="VBoxContainer" parent="CenterContainer/Panel/VBoxContainer/Sections" unique_id=1840211566]
-layout_mode = 2
-theme_override_constants/separation = 4
-
-[node name="Heading" type="Label" parent="CenterContainer/Panel/VBoxContainer/Sections/Logo" unique_id=1840211567]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.717647, 0.427451, 0.313725, 1)
-theme_override_font_sizes/font_size = 34
+theme_override_font_sizes/font_size = 40
 text = "UI_CREDITSMENU_LOGO"
 horizontal_alignment = 1
 
-[node name="Names" type="Label" parent="CenterContainer/Panel/VBoxContainer/Sections/Logo" unique_id=1840211568]
+[node name="Names" type="Label" parent="CenterContainer/Panel/VBoxContainer/Contents/Column1/Logo" unique_id=1840211568]
 auto_translate_mode = 2
 layout_mode = 2
 text = "Beatrice Schötzau"
 horizontal_alignment = 1
 
-[node name="SpecialThanks" type="VBoxContainer" parent="CenterContainer/Panel/VBoxContainer/Sections" unique_id=1840211569]
+[node name="Playtesters" type="VBoxContainer" parent="CenterContainer/Panel/VBoxContainer/Contents/Column1" unique_id=1840211569]
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="Heading" type="Label" parent="CenterContainer/Panel/VBoxContainer/Sections/SpecialThanks" unique_id=1840211570]
+[node name="Heading" type="Label" parent="CenterContainer/Panel/VBoxContainer/Contents/Column1/Playtesters" unique_id=1840211570]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.717647, 0.427451, 0.313725, 1)
-theme_override_font_sizes/font_size = 34
-text = "UI_CREDITSMENU_SPECIAL_THANKS"
+theme_override_font_sizes/font_size = 40
+text = "UI_CREDITSMENU_PLAYTESTERS"
 horizontal_alignment = 1
 
-[node name="Names" type="Label" parent="CenterContainer/Panel/VBoxContainer/Sections/SpecialThanks" unique_id=1840211571]
+[node name="Names" type="Label" parent="CenterContainer/Panel/VBoxContainer/Contents/Column1/Playtesters" unique_id=1840211571]
 auto_translate_mode = 2
 layout_mode = 2
 text = "Bastian Nakatsu
@@ -126,6 +116,61 @@ Cyrill Bruttin
 Luca Savoldelli
 Max Starrowsky"
 horizontal_alignment = 1
+
+[node name="Spacing2" type="Control" parent="CenterContainer/Panel/VBoxContainer/Contents" unique_id=2004131328]
+custom_minimum_size = Vector2(100, 0)
+custom_maximum_size = Vector2(200, -1)
+layout_mode = 2
+
+[node name="Column2" type="VBoxContainer" parent="CenterContainer/Panel/VBoxContainer/Contents" unique_id=700922361]
+layout_mode = 2
+
+[node name="Supervisors" type="VBoxContainer" parent="CenterContainer/Panel/VBoxContainer/Contents/Column2" unique_id=1840211563]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Heading" type="Label" parent="CenterContainer/Panel/VBoxContainer/Contents/Column2/Supervisors" unique_id=1840211564]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.717647, 0.427451, 0.313725, 1)
+theme_override_font_sizes/font_size = 40
+text = "UI_CREDITSMENU_SUPERVISORS"
+horizontal_alignment = 1
+
+[node name="Names" type="Label" parent="CenterContainer/Panel/VBoxContainer/Contents/Column2/Supervisors" unique_id=1840211565]
+auto_translate_mode = 2
+layout_mode = 2
+text = "Michael Schneider
+Dr. Christophe Bersier"
+horizontal_alignment = 1
+
+[node name="SpecialThanks" type="VBoxContainer" parent="CenterContainer/Panel/VBoxContainer/Contents/Column2" unique_id=1439762014]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Heading" type="Label" parent="CenterContainer/Panel/VBoxContainer/Contents/Column2/SpecialThanks" unique_id=2059037041]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.717647, 0.427451, 0.313725, 1)
+theme_override_font_sizes/font_size = 40
+text = "UI_CREDITSMENU_SPECIAL_THANKS"
+horizontal_alignment = 1
+
+[node name="Names" type="Label" parent="CenterContainer/Panel/VBoxContainer/Contents/Column2/SpecialThanks" unique_id=1008161142]
+auto_translate_mode = 2
+layout_mode = 2
+text = "Bastian Nakatsu
+Gülnihal Bakir
+Max Starrowsky
+Thomas Dittrich
+Tim Rölli
+Fair Fight (@PointDown)
+Capcom
+PlatinumGames"
+horizontal_alignment = 1
+
+[node name="Spacing3" type="Control" parent="CenterContainer/Panel/VBoxContainer/Contents" unique_id=2117353733]
+custom_minimum_size = Vector2(50, 0)
+custom_maximum_size = Vector2(100, -1)
+layout_mode = 2
 
 [node name="Buttons" type="VBoxContainer" parent="CenterContainer/Panel/VBoxContainer" unique_id=1840211572]
 layout_mode = 2
