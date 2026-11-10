@@ -14,8 +14,7 @@ One of the more extreme examples of this aggressive use of exported variables ca
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\linewidth]{Assets/HitboxInspector}
-    \fbox{\parbox[c][3cm][c]{0.8\linewidth}{\centering Placeholder: Assets/Figures/hitbox-inspector}}
+    \includegraphics[width=8cm]{Assets/HitboxInspector}
     \caption[Custom collision layer setter of a Hitbox in the Inspector alongside default Godot setters. Own screenshot from Project Polearm.]{Custom collision layer setter of a Hitbox in the Inspector alongside default Godot setters.}
     \label{fig:hitbox-inspector}
 \end{figure}
@@ -30,7 +29,7 @@ Firstly, the structure of these two classes reflects our research, in which we e
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\linewidth]{Assets/EncounterConfig}
+    \includegraphics[width=6cm]{Assets/EncounterConfig}
     \caption[Configuration of an Encounter and its Waves. Own screenshot from Project Polearm.]{Configuration of an Encounter and its Waves.}
     \label{fig:encounter-configuration}
 \end{figure}
@@ -39,8 +38,8 @@ The only thing \code{EnemyManager} needs to begin an encounter is the \code{Enco
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\linewidth]{Assets/EncounterTriggerConfig}
-    \caption[Configuration of an EncounterTrigger with its Encounter and Wave resources. Own screenshot from Project Polearm.]{Configuration of an EncounterTrigger with its Encounter and Wave resources.}
+    \includegraphics[width=9cm]{Assets/EncounterTriggerConfig}
+    \caption[Configuration of an EncounterTrigger. Own screenshot from Project Polearm.]{Configuration of an EncounterTrigger.}
     \label{fig:encounter-configuration}
 \end{figure}
 
@@ -56,13 +55,12 @@ Frame data describes the timing of the sub-actions within a move as a collection
 
 To achieve such a system in Godot, we made use of its built-in animation system. \code{EntityFrameData} extends \code{AnimationPlayer} and is placed in each entity's scene as a node. It holds an animation library containing one animation for every animation the entity has, under the same name and with the same length. Instead of animating properties such as a character's skeleton, we animate the properties that determine the behavior of its actions. Unlike ordinary animations, however, these frame-data animations are never played back; they are only sampled.
 
-Each property has a public getter with a corresponding name, such as \code{weaponActivate(animationName, time)}. This function looks up the requested animation in the frame-data library, finds the track corresponding to the property and retrieves its value at the requested time. The action itself keeps track of its progress using a variable that is advanced every tick. Configuring the properties of an action therefore becomes almost trivial, and the designer can synchronize them directly with the corresponding animation.
+Each property has a public getter with a corresponding name, such as \code{weaponActivate(animation-} \linebreak\code{Name, time)}. This function looks up the requested animation in the frame-data library, finds the track corresponding to the property and retrieves its value at the requested time. The action itself keeps track of its progress using a variable that is advanced every tick. Configuring the properties of an action therefore becomes almost trivial, and the designer can synchronize them directly with the corresponding animation.
 
 \begin{figure}[H]
     \centering
-    % \includegraphics[width=\linewidth]{Assets/Figures/frame-data}
-    \fbox{\parbox[c][3cm][c]{0.8\linewidth}{\centering Placeholder: Assets/Figures/frame-data}}
-    \caption[Frame-data animation of an action in the animation editor. Own screenshot from Project Polearm.]{Frame-data animation of an action in the animation editor.}
+    \includegraphics[width=\linewidth]{Assets/FrameData}
+    \caption[Frame data of the second attack in the light combo chain. Own screenshot from Project Polearm.]{Frame data of the second attack in the light combo chain.}
     \label{fig:frame-data}
 \end{figure}
 
@@ -86,8 +84,7 @@ For fixed spawn points, however, the issue remained. During the design of the de
 
 \begin{figure}[H]
     \centering
-    % \includegraphics[width=\linewidth]{Assets/Figures/spawn-points}
-    \fbox{\parbox[c][3cm][c]{0.8\linewidth}{\centering Placeholder: Assets/Figures/spawn-points}}
+    \includegraphics[width=7cm]{Assets/SpawnPoints}
     \caption[Configuration of the spawn points of an encounter in the scene tree. Own screenshot from Project Polearm.]{Configuration of the spawn points of an encounter in the scene tree.}
     \label{fig:spawn-points}
 \end{figure}
@@ -102,8 +99,7 @@ Towards the end of development, we encountered another issue. Some animations co
 
 \begin{figure}[H]
     \centering
-    % \includegraphics[width=\linewidth]{Assets/Figures/animation-helper}
-    \fbox{\parbox[c][3cm][c]{0.8\linewidth}{\centering Placeholder: Assets/Figures/animation-helper}}
+    \includegraphics[width=9cm]{Assets/AnimationHelper}
     \caption[The EntityAnimationHelper in the Inspector. Own screenshot from Project Polearm.]{The EntityAnimationHelper in the Inspector.}
     \label{fig:animation-helper}
 \end{figure}
