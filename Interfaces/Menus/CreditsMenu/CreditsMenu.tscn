@@ -157,12 +157,13 @@ horizontal_alignment = 1
 [node name="Names" type="Label" parent="CenterContainer/Panel/VBoxContainer/Contents/Column2/SpecialThanks" unique_id=1008161142]
 auto_translate_mode = 2
 layout_mode = 2
-text = "Bastian Nakatsu
+text = "Beatrice Schötzau
 Gülnihal Bakir
 Max Starrowsky
 Thomas Dittrich
 Tim Rölli
 Fair Fight (@PointDown)
+@ritzzler
 Capcom
 PlatinumGames"
 horizontal_alignment = 1
