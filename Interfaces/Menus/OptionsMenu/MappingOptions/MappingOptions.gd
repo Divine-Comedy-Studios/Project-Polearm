@@ -51,6 +51,8 @@ func _onButtonListening(listening : bool) -> void:
 
 func _onResetPressed() -> void:
 	Globals.settingsManager.saveSectionDefault(MAPPING_TYPE)
+	Globals.settingsManager.saveSettings()
+	Globals.settingsManager.applyInputSettings(MAPPING_TYPE)
 
 func _on_back_pressed() -> void:
 	_onBackPressed = true
